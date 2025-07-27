@@ -2,6 +2,7 @@
   <a href="https://www.recodehive.com">
     <img src="https://github.com/recodehive/recode-website/blob/main/static/icons/Logo-512X512.png" alt="recode Logo" width="150" />
   </a>
+</div>
 <h1 align="center">recode hive</h1>
 
 <div align="center">
