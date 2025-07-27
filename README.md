@@ -131,6 +131,10 @@ Happy open-source contributions and here’s to your career success! 🎉
   Subscribe to receive our newsletter directly in your inbox for the latest career insights & tailored to your journey.<br>
 [![Subscribe to Our Newsletter](https://img.shields.io/badge/Subscribe%20to%20Our%20Newsletter-%F0%9F%93%A9-blue)](https://recodehive.substack.com/) <br>
 
+<a href="#top">
+  <img src="https://img.shields.io/badge/⬆️-Back%20to%20Top-red?style=for-the-badge" align="right"/>
+</a>
+
 </div>
 
 
