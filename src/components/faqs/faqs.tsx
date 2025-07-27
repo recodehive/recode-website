@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { motion } from "framer-motion";
+import { useColorMode } from "@docusaurus/theme-common"; // Docusaurus theme detection
 
 const faqData = [
   {
@@ -42,13 +43,19 @@ const faqData = [
 
 const FAQs: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const { colorMode } = useColorMode();
+  const isDark = colorMode === "dark";
 
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
   return (
-    <section className="py-8 bg-gray-50">
+    <section
+      className={`py-8 transition-colors duration-300 ${
+        isDark ? "bg-[#121212]" : "bg-gray-50"
+      }`}
+    >
       <div className="mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex flex-col justify-center items-center gap-x-8 gap-y-12 xl:gap-28 lg:flex-row lg:justify-between">
           <div className="w-full">
@@ -56,10 +63,18 @@ const FAQs: React.FC = () => {
               <h6 className="text-lg text-center lg:text-left font-medium text-indigo-600 mb-2">
                 FAQs
               </h6>
-              <h2 className="text-4xl text-center lg:text-left font-bold text-gray-900 dark:text-gray-100 leading-snug">
+              <h2
+                className={`text-4xl text-center lg:text-left font-bold ${
+                  isDark ? "text-gray-100" : "text-gray-900"
+                } leading-snug`}
+              >
                 Looking for answers?
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 text-center lg:text-left">
+              <p
+                className={`${
+                  isDark ? "text-gray-400" : "text-gray-600"
+                } text-center lg:text-left`}
+              >
                 Find answers to the most common questions about Recode Hive.
               </p>
             </div>
@@ -75,15 +90,19 @@ const FAQs: React.FC = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <button
-                    className="accordion-toggle group flex justify-between items-center text-lg font-medium text-gray-700 dark:text-gray-200 w-full transition-all duration-300 hover:text-indigo-600 dark:hover:text-indigo-400 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg focus:outline-none"
+                    className={`accordion-toggle group flex justify-between items-center text-lg font-medium w-full transition-all duration-300 
+                      ${
+                        isDark
+                          ? "text-gray-200 bg-gray-800 hover:text-indigo-400"
+                          : "text-gray-700 bg-gray-100 hover:text-indigo-600"
+                      } 
+                      p-4 rounded-lg focus:outline-none`}
                     onClick={() => toggleAccordion(index)}
                   >
                     {faq.question}
                     <motion.span
                       className="transform transition-transform duration-300"
-                      animate={{
-                        rotate: activeIndex === index ? 180 : 0,
-                      }}
+                      animate={{ rotate: activeIndex === index ? 180 : 0 }}
                     >
                       <FiChevronDown size={22} />
                     </motion.span>
@@ -97,8 +116,14 @@ const FAQs: React.FC = () => {
                     }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
-                    <div 
-                      className="mt-2 text-gray-600 dark:text-gray-400 text-base [&_a]:text-indigo-600 [&_a]:hover:text-indigo-800 dark:[&_a]:text-indigo-400 dark:[&_a]:hover:text-indigo-300 [&_a]:transition-colors [&_a]:duration-200 [&_strong]:font-semibold [&_strong]:text-gray-800 dark:[&_strong]:text-gray-200"
+                    <div
+                      className={`mt-2 text-base transition-colors duration-200 ${
+                        isDark ? "text-gray-400" : "text-gray-600"
+                      }
+                      [&_a]:text-indigo-600 [&_a]:hover:text-indigo-800
+                      dark:[&_a]:text-indigo-400 dark:[&_a]:hover:text-indigo-300
+                      [&_strong]:font-semibold [&_strong]:text-gray-800
+                      dark:[&_strong]:text-gray-200`}
                       dangerouslySetInnerHTML={{ __html: faq.answer }}
                     />
                   </motion.div>
