@@ -119,7 +119,11 @@ This project is licensed under the [MIT License](LICENSE).
 <div align="center">
 
 Happy open-source contributions and here’s to your career success! 🎉
-<br>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="600">
+</p>
+
 ### recode-hive 2025
 
 [Website](https://recodehive.com/) | [Instagram](https://www.instagram.com/nomad_brains/) | [LinkedIn](https://www.linkedin.com/in/sanjay-k-v/) | [Twitter](https://x.com/sanjay_kv_) | [YouTube](https://www.youtube.com/@RecodeHive)<br>
