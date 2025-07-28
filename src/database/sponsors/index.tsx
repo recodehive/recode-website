@@ -150,7 +150,7 @@ const sponsors: Sponsor[] = [
     image: "https://avatars.githubusercontent.com/u/62815511?v=4",
     description: "Student at IIIT , India",
     github: "https://github.com/kriti-raj",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/kritirajtech/",
     twitter: "https://x.com/kriti___raj",
     isPastSponsor: true,
   },

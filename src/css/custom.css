@@ -156,3 +156,29 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
+/* Light mode background and text fix */
+[data-theme='light'] {
+  --ifm-background-color: #ffffff; /* white background */
+  --ifm-font-color-base: #000000;  /* black text */
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+}
+
+/* Dark mode overrides (already there, ensure it's working) */
+[data-theme='dark'] {
+  background-color: #121212;
+  color: #ffffff;
+}
+html.theme-light .bg-white {
+  background-color: #ffffff !important;
+}
+
+html.theme-light .text-black {
+  color: #000000 !important;
+}
+
+html.theme-light .text-gray-900 {
+  color: #1a1a1a !important;
+}
+

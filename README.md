@@ -1,4 +1,9 @@
-<h1 align="center">Open-source-practice Pull Requests</h1>
+<div align="center">
+  <a href="https://www.recodehive.com">
+    <img src="https://github.com/recodehive/recode-website/blob/main/static/icons/Logo-512X512.png" alt="recode Logo" width="150" />
+  </a>
+</div>
+<h1 align="center">recode hive</h1>
 
 <div align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section --> 
@@ -114,13 +119,21 @@ This project is licensed under the [MIT License](LICENSE).
 <div align="center">
 
 Happy open-source contributions and here’s to your career success! 🎉
-<br>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="600">
+</p>
+
 ### recode-hive 2025
 
 [Website](https://recodehive.com/) | [Instagram](https://www.instagram.com/nomad_brains/) | [LinkedIn](https://www.linkedin.com/in/sanjay-k-v/) | [Twitter](https://x.com/sanjay_kv_) | [YouTube](https://www.youtube.com/@RecodeHive)<br>
 **🔔 Don’t miss a beat!** <br>
   Subscribe to receive our newsletter directly in your inbox for the latest career insights & tailored to your journey.<br>
 [![Subscribe to Our Newsletter](https://img.shields.io/badge/Subscribe%20to%20Our%20Newsletter-%F0%9F%93%A9-blue)](https://recodehive.substack.com/) <br>
+
+<a href="#top">
+  <img src="https://img.shields.io/badge/⬆️-Back%20to%20Top-red?style=for-the-badge" align="right"/>
+</a>
 
 </div>
 
