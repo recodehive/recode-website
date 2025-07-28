@@ -226,17 +226,18 @@ const Footer: React.FC = () => {
                     to="#"
                     className="mb-3 inline-block text-base text-gray-300 hover:text-[--ifm-color-primary]"
                   >
-                    Account Support
+                    {/* Account Support */}
+                    Terms of Service
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     to="#"
                     className="mb-3 inline-block text-base text-gray-300 hover:text-[--ifm-color-primary]"
                   >
                     Accessibility Support
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
