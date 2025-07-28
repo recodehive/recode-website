@@ -53,25 +53,22 @@ flowchart LR
    cd recodehive-website
    ```
 
-3. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+3. **Prerequesites**
+- [Docker](https://docs.docker.com/engine/install/) installed
+- Docker compose installed (Optional)
 
-4. **Running the Application:**
-    There is a high chance you will face this issue due to the Next.js 18 version conflict, which is global , so type the below to fix it and ignore the warnings while setup.
 
-   ```bash
-   npm install --legacy-peer-deps
-   ```
+4. **Build the Docker Image:**
+    Only do this if you are setting up this project locally for the first time.
 
-    Once you have installed the dependencies, you can run the application locally using:
-    ```bash
-    npm i
-    ```
-    ```bash
-    npm start
-    ```
+```bash
+docker build -t recodehive-app .
+```
+
+4. Run the Container
+```bash
+docker run -p 3000:3000 recodehive-app
+```
 
     This command will start a development server and open the application in your default web browser.
 
