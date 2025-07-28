@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
+import type confettiType from 'canvas-confetti';
 
-const GiveawayPage = () => {
+const GiveawayPage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: '--',
     hours: '--',
@@ -10,8 +11,9 @@ const GiveawayPage = () => {
     seconds: '--',
   });
 
-  const countdownTarget = new Date('2025-08-15T23:59:59').getTime(); // Customize this date
+  const countdownTarget = new Date('2025-08-15T23:59:59').getTime(); // Update the deadline if needed
 
+  // Countdown Timer Effect
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -36,12 +38,25 @@ const GiveawayPage = () => {
       });
     }, 1000);
 
-    // Confetti burst
-    import('canvas-confetti').then(confetti => {
-      confetti.default({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-    });
-
     return () => clearInterval(interval);
+  }, []);
+
+  // Confetti Effect
+  useEffect(() => {
+    const runConfetti = async () => {
+      const module = await import('canvas-confetti');
+      const confetti = module.default as typeof confettiType;
+
+      confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+    };
+
+    const timer = setTimeout(runConfetti, 1000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -56,9 +71,9 @@ const GiveawayPage = () => {
           <p className="text-lg mb-8">Participate now and win exclusive swag, resources, and more!</p>
 
           <div className="flex justify-center gap-4 text-center mb-12">
-            {['days', 'hours', 'minutes', 'seconds'].map(unit => (
+            {['days', 'hours', 'minutes', 'seconds'].map((unit) => (
               <div key={unit} className="bg-white/10 px-6 py-4 rounded-xl shadow-md">
-                <div className="text-3xl font-bold">{timeLeft[unit]}</div>
+                <div className="text-3xl font-bold">{timeLeft[unit as keyof typeof timeLeft]}</div>
                 <div className="text-sm uppercase tracking-widest">{unit}</div>
               </div>
             ))}
@@ -75,7 +90,6 @@ const GiveawayPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* Replace this static data with dynamic data if needed */}
                 <tr className="border-b border-white/10">
                   <td>1</td>
                   <td>OpenSourcePro</td>
@@ -95,7 +109,7 @@ const GiveawayPage = () => {
             </table>
           </div>
 
-          <p className="text-sm text-white/60 italic">
+          <p className="text-sm text-white text-opacity-60 italic">
             Winners will be announced after the countdown ends. Stay active on the dashboard to climb up the leaderboard!
           </p>
         </div>
