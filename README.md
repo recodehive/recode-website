@@ -59,13 +59,13 @@ flowchart LR
 
 
 4. **Build the Docker Image:**
-    Only do this if you are setting up this project locally for the first time.
+    Only do this if you are setting up this project locally for the first time. (only build)
 
 ```bash
 docker build -t recodehive-app .
 ```
 
-4. Run the Container
+5. Run the Container
 ```bash
 docker run -p 3000:3000 recodehive-app
 ```
