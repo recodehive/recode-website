@@ -5,9 +5,7 @@
     transform-style: preserve-3d;
     overflow: hidden;
     padding: 3rem auto;
-    background-color: var(--ifm-background-color);
-    color: #000;
-    transition: background 0.4s ease, color 0.4s ease;
+
   }  
   .chh__header {
     display: flex;
