@@ -84,6 +84,52 @@ flowchart LR
 - Push to the branch: `git push origin feature-name`
 - Submit a pull request detailing your changes.
 
+## Project Structure
+
+```
+recode-website/
+|  
+├── .github/                              🔹 GitHub meta files
+|    ├── ISSUE_TEMPLATE/
+|    ├── workflows/
+|    └── pull_request_template.md
+├── blog/                                 🔹Project Blog  
+|    ├── git-coding-agent/
+|    ├── google-backlinks/
+|    ├──...
+├── community/                            🔹 Contributor Docs  
+|    ├── contributing-guidelines.md
+|    ├── index.md
+|    ├── our-documentation.md
+|    └── understand-lint-checks.md
+├── docs/                                 🔹Documentation
+|    ├── GitHub/
+|    ├── Google-Student-Ambassador/
+|    ├── ...
+├── src/                                  🔹Source Code  
+|    └── compenents/
+|    ├── css/
+|        └── custom.css
+|    ├── data/
+|    ├── database/
+|    ├── lib/
+|    ├── pages/
+|    ├── plugins/
+|    ├── services/
+|    ├── style/
+|        └── globals.css
+|    ├── theme/
+|    └── utils/
+├── static/                              🔹 Public Assets
+|    ├── icons, img
+|    ├── .nojekyll
+|    └── *.png
+├── .gitignore
+├── CODE_OF_CONDUCT.md
+├── LICENSE
+├── README.md
+└── ...              
+```
 
 ## License
 
@@ -136,6 +182,3 @@ Happy open-source contributions and here’s to your career success! 🎉
 </a>
 
 </div>
-
-
-
