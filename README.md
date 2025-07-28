@@ -117,7 +117,7 @@ recode-website/
 |    ├── plugins/
 |    ├── services/
 |    ├── style/
-}        └── globals.css
+|        └── globals.css
 |    ├── theme/
 |    └── utils/
 ├── static/                              🔹 Public Assets
