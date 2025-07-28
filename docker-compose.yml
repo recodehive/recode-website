@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  recodehive:
+    build: 
+      context: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    working_dir: /app
+    command: npm run start
+    environment:
+      - NODE_ENV=development
