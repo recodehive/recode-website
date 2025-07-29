@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "@theme-original/Layout";
 import NavbarFirebaseAuthGithub from "@site/src/components/ui/NavbarFirebaseAuthGithub";
-import NewsletterPopup from '../components/NewsletterPopup';
+import NewsletterPopup from '../components/NewsLetterPopup';
 
 
 
