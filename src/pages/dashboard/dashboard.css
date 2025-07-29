@@ -468,11 +468,11 @@
 
 .stat-item {
   font-size: 0.9rem;
-  color: var(--ifm-color-emphasis-700);
+  color: var(--ifm-color-secondary-text);
 }
 
 .stat-item strong {
-  color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary-text);
   font-weight: 600;
 }
 
@@ -486,7 +486,7 @@
   font-size: 0.8rem;
   padding: 0.25rem 0.75rem;
   background: var(--ifm-color-primary-lightest);
-  color: var(--ifm-color-primary-darker);
+  color: var(--ifm-color-primary-text);
   border-radius: 50px;
   font-weight: 500;
   border: 1px solid var(--ifm-color-primary-light);
