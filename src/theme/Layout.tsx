@@ -1,12 +1,18 @@
 import React from "react";
 import Layout from "@theme-original/Layout";
 import NavbarFirebaseAuthGithub from "@site/src/components/ui/NavbarFirebaseAuthGithub";
+import NewsletterPopup from "@site/src/components/NewsletterPopup";
 
-export default function CustomLayout(props) {
+
+export default function CustomLayout({ children, ...props }) {
+
   return (
-    // <>
-      <Layout {...props} />
-    //   <NavbarFirebaseAuthGithub />
-    // </>
-  );
+  <>
+    <Layout {...props}>
+      <NavbarFirebaseAuthGithub />
+      {children}
+    </Layout>
+    <NewsletterPopup />
+  </>
+);
 }
