@@ -31,7 +31,7 @@ Whenever you create something exciting or something new on your own, you always 
 :::info
 In the picture below you could see Developer 1, Developer 2... are working on the same project , lets say they are trying to build a amazon website, developer 1 handles the Mens shopping section, Developer 2 deals with Womens section, Developer 3 works on the login feature. 
 
-So each indivituals works on different feature from the copy of the central repository, once the development is done they push changes to the **remote repository** (central repo as per picture). Once **code review** happens and good to go, the senior developer will merge the code to the central repository so all the feature will be live on production.
+So each indivituals works on different feature from the copy of the central repository, once the development is done they push changes to the **remote repository** (central repo as per picture). Once **code review** happens and good to go, the senior developer will merge the code to the central repository so all the feature will be live on production enviornmet. 
 :::
 
   <BrowserWindow url="https://github.com/" bodyStyle={{padding: 0}}>    
