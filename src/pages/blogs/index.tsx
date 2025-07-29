@@ -4,8 +4,6 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import blogs from "../../database/blogs";
 import Head from "@docusaurus/Head";
-import { useColorMode } from "@docusaurus/theme-common";
-import "./Blogs.css"; // Make sure this path is correct
 
 export default function Blogs(): React.JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -22,16 +20,15 @@ export default function Blogs(): React.JSX.Element {
           src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
         />
       </Head>
-      <section className="blogs-section">
+      <section className="m-4 my-10">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold gradient-text">
             Welcome to RecodeHive Blogs
           </h1>
-          <p className="blogs-description">
+          <p className="text-lg text-gray-700 dark:text-gray-300">
             Discover web development articles ranging from HTML and CSS to
             JavaScript, React, Node.js, DSA, and much more.
           </p>
-
         </div>
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => (
@@ -43,11 +40,10 @@ export default function Blogs(): React.JSX.Element {
   );
 }
 
-const BlogCard = ({ blog }) => {
-  const { colorMode } = useColorMode();
 
+const BlogCard = ({ blog }) => {
   return (
-    <div className="blog-card shadow-lg rounded-lg overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
       <Link to={`/blog/${blog.slug}`}>
         <img
           src={blog.image}
@@ -56,13 +52,15 @@ const BlogCard = ({ blog }) => {
         />
       </Link>
       <div className="p-4">
-        <h2 className="blog-title">{blog.title}</h2>
-        <p className="blog-desc">{blog.description}</p>
+        <h2 className="text-xl font-semibold text-white">{blog.title}</h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-4">
+          {blog.description}
+        </p>
         <Link
           to={`/blog/${blog.slug}`}
-          className={`read-more ${colorMode === "dark" ? "dark-link" : "light-link"}`}
+          className="text-blue-600 dark:text-blue-400 hover:underline"
         >
-          Read More →
+          Read More
         </Link>
       </div>
     </div>
