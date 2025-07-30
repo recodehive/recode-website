@@ -66,7 +66,7 @@ const parseCSVToJSON = (csvText: string): any[] => {
 const DashboardContent: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
-  const [activeTab, setActiveTab] = useState<'home' | 'discuss' | 'leaderboard'>('home');
+  const [activeTab, setActiveTab] = useState<'home' | 'discuss' | 'leaderboard'|'giveaway'>('home');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>([]);
   const [isLoadingLeaderboard, setIsLoadingLeaderboard] = useState(false);
@@ -78,7 +78,10 @@ const DashboardContent: React.FC = () => {
       setActiveTab('discuss');
     } else if (location.hash === '#leaderboard') {
       setActiveTab('leaderboard');
-    } else {
+    } else if (location.hash === '#giveaway'){
+      setActiveTab('giveaway');
+    }
+    else {
       setActiveTab('home');
     }
   }, [location]);
@@ -220,7 +223,7 @@ const DashboardContent: React.FC = () => {
     return achievements.slice(0, 3); // Limit to 3 achievements for UI
   };
 
-  const handleTabChange = (tab: 'home' | 'discuss' | 'leaderboard') => {
+  const handleTabChange = (tab: 'home' | 'discuss' | 'leaderboard' | 'giveaway') => {
     setActiveTab(tab);
     if (tab === 'discuss') {
       history.push('#discuss');
@@ -228,7 +231,11 @@ const DashboardContent: React.FC = () => {
     } else if (tab === 'leaderboard') {
       history.push('#leaderboard');
       window.scrollTo(0, 0);
-    } else {
+    } else if (tab === 'giveaway'){
+      history.push('/dashboard/giveaway');
+      window.scrollTo(0 , 0);
+    }
+    else {
       history.push('#');
     }
   };
@@ -440,6 +447,16 @@ const DashboardContent: React.FC = () => {
               <span className="nav-icon">🏆</span>
               <span className="nav-text">Leaderboard</span>
             </li>
+
+            <li
+             className={`nav-item ${activeTab === 'giveaway' ? 'active' : ''}`}
+              onClick={() => handleTabChange
+              ('giveaway')}
+              >
+                <span className="nav-icon">🎁</span>
+                <span className="nav-text">Giveaway</span>
+            </li>
+
           </ul>
           <div className="sidebar-footer">
             <button 
@@ -594,7 +611,7 @@ const DashboardContent: React.FC = () => {
                 />
               </div>
             </div>
-          ) : (
+          ) : activeTab === 'leaderboard' ? (
             /* Leaderboard Tab */
             <div className="leaderboard-page-container">
               <motion.div
@@ -775,6 +792,59 @@ const DashboardContent: React.FC = () => {
                 </motion.div>
               )}
             </div>
+            ) : activeTab === 'giveaway'  && (
+              // ✅ Giveaway Section 🎁
+              <>
+                <motion.section className="dashboard-hero" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+                  <div className="hero-content">
+                    <h1 className="dashboard-title">
+                      🎁 <span className="highlight">Giveaway</span>
+                    </h1>
+                    <p className="dashboard-subtitle">Participate in exclusive giveaways and win exciting prizes!</p>
+                  </div>
+                </motion.section>
+
+                {/* 🎉 Giveaway Stats Grid */}
+                <motion.section
+                  className="dashboard-stats-section"
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="dashboard-stats-grid">
+                    <StatCard
+                      icon="⏳"
+                      title="Next Giveaway"
+                      value="5 Days"
+                      valueText="5 Days Left"
+                      description="Time remaining"
+                    />
+                    <StatCard
+                      icon="🎫"
+                      title="Entries"
+                      value="1420"
+                      valueText="1,420"
+                      description="Total participants"
+                    />
+                    <StatCard
+                      icon="📈"
+                      title="Your Rank"
+                      value="32"
+                      valueText="Rank 32"
+                      description="Based on your contribution"
+                    />
+                    <StatCard
+                      icon="🏅"
+                      title="Total Winners"
+                      value="10"
+                      valueText="10 Winners"
+                      description="Winners per giveaway"
+                    />
+                  </div>
+                </motion.section>
+              </>
+            
           )}
         </main>
       </div>

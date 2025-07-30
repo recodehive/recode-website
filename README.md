@@ -32,6 +32,14 @@ Now, resolve your all doubts and communicate with our all contributors.
 
 To get started with contributing to Recode-Hive, please refer to our [Contributing Guidelines](CONTRIBUTING.md).
 
+<div>
+    <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
+      <p>How to Contribute to this repo | How to Setup - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
+      <img style="max-width:700px;" src="https://cdn.loom.com/sessions/thumbnails/c8d8d5f0c2534a1f86fc510dcef52ee0-30cac2eeec09a266-full-play.gif">
+    </a>
+  </div>
 Follow these steps:
 
 
