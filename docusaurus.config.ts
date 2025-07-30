@@ -27,14 +27,10 @@ const config: Config = {
       async: true,
     },
     {
-      content: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-W02Z2VJYCR', {
-          debug_mode: ${process.env.NODE_ENV !== 'production' ? 'true' : 'false'}
-        });
-      `,
+      src: '/gtag-init.js',
+    },
+    {
+      src: '/pinterest-init.js',
     },
   ],
 
@@ -289,7 +285,7 @@ const config: Config = {
       },
     ],
   ],
-  scripts: [],
+  //  scripts: [],
 };
 
 export default config;
