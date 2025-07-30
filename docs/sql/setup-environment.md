@@ -1,12 +1,12 @@
 ---
 id: setup-environment
-title: Setting up your development environment
-sidebar_label: Setting up environment
+title: Setting up Your Development Environment
+sidebar_label: Setting up Environment
 sidebar_position: 3
 tags:
   [
     sql,
-    introduction of sql,
+    introduction to sql,
     what is sql,
     why learn sql,
     setup sql,
@@ -14,51 +14,73 @@ tags:
     sql server,
     sql setup,
   ]
-description: In this tutorial, you will learn how to set up your development environment for HTML development.
+description: In this tutorial, you will learn how to set up your development environment for SQL development.
 ---
 
-There are different emulators available for SQL Queries, but as a beginner its always good to start with Installing MYSQL Server and Workbench in your system, it helps you to understand the overall process and industry settings. This MYSQL Workbench is called the IDE (Itegrated developement enviornment).
-We will guide you to setup the IDE in your system, and navigate further executing SQL queries and creating database in the IDE. 
+## Introduction
 
-### **1. Download the Installer:**: To install download the installer.
+To start learning SQL, it's essential to have a development environment where you can experiment and practice running queries. While there are many online emulators and sandboxes available, beginners will benefit most by installing MySQL Server and MySQL Workbench on their own system. This approach helps you understand how professional environments function and prepares you for real-world scenarios.
 
-Click the link below to download MySQL Workbench:
+**MySQL Workbench** is an IDE (Integrated Development Environment) for working with MySQL servers and databases. We'll guide you through setting up this IDE on your system and teach you how to use it to create databases and run SQL queries.
+
+---
+
+### 1. Download and Install MySQL Server and Workbench
+
+Click the link below to access the **official MySQL Workbench download page**:
 
 👉 [MySQL Workbench Official Download Page](https://dev.mysql.com/downloads/workbench/)
 
-- ✅ Choose your OS (Windows, macOS, or Linux)
-- ✅ Follow the installation instructions
+- ✅ Choose your operating system (Windows, macOS, or Linux).
+- ✅ Download the appropriate installer.
+- ✅ Follow the step-by-step installation instructions provided on the site.
+
+You can also watch this video tutorial for additional guidance:
 
 <iframe width="853" height="480" src="https://www.youtube.com/embed/u96rVINbAUI" title="How To Install MySQL (Server and Workbench)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
 
-### 🍎 macOS Users  
-- 💾 [Server Installer](http://bit.ly/2PU2IZU)  
-- 💻 [Workbench Installer](http://bit.ly/2B2xiZ2)
+### 🍎 For macOS Users
+
+- 💾 [Download MySQL Server for macOS](http://bit.ly/2PU2IZU)
+- 💻 [Download MySQL Workbench for macOS](http://bit.ly/2B2xiZ2)
 
 ---
 
-### 🐧 Linux Users  
-- 💾 [Server Installer](http://bit.ly/2DijNpJ)  
-- 💻 [Workbench Installer](http://bit.ly/2B153d8)
+### 🐧 For Linux Users
+
+- 💾 [Download MySQL Server for Linux](http://bit.ly/2DijNpJ)
+- 💻 [Download MySQL Workbench for Linux](http://bit.ly/2B153d8)
 
 ---
-
 
 ## Why Do You Need an IDE?
 
-This IDE helps you to execute and maintain the workflow of SQL, It acts as  a source code editor,  and a debugger. It basically help you to execute and debug any bugs for developer. Especially when comes to DBA (Database adminstration), managing huge dataset can be tiring here, it will help you with performance dashboard and quick improvement features. 
+An IDE offers more than just a place to type SQL code. It provides tools for:
 
+- Managing and visualizing databases and tables
+- Writing, executing, and debugging SQL queries
+- Viewing database schema and structure
+- Monitoring performance (especially useful for administrators)
+- Making database management easier and more efficient
 
-### Key Features to Look for in an IDE/Text Editor
+**Think of the IDE as a “window to your database”**: you can see and interact with your data without affecting the actual database by just closing the tool. Removing the IDE does not delete your database—just like closing a window doesn't affect the house behind it.
 
-1. **Syntax :** Highlights the color, make code readbility.
-2. **Accelerate Work stucture:** Help you to sort and visualise the messy database.
-3. **Helps managing Database:** Allows you to store the data, create workflow and organise it. 
+---
+
+### Key Features to Look For in an IDE
+
+1. **Syntax Highlighting:** Makes code more readable by coloring keywords and other elements.
+2. **Database Visualization:** Helps you structure and organize database objects efficiently.
+3. **Integrated Management Tools:** Lets you store data, manage workflows, organize tables, and perform administrative operations (like backup and user management).
+4. **Query Execution & Debugging:** Allows you to test and debug your SQL commands directly.
+5. **Performance Monitoring:** Some IDEs offer dashboards to monitor query performance and database health.
+
+---
 
 ## Conclusion
 
-I hope you understood the concept here, if not yet, think like its a nice view from your house, it lets you see whats happening outside in your comfort zone, if anything happening to the house, the view remain same, Workbench works the simillar way, it helps you to see the data in the databse, just like your house SQL workbench doesnt have the data, if you remove workbench nothing happens to your databse. 
+I hope you understood the concept here, if not yet, think like its a nice view from your house, it lets you see whats happening outside in your comfort zone, if anything happening to the house, the view remain same, Workbench works in the similar way, it helps you to see the data in the databse, just like your house. SQL workbench doesnt have the data, if you remove workbench nothing happens to your databse. 
 
 <GiscusComments/>
