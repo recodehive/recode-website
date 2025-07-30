@@ -49,7 +49,7 @@ When creating an issue for the GitHub Copilot Coding Agent, clarity and structur
 
 - **Provide Clear Context:**  
     Begin by describing the problem or feature request in detail. Explain *why* the change is needed, referencing any relevant background, user stories, or business goals. If the issue relates to a bug, include steps to reproduce, expected vs. actual behavior, and any error messages or screenshots.
-![UI-UX Design impact in future](/img/blogs/01-code-issue.png)
+![UI-UX Design impact in future](/img/blogs/github-copilot/01-code-issue.png)
     
 
 - **Define Expected Outcomes:**  
@@ -63,7 +63,7 @@ When creating an issue for the GitHub Copilot Coding Agent, clarity and structur
 
 - **Assign the Issue to Copilot:**  
     Just like you would with a human teammate, assign the issue to Copilot. This triggers the agent workflow and signals that the issue is ready for automated handling.
-    ![UI-UX Design impact in future](/img/blogs/02-assign-copilot.png)
+    ![UI-UX Design impact in future](/img/blogs/github-copilot/02-assign-copilot.png)
     
 
 ### **Example Issue Template:**
@@ -101,7 +101,7 @@ You can expect:
 - Clear traceability between your issue and the resulting code changes.
 
 Stay engaged by reviewing the PR, providing feedback, or merging it when ready. This workflow helps you leverage automation while maintaining control over your codebase.
-    ![UI-UX Design impact in future](/img/blogs/03-pr-copilot.png)
+    ![UI-UX Design impact in future](/img/blogs/github-copilot/03-pr-copilot.png)
     
 ---
 
@@ -121,10 +121,10 @@ We’re inviting early adopters to help shape the future of the GitHub Copilot C
 - The most insightful and actionable feedback will be eligible for a $200 gift card.
 - Help make Copilot Coding Agent more effective for the entire developer community.
 - Get early access to new features and updates.
-    ![UI-UX Design impact in future](/img/blogs/03-reward-copilot.png)
+    ![UI-UX Design impact in future](/img/blogs/github-copilot/03-reward-copilot.png)
    
 
-They appreciate your time and expertise—thank you for helping us build a better coding agent!
+
 ---
 
 ## ✅ Conclusion

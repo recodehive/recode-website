@@ -141,6 +141,8 @@ These skills are essential for maintaining and organizing your database as your 
 
 ---
 
+## 📝 Quiz: Test Your Knowledge
+
 #### 1. Now that we have the list of tables, let's delete the entire `past_events` table with the `DROP TABLE` query.
 
 Here is the original `past_events` table:
@@ -169,8 +171,8 @@ Here is the original `past_events` table:
 
 Q Tap the correct answer
 
-- [ ] A schema contains only table information
-- [x] A schema contains information about a database
+- [ ] A schema contains only table information.
+- [x] A schema contains information about a database.
 
 <details>
   <summary>Answer</summary>

@@ -22,4 +22,7 @@ yarn-error.log*
 .env
 .cursorrule
 
-package-lock.json    
+package-lock.json
+
+# Temporary files
+/tmp/

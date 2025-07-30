@@ -48,6 +48,15 @@ const blogs: Blog[] = [
       "An SEO backlink is created when one website links to another, and they’re extremely important for SEO. ",
     slug: "google-backlinks",
   },
+
+        {
+    id: 6,
+    title: "What is GitHub Copilot",
+    image: "/img/blogs/06-github-agent.png",
+    description:
+      "The GitHub Copilot Coding Agent is an asynchronous software engineering agent that assists developers by suggesting code snippets",
+    slug: "git-coding-agent",
+  },
 ];
 
 export default blogs;

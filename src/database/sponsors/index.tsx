@@ -11,6 +11,12 @@ export interface Sponsor {
 }
 
 const sponsors: Sponsor[] = [
+  {
+    name: "DevXavier",
+    image: "https://avatars.githubusercontent.com/u/192259212?v=4",
+    description: "Student ",
+    github: "https://github.com/DevXavierNieto",
+  },
     {
     name: "Takashi Arai",
     image: "https://avatars.githubusercontent.com/u/42265874?v=4",
@@ -39,6 +45,7 @@ const sponsors: Sponsor[] = [
     description: "Software Developer",
     github: "https://github.com/varghese25",
     linkedin: "https://www.linkedin.com/in/varghese-baby-138429175/",
+    isPastSponsor: true,
   },
  
   {
@@ -143,7 +150,7 @@ const sponsors: Sponsor[] = [
     image: "https://avatars.githubusercontent.com/u/62815511?v=4",
     description: "Student at IIIT , India",
     github: "https://github.com/kriti-raj",
-    linkedin: "#",
+    linkedin: "https://www.linkedin.com/in/kritirajtech/",
     twitter: "https://x.com/kriti___raj",
     isPastSponsor: true,
   },
@@ -175,14 +182,23 @@ const sponsors: Sponsor[] = [
     isPastSponsor: true,
   },
     {
+    name: "Irfan", 
+    image: "https://avatars.githubusercontent.com/u/138690953?v=4",
+    description: "Final Year Student",
+    github: "https://github.com/iitzIrFan",
+    linkedin: "https://www.linkedin.com/in/irfan-shaikh-8b5b94259/",
+    twitter: "https://x.com/iitzIrfan",
+    isWeSponsor: true,
+  },  
+    {
     name: "Renato Maynard", 
     image: "https://avatars.githubusercontent.com/u/79546214?v=4",
     description: "M.Sc. in Operations Research",
     github: "https://www.linkedin.com/in/renatomaynardetche/",
-    linkedin: "https://www.linkedin.com/in/dhrubaraj-pati/",
     twitter: "https://x.com/codewithdhruba",
     isWeSponsor: true,
   },  
+
     {
     name: "Dhrubaraj Pati",
     image: "https://avatars.githubusercontent.com/u/146111647?v=4",
@@ -313,7 +329,7 @@ const sponsors: Sponsor[] = [
   },
   {
     name: "Md Azfar Alam",
-    image: "https://media.licdn.com/dms/image/v2/D5603AQHzw_0ZXSxrqA/profile-displayphoto-shrink_400_400/B56ZZwigTWHAAg-/0/1745644816027?e=1753920000&v=beta&t=Rc2QnZ8kdrvo5hGiif-1vrbd4N2hKwQeiNIjPF_NkZw",
+    image: "https://avatars.githubusercontent.com/u/100375390?v=4",
     description: "Devops Engineer",
     github: "https://github.com/mdazfar2",
     linkedin: "https://www.linkedin.com/in/md-azfar-alam/",
@@ -372,7 +388,7 @@ const sponsors: Sponsor[] = [
   },
   {
     name: "Dinesh Talwadker",
-    image: "https://pbs.twimg.com/profile_images/1894339541856636928/NRQWvgBe_400x400.jpg",
+    image: "https://media.licdn.com/dms/image/v2/D4D35AQEPaJ17Vq2zMw/profile-framedphoto-shrink_200_200/B4DZgO2PCnHAAc-/0/1752595755484?e=1753635600&v=beta&t=ltSZKvnsXqQavgb4LISSOevZSIU3uhEi--Nx_FtTSQU",
     description: "Co-Founder at Sanity Esports",
     github: "https://github.com/dinxsh",
     linkedin: "https://www.linkedin.com/in/dineshtalwadker/",
