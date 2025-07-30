@@ -112,7 +112,7 @@ recode-website/
 |    ├── Google-Student-Ambassador/
 |    ├── ...
 ├── src/                                  🔹Source Code  
-|    └── compenents/
+|    ├── compenents/
 |    ├── css/
 |    |   └── custom.css
 |    ├── data/
