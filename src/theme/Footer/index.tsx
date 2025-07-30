@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
               <ul className="list-none pl-0">
                 <li>
                   <Link
-                    to="/courses/"
+                    to="/get-started/"
                     className="mb-3 inline-block text-base text-gray-300 hover:text-[--ifm-color-primary]"
                   >
                     Tutorials
