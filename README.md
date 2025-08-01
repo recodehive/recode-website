@@ -112,9 +112,9 @@ recode-website/
 |    ├── Google-Student-Ambassador/
 |    ├── ...
 ├── src/                                  🔹Source Code  
-|    └── compenents/
+|    ├── compenents/
 |    ├── css/
-|        └── custom.css
+|    |   └── custom.css
 |    ├── data/
 |    ├── database/
 |    ├── lib/
@@ -122,7 +122,7 @@ recode-website/
 |    ├── plugins/
 |    ├── services/
 |    ├── style/
-|        └── globals.css
+|    |   └── globals.css
 |    ├── theme/
 |    └── utils/
 ├── static/                              🔹 Public Assets
