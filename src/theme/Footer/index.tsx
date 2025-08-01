@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
               <ul className="list-none pl-0">
                 <li>
                   <Link
-                    to="/get-started/"
+                    to="/courses/"
                     className="mb-3 inline-block text-base text-gray-300 hover:text-[--ifm-color-primary]"
                   >
                     Tutorials
@@ -215,7 +215,7 @@ const Footer: React.FC = () => {
                 </li>
                 <li>
                   <Link
-                    to="https://github.com/recodehive/recode-website/issues"
+                    to="#"
                     className="mb-3 inline-block text-base text-gray-300 hover:text-[--ifm-color-primary]"
                   >
                     Feature Request
