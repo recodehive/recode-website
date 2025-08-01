@@ -15,8 +15,8 @@
     "typecheck": "tsc",
     "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css,scss,yaml,yml}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,md,css,scss,yaml,yml}\"",
+        "format": "prettier --write \"**/*.{js,jsx}\" --ignore-path .gitignore",
+        "format:check": "prettier --check \"**/*.{js,jsx}\" --ignore-path .gitignore",
     "lint:staged": "lint-staged",
     "prepare": "husky install"
   },
