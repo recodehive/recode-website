@@ -1,3 +1,4 @@
+
 name: Auto Comment on Issue Opened
 
 on:
@@ -20,5 +21,6 @@ jobs:
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: "🚀 Thanks for opening this issue! The team will review it shortly."
+               body: "Thanks for opening this issue! 🎉 We'll look into it as soon as possible, estimated time for response is 5–8 hrs. \n\n Don't raise PR unless assigned to you.\n\nIn the meantime, please provide all necessary details and context to your issue — screenshots or videos of your changes help speed up the review and assignment. If you have questions, reach out to [LinkedIn](https://www.linkedin.com/in/sanjay-k-v/). Your contributions are highly appreciated!😊 \n\n Note: I maintain the repo issue every day twice at 8:00 AM IST and 9:00 PM IST. If your issue goes stale for more than one day, you can tag and comment on this same issue by tagging **@sanjay-kv**.\n\nWe are here to help you on this journey of open source. Consistent contributions are eligible for sponsorship 💰 \n\n 🎁 check our list of amazing people we sponsored so far: [GitHub Sponsorship](https://www.recodehive.com/our-sponsors). ✨ \n\n 📚Resources which can help you know more about Github 👇🏻 \n\n 1. End to End GitHub Beginner Playlist: [GitHub Playlist](https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive). \n\n 2. Build your GitHub Profile: [GitHub Profile Optimisation](https://www.youtube.com/watch?v=w1zFVtthiYc&list=PLrLTYhoDFx-lTIzox5agrJgd9QbKHKPOI&ab_channel=RecodeHive).  \n\n 3. GitHub Handbook for dummies: [GitHub Blog for Beginners.](https://www.recodehive.com/docs/GitHub/intro-github)"
+
             });

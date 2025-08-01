@@ -1,0 +1,37 @@
+name: Auto Comment on PR
+
+on:
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+    - name: Add Comment to Pull Request
+      run: |
+        COMMENT=$(cat <<EOF
+        {
+          "body": "Thank you for submitting your pull request! 🙌 We'll review it as soon as possible. The estimated time for response is 5–8 hrs. \\n\n In the meantime, please provide all necessary screenshots and make sure you run - npm build run , command and provide a screenshot, a video recording, or an image of the update you made below, which helps speed up the review and assignment. If you have questions, reach out to [LinkedIn](https://www.linkedin.com/in/sanjay-k-v/). Your contributions are highly appreciated!😊 \n\n Note: I maintain the repo issue every day twice at 8:00 AM IST and 9:00 PM IST. If your PR goes stale for more than one day, you can tag and comment on this same issue by tagging **@sanjay-kv**.\n\n We are here to help you on this journey of open source. Consistent 20 contributions are eligible for sponsorship 💰 \n\n 🎁 check our list of amazing people we sponsored so far: [GitHub Sponsorship](https://www.recodehive.com/our-sponsors). ✨ \n\n 📚Your perks for contribution to this community 👇🏻 \n\n 1. Get free Consultation use code recode50 to get free: [Mentorship for free](https://event.recodehive.com/git). \n\n 2. Get the Ebook for free use code recode at checkout: [Data Science cheatsheet for Beginners](https://dev.recodehive.com/book).  \n\n 3. Check out this weekly Newsletter: [Sanjay's Newsletter.](https://recodehive.substack.com/) \n\n  If there are any specific instructions or feedback regarding your PR, we'll provide them here. Thanks again for your contribution! 😊"
+        }
+        EOF
+        )
+        RESPONSE=$(curl -s -o response.json -w "%{http_code}" \
+          -X POST \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+          -d "$COMMENT")
+        cat response.json
+        if [ "$RESPONSE" -ne 201 ]; then
+          echo "Failed to add comment"
+          exit 1
+        fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

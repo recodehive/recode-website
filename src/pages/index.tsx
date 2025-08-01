@@ -16,27 +16,6 @@ import { CommunityStatsProvider } from "../lib/statsProvider";
 import { LandingCommunity } from "../components/Community";
 import FAQs from "../components/faqs/faqs";
 
-// function HomepageHeader() {
-//   const {siteConfig} = useDocusaurusContext();
-//   return (
-//     <header className={clsx('hero hero--primary', styles.heroBanner)}>
-//       <div className="container">
-//         <Heading as="h1" className="hero__title">
-//           {siteConfig.title}
-//         </Heading>
-//         <p className="hero__subtitle">{siteConfig.tagline}</p>
-//         <div className={styles.buttons}>
-//           <Link
-//             className="button button--secondary button--lg"
-//             to="/docs/intro">
-//             Docusaurus Tutorial - 5min ⏱️
-//           </Link>
-//         </div>
-//       </div>
-//     </header>
-//   );
-// }
-
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -51,46 +30,56 @@ export default function Home(): ReactNode {
           src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
         />
       </Head>
-      <main className="bg-gradient-to-b from-white to-white/50">
-        <div className="m-4">
-          <Header />
-        </div>
-        <div className="m-4">
-          <BlogCarousel />
-        </div>
-        <div
-          className="m-4"
-          onClick={() => (window.location.href = "https://www.sanjaykv.com/")}
-        >
-          <img
-            src="/selfhero.png"
-            alt="recodehive"
-            className="w-full h-full object-cover rounded-2xl cursor-pointer"
-          />
-        </div>
-        <div className="m-4">
-          <OurProjects OurProjectsData={projectsData} />
-        </div>
-        <div className="m-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-          <div className="col-span-1">
-            <TopMateSection />
-          </div>
-          <div className="col-span-2">
-            <TestimonialCarousel />
-          </div>
-        </div>
-        <div className="m-4">
-          <CommunityStatsProvider>
-            <LandingCommunity className="recodehive" />
-          </CommunityStatsProvider>
-        </div>
-        <div className="m-4">
-          <FAQs />
-        </div>
 
-        <ScrollTopToBottom />
-        <ScrollBottomToTop />
-      </main>
+      {/* ✅ Wrap in solid background to fix light mode */}
+      <div className="   transition-colors duration-300"style={{ backgroundColor: "var(--ifm-background-color)", color: "var(--ifm-font-color-base)" }}>
+      <main className="transition-colors duration-300" style={{ backgroundColor: "var(--ifm-background-color)", color: "var(--ifm-font-color-base)" }}>
+      <div className="m-4">
+            <Header />
+          </div>
+
+          <div className="m-4">
+            <BlogCarousel />
+          </div>
+
+          <div
+            className="m-4"
+            onClick={() => (window.location.href = "https://www.sanjaykv.com/")}
+          >
+            <img
+              src="/selfhero.png"
+              alt="recodehive"
+              className="w-full h-full object-cover rounded-2xl cursor-pointer"
+            />
+          </div>
+
+          <div className="m-4">
+            <OurProjects OurProjectsData={projectsData} />
+          </div>
+
+          <div className="m-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+            <div className="col-span-1">
+              <TopMateSection />
+            </div>
+            <div className="col-span-2">
+              <TestimonialCarousel />
+            </div>
+          </div>
+
+          <div className="m-4">
+            <CommunityStatsProvider>
+              <LandingCommunity className="recodehive" />
+            </CommunityStatsProvider>
+          </div>
+
+          <div className="m-4">
+            <FAQs />
+          </div>
+
+          <ScrollTopToBottom />
+          <ScrollBottomToTop />
+        </main>
+      </div>
     </Layout>
   );
 }
