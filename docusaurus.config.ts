@@ -20,24 +20,6 @@ const config: Config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
-  // Google Analytics
-  scripts: [
-    {
-      src: 'https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR',
-      async: true,
-    },
-    {
-      content: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-W02Z2VJYCR', {
-          debug_mode: ${process.env.NODE_ENV !== 'production' ? 'true' : 'false'}
-        });
-      `,
-    },
-  ],
-
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
@@ -73,6 +55,11 @@ const config: Config = {
 
   themeConfig: {
     image: "img/docusaurus-social-card.jpg",
+    colorMode: {
+      defaultMode: "light",
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     navbar: {
       title: "Recode Hive",
       logo: {
@@ -289,7 +276,22 @@ const config: Config = {
       },
     ],
   ],
-  scripts: [],
+  scripts: [
+    {
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR',
+      async: true,
+    },
+    {
+      content: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-W02Z2VJYCR', {
+          debug_mode: ${process.env.NODE_ENV !== 'production' ? 'true' : 'false'}
+        });
+      `,
+    },
+  ],
 };
 
 export default config;
