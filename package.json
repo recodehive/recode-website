@@ -28,6 +28,8 @@
     "prism-react-renderer": "^2.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
     "use-dark-mode": "^2.3.1"
   },
   "devDependencies": {
@@ -37,12 +39,12 @@
     "@docusaurus/tsconfig": "3.8.1",
     "@docusaurus/types": "3.8.1",
     "@tailwindcss/postcss": "^4.1.4",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
     "@types/canvas-confetti": "^1.9.0",
     "@types/node": "^20.11.30",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.19",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.0",
