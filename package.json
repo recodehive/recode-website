@@ -10,7 +10,8 @@
     "serve": "docusaurus serve",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format:check": "prettier --check . && eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
     "@docusaurus/core": "^3.8.1",
