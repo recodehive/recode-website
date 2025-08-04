@@ -24,6 +24,7 @@ import { sortedUsers,
     type User,
     type TagType,} from '@site/src/data/users';
 import FavoriteIcon from '@site/src/components/svgIcons/FavoriteIcon';
+import { useColorMode } from '@docusaurus/theme-common';
 
 const TITLE =
   'Recode Hive: Framing all the opensource projects built by our community members';
@@ -440,23 +441,39 @@ function ShowcaseCards() {
 }
 
 export default function Showcase(): JSX.Element {
+
   return (
     <Layout
-      title={"Showcase of CodeHarborHub"}
-      description="Showcase of CodeHarborHub for CodeHarborHub Learners, and users"
+      title="Showcase of CodeHarborHub"
+      description="Showcase of CodeHarborHub for CodeHarborHub Learners and users"
+    >
+      <ShowcaseContent />
+    </Layout>
+  );
+}
+
+function ShowcaseContent() {
+  const { colorMode } = useColorMode();
+  const isDark = colorMode === "dark";
+
+  return (
+    <main
+      className={clsx(
+        "",
+        isDark ? "bg-[#121212] text-white" : "bg-white text-black"
+      )}
     >
       <Head>
         <script
           async
           custom-element="amp-auto-ads"
           src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
-         />
+        />
       </Head>
-      <main className="margin-vert--lg">
-        <ShowcaseHeader />
-        <ShowcaseFilters />
-        <ShowcaseCards />
-      </main>
-    </Layout>
+
+      <ShowcaseHeader />
+      <ShowcaseFilters />
+      <ShowcaseCards />
+    </main>
   );
 }

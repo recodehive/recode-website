@@ -160,7 +160,7 @@ const Footer: React.FC = () => {
                 </li>
                 <li>
                   <Link
-                    to="/community"
+                    to="/contact-us"
                     className="mb-3 inline-block text-base text-gray-300 hover:text-[--ifm-color-primary]"
                   >
                     Contact Us
@@ -168,7 +168,7 @@ const Footer: React.FC = () => {
                 </li>
                 <li>
                   <Link
-                    to="#"
+                    to="/careers"
                     className="mb-3 inline-block text-base text-gray-300 hover:text-[--ifm-color-primary]"
                   >
                     Careers
@@ -226,7 +226,7 @@ const Footer: React.FC = () => {
                     to="#"
                     className="mb-3 inline-block text-base text-gray-300 hover:text-[--ifm-color-primary]"
                   >
-                    Account Support
+                    Terms of Service
                   </Link>
                 </li>
                 <li>

@@ -1,4 +1,9 @@
-<h1 align="center">Open-source-practice Pull Requests</h1>
+<div align="center">
+  <a href="https://www.recodehive.com">
+    <img src="https://github.com/recodehive/recode-website/blob/main/static/icons/Logo-512X512.png" alt="recode Logo" width="150" />
+  </a>
+</div>
+<h1 align="center">recode hive</h1>
 
 <div align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section --> 
@@ -27,6 +32,14 @@ Now, resolve your all doubts and communicate with our all contributors.
 To get started with contributing to Recode-Hive, please refer to our
 [Contributing Guidelines](CONTRIBUTING.md).
 
+<div>
+    <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
+      <p>How to Contribute to this repo | How to Setup - Watch Video</p>
+    </a>
+    <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
+      <img style="max-width:700px;" src="https://cdn.loom.com/sessions/thumbnails/c8d8d5f0c2534a1f86fc510dcef52ee0-30cac2eeec09a266-full-play.gif">
+    </a>
+  </div>
 Follow these steps:
 
 ```mermaid
@@ -223,11 +236,19 @@ For more help, check our [Discord community](https://discord.gg/Yxv9RA3r) or cre
    18 version conflict, which is global , so type the below to fix it and ignore the warnings while
    setup.
 
-   ```bash
-   npm install --legacy-peer-deps
-   ```
+4. **Build the Docker Image:**
+    Only do this if you are setting up this project locally for the first time. (only build)
 
    Once you have installed the dependencies, you can run the application locally using:
+   
+```bash
+docker build -t recodehive-app .
+```
+
+5. Run the Container
+```bash
+docker run -p 3000:3000 recodehive-app
+```
 
    ```bash
    npm i
@@ -248,6 +269,54 @@ For more help, check our [Discord community](https://discord.gg/Yxv9RA3r) or cre
 - Commit your changes: `git commit -m "Brief description of your changes"`
 - Push to the branch: `git push origin feature-name`
 - Submit a pull request detailing your changes.
+
+
+## Project Structure
+
+```
+recode-website/
+|  
+├── .github/                              🔹 GitHub meta files
+|    ├── ISSUE_TEMPLATE/
+|    ├── workflows/
+|    └── pull_request_template.md
+├── blog/                                 🔹Project Blog  
+|    ├── git-coding-agent/
+|    ├── google-backlinks/
+|    ├──...
+├── community/                            🔹 Contributor Docs  
+|    ├── contributing-guidelines.md
+|    ├── index.md
+|    ├── our-documentation.md
+|    └── understand-lint-checks.md
+├── docs/                                 🔹Documentation
+|    ├── GitHub/
+|    ├── Google-Student-Ambassador/
+|    ├── ...
+├── src/                                  🔹Source Code  
+|    └── compenents/
+|    ├── css/
+|        └── custom.css
+|    ├── data/
+|    ├── database/
+|    ├── lib/
+|    ├── pages/
+|    ├── plugins/
+|    ├── services/
+|    ├── style/
+|        └── globals.css
+|    ├── theme/
+|    └── utils/
+├── static/                              🔹 Public Assets
+|    ├── icons, img
+|    ├── .nojekyll
+|    └── *.png
+├── .gitignore
+├── CODE_OF_CONDUCT.md
+├── LICENSE
+├── README.md
+└── ...              
+```
 
 ## License
 
@@ -280,7 +349,13 @@ This project is licensed under the [MIT License](LICENSE).
 
 <div align="center">
 
+
 Happy open-source contributions and here’s to your career success! 🎉 <br>
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="600">
+</p>
+
 
 ### recode-hive 2025
 
@@ -291,5 +366,9 @@ receive our newsletter directly in your inbox for the latest career insights & t
 journey.<br>
 [![Subscribe to Our Newsletter](https://img.shields.io/badge/Subscribe%20to%20Our%20Newsletter-%F0%9F%93%A9-blue)](https://recodehive.substack.com/)
 <br>
+
+<a href="#top">
+  <img src="https://img.shields.io/badge/⬆️-Back%20to%20Top-red?style=for-the-badge" align="right"/>
+</a>
 
 </div>
