@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import Layout from "@theme/Layout";
-import Head from "@docusaurus/Head";
-import { motion } from "framer-motion";
-import Link from "@docusaurus/Link";
+import React, { useState } from 'react';
+import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
+import { motion } from 'framer-motion';
+import Link from '@docusaurus/Link';
 
 // Animation variants
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const staggerContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.2
-    }
-  }
+      staggerChildren: 0.2,
+    },
+  },
 };
 
 // Interview categories data
@@ -25,7 +25,8 @@ const interviewCategories = [
     id: 'technical',
     title: 'Technical Interviews',
     icon: '💻',
-    description: 'Master coding challenges, system design, and technical concepts',
+    description:
+      'Master coding challenges, system design, and technical concepts',
     color: '#3b82f6',
     topics: [
       'Data Structures & Algorithms',
@@ -33,8 +34,8 @@ const interviewCategories = [
       'Database Design',
       'API Design',
       'Code Review',
-      'Problem Solving'
-    ]
+      'Problem Solving',
+    ],
   },
   {
     id: 'behavioral',
@@ -48,8 +49,8 @@ const interviewCategories = [
       'Team Collaboration',
       'Project Management',
       'Communication Skills',
-      'Cultural Fit'
-    ]
+      'Cultural Fit',
+    ],
   },
   {
     id: 'company-specific',
@@ -63,9 +64,9 @@ const interviewCategories = [
       'Microsoft',
       'Meta/Facebook',
       'Apple',
-      'Netflix'
-    ]
-  }
+      'Netflix',
+    ],
+  },
 ];
 
 // Technical interview resources
@@ -74,17 +75,19 @@ const technicalResources = [
     title: 'Data Structures & Algorithms',
     difficulty: 'Beginner to Advanced',
     problems: 150,
-    description: 'Master arrays, linked lists, trees, graphs, and dynamic programming',
+    description:
+      'Master arrays, linked lists, trees, graphs, and dynamic programming',
     link: '/docs/category/technical',
-    tags: ['Arrays', 'Trees', 'Graphs', 'DP']
+    tags: ['Arrays', 'Trees', 'Graphs', 'DP'],
   },
   {
     title: 'System Design',
     difficulty: 'Intermediate to Advanced',
     problems: 25,
-    description: 'Learn to design scalable systems and distributed architectures',
+    description:
+      'Learn to design scalable systems and distributed architectures',
     link: '/docs/category/technical',
-    tags: ['Scalability', 'Databases', 'Caching', 'Load Balancing']
+    tags: ['Scalability', 'Databases', 'Caching', 'Load Balancing'],
   },
   {
     title: 'Database Design',
@@ -92,7 +95,7 @@ const technicalResources = [
     problems: 40,
     description: 'SQL queries, database optimization, and schema design',
     link: '/docs/category/sql',
-    tags: ['SQL', 'NoSQL', 'Indexing', 'Normalization']
+    tags: ['SQL', 'NoSQL', 'Indexing', 'Normalization'],
   },
   {
     title: 'API Design & Development',
@@ -100,8 +103,8 @@ const technicalResources = [
     problems: 30,
     description: 'RESTful APIs, GraphQL, and microservices architecture',
     link: '/docs/category/technical',
-    tags: ['REST', 'GraphQL', 'Microservices', 'Authentication']
-  }
+    tags: ['REST', 'GraphQL', 'Microservices', 'Authentication'],
+  },
 ];
 
 // Behavioral interview questions
@@ -111,33 +114,33 @@ const behavioralQuestions = [
     questions: [
       'Tell me about a time you led a team through a difficult project',
       'Describe a situation where you had to influence others without authority',
-      'How do you handle team conflicts?'
-    ]
+      'How do you handle team conflicts?',
+    ],
   },
   {
     category: 'Problem Solving',
     questions: [
-      'Describe the most challenging technical problem you\'ve solved',
+      "Describe the most challenging technical problem you've solved",
       'Tell me about a time you failed and what you learned',
-      'How do you approach debugging complex issues?'
-    ]
+      'How do you approach debugging complex issues?',
+    ],
   },
   {
     category: 'Communication',
     questions: [
       'Explain a complex technical concept to a non-technical person',
       'Tell me about a time you had to give difficult feedback',
-      'How do you handle disagreements with stakeholders?'
-    ]
+      'How do you handle disagreements with stakeholders?',
+    ],
   },
   {
     category: 'Growth & Learning',
     questions: [
       'How do you stay updated with new technologies?',
       'Tell me about a time you had to learn something completely new',
-      'What\'s the most important thing you\'ve learned in your career?'
-    ]
-  }
+      "What's the most important thing you've learned in your career?",
+    ],
+  },
 ];
 
 // Company-specific interview tips
@@ -150,13 +153,13 @@ const companyTips = [
       'Focus on scalability and efficiency',
       'Demonstrate analytical thinking',
       'Show passion for technology',
-      'Prepare for system design questions'
+      'Prepare for system design questions',
     ],
     commonQuestions: [
       'How would you design Google Search?',
       'Explain how you would handle billions of queries',
-      'What would you do if Gmail was slow?'
-    ]
+      'What would you do if Gmail was slow?',
+    ],
   },
   {
     company: 'Amazon',
@@ -166,13 +169,13 @@ const companyTips = [
       'Know all 16 Leadership Principles',
       'Use STAR method for behavioral questions',
       'Focus on customer obsession',
-      'Demonstrate ownership mindset'
+      'Demonstrate ownership mindset',
     ],
     commonQuestions: [
       'Tell me about a time you disagreed with your manager',
       'Describe a time you had to make a decision with incomplete information',
-      'How do you handle tight deadlines?'
-    ]
+      'How do you handle tight deadlines?',
+    ],
   },
   {
     company: 'Microsoft',
@@ -182,14 +185,14 @@ const companyTips = [
       'Emphasize continuous learning',
       'Show collaborative approach',
       'Demonstrate inclusive thinking',
-      'Focus on impact and results'
+      'Focus on impact and results',
     ],
     commonQuestions: [
       'How do you handle failure?',
       'Tell me about a time you helped a colleague',
-      'What motivates you to learn new things?'
-    ]
-  }
+      'What motivates you to learn new things?',
+    ],
+  },
 ];
 
 // Mock interview simulator data
@@ -198,24 +201,30 @@ const mockInterviewQuestions = [
     type: 'technical',
     question: 'Implement a function to reverse a linked list',
     difficulty: 'Medium',
-    hints: ['Think about iterative vs recursive approach', 'Consider edge cases like empty list']
+    hints: [
+      'Think about iterative vs recursive approach',
+      'Consider edge cases like empty list',
+    ],
   },
   {
     type: 'behavioral',
-    question: 'Tell me about a time you had to work with a difficult team member',
+    question:
+      'Tell me about a time you had to work with a difficult team member',
     framework: 'STAR Method',
-    hints: ['Situation', 'Task', 'Action', 'Result']
+    hints: ['Situation', 'Task', 'Action', 'Result'],
   },
   {
     type: 'system-design',
     question: 'Design a URL shortener like bit.ly',
     difficulty: 'Hard',
-    hints: ['Consider scale', 'Database design', 'Caching strategy']
-  }
+    hints: ['Consider scale', 'Database design', 'Caching strategy'],
+  },
 ];
 
 const InterviewPrepPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'technical' | 'behavioral' | 'companies' | 'practice'>('overview');
+  const [activeTab, setActiveTab] = useState<
+    'overview' | 'technical' | 'behavioral' | 'companies' | 'practice'
+  >('overview');
   const [selectedQuestion, setSelectedQuestion] = useState<number | null>(null);
 
   return (
@@ -251,7 +260,8 @@ const InterviewPrepPage: React.FC = () => {
               className="text-xl md:text-2xl mb-8 text-blue-100"
               variants={fadeIn}
             >
-              Master technical challenges and behavioral questions with our comprehensive interview preparation platform
+              Master technical challenges and behavioral questions with our
+              comprehensive interview preparation platform
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -282,8 +292,8 @@ const InterviewPrepPage: React.FC = () => {
                 { id: 'technical', label: 'Technical', icon: '💻' },
                 { id: 'behavioral', label: 'Behavioral', icon: '🤝' },
                 { id: 'companies', label: 'Companies', icon: '🏢' },
-                { id: 'practice', label: 'Practice', icon: '🎯' }
-              ].map((tab) => (
+                { id: 'practice', label: 'Practice', icon: '🎯' },
+              ].map(tab => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
@@ -315,7 +325,8 @@ const InterviewPrepPage: React.FC = () => {
                   Complete Interview Preparation
                 </h2>
                 <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                  Everything you need to succeed in technical and behavioral interviews at top tech companies
+                  Everything you need to succeed in technical and behavioral
+                  interviews at top tech companies
                 </p>
               </motion.div>
 
@@ -327,7 +338,9 @@ const InterviewPrepPage: React.FC = () => {
                     variants={fadeIn}
                     onClick={() => setActiveTab(category.id as any)}
                   >
-                    <div className="text-6xl mb-4 text-center">{category.icon}</div>
+                    <div className="text-6xl mb-4 text-center">
+                      {category.icon}
+                    </div>
                     <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white text-center">
                       {category.title}
                     </h3>
@@ -336,7 +349,10 @@ const InterviewPrepPage: React.FC = () => {
                     </p>
                     <div className="space-y-2">
                       {category.topics.map((topic, i) => (
-                        <div key={i} className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                        <div
+                          key={i}
+                          className="flex items-center text-sm text-gray-500 dark:text-gray-400"
+                        >
                           <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
                           {topic}
                         </div>
@@ -460,17 +476,37 @@ const InterviewPrepPage: React.FC = () => {
                 </h3>
                 <div className="grid md:grid-cols-4 gap-6">
                   {[
-                    { letter: 'S', word: 'Situation', desc: 'Set the context and background' },
-                    { letter: 'T', word: 'Task', desc: 'Describe your responsibility' },
-                    { letter: 'A', word: 'Action', desc: 'Explain what you did' },
-                    { letter: 'R', word: 'Result', desc: 'Share the outcome and impact' }
+                    {
+                      letter: 'S',
+                      word: 'Situation',
+                      desc: 'Set the context and background',
+                    },
+                    {
+                      letter: 'T',
+                      word: 'Task',
+                      desc: 'Describe your responsibility',
+                    },
+                    {
+                      letter: 'A',
+                      word: 'Action',
+                      desc: 'Explain what you did',
+                    },
+                    {
+                      letter: 'R',
+                      word: 'Result',
+                      desc: 'Share the outcome and impact',
+                    },
                   ].map((item, i) => (
                     <div key={i} className="text-center">
                       <div className="w-16 h-16 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-3">
                         {item.letter}
                       </div>
-                      <h4 className="font-bold text-gray-900 dark:text-white mb-2">{item.word}</h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-300">{item.desc}</p>
+                      <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                        {item.word}
+                      </h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        {item.desc}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -493,7 +529,9 @@ const InterviewPrepPage: React.FC = () => {
                           key={i}
                           className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer"
                         >
-                          <p className="text-gray-700 dark:text-gray-300">{question}</p>
+                          <p className="text-gray-700 dark:text-gray-300">
+                            {question}
+                          </p>
                         </div>
                       ))}
                     </div>
@@ -544,21 +582,30 @@ const InterviewPrepPage: React.FC = () => {
 
                     <div className="grid md:grid-cols-2 gap-8">
                       <div>
-                        <h4 className="font-bold text-gray-900 dark:text-white mb-4">Key Tips</h4>
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-4">
+                          Key Tips
+                        </h4>
                         <ul className="space-y-2">
                           {company.tips.map((tip, i) => (
                             <li key={i} className="flex items-start">
                               <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                              <span className="text-gray-600 dark:text-gray-300">{tip}</span>
+                              <span className="text-gray-600 dark:text-gray-300">
+                                {tip}
+                              </span>
                             </li>
                           ))}
                         </ul>
                       </div>
                       <div>
-                        <h4 className="font-bold text-gray-900 dark:text-white mb-4">Common Questions</h4>
+                        <h4 className="font-bold text-gray-900 dark:text-white mb-4">
+                          Common Questions
+                        </h4>
                         <ul className="space-y-2">
                           {company.commonQuestions.map((question, i) => (
-                            <li key={i} className="text-gray-600 dark:text-gray-300 text-sm">
+                            <li
+                              key={i}
+                              className="text-gray-600 dark:text-gray-300 text-sm"
+                            >
                               "{question}"
                             </li>
                           ))}
@@ -595,60 +642,76 @@ const InterviewPrepPage: React.FC = () => {
                     variants={fadeIn}
                   >
                     <div className="flex justify-between items-start mb-4">
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                        question.type === 'technical' 
-                          ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
-                          : question.type === 'behavioral'
-                          ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
-                          : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
-                      }`}>
-                        {question.type.charAt(0).toUpperCase() + question.type.slice(1)}
+                      <span
+                        className={`px-3 py-1 rounded-full text-sm font-medium ${
+                          question.type === 'technical'
+                            ? 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200'
+                            : question.type === 'behavioral'
+                              ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200'
+                              : 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200'
+                        }`}
+                      >
+                        {question.type.charAt(0).toUpperCase() +
+                          question.type.slice(1)}
                       </span>
                       {question.difficulty && (
-                        <span className={`px-2 py-1 rounded text-xs ${
-                          question.difficulty === 'Easy' 
-                            ? 'bg-green-100 text-green-800'
-                            : question.difficulty === 'Medium'
-                            ? 'bg-yellow-100 text-yellow-800'
-                            : 'bg-red-100 text-red-800'
-                        }`}>
+                        <span
+                          className={`px-2 py-1 rounded text-xs ${
+                            question.difficulty === 'Easy'
+                              ? 'bg-green-100 text-green-800'
+                              : question.difficulty === 'Medium'
+                                ? 'bg-yellow-100 text-yellow-800'
+                                : 'bg-red-100 text-red-800'
+                          }`}
+                        >
                           {question.difficulty}
                         </span>
                       )}
                     </div>
-                    
+
                     <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
                       {question.question}
                     </h3>
-                    
+
                     {question.framework && (
                       <p className="text-sm text-blue-600 dark:text-blue-400 mb-3">
                         Framework: {question.framework}
                       </p>
                     )}
-                    
+
                     <div className="mb-4">
                       <button
-                        onClick={() => setSelectedQuestion(selectedQuestion === index ? null : index)}
+                        onClick={() =>
+                          setSelectedQuestion(
+                            selectedQuestion === index ? null : index
+                          )
+                        }
                         className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                       >
-                        {selectedQuestion === index ? 'Hide Hints' : 'Show Hints'}
+                        {selectedQuestion === index
+                          ? 'Hide Hints'
+                          : 'Show Hints'}
                       </button>
                     </div>
-                    
+
                     {selectedQuestion === index && (
                       <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                        <h4 className="font-medium text-gray-900 dark:text-white mb-2">Hints:</h4>
+                        <h4 className="font-medium text-gray-900 dark:text-white mb-2">
+                          Hints:
+                        </h4>
                         <ul className="space-y-1">
                           {question.hints.map((hint, i) => (
-                            <li key={i} className="text-sm text-gray-600 dark:text-gray-300">
+                            <li
+                              key={i}
+                              className="text-sm text-gray-600 dark:text-gray-300"
+                            >
                               • {hint}
                             </li>
                           ))}
                         </ul>
                       </div>
                     )}
-                    
+
                     <button className="w-full mt-4 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition-colors">
                       Start Practice
                     </button>
@@ -667,21 +730,27 @@ const InterviewPrepPage: React.FC = () => {
                 <div className="grid md:grid-cols-3 gap-6">
                   <div className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
                     <div className="text-4xl mb-4">⏱️</div>
-                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">Timed Practice</h4>
+                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                      Timed Practice
+                    </h4>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
                       Practice with real interview time constraints
                     </p>
                   </div>
                   <div className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
                     <div className="text-4xl mb-4">🎥</div>
-                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">Video Recording</h4>
+                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                      Video Recording
+                    </h4>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
                       Record yourself to improve presentation skills
                     </p>
                   </div>
                   <div className="text-center p-6 bg-gray-50 dark:bg-gray-700 rounded-lg">
                     <div className="text-4xl mb-4">📊</div>
-                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">Progress Tracking</h4>
+                    <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                      Progress Tracking
+                    </h4>
                     <p className="text-gray-600 dark:text-gray-300 text-sm">
                       Track your improvement over time
                     </p>
@@ -707,11 +776,9 @@ const InterviewPrepPage: React.FC = () => {
             >
               Ready to Land Your Dream Job?
             </motion.h2>
-            <motion.p
-              className="text-xl mb-8 text-blue-100"
-              variants={fadeIn}
-            >
-              Join thousands of developers who have successfully prepared for interviews with RecodeHive
+            <motion.p className="text-xl mb-8 text-blue-100" variants={fadeIn}>
+              Join thousands of developers who have successfully prepared for
+              interviews with RecodeHive
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"

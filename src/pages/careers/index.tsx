@@ -1,126 +1,142 @@
-import React, { useState, useRef, useEffect } from "react";
-import Layout from "@theme/Layout";
-import Head from "@docusaurus/Head";
-import { motion } from "framer-motion";
-import Link from "@docusaurus/Link";
+import React, { useState, useRef, useEffect } from 'react';
+import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
+import { motion } from 'framer-motion';
+import Link from '@docusaurus/Link';
 
 // Animation variants for consistent animations
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const staggerContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.2
-    }
-  }
+      staggerChildren: 0.2,
+    },
+  },
 };
 
 // Sample data for the careers page
 const perks = [
   {
-    icon: "🏠",
-    title: "Remote First",
-    description: "Work from anywhere in the world with flexible hours that suit your lifestyle."
+    icon: '🏠',
+    title: 'Remote First',
+    description:
+      'Work from anywhere in the world with flexible hours that suit your lifestyle.',
   },
   {
-    icon: "💰",
-    title: "Competitive Salary",
-    description: "We offer competitive compensation packages with equity options."
+    icon: '💰',
+    title: 'Competitive Salary',
+    description:
+      'We offer competitive compensation packages with equity options.',
   },
   {
-    icon: "🎓",
-    title: "Learning & Development",
-    description: "Annual learning budget and conference allowances to grow your skills."
+    icon: '🎓',
+    title: 'Learning & Development',
+    description:
+      'Annual learning budget and conference allowances to grow your skills.',
   },
   {
-    icon: "🏥",
-    title: "Health & Wellness",
-    description: "Comprehensive health insurance and wellness programs for you and your family."
+    icon: '🏥',
+    title: 'Health & Wellness',
+    description:
+      'Comprehensive health insurance and wellness programs for you and your family.',
   },
   {
-    icon: "🌴",
-    title: "Unlimited PTO",
-    description: "Take the time you need to recharge and maintain work-life balance."
+    icon: '🌴',
+    title: 'Unlimited PTO',
+    description:
+      'Take the time you need to recharge and maintain work-life balance.',
   },
   {
-    icon: "🚀",
-    title: "Career Growth",
-    description: "Clear career progression paths with mentorship and leadership opportunities."
-  }
+    icon: '🚀',
+    title: 'Career Growth',
+    description:
+      'Clear career progression paths with mentorship and leadership opportunities.',
+  },
 ];
 
 const cultureValues = [
   {
-    title: "Innovation First",
-    description: "We embrace new technologies and creative solutions to solve complex problems.",
-    image: "/img/culture-innovation.jpg"
+    title: 'Innovation First',
+    description:
+      'We embrace new technologies and creative solutions to solve complex problems.',
+    image: '/img/culture-innovation.jpg',
   },
   {
-    title: "Collaboration",
-    description: "We believe in the power of teamwork and diverse perspectives.",
-    image: "/img/culture-collaboration.jpg"
+    title: 'Collaboration',
+    description:
+      'We believe in the power of teamwork and diverse perspectives.',
+    image: '/img/culture-collaboration.jpg',
   },
   {
-    title: "Growth Mindset",
-    description: "We're committed to continuous learning and personal development.",
-    image: "/img/culture-growth.jpg"
-  }
+    title: 'Growth Mindset',
+    description:
+      "We're committed to continuous learning and personal development.",
+    image: '/img/culture-growth.jpg',
+  },
 ];
 
 const jobOpenings = [
   {
-    title: "Frontend Developer",
-    department: "Engineering",
-    location: "Remote",
-    type: "Full-time",
-    description: "Build beautiful and responsive user interfaces using React and modern web technologies."
+    title: 'Frontend Developer',
+    department: 'Engineering',
+    location: 'Remote',
+    type: 'Full-time',
+    description:
+      'Build beautiful and responsive user interfaces using React and modern web technologies.',
   },
   {
-    title: "Backend Developer",
-    department: "Engineering", 
-    location: "Remote",
-    type: "Full-time",
-    description: "Design and develop scalable backend services and APIs using Node.js and cloud technologies."
+    title: 'Backend Developer',
+    department: 'Engineering',
+    location: 'Remote',
+    type: 'Full-time',
+    description:
+      'Design and develop scalable backend services and APIs using Node.js and cloud technologies.',
   },
   {
-    title: "DevOps Engineer",
-    department: "Engineering",
-    location: "Remote", 
-    type: "Full-time",
-    description: "Manage infrastructure, CI/CD pipelines, and ensure system reliability and scalability."
+    title: 'DevOps Engineer',
+    department: 'Engineering',
+    location: 'Remote',
+    type: 'Full-time',
+    description:
+      'Manage infrastructure, CI/CD pipelines, and ensure system reliability and scalability.',
   },
   {
-    title: "Technical Writer",
-    department: "Content",
-    location: "Remote",
-    type: "Part-time",
-    description: "Create engaging technical documentation and educational content for our community."
-  }
+    title: 'Technical Writer',
+    department: 'Content',
+    location: 'Remote',
+    type: 'Part-time',
+    description:
+      'Create engaging technical documentation and educational content for our community.',
+  },
 ];
 
 const testimonials = [
   {
-    name: "Sarah Chen",
-    role: "Senior Frontend Developer",
-    content: "RecodeHive has given me the opportunity to work on cutting-edge projects while maintaining an amazing work-life balance. The team is incredibly supportive and collaborative.",
-    avatar: "/img/testimonial-sarah.jpg"
+    name: 'Sarah Chen',
+    role: 'Senior Frontend Developer',
+    content:
+      'RecodeHive has given me the opportunity to work on cutting-edge projects while maintaining an amazing work-life balance. The team is incredibly supportive and collaborative.',
+    avatar: '/img/testimonial-sarah.jpg',
   },
   {
-    name: "Marcus Johnson", 
-    role: "DevOps Engineer",
-    content: "I love the remote-first culture here. The flexibility to work from anywhere has allowed me to travel while building my career. The learning opportunities are endless.",
-    avatar: "/img/testimonial-marcus.jpg"
+    name: 'Marcus Johnson',
+    role: 'DevOps Engineer',
+    content:
+      'I love the remote-first culture here. The flexibility to work from anywhere has allowed me to travel while building my career. The learning opportunities are endless.',
+    avatar: '/img/testimonial-marcus.jpg',
   },
   {
-    name: "Priya Patel",
-    role: "Product Manager",
-    content: "The growth mindset at RecodeHive is real. I've been able to take on new challenges and expand my skill set with full support from leadership.",
-    avatar: "/img/testimonial-priya.jpg"
-  }
+    name: 'Priya Patel',
+    role: 'Product Manager',
+    content:
+      "The growth mindset at RecodeHive is real. I've been able to take on new challenges and expand my skill set with full support from leadership.",
+    avatar: '/img/testimonial-priya.jpg',
+  },
 ];
 
 export default function CareersPage() {
@@ -128,7 +144,7 @@ export default function CareersPage() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+      setActiveTestimonial(prev => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(interval);
   }, []);
@@ -166,7 +182,8 @@ export default function CareersPage() {
               className="text-xl md:text-2xl mb-8 text-blue-100"
               variants={fadeIn}
             >
-              Help us build the next generation of developers. Work with a passionate team creating impact through education.
+              Help us build the next generation of developers. Work with a
+              passionate team creating impact through education.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -203,7 +220,8 @@ export default function CareersPage() {
                 Our Culture & Values
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                We're building more than just a company—we're creating a community of learners, innovators, and leaders.
+                We're building more than just a company—we're creating a
+                community of learners, innovators, and leaders.
               </p>
             </motion.div>
 
@@ -243,7 +261,8 @@ export default function CareersPage() {
                 Perks & Benefits
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                We take care of our team so they can focus on doing their best work.
+                We take care of our team so they can focus on doing their best
+                work.
               </p>
             </motion.div>
 
@@ -282,7 +301,8 @@ export default function CareersPage() {
                 Open Positions
               </h2>
               <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                Find your next opportunity and help us build the future of coding education.
+                Find your next opportunity and help us build the future of
+                coding education.
               </p>
             </motion.div>
 
@@ -368,14 +388,14 @@ export default function CareersPage() {
                   </p>
                 </div>
               </div>
-              
+
               <div className="flex justify-center mt-8 gap-2">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                      index === activeTestimonial 
-                        ? 'bg-blue-600 scale-110' 
+                      index === activeTestimonial
+                        ? 'bg-blue-600 scale-110'
                         : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
                     }`}
                     onClick={() => setActiveTestimonial(index)}
@@ -401,11 +421,9 @@ export default function CareersPage() {
             >
               Ready to Shape the Future?
             </motion.h2>
-            <motion.p
-              className="text-xl mb-8 text-blue-100"
-              variants={fadeIn}
-            >
-              Don't see a perfect fit? We're always looking for talented individuals to join our mission.
+            <motion.p className="text-xl mb-8 text-blue-100" variants={fadeIn}>
+              Don't see a perfect fit? We're always looking for talented
+              individuals to join our mission.
             </motion.p>
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center"

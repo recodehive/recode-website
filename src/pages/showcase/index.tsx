@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect, JSX } from 'react';
 import Layout from '@theme/Layout';
 import clsx from 'clsx';
-import Head from "@docusaurus/Head";
+import Head from '@docusaurus/Head';
 import ShowcaseTagSelect, {
   readSearchTags,
 } from './_components/ShowcaseTagSelect';
@@ -16,13 +16,15 @@ import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import Translate, { translate } from '@docusaurus/Translate';
 import { useHistory, useLocation } from '@docusaurus/router';
 import { usePluralForm } from '@docusaurus/theme-common';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 import styles from './styles.module.css';
-import { sortedUsers,
-    Tags,
-    TagList,
-    type User,
-    type TagType,} from '@site/src/data/users';
+import {
+  sortedUsers,
+  Tags,
+  TagList,
+  type User,
+  type TagType,
+} from '@site/src/data/users';
 import FavoriteIcon from '@site/src/components/svgIcons/FavoriteIcon';
 import { useColorMode } from '@docusaurus/theme-common';
 
@@ -30,8 +32,7 @@ const TITLE =
   'Recode Hive: Framing all the opensource projects built by our community members';
 const DESCRIPTION =
   'All the opensource projects listed below are available for you to explore, learn, and contribute.';
-const EDIT_URL =
-  'https://github.com/recodehive';
+const EDIT_URL = 'https://github.com/recodehive';
 
 type UserState = {
   scrollTopPosition: number;
@@ -68,25 +69,25 @@ function filterUsers(
   users: User[],
   selectedTags: TagType[],
   operator: Operator,
-  searchName: string | null,
+  searchName: string | null
 ) {
   if (searchName) {
     // eslint-disable-next-line no-param-reassign
-    users = users.filter((user) =>
-      user.title.toLowerCase().includes(searchName.toLowerCase()),
+    users = users.filter(user =>
+      user.title.toLowerCase().includes(searchName.toLowerCase())
     );
   }
   if (selectedTags.length === 0) {
     return users;
   }
-  return users.filter((user) => {
+  return users.filter(user => {
     if (user.tags.length === 0) {
       return false;
     }
     if (operator === 'AND') {
-      return selectedTags.every((tag) => user.tags.includes(tag));
+      return selectedTags.every(tag => user.tags.includes(tag));
     }
-    return selectedTags.some((tag) => user.tags.includes(tag));
+    return selectedTags.some(tag => user.tags.includes(tag));
   });
 }
 
@@ -107,7 +108,7 @@ function useFilteredUsers() {
 
   return useMemo(
     () => filterUsers(sortedUsers, selectedTags, operator, searchName),
-    [selectedTags, operator, searchName],
+    [selectedTags, operator, searchName]
   );
 }
 
@@ -120,22 +121,27 @@ function ShowcaseHeader() {
         viewport={{ once: true }}
         transition={{
           duration: 1,
-          type: "spring",
+          type: 'spring',
           stiffness: 100,
           delay: 0.2,
-        }} className={styles.TitleText}
-      >{TITLE}</motion.h1>
+        }}
+        className={styles.TitleText}
+      >
+        {TITLE}
+      </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{
           duration: 1,
-          type: "spring",
+          type: 'spring',
           stiffness: 100,
           delay: 0.3,
         }}
-      >{DESCRIPTION}</motion.p>
+      >
+        {DESCRIPTION}
+      </motion.p>
 
       <motion.div
         initial={{ opacity: 0, y: 15 }}
@@ -143,7 +149,7 @@ function ShowcaseHeader() {
         viewport={{ once: true }}
         transition={{
           duration: 1,
-          type: "spring",
+          type: 'spring',
           stiffness: 100,
           delay: 0.5,
         }}
@@ -175,8 +181,8 @@ function useSiteCountPlural() {
             'Pluralized label for the number of sites found on the showcase. Use as much plural forms (separated by "|") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)',
           message: '1 site|{sitesCount} sites',
         },
-        {sitesCount},
-      ),
+        { sitesCount }
+      )
     );
 }
 
@@ -193,7 +199,7 @@ function ShowcaseFilters() {
             viewport={{ once: true }}
             transition={{
               duration: 1,
-              type: "spring",
+              type: 'spring',
               stiffness: 100,
               delay: 0.2,
             }}
@@ -206,7 +212,7 @@ function ShowcaseFilters() {
             viewport={{ once: true }}
             transition={{
               duration: 1,
-              type: "spring",
+              type: 'spring',
               stiffness: 100,
               delay: 0.3,
             }}
@@ -217,19 +223,19 @@ function ShowcaseFilters() {
         <ShowcaseFilterToggle />
       </div>
       <motion.ul
-                initial={{ opacity: 0}}
-                whileInView={{ opacity: 1}}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 4,
-                  type: "spring",
-                  stiffness: 100,
-                  delay: 0.5,
-                }}
-                className={clsx('clean-list', styles.checkboxList)}
-              >
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{
+          duration: 4,
+          type: 'spring',
+          stiffness: 100,
+          delay: 0.5,
+        }}
+        className={clsx('clean-list', styles.checkboxList)}
+      >
         {TagList.map((tag, i) => {
-          const {label, description, color} = Tags[tag];
+          const { label, description, color } = Tags[tag];
           const id = `showcase_checkbox_id_${tag}`;
 
           return (
@@ -268,12 +274,10 @@ function ShowcaseFilters() {
   );
 }
 
-const favoriteUsers = sortedUsers.filter((user) =>
-  user.tags.includes('favorite'),
+const favoriteUsers = sortedUsers.filter(user =>
+  user.tags.includes('favorite')
 );
-const otherUsers = sortedUsers.filter(
-  (user) => !user.tags.includes('favorite'),
-);
+const otherUsers = sortedUsers.filter(user => !user.tags.includes('favorite'));
 
 function SearchBar() {
   const history = useHistory();
@@ -291,7 +295,7 @@ function SearchBar() {
           id: 'showcase.searchBar.placeholder',
         })}
         value={value ?? undefined}
-        onInput={(e) => {
+        onInput={e => {
           setValue(e.currentTarget.value);
           const newSearch = new URLSearchParams(location.search);
           newSearch.delete(SearchNameQueryKey);
@@ -337,7 +341,7 @@ function ShowcaseCards() {
               <div
                 className={clsx(
                   'margin-bottom--md',
-                  styles.showcaseFavoriteHeader,
+                  styles.showcaseFavoriteHeader
                 )}
               >
                 <motion.h2
@@ -346,7 +350,7 @@ function ShowcaseCards() {
                   viewport={{ once: true }}
                   transition={{
                     duration: 1,
-                    type: "spring",
+                    type: 'spring',
                     stiffness: 100,
                     delay: 0.3,
                   }}
@@ -361,7 +365,7 @@ function ShowcaseCards() {
                   viewport={{ once: true }}
                   transition={{
                     duration: 1,
-                    type: "spring",
+                    type: 'spring',
                     stiffness: 100,
                     delay: 0.3,
                   }}
@@ -371,19 +375,18 @@ function ShowcaseCards() {
                 <SearchBar />
               </div>
               <motion.ul
-                initial={{ opacity: 0}}
-                whileInView={{ opacity: 1}}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{
                   duration: 4,
-                  type: "spring",
+                  type: 'spring',
                   stiffness: 100,
                   delay: 0.4,
                 }}
                 className={clsx('container', 'clean-list', styles.showcaseList)}
               >
-
-                {favoriteUsers.map((user) => (
+                {favoriteUsers.map(user => (
                   <ShowcaseCard key={user.title} user={user} />
                 ))}
               </motion.ul>
@@ -396,7 +399,7 @@ function ShowcaseCards() {
               viewport={{ once: true }}
               transition={{
                 duration: 1,
-                type: "spring",
+                type: 'spring',
                 stiffness: 100,
                 delay: 0.5,
               }}
@@ -405,18 +408,18 @@ function ShowcaseCards() {
               <Translate id="showcase.usersList.allUsers">All sites</Translate>
             </motion.h2>
             <motion.ul
-              initial={{ opacity: 0}}
-              whileInView={{ opacity: 1}}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{
                 duration: 4,
-                type: "spring",
+                type: 'spring',
                 stiffness: 100,
                 delay: 0.5,
               }}
               className={clsx('clean-list', styles.showcaseList)}
             >
-              {otherUsers.map((user) => (
+              {otherUsers.map(user => (
                 <ShowcaseCard key={user.title} user={user} />
               ))}
             </motion.ul>
@@ -430,7 +433,7 @@ function ShowcaseCards() {
             <SearchBar />
           </div>
           <ul className={clsx('clean-list', styles.showcaseList)}>
-            {filteredUsers.map((user) => (
+            {filteredUsers.map(user => (
               <ShowcaseCard key={user.title} user={user} />
             ))}
           </ul>
@@ -441,7 +444,6 @@ function ShowcaseCards() {
 }
 
 export default function Showcase(): JSX.Element {
-
   return (
     <Layout
       title="Showcase of CodeHarborHub"
@@ -454,13 +456,13 @@ export default function Showcase(): JSX.Element {
 
 function ShowcaseContent() {
   const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const isDark = colorMode === 'dark';
 
   return (
     <main
       className={clsx(
-        "",
-        isDark ? "bg-[#121212] text-white" : "bg-white text-black"
+        '',
+        isDark ? 'bg-[#121212] text-white' : 'bg-white text-black'
       )}
     >
       <Head>

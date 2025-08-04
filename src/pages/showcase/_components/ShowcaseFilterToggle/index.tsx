@@ -5,10 +5,10 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React, {useState, useEffect, useCallback} from 'react';
-import {useHistory, useLocation} from '@docusaurus/router';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useHistory, useLocation } from '@docusaurus/router';
 
-import {prepareUserState} from '../../index';
+import { prepareUserState } from '../../index';
 import clsx from 'clsx';
 
 import styles from './styles.module.css';
@@ -31,7 +31,7 @@ export default function ShowcaseFilterToggle(): JSX.Element {
     setOperator(readOperator(location.search) === 'AND');
   }, [location]);
   const toggleOperator = useCallback(() => {
-    setOperator((o) => !o);
+    setOperator(o => !o);
     const searchParams = new URLSearchParams(location.search);
     searchParams.delete(OperatorQueryKey);
     if (!operator) {
@@ -52,7 +52,7 @@ export default function ShowcaseFilterToggle(): JSX.Element {
         className="screen-reader-only"
         aria-label="Toggle between or and and for the tags you selected"
         onChange={toggleOperator}
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if (e.key === 'Enter') {
             toggleOperator();
           }

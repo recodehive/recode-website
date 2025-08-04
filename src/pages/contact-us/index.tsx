@@ -1,6 +1,6 @@
-import React from "react";
-import Layout from "@theme/Layout";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import React from 'react';
+import Layout from '@theme/Layout';
+import { Mail, MapPin, Phone, Clock } from 'lucide-react';
 
 const ContactUs: React.FC = () => {
   return (
@@ -16,8 +16,9 @@ const ContactUs: React.FC = () => {
               Get In Touch
             </h1>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Have questions, feedback, or want to collaborate? We'd love to hear from you. 
-              Reach out to us and we'll get back to you as soon as possible.
+              Have questions, feedback, or want to collaborate? We'd love to
+              hear from you. Reach out to us and we'll get back to you as soon
+              as possible.
             </p>
           </div>
 
@@ -28,7 +29,7 @@ const ContactUs: React.FC = () => {
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                   Contact Information
                 </h2>
-                
+
                 <div className="space-y-6">
                   {/* Email */}
                   <div className="flex items-start space-x-4">
@@ -36,8 +37,10 @@ const ContactUs: React.FC = () => {
                       <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Email</h3>
-                      <a 
+                      <h3 className="font-semibold text-gray-900 dark:text-white">
+                        Email
+                      </h3>
+                      <a
                         href="mailto:sanjay@recodehive.com"
                         className="text-blue-600 dark:text-blue-400 hover:underline"
                       >
@@ -55,7 +58,9 @@ const ContactUs: React.FC = () => {
                       <Clock className="w-6 h-6 text-green-600 dark:text-green-400" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Response Time</h3>
+                      <h3 className="font-semibold text-gray-900 dark:text-white">
+                        Response Time
+                      </h3>
                       <p className="text-gray-600 dark:text-gray-300">
                         Within 24-48 hours
                       </p>
@@ -71,7 +76,9 @@ const ContactUs: React.FC = () => {
                       <MapPin className="w-6 h-6 text-purple-600 dark:text-purple-400" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white">Location</h3>
+                      <h3 className="font-semibold text-gray-900 dark:text-white">
+                        Location
+                      </h3>
                       <p className="text-gray-600 dark:text-gray-300">
                         Online & Global
                       </p>
@@ -118,11 +125,14 @@ const ContactUs: React.FC = () => {
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Send us a message
               </h2>
-              
+
               <form className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label
+                      htmlFor="firstName"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    >
                       First Name
                     </label>
                     <input
@@ -135,7 +145,10 @@ const ContactUs: React.FC = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label
+                      htmlFor="lastName"
+                      className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                    >
                       Last Name
                     </label>
                     <input
@@ -150,7 +163,10 @@ const ContactUs: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
                     Email Address
                   </label>
                   <input
@@ -164,7 +180,10 @@ const ContactUs: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label
+                    htmlFor="subject"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
                     Subject
                   </label>
                   <select
@@ -184,7 +203,10 @@ const ContactUs: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+                  >
                     Message
                   </label>
                   <textarea
@@ -217,30 +239,42 @@ const ContactUs: React.FC = () => {
                 href="/community"
                 className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
               >
-                <div className="text-blue-600 dark:text-blue-400 text-2xl mb-3">📚</div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Community</h3>
+                <div className="text-blue-600 dark:text-blue-400 text-2xl mb-3">
+                  📚
+                </div>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                  Community
+                </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
                   Join our community and connect with fellow developers
                 </p>
               </a>
-              
+
               <a
                 href="/docs"
                 className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
               >
-                <div className="text-green-600 dark:text-green-400 text-2xl mb-3">📖</div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Documentation</h3>
+                <div className="text-green-600 dark:text-green-400 text-2xl mb-3">
+                  📖
+                </div>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                  Documentation
+                </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
                   Explore our comprehensive learning resources
                 </p>
               </a>
-              
+
               <a
                 href="/blogs"
                 className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]"
               >
-                <div className="text-purple-600 dark:text-purple-400 text-2xl mb-3">✍️</div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Blog</h3>
+                <div className="text-purple-600 dark:text-purple-400 text-2xl mb-3">
+                  ✍️
+                </div>
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                  Blog
+                </h3>
                 <p className="text-gray-600 dark:text-gray-400 text-sm">
                   Read our latest articles and tutorials
                 </p>

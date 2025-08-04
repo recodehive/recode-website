@@ -16,25 +16,30 @@ const getYoutubeVideoId = (url: string): string => {
     const match = url.match(/youtu\.be\/([^?&\s]+)/);
     return match ? match[1].split('?')[0] : '';
   }
-  
+
   // Handle youtube.com/watch?v= links
   if (url.includes('youtube.com/watch')) {
     const match = url.match(/[?&]v=([^&\s]+)/);
     return match ? match[1].split('&')[0] : '';
   }
-  
+
   // Handle youtube.com/shorts/ links
   if (url.includes('youtube.com/shorts/')) {
     const match = url.match(/shorts\/([^?&\s]+)/);
     return match ? match[1].split('?')[0] : '';
   }
-  
+
   return '';
 };
 
 // Updated function to determine video type
 const getYoutubeContentType = (url: string): 'video' | 'live' | 'other' => {
-  if (url.includes('youtu.be/rbi6XhWp2TU') || url.includes('youtu.be/aGyfIrxx1H8') || url.includes('youtu.be/vFS6ZU1WAPA') || url.includes('youtu.be/DWxyEl-t48g')) {
+  if (
+    url.includes('youtu.be/rbi6XhWp2TU') ||
+    url.includes('youtu.be/aGyfIrxx1H8') ||
+    url.includes('youtu.be/vFS6ZU1WAPA') ||
+    url.includes('youtu.be/DWxyEl-t48g')
+  ) {
     return 'live';
   } else if (url.includes('/shorts/')) {
     return 'other'; // Changed 'shorts' to 'other'
@@ -46,41 +51,44 @@ const getYoutubeContentType = (url: string): 'video' | 'live' | 'other' => {
 // Youtube Video URLS
 // List of both videos and shorts which will be handeled by the component
 const videoUrls: string[] = [
-    "https://youtu.be/3dnQ2lDNeGI?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/XWjx-RjmhRM?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/R7NReLBCT_8?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/sbyXpflAXkQ?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/7uKMWBFN2jQ?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/v2Pai1TY_Lg?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/P-P3L7YzlyE?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/BNKSlT8jLQ0?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/GnHNScuGKrg?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/RSR5E1bhu5Y?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/knr5gBv-c9c?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/4JX-SIkM3uk?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/V2nvZYe_q7g?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
-    "https://youtu.be/rbi6XhWp2TU",
-    "https://youtu.be/aGyfIrxx1H8",
-    "https://youtu.be/GTe2DJQ-enU",
-    "https://youtu.be/vFS6ZU1WAPA",
-    "https://youtu.be/DWxyEl-t48g",
+  'https://youtu.be/3dnQ2lDNeGI?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/XWjx-RjmhRM?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/R7NReLBCT_8?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/sbyXpflAXkQ?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/7uKMWBFN2jQ?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/v2Pai1TY_Lg?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/P-P3L7YzlyE?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/BNKSlT8jLQ0?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/GnHNScuGKrg?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/RSR5E1bhu5Y?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/knr5gBv-c9c?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/4JX-SIkM3uk?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/V2nvZYe_q7g?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63',
+  'https://youtu.be/rbi6XhWp2TU',
+  'https://youtu.be/aGyfIrxx1H8',
+  'https://youtu.be/GTe2DJQ-enU',
+  'https://youtu.be/vFS6ZU1WAPA',
+  'https://youtu.be/DWxyEl-t48g',
 ];
 
 const VideoCard: React.FC<{
   video: VideoData;
-  onClick: (video: VideoData, event: React.MouseEvent | React.KeyboardEvent) => void;
+  onClick: (
+    video: VideoData,
+    event: React.MouseEvent | React.KeyboardEvent
+  ) => void;
 }> = ({ video, onClick }) => {
   const [title, setTitle] = useState('Loading...');
   const [thumbnailUrl, setThumbnailUrl] = useState('');
   const videoId = getYoutubeVideoId(video.youtubeUrl);
-  
+
   // Try different thumbnail qualities in sequence
   const tryThumbnailUrl = (url: string) => {
     if (!videoId) return;
-    
+
     const img = new Image();
     img.crossOrigin = 'anonymous'; // Handle CORS if needed
-    
+
     img.onload = () => {
       // Only set the URL if it's not an error image
       if (img.width > 0 && img.height > 0) {
@@ -89,14 +97,14 @@ const VideoCard: React.FC<{
         handleThumbnailError(url);
       }
     };
-    
+
     img.onerror = () => handleThumbnailError(url);
     img.src = url;
   };
-  
+
   const handleThumbnailError = (failedUrl: string) => {
     console.log(`Failed to load thumbnail: ${failedUrl}`);
-    
+
     if (failedUrl.includes('maxresdefault')) {
       // Try hqdefault if maxresdefault fails
       tryThumbnailUrl(`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`);
@@ -114,11 +122,11 @@ const VideoCard: React.FC<{
 
   useEffect(() => {
     if (!videoId) return;
-    
+
     // Start with the highest quality thumbnail
     console.log(`Loading thumbnails for video ID: ${videoId}`);
     tryThumbnailUrl(`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`);
-    
+
     // Also try the first frame as a fallback (sometimes works when others don't)
     const firstFrameUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
     setTimeout(() => {
@@ -127,11 +135,13 @@ const VideoCard: React.FC<{
         tryThumbnailUrl(firstFrameUrl);
       }
     }, 1000);
-    
+
     // Fetch video title
     const fetchVideoTitle = async () => {
       try {
-        const response = await fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(video.youtubeUrl)}&format=json`);
+        const response = await fetch(
+          `https://www.youtube.com/oembed?url=${encodeURIComponent(video.youtubeUrl)}&format=json`
+        );
         const data = await response.json();
         setTitle(data.title);
       } catch (error) {
@@ -139,26 +149,24 @@ const VideoCard: React.FC<{
         console.error('Error fetching video title:', error);
       }
     };
-    
+
     fetchVideoTitle();
   }, [video.youtubeUrl, videoId]);
 
   return (
-    <div 
+    <div
       className="video-card"
-      onClick={(e) => onClick(video, e)}
+      onClick={e => onClick(video, e)}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
+      onKeyDown={e => {
         if (e.key === 'Enter' || e.key === ' ') onClick(video, e);
       }}
     >
       <div className="video-content">
         <div className="video-info">
           <div className="video-title">{title}</div>
-          <div className="video-type">
-            
-          </div>
+          <div className="video-type"></div>
         </div>
         <div className="video-thumbnail">
           <div className="thumbnail-container">
@@ -168,7 +176,7 @@ const VideoCard: React.FC<{
                 alt={title}
                 className="thumbnail-img"
                 loading="lazy"
-                onError={(e) => {
+                onError={e => {
                   const img = e.target as HTMLImageElement;
                   console.log('Image error:', img.src);
                   // Let the parent component handle the error
@@ -191,7 +199,10 @@ const VideoCard: React.FC<{
 const VideoSection: React.FC<{
   title: string;
   videos: VideoData[];
-  onClick: (video: VideoData, event: React.MouseEvent | React.KeyboardEvent) => void;
+  onClick: (
+    video: VideoData,
+    event: React.MouseEvent | React.KeyboardEvent
+  ) => void;
 }> = ({ title, videos, onClick }) => {
   if (videos.length === 0) return null;
 
@@ -199,7 +210,7 @@ const VideoSection: React.FC<{
     <div className="video-section">
       <h2>{title}</h2>
       <div className="video-grid">
-        {videos.map((video) => (
+        {videos.map(video => (
           <VideoCard key={video.id} video={video} onClick={onClick} />
         ))}
       </div>
@@ -220,7 +231,9 @@ const Pagination: React.FC<{
     >
       ← Previous
     </button>
-    <span>Page {currentPage} of {totalPages}</span>
+    <span>
+      Page {currentPage} of {totalPages}
+    </span>
     <button
       disabled={currentPage === totalPages}
       onClick={() => setCurrentPage(currentPage + 1)}
@@ -250,17 +263,30 @@ function BroadcastsPage(): ReactElement {
   const indexOfLastVideo = currentPage * videosPerPage;
   const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
 
-  const paginatedVideos = regularVideos.slice(indexOfFirstVideo, indexOfLastVideo);
-  const paginatedLiveVideos = liveVideos.slice(indexOfFirstVideo, indexOfLastVideo); // Changed 'shorts' to 'live'
-  const totalPages = Math.ceil((activeTab === 'videos' ? regularVideos.length : liveVideos.length) / videosPerPage); // Changed 'shorts' to 'live'
+  const paginatedVideos = regularVideos.slice(
+    indexOfFirstVideo,
+    indexOfLastVideo
+  );
+  const paginatedLiveVideos = liveVideos.slice(
+    indexOfFirstVideo,
+    indexOfLastVideo
+  ); // Changed 'shorts' to 'live'
+  const totalPages = Math.ceil(
+    (activeTab === 'videos' ? regularVideos.length : liveVideos.length) /
+      videosPerPage
+  ); // Changed 'shorts' to 'live'
 
   useEffect(() => {
     setCurrentPage(1);
   }, [activeTab]);
 
-  const handleVideoClick = (video: VideoData, event: React.MouseEvent | React.KeyboardEvent) => {
+  const handleVideoClick = (
+    video: VideoData,
+    event: React.MouseEvent | React.KeyboardEvent
+  ) => {
     const target = event.target as HTMLElement;
-    if (target.tagName === 'IFRAME' || target.className === 'video-embed') return;
+    if (target.tagName === 'IFRAME' || target.className === 'video-embed')
+      return;
     history.push('/broadcasts/details', { video });
   };
 
@@ -268,16 +294,18 @@ function BroadcastsPage(): ReactElement {
     <Layout>
       <div className="video-container">
         <h1>Featured Content</h1>
-        <p className="video-subtitle">Watch our curated collection of videos and shorts</p>
-        
+        <p className="video-subtitle">
+          Watch our curated collection of videos and shorts
+        </p>
+
         <div className="video-tabs">
-          <button 
+          <button
             className={`tab-button ${activeTab === 'videos' ? 'active' : ''}`}
             onClick={() => setActiveTab('videos')}
           >
             🎥 Videos
           </button>
-          <button 
+          <button
             className={`tab-button ${activeTab === 'live' ? 'active' : ''}`} // Changed 'shorts' to 'live'
             onClick={() => setActiveTab('live')}
           >

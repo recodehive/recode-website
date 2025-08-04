@@ -4,34 +4,37 @@ title: List and Drop Table
 sidebar_label: List and Drop Table
 sidebar_position: 4
 tags: [html, web-development, document-structure]
-description: In this tutorial, you will learn about the structure of an HTML document and how to create a basic HTML document.
+description:
+  In this tutorial, you will learn about the structure of an HTML document and how to create a basic
+  HTML document.
 ---
-
 
 ## 📋 Listing All Tables in a Database
 
-A database schema contains metadata about all objects in the database, including tables, views, and indexes. If you want to see only the tables in your database, you can query the schema for objects of type `table`.
+A database schema contains metadata about all objects in the database, including tables, views, and
+indexes. If you want to see only the tables in your database, you can query the schema for objects
+of type `table`.
 
 Suppose you have a database with the following tables:
 
 <Tabs>
   <TabItem value="SQL Table" label="SQL Table">
 
-  ```sql title="Tables in Database"
+```sql title="Tables in Database"
 | Table Name   |
 |--------------|
 | past         |
 | events       |
 | crew         |
-  ```
+```
 
   </TabItem>
 
   <TabItem value="SQL Code" label="SQL Code">
 
 ```sql
-SELECT name 
-FROM sqlite_schema 
+SELECT name
+FROM sqlite_schema
 WHERE type = 'table';
 ```
 
@@ -40,7 +43,7 @@ WHERE type = 'table';
   <TabItem value="Output" label="Output">
 
 | name   |
-|--------|
+| ------ |
 | past   |
 | events |
 | crew   |
@@ -48,21 +51,19 @@ WHERE type = 'table';
   </TabItem>
 </Tabs>
 
-:::tip
-✅ Tip: Querying the schema is a reliable way to list all tables in your SQLite database.
-:::
+:::tip ✅ Tip: Querying the schema is a reliable way to list all tables in your SQLite database. :::
 
 ## 🎯 Example: Listing Table Names Only
 
-To list all tables in your database, you only need the `name` column from the schema. Use a `SELECT` statement to retrieve just the table names.
+To list all tables in your database, you only need the `name` column from the schema. Use a `SELECT`
+statement to retrieve just the table names.
 
 <Tabs>
-
 
   <TabItem value="Sample Data" label="Sample Data">
 
 | name          | entry | attendees |
-|---------------|-------|-----------|
+| ------------- | ----- | --------- |
 | Pride Party   | 10    | 79        |
 | Classical Day | 15    | 76        |
 | Wine tasting  | 8     | 43        |
@@ -80,20 +81,20 @@ WHERE type = 'table';
   </TabItem>
 </Tabs>
 
-> To get only the table names, select the `name` column from `sqlite_schema` where `type` is `'table'`.
-
+> To get only the table names, select the `name` column from `sqlite_schema` where `type` is
+> `'table'`.
 
 ## 🗑️ Deleting a Table from the Database
 
-Once you have listed all tables, you may want to remove an entire table from your database. You can do this using the `DROP TABLE` statement. For example, to delete the `past_events` table:
+Once you have listed all tables, you may want to remove an entire table from your database. You can
+do this using the `DROP TABLE` statement. For example, to delete the `past_events` table:
 
 <Tabs>
-
 
   <TabItem value="Sample Data" label="Sample Data">
 
 | name          | entry | attendees |
-|---------------|-------|-----------|
+| ------------- | ----- | --------- |
 | Pride Party   | 10    | 79        |
 | Classical Day | 15    | 76        |
 | Wine tasting  | 8     | 43        |
@@ -112,17 +113,15 @@ SELECT name FROM sqlite_schema WHERE type = 'table';
   <TabItem value="Output" label="Output">
 
 | name   |
-|--------|
+| ------ |
 | events |
 | crew   |
 
   </TabItem>
 </Tabs>
 
-:::caution
-⚠️ Caution: Dropping a table will permanently delete the table and all its data. Make sure you have backups if needed.
-:::
-
+:::caution ⚠️ Caution: Dropping a table will permanently delete the table and all its data. Make
+sure you have backups if needed. :::
 
 ## ✅ What You Have Learned
 
@@ -135,9 +134,11 @@ In this module, you learned how to manage tables in your SQL database, including
   Using the `DROP TABLE` statement to permanently remove tables and their data.
 
 - **Best Practices**  
-  Always verify before dropping tables, as this action cannot be undone, and ensure you have backups if needed.
+  Always verify before dropping tables, as this action cannot be undone, and ensure you have backups
+  if needed.
 
-These skills are essential for maintaining and organizing your database as your project requirements change.
+These skills are essential for maintaining and organizing your database as your project requirements
+change.
 
 ---
 
@@ -148,7 +149,7 @@ These skills are essential for maintaining and organizing your database as your 
 Here is the original `past_events` table:
 
 | name          | entry | attendees |
-|---------------|-------|-----------|
+| ------------- | ----- | --------- |
 | Pride Party   | 10    | 79        |
 | Classical Day | 15    | 76        |
 | Wine tasting  | 8     | 43        |
@@ -159,13 +160,12 @@ Here is the original `past_events` table:
     <li>Use the <code>DROP TABLE</code> statement to remove the entire table:</li>
   </ul>
 
-  ```sql
-  DROP TABLE past_events;
-  SELECT name FROM sqlite_schema WHERE type = 'table';
-  ```
-</details>
----
+```sql
+DROP TABLE past_events;
+SELECT name FROM sqlite_schema WHERE type = 'table';
+```
 
+## </details>
 
 #### 2. Which of the following statements is true for a schema?
 
@@ -195,7 +195,5 @@ Q Tap the correct answer
     The list of tables is stored in the database schema, which contains metadata about all objects in the database.</li>
   </ul>
 </details>
-
-
 
 <GiscusComments/>

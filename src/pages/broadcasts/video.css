@@ -129,9 +129,9 @@
 
 .video-thumbnail {
   position: relative;
-  width: 600px;         /* Set desired width */
-  height: 380px;        /* Set desired height */
-  padding-top: 0;     
+  width: 600px; /* Set desired width */
+  height: 380px; /* Set desired height */
+  padding-top: 0;
   overflow: hidden;
   background: var(--ifm-color-emphasis-200);
   flex-grow: 1;
@@ -166,7 +166,7 @@
 }
 
 /* Fallback for when image fails to load */
-.thumbnail-img[src=""] {
+.thumbnail-img[src=''] {
   opacity: 0;
 }
 
@@ -259,11 +259,11 @@
   .video-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .video-container {
     padding: 1rem;
   }
-  
+
   .video-section h2 {
     font-size: 1.5rem;
   }

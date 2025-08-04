@@ -1,11 +1,11 @@
-version: "3.9"
+version: '3.9'
 
 services:
   recodehive:
-    build: 
+    build:
       context: .
     ports:
-      - "3000:3000"
+      - '3000:3000'
     volumes:
       - .:/app
       - /app/node_modules

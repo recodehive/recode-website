@@ -1,9 +1,9 @@
-import React from "react";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
-import blogs from "../../database/blogs";
-import Head from "@docusaurus/Head";
+import React from 'react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import blogs from '../../database/blogs';
+import Head from '@docusaurus/Head';
 
 export default function Blogs(): React.JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -31,7 +31,7 @@ export default function Blogs(): React.JSX.Element {
           </p>
         </div>
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {blogs.map((blog) => (
+          {blogs.map(blog => (
             <BlogCard key={blog.id} blog={blog} />
           ))}
         </div>
@@ -39,7 +39,6 @@ export default function Blogs(): React.JSX.Element {
     </Layout>
   );
 }
-
 
 const BlogCard = ({ blog }) => {
   return (

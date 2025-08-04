@@ -1,20 +1,20 @@
-import React from "react";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Layout from "@theme/Layout";
-import type { ReactNode } from "react";
+import React from 'react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Layout from '@theme/Layout';
+import type { ReactNode } from 'react';
 
-import Head from "@docusaurus/Head";
-import Header from "../components/header/header";
-import ScrollBottomToTop from "../components/scroll/bottom-to-top";
-import ScrollTopToBottom from "../components/scroll/top-to-bottom";
-import { BlogCarousel } from "../components/blogCarousel/blogCarousel";
-import projectsData from "../database/projects/projects";
-import OurProjects from "../components/ourProjects";
-import TopMateSection from "../components/topmate/TopMateSection";
-import { TestimonialCarousel } from "../components/testimonials/TestimonialCarousel";
-import { CommunityStatsProvider } from "../lib/statsProvider";
-import { LandingCommunity } from "../components/Community";
-import FAQs from "../components/faqs/faqs";
+import Head from '@docusaurus/Head';
+import Header from '../components/header/header';
+import ScrollBottomToTop from '../components/scroll/bottom-to-top';
+import ScrollTopToBottom from '../components/scroll/top-to-bottom';
+import { BlogCarousel } from '../components/blogCarousel/blogCarousel';
+import projectsData from '../database/projects/projects';
+import OurProjects from '../components/ourProjects';
+import TopMateSection from '../components/topmate/TopMateSection';
+import { TestimonialCarousel } from '../components/testimonials/TestimonialCarousel';
+import { CommunityStatsProvider } from '../lib/statsProvider';
+import { LandingCommunity } from '../components/Community';
+import FAQs from '../components/faqs/faqs';
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
@@ -32,9 +32,21 @@ export default function Home(): ReactNode {
       </Head>
 
       {/* ✅ Wrap in solid background to fix light mode */}
-      <div className="   transition-colors duration-300"style={{ backgroundColor: "var(--ifm-background-color)", color: "var(--ifm-font-color-base)" }}>
-      <main className="transition-colors duration-300" style={{ backgroundColor: "var(--ifm-background-color)", color: "var(--ifm-font-color-base)" }}>
-      <div className="m-4">
+      <div
+        className="   transition-colors duration-300"
+        style={{
+          backgroundColor: 'var(--ifm-background-color)',
+          color: 'var(--ifm-font-color-base)',
+        }}
+      >
+        <main
+          className="transition-colors duration-300"
+          style={{
+            backgroundColor: 'var(--ifm-background-color)',
+            color: 'var(--ifm-font-color-base)',
+          }}
+        >
+          <div className="m-4">
             <Header />
           </div>
 
@@ -44,7 +56,7 @@ export default function Home(): ReactNode {
 
           <div
             className="m-4"
-            onClick={() => (window.location.href = "https://www.sanjaykv.com/")}
+            onClick={() => (window.location.href = 'https://www.sanjaykv.com/')}
           >
             <img
               src="/selfhero.png"

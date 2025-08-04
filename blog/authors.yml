@@ -6,7 +6,7 @@ ajay-dhangar:
   email: ajaydhangar49@gmail.com
   page: true # Turns the feature on
   description: >
-    A passionate developer who loves to code and build new things. I am a Full Stack Developer and a Cyber Security, ML & AI  Enthusiast. I am also a Technical Content Writer and a Speaker. I love to share my knowledge with the community. I am the Founder of CodeHarborHub. I am also a Technical Content Writer at GeeksforGeeks. I am a Girl Script Summer of Code 2024 Project Manager (PA).    
+    A passionate developer who loves to code and build new things. I am a Full Stack Developer and a Cyber Security, ML & AI  Enthusiast. I am also a Technical Content Writer and a Speaker. I love to share my knowledge with the community. I am the Founder of CodeHarborHub. I am also a Technical Content Writer at GeeksforGeeks. I am a Girl Script Summer of Code 2024 Project Manager (PA).
 
 sanjay-kv:
   name: Sanjay Viswanthan
@@ -16,7 +16,7 @@ sanjay-kv:
   email: sanjay@recodehive.com
   page: true # Turns the feature on
   description: >
-    I'm a Software Engineer turned into a Data Engineer and Program Manager🚀, 🏆 Google ML Facilitator & Ex- GitHub CE who delivered 100+ talks on ML and open source and developer advocacy at various events and platforms.    
+    I'm a Software Engineer turned into a Data Engineer and Program Manager🚀, 🏆 Google ML Facilitator & Ex- GitHub CE who delivered 100+ talks on ML and open source and developer advocacy at various events and platforms.
 
   socials:
     x: https://x.com/sanjay_kv_
@@ -26,7 +26,7 @@ sanjay-kv:
     instagram: nomad_brains
     newsletter: https://recodehive.substack.com
     bluesky: sanjaykv.bsky.social
-    
+
 hitesh-gahanolia:
   name: Hitesh Gahanolia
   tile: Final Year Student At MNNIT ALLAHABAD
@@ -48,34 +48,32 @@ abhijith-m-s:
 khushi-kalra:
   name: Khushi Kalra
   title: Full Stack Developer
-  url: "https://github.com/abckhush"
-  image_url: "https://yt3.googleusercontent.com/BpaBYEiGibr8uiNMCWytJ5BdKbPtpqTJAuA5Ida5rXAe8Zfvr8keZSPXYSqGasjGo7OunF2w=s176-c-k-c0x00ffffff-no-rj"
+  url: 'https://github.com/abckhush'
+  image_url: 'https://yt3.googleusercontent.com/BpaBYEiGibr8uiNMCWytJ5BdKbPtpqTJAuA5Ida5rXAe8Zfvr8keZSPXYSqGasjGo7OunF2w=s176-c-k-c0x00ffffff-no-rj'
 
 nayanikamukherjee:
   name: Nayanika Mukherjee
   title: Full Stack Developer
-  url: "https://github.com/Nayanika1402"
+  url: 'https://github.com/Nayanika1402'
   image_url: https://avatars.githubusercontent.com/u/132455412?v=4
 
 pujan-sarkar:
   name: Pujan Sarkar
   title: Cyber Security Enthusiast
-  url: "https://github.com/Pujan-sarkar"
+  url: 'https://github.com/Pujan-sarkar'
   image_url: https://avatars.githubusercontent.com/u/144250917?v=4
 
 mohitmuktikant:
   name: Mohit Muktikant
   title: Full Stack Web Developer
-  url: "https://github.com/mohitmuktikant"
+  url: 'https://github.com/mohitmuktikant'
   image_url: https://avatars.githubusercontent.com/u/101824646?v=4
 
 santhosh-siddhardha:
   name: Lingamuneni Santhosh Siddhardha
   title: Software Engineer
-  url: "https://github.com/Santhosh-Siddhardha"
+  url: 'https://github.com/Santhosh-Siddhardha'
   image_url: https://avatars.githubusercontent.com/u/103999924?v=4
-
-
 
 akshitha-chiluka:
   name: Akshitha Chiluka

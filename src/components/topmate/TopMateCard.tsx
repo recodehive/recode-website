@@ -50,10 +50,14 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <span className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+            <span
+              className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}
+            >
               1:1 CALL
             </span>
-            <div className={`flex items-center gap-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+            <div
+              className={`flex items-center gap-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}
+            >
               <Clock size={16} />
               <span className="text-sm">{duration}</span>
             </div>
@@ -66,12 +70,16 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         </div>
 
         {/* Title */}
-        <h2 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        <h2
+          className={`text-2xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}
+        >
           {title}
         </h2>
 
         {/* Description */}
-        <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'} mb-6`}>{description}</p>
+        <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'} mb-6`}>
+          {description}
+        </p>
 
         {/* Profile Section */}
         <div className="flex items-center justify-between">
@@ -82,7 +90,9 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
               className="w-12 h-12 rounded-full object-cover border-2 border-purple-200"
             />
             <div className="flex flex-col">
-              <span className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+              <span
+                className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}
+              >
                 Book a slot at
               </span>
               <a

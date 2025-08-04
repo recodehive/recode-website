@@ -11,7 +11,7 @@ import {
   useFocus,
   useDismiss,
   useRole,
-  useInteractions
+  useInteractions,
 } from '@floating-ui/react';
 import styles from './styles.module.css';
 
@@ -21,7 +21,9 @@ interface Props {
   text: string;
   delay?: number;
   placement?: Placement;
-  children: React.ReactElement<React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }>;
+  children: React.ReactElement<
+    React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }
+  >;
 }
 
 export default function Tooltip({
@@ -30,7 +32,7 @@ export default function Tooltip({
   anchorEl,
   text,
   delay = 400,
-  placement = 'top'
+  placement = 'top',
 }: Props): JSX.Element {
   const [open, setOpen] = useState(false);
   const [container, setContainer] = useState<Element | null>(null);
@@ -69,10 +71,11 @@ export default function Tooltip({
       return;
     }
 
-    const newContainer = typeof anchorEl === 'string' 
-      ? document.querySelector(anchorEl)
-      : anchorEl;
-    
+    const newContainer =
+      typeof anchorEl === 'string'
+        ? document.querySelector(anchorEl)
+        : anchorEl;
+
     setContainer(newContainer);
   }, [anchorEl]);
 
@@ -87,23 +90,25 @@ export default function Tooltip({
   return (
     <>
       {childWithProps}
-      {container && open && ReactDOM.createPortal(
-        <div
-          id={tooltipId}
-          ref={refs.setFloating}
-          className={styles.tooltip}
-          style={floatingStyles}
-          {...getFloatingProps()}
-        >
-          {text}
-          <FloatingArrow
-            ref={arrowRef}
-            context={context}
-            className={styles.tooltipArrow}
-          />
-        </div>,
-        container
-      )}
+      {container &&
+        open &&
+        ReactDOM.createPortal(
+          <div
+            id={tooltipId}
+            ref={refs.setFloating}
+            className={styles.tooltip}
+            style={floatingStyles}
+            {...getFloatingProps()}
+          >
+            {text}
+            <FloatingArrow
+              ref={arrowRef}
+              context={context}
+              className={styles.tooltipArrow}
+            />
+          </div>,
+          container
+        )}
     </>
   );
 }

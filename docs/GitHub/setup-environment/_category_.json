@@ -1,8 +1,8 @@
 {
-    "label": "Setting up environment",
-    "position": 2,
-    "link": {
-      "type": "generated-index",
-      "description": "In this section, In this tutorial, you will learn how to set up your development environment for Git And GitHub.."
-    }
+  "label": "Setting up environment",
+  "position": 2,
+  "link": {
+    "type": "generated-index",
+    "description": "In this section, In this tutorial, you will learn how to set up your development environment for Git And GitHub.."
   }
+}

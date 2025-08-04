@@ -1,10 +1,12 @@
-body{
-    background-color: #fff;
+body {
+  background-color: #fff;
 }
 .github-badges-page {
   background: #f6f5f5;
   border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.06);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.08),
+    0 1.5px 4px rgba(0, 0, 0, 0.06);
   padding: 32px 24px;
   margin-top: 24px;
 }
@@ -19,17 +21,23 @@ body{
 .badgeItem {
   background: #f8fafc;
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.07), 0 1.5px 4px rgba(0,0,0,0.04);
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.07),
+    0 1.5px 4px rgba(0, 0, 0, 0.04);
   padding: 24px 20px 20px 20px;
   display: flex;
   align-items: center;
   gap: 18px;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
   position: relative;
 }
 
 .badgeItem:hover {
-  box-shadow: 0 6px 24px rgba(0,0,0,0.13), 0 3px 12px rgba(0,0,0,0.09);
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.13),
+    0 3px 12px rgba(0, 0, 0, 0.09);
   transform: translateY(-4px) scale(1.03);
 }
 
@@ -40,7 +48,7 @@ body{
   border-radius: 12px;
   border: 2px solid #e5e7eb;
   background: #fff;
-  box-shadow: 0 1.5px 6px rgba(0,0,0,0.04);
+  box-shadow: 0 1.5px 6px rgba(0, 0, 0, 0.04);
   margin-right: 10px;
 }
 
@@ -60,7 +68,9 @@ body{
   font-size: 0.92rem;
   cursor: pointer;
   opacity: 0.85;
-  transition: background 0.2s, opacity 0.2s;
+  transition:
+    background 0.2s,
+    opacity 0.2s;
   z-index: 2;
 }
 
@@ -107,11 +117,13 @@ body{
 #scrollToTop {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s, background 0.2s;
+  transition:
+    opacity 0.3s,
+    background 0.2s;
   background: linear-gradient(135deg, #24292f, #0969da);
   color: #fff;
   border: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
 }
 
 #scrollToTop.show {
@@ -126,7 +138,6 @@ body{
 #scrollToTop:hover .arrow-icon {
   transform: translateY(-3px) scale(1.2);
 }
-
 
 .github-badges-page h1 {
   color: #24292f;
@@ -203,7 +214,7 @@ body{
   border-radius: 10px;
   padding: 12px;
   min-width: 120px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   gap: 6px;
   border: 1px solid #e5e7eb;
 }
@@ -219,7 +230,8 @@ body{
   border: 1px solid #fbcfe8;
 }
 
-.skinToneTable td, .skinToneTable th {
+.skinToneTable td,
+.skinToneTable th {
   text-align: center;
 }
 
@@ -239,7 +251,9 @@ body{
 }
 
 @media (max-width: 800px) {
-  .skinHeading, .highlightsHeading, .retiredHeading {
+  .skinHeading,
+  .highlightsHeading,
+  .retiredHeading {
     font-size: 1.25rem;
     margin: 24px 0 10px 0;
   }
@@ -249,7 +263,6 @@ body{
   }
 }
 
-
 .tableWrapper {
   overflow-x: auto;
   margin-bottom: 32px;
@@ -257,12 +270,15 @@ body{
   justify-content: center;
 }
 
-.achievementsTable, .skinToneTable, .highlightsTable, .retiredTable, table {
+.achievementsTable,
+.skinToneTable,
+.highlightsTable,
+.retiredTable,
+table {
   margin-left: auto;
   margin-right: auto;
   max-width: 95vw;
 }
-
 
 /* Add double border to all badge tables */
 .skinToneTable,
@@ -272,48 +288,69 @@ table {
   border: 3px double #bfc3c9;
   border-radius: 14px;
   background: #fff;
-  box-shadow: 0 2px 14px rgba(44,62,80,0.08);
+  box-shadow: 0 2px 14px rgba(44, 62, 80, 0.08);
   border-collapse: separate;
   border-spacing: 0;
 }
 
-.skinToneTable th, .skinToneTable td,
-.highlightsTable th, .highlightsTable td,
-.retiredTable th, .retiredTable td,
-table th, table td {
+.skinToneTable th,
+.skinToneTable td,
+.highlightsTable th,
+.highlightsTable td,
+.retiredTable th,
+.retiredTable td,
+table th,
+table td {
   border: 1.5px solid #d1d5db;
   padding: 10px 12px;
   text-align: center;
   vertical-align: middle;
 }
 
-.skinToneTable th:first-child, .highlightsTable th:first-child, .retiredTable th:first-child, table th:first-child {
+.skinToneTable th:first-child,
+.highlightsTable th:first-child,
+.retiredTable th:first-child,
+table th:first-child {
   border-top-left-radius: 10px;
 }
-.skinToneTable th:last-child, .highlightsTable th:last-child, .retiredTable th:last-child, table th:last-child {
+.skinToneTable th:last-child,
+.highlightsTable th:last-child,
+.retiredTable th:last-child,
+table th:last-child {
   border-top-right-radius: 10px;
 }
-.skinToneTable tr:last-child td:first-child, .highlightsTable tr:last-child td:first-child, .retiredTable tr:last-child td:first-child, table tr:last-child td:first-child {
+.skinToneTable tr:last-child td:first-child,
+.highlightsTable tr:last-child td:first-child,
+.retiredTable tr:last-child td:first-child,
+table tr:last-child td:first-child {
   border-bottom-left-radius: 10px;
 }
-.skinToneTable tr:last-child td:last-child, .highlightsTable tr:last-child td:last-child, .retiredTable tr:last-child td:last-child, table tr:last-child td:last-child {
+.skinToneTable tr:last-child td:last-child,
+.highlightsTable tr:last-child td:last-child,
+.retiredTable tr:last-child td:last-child,
+table tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
 }
 
-
-.achievementsTable, .skinToneTable, .highlightsTable, .retiredTable {
+.achievementsTable,
+.skinToneTable,
+.highlightsTable,
+.retiredTable {
   /* width: 100%; */
   border-collapse: separate;
   border-spacing: 20px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
   margin-bottom: 32px;
   font-size: 1rem;
   overflow: hidden;
 }
 
-.achievementsTable th, .skinToneTable th, .highlightsTable th, .retiredTable th {
+.achievementsTable th,
+.skinToneTable th,
+.highlightsTable th,
+.retiredTable th {
   background: #f3f4f6;
   color: #1e293b;
   font-weight: 700;
@@ -322,18 +359,27 @@ table th, table td {
   text-align: left;
 }
 
-.achievementsTable td, .skinToneTable td, .highlightsTable td, .retiredTable td {
+.achievementsTable td,
+.skinToneTable td,
+.highlightsTable td,
+.retiredTable td {
   padding: 12px 10px;
   border-bottom: 1px solid #e5e7eb;
   color: #374151;
   vertical-align: middle;
 }
 
-.achievementsTable tr:last-child td, .skinToneTable tr:last-child td, .highlightsTable tr:last-child td, .retiredTable tr:last-child td {
+.achievementsTable tr:last-child td,
+.skinToneTable tr:last-child td,
+.highlightsTable tr:last-child td,
+.retiredTable tr:last-child td {
   border-bottom: none;
 }
 
-.achievementsTable tr:nth-child(even), .skinToneTable tr:nth-child(even), .highlightsTable tr:nth-child(even), .retiredTable tr:nth-child(even) {
+.achievementsTable tr:nth-child(even),
+.skinToneTable tr:nth-child(even),
+.highlightsTable tr:nth-child(even),
+.retiredTable tr:nth-child(even) {
   background: #f9fafb;
 }
 
@@ -344,11 +390,14 @@ table th, table td {
   border-radius: 8px;
   border: 1.5px solid #e5e7eb;
   background: #fff;
-  box-shadow: 0 1.5px 6px rgba(0,0,0,0.04);
+  box-shadow: 0 1.5px 6px rgba(0, 0, 0, 0.04);
 }
 
 @media (max-width: 800px) {
-  .achievementsTable, .skinToneTable, .highlightsTable, .retiredTable {
+  .achievementsTable,
+  .skinToneTable,
+  .highlightsTable,
+  .retiredTable {
     font-size: 0.95rem;
   }
   .bannerAchievements {
@@ -362,7 +411,10 @@ table th, table td {
 }
 
 @media (max-width: 600px) {
-  .achievementsTable, .skinToneTable, .highlightsTable, .retiredTable {
+  .achievementsTable,
+  .skinToneTable,
+  .highlightsTable,
+  .retiredTable {
     font-size: 0.87rem;
   }
   .github-badges-page h1 {
@@ -372,7 +424,6 @@ table th, table td {
     font-size: 1.1rem;
   }
 }
-
 
 .github-badges-page h2 {
   color: #24292f;
@@ -398,7 +449,8 @@ table th, table td {
   text-decoration: underline;
 }
 
-.github-badges-page p, .github-badges-page li {
+.github-badges-page p,
+.github-badges-page li {
   color: #4b5563;
   font-size: 1rem;
 }
@@ -486,7 +538,11 @@ table th, table td {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -538,7 +594,11 @@ table th, table td {
   position: absolute;
   width: 180px;
   height: 180px;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
   transform: scale(0.8);
   opacity: 0;
@@ -582,7 +642,7 @@ table th, table td {
 }
 
 .certLink::after {
-  content: "→";
+  content: '→';
   margin-left: 8px;
   transition: transform 0.2s ease;
 }
@@ -593,7 +653,7 @@ table th, table td {
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .certCard, 
+  .certCard,
   .certCard:nth-child(even) {
     flex-direction: column;
     text-align: center;
@@ -715,7 +775,7 @@ table th, table td {
   .skinToneGrid {
     gap: 3rem;
   }
-  
+
   .skinToneVariants {
     grid-template-columns: repeat(6, 1fr);
   }
@@ -726,19 +786,19 @@ table th, table td {
   .skinToneBadgeCard {
     background: #0d1117;
   }
-  
+
   .badgeHeader h3 {
     color: #c9d1d9;
   }
-  
+
   .variant {
     background: #161b22;
   }
-  
+
   .variant:hover {
     background: #1c2128;
   }
-  
+
   .skinToneLabel {
     color: #8b949e;
   }
@@ -932,7 +992,7 @@ table th, table td {
   padding: 8px;
   border-radius: 8px;
   background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .achievementsTable .levelImages {
@@ -965,7 +1025,7 @@ table th, table td {
   border-radius: 12px;
   font-size: 0.9em;
   margin-top: 6px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   border: 1px solid #e5e7eb;
 }
 
@@ -990,7 +1050,7 @@ table th, table td {
   padding: 12px;
   background: white;
   border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   width: 100%;
   max-width: 200px;
   margin: 0 auto;

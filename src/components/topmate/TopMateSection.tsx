@@ -6,11 +6,11 @@ const TopMateSection = () => {
   const { colorMode } = useColorMode(); // Get current theme: 'light' or 'dark'
 
   const profileData = {
-    title: "1:1 Mentorship Call",
-    description: "Book a slot, Free for Hive Community Members",
-    duration: "30 mins",
-    profileImage: "/sanjay.png",
-    username: "sanjaykv"
+    title: '1:1 Mentorship Call',
+    description: 'Book a slot, Free for Hive Community Members',
+    duration: '30 mins',
+    profileImage: '/sanjay.png',
+    username: 'sanjaykv',
   };
 
   return (

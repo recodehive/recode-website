@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ProgressBarProps {
   completed: number;
@@ -19,9 +19,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({ completed, total }) => {
         <div
           style={{ width: `${percentage}%` }}
           className={`shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center ${
-            percentage === 100 ? "bg-green-500" : "bg-teal-500"
+            percentage === 100 ? 'bg-green-500' : 'bg-teal-500'
           }`}
-         />
+        />
       </div>
     </div>
   );

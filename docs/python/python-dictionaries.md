@@ -1,7 +1,9 @@
 ---
 id: python-dictionaries
 title: Python Dictionaries
-description: Complete theoretical explanation of dictionaries in Python, covering creation, modification, methods, and use-cases.
+description:
+  Complete theoretical explanation of dictionaries in Python, covering creation, modification,
+  methods, and use-cases.
 sidebar_label: Python Dictionaries #displays in sidebar
 sidebar_position: 11
 tags:
@@ -15,37 +17,39 @@ tags:
     Type Casting,
     String,
     Tuple in Python,
-    Python Dictionaries
-
+    Python Dictionaries,
   ]
-
 ---
-
 
 # Python Dictionaries
 
-A **dictionary** in Python is an unordered, mutable, and indexed collection of key-value pairs. It is one of the most powerful and flexible built-in data structures in Python, suitable for representing structured data.
+A **dictionary** in Python is an unordered, mutable, and indexed collection of key-value pairs. It
+is one of the most powerful and flexible built-in data structures in Python, suitable for
+representing structured data.
 
 ## What is a Dictionary?
 
-Dictionaries hold data in the form of key-value pairs. Each key is unique and maps to a specific value. Values can be of any data type, while keys must be immutable (like strings, numbers, or tuples).
+Dictionaries hold data in the form of key-value pairs. Each key is unique and maps to a specific
+value. Values can be of any data type, while keys must be immutable (like strings, numbers, or
+tuples).
 
 ### Example:
+
 ```python
 person = {
     "name": "Alice",
     "age": 25,
     "city": "New York"
 }
-````
+```
 
 ## Properties of Dictionaries
 
-* Keys are unique.
-* Keys must be immutable.
-* Values can be of any data type.
-* Dictionaries are mutable and can be changed after creation.
-* In Python 3.7+, dictionaries maintain insertion order.
+- Keys are unique.
+- Keys must be immutable.
+- Values can be of any data type.
+- Dictionaries are mutable and can be changed after creation.
+- In Python 3.7+, dictionaries maintain insertion order.
 
 ## Creating Dictionaries
 
@@ -189,11 +193,11 @@ squares = {x: x*x for x in range(1, 6)}
 
 ## Use Cases of Dictionaries
 
-* Representing JSON or structured data
-* Frequency counting (e.g., word count)
-* Lookup tables
-* Configuration or settings
-* Storing database records in memory
+- Representing JSON or structured data
+- Frequency counting (e.g., word count)
+- Lookup tables
+- Configuration or settings
+- Storing database records in memory
 
 ## Dictionary vs List
 
@@ -207,14 +211,14 @@ squares = {x: x*x for x in range(1, 6)}
 
 ## Best Practices
 
-* Use `.get()` instead of direct key access to avoid `KeyError`.
-* Use dictionary comprehension for cleaner and more readable code.
-* Use keys that are hashable (e.g., strings, numbers).
-* Use dictionaries for fast lookups and structured data representation.
+- Use `.get()` instead of direct key access to avoid `KeyError`.
+- Use dictionary comprehension for cleaner and more readable code.
+- Use keys that are hashable (e.g., strings, numbers).
+- Use dictionaries for fast lookups and structured data representation.
 
 ## Summary
 
-* Dictionaries are one of the most versatile data structures in Python.
-* They store key-value pairs and allow fast retrieval based on keys.
-* Keys must be unique and immutable.
-* Dictionaries support powerful methods for data manipulation and traversal.
+- Dictionaries are one of the most versatile data structures in Python.
+- They store key-value pairs and allow fast retrieval based on keys.
+- Keys must be unique and immutable.
+- Dictionaries support powerful methods for data manipulation and traversal.

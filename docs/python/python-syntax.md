@@ -3,19 +3,13 @@ id: python-syntax
 title: Python Syntax
 sidebar_label: Python Syntax #displays in sidebar
 sidebar_position: 2
-tags:
-  [
-    Python,
-    Introduction of python,
-    Python Syntax,
-
-  ]
-
+tags: [Python, Introduction of python, Python Syntax]
 ---
 
 # Python Syntax
 
-Python is known for its clean and readable syntax. It emphasizes code readability and allows developers to write fewer lines of code compared to other programming languages.
+Python is known for its clean and readable syntax. It emphasizes code readability and allows
+developers to write fewer lines of code compared to other programming languages.
 
 ### Basic Syntax Structure
 
@@ -26,10 +20,9 @@ Python uses indentation instead of curly braces `{}` to define blocks of code.
 ```python
 if 5 > 2:
     print("Five is greater than two!")
-````
+```
 
-* **Indentation** is crucial in Python. Missing or incorrect indentation will raise an error.
-
+- **Indentation** is crucial in Python. Missing or incorrect indentation will raise an error.
 
 ### Comments
 
@@ -74,14 +67,14 @@ a, b, c = 1, 2, 3
 
 Some common data types in Python:
 
-* `int`: Integer
-* `float`: Floating point
-* `str`: String
-* `bool`: Boolean
-* `list`: List of items
-* `tuple`: Immutable list
-* `dict`: Key-value pair
-* `set`: Unique unordered collection
+- `int`: Integer
+- `float`: Floating point
+- `str`: String
+- `bool`: Boolean
+- `list`: List of items
+- `tuple`: Immutable list
+- `dict`: Key-value pair
+- `set`: Unique unordered collection
 
 ```python
 num = 10                 # int
@@ -199,15 +192,18 @@ Correct:
 
 ```python
 if True:
-    print("Hello")  
+    print("Hello")
 ```
 
 ---
 
 ## Conclusion
 
-Python syntax is simple, readable, and beginner-friendly. With its use of indentation and minimalistic style, it allows you to focus on solving problems rather than worrying about complex syntax rules.
+Python syntax is simple, readable, and beginner-friendly. With its use of indentation and
+minimalistic style, it allows you to focus on solving problems rather than worrying about complex
+syntax rules.
 
 ---
 
-> 📌 **Note**: Make sure your Python files have the `.py` extension and you're using Python 3.x version for compatibility with modern features.
+> 📌 **Note**: Make sure your Python files have the `.py` extension and you're using Python 3.x
+> version for compatibility with modern features.

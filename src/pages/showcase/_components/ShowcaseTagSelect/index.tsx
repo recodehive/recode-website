@@ -13,11 +13,11 @@ import React, {
   type ReactNode,
   type ReactElement,
 } from 'react';
-import {useHistory, useLocation} from '@docusaurus/router';
-import {toggleListItem} from '../../../../utils/jsUtils';
-import type {TagType} from '../../../../data/users';
+import { useHistory, useLocation } from '@docusaurus/router';
+import { toggleListItem } from '../../../../utils/jsUtils';
+import type { TagType } from '../../../../data/users';
 
-import {prepareUserState} from '../../index';
+import { prepareUserState } from '../../index';
 import styles from './styles.module.css';
 
 interface Props extends ComponentProps<'input'> {
@@ -35,13 +35,13 @@ export function readSearchTags(search: string): TagType[] {
 function replaceSearchTags(search: string, newTags: TagType[]) {
   const searchParams = new URLSearchParams(search);
   searchParams.delete(TagQueryStringKey);
-  newTags.forEach((tag) => searchParams.append(TagQueryStringKey, tag));
+  newTags.forEach(tag => searchParams.append(TagQueryStringKey, tag));
   return searchParams.toString();
 }
 
 function ShowcaseTagSelect(
-  {id, icon, label, tag, ...rest}: Props,
-  ref: React.ForwardedRef<HTMLLabelElement>,
+  { id, icon, label, tag, ...rest }: Props,
+  ref: React.ForwardedRef<HTMLLabelElement>
 ) {
   const location = useLocation();
   const history = useHistory();
@@ -66,19 +66,19 @@ function ShowcaseTagSelect(
         type="checkbox"
         id={id}
         className="screen-reader-only"
-        onKeyDown={(e) => {
+        onKeyDown={e => {
           if (e.key === 'Enter') {
             toggleTag();
           }
         }}
-        onFocus={(e) => {
+        onFocus={e => {
           if (e.relatedTarget) {
             e.target.nextElementSibling?.dispatchEvent(
-              new KeyboardEvent('focus'),
+              new KeyboardEvent('focus')
             );
           }
         }}
-        onBlur={(e) => {
+        onBlur={e => {
           e.target.nextElementSibling?.dispatchEvent(new KeyboardEvent('blur'));
         }}
         onChange={toggleTag}

@@ -39,37 +39,45 @@ const Content = styled.p`
 const Licensing: React.FC = () => {
   return (
     <Layout
-      title={"Licensing"}
+      title={'Licensing'}
       description="Licensing information for RecodeHive"
     >
       <LicensingContainer>
         <Title>Licensing</Title>
         <Content>
-          Welcome to RecodeHive. This project is licensed under the MIT License. This page outlines the terms of the license and provides details on how you can use, modify, and distribute our project.
+          Welcome to RecodeHive. This project is licensed under the MIT License.
+          This page outlines the terms of the license and provides details on
+          how you can use, modify, and distribute our project.
         </Content>
         <Content>
           <SubTitle>MIT License</SubTitle>
           <Content>
             <strong>Copyright (c) 2025 recodehive</strong>
-            <br /><br />
-            Permission is hereby granted, free of charge, to any person obtaining a copy
-            of this software and associated documentation files (the "Software"), to deal
-            in the Software without restriction, including without limitation the rights
-            to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-            copies of the Software, and to permit persons to whom the Software is
-            furnished to do so, subject to the following conditions:
-            <br /><br />
-            The above copyright notice and this permission notice shall be included in all
-            copies or substantial portions of the Software.
-            <br /><br />
-            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-            IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-            FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-            AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-            LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-            OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+            <br />
+            <br />
+            Permission is hereby granted, free of charge, to any person
+            obtaining a copy of this software and associated documentation files
+            (the "Software"), to deal in the Software without restriction,
+            including without limitation the rights to use, copy, modify, merge,
+            publish, distribute, sublicense, and/or sell copies of the Software,
+            and to permit persons to whom the Software is furnished to do so,
+            subject to the following conditions:
+            <br />
+            <br />
+            The above copyright notice and this permission notice shall be
+            included in all copies or substantial portions of the Software.
+            <br />
+            <br />
+            THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+            EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+            MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+            NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+            BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+            ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+            CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
             SOFTWARE.
-            <br /><br />
+            <br />
+            <br />
           </Content>
         </Content>
       </LicensingContainer>

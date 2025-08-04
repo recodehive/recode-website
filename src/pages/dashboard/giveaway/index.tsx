@@ -32,8 +32,12 @@ const GiveawayPage: React.FC = () => {
 
       setTimeLeft({
         days: String(Math.floor(distance / (1000 * 60 * 60 * 24))),
-        hours: String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))),
-        minutes: String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))),
+        hours: String(
+          Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        ),
+        minutes: String(
+          Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        ),
         seconds: String(Math.floor((distance % (1000 * 60)) / 1000)),
       });
     }, 1000);
@@ -67,13 +71,22 @@ const GiveawayPage: React.FC = () => {
 
       <div className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white py-10 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">🎉 RecodeHive Giveaway</h1>
-          <p className="text-lg mb-8">Participate now and win exclusive swag, resources, and more!</p>
+          <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+            🎉 RecodeHive Giveaway
+          </h1>
+          <p className="text-lg mb-8">
+            Participate now and win exclusive swag, resources, and more!
+          </p>
 
           <div className="flex justify-center gap-4 text-center mb-12">
-            {['days', 'hours', 'minutes', 'seconds'].map((unit) => (
-              <div key={unit} className="bg-white/10 px-6 py-4 rounded-xl shadow-md">
-                <div className="text-3xl font-bold">{timeLeft[unit as keyof typeof timeLeft]}</div>
+            {['days', 'hours', 'minutes', 'seconds'].map(unit => (
+              <div
+                key={unit}
+                className="bg-white/10 px-6 py-4 rounded-xl shadow-md"
+              >
+                <div className="text-3xl font-bold">
+                  {timeLeft[unit as keyof typeof timeLeft]}
+                </div>
                 <div className="text-sm uppercase tracking-widest">{unit}</div>
               </div>
             ))}
@@ -110,7 +123,8 @@ const GiveawayPage: React.FC = () => {
           </div>
 
           <p className="text-sm text-white text-opacity-60 italic">
-            Winners will be announced after the countdown ends. Stay active on the dashboard to climb up the leaderboard!
+            Winners will be announced after the countdown ends. Stay active on
+            the dashboard to climb up the leaderboard!
           </p>
         </div>
       </div>

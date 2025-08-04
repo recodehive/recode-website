@@ -6,34 +6,37 @@ import {
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
-} from "../ui/carousel";
-import { Button } from "../ui/button";
+} from '../ui/carousel';
+import { Button } from '../ui/button';
 import TestimonialCard from './TestimonialCard';
-import Autoplay from "embla-carousel-autoplay";
+import Autoplay from 'embla-carousel-autoplay';
 
 // Sample testimonial data
 const testimonials = [
   {
-    name: "Shaanif ahmed",
-    username: "Shaanifahmed",
-    content: "The resources for learning statistics were really useful . Also I liked the summary of each field given out there .! #LearnToCode #FreeEducation",
-    date: "May 21, 2023",
-    avatar: "/icons/adobe.png"
+    name: 'Shaanif ahmed',
+    username: 'Shaanifahmed',
+    content:
+      'The resources for learning statistics were really useful . Also I liked the summary of each field given out there .! #LearnToCode #FreeEducation',
+    date: 'May 21, 2023',
+    avatar: '/icons/adobe.png',
   },
   {
-    name: "Namith",
-    username: "namith",
-    content: "Gave remarkable insights on parts i have to improve and gave me new opportunities . cheers~! #TechCommunity #WomenInTech",
-    date: "April 21, 2023",
-    avatar: "/icons/google.png"
+    name: 'Namith',
+    username: 'namith',
+    content:
+      'Gave remarkable insights on parts i have to improve and gave me new opportunities . cheers~! #TechCommunity #WomenInTech',
+    date: 'April 21, 2023',
+    avatar: '/icons/google.png',
   },
   {
-    name: "Prithwi Gajanan",
-    username: "PrithwiGajanan",
-    content: "Got quick response 🎉 during my internship apply period. Sir is really very kind☺️ and a Gem 💎 for the community. And inspiration for me. ✨ #Topmate #mentorship",
-    date: "Sep 28, 2024",
-    avatar: "/icons/amazon.png"
-  }
+    name: 'Prithwi Gajanan',
+    username: 'PrithwiGajanan',
+    content:
+      'Got quick response 🎉 during my internship apply period. Sir is really very kind☺️ and a Gem 💎 for the community. And inspiration for me. ✨ #Topmate #mentorship',
+    date: 'Sep 28, 2024',
+    avatar: '/icons/amazon.png',
+  },
 ];
 
 export function TestimonialCarousel() {
@@ -49,7 +52,7 @@ export function TestimonialCarousel() {
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
+    api.on('select', () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
@@ -65,7 +68,7 @@ export function TestimonialCarousel() {
         setApi={setApi}
         className="w-full"
         opts={{
-          align: "start",
+          align: 'start',
           loop: true,
         }}
         plugins={[
@@ -76,7 +79,10 @@ export function TestimonialCarousel() {
       >
         <CarouselContent className="-ml-2 md:-ml-4 my-16">
           {testimonials.map((testimonial, index) => (
-            <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 h-full">
+            <CarouselItem
+              key={index}
+              className="pl-2 md:pl-4 md:basis-1/2 h-full"
+            >
               <TestimonialCard {...testimonial} />
             </CarouselItem>
           ))}
@@ -88,7 +94,7 @@ export function TestimonialCarousel() {
             {Array.from({ length: count }).map((_, index) => (
               <Button
                 key={index}
-                variant={current === index + 1 ? "default" : "outline"}
+                variant={current === index + 1 ? 'default' : 'outline'}
                 size="icon"
                 className="h-2 w-2 p-0 rounded-full"
                 onClick={() => api?.scrollTo(index)}
@@ -100,4 +106,4 @@ export function TestimonialCarousel() {
       </Carousel>
     </div>
   );
-} 
+}

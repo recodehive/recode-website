@@ -124,7 +124,7 @@ h1 {
   .podcast-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .podcast-container {
     padding: 1rem;
   }

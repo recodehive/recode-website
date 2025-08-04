@@ -4,21 +4,13 @@ title: Type Casting
 sidebar_label: Type Casting #displays in sidebar
 sidebar_position: 6
 tags:
-  [
-    Python,
-    Introduction of python,
-    Python Syntax,
-    Python Variables,
-    Python Operators,
-    Type Casting,
-
-  ]
-
+  [Python, Introduction of python, Python Syntax, Python Variables, Python Operators, Type Casting]
 ---
 
 # Python Casting
 
-In Python, **casting** is the process of converting a variable from one type to another. Python has built-in functions for converting between data types.
+In Python, **casting** is the process of converting a variable from one type to another. Python has
+built-in functions for converting between data types.
 
 ---
 
@@ -31,10 +23,9 @@ You can specify the data type using casting functions:
 x = int(1)     # x will be 1
 y = int(2.8)   # y will be 2
 z = int("3")   # z will be 3
-````
+```
 
-
-###  `int()` - Integer Casting
+### `int()` - Integer Casting
 
 Converts a value to an integer. Works with floats and numeric strings.
 
@@ -44,7 +35,6 @@ y = int(2.8)    # 2
 z = int("3")    # 3
 # w = int("abc")  # Error
 ```
-
 
 ### `float()` - Floating-Point Casting
 
@@ -56,8 +46,7 @@ b = float("2.5")  # 2.5
 c = float(3.0)    # 3.0
 ```
 
-
-###  `str()` - String Casting
+### `str()` - String Casting
 
 Converts numbers or other types into a string.
 
@@ -94,9 +83,8 @@ except ValueError:
 | `float()` | Float       | `"3.5"`       | `3.5`   |
 | `str()`   | String      | `3.5`         | `"3.5"` |
 
-
 ### Quick Notes
 
-* Use casting to convert types manually.
-* Useful when handling user input, math, or data from files.
-* Always validate input before casting to avoid errors.
+- Use casting to convert types manually.
+- Useful when handling user input, math, or data from files.
+- Always validate input before casting to avoid errors.

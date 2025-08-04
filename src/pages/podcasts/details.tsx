@@ -25,7 +25,9 @@ const SpotifyTitle: React.FC<SpotifyTitleProps> = ({ spotifyUrl, type }) => {
 
   React.useEffect(() => {
     let cancelled = false;
-    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
+    fetch(
+      `https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`
+    )
       .then(res => res.json())
       .then(data => {
         if (!cancelled) setTitle(data.title);
@@ -33,11 +35,13 @@ const SpotifyTitle: React.FC<SpotifyTitleProps> = ({ spotifyUrl, type }) => {
       .catch(() => {
         if (!cancelled) setTitle('');
       });
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [spotifyUrl]);
   return (
     <div className="spotify-title">
-      <strong>{title || (type.charAt(0).toUpperCase() + type.slice(1))}</strong>
+      <strong>{title || type.charAt(0).toUpperCase() + type.slice(1)}</strong>
     </div>
   );
 };
@@ -49,19 +53,20 @@ export default function PodcastDetails(): ReactElement {
 
   // Random descriptive text about podcasts
   const descriptions = [
-    "Dive deep into fascinating conversations and thought-provoking content.",
-    "Experience the power of audio storytelling at its finest.",
-    "Join us on a journey of discovery through captivating discussions.",
-    "Explore new perspectives and expand your horizons.",
-    "Listen to expert insights and engaging narratives.",
-    "Uncover the stories behind the stories.",
-    "Get inspired by the voices that shape our world.",
-    "Tune in to the latest trends and timeless tales.",
-    "Discover the art of conversation and the beauty of sound.",
+    'Dive deep into fascinating conversations and thought-provoking content.',
+    'Experience the power of audio storytelling at its finest.',
+    'Join us on a journey of discovery through captivating discussions.',
+    'Explore new perspectives and expand your horizons.',
+    'Listen to expert insights and engaging narratives.',
+    'Uncover the stories behind the stories.',
+    'Get inspired by the voices that shape our world.',
+    'Tune in to the latest trends and timeless tales.',
+    'Discover the art of conversation and the beauty of sound.',
   ];
 
   // Get a random description
-  const randomDescription = descriptions[Math.floor(Math.random() * descriptions.length)];
+  const randomDescription =
+    descriptions[Math.floor(Math.random() * descriptions.length)];
 
   if (!podcast) {
     return (
@@ -80,7 +85,10 @@ export default function PodcastDetails(): ReactElement {
         <div className="podcast-card details-card">
           <div className="podcast-content">
             <div className="podcast-info">
-              <SpotifyTitle spotifyUrl={podcast.spotifyUrl} type={podcast.type} />
+              <SpotifyTitle
+                spotifyUrl={podcast.spotifyUrl}
+                type={podcast.type}
+              />
             </div>
             <div className="podcast-description">
               <p>{randomDescription}</p>

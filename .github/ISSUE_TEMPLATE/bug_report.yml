@@ -1,6 +1,6 @@
 name: Bug report 🐞
 description: File a bug report
-title: "🐞[Bug]: "
+title: '🐞[Bug]: '
 labels: 'bug'
 body:
   - type: checkboxes
@@ -46,9 +46,9 @@ body:
     attributes:
       label: Record
       options:
-        - label: "I have read the Contributing Guidelines"
+        - label: 'I have read the Contributing Guidelines'
           required: true
         - label: "Are you a GSSOC'25 contributor"
           required: false
-        - label: "I want to work on this issue"
+        - label: 'I want to work on this issue'
           required: false
