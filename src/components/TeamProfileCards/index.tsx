@@ -1,8 +1,8 @@
-import React, { type ReactNode } from "react";
-import Translate from "@docusaurus/Translate";
-import Link from "@docusaurus/Link";
-import Heading from "@theme/Heading";
-import "./teamcards.css";
+import React, { type ReactNode } from 'react';
+import Translate from '@docusaurus/Translate';
+import Link from '@docusaurus/Link';
+import Heading from '@theme/Heading';
+import './teamcards.css';
 
 function WebsiteLink({ to, children }: { to: string; children?: ReactNode }) {
   return (
@@ -39,7 +39,7 @@ function TeamProfileCard({
   children,
   githubUrl,
   twitterUrl,
-  linkedInUrl
+  linkedInUrl,
 }: ProfileProps) {
   return (
     <div className={`team-profile-card ${className}`}>
@@ -104,11 +104,13 @@ export function ActiveTeamRow(): JSX.Element {
           values={{
             website: <WebsiteLink to="https://ajay-dhangar.github.io/" />,
             devto: <Link to="https://dev.to/ajaydhangar49">Dev.to</Link>,
-            optimumAi: <Link to="https://www.optimumai.in/community">OptimumAI</Link>,
+            optimumAi: (
+              <Link to="https://www.optimumai.in/community">OptimumAI</Link>
+            ),
           }}
         >
           {
-            "Founder, Lead Developer and Maintainer of CodeHarborHub. We are passionate about contributing to open source and regularly write articles on our {website} and {devto}. Currently working at {optimumAi}."
+            'Founder, Lead Developer and Maintainer of CodeHarborHub. We are passionate about contributing to open source and regularly write articles on our {website} and {devto}. Currently working at {optimumAi}.'
           }
         </Translate>
       </TeamProfileCardCol>
@@ -153,7 +155,7 @@ export function StudentFellowsTeamRow(): JSX.Element {
           }}
         >
           {
-            "B.Tech student, open source enthusiast, and tech blogger. He loves to contribute to open source and write articles on his {websiteLink}."
+            'B.Tech student, open source enthusiast, and tech blogger. He loves to contribute to open source and write articles on his {websiteLink}.'
           }
         </Translate>
       </TeamProfileCardCol>

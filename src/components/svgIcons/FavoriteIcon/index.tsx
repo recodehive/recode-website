@@ -6,10 +6,10 @@
  */
 
 import React from 'react';
-import Svg, {type SvgIconProps} from '../../Svg';
+import Svg, { type SvgIconProps } from '../../Svg';
 
 export default function FavoriteIcon(
-  props: Omit<SvgIconProps, 'children'>,
+  props: Omit<SvgIconProps, 'children'>
 ): JSX.Element {
   return (
     <Svg {...props}>

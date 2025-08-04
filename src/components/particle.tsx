@@ -1,20 +1,20 @@
-import * as React from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { useEffect, useMemo, useState } from "react";
-import { loadSlim } from "@tsparticles/slim";
+import * as React from 'react';
+import Particles, { initParticlesEngine } from '@tsparticles/react';
+import { useEffect, useMemo, useState } from 'react';
+import { loadSlim } from '@tsparticles/slim';
 
-const ParticlesComponent = (props) => {
+const ParticlesComponent = props => {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
+    initParticlesEngine(async engine => {
       await loadSlim(engine);
     }).then(() => {
       setInit(true);
     });
   }, []);
 
-  const particlesLoaded = (container) => {
+  const particlesLoaded = container => {
     console.log(container);
   };
 
@@ -28,11 +28,11 @@ const ParticlesComponent = (props) => {
         events: {
           onClick: {
             enable: true,
-            mode: "repulse",
+            mode: 'repulse',
           },
           onHover: {
             enable: true,
-            mode: "repulse",
+            mode: 'repulse',
           },
         },
         modes: {
@@ -54,30 +54,30 @@ const ParticlesComponent = (props) => {
           },
         },
         color: {
-          value: "#FFFFFF",
+          value: '#FFFFFF',
         },
         shape: {
-          type: "triangle",
+          type: 'triangle',
           stroke: {
             width: 0,
-            color: "#FFD700",
+            color: '#FFD700',
           },
           polygon: {
             nb_sides: 12,
           },
         },
         links: {
-          color: "#778899",
+          color: '#778899',
           distance: 180,
           enable: true,
           opacity: 0.8,
           width: 1,
         },
         move: {
-          direction: "none" as const,
+          direction: 'none' as const,
           enable: true,
           outModes: {
-            default: "bounce" as const,
+            default: 'bounce' as const,
           },
           random: true,
           speed: 5,
@@ -98,13 +98,13 @@ const ParticlesComponent = (props) => {
   return (
     <div
       style={{
-        position: "fixed",
-        width: "100vw",
-        height: "100vh",
+        position: 'fixed',
+        width: '100vw',
+        height: '100vh',
         top: 0,
         left: 0,
         zIndex: -1, // Critical: ensures it's in the background
-        pointerEvents: "none", // Ensures it doesn't block clicks
+        pointerEvents: 'none', // Ensures it doesn't block clicks
       }}
     >
       <Particles id={props.id} options={options} />

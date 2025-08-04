@@ -1,24 +1,24 @@
-import { themes as prismThemes } from "prism-react-renderer";
-import type { Config } from "@docusaurus/types";
-import type * as Preset from "@docusaurus/preset-classic";
-import remarkMath from "remark-math";
-import rehypeKatex from "rehype-katex";
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
+import type * as Preset from '@docusaurus/preset-classic';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "Recode Hive",
-  tagline: "Dinosaurs are cool",
-  favicon: "img/favicon.ico",
+  title: 'Recode Hive',
+  tagline: 'Dinosaurs are cool',
+  favicon: 'img/favicon.ico',
 
-  url: "https://your-docusaurus-site.example.com",
-  baseUrl: "/",
+  url: 'https://your-docusaurus-site.example.com',
+  baseUrl: '/',
 
-  organizationName: "facebook",
-  projectName: "docusaurus",
+  organizationName: 'facebook',
+  projectName: 'docusaurus',
 
-  onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
 
   // Google Analytics
   scripts: [
@@ -35,8 +35,8 @@ const config: Config = {
   ],
 
   i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
+    defaultLocale: 'en',
+    locales: ['en'],
   },
 
   presets: [
@@ -44,45 +44,45 @@ const config: Config = {
       'classic',
       {
         docs: {
-          sidebarPath: require.resolve("./sidebars.ts"),
+          sidebarPath: require.resolve('./sidebars.ts'),
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         blog: {
           showReadingTime: true,
           feedOptions: {
-            type: ["rss", "atom"],
+            type: ['rss', 'atom'],
             xslt: true,
           },
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
-          onInlineTags: "warn",
-          onInlineAuthors: "warn",
-          onUntruncatedBlogPosts: "warn",
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          onInlineTags: 'warn',
+          onInlineAuthors: 'warn',
+          onUntruncatedBlogPosts: 'warn',
         },
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: require.resolve('./src/css/custom.css'),
         },
       } satisfies Preset.Options,
     ],
   ],
 
   themeConfig: {
-    image: "img/docusaurus-social-card.jpg",
+    image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: "Recode Hive",
+      title: 'Recode Hive',
       logo: {
-        alt: "RecodeHive Logo",
-        src: "img/logo.png",
+        alt: 'RecodeHive Logo',
+        src: 'img/logo.png',
       },
       items: [
         {
-          type: "dropdown",
+          type: 'dropdown',
           html: '<span class="nav-emoji">📚</span> Docs',
-          position: "left",
+          position: 'left',
           items: [
             {
-              type: "html",
+              type: 'html',
               value: `<div class="grid grid-cols-3 gap-4 w-xl">
                 <a class="border-r col-span-1" href="/courses/">Tutorials</a>
                 <div class="grid grid-cols-4 col-span-2">
@@ -94,11 +94,11 @@ const config: Config = {
               </div>`,
             },
             {
-              type: "html",
+              type: 'html',
               value: '<hr style="margin: 0.3rem 0;">',
             },
             {
-              type: "html",
+              type: 'html',
               value: `<div class="grid grid-cols-3 gap-4">
                 <a class="border-r col-span-1" href="/courses/"> Courses </a>
                 <div class="grid grid-cols-4 col-span-2">
@@ -109,11 +109,11 @@ const config: Config = {
               </div>`,
             },
             {
-              type: "html",
+              type: 'html',
               value: '<hr style="margin: 0.3rem 0;">',
             },
             {
-              type: "html",
+              type: 'html',
               value: `<div class="grid grid-cols-3 gap-4">
                 <a  class="border-r col-span-1" href="#" target="_self"> Interview Prep </a>
                 <div class="grid grid-cols-1 col-span-2">
@@ -125,74 +125,74 @@ const config: Config = {
           ],
         },
         {
-          to: "/showcase",
+          to: '/showcase',
           html: '<span class="nav-emoji">🌍</span> Showcase',
-          position: "left",
+          position: 'left',
         },
         {
-          to: "/dashboard",
+          to: '/dashboard',
           html: '<span class="nav-emoji">📊</span> Dashboard',
-          position: "left",
+          position: 'left',
         },
         {
-          to: "/our-sponsors/",
+          to: '/our-sponsors/',
           html: '<span class="nav-emoji">💰</span> Donate',
-          position: "left",
+          position: 'left',
         },
         {
-          type: "dropdown",
+          type: 'dropdown',
           html: '<span class="nav-emoji">👩🏻‍💻</span> Devfolio',
-          position: "left",
+          position: 'left',
           items: [
             {
-              label: "💻GitHub Profiles",
-              to: "https://dev.recodehive.com/devfolio",
+              label: '💻GitHub Profiles',
+              to: 'https://dev.recodehive.com/devfolio',
             },
             {
-              label: "🎖️ GitHub Badges",
-              to: "/badges/github-badges/",
-            }, 
+              label: '🎖️ GitHub Badges',
+              to: '/badges/github-badges/',
+            },
           ],
         },
         {
-          to: "/blogs",
+          to: '/blogs',
           html: '<span class="nav-emoji">📰</span> Blogs',
-          position: "left",
+          position: 'left',
         },
         {
-          type: "dropdown",
+          type: 'dropdown',
           html: '<span class="nav-emoji">🔗</span> More',
-          position: "left",
+          position: 'left',
           items: [
             {
-              label: "📚 E-books",
-              to: "https://learn.recodehive.com/datascience",
+              label: '📚 E-books',
+              to: 'https://learn.recodehive.com/datascience',
             },
             {
-              label: "🛣️ Roadmap",
-              to: "#",
+              label: '🛣️ Roadmap',
+              to: '#',
             },
             {
-              label: "🤝 Community",
-              to: "/community",
+              label: '🤝 Community',
+              to: '/community',
             },
             {
-              label: "📺 Broadcast",
-              to: "/broadcasts/",
+              label: '📺 Broadcast',
+              to: '/broadcasts/',
             },
             {
-              label: "🎙️ Podcast",
-              to: "/podcasts/",
+              label: '🎙️ Podcast',
+              to: '/podcasts/',
             },
           ],
         },
         {
-          type: "search",
-          position: "right",
+          type: 'search',
+          position: 'right',
         },
         {
-          type: "html",
-          position: "right",
+          type: 'html',
+          position: 'right',
           value: '<div id="firebase-auth-github-navbar"></div>',
         },
         // {
@@ -217,7 +217,7 @@ const config: Config = {
         //     },
         //   ],
         // },
-        
+
         // {
         //   href: "https://github.com/codeharborhub/codeharborhub",
         //   position: "right",
@@ -239,17 +239,17 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
     algolia: {
-      appId: "YOUR_APP_ID",
-      apiKey: "YOUR_SEARCH_API_KEY",
-      indexName: "YOUR_INDEX_NAME",
+      appId: 'YOUR_APP_ID',
+      apiKey: 'YOUR_SEARCH_API_KEY',
+      indexName: 'YOUR_INDEX_NAME',
       contextualSearch: true,
-      externalUrlRegex: "external\\.com|domain\\.com",
+      externalUrlRegex: 'external\\.com|domain\\.com',
       replaceSearchResultPathname: {
-        from: "/docs/",
-        to: "/",
+        from: '/docs/',
+        to: '/',
       },
       searchParameters: {},
-      searchPagePath: "search",
+      searchPagePath: 'search',
       insights: false,
     },
   } satisfies Preset.ThemeConfig,
@@ -258,11 +258,11 @@ const config: Config = {
     mermaid: true,
   },
 
-  themes: ["@docusaurus/theme-mermaid"],
+  themes: ['@docusaurus/theme-mermaid'],
 
   plugins: [
     [
-      "@docusaurus/plugin-ideal-image",
+      '@docusaurus/plugin-ideal-image',
       {
         quality: 70,
         max: 1030,
@@ -272,12 +272,12 @@ const config: Config = {
       },
     ],
     [
-      "@docusaurus/plugin-content-docs",
+      '@docusaurus/plugin-content-docs',
       {
-        id: "community",
-        path: "community",
-        routeBasePath: "community",
-        sidebarPath: require.resolve("./sidebarsCommunity.js"),
+        id: 'community',
+        path: 'community',
+        routeBasePath: 'community',
+        sidebarPath: require.resolve('./sidebarsCommunity.js'),
         remarkPlugins: [remarkMath],
         rehypePlugins: [rehypeKatex],
         showLastUpdateAuthor: true,

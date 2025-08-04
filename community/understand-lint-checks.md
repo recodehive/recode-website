@@ -4,10 +4,13 @@ title: Understand Checks before PR
 sidebar_label: Understand Checks before PR
 sidebar_position: 3
 ---
+
 # 🧠 Recode Python Backend Development Guide
 
-Welcome to Recode! To maintain a high standard of code quality, we follow a strict development and pull request process.  
-Before submitting your PR, please **follow the instructions below and attach a screenshot of the checks passed**.
+Welcome to Recode! To maintain a high standard of code quality, we follow a strict development and
+pull request process.  
+Before submitting your PR, please **follow the instructions below and attach a screenshot of the
+checks passed**.
 
 ---
 
@@ -35,14 +38,14 @@ We use the following tools to enforce code quality:
 
 ### ⚙️ Config Files
 
-| File                      | Purpose                                                             |
-|---------------------------|---------------------------------------------------------------------|
-| `.flake8`                 | Linting rules with complexity settings                              |
-| `pyproject.toml`          | Central config for `black`, `isort`, `mypy`, and `coverage`         |
-| `.pre-commit-config.yaml` | Pre-commit setup for linting, typing, formatting, and security      |
-| `requirements-dev.txt`    | Dev dependencies with fixed versions                                |
-| `.github/workflows/lint.yml` | CI/CD workflow for automated PR checks                           |
-| `Makefile`                | Common commands for easy use                                        |
+| File                         | Purpose                                                        |
+| ---------------------------- | -------------------------------------------------------------- |
+| `.flake8`                    | Linting rules with complexity settings                         |
+| `pyproject.toml`             | Central config for `black`, `isort`, `mypy`, and `coverage`    |
+| `.pre-commit-config.yaml`    | Pre-commit setup for linting, typing, formatting, and security |
+| `requirements-dev.txt`       | Dev dependencies with fixed versions                           |
+| `.github/workflows/lint.yml` | CI/CD workflow for automated PR checks                         |
+| `Makefile`                   | Common commands for easy use                                   |
 
 ---
 
@@ -170,3 +173,4 @@ pytest --cov=. --cov-report=html
 ## License
 
 This project is licensed under the [MIT License](/License).
+```

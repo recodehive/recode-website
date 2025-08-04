@@ -125,7 +125,7 @@ h1 {
   .podcast-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .podcast-container {
     padding: 1rem;
   }
@@ -246,7 +246,8 @@ h1 {
 .video-title {
   margin: 0 0 0.5rem 0;
   font-size: 1.1rem;
-  color: var(--ifm-font-color-base);  display: -webkit-box;
+  color: var(--ifm-font-color-base);
+  display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -373,7 +374,7 @@ h1 {
   .video-title h1 {
     font-size: 1.75rem;
   }
-  
+
   .video-description {
     font-size: 1rem;
   }
@@ -383,13 +384,13 @@ h1 {
   .video-title h1 {
     font-size: 1.5rem;
   }
-  
+
   .video-embed-large {
     border-radius: 0;
     margin: 1.5rem -1rem;
     width: calc(100% + 2rem);
   }
-  
+
   .video-embed-large iframe {
     border-radius: 0;
   }
@@ -432,11 +433,11 @@ h1 {
   .video-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .video-container {
     padding: 1rem;
   }
-  
+
   .video-section h2 {
     font-size: 1.5rem;
   }

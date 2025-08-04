@@ -3,27 +3,18 @@ id: python-string
 title: String in Python
 sidebar_label: String in Python #displays in sidebar
 sidebar_position: 7
-tags:
-  [
-    Python,
-    Introduction of python,
-    Python Syntax,
-    Variables,
-    Operators,
-    Type Casting,
-    String
-  ]
-
+tags: [Python, Introduction of python, Python Syntax, Variables, Operators, Type Casting, String]
 ---
 
-In Python, a **string** is a sequence of characters enclosed within **single (`'`)**, **double (`"`)**, or **triple quotes (`''' '''` or `""" """`)**.  
+In Python, a **string** is a sequence of characters enclosed within **single (`'`)**, **double
+(`"`)**, or **triple quotes (`''' '''` or `""" """`)**.  
 It is used to store and manipulate **textual data**.
 
 ```python
 str1 = 'Hello'
 str2 = "World"
 str3 = '''This is a multi-line string.'''
-````
+```
 
 ## Creating Strings
 
@@ -142,7 +133,6 @@ print("Hello\nWorld")     # Line break
 print("Name:\tDhruba")    # Tab
 ```
 
-
 ## Multiline Strings
 
 Triple quotes allow multi-line text:
@@ -153,7 +143,6 @@ This is line 2
 This is line 3"""
 print(message)
 ```
-
 
 ## Use Cases and Examples
 
@@ -187,11 +176,10 @@ if email.endswith("@example.com"):
     print("Valid domain")
 ```
 
-
 ## Summary
 
-* Strings are **immutable** sequences of characters.
-* Support **indexing**, **slicing**, **concatenation**, and **repetition**.
-* Useful **methods** help in text processing.
-* Use **escape sequences** for formatting.
-* Use **f-strings** or `format()` for clean formatting.
+- Strings are **immutable** sequences of characters.
+- Support **indexing**, **slicing**, **concatenation**, and **repetition**.
+- Useful **methods** help in text processing.
+- Use **escape sequences** for formatting.
+- Use **f-strings** or `format()` for clean formatting.

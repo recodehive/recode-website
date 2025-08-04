@@ -12,16 +12,14 @@ tags:
     Variables,
     Operators,
     Type Casting,
-    String
+    String,
   ]
-
 ---
-
 
 # Python Lists
 
-A **List** in Python is a data structure that allows you to store multiple items in a single variable. Lists are **ordered**, **mutable**, and **can contain elements of different data types**.
-
+A **List** in Python is a data structure that allows you to store multiple items in a single
+variable. Lists are **ordered**, **mutable**, and **can contain elements of different data types**.
 
 ## Creating a List
 
@@ -39,15 +37,13 @@ fruits = ["apple", "banana", "cherry"]
 
 # Mixed Data Types
 mixed = [1, "hello", 3.14, True]
-````
-
-
+```
 
 ## Indexing
 
 **Indexing** means accessing elements by their position.
 
-* Index starts from **0** in Python:
+- Index starts from **0** in Python:
 
 ```python
 fruits = ["apple", "banana", "cherry"]
@@ -57,15 +53,13 @@ print(fruits[1])  # banana
 print(fruits[2])  # cherry
 ```
 
-* Negative indexing starts from the end:
+- Negative indexing starts from the end:
 
 ```python
 print(fruits[-1])  # cherry
 print(fruits[-2])  # banana
 print(fruits[-3])  # apple
 ```
-
-
 
 ## Slicing
 
@@ -92,7 +86,6 @@ list[start:stop:step]
 print(numbers[::2])  # [10, 30, 50]
 ```
 
-
 ## Modifying Elements
 
 Lists are **mutable**, which means you can change their contents:
@@ -102,7 +95,6 @@ fruits = ["apple", "banana", "cherry"]
 fruits[1] = "mango"
 print(fruits)  # ['apple', 'mango', 'cherry']
 ```
-
 
 ## List Methods
 
@@ -161,7 +153,6 @@ nums.pop(2)  # Removes index 2
 print(nums)  # [1, 2, 4, 5]
 ```
 
-
 ## Iterating Through a List
 
 **Using a for loop:**
@@ -188,7 +179,6 @@ for i in range(len(fruits)):
     print(i, fruits[i])
 ```
 
-
 ## Membership Test
 
 Check whether an item exists in the list:
@@ -197,7 +187,6 @@ Check whether an item exists in the list:
 print("apple" in fruits)       # True
 print("mango" not in fruits)   # True
 ```
-
 
 ## Nested Lists
 
@@ -214,7 +203,6 @@ print(matrix[0])       # [1, 2, 3]
 print(matrix[1][2])    # 6
 ```
 
-
 ## List Comprehensions
 
 A **concise way** to create new lists:
@@ -230,7 +218,6 @@ print(squares)  # [1, 4, 9, 16, 25]
 even = [x for x in range(10) if x % 2 == 0]
 print(even)  # [0, 2, 4, 6, 8]
 ```
-
 
 ## Copying Lists
 
@@ -254,7 +241,8 @@ print(a)  # [1, 2, 3, 4]
 print(c)  # [1, 2, 3, 4, 5]
 ```
 
-
 ## Conclusion
 
-Python Lists are a **powerful and flexible** data structure used everywhere—from collecting and processing data to building complex programs. Practice using list methods and experiment to become confident.
+Python Lists are a **powerful and flexible** data structure used everywhere—from collecting and
+processing data to building complex programs. Practice using list methods and experiment to become
+confident.

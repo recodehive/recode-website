@@ -1,4 +1,3 @@
-
 import React from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
@@ -11,20 +10,20 @@ import { sortBy } from '@site/src/utils/jsUtils';
 import IdealImage from '@theme/IdealImage';
 
 const TagComp = React.forwardRef<HTMLLIElement, Tag>(
-  ({label, color, description}, ref) => (
+  ({ label, color, description }, ref) => (
     <li ref={ref} className={styles.tag} title={description}>
       <span className={styles.textLabel}>{label.toLowerCase()}</span>
-      <span className={styles.colorLabel} style={{backgroundColor: color}} />
+      <span className={styles.colorLabel} style={{ backgroundColor: color }} />
     </li>
-  ),
+  )
 );
 
-function ShowcaseCardTag({tags}: {tags: TagType[]}) {
-  const tagObjects = tags.map((tag) => ({tag, ...Tags[tag]}));
+function ShowcaseCardTag({ tags }: { tags: TagType[] }) {
+  const tagObjects = tags.map(tag => ({ tag, ...Tags[tag] }));
 
   // Keep same order for all tags
-  const tagObjectsSorted = sortBy(tagObjects, (tagObject) =>
-    TagList.indexOf(tagObject.tag),
+  const tagObjectsSorted = sortBy(tagObjects, tagObject =>
+    TagList.indexOf(tagObject.tag)
   );
 
   return (
@@ -47,7 +46,7 @@ function ShowcaseCardTag({tags}: {tags: TagType[]}) {
   );
 }
 
-function ShowcaseCard({user}: {user: User}) {
+function ShowcaseCard({ user }: { user: User }) {
   const handleCardClick = () => {
     window.open(user.website, '_blank');
   };
@@ -66,8 +65,8 @@ function ShowcaseCard({user}: {user: User}) {
       <div className="card__body">
         <div className={styles.showcaseCardHeader}>
           <h4 className={styles.showcaseCardTitle}>
-            <Link 
-              href={user.website} 
+            <Link
+              href={user.website}
               className={styles.showcaseCardLink}
               target="_blank"
             >
@@ -82,7 +81,7 @@ function ShowcaseCard({user}: {user: User}) {
               href={user.source}
               className={clsx(
                 'button button--secondary button--sm',
-                styles.showcaseCardSrcBtn,
+                styles.showcaseCardSrcBtn
               )}
               target="_blank"
               rel="noopener noreferrer"

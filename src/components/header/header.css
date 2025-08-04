@@ -7,7 +7,9 @@
   padding: 3rem auto;
   background-color: var(--ifm-background-color);
   color: #000;
-  transition: background 0.4s ease, color 0.4s ease;
+  transition:
+    background 0.4s ease,
+    color 0.4s ease;
 }
 
 html.theme-dark .chh__header--body {
@@ -72,7 +74,6 @@ html.theme-dark .chh__header-content h1 {
 [data-theme='dark'] .chh__header-content p {
   color: #ccc; /* Softer white for dark mode */
 }
-
 
 html.theme-dark .chh__header-content p {
   color: #ccc;

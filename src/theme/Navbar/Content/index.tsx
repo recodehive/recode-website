@@ -1,10 +1,10 @@
-import React, {type ReactNode} from 'react';
-import {useThemeConfig, ErrorCauseBoundary} from '@docusaurus/theme-common';
+import React, { type ReactNode } from 'react';
+import { useThemeConfig, ErrorCauseBoundary } from '@docusaurus/theme-common';
 import {
   splitNavbarItems,
   useNavbarMobileSidebar,
 } from '@docusaurus/theme-common/internal';
-import NavbarItem, {type Props as NavbarItemConfig} from '@theme/NavbarItem';
+import NavbarItem, { type Props as NavbarItemConfig } from '@theme/NavbarItem';
 import NavbarColorModeToggle from '@theme/Navbar/ColorModeToggle';
 import SearchBar from '@theme/SearchBar';
 import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
@@ -18,20 +18,21 @@ function useNavbarItems() {
   return useThemeConfig().navbar.items as NavbarItemConfig[];
 }
 
-function NavbarItems({items}: {items: NavbarItemConfig[]}): ReactNode {
+function NavbarItems({ items }: { items: NavbarItemConfig[] }): ReactNode {
   return (
     <>
       {items.map((item, i) => (
         <ErrorCauseBoundary
           key={i}
-          onError={(error) =>
+          onError={error =>
             new Error(
               `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
 ${JSON.stringify(item, null, 2)}`,
-              {cause: error},
+              { cause: error }
             )
-          }>
+          }
+        >
           <NavbarItem {...item} />
         </ErrorCauseBoundary>
       ))}
@@ -60,7 +61,7 @@ export default function NavbarContent(): ReactNode {
   const items = useNavbarItems();
   const [leftItems, rightItems] = splitNavbarItems(items);
 
-  const searchBarItem = items.find((item) => item.type === 'search');
+  const searchBarItem = items.find(item => item.type === 'search');
 
   return (
     <NavbarContentLayout

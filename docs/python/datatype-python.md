@@ -3,52 +3,46 @@ id: datatype-python
 title: Python Data Types
 sidebar_label: Python Data Types #displays in sidebar
 sidebar_position: 4
-tags:
-  [
-    python,
-    introduction of python,
-    Data Type,
-
-  ]
+tags: [python, introduction of python, Data Type]
 description: Learn all standard data types in Python with examples and explanations.
-
 ---
-
 
 # Python Data Types
 
-In Python, every value has a **data type**. Data types define the nature of a value, and Python provides a wide variety of built-in data types to handle different kinds of data. Understanding these is crucial for effective programming.
+In Python, every value has a **data type**. Data types define the nature of a value, and Python
+provides a wide variety of built-in data types to handle different kinds of data. Understanding
+these is crucial for effective programming.
 
 ---
 
 ## Data Types in Python
 
-| **Category**      | **Data Type**                          |
-|------------------|----------------------------------------|
-| Text Type         | `str`                                  |
-| Numeric Types     | `int`, `float`, `complex`              |
-| Sequence Types    | `list`, `tuple`, `range`               |
-| Mapping Type      | `dict`                                 |
-| Set Types         | `set`, `frozenset`                     |
-| Boolean Type      | `bool`                                 |
-| Binary Types      | `bytes`, `bytearray`, `memoryview`     |
-| None Type         | `NoneType`                             |
+| **Category**   | **Data Type**                      |
+| -------------- | ---------------------------------- |
+| Text Type      | `str`                              |
+| Numeric Types  | `int`, `float`, `complex`          |
+| Sequence Types | `list`, `tuple`, `range`           |
+| Mapping Type   | `dict`                             |
+| Set Types      | `set`, `frozenset`                 |
+| Boolean Type   | `bool`                             |
+| Binary Types   | `bytes`, `bytearray`, `memoryview` |
+| None Type      | `NoneType`                         |
 
 ---
 
-##  Text Type: `str`
+## Text Type: `str`
 
 A sequence of Unicode characters.
 
 ```python
 name = "Dhruba"
-````
+```
 
 You can perform operations like:
 
-* Slicing
-* Concatenation
-* Length check with `len()`
+- Slicing
+- Concatenation
+- Length check with `len()`
 
 ---
 
@@ -209,4 +203,5 @@ list("abc")  # Output: ['a', 'b', 'c']
 
 ## Conclusion
 
-Python provides a variety of built-in data types to handle data in efficient and expressive ways. Knowing when and how to use each data type is essential for writing clean and effective Python code.
+Python provides a variety of built-in data types to handle data in efficient and expressive ways.
+Knowing when and how to use each data type is essential for writing clean and effective Python code.

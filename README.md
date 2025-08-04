@@ -236,30 +236,30 @@ For more help, check our [Discord community](https://discord.gg/Yxv9RA3r) or cre
    18 version conflict, which is global , so type the below to fix it and ignore the warnings while
    setup.
 
-4. **Build the Docker Image:**
-    Only do this if you are setting up this project locally for the first time. (only build)
+5. **Build the Docker Image:** Only do this if you are setting up this project locally for the first
+   time. (only build)
 
    Once you have installed the dependencies, you can run the application locally using:
-   
+
 ```bash
 docker build -t recodehive-app .
 ```
 
 5. Run the Container
+
 ```bash
 docker run -p 3000:3000 recodehive-app
 ```
 
-   ```bash
-   npm i
-   ```
+```bash
+npm i
+```
 
-   ```bash
-   npm start
-   ```
+```bash
+npm start
+```
 
-   This command will start a development server and open the application in your default web
-   browser.
+This command will start a development server and open the application in your default web browser.
 
 **If you'd like to contribute to CodeHarborHub, please follow these guidelines:**
 
@@ -270,21 +270,20 @@ docker run -p 3000:3000 recodehive-app
 - Push to the branch: `git push origin feature-name`
 - Submit a pull request detailing your changes.
 
-
 ## Project Structure
 
 ```
 recode-website/
-|  
+|
 ├── .github/                              🔹 GitHub meta files
 |    ├── ISSUE_TEMPLATE/
 |    ├── workflows/
 |    └── pull_request_template.md
-├── blog/                                 🔹Project Blog  
+├── blog/                                 🔹Project Blog
 |    ├── git-coding-agent/
 |    ├── google-backlinks/
 |    ├──...
-├── community/                            🔹 Contributor Docs  
+├── community/                            🔹 Contributor Docs
 |    ├── contributing-guidelines.md
 |    ├── index.md
 |    ├── our-documentation.md
@@ -293,7 +292,7 @@ recode-website/
 |    ├── GitHub/
 |    ├── Google-Student-Ambassador/
 |    ├── ...
-├── src/                                  🔹Source Code  
+├── src/                                  🔹Source Code
 |    └── compenents/
 |    ├── css/
 |        └── custom.css
@@ -315,7 +314,7 @@ recode-website/
 ├── CODE_OF_CONDUCT.md
 ├── LICENSE
 ├── README.md
-└── ...              
+└── ...
 ```
 
 ## License
@@ -349,13 +348,11 @@ This project is licensed under the [MIT License](LICENSE).
 
 <div align="center">
 
-
 Happy open-source contributions and here’s to your career success! 🎉 <br>
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="600">
 </p>
-
 
 ### recode-hive 2025
 

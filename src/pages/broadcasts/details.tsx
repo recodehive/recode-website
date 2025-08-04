@@ -17,9 +17,11 @@ interface LocationState {
 // Function to extract YouTube video ID from URL
 const getYoutubeVideoId = (url: string): string => {
   let videoId = '';
-  const normalMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+  const normalMatch = url.match(
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/
+  );
   const shortsMatch = url.match(/youtube\.com\/shorts\/([^&\s]+)/);
-  
+
   if (normalMatch) {
     videoId = normalMatch[1];
   } else if (shortsMatch) {
@@ -37,9 +39,11 @@ export default function VideoDetails(): ReactElement {
   useEffect(() => {
     const fetchVideoTitle = async () => {
       if (!video?.youtubeUrl) return;
-      
+
       try {
-        const response = await fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(video.youtubeUrl)}&format=json`);
+        const response = await fetch(
+          `https://www.youtube.com/oembed?url=${encodeURIComponent(video.youtubeUrl)}&format=json`
+        );
         const data = await response.json();
         setTitle(data.title);
       } catch (error) {
@@ -53,19 +57,20 @@ export default function VideoDetails(): ReactElement {
 
   // Random descriptive text about videos
   const descriptions = [
-    "Watch engaging content that inspires and educates.",
-    "Experience the power of visual storytelling.",
-    "Join us on a journey of learning through video.",
-    "Explore new concepts through dynamic video content.",
-    "Get inspired by expert insights and demonstrations.",
-    "Discover trending topics and timely tutorials.",
-    "Learn from the best in the field.",
-    "Stay updated with the latest trends and techniques.",
-    "Enhance your skills through visual learning.",
+    'Watch engaging content that inspires and educates.',
+    'Experience the power of visual storytelling.',
+    'Join us on a journey of learning through video.',
+    'Explore new concepts through dynamic video content.',
+    'Get inspired by expert insights and demonstrations.',
+    'Discover trending topics and timely tutorials.',
+    'Learn from the best in the field.',
+    'Stay updated with the latest trends and techniques.',
+    'Enhance your skills through visual learning.',
   ];
 
   // Get a random description
-  const randomDescription = descriptions[Math.floor(Math.random() * descriptions.length)];
+  const randomDescription =
+    descriptions[Math.floor(Math.random() * descriptions.length)];
 
   if (!video) {
     return (

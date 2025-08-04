@@ -1,5 +1,5 @@
-import React from "react";
-import Link from "@docusaurus/Link";
+import React from 'react';
+import Link from '@docusaurus/Link';
 
 interface RoadmapCardProps {
   section: {
@@ -25,20 +25,20 @@ const RoadmapCard: React.FC<RoadmapCardProps> = ({
           <li key={item.text} className="flex items-center mb-2">
             <span
               className={
-                item.status === "done" ? "line-through text-gray-500" : ""
+                item.status === 'done' ? 'line-through text-gray-500' : ''
               }
             >
               <Link to={item.link}>{item.text}</Link>
             </span>
             <button
               className={`ml-auto px-4 py-2 rounded-full border-none text-xs font-semibold ${
-                item.status === "done"
-                  ? "bg-gray-300"
-                  : "bg-green-500 text-white"
+                item.status === 'done'
+                  ? 'bg-gray-300'
+                  : 'bg-green-500 text-white'
               }`}
               onClick={() => updateItemStatus(sectionIndex, itemIndex)}
             >
-              {item.status === "done" ? "Undo" : "Done"}
+              {item.status === 'done' ? 'Undo' : 'Done'}
             </button>
           </li>
         ))}

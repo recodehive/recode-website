@@ -1,10 +1,10 @@
-import React from "react";
-import Layout from "@theme/Layout";
+import React from 'react';
+import Layout from '@theme/Layout';
 
 const TermsOfService: React.FC = () => {
   return (
     <Layout
-      title={"Terms and condition of recodehive.com"}
+      title={'Terms and condition of recodehive.com'}
       description="Terms of Service Page for recodehive Learners, and users"
     >
       <div className="max-w-3xl mx-auto p-6 rounded-lg shadow-lg mt-8 mb-8 text-base leading-relaxed font-sans text-justify">
@@ -12,11 +12,13 @@ const TermsOfService: React.FC = () => {
           Terms of Service
         </h2>
         <p className="mb-6">
-          These Terms of Service govern your use of{" "}
-          <b className="bg-yellow-100">recodehive</b>, provided by{" "}
-          <strong className="bg-yellow-100">Sanjay Viswanathan</strong>. Below are the Terms and Conditions for the use of www.recodehive.com. 
-          Please read these carefully. If you need to contact us regarding any aspect of the following terms of use of our website, 
-          please reach out us at the following email address – sanjay@recodehive.com.
+          These Terms of Service govern your use of{' '}
+          <b className="bg-yellow-100">recodehive</b>, provided by{' '}
+          <strong className="bg-yellow-100">Sanjay Viswanathan</strong>. Below
+          are the Terms and Conditions for the use of www.recodehive.com. Please
+          read these carefully. If you need to contact us regarding any aspect
+          of the following terms of use of our website, please reach out us at
+          the following email address – sanjay@recodehive.com.
         </p>
         <h3 className="text-xl font-bold mb-4">Acceptance of Terms</h3>
         <p className="mb-6">
@@ -29,8 +31,10 @@ const TermsOfService: React.FC = () => {
         <h3 className="text-xl font-bold mb-4">Use of the Service</h3>
         <ol className="list-decimal pl-6 mb-6">
           <li className="mb-4">
-            <strong>Usage Instructions:</strong> You agree not to use the website in a way that may impair the performance, 
-            corrupt or manipulate the content or information available on the website or reduce the overall functionality of the website.
+            <strong>Usage Instructions:</strong> You agree not to use the
+            website in a way that may impair the performance, corrupt or
+            manipulate the content or information available on the website or
+            reduce the overall functionality of the website.
           </li>
           <li className="mb-4">
             <strong>License:</strong> We grant you a limited, non-exclusive,
@@ -39,8 +43,10 @@ const TermsOfService: React.FC = () => {
             license does not permit any resale or commercial use of the Service.
           </li>
           <li className="mb-4">
-            <strong>User Conduct:</strong> You agree not to compromise the security of the website or attempt to gain access to 
-            secured areas of the website or attempt to access any sensitive information you may believe exist on the website or server where it is hosted.
+            <strong>User Conduct:</strong> You agree not to compromise the
+            security of the website or attempt to gain access to secured areas
+            of the website or attempt to access any sensitive information you
+            may believe exist on the website or server where it is hosted.
           </li>
         </ol>
         <h3 className="text-xl font-bold mb-4">Content</h3>
@@ -55,19 +61,22 @@ const TermsOfService: React.FC = () => {
           <li className="mb-4">
             <strong>Intellectual Property:</strong> All content, trademarks,
             service marks, logos, and other intellectual property displayed on
-            or related to the Service are the property of{" "}
+            or related to the Service are the property of{' '}
             <strong className="bg-yellow-100">Sanjay Viswanathan</strong> or its
             licensors. You may not use or display any of these without our prior
             written consent.
           </li>
-            <li className="mb-4">
-            <strong>Compensation:</strong> You agree to be fully responsible for any claim, expense, losses, liability, costs including legal fees incurred 
-            by us arising from any infringement of the terms and conditions of this agreement and to which you will have agreed if you continue to use the website.
+          <li className="mb-4">
+            <strong>Compensation:</strong> You agree to be fully responsible for
+            any claim, expense, losses, liability, costs including legal fees
+            incurred by us arising from any infringement of the terms and
+            conditions of this agreement and to which you will have agreed if
+            you continue to use the website.
           </li>
         </ol>
         <h3 className="text-xl font-bold mb-4">Privacy</h3>
         <p className="mb-6">
-          Your privacy is important to us. Please review our{" "}
+          Your privacy is important to us. Please review our{' '}
           <a
             href="/privacy-policy/"
             target="_blank"
@@ -75,7 +84,7 @@ const TermsOfService: React.FC = () => {
             className="text-blue-600 underline"
           >
             Privacy Policy
-          </a>{" "}
+          </a>{' '}
           to understand how we collect, use, and disclose your personal
           information.
         </p>
@@ -93,14 +102,16 @@ const TermsOfService: React.FC = () => {
         </p>
         <h3 className="text-xl font-bold mb-4">Changes to the Terms</h3>
         <p className="mb-6">
-          Though we strive to be entirely accurate in the information that is presented on our site and attempt to keep it as up
-           to date as possible, in some cases, some of the information you find on the website may be slightly outdated.
-
-www.recodehive.com reserves the right to make any modifications or corrections to the information you find on the site at any time without notice.
+          Though we strive to be entirely accurate in the information that is
+          presented on our site and attempt to keep it as up to date as
+          possible, in some cases, some of the information you find on the
+          website may be slightly outdated. www.recodehive.com reserves the
+          right to make any modifications or corrections to the information you
+          find on the site at any time without notice.
         </p>
         <h3 className="text-xl font-bold mb-4">Contact Us</h3>
         <p>
-          If you have any questions about these Terms, please contact us at{" "}
+          If you have any questions about these Terms, please contact us at{' '}
           <a
             href="mailto:sanjay@recodehive.com"
             className="text-blue-600 underline"

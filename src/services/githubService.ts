@@ -39,7 +39,7 @@ class GitHubService {
   // Get headers for GitHub API requests
   private getHeaders(): Record<string, string> {
     const headers: Record<string, string> = {
-      'Accept': 'application/vnd.github.v3+json',
+      Accept: 'application/vnd.github.v3+json',
       'Content-Type': 'application/json',
     };
 
@@ -64,9 +64,15 @@ class GitHubService {
           // Rate limited, wait a bit
           const resetTime = response.headers.get('X-RateLimit-Reset');
           if (resetTime) {
-            const waitTime = Math.max(0, parseInt(resetTime) * 1000 - Date.now());
-            if (waitTime < 60000) { // Only wait if less than 1 minute
-              await new Promise(resolve => setTimeout(resolve, Math.min(waitTime, 5000)));
+            const waitTime = Math.max(
+              0,
+              parseInt(resetTime) * 1000 - Date.now()
+            );
+            if (waitTime < 60000) {
+              // Only wait if less than 1 minute
+              await new Promise(resolve =>
+                setTimeout(resolve, Math.min(waitTime, 5000))
+              );
               continue;
             }
           }
@@ -88,14 +94,14 @@ class GitHubService {
   // Get cached data if valid
   private getCachedData(): GitHubOrgStats | null {
     if (typeof window === 'undefined') return null;
-    
+
     try {
       const cached = localStorage.getItem(this.CACHE_KEY);
       if (!cached) return null;
 
       const data = JSON.parse(cached) as GitHubOrgStats;
       const now = Date.now();
-      
+
       if (now - data.lastUpdated < this.CACHE_DURATION) {
         return data;
       }
@@ -104,26 +110,31 @@ class GitHubService {
       // Clear invalid cache
       localStorage.removeItem(this.CACHE_KEY);
     }
-    
+
     return null;
   }
 
   // Cache data to localStorage
   private setCachedData(data: GitHubOrgStats): void {
     if (typeof window === 'undefined') return;
-    
+
     try {
-      localStorage.setItem(this.CACHE_KEY, JSON.stringify({
-        ...data,
-        lastUpdated: Date.now()
-      }));
+      localStorage.setItem(
+        this.CACHE_KEY,
+        JSON.stringify({
+          ...data,
+          lastUpdated: Date.now(),
+        })
+      );
     } catch (error) {
       console.warn('Error caching GitHub stats:', error);
     }
   }
 
   // Fetch organization basic info
-  private async fetchOrganizationInfo(signal?: AbortSignal): Promise<GitHubOrganization> {
+  private async fetchOrganizationInfo(
+    signal?: AbortSignal
+  ): Promise<GitHubOrganization> {
     const response = await fetch(`${this.BASE_URL}/orgs/${this.ORG_NAME}`, {
       headers: this.getHeaders(),
       signal,
@@ -137,7 +148,9 @@ class GitHubService {
   }
 
   // Fetch all public repositories for the organization
-  private async fetchAllRepositories(signal?: AbortSignal): Promise<GitHubRepository[]> {
+  private async fetchAllRepositories(
+    signal?: AbortSignal
+  ): Promise<GitHubRepository[]> {
     const repositories: GitHubRepository[] = [];
     let page = 1;
     const perPage = 100;
@@ -156,13 +169,13 @@ class GitHubService {
       }
 
       const repos: GitHubRepository[] = await response.json();
-      
+
       if (repos.length === 0) break;
-      
+
       repositories.push(...repos);
-      
+
       if (repos.length < perPage) break;
-      
+
       page++;
     }
 
@@ -170,7 +183,10 @@ class GitHubService {
   }
 
   // Estimate contributors count (GitHub API doesn't provide org-wide contributor count)
-  private async estimateContributors(repositories: GitHubRepository[], signal?: AbortSignal): Promise<number> {
+  private async estimateContributors(
+    repositories: GitHubRepository[],
+    signal?: AbortSignal
+  ): Promise<number> {
     // For performance, we'll sample top repositories by stars/activity
     const topRepos = repositories
       .filter(repo => !repo.archived && repo.stargazers_count > 0)
@@ -180,7 +196,7 @@ class GitHubService {
     let totalContributors = 0;
 
     // Use parallel requests for better performance
-    const contributorPromises = topRepos.map(async (repo) => {
+    const contributorPromises = topRepos.map(async repo => {
       try {
         const response = await fetch(
           `${this.BASE_URL}/repos/${repo.full_name}/contributors?per_page=1`,
@@ -199,7 +215,7 @@ class GitHubService {
               return parseInt(match[1]);
             }
           }
-          
+
           // Fallback: count actual contributors
           const contributors = await response.json();
           return Array.isArray(contributors) ? contributors.length : 0;
@@ -212,13 +228,16 @@ class GitHubService {
     });
 
     const contributorCounts = await Promise.all(contributorPromises);
-    
+
     // Estimate total unique contributors (with some overlap factor)
-    const sumContributors = contributorCounts.reduce((sum, count) => sum + count, 0);
-    
+    const sumContributors = contributorCounts.reduce(
+      (sum, count) => sum + count,
+      0
+    );
+
     // Apply estimation factor for unique contributors across repos
     totalContributors = Math.round(sumContributors * 0.7); // Assume 30% overlap
-    
+
     // Ensure minimum reasonable number
     return Math.max(totalContributors, 140);
   }
@@ -241,7 +260,7 @@ class GitHubService {
     } catch (error) {
       console.warn('Error fetching discussions count:', error);
     }
-    
+
     return 0;
   }
 
@@ -264,8 +283,14 @@ class GitHubService {
       const activeRepos = repositories.filter(repo => !repo.archived);
 
       // Calculate totals
-      const totalStars = repositories.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-      const totalForks = repositories.reduce((sum, repo) => sum + repo.forks_count, 0);
+      const totalStars = repositories.reduce(
+        (sum, repo) => sum + repo.stargazers_count,
+        0
+      );
+      const totalForks = repositories.reduce(
+        (sum, repo) => sum + repo.forks_count,
+        0
+      );
 
       // Estimate contributors and get discussions count
       const [totalContributors, discussionsCount] = await Promise.all([
@@ -289,7 +314,7 @@ class GitHubService {
       return stats;
     } catch (error) {
       console.error('Error fetching GitHub organization stats:', error);
-      
+
       // Return fallback data if API fails
       const fallbackStats: GitHubOrgStats = {
         totalStars: 0,

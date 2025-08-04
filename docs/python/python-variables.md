@@ -3,39 +3,32 @@ id: python-variables
 title: Python Variables
 sidebar_label: Python Variables #displays in sidebar
 sidebar_position: 3
-tags:
-  [
-    Python,
-    Introduction of python,
-    Python Syntax,
-    Python Variables,
-
-  ]
-
+tags: [Python, Introduction of python, Python Syntax, Python Variables]
 ---
 
 # Python Variables
 
-In Python, variables are used to store data that can be referenced and manipulated during program execution. A variable is essentially a name that is assigned to a value. Unlike many other programming languages, Python variables do not require explicit declaration of type. The type of the variable is inferred based on the value assigned.
+In Python, variables are used to store data that can be referenced and manipulated during program
+execution. A variable is essentially a name that is assigned to a value. Unlike many other
+programming languages, Python variables do not require explicit declaration of type. The type of the
+variable is inferred based on the value assigned.
 
 Variables act as placeholders for data. They allow us to store and reuse values in our program.
 
-
 ### 1. What is a Variable?
 
-A variable is like a container for storing data values. You don’t need to declare its type explicitly — Python handles it dynamically.
+A variable is like a container for storing data values. You don’t need to declare its type
+explicitly — Python handles it dynamically.
 
 ```python
 x = 5
 y = "Hello"
-````
+```
 
 Here:
 
-* `x` is of type `int`
-* `y` is of type `str`
-
-
+- `x` is of type `int`
+- `y` is of type `str`
 
 ### 2. How to Declare and Assign Variables
 
@@ -49,7 +42,6 @@ is_active = True
 ```
 
 Python automatically understands the type of variable.
-
 
 ### 3. Multiple Assignments in One Line
 
@@ -65,13 +57,12 @@ You can also assign the **same value to multiple variables**:
 a = b = c = 100
 ```
 
-
 ### 4. Variable Naming Rules
 
-* Must start with a letter (a–z, A–Z) or an underscore (\_)
-* Can contain letters, digits, and underscores
-* Are case-sensitive (`name` and `Name` are different)
-* Cannot use reserved keywords like `if`, `class`, `def`, etc.
+- Must start with a letter (a–z, A–Z) or an underscore (\_)
+- Can contain letters, digits, and underscores
+- Are case-sensitive (`name` and `Name` are different)
+- Cannot use reserved keywords like `if`, `class`, `def`, etc.
 
 ```python
 # Valid
@@ -85,11 +76,9 @@ my-var = 20     # hyphen not allowed
 def = 30        # 'def' is a keyword
 ```
 
-
 ### 5. Standard Data Types in Python
 
 Python variables can hold different types of data:
-
 
   <img src="./assets/data-type.png"/>
 
@@ -99,8 +88,6 @@ Python variables can hold different types of data:
 x = 10
 print(type(x))   # <class 'int'>
 ```
-
-
 
 ### 7. Changing Variable Type Dynamically
 
@@ -114,7 +101,6 @@ x = "Hello"
 print(type(x))  # <class 'str'>
 ```
 
-
 ### 8. Deleting a Variable with `del`
 
 You can remove a variable from memory using `del`.
@@ -125,7 +111,6 @@ del x
 
 print(x)  # Raises NameError
 ```
-
 
 ### 9. Scope of Variables
 
@@ -157,8 +142,6 @@ greet()
 print(msg)  # Error: NameError
 ```
 
-
-
 ### 🟢 The `global` Keyword
 
 Use `global` to modify global variables inside a function.
@@ -174,11 +157,10 @@ update()
 print(x)  # Output: 20
 ```
 
-
 ### 12. Memory Management in Python
 
-* Python variables are **names** bound to **objects in memory**.
-* Use `id()` to get the memory address (or reference ID) of a variable.
+- Python variables are **names** bound to **objects in memory**.
+- Use `id()` to get the memory address (or reference ID) of a variable.
 
 ```python
 x = 5
@@ -192,7 +174,6 @@ a = 100
 b = 100
 print(id(a) == id(b))  # True
 ```
-
 
 ### 🟢 Example Program
 
@@ -222,19 +203,17 @@ Valid: True
 Items: ['pen', 'notebook']
 ```
 
-
 ## Summary
 
-* Python variables store different types of data without explicit declaration.
-* Variables are case-sensitive and follow naming rules.
-* Scope determines where a variable is accessible.
-* `global` and `del` are important keywords for variable handling.
-* Python handles memory management internally but allows inspection via `id()`.
-
+- Python variables store different types of data without explicit declaration.
+- Variables are case-sensitive and follow naming rules.
+- Scope determines where a variable is accessible.
+- `global` and `del` are important keywords for variable handling.
+- Python handles memory management internally but allows inspection via `id()`.
 
 ### Highlights
 
-* Covers both global and local variables
-* Explains `del`, `global`, and `id()` functions
-* Includes formatted tables and output blocks
-* Beginner-friendly explanation with examples
+- Covers both global and local variables
+- Explains `del`, `global`, and `id()` functions
+- Includes formatted tables and output blocks
+- Beginner-friendly explanation with examples

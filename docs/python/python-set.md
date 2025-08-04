@@ -14,24 +14,24 @@ tags:
     Type Casting,
     String,
     Tuple in Python,
-    Set in Python
+    Set in Python,
   ]
-
 ---
 
 # Set in Python
 
-A **Set** in Python is a built-in data structure used to store multiple **unique** elements in a single variable. Sets are **unordered** and **mutable**, making them an efficient tool for membership tests, eliminating duplicates, and performing mathematical set operations.
-
+A **Set** in Python is a built-in data structure used to store multiple **unique** elements in a
+single variable. Sets are **unordered** and **mutable**, making them an efficient tool for
+membership tests, eliminating duplicates, and performing mathematical set operations.
 
 ## Why Use Sets?
 
 Sets are commonly used when:
+
 - You need to **store unique values only**
 - The order of elements **does not matter**
 - You want to perform **fast membership testing**
 - You need efficient **union, intersection, and difference operations**
-
 
 ## Key Characteristics
 
@@ -39,7 +39,6 @@ Sets are commonly used when:
 - **Unique:** No duplicates allowed.
 - **Mutable:** You can add or remove items.
 - **Iterable:** You can loop through a set.
-
 
 ## Creating a Set
 
@@ -50,7 +49,7 @@ There are two main ways to create a set:
 ```python
 fruits = {"apple", "banana", "cherry"}
 print(fruits)  # Output: {'banana', 'apple', 'cherry'}
-````
+```
 
 ### Using the `set()` Constructor
 
@@ -59,13 +58,12 @@ numbers = set([1, 2, 3, 2])
 print(numbers)  # Output: {1, 2, 3}
 ```
 
-> **Important:** Empty curly braces `{}` create an **empty dictionary**, not a set. Use `set()` instead:
+> **Important:** Empty curly braces `{}` create an **empty dictionary**, not a set. Use `set()`
+> instead:
 
->
 > ```python
 > empty_set = set()
 > ```
-
 
 ## Adding Elements to a Set
 
@@ -97,7 +95,6 @@ print(colors)  # Output: {'green'}
 > colors.remove("yellow")  # KeyError
 > ```
 
-
 ### `discard()`
 
 Removes the specified item without raising an error if the item is not found.
@@ -118,7 +115,6 @@ print("Removed:", removed)
 print("Remaining:", colors)
 ```
 
-
 ### `clear()`
 
 Removes all elements.
@@ -127,7 +123,6 @@ Removes all elements.
 colors.clear()
 print(colors)  # Output: set()
 ```
-
 
 ## Updating a Set
 
@@ -139,7 +134,6 @@ a.update([3, 4], {5, 6})
 print(a)  # Output: {1, 2, 3, 4, 5, 6}
 ```
 
-
 ## Membership Testing
 
 Check if an item is in a set using `in` or `not in`:
@@ -149,7 +143,6 @@ nums = {1, 2, 3}
 print(2 in nums)        # Output: True
 print(5 not in nums)    # Output: True
 ```
-
 
 ## Common Set Operations
 
@@ -197,7 +190,6 @@ for animal in animals:
 
 > Since sets are unordered, the output order may differ every time.
 
-
 ## Frozenset
 
 A **frozenset** is an immutable version of a set. Once created, you cannot modify it.
@@ -211,20 +203,18 @@ print(fs)  # frozenset({1, 2, 3})
 
 Use `frozenset` when you need a **hashable set**, e.g., as dictionary keys.
 
-
 ## When to Use Sets?
 
-* Removing duplicates from lists
-* Fast membership tests
-* Performing set algebra (union, intersection)
-* Representing unique collections
-
+- Removing duplicates from lists
+- Fast membership tests
+- Performing set algebra (union, intersection)
+- Representing unique collections
 
 ## Best Practices
 
-* Use `set()` to create empty sets.
-* Use `discard()` if you are not sure whether an element exists.
-* Prefer sets over lists when you need uniqueness or fast lookups.
+- Use `set()` to create empty sets.
+- Use `discard()` if you are not sure whether an element exists.
+- Prefer sets over lists when you need uniqueness or fast lookups.
 
 ---
 
@@ -247,4 +237,3 @@ Use `frozenset` when you need a **hashable set**, e.g., as dictionary keys.
 | **Empty Declaration** | `set()`                                      |
 | **Immutable Variant** | `frozenset`                                  |
 | **Typical Use Cases** | Membership tests, uniqueness, set operations |
-

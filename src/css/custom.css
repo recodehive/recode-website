@@ -5,7 +5,7 @@
  */
 
 /* You can override the default Infima variables here. */
-@import "tailwindcss";
+@import 'tailwindcss';
 :root {
   --ifm-color-primary: #2e8555;
   --ifm-color-primary-dark: #29784c;
@@ -33,7 +33,6 @@
   --ifm-color-primary-text: #ffffff;
   --ifm-color-secondary-text: #edf2f7;
 }
-
 
 @media screen and (min-width: 997px) {
   .nav-emoji {
@@ -164,7 +163,7 @@
 /* Light mode background and text fix */
 [data-theme='light'] {
   --ifm-background-color: #ffffff; /* white background */
-  --ifm-font-color-base: #000000;  /* black text */
+  --ifm-font-color-base: #000000; /* black text */
   background-color: var(--ifm-background-color);
   color: var(--ifm-font-color-base);
 }
@@ -185,4 +184,3 @@ html.theme-light .text-black {
 html.theme-light .text-gray-900 {
   color: #1a1a1a !important;
 }
-

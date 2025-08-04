@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
-import "./header.css";
-import Link from "@docusaurus/Link";
-import VanillaTilt from "vanilla-tilt";
-import { motion } from "framer-motion";
-import ParticlesComponent from "../particle";
+import React, { useEffect, useRef } from 'react';
+import './header.css';
+import Link from '@docusaurus/Link';
+import VanillaTilt from 'vanilla-tilt';
+import { motion } from 'framer-motion';
+import ParticlesComponent from '../particle';
 
 declare global {
   interface HTMLImageElement {
@@ -22,7 +22,7 @@ const HeaderContent = () => {
         viewport={{ once: true }}
         transition={{
           duration: 1,
-          type: "spring",
+          type: 'spring',
           stiffness: 100,
           delay: 0.1,
         }}
@@ -31,21 +31,21 @@ const HeaderContent = () => {
         <ParticlesComponent />
         Level Up Skills with <br /> Recode Hive
       </motion.h1>
-      
+
       <motion.p
         initial={{ opacity: 0, x: -10 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{
           duration: 1,
-          type: "spring",
+          type: 'spring',
           stiffness: 100,
           delay: 0.2,
         }}
       >
-        Recode Hive helps you get started with open-source contributions. We’ve built an
-        inclusive community with people from around the world. Join us to earn while
-        learning — everything made simpler and more practical.
+        Recode Hive helps you get started with open-source contributions. We’ve
+        built an inclusive community with people from around the world. Join us
+        to earn while learning — everything made simpler and more practical.
       </motion.p>
 
       <div className="chh__header-content__input">
@@ -55,7 +55,7 @@ const HeaderContent = () => {
           viewport={{ once: true }}
           transition={{
             duration: 1,
-            type: "spring",
+            type: 'spring',
             stiffness: 100,
             delay: 0.3,
           }}
@@ -72,7 +72,7 @@ const HeaderContent = () => {
           viewport={{ once: true }}
           transition={{
             duration: 1,
-            type: "spring",
+            type: 'spring',
             stiffness: 100,
             delay: 0.2,
           }}
@@ -96,7 +96,7 @@ const HeaderImage = () => {
         max: 25,
         speed: 400,
         glare: true,
-        "max-glare": 0.5,
+        'max-glare': 0.5,
       });
     }
 
@@ -114,7 +114,7 @@ const HeaderImage = () => {
       viewport={{ once: true }}
       transition={{
         duration: 1,
-        type: "spring",
+        type: 'spring',
         stiffness: 100,
         delay: 0.3,
       }}

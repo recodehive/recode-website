@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import * as React from "react";
+import * as React from 'react';
 import {
   Carousel,
   CarouselContent,
@@ -8,12 +8,12 @@ import {
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
-} from "../ui/carousel";
-import { Button } from "../ui/button";
-import { useEffect, useState } from "react";
-import BlogCard from "./blogCard";
-import blogs from "../../database/blogs";
-import Autoplay from "embla-carousel-autoplay";
+} from '../ui/carousel';
+import { Button } from '../ui/button';
+import { useEffect, useState } from 'react';
+import BlogCard from './blogCard';
+import blogs from '../../database/blogs';
+import Autoplay from 'embla-carousel-autoplay';
 
 export function BlogCarousel() {
   const [api, setApi] = useState<CarouselApi>();
@@ -26,7 +26,7 @@ export function BlogCarousel() {
     setCount(api.scrollSnapList().length);
     setCurrent(api.selectedScrollSnap() + 1);
 
-    api.on("select", () => {
+    api.on('select', () => {
       setCurrent(api.selectedScrollSnap() + 1);
     });
   }, [api]);
@@ -37,7 +37,7 @@ export function BlogCarousel() {
         setApi={setApi}
         className="w-full"
         opts={{
-          align: "start",
+          align: 'start',
           loop: true,
         }}
         plugins={[
@@ -47,7 +47,7 @@ export function BlogCarousel() {
         ]}
       >
         <CarouselContent className="my-10">
-          {blogs.map((blog) => (
+          {blogs.map(blog => (
             <CarouselItem key={blog.id} className="md:basis-1/2 lg:basis-1/4">
               <BlogCard
                 type="blog"
@@ -68,12 +68,12 @@ export function BlogCarousel() {
             {Array.from({ length: count }).map((_, index) => (
               <Button
                 key={index}
-                variant={current === index + 1 ? "default" : "outline"}
+                variant={current === index + 1 ? 'default' : 'outline'}
                 size="icon"
                 className={`h-2 w-2 p-0 rounded-full transition-colors ${
                   current === index + 1
-                    ? "bg-black dark:bg-white"
-                    : "bg-gray-300 dark:bg-gray-600"
+                    ? 'bg-black dark:bg-white'
+                    : 'bg-gray-300 dark:bg-gray-600'
                 }`}
                 onClick={() => api?.scrollTo(index)}
               />

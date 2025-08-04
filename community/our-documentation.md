@@ -3,7 +3,10 @@ id: our-documentation.md
 sidebar_position: 3
 title: How to add Tutorials
 sidebar_label: Documentation Guidelines
-description: "This documentation is intended to help you get started with CodeHarborHub and to provide you with a comprehensive guide to the features and functionality of the platform. This is a place to learn about technology, programming, web development, data science, and more."
+description:
+  'This documentation is intended to help you get started with CodeHarborHub and to provide you with
+  a comprehensive guide to the features and functionality of the platform. This is a place to learn
+  about technology, programming, web development, data science, and more.'
 tags:
   [
     features,
@@ -114,6 +117,7 @@ function Clock(props) {
 ````
 
 <BrowserWindow minHeight={300} bodyStyle={{padding: 0}}>
+
 ```jsx live
 function Clock(props) {
   const [date, setDate] = useState(new Date());
@@ -136,6 +140,7 @@ function Clock(props) {
   );
 }
 ```
+
 </BrowserWindow>
 
 ## Multi-language support code blocks
@@ -146,7 +151,7 @@ function Clock(props) {
 
 ```js
 function helloWorld() {
-  console.log("Hello, world!");
+  console.log('Hello, world!');
 }
 ```
 
@@ -191,7 +196,7 @@ int main() {
 
 ```js
 function helloWorld() {
-  console.log("Hello, world!");
+  console.log('Hello, world!');
 }
 ```
 
@@ -248,7 +253,7 @@ int main() {
 
 ````md title="Example Highlighting with metadata string"
 ```jsx {1,4-6,11}
-import React from "react";
+import React from 'react';
 
 function MyComponent(props) {
   if (props.isBar) {
@@ -262,9 +267,8 @@ export default MyComponent;
 ```
 ````
 
-<BrowserWindow minHeight={300} bodyStyle={{padding: 0}}>
-    ```jsx {1,4-6,11}
-    import React from "react";
+<BrowserWindow minHeight={300} bodyStyle={{padding: 0}}> ```jsx {1,4-6,11} import React from
+"react";
 
     function MyComponent(props) {
       if (props.isBar) {
@@ -276,13 +280,14 @@ export default MyComponent;
 
     export default MyComponent;
     ```
+
 </BrowserWindow>
 
 ## Line numbering
 
 ````md title="Example Line numbering"
 ```jsx {1,4-6,11} showLineNumbers
-import React from "react";
+import React from 'react';
 
 function MyComponent(props) {
   if (props.isBar) {
@@ -296,9 +301,8 @@ export default MyComponent;
 ```
 ````
 
-<BrowserWindow minHeight={300} bodyStyle={{padding: 0}}>
-    ```jsx {1,4-6,11} showLineNumbers
-    import React from "react";
+<BrowserWindow minHeight={300} bodyStyle={{padding: 0}}> ```jsx {1,4-6,11} showLineNumbers import
+React from "react";
 
     function MyComponent(props) {
       if (props.isBar) {
@@ -310,11 +314,13 @@ export default MyComponent;
 
     export default MyComponent;
     ```
+
 </BrowserWindow>
 
 ## Math Equations with KaTeX
 
-Math equations are rendered using KaTeX. You can write inline math equations or block equations using LaTeX.
+Math equations are rendered using KaTeX. You can write inline math equations or block equations
+using LaTeX.
 
 ### Inline
 
@@ -328,8 +334,10 @@ $f$ is continuous at $x$, $F$ is differentiable at $x$ with $F'(x)=f(x)$.
 
 <BrowserWindow>
 
-Let $f\colon[a,b] \to \R$ be Riemann integrable. Let $F\colon[a,b]\to\R$ be $F(x)=
-\int_{a}^{x} f(t)\,dt$. Then $F$ is continuous, and at all $x$ such that $f$ is continuous at $x$, $F$ is differentiable at $x$ with $F'(x)=f(x)$.
+Let $f\colon[a,b] \to \R$ be Riemann integrable. Let $F\colon[a,b]\to\R$ be
+$F(x)=
+\int_{a}^{x} f(t)\,dt$. Then $F$ is continuous, and at all $x$ such that $f$ is continuous at
+$x$, $F$ is differentiable at $x$ with $F'(x)=f(x)$.
 
 </BrowserWindow>
 
@@ -354,9 +362,7 @@ $$
 ## warning
 
 ```md title="warning"
-:::warning
-Beware of the dark side.
-:::
+:::warning Beware of the dark side. :::
 ```
 
 <BrowserWindow minHeight={300}>
@@ -368,9 +374,7 @@ Beware of the dark side.
 ## danger
 
 ```md title="danger"
-:::danger
-I find your lack of faith disturbing.
-:::
+:::danger I find your lack of faith disturbing. :::
 ```
 
 <BrowserWindow minHeight={300}>
@@ -382,9 +386,7 @@ I find your lack of faith disturbing.
 ## info
 
 ```md title="info"
-:::info
-Luke, I am your father.
-:::
+:::info Luke, I am your father. :::
 ```
 
 <BrowserWindow minHeight={300}>
@@ -396,9 +398,7 @@ Luke, I am your father.
 ## success
 
 ```md title="success"
-:::success
-The Force will be with you, always.
-:::
+:::success The Force will be with you, always. :::
 ```
 
 <BrowserWindow minHeight={300}>
@@ -407,13 +407,10 @@ The Force will be with you, always.
 :::
 </BrowserWindow>
 
-
 ## Admonitions
 
 ```md title="caution admonition"
-:::caution
-This is a caution admonition
-:::
+:::caution This is a caution admonition :::
 ```
 
 <BrowserWindow minHeight={300}>
@@ -423,9 +420,7 @@ This is a caution admonition
 </BrowserWindow>
 
 ```md title="note admonition"
-:::note
-This is a note admonition
-:::
+:::note This is a note admonition :::
 ```
 
 <BrowserWindow minHeight={300}>
@@ -435,9 +430,7 @@ This is a note admonition
 </BrowserWindow>
 
 ```md title="tip admonition"
-:::tip
-This is a tip admonition
-:::
+:::tip This is a tip admonition :::
 ```
 
 <BrowserWindow minHeight={300}>
@@ -447,9 +440,7 @@ This is a tip admonition
 </BrowserWindow>
 
 ```md title="important admonition"
-:::important
-This is an important admonition
-:::
+:::important This is an important admonition :::
 ```
 
 <BrowserWindow minHeight={300}>

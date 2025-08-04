@@ -1,13 +1,13 @@
-import React from "react";
-import Giscus from "@giscus/react";
-import { useColorMode } from "@docusaurus/theme-common";
-import "./style.css";
+import React from 'react';
+import Giscus from '@giscus/react';
+import { useColorMode } from '@docusaurus/theme-common';
+import './style.css';
 
 /**
  * GiscusComponent
- * 
+ *
  * A React component that integrates Giscus for GitHub discussions.
- * 
+ *
  * @returns {JSX.Element} The rendered component
  */
 export default function GiscusComponent() {
