@@ -98,56 +98,94 @@ const DashboardContent: React.FC = () => {
     setLeaderboardError(null);
     
     try {
-      console.log('🔄 Fetching leaderboard data from API...');
+      console.log('🔄 Fetching leaderboard data from RecodeHive GitHub API...');
       
-      const response = await fetch('https://gssoc24-leaderboard-backend-production-dfe3.up.railway.app/OSLeaderboard');
+      // Fetch all repositories from RecodeHive organization
+      const reposResponse = await fetch('https://api.github.com/orgs/recodehive/repos?type=public&per_page=100');
       
-      if (!response.ok) {
-        throw new Error(`API request failed: ${response.status}`);
+      if (!reposResponse.ok) {
+        throw new Error(`GitHub API request failed: ${reposResponse.status}`);
       }
       
-      const data = await response.json();
-      console.log('📊 API Response:', data);
+      const repos = await reposResponse.json();
+      console.log('📊 GitHub Repos Response:', repos);
       
-      if (!data.leaderboard || !Array.isArray(data.leaderboard)) {
-        throw new Error('Invalid API response format');
+      if (!Array.isArray(repos)) {
+        throw new Error('Invalid GitHub API response format');
       }
       
-      // Transform API data to match our LeaderboardEntry interface
-      const transformedData: LeaderboardEntry[] = data.leaderboard
-        .filter(item => item.login && item.score !== undefined) // Filter out entries without login or score
-        .map((item, index) => {
-          const score = item.score || 0;
-          const prCount = item.pr_urls ? item.pr_urls.length : 0;
-          const achievements = generateAchievements(score, prCount);
+      // Collect all contributors from all repositories
+      const contributorsMap = new Map<string, {
+        login: string;
+        avatar_url: string;
+        html_url: string;
+        contributions: number;
+        repositories: number;
+      }>();
+
+      // Fetch contributors for each repository
+      for (const repo of repos) {
+        try {
+          const contributorsResponse = await fetch(`https://api.github.com/repos/${repo.full_name}/contributors?per_page=100`);
           
-          // Add badges for special tags
-          if (item.postManTag) achievements.push("📮 Postman Badge");
-          if (item.web3hack) achievements.push("🌐 Web3 Hacker");
+          if (contributorsResponse.ok) {
+            const contributors = await contributorsResponse.json();
+            
+            if (Array.isArray(contributors)) {
+              contributors.forEach(contributor => {
+                if (contributor.login && contributor.type === 'User') {
+                  const existing = contributorsMap.get(contributor.login);
+                  if (existing) {
+                    existing.contributions += contributor.contributions;
+                    existing.repositories += 1;
+                  } else {
+                    contributorsMap.set(contributor.login, {
+                      login: contributor.login,
+                      avatar_url: contributor.avatar_url,
+                      html_url: contributor.html_url,
+                      contributions: contributor.contributions,
+                      repositories: 1,
+                    });
+                  }
+                }
+              });
+            }
+          }
+        } catch (error) {
+          console.warn(`Error fetching contributors for ${repo.name}:`, error);
+        }
+      }
+
+      // Transform contributors data to match our LeaderboardEntry interface
+      const transformedData: LeaderboardEntry[] = Array.from(contributorsMap.values())
+        .filter(contributor => contributor.contributions > 0)
+        .map((contributor, index) => {
+          const score = contributor.contributions * 10; // Convert contributions to score
+          const achievements = generateAchievements(score, contributor.contributions);
           
           return {
             rank: index + 1,
-            name: item.login, // Using login as name since that's what's available
-            username: item.login,
-            avatar: item.avatar_url || `https://avatars.githubusercontent.com/u/${Math.floor(Math.random() * 100000)}?v=4`,
-            contributions: prCount,
-            repositories: Math.floor(prCount / 3) || 1, // Estimate repos based on PRs
+            name: contributor.login,
+            username: contributor.login,
+            avatar: contributor.avatar_url,
+            contributions: contributor.contributions,
+            repositories: contributor.repositories,
             score,
             achievements,
-            github_url: item.url || `https://github.com/${item.login}`,
-            streak: item.streak || 0,
-            postManTag: item.postManTag || false,
-            web3hack: item.web3hack || false,
+            github_url: contributor.html_url,
+            streak: Math.floor(Math.random() * 10) + 1, // Random streak for demo
+            postManTag: false,
+            web3hack: false,
           };
         })
-        .sort((a, b) => b.score - a.score) // Sort by score descending
+        .sort((a, b) => b.contributions - a.contributions) // Sort by contributions descending
         .map((item, index) => ({ ...item, rank: index + 1 })); // Update ranks after sorting
       
-      console.log('✅ Successfully processed leaderboard data:', transformedData);
+      console.log('✅ Successfully processed RecodeHive contributors data:', transformedData);
       setLeaderboardData(transformedData);
       
     } catch (error) {
-      console.error('❌ Error fetching leaderboard data:', error);
+      console.error('❌ Error fetching RecodeHive contributors data:', error);
       setLeaderboardError(error.message);
       
       // Fallback demo data with similar structure
@@ -155,43 +193,45 @@ const DashboardContent: React.FC = () => {
       const demoData: LeaderboardEntry[] = [
         {
           rank: 1,
-          name: "ShivanshPlays",
-          username: "ShivanshPlays",
-          avatar: "https://avatars.githubusercontent.com/u/112249407?v=4",
-          contributions: 158,
+          name: "sanjay-kv",
+          username: "sanjay-kv",
+          avatar: "https://avatars.githubusercontent.com/u/30715153?v=4",
+          contributions: 250,
           repositories: 25,
-          score: 7900,
-          achievements: ["🏆 Top Contributor", "📮 Postman Badge", "🌐 Web3 Hacker"],
-          github_url: "https://github.com/ShivanshPlays",
-          streak: 9,
-          postManTag: true,
-          web3hack: true,
+          score: 2500,
+          achievements: ["🏆 Top Contributor", "👑 Founder", "🚀 Maintainer"],
+          github_url: "https://github.com/sanjay-kv",
+          streak: 15,
+          postManTag: false,
+          web3hack: false,
         },
         {
           rank: 2,
-          name: "IkkiOcean",
-          username: "IkkiOcean",
-          avatar: "https://avatars.githubusercontent.com/u/76002919?v=4",
-          contributions: 145,
+          name: "vansh-codes",
+          username: "vansh-codes",
+          avatar: "https://avatars.githubusercontent.com/u/114163734?v=4",
+          contributions: 180,
           repositories: 22,
-          score: 7850,
-          achievements: ["🚀 Rising Star", "📮 Postman Badge", "🌐 Web3 Hacker"],
-          github_url: "https://github.com/IkkiOcean",
+          score: 1800,
+          achievements: ["🚀 Rising Star", "💪 Active Contributor", "⭐ Star Contributor"],
+          github_url: "https://github.com/vansh-codes",
           streak: 8,
-          postManTag: true,
-          web3hack: true,
+          postManTag: false,
+          web3hack: false,
         },
         {
           rank: 3,
-          name: "Community Member",
-          username: "member3",
-          avatar: "https://avatars.githubusercontent.com/u/79542825?v=4",
+          name: "Hemu21",
+          username: "Hemu21",
+          avatar: "https://avatars.githubusercontent.com/u/106808387?v=4",
           contributions: 120,
           repositories: 18,
-          score: 6500,
-          achievements: ["💪 Power User", "⭐ Star Contributor"],
-          github_url: "https://github.com/member3",
+          score: 1200,
+          achievements: ["💪 Power User", "⭐ Star Contributor", "🔥 Consistent"],
+          github_url: "https://github.com/Hemu21",
           streak: 5,
+          postManTag: false,
+          web3hack: false,
         }
       ];
       setLeaderboardData(demoData);
@@ -621,10 +661,10 @@ const DashboardContent: React.FC = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="leaderboard-page-title">
-                  🏆 Community <span className="highlight">Leaderboard</span>
+                  🏆 RecodeHive <span className="highlight">Contributors</span>
                 </h1>
                 <p className="leaderboard-page-subtitle">
-                  Live rankings from GSSoC '24 API • Updated automatically
+                  Live rankings from RecodeHive GitHub Organization • Updated automatically
                 </p>
                 <div className="refresh-section">
                   <button 
@@ -645,7 +685,7 @@ const DashboardContent: React.FC = () => {
                   animate={{ opacity: 1 }}
                 >
                   <div className="loading-spinner-large">⏳</div>
-                  <p>Loading leaderboard data from GSSoC API...</p>
+                  <p>Loading leaderboard data from RecodeHive GitHub API...</p>
                 </motion.div>
               )}
 
@@ -661,9 +701,9 @@ const DashboardContent: React.FC = () => {
                   <div className="error-help">
                     <p><strong>This could be due to:</strong></p>
                     <ul>
-                      <li>API server is temporarily down</li>
+                      <li>GitHub API server is temporarily down</li>
                       <li>Network connectivity issues</li>
-                      <li>API rate limiting</li>
+                      <li>GitHub API rate limiting</li>
                     </ul>
                     <p>Please try refreshing in a moment!</p>
                   </div>
