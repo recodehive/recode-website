@@ -234,6 +234,11 @@ const config: Config = {
       ],
       // hideOnScroll: true,
     },
+    footer: {
+      style: 'dark',
+      links: [],
+      copyright: `Copyright © ${new Date().getFullYear()} recodehive. Built with Docusaurus.`,
+    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
