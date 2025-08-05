@@ -27,6 +27,7 @@ const Footer = () => {
               <p className="leading-relaxed text-gray-600 mt-7">
                RECODEHIVE helps you to learn and master the skills on data, and encourage you to code on open source.
               </p>
+
               <ul className="flex items-center space-x-12 mt-9">
                 {/*Twitter */}
                 <li>

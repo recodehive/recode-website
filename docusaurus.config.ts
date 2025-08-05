@@ -27,14 +27,10 @@ const config: Config = {
       async: true,
     },
     {
-      content: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-W02Z2VJYCR', {
-          debug_mode: ${process.env.NODE_ENV !== 'production' ? 'true' : 'false'}
-        });
-      `,
+      src: '/gtag-init.js',
+    },
+    {
+      src: '/pinterest-init.js',
     },
   ],
 
@@ -121,8 +117,8 @@ const config: Config = {
               value: `<div class="grid grid-cols-3 gap-4">
                 <a  class="border-r col-span-1" href="#" target="_self"> Interview Prep </a>
                 <div class="grid grid-cols-1 col-span-2">
-                  <a href="/docs/category/Technical/" target="_self" class="nav__icons"> 🧩Technical </a> <br />
-                  <a href="#" target="_self" class="nav__icons"> 💡Behaviour </a>
+                  <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a> <br />
+                  <a href="/interview-prep/" target="_self" class="nav__icons"> 💡Behavioral </a>
                 </div>
               </div>`,
             },
@@ -289,7 +285,7 @@ const config: Config = {
       },
     ],
   ],
-  scripts: [],
+  //  scripts: [],
 };
 
 export default config;
