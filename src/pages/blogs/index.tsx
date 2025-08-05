@@ -4,8 +4,20 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import blogs from "../../database/blogs/index";
 import Head from "@docusaurus/Head";
-import { FaCode, FaPalette, FaBrain, FaStar } from "react-icons/fa";
+
 import "./blogs-new.css";
+
+// Author mapping based on actual blog posts
+const authorMapping = {
+  "streamline-ux-ui": ["Sowmiya Venketashan", "Sanjay Viswanthan"],
+  "ux-ui-design-job": ["Sowmiya Venketashan", "Sanjay Viswanthan"],
+  "ux-designers-ai": ["Sowmiya Venketashan", "Sanjay Viswanthan"],
+  "google-deepmind": ["Sowmiya Venketashan", "Sanjay Viswanthan"],
+  "google-backlinks": ["Sanjay Viswanthan"],
+  "git-coding-agent": ["Sanjay Viswanthan"]
+};
+
+
 
 export default function Blogs(): React.JSX.Element {
   const { siteConfig } = useDocusaurusContext();
@@ -42,46 +54,37 @@ export default function Blogs(): React.JSX.Element {
       </Head>
 
       <div className="blog-page">
+        {/* Background Geometric Shapes */}
+        <div className="bg-shapes">
+          <div className="bg-shape bg-shape-1"></div>
+          <div className="bg-shape bg-shape-2"></div>
+          <div className="bg-shape bg-shape-3"></div>
+          <div className="bg-shape bg-shape-4"></div>
+          <div className="bg-shape bg-shape-5"></div>
+        </div>
+
         {/* Hero Section */}
         <section className="blog-hero-section">
+          <div className="floating-particles">
+            <div className="particle particle-1"></div>
+            <div className="particle particle-2"></div>
+            <div className="particle particle-3"></div>
+            <div className="particle particle-4"></div>
+            <div className="particle particle-5"></div>
+            <div className="particle particle-6"></div>
+          </div>
           <div className="blog-hero-container">
-            <h1 className="blog-main-title">Welcome to RecodeHive Blogs</h1>
-            <p className="blog-main-subtitle">
-              Discover web development articles ranging from HTML and CSS to JavaScript, React,<br />
-              Node.js, DSA, and much more
-            </p>
+            <div className="hero-content">
+              <h1 className="blog-main-title">
+                Welcome to <span className="gradient-text">RecodeHive</span> Blogs
+              </h1>
+              <p className="blog-main-subtitle">
+                Discover comprehensive web development articles, tutorials, and insights covering
+                everything from HTML & CSS fundamentals to advanced JavaScript, React, Node.js,
+                Data Structures & Algorithms, and cutting-edge technologies.
+              </p>
 
-            {/* Category Icons */}
-            <div className="blog-category-icons">
-              <div className="category-icon">
-                <div className="icon-wrapper development">
-                  <FaCode />
-                </div>
-                <span>Development</span>
-              </div>
-              <div className="category-icon">
-                <div className="icon-wrapper design">
-                  <FaPalette />
-                </div>
-                <span>Design</span>
-              </div>
-              <div className="category-icon">
-                <div className="icon-wrapper ai-tech">
-                  <FaBrain />
-                </div>
-                <span>AI & Tech</span>
-              </div>
-              <div className="category-icon">
-                <div className="icon-wrapper innovation">
-                  <FaStar />
-                </div>
-                <span>Innovation</span>
-              </div>
             </div>
-
-            <button className="explore-articles-btn">
-              <span>Explore Articles</span>
-            </button>
           </div>
         </section>
 
@@ -89,12 +92,6 @@ export default function Blogs(): React.JSX.Element {
         <section className="latest-articles-section">
           <div className="articles-container">
             <div className="section-header">
-              <h2 className="section-title">Latest Articles</h2>
-              <p className="section-subtitle">
-                Stay updated with the latest trends, tutorials, and insights from the world of<br />
-                technology and design
-              </p>
-
               {/* Search Bar */}
               <div className="search-container">
                 <div className="search-wrapper">
@@ -104,16 +101,23 @@ export default function Blogs(): React.JSX.Element {
                   </svg>
                   <input
                     type="text"
-                    placeholder="Search articles..."
+                    placeholder="Search articles by title, description, or topic..."
                     className="search-input"
                     value={searchTerm}
                     onChange={handleSearchChange}
                   />
-                </div>
-                <div className="search-decoration">
-                  <div className="search-line"></div>
-                  <div className="search-dot"></div>
-                  <div className="search-circle"></div>
+                  {searchTerm && (
+                    <button
+                      className="clear-search-icon"
+                      onClick={() => setSearchTerm("")}
+                      aria-label="Clear search"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                      </svg>
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -167,7 +171,14 @@ const BlogCard = ({ blog, index }) => {
     return 'Resources';
   };
 
+  // Get authors for this blog post
+  const getAuthors = (slug) => {
+    const authors = authorMapping[slug] || ["RecodeHive Team"];
+    return authors.length > 1 ? authors.join(" & ") : authors[0];
+  };
+
   const category = getCategory(blog.title);
+  const authorName = getAuthors(blog.slug);
 
   return (
     <div className="article-card">
@@ -181,7 +192,7 @@ const BlogCard = ({ blog, index }) => {
         <div className="card-meta">
           <div className="card-author">
             <span className="author-avatar">👤</span>
-            <span className="author-name">Author Name</span>
+            <span className="author-name" data-full-name={authorName}>{authorName}</span>
           </div>
           <span className="card-read-time">5 min read</span>
         </div>
