@@ -305,15 +305,6 @@ const DashboardContent: React.FC = () => {
   const mockLeaderboardData: LeaderboardEntry[] = [
     {
       rank: 1,
-      name: "Sanjay Viswanathan",
-      avatar: "https://avatars.githubusercontent.com/u/79542825?v=4",
-      contributions: 1247,
-      repositories: 15,
-      achievements: ["🏆 Top Contributor", "⭐ 1000+ Stars", "🎯 Maintainer"],
-      github_url: "https://github.com/sanjay-kv",
-    },
-    {
-      rank: 2,
       name: "Vansh Codes",
       avatar: "https://avatars.githubusercontent.com/u/79542825?v=4",
       contributions: 982,
@@ -322,7 +313,7 @@ const DashboardContent: React.FC = () => {
       github_url: "https://github.com/vansh-codes",
     },
     {
-      rank: 3,
+      rank: 2,
       name: "Community Member",
       avatar: "https://avatars.githubusercontent.com/u/79542825?v=4",
       contributions: 756,
@@ -331,7 +322,7 @@ const DashboardContent: React.FC = () => {
       github_url: "https://github.com/example",
     },
     {
-      rank: 4,
+      rank: 3,
       name: "Open Source Dev",
       avatar: "https://avatars.githubusercontent.com/u/79542825?v=4",
       contributions: 523,
@@ -340,7 +331,7 @@ const DashboardContent: React.FC = () => {
       github_url: "https://github.com/example2",
     },
     {
-      rank: 5,
+      rank: 4,
       name: "Code Contributor",
       avatar: "https://avatars.githubusercontent.com/u/79542825?v=4",
       contributions: 401,
