@@ -30,10 +30,10 @@ For example, consider a table named `Friends`. Below is how a simple table might
 After using `ORDER BY`, we specify the column by which we want to order the entries.  
 For example, to sort by the `name` column:
 
-The first step in ordering table is the SELECT
-ORDER BY helps you to arrange data in readable form
-Here **FROM** specify the table we are selecting from ountries. 
-Here the query is ordering the number by name/. 
+The first step in ordering a table is the SELECT
+ORDER BY helps you arrange data in a readable form
+Here **FROM** specifies the table we are selecting from. 
+Here the query is ordering the records by the name/. 
 
     :::info
 <Tabs>
@@ -125,8 +125,8 @@ ORDER BY name;
 
 :::tip
  When requesting data with SQL staments like SELECT, we say that we are making a query.
-From helps in select the name col from
-While not necessary but its a good practice to finish the sql queries with;
+From helps in select the name column from
+While not necessary, it’s a good practice to finish SQL queries with a semicolon (;).
 
 
 By following these best practices, ASC is the default sort ordering method followed.

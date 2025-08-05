@@ -1,22 +1,11 @@
 import React from "react";
-import Link from "@docusaurus/Link";
+// import a from "@docusaurus/a";
 import { useColorMode } from "@docusaurus/theme-common";
 
 
 
 const Footer = () => {
   const { colorMode } = useColorMode();
-
-  // SVG blob paths (use your originals for unique branding)
-  const shape1Path =
-    "M-262.5 228.5C-262.5 448.191 -90.1913 620.5 129.5 620.5C349.191 620.5 521.5 448.191 521.5 228.5C521.5 8.80866 349.191 -163.5 129.5 -163.5C-90.1913 -163.5 -262.5 8.80866 -262.5 228.5Z";
-  const shape3Path =
-    "M99.5 137.5C99.5 238.563 19.5634 318.5 -81.5 318.5C-182.563 318.5 -262.5 238.563 -262.5 137.5C-262.5 36.4366 -182.563 -43.5 -81.5 -43.5C19.5634 -43.5 99.5 36.4366 99.5 137.5Z";
-
-  const bgImage =
-    colorMode === "dark"
-      ? "/img/footer-bg-dark.png"
-      : "/img/footer-bg-light.png";
 
   return (
     <footer
@@ -39,53 +28,52 @@ const Footer = () => {
                RECODEHIVE helps you to learn and master the skills on data, and encourage you to code on open source.
               </p>
               <ul className="flex items-center space-x-12 mt-9">
-                {/* Social icon 1 */}
+                {/*Twitter */}
                 <li>
                   <a
-                    href="#"
+                    href="https://x.com/sanjay_kv_"
+                    target="_blank"
                     title="Twitter"
                     className="flex items-center justify-center transition-all duration-200 bg-green-200 rounded-full w-7 h-7 hover:bg-blue-200 focus:bg-blue-200"
                     aria-label="Twitter"
                   >
-                    <svg
-                      className="w-4 h-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M19.633 7.997c.013.175.013.349.013.523 0 5.325-4.053 11.461-11.46 11.461-2.282 0-4.402-.661-6.186-1.809.324.037.636.05.973.05a8.07 8.07 0 0 0 5.001-1.721 4.036 4.036 0 0 1-3.767-2.793c.249.037.499.062.761.062.361 0 .724-.05 1.061-.137a4.027 4.027 0 0 1-3.23-3.953v-.05c.537.299 1.16.486 1.82.511a4.022 4.022 0 0 1-1.796-3.354c0-.748.199-1.434.548-2.032a11.457 11.457 0 0 0 8.306 4.215c-.062-.3-.1-.611-.1-.923a4.026 4.026 0 0 1 4.028-4.028c1.16 0 2.207.486 2.943 1.272a7.957 7.957 0 0 0 2.556-.973 4.02 4.02 0 0 1-1.771 2.22 8.073 8.073 0 0 0 2.319-.624 8.645 8.645 0 0 1-2.019 2.083z" />
-                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-twitter-x" viewBox="0 0 16 16">
+  <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"/>
+</svg>
                   </a>
                 </li>
 
-                {/* Social icon 2 */}
+                {/* LinkedIn */}
                 <li>
                   <a
-                    href="#"
-                    title="Facebook"
+                    href="https://www.linkedin.com/in/sanjay-k-v/"
+                     target="_blank"
+                    title="LinkedIn"
                     className="flex items-center justify-center text-white transition-all duration-200 bg-green-200 rounded-full w-7 h-7 hover:bg-blue-200 focus:bg-blue-200"
-                    aria-label="Facebook"
+                    aria-label="LinkedIn"
                   >
-                    <svg
-                      className="w-4 h-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                    >
-                      <path d="M13.397 20.997v-8.196h2.765l.411-3.209h-3.176V7.548c0-.926.258-1.56 1.587-1.56h1.684V3.127A22.336 22.336 0 0 0 14.201 3c-2.444 0-4.122 1.492-4.122 4.231v2.355H7.332v3.209h2.753v8.202h3.312z"/>
-                    </svg>
+                   <svg
+  className="w-4 h-4"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="currentColor"
+>
+  <path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.761 0 5-2.24 5-5v-14c0-2.76-2.239-5-5-5zm-11.75 20h-3v-11h3v11zm-1.5-12.27c-.966 0-1.75-.79-1.75-1.76s.784-1.76 1.75-1.76 1.75.79 1.75 1.76-.784 1.76-1.75 1.76zm13.25 12.27h-3v-5.6c0-1.34-.03-3.07-1.87-3.07-1.87 0-2.16 1.46-2.16 2.97v5.7h-3v-11h2.89v1.5h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6v6.46z"/>
+</svg>
+
                   </a>
                 </li>
 
-                {/* Social icon 3 */}
+                {/* Instagram */}
                 <li>
                   <a
-                    href="#"
+                    href="https://www.instagram.com/nomad_brains/"
+                     target="_blank"
                     title="Instagram"
                     className="flex items-center justify-center text-white transition-all duration-200 bg-green-200 rounded-full w-7 h-7 hover:bg-blue-200 focus:bg-blue-200"
                     aria-label="Instagram"
                   >
-                    <svg className="w-4 h-4"
+                    <svg className="w-5 h-5"
                          xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 24 24"
                          fill="currentColor"
@@ -97,16 +85,19 @@ const Footer = () => {
                   </a>
                 </li>
 
-                {/* Social icon 4 */}
+                {/* Github */}
                 <li>
                   <a
-                    href="#"
+                    href="https://github.com/recodehive"
+                     target="_blank"
+                    
                     title="GitHub"
                     className="flex items-center justify-center text-white transition-all duration-200 bg-green-200 rounded-full w-7 h-7 hover:bg-blue-200 focus:bg-blue-200"
                     aria-label="GitHub"
+                    
                   >
                     <svg
-                      className="w-4 h-4"
+                      className="w-5 h-5"
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="currentColor"
@@ -141,6 +132,10 @@ const Footer = () => {
                 </div>
                 <button
                   type="submit"
+                  onClick={(e)=>{
+                    e.preventDefault()
+                    alert("Subscribed! (Integrate with Substack API)")
+                  }}
                   className="inline-flex items-center justify-center px-6 py-2 mt-3 font-semibold bg-green-300 rounded-full  hover:bg-blue-200 focus:bg-blue-200"
                 >
                   Subscribe
@@ -158,33 +153,33 @@ const Footer = () => {
               </p>
              
                 <div className="flex flex-col">
-                  <Link
-                    to="/community"
+                  <a
+                    href="/community"
                     className=" text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                    About Us
-                  </Link>
+                  </a>
                 
-                  <Link
-                   to="/contact-us"
+                  <a
+                   href="/contact-us"
                     className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                    Contact Us
-                  </Link>
+                  </a>
                 
-                  <Link
-                    to="/careers"
+                  <a
+                    href="/careers"
                     className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                     Careers
-                  </Link>
+                  </a>
                 
-                  <Link
-                   to="/our-sponsors/"
+                  <a
+                   href="/our-sponsors/"
                     className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                    Sponsor US
-                  </Link>
+                  </a>
                   </div>
                
             </div>
@@ -196,34 +191,34 @@ const Footer = () => {
               </p>
              
                 <div className="flex flex-col">
-                  <Link
-                    to="/courses/"
+                  <a
+                    href="/courses/"
                     className=" text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                    Tutorials
-                  </Link>
+                  </a>
                 
-                  <Link
-                    to="/badges/github-badges/"
+                  <a
+                    href="/badges/github-badges/"
                     className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                     Learn GitHub
-                  </Link>
+                  </a>
                 
-                  <Link
-                    to="/showcase"
+                  <a
+                    href="/showcase"
                     className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                     Explore Projects
-                  </Link>
+                  </a>
                 
                
-                  <Link
-                    to="/blogs"
+                  <a
+                    href="/blogs"
                     className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                    All Blogs
-                  </Link>
+                  </a>
                   </div>
                
             </div>
@@ -235,40 +230,33 @@ const Footer = () => {
               </p>
              
                 <div className="flex flex-col">
-                  <Link
-                    to="/community"
+                  <a
+                    href="/community"
                     className=" text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                   Help Center
-                  </Link>
+                  </a>
                 
-                  <Link
-                   to="https://github.com/recodehive/recode-website/issues"
+                  <a
+                   href="https://github.com/recodehive/recode-website/issues"
                     className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                    Report a Bug
-                  </Link>
+                  </a>
                 
-                  <Link
-                    to="#"
+                  <a
+                    href="#"
                     className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                      Feature Request
-                  </Link>
+                  </a>
                 
-                  <Link
-                   to="#"
-                    className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
-                  >
-                    Terms of Service
-                  </Link>
-
-                  <Link
-                   to="#"
+                  <a
+                   href="#"
                     className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                     Accessibility Support
-                  </Link>
+                  </a>
                   </div>
                
             </div>
@@ -280,19 +268,19 @@ const Footer = () => {
               </p>
              
                 <div className="flex flex-col">
-                  <Link
-                    to="/blog/google-deepmind"
+                  <a
+                    href="/blog/google-deepmind"
                     className=" text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                    Explore Google DeepMind's AI
-                  </Link>
+                  </a>
                 
-                  <Link
-                    to="/blog/google-backlinks"s
+                  <a
+                    href="/blog/google-backlinks"
                     className="mt-1 text-black transition-all duration-200 hover:text-blue-600 focus:text-blue-600"
                   >
                    Google Backlinks: A Comprehensive Guide
-                  </Link>
+                  </a>
                 
                   </div>
                
@@ -304,28 +292,29 @@ const Footer = () => {
           <div className="flex flex-row justify-between">
 
             <div className="flex flex-row space-x-4">
-              <Link to="/privacy-policy/" >
+              <a href="/privacy-policy/" >
               Privacy policy
-              </Link>
+              </a>
 
-              <Link to="/code-of-conduct/" >
+              <a href="/code-of-conduct/" >
               Code of conduct
-              </Link>
+              </a>
 
-              <Link to="/terms-service/" >
+              <a href="/terms-service/" >
                Terms of service
-              </Link>
+              </a>
 
-              <Link to="/License/" >
+              <a href="/License/" >
               License
-              </Link>
+              </a>
             </div>
-            <p className="text-black ">Developed by &nbsp; <Link
-                    to="https://github.com/sanjay-kv"
+            <p className="text-black ">Developed by &nbsp; <a
+                    target="_blank"
+                    href="https://github.com/sanjay-kv"
                     className="font-semibold"
                   >
                     Sanjay Viswanathan
-                  </Link></p>
+                  </a></p>
           </div>
         </div>
       </section>
