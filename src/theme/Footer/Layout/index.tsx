@@ -160,7 +160,7 @@ export default function FooterLayout({
               </h3>
               <ul className="footer-links">
                 <li>
-                  <Link to="/docs" className="footer-link">
+                  <Link to="#" className="footer-link">
                     <span className="link-icon">📖</span>
                     Documentation
                     <span className="link-badge popular">Popular</span>
