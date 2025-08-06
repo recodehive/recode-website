@@ -91,7 +91,7 @@ def = 30        # 'def' is a keyword
 Python variables can hold different types of data:
 
 
-  <img src="./assets/data-type.png" alt='data-type table'>
+  <img src="./assets/data-type.png" alt="data-type table" />
 
 ### 6. Type Checking with `type()`
 
