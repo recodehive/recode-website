@@ -161,6 +161,7 @@ export default function FooterLayout({
               <ul className="footer-links">
                 <li>
                   <Link to="#" className="footer-link">
+
                     <span className="link-icon">📖</span>
                     Documentation
                     <span className="link-badge popular">Popular</span>
