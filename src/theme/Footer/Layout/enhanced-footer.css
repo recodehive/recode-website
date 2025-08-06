@@ -1,10 +1,30 @@
-/* Enhanced Footer Styles */
+/* Enhanced Footer Styles - COMPLETELY ISOLATED FROM THEME CHANGES */
 .enhanced-footer {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
-  color: #e2e8f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%) !important;
+  color: #e2e8f0 !important;
   position: relative;
   overflow: hidden;
+}
+
+/* Override ALL possible Docusaurus and theme styles */
+.enhanced-footer,
+.enhanced-footer *,
+[data-theme='dark'] .enhanced-footer,
+[data-theme='light'] .enhanced-footer,
+html[data-theme='dark'] .enhanced-footer,
+html[data-theme='light'] .enhanced-footer,
+[data-theme='dark'] .enhanced-footer *,
+[data-theme='light'] .enhanced-footer *,
+html[data-theme='dark'] .enhanced-footer *,
+html[data-theme='light'] .enhanced-footer * {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+/* Force the main footer background to never change */
+.enhanced-footer {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%) !important;
 }
 
 /* Add animated background pattern */
@@ -70,10 +90,7 @@
   100% { transform: translateY(0px) translateX(0px); }
 }
 
-/* Dark theme support */
-[data-theme='dark'] .enhanced-footer {
-  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
-}
+/* NO THEME OVERRIDES - FOOTER STAYS THE SAME ALWAYS */
 
 .container {
   max-width: 1200px;

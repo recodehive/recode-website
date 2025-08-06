@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
+import { useColorMode } from '@docusaurus/theme-common';
 
 // Animation variants for consistent animations
 const fadeIn = {
@@ -135,6 +136,9 @@ const faqs = [
 ];
 
 export default function CoursesLanding() {
+  const { colorMode } = useColorMode();
+  const isDark = colorMode === 'dark';
+
   const [showAllTopics, setShowAllTopics] = useState(false);
   const [modal, setModal] = useState({ open: false, content: "" });
   const [openFaq, setOpenFaq] = useState(null);
@@ -385,13 +389,19 @@ export default function CoursesLanding() {
           `}
         </style>
       </Head>
-      <main className="bg-black min-h-screen text-white">
+      <main className={`min-h-screen transition-colors duration-300 ${
+        isDark ? 'bg-[#121212] text-white' : 'bg-white text-black'
+      }`}>
         {/* Modal */}
         {modal.open && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 animate-fadeIn">
-            <div className="bg-white text-black rounded-lg p-8 max-w-md w-full text-center relative animate-scaleIn">
+            <div className={`rounded-lg p-8 max-w-md w-full text-center relative animate-scaleIn ${
+              isDark ? 'bg-[#1a1a1a] text-white' : 'bg-white text-black'
+            }`}>
               <button
-                className="absolute top-2 right-4 text-2xl transition-transform hover:scale-110"
+                className={`absolute top-2 right-4 text-2xl transition-transform hover:scale-110 ${
+                  isDark ? 'text-white hover:text-gray-300' : 'text-black hover:text-gray-700'
+                }`}
                 onClick={() => setModal({ open: false, content: "" })}
               >
                 ×
@@ -403,7 +413,11 @@ export default function CoursesLanding() {
 
         {/* Hero Section */}
         <motion.section
-          className="py-20 px-4 text-center border-b border-gray-800 bg-gradient-to-br from-blue-950 via-gray-900 to-black relative overflow-hidden"
+          className={`py-20 px-4 text-center relative overflow-hidden transition-colors duration-300 ${
+            isDark
+              ? 'border-b border-gray-800 bg-gradient-to-br from-blue-950 via-gray-900 to-black'
+              : 'border-b border-gray-200 bg-gradient-to-br from-blue-50 via-white to-gray-50'
+          }`}
           initial="hidden"
           animate="visible"
           variants={{
@@ -419,10 +433,14 @@ export default function CoursesLanding() {
             Transform Your Career<br />in Data Engineering</motion.h1>
           <div className="flex justify-center items-center">
             <motion.p
-              className="text-xl md:text-2xl text-gray-300 max-w-2xl text-center leading-relaxed"
+              className={`text-xl md:text-2xl max-w-2xl text-center leading-relaxed ${
+                isDark ? 'text-gray-300' : 'text-gray-700'
+              }`}
               variants={fadeIn}
             >
-              Master the art of data engineering with industry-leading courses designed for <span className="text-blue-300 font-semibold">modern tech careers</span>.
+              Master the art of data engineering with industry-leading courses designed for <span className={`font-semibold ${
+                isDark ? 'text-blue-300' : 'text-blue-600'
+              }`}>modern tech careers</span>.
             </motion.p>
           </div>
           <motion.div
@@ -462,11 +480,15 @@ export default function CoursesLanding() {
             style={{ scrollBehavior: 'smooth' }}
             variants={fadeIn}
           >
-            <div className="flex gap-2 inline-flex">
+            <div className="flex gap-2">
               {techTags.map((tag, idx) => (
                 <span
                   key={idx}
-                  className="bg-gray-800/80 hover:bg-blue-700/80 px-4 py-2 rounded-full text-sm font-semibold text-gray-200 shadow-md transition-all duration-300 border border-gray-700/50 hover:border-blue-500/50 hover:text-white"
+                  className={`px-4 py-2 rounded-full text-sm font-semibold shadow-md transition-all duration-300 ${
+                    isDark
+                      ? 'bg-gray-800/80 hover:bg-blue-700/80 text-gray-200 border border-gray-700/50 hover:border-blue-500/50 hover:text-white'
+                      : 'bg-gray-100 hover:bg-blue-100 text-gray-700 border border-gray-300 hover:border-blue-400 hover:text-blue-700'
+                  }`}
                 >
                   {tag}
                 </span>
@@ -479,7 +501,9 @@ export default function CoursesLanding() {
             className="mt-8"
             variants={fadeIn}
           >
-            <h3 className="text-lg text-gray-400 mb-2 text-center">Students now available at</h3>
+            <h3 className={`text-lg mb-2 text-center ${
+              isDark ? 'text-gray-400' : 'text-gray-600'
+            }`}>Students now available at</h3>
             <div className="flex flex-wrap justify-center items-center gap-4">
               {partnerLogos.map((logo, idx) => (
                 <motion.img

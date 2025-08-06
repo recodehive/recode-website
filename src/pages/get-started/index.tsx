@@ -4,6 +4,7 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { motion, useAnimation, useInView } from "framer-motion";
 import Head from '@docusaurus/Head';
+import { useColorMode } from '@docusaurus/theme-common';
 import styles from "./styles.module.css";
 
 // Type definitions
@@ -608,6 +609,8 @@ const LearningPath = ({
 
 export default function GetStarted() {
   const { siteConfig } = useDocusaurusContext();
+  const { colorMode } = useColorMode();
+  const isDark = colorMode === 'dark';
   type CompletedPaths = Record<string, boolean>;
 
   const [completedPaths, setCompletedPaths] = useState<CompletedPaths>(() => {
@@ -661,7 +664,9 @@ export default function GetStarted() {
       
       <GetStartedHeader />
       
-      <main>
+      <main className={`transition-colors duration-300 ${
+        isDark ? 'dark-bg-primary dark-text-primary' : 'bg-white text-black'
+      }`}>
         {/* Features Section */}
         <section className={styles.features}>
           <div className="container">
