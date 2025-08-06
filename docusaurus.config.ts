@@ -276,19 +276,20 @@ const config: Config = {
         disableInDev: false,
       },
     ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "community",
-        path: "community",
-        routeBasePath: "community",
-        sidebarPath: require.resolve("./sidebarsCommunity.js"),
-        remarkPlugins: [remarkMath],
-        rehypePlugins: [rehypeKatex],
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-      },
-    ],
+    // Commented out to use TSX-based community page instead
+    // [
+    //   "@docusaurus/plugin-content-docs",
+    //   {
+    //     id: "community",
+    //     path: "community",
+    //     routeBasePath: "community",
+    //     sidebarPath: require.resolve("./sidebarsCommunity.js"),
+    //     remarkPlugins: [remarkMath],
+    //     rehypePlugins: [rehypeKatex],
+    //     showLastUpdateAuthor: true,
+    //     showLastUpdateTime: true,
+    //   },
+    // ],
   ],
   //  scripts: [],
 };
