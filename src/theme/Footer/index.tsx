@@ -1,3 +1,4 @@
+
 import React from "react";
 // import a from "@docusaurus/a";
 import { useColorMode } from "@docusaurus/theme-common";
@@ -321,6 +322,8 @@ const Footer = () => {
       </section>
     </footer>
   );
-};
+}
+
 
 export default Footer;
+

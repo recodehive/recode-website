@@ -234,6 +234,11 @@ const config: Config = {
       ],
       // hideOnScroll: true,
     },
+    footer: {
+      style: 'dark',
+      links: [],
+      copyright: `Copyright © ${new Date().getFullYear()} recodehive. Built with Docusaurus.`,
+    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
@@ -271,19 +276,20 @@ const config: Config = {
         disableInDev: false,
       },
     ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "community",
-        path: "community",
-        routeBasePath: "community",
-        sidebarPath: require.resolve("./sidebarsCommunity.js"),
-        remarkPlugins: [remarkMath],
-        rehypePlugins: [rehypeKatex],
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-      },
-    ],
+    // Commented out to use TSX-based community page instead
+    // [
+    //   "@docusaurus/plugin-content-docs",
+    //   {
+    //     id: "community",
+    //     path: "community",
+    //     routeBasePath: "community",
+    //     sidebarPath: require.resolve("./sidebarsCommunity.js"),
+    //     remarkPlugins: [remarkMath],
+    //     rehypePlugins: [rehypeKatex],
+    //     showLastUpdateAuthor: true,
+    //     showLastUpdateTime: true,
+    //   },
+    // ],
   ],
   //  scripts: [],
 };
