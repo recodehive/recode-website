@@ -1,4 +1,4 @@
-# Cont# Contributors 🌱
+# Contributors 🌱
 
 Welcome to **RecodeHive**! We're thrilled to have you here and can't wait to **collaborate**, **learn**, and **grow** — together.
 
@@ -8,8 +8,6 @@ Welcome to **RecodeHive**! We're thrilled to have you here and can't wait to **c
 ## 🎉 GirlScript Summer of Code 2025
 
 RecodeHive is proudly participating in **GSSoC'25**! Join us in building the ultimate learning platform for developers.
-
-**Program Duration:** March 2025 - May 2025
 
 ## 🚀 Quick Setup
 
@@ -85,26 +83,45 @@ git push origin your-branch-name
 - **Bug Fixes:** Resolve issues and improve UX
 - **Design:** Visual and accessibility improvements
 
-## 🏆 GSSoC'25 Points & Recognition
+## 🏆 GSSoC'25 Recognition & Benefits
 
-| Contribution | Points | Examples |
-|--------------|--------|----------|
-| **Documentation (Easy)** | 10 | Fix typos, add examples |
-| **Documentation (Medium)** | 25 | New tutorial sections |
-| **Documentation (Hard)** | 45 | Complete guides |
-| **Bug Fix** | 15-30 | UI fixes, functionality |
-| **Feature** | 20-80 | Components, pages |
+### What You'll Gain
+- **Hands-on Experience:** Real-world project development
+- **Skill Enhancement:** Technical and collaborative skills
+- **Networking:** Connect with global developers and mentors
+- **Certificates:** Recognition for your contributions
+- **Swag & Rewards:** Based on contribution quality and quantity
+- **Career Opportunities:** Potential internships and recommendations
 
 ### Recognition Levels
-- 🥉 **Bronze (100 pts):** Certificate + Badge
-- 🥈 **Silver (300 pts):** + Swag + Recognition  
-- 🥇 **Gold (600 pts):** + Premium Swag + Recommendation
-- 💎 **Diamond (1000+ pts):** + Special Recognition + Internship
+Contributions are evaluated based on quality, impact, and consistency:
+- **Certificate of Participation:** All active contributors
+- **Certificate of Excellence:** Outstanding contributors
+- **Special Recognition:** Top contributors with additional perks
+- **Swag & Merchandise:** Quality-based rewards
+- **Mentorship Opportunities:** For exceptional contributors
 
-### Bonus Points
-- First contribution: +20 points
-- Helping others: +10 points
-- Quality reviews: +5 points
+## 📅 GSSoC'25 Timeline
+
+### **Registration & Onboarding Phase**
+- **Applications Open:** Available through Insights by Smartly app
+- **Project Selection:** Browse and select projects to contribute to
+- **Community Bonding:** Get familiar with projects and mentors
+- **First Contributions:** Begin with good first issues
+
+### **Active Contribution Phase** 
+- **Main Development Period:** Focus on substantial contributions
+- **Regular Check-ins:** Weekly progress updates with mentors
+- **Collaborative Work:** Team up with other contributors
+- **Skill Building:** Learn through practical project work
+
+### **Evaluation & Wrap-up Phase**
+- **Final Submissions:** Complete ongoing contributions
+- **Project Showcase:** Present your work to the community
+- **Recognition Ceremony:** Celebrate achievements
+- **Future Opportunities:** Explore next steps and connections
+
+*Note: Specific dates are announced through official GSSoC channels and the Insights app.*
 
 ## 📋 Content Guidelines
 
@@ -149,13 +166,6 @@ def hello_world():
 - Comment on issues for clarification
 - Join our community channels
 - Reach out to mentors
-
-## 📅 GSSoC'25 Timeline
-
-**Phase 1 (March 1-15):** Community bonding, setup, first contributions
-**Phase 2 (March 16-May 15):** Active development and major contributions  
-**Phase 3 (May 16-31):** Project completion and evaluation
-
 
 ## 📬 Contact
 
