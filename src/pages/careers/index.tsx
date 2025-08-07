@@ -3,6 +3,33 @@ import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
 import Link from "@docusaurus/Link";
+import { useColorMode } from '@docusaurus/theme-common';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+
+// Safe hook for color mode that handles SSR
+function useSafeColorMode() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  let colorMode = 'light';
+  let isDark = false;
+
+  if (mounted && ExecutionEnvironment.canUseDOM) {
+    try {
+      const { useColorMode: useColorModeHook } = require('@docusaurus/theme-common');
+      const colorModeResult = useColorModeHook();
+      colorMode = colorModeResult.colorMode;
+      isDark = colorMode === 'dark';
+    } catch (error) {
+      console.warn('Failed to get color mode:', error);
+    }
+  }
+
+  return { colorMode, isDark, mounted };
+}
 
 // Animation variants for consistent animations
 const fadeIn = {
@@ -123,7 +150,8 @@ const testimonials = [
   }
 ];
 
-export default function CareersPage() {
+function CareersContent() {
+  const { colorMode, isDark, mounted } = useSafeColorMode();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
@@ -146,7 +174,11 @@ export default function CareersPage() {
         />
       </Head>
 
-      <div className="careers-page bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-black">
+      <div className={`careers-page transition-colors duration-300 ${
+        isDark
+          ? 'bg-gradient-to-b from-gray-900 to-black'
+          : 'bg-gradient-to-b from-white to-gray-50'
+      }`}>
         {/* Hero Section */}
         <motion.section
           className="hero-section py-20 px-4 text-center bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white relative overflow-hidden"
@@ -199,10 +231,14 @@ export default function CareersPage() {
         >
           <div className="max-w-6xl mx-auto">
             <motion.div className="text-center mb-16" variants={fadeIn}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
+                isDark ? 'text-white' : 'text-gray-900'
+              }`}>
                 Our Culture & Values
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              <p className={`text-xl max-w-3xl mx-auto ${
+                isDark ? 'text-gray-300' : 'text-gray-600'
+              }`}>
                 We're building more than just a company—we're creating a community of learners, innovators, and leaders.
               </p>
             </motion.div>
@@ -211,16 +247,22 @@ export default function CareersPage() {
               {cultureValues.map((value, index) => (
                 <motion.div
                   key={index}
-                  className="culture-card bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  className={`culture-card rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
+                    isDark ? 'bg-gray-800' : 'bg-white'
+                  }`}
                   variants={fadeIn}
                 >
                   <div className="h-48 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg mb-6 flex items-center justify-center">
                     <span className="text-6xl">🚀</span>
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+                  <h3 className={`text-2xl font-bold mb-4 ${
+                    isDark ? 'text-white' : 'text-gray-900'
+                  }`}>
                     {value.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p className={`${
+                    isDark ? 'text-gray-300' : 'text-gray-600'
+                  }`}>
                     {value.description}
                   </p>
                 </motion.div>
@@ -429,4 +471,8 @@ export default function CareersPage() {
       </div>
     </Layout>
   );
+}
+
+export default function CareersPage() {
+  return <CareersContent />;
 }

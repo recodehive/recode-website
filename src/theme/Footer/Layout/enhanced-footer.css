@@ -1,10 +1,165 @@
-/* Enhanced Footer Styles */
+/* Enhanced Footer Styles - COMPLETELY ISOLATED FROM THEME CHANGES */
 .enhanced-footer {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
-  color: #e2e8f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%) !important;
+  color: #e2e8f0 !important;
   position: relative;
   overflow: hidden;
+}
+
+/* Override ALL possible Docusaurus and theme styles with maximum specificity */
+.enhanced-footer,
+.enhanced-footer *,
+.enhanced-footer h1,
+.enhanced-footer h2,
+.enhanced-footer h3,
+.enhanced-footer h4,
+.enhanced-footer h5,
+.enhanced-footer h6,
+.enhanced-footer p,
+.enhanced-footer span,
+.enhanced-footer div,
+.enhanced-footer a,
+.enhanced-footer li,
+.enhanced-footer ul,
+.enhanced-footer button,
+.enhanced-footer input,
+[data-theme='dark'] .enhanced-footer,
+[data-theme='light'] .enhanced-footer,
+html[data-theme='dark'] .enhanced-footer,
+html[data-theme='light'] .enhanced-footer,
+[data-theme='dark'] .enhanced-footer *,
+[data-theme='light'] .enhanced-footer *,
+[data-theme='dark'] .enhanced-footer h1,
+[data-theme='dark'] .enhanced-footer h2,
+[data-theme='dark'] .enhanced-footer h3,
+[data-theme='dark'] .enhanced-footer h4,
+[data-theme='dark'] .enhanced-footer h5,
+[data-theme='dark'] .enhanced-footer h6,
+[data-theme='dark'] .enhanced-footer p,
+[data-theme='dark'] .enhanced-footer span,
+[data-theme='dark'] .enhanced-footer div,
+[data-theme='dark'] .enhanced-footer a,
+[data-theme='dark'] .enhanced-footer li,
+[data-theme='dark'] .enhanced-footer ul,
+[data-theme='dark'] .enhanced-footer button,
+[data-theme='dark'] .enhanced-footer input,
+[data-theme='light'] .enhanced-footer h1,
+[data-theme='light'] .enhanced-footer h2,
+[data-theme='light'] .enhanced-footer h3,
+[data-theme='light'] .enhanced-footer h4,
+[data-theme='light'] .enhanced-footer h5,
+[data-theme='light'] .enhanced-footer h6,
+[data-theme='light'] .enhanced-footer p,
+[data-theme='light'] .enhanced-footer span,
+[data-theme='light'] .enhanced-footer div,
+[data-theme='light'] .enhanced-footer a,
+[data-theme='light'] .enhanced-footer li,
+[data-theme='light'] .enhanced-footer ul,
+[data-theme='light'] .enhanced-footer button,
+[data-theme='light'] .enhanced-footer input,
+html[data-theme='dark'] .enhanced-footer *,
+html[data-theme='light'] .enhanced-footer * {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+/* Force the main footer background and colors to never change */
+.enhanced-footer {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%) !important;
+  color: #e2e8f0 !important;
+}
+
+/* Absolute protection against any theme changes */
+[data-theme='dark'] .enhanced-footer,
+[data-theme='light'] .enhanced-footer,
+html[data-theme='dark'] .enhanced-footer,
+html[data-theme='light'] .enhanced-footer {
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%) !important;
+  color: #e2e8f0 !important;
+}
+
+/* Force all text elements to maintain their colors */
+[data-theme='dark'] .enhanced-footer h1,
+[data-theme='dark'] .enhanced-footer h2,
+[data-theme='dark'] .enhanced-footer h3,
+[data-theme='dark'] .enhanced-footer h4,
+[data-theme='dark'] .enhanced-footer h5,
+[data-theme='dark'] .enhanced-footer h6,
+[data-theme='light'] .enhanced-footer h1,
+[data-theme='light'] .enhanced-footer h2,
+[data-theme='light'] .enhanced-footer h3,
+[data-theme='light'] .enhanced-footer h4,
+[data-theme='light'] .enhanced-footer h5,
+[data-theme='light'] .enhanced-footer h6 {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .enhanced-footer p,
+[data-theme='dark'] .enhanced-footer span,
+[data-theme='dark'] .enhanced-footer div,
+[data-theme='dark'] .enhanced-footer li,
+[data-theme='light'] .enhanced-footer p,
+[data-theme='light'] .enhanced-footer span,
+[data-theme='light'] .enhanced-footer div,
+[data-theme='light'] .enhanced-footer li {
+  color: #e2e8f0 !important;
+}
+
+[data-theme='dark'] .enhanced-footer a,
+[data-theme='light'] .enhanced-footer a {
+  color: #cbd5e1 !important;
+}
+
+[data-theme='dark'] .enhanced-footer a:hover,
+[data-theme='light'] .enhanced-footer a:hover {
+  color: #ffffff !important;
+}
+
+/* Specific protection for footer elements */
+[data-theme='dark'] .enhanced-footer .footer-brand-title,
+[data-theme='light'] .enhanced-footer .footer-brand-title {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .enhanced-footer .footer-column-title,
+[data-theme='light'] .enhanced-footer .footer-column-title {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .enhanced-footer .footer-link,
+[data-theme='light'] .enhanced-footer .footer-link {
+  color: #cbd5e1 !important;
+}
+
+[data-theme='dark'] .enhanced-footer .footer-link:hover,
+[data-theme='light'] .enhanced-footer .footer-link:hover {
+  color: #ffffff !important;
+}
+
+[data-theme='dark'] .enhanced-footer .footer-copyright,
+[data-theme='light'] .enhanced-footer .footer-copyright {
+  color: #94a3b8 !important;
+}
+
+[data-theme='dark'] .enhanced-footer .developer-link,
+[data-theme='light'] .enhanced-footer .developer-link {
+  color: #fbbf24 !important;
+}
+
+[data-theme='dark'] .enhanced-footer .developer-link:hover,
+[data-theme='light'] .enhanced-footer .developer-link:hover {
+  color: #f59e0b !important;
+}
+
+[data-theme='dark'] .enhanced-footer .legal-link,
+[data-theme='light'] .enhanced-footer .legal-link {
+  color: #94a3b8 !important;
+}
+
+[data-theme='dark'] .enhanced-footer .legal-link:hover,
+[data-theme='light'] .enhanced-footer .legal-link:hover {
+  color: #ffffff !important;
 }
 
 /* Add animated background pattern */
@@ -70,10 +225,7 @@
   100% { transform: translateY(0px) translateX(0px); }
 }
 
-/* Dark theme support */
-[data-theme='dark'] .enhanced-footer {
-  background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
-}
+/* NO THEME OVERRIDES - FOOTER STAYS THE SAME ALWAYS */
 
 .container {
   max-width: 1200px;

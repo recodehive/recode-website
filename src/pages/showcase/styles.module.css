@@ -32,6 +32,10 @@
   margin-right: 0.5rem;
 }
 
+[data-theme='dark'] .checkboxListItem {
+  color: var(--dark-text-primary);
+}
+
 .checkboxListItem:last-child {
   margin-right: 0;
 }
@@ -45,6 +49,16 @@
   border-radius: 15px;
   padding: 10px;
   border: 1px solid gray;
+}
+
+[data-theme='dark'] .searchContainer input {
+  background: var(--dark-input-bg);
+  border-color: var(--dark-input-border);
+  color: var(--dark-text-primary);
+}
+
+[data-theme='dark'] .searchContainer input:focus {
+  border-color: var(--dark-input-focus-border);
 }
 
 .showcaseList {
