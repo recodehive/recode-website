@@ -1,18 +1,16 @@
-body{
-    background-color: #fff;
-}
-
-/* Dark theme body override */
-[data-theme='dark'] body {
-    background-color: var(--dark-bg-primary) !important;
-    color: var(--dark-text-primary) !important;
-}
+/* GitHub badges page styling - light theme */
 .github-badges-page {
   background: #f6f5f5;
   border-radius: 18px;
   box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.06);
   padding: 32px 24px;
   margin-top: 24px;
+}
+
+/* Dark theme body override - EXCLUDE community page */
+[data-theme='dark'] body:not(:has(.community-page)) {
+    background-color: var(--dark-bg-primary) !important;
+    color: var(--dark-text-primary) !important;
 }
 
 /* Dark theme for main page container */

@@ -181,16 +181,16 @@
   color: transparent;
 }
 
-/* Light mode background and text fix */
-[data-theme='light'] {
+/* Light mode background and text fix - EXCLUDE community page */
+[data-theme='light'] body:not(:has(.community-page)) {
   --ifm-background-color: #ffffff; /* white background */
   --ifm-font-color-base: #000000;  /* black text */
   background-color: var(--ifm-background-color);
   color: var(--ifm-font-color-base);
 }
 
-/* Dark mode overrides (already there, ensure it's working) */
-[data-theme='dark'] {
+/* Dark mode overrides - EXCLUDE community page */
+[data-theme='dark'] body:not(:has(.community-page)) {
   background-color: var(--dark-bg-primary);
   color: var(--dark-text-primary);
 }
@@ -357,26 +357,26 @@
 
 /* ===== DOCUSAURUS DOCUMENTATION PAGES DARK THEME ===== */
 
-/* Main documentation layout */
-[data-theme='dark'] .main-wrapper {
+/* Main documentation layout - EXCLUDE community page */
+[data-theme='dark'] body:not(:has(.community-page)) .main-wrapper {
   background-color: var(--dark-bg-primary) !important;
   color: var(--dark-text-primary) !important;
 }
 
-[data-theme='dark'] .docusaurus-wrapper {
+[data-theme='dark'] body:not(:has(.community-page)) .docusaurus-wrapper {
   background-color: var(--dark-bg-primary) !important;
 }
 
-/* Documentation content area */
-[data-theme='dark'] .container {
+/* Documentation content area - EXCLUDE community page */
+[data-theme='dark'] body:not(:has(.community-page)) .container {
   background-color: var(--dark-bg-primary) !important;
 }
 
-[data-theme='dark'] .row {
+[data-theme='dark'] body:not(:has(.community-page)) .row {
   background-color: var(--dark-bg-primary) !important;
 }
 
-[data-theme='dark'] .col {
+[data-theme='dark'] body:not(:has(.community-page)) .col {
   background-color: var(--dark-bg-primary) !important;
 }
 
