@@ -793,3 +793,42 @@
     padding: 0 20px 24px;
   }
 }
+
+/* Accessibility Enhancements */
+/* Light mode defaults */
+.community-hero-title,
+.community-hero-description,
+.contribution-title,
+.contribution-description,
+.section-title,
+.section-description,
+.section-items li,
+.thank-you-main,
+.thank-you-description,
+.support-text {
+  color: #111827; /* default dark text for light background */
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  .community-hero-title,
+  .contribution-title,
+  .section-title,
+  .thank-you-main {
+    color: #ffffff; /* white text in dark mode */
+  }
+
+  .community-hero-description,
+  .contribution-description,
+  .section-description,
+  .section-items li,
+  .thank-you-description,
+  .support-text {
+    color: #d1d5db; /* light gray text in dark mode */
+  }
+
+  body,
+  .community-page {
+    background-color: #111827; /* Optional: ensure background is also dark */
+  }
+}
