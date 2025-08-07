@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
-import { useColorMode } from '@docusaurus/theme-common';
+import './courses.css';
 
 // Animation variants for consistent animations
 const fadeIn = {
@@ -135,21 +135,12 @@ const faqs = [
   { q: "Do I need to learn anything before this course starts?", a: "No prior experience is required. All fundamentals will be covered." },
 ];
 
-export default function CoursesLanding() {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === 'dark';
+function CoursesContent() {
 
   const [showAllTopics, setShowAllTopics] = useState(false);
   const [modal, setModal] = useState({ open: false, content: "" });
-  const [openFaq, setOpenFaq] = useState(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-  const [showStickyEnroll, setShowStickyEnroll] = useState(false);
-  const [countdownValues, setCountdownValues] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
   const [animatedStats, setAnimatedStats] = useState({
     Youtube: 0,
     LinkedIn: 0,
@@ -161,37 +152,7 @@ export default function CoursesLanding() {
   const techTagsRef = useRef(null);
   const statsRef = useRef(null);
 
-  // Countdown timer effect
-  useEffect(() => {
-    // Set the countdown date to 2 days from now
-    const countdownDate = new Date();
-    countdownDate.setDate(countdownDate.getDate() + 2);
 
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const distance = countdownDate.getTime() - now;
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      setCountdownValues({
-        days,
-        hours,
-        minutes,
-        seconds
-      });
-    };
-
-    // Initial update
-    updateCountdown();
-
-    // Set interval to update every second
-    const interval = setInterval(updateCountdown, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   // Horizontal scrolling for tech tags
   useEffect(() => {
@@ -213,15 +174,7 @@ export default function CoursesLanding() {
     }
   }, []);
 
-  // Check scroll position for sticky enroll button
-  useEffect(() => {
-    const checkScroll = () => {
-      setShowStickyEnroll(window.scrollY > 500);
-    };
 
-    window.addEventListener('scroll', checkScroll);
-    return () => window.removeEventListener('scroll', checkScroll);
-  }, []);
 
   // Set up automatic carousel rotation
   useEffect(() => {
@@ -277,7 +230,7 @@ export default function CoursesLanding() {
     return () => observer.disconnect();
   }, [isStatsVisible]);
 
-  const handleCourseClick = (course) => {
+  const handleCourseClick = (course: any) => {
     if (course.title.includes("Coming Soon")) {
       setModal({ open: true, content: "This course is coming soon!" });
     } else {
@@ -285,11 +238,11 @@ export default function CoursesLanding() {
     }
   };
 
-  const handleAction = (type) => {
+  const handleAction = (type: string) => {
     setModal({ open: true, content: type === "enroll" ? "Enrollment flow coming soon!" : "Purchase flow coming soon!" });
   };
 
-  const scrollProjects = (dir) => {
+  const scrollProjects = (dir: number) => {
     const newIndex = activeProjectIndex + dir;
 
     if (newIndex >= 0 && newIndex < projects.length) {
@@ -303,11 +256,11 @@ export default function CoursesLanding() {
     }
   };
 
-  const goToProjectSlide = (index) => {
+  const goToProjectSlide = (index: number) => {
     setActiveProjectIndex(index);
   };
 
-  const handleInfo = (info) => setModal({ open: true, content: info });
+  const handleInfo = (info: string) => setModal({ open: true, content: info });
 
   return (
     <Layout title="Courses" description="Explore our available courses and resources.">
@@ -323,101 +276,91 @@ export default function CoursesLanding() {
               -ms-overflow-style: none;
               scrollbar-width: none;
             }
-            
+
             /* Custom animations */
             @keyframes float {
               0% { transform: translateY(0px); }
               50% { transform: translateY(-10px); }
               100% { transform: translateY(0px); }
             }
-            
+
             @keyframes slide {
               0% { transform: translateX(0); }
               100% { transform: translateX(-100%); }
             }
-            
+
             .float-animation {
               animation: float 3s ease-in-out infinite;
             }
-            
+
             .animate-slide {
               display: inline-block;
               white-space: nowrap;
               padding-right: 100%;
             }
-            
+
             /* Fade-in animation */
             @keyframes fadeIn {
               from { opacity: 0; transform: translateY(20px); }
               to { opacity: 1; transform: translateY(0); }
             }
-            
+
             .animate-fadeIn {
               animation: fadeIn 0.5s ease-out forwards;
             }
-            
+
             /* Scale-in animation */
             @keyframes scaleIn {
               from { opacity: 0; transform: scale(0.9); }
               to { opacity: 1; transform: scale(1); }
             }
-            
+
             .animate-scaleIn {
               animation: scaleIn 0.3s ease-out forwards;
             }
-            
+
             /* Slide-in animation */
             @keyframes slideInUp {
               from { opacity: 0; transform: translateY(30px); }
               to { opacity: 1; transform: translateY(0); }
             }
-            
+
             .animate-slideInUp {
               animation: slideInUp 0.5s ease-out forwards;
             }
-            
+
             /* Pulse animation */
             @keyframes pulse {
               0% { transform: scale(1); }
               50% { transform: scale(1.05); }
               100% { transform: scale(1); }
             }
-            
+
             .animate-pulse {
               animation: pulse 2s infinite;
             }
           `}
         </style>
       </Head>
-      <main className={`min-h-screen transition-colors duration-300 ${
-        isDark ? 'bg-[#121212] text-white' : 'bg-white text-black'
-      }`}>
+      <main className="courses-page min-h-screen transition-all duration-500">
         {/* Modal */}
         {modal.open && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 animate-fadeIn">
-            <div className={`rounded-lg p-8 max-w-md w-full text-center relative animate-scaleIn ${
-              isDark ? 'bg-[#1a1a1a] text-white' : 'bg-white text-black'
-            }`}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 courses-fade-in p-4">
+            <div className="courses-modal p-6 md:p-8 max-w-md w-full text-center relative courses-scale-in">
               <button
-                className={`absolute top-2 right-4 text-2xl transition-transform hover:scale-110 ${
-                  isDark ? 'text-white hover:text-gray-300' : 'text-black hover:text-gray-700'
-                }`}
+                className="courses-icon-button absolute top-3 right-3 text-xl md:text-2xl transition-transform hover:scale-110"
                 onClick={() => setModal({ open: false, content: "" })}
               >
                 ×
               </button>
-              <div>{modal.content}</div>
+              <div className="courses-body pt-4">{modal.content}</div>
             </div>
           </div>
         )}
 
         {/* Hero Section */}
         <motion.section
-          className={`py-20 px-4 text-center relative overflow-hidden transition-colors duration-300 ${
-            isDark
-              ? 'border-b border-gray-800 bg-gradient-to-br from-blue-950 via-gray-900 to-black'
-              : 'border-b border-gray-200 bg-gradient-to-br from-blue-50 via-white to-gray-50'
-          }`}
+          className="courses-hero py-16 md:py-24 px-4 text-center relative overflow-hidden transition-all duration-500 border-b"
           initial="hidden"
           animate="visible"
           variants={{
@@ -425,429 +368,459 @@ export default function CoursesLanding() {
             visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
           }}
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(59,130,246,0.1),transparent_80%)] animate-pulse"/>
-          <motion.h1
-            className="text-6xl md:text-7xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 relative z-10 tracking-tight"
-            variants={fadeIn}
-          >
-            Transform Your Career<br />in Data Engineering</motion.h1>
-          <div className="flex justify-center items-center">
-            <motion.p
-              className={`text-xl md:text-2xl max-w-2xl text-center leading-relaxed ${
-                isDark ? 'text-gray-300' : 'text-gray-700'
-              }`}
+          <div className="courses-container">
+            <motion.h1
+              className="courses-heading-1 courses-text-gradient mb-6 md:mb-8 relative z-10 tracking-tight"
               variants={fadeIn}
             >
-              Master the art of data engineering with industry-leading courses designed for <span className={`font-semibold ${
-                isDark ? 'text-blue-300' : 'text-blue-600'
-              }`}>modern tech careers</span>.
-            </motion.p>
+              Transform Your Career<br className="hidden md:block" />
+              <span className="block md:inline">in Data Engineering</span>
+            </motion.h1>
+            <div className="w-full flex justify-center">
+              <motion.p
+                className="courses-text-secondary courses-body-large max-w-2xl leading-relaxed font-medium mb-8 md:mb-12 text-center"
+                variants={fadeIn}
+              >
+                Master the art of data engineering with industry-leading courses designed for{' '}
+                <span className="font-bold courses-text-gradient">modern tech careers</span>.
+              </motion.p>
+            </div>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-12 md:mb-16 max-w-md md:max-w-none mx-auto"
+              variants={fadeIn}
+            >
+              <button
+                className="courses-button-primary group relative px-8 md:px-10 py-3 md:py-4 overflow-hidden rounded-2xl font-bold text-base md:text-lg shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-blue-500/30 border border-blue-400/20 courses-backdrop-blur"
+                onClick={() => handleAction("enroll")}
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  Explore Courses
+                  <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+              </button>
+              <button
+                className="courses-button-secondary group relative px-8 md:px-10 py-3 md:py-4 overflow-hidden rounded-2xl font-bold text-base md:text-lg shadow-2xl transition-all duration-300 hover:scale-105"
+                onClick={() => handleAction("curriculum")}
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  View Curriculum
+                  <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </span>
+              </button>
+            </motion.div>
           </div>
-          <motion.div
-            className="flex flex-col md:flex-row gap-6 justify-center mt-12 mb-16"
-            variants={fadeIn}
-          >
-            <button
-              className="group relative px-8 py-4 overflow-hidden rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold text-lg shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-blue-500/50 border border-blue-400/30"
-              onClick={() => handleAction("enroll")}
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Explore Courses
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"/>
-            </button>
-            <button
-              className="group relative px-8 py-4 overflow-hidden rounded-xl bg-gray-800/50 backdrop-blur-sm text-white font-bold text-lg shadow-xl border border-gray-700/50 transition-all duration-300 hover:scale-105 hover:shadow-purple-500/30 hover:border-purple-500/30"
-              onClick={() => handleAction("curriculum")}
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                View Curriculum
-                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </span>
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-700/50 to-blue-700/50 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"/>
-            </button>
-          </motion.div>
 
           {/* Tech Tags */}
           <motion.div
-            ref={techTagsRef}
-            className="flex overflow-x-auto hide-scrollbar gap-2 mb-8 pb-4 whitespace-nowrap"
-            style={{ scrollBehavior: 'smooth' }}
+            className="courses-container"
             variants={fadeIn}
           >
-            <div className="flex gap-2">
-              {techTags.map((tag, idx) => (
-                <span
-                  key={idx}
-                  className={`px-4 py-2 rounded-full text-sm font-semibold shadow-md transition-all duration-300 ${
-                    isDark
-                      ? 'bg-gray-800/80 hover:bg-blue-700/80 text-gray-200 border border-gray-700/50 hover:border-blue-500/50 hover:text-white'
-                      : 'bg-gray-100 hover:bg-blue-100 text-gray-700 border border-gray-300 hover:border-blue-400 hover:text-blue-700'
-                  }`}
-                >
-                  {tag}
-                </span>
-              ))}
+            <div
+              ref={techTagsRef}
+              className="flex overflow-x-auto courses-hide-scrollbar gap-2 mb-8 pb-4 whitespace-nowrap"
+              style={{ scrollBehavior: 'smooth' }}
+            >
+              <div className="flex gap-2 px-4 md:px-0">
+                {techTags.map((tag, idx) => (
+                  <span
+                    key={idx}
+                    className="courses-topic-tag flex-shrink-0"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
-          </motion.div>
 
-          {/* Partner Logos */}
-          <motion.div
-            className="mt-8"
-            variants={fadeIn}
-          >
-            <h3 className={`text-lg mb-2 text-center ${
-              isDark ? 'text-gray-400' : 'text-gray-600'
-            }`}>Students now available at</h3>
-            <div className="flex flex-wrap justify-center items-center gap-4">
-              {partnerLogos.map((logo, idx) => (
-                <motion.img
-                  key={idx}
-                  src={logo}
-                  alt="Partner Logo"
-                  className="h-12 w-auto object-contain"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                />
-              ))}
+            {/* Partner Logos */}
+            <div className="mt-8">
+              <h3 className="courses-text-secondary courses-body text-center font-medium mb-6">Students now available at</h3>
+              <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+                {partnerLogos.map((logo, idx) => (
+                  <motion.img
+                    key={idx}
+                    src={logo}
+                    alt="Partner Logo"
+                    className="h-10 md:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  />
+                ))}
+              </div>
             </div>
           </motion.div>
         </motion.section>
 
         {/* Projects Carousel */}
-        <section className="py-20 px-4 border-b border-gray-800 bg-gradient-to-b from-black via-blue-950/20 to-black relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(59,130,246,0.1),transparent_70%)]"/>
-          <motion.h2
-            className="text-4xl font-bold text-center mb-12 tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-300 drop-shadow-sm"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Explore over 14+ extensive projects
-          </motion.h2>
-          <motion.div
-            className="max-w-5xl mx-auto relative z-10"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <div className="relative">
-              <button
-                className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transform transition hover:scale-110 border border-gray-700/50 hover:border-blue-500/50"
-                onClick={() => scrollProjects(-1)}
-              >
-                &lt;
-              </button>
-              <div
-                ref={projectCarouselRef}
-                className="overflow-hidden hide-scrollbar"
-              >
-                <div
-                  className="flex transition-transform duration-500 ease-in-out"
-                  style={{ transform: `translateX(-${activeProjectIndex * 100}%)` }}
-                >
-                  {projects.map((img, idx) => (
-                    <div
-                      key={idx}
-                      className="min-w-full flex justify-center px-4"
-                      style={{ width: '100%', flexShrink: 0 }}
-                    >
-                      <img
-                        src={img}
-                        alt={`Project ${idx + 1}`}
-                        className="rounded-lg shadow-lg hover:shadow-blue-500/30 transition transform hover:scale-105 cursor-pointer border-2 border-gray-700/50 hover:border-blue-500/50"
-                        style={{ height: "220px", width: "360px" }}
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <button
-                className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-gray-800/80 hover:bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transform transition hover:scale-110 border border-gray-700/50 hover:border-blue-500/50"
-                onClick={() => scrollProjects(1)}
-              >
-                &gt;
-              </button>
-            </div>
-            <div className="flex justify-center mt-4 gap-2">
-              {projects.map((_, idx) => (
+        <section className="courses-section py-16 md:py-24 px-4 relative overflow-hidden transition-all duration-500 border-b">
+          <div className="courses-bg-overlay absolute inset-0"/>
+          <div className="courses-container">
+            <motion.h2
+              className="courses-heading-2 courses-gradient-text text-center mb-12 md:mb-16 tracking-tight leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Explore over 14+ extensive projects
+            </motion.h2>
+            <motion.div
+              className="relative z-10 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <div className="relative">
                 <button
-                  key={idx}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${idx === activeProjectIndex ? 'bg-blue-500 scale-110 shadow-md shadow-blue-500/50' : 'bg-gray-600 hover:bg-gray-500'}`}
-                  onClick={() => goToProjectSlide(idx)}
-                />
-              ))}
-            </div>
-          </motion.div>
+                  className="courses-nav-button absolute left-2 md:left-0 top-1/2 -translate-y-1/2 z-10 shadow-xl transform transition-all duration-300 hover:scale-110"
+                  onClick={() => scrollProjects(-1)}
+                >
+                  &lt;
+                </button>
+                <div
+                  ref={projectCarouselRef}
+                  className="overflow-hidden courses-hide-scrollbar mx-12 md:mx-16"
+                >
+                  <div
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${activeProjectIndex * 100}%)` }}
+                  >
+                    {projects.map((img, idx) => (
+                      <div
+                        key={idx}
+                        className="min-w-full flex justify-center px-2 md:px-4"
+                        style={{ width: '100%', flexShrink: 0 }}
+                      >
+                        <img
+                          src={img}
+                          alt={`Project ${idx + 1}`}
+                          className="rounded-xl shadow-lg hover:shadow-blue-500/30 transition transform hover:scale-105 cursor-pointer border-2 border-gray-700/50 hover:border-blue-500/50 w-full max-w-xs md:max-w-sm h-auto"
+                          style={{ aspectRatio: '16/10' }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <button
+                  className="courses-nav-button absolute right-2 md:right-0 top-1/2 -translate-y-1/2 z-10 shadow-xl transform transition-all duration-300 hover:scale-110"
+                  onClick={() => scrollProjects(1)}
+                >
+                  &gt;
+                </button>
+              </div>
+              <div className="courses-carousel-indicators mt-6">
+                {projects.map((_, idx) => (
+                  <button
+                    key={idx}
+                    className={`courses-carousel-indicator ${
+                      idx === activeProjectIndex ? 'active' : ''
+                    }`}
+                    onClick={() => goToProjectSlide(idx)}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </section>
 
         {/* Testimonials */}
-        <section className="py-20 px-4 border-b border-gray-800 bg-gradient-to-br from-gray-900 via-blue-950/10 to-gray-900 relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(59,130,246,0.1),transparent_70%)]"/>
-          <motion.h2
-            className="text-4xl font-bold text-center mb-12 tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-300 drop-shadow-sm"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Kind Words from Our Students
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto relative z-10">
-            {testimonials.map((t, idx) => (
-              <motion.div
-                key={idx}
-                className="group relative backdrop-blur-sm bg-gray-800/30 hover:bg-gray-800/50 p-8 rounded-xl flex flex-col items-center shadow-lg cursor-pointer border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 hover:shadow-blue-500/20"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                onClick={() => handleInfo(t.review)}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"/>
-                <div className="relative w-20 h-20 mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full blur-lg opacity-50 group-hover:opacity-70 transition-opacity duration-300"/>
-                  <img 
-                    src={t.img} 
-                    alt={t.name} 
-                    className="relative w-full h-full rounded-full object-cover border-2 border-blue-400/50 group-hover:border-blue-400 transition-all duration-300 z-10 shadow-md shadow-blue-500/30" 
-                  />
-                </div>
-                <h4 className="font-bold mb-3 text-xl bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-300 group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">{t.name}</h4>
-                <div className="flex mb-4">
-                  {Array.from({ length: t.stars }).map((_, i) => (
-                    <motion.span
-                      key={i}
-                      className="text-yellow-400 text-lg"
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.1 }}
-                    >
-                      ★
-                    </motion.span>
-                  ))}
-                </div>
-                <p className="text-gray-300 text-sm text-center line-clamp-4 group-hover:text-gray-200 transition-colors duration-300">{t.review}</p>
-              </motion.div>
-            ))}
+        <section className="courses-section py-16 md:py-24 px-4 relative overflow-hidden transition-all duration-500 border-b">
+          <div className="courses-bg-overlay absolute inset-0"/>
+          <div className="courses-container-wide">
+            <motion.h2
+              className="courses-heading-2 courses-gradient-text text-center mb-12 md:mb-16 tracking-tight leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Kind Words from Our Students
+            </motion.h2>
+            <div className="courses-grid courses-grid-3 relative z-10">
+              {testimonials.map((t, idx) => (
+                <motion.div
+                  key={idx}
+                  className="courses-card group cursor-pointer flex flex-col items-center text-center"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                  onClick={() => handleInfo(t.review)}
+                >
+                  <div className="relative w-20 h-20 md:w-24 md:h-24 mb-6">
+                    <div className="absolute inset-0 rounded-full blur-lg opacity-50 group-hover:opacity-70 transition-opacity duration-300 bg-gradient-to-r from-blue-500 to-purple-500"/>
+                    <img
+                      src={t.img}
+                      alt={t.name}
+                      className="relative w-full h-full rounded-full object-cover border-3 transition-all duration-300 z-10 shadow-lg border-blue-400/50 group-hover:border-blue-400 shadow-blue-500/30"
+                    />
+                  </div>
+                  <h4 className="courses-heading-4 courses-text-gradient mb-4">{t.name}</h4>
+                  <div className="flex mb-4 gap-1">
+                    {Array.from({ length: t.stars }).map((_, i) => (
+                      <motion.span
+                        key={i}
+                        className="text-yellow-400 text-lg"
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: i * 0.1 }}
+                      >
+                        ★
+                      </motion.span>
+                    ))}
+                  </div>
+                  <p className="courses-body-small text-center line-clamp-4 transition-colors duration-300 leading-relaxed courses-text-secondary">
+                    {t.review}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Courses Timeline Section */}
-        <section className="py-16 px-4 border-b border-gray-800">
-          <motion.h2
-            className="text-3xl font-bold text-center mb-4 tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-blue-300 drop-shadow-sm"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Courses Available
-          </motion.h2>
-          <motion.h3
-            className="text-xl font-semibold text-center mb-12 text-gray-300"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Courses Covered In the Program
-          </motion.h3>
-          <div className="flex flex-col md:flex-row w-full max-w-6xl mx-auto">
-            {/* Left column */}
-            <div className="flex-1 flex flex-col gap-8">
-              {courses.filter((_, i) => i % 2 === 0).map((course, idx) => (
-                <motion.div
-                  key={course.number}
-                  className="flex items-center gap-4 cursor-pointer rounded-xl p-4 transition-all duration-300 hover:scale-105 group backdrop-blur-sm bg-gray-800/30 hover:bg-gray-800/50 border border-gray-700/50 hover:border-blue-500/50 shadow-lg hover:shadow-blue-500/20"
-                  onClick={() => handleCourseClick(course)}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                >
-                  <div className="relative w-40 h-24 overflow-hidden rounded-lg">
-                    <img
-                      src={course.img}
-                      alt={course.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-300 group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">{course.title}</h3>
-                    <p className="text-gray-300 text-sm line-clamp-2">{course.desc}</p>
-                  </div>
-                  <svg className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </motion.div>
-              ))}
-            </div>
-            {/* Timeline */}
-            <div className="hidden md:flex flex-col items-center mx-8 relative">
-              <div className="absolute top-0 bottom-0 w-1 bg-purple-800 left-1/2 -translate-x-1/2"></div>
-              {courses.map((course, idx) => (
-                <React.Fragment key={course.number}>
+        <section className="courses-section py-16 md:py-24 px-4 transition-all duration-500 border-b">
+          <div className="courses-container-wide">
+            <motion.h2
+              className="courses-heading-2 courses-gradient-text text-center mb-6 tracking-tight leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Courses Available
+            </motion.h2>
+            <motion.h3
+              className="courses-body-large courses-text-secondary text-center mb-12 md:mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Courses Covered In the Program
+            </motion.h3>
+            <div className="flex flex-col lg:flex-row w-full gap-8 lg:gap-0">
+              {/* Left column */}
+              <div className="flex-1 flex flex-col gap-6 lg:gap-8">
+                {courses.filter((_, i) => i % 2 === 0).map((course, idx) => (
                   <motion.div
-                    className="flex flex-col items-center relative z-10"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    key={course.number}
+                    className="courses-timeline-card flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 cursor-pointer group"
+                    onClick={() => handleCourseClick(course)}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: idx * 0.1 }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
                   >
-                    <div className="w-14 h-14 flex items-center justify-center rounded-full bg-gray-900 border-4 border-purple-500 text-2xl font-bold mb-2 shadow-lg shadow-purple-500/50 group-hover:border-blue-500 transition-all duration-300">
-                      {course.number}
+                    <div className="relative w-full sm:w-32 md:w-40 h-32 sm:h-20 md:h-24 overflow-hidden rounded-lg flex-shrink-0">
+                      <img
+                        src={course.img}
+                        alt={course.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
                     </div>
-                    {idx !== courses.length - 1 && <div className="w-1 h-16 bg-transparent"></div>}
+                    <div className="flex-1 min-w-0">
+                      <h3 className="courses-heading-4 courses-text-gradient mb-2 md:mb-3 line-clamp-2">{course.title}</h3>
+                      <p className="courses-body-small courses-text-secondary line-clamp-2 md:line-clamp-3 leading-relaxed">{course.desc}</p>
+                    </div>
+                    <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:text-blue-400 transform group-hover:translate-x-1 transition-all duration-300 courses-text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
                   </motion.div>
-                </React.Fragment>
-              ))}
-              <motion.button
-                className="mt-8 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-110 relative z-10 border border-green-400/30"
-                onClick={() => handleAction("enroll")}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.8 }}
-                whileHover={{ y: -5 }}
-                whileTap={{ y: 0 }}
-              >
-                Enroll now
-              </motion.button>
-            </div>
-            {/* Right column */}
-            <div className="flex-1 flex flex-col gap-8">
-              {courses.filter((_, i) => i % 2 === 1).map((course, idx) => (
-                <motion.div
-                  key={course.number}
-                  className="flex items-center gap-4 cursor-pointer rounded-xl p-4 transition-all duration-300 hover:scale-105 group backdrop-blur-sm bg-gray-800/30 hover:bg-gray-800/50 border border-gray-700/50 hover:border-blue-500/50 shadow-lg hover:shadow-blue-500/20"
-                  onClick={() => handleCourseClick(course)}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                ))}
+              </div>
+              {/* Timeline */}
+              <div className="hidden lg:flex flex-col items-center mx-6 xl:mx-8 relative">
+                <div className="absolute top-0 bottom-0 w-1 left-1/2 -translate-x-1/2 bg-gradient-to-b from-purple-500 to-indigo-500"></div>
+                {courses.map((course, idx) => (
+                  <React.Fragment key={course.number}>
+                    <motion.div
+                      className="flex flex-col items-center relative z-10"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: idx * 0.1 }}
+                    >
+                      <div className="w-12 h-12 xl:w-16 xl:h-16 flex items-center justify-center rounded-full border-4 text-lg xl:text-2xl font-bold mb-2 bg-gradient-to-br from-purple-600 to-indigo-600 border-purple-400 text-white shadow-lg shadow-purple-500/50">
+                        {course.number}
+                      </div>
+                      {idx !== courses.length - 1 && <div className="w-1 h-12 xl:h-16 bg-transparent"></div>}
+                    </motion.div>
+                  </React.Fragment>
+                ))}
+                <motion.button
+                  className="courses-button-primary mt-8 xl:mt-12 py-3 xl:py-4 px-8 xl:px-10 rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-110 relative z-10"
+                  onClick={() => handleAction("enroll")}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                  whileHover={{ y: -5 }}
+                  whileTap={{ y: 0 }}
                 >
-                  <div className="flex-1">
-                    <h3 className="text-lg font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-300 group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">{course.title}</h3>
-                    <p className="text-gray-300 text-sm line-clamp-2">{course.desc}</p>
-                  </div>
-                  <div className="relative w-40 h-24 overflow-hidden rounded-lg">
-                    <img
-                      src={course.img}
-                      alt={course.title}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
-                  </div>
-                  <svg className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transform group-hover:translate-x-1 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </motion.div>
-              ))}
+                  Enroll now
+                </motion.button>
+              </div>
+              {/* Right column */}
+              <div className="flex-1 flex flex-col gap-6 lg:gap-8">
+                {courses.filter((_, i) => i % 2 === 1).map((course, idx) => (
+                  <motion.div
+                    key={course.number}
+                    className="courses-timeline-card flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 cursor-pointer group"
+                    onClick={() => handleCourseClick(course)}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  >
+                    <div className="flex-1 min-w-0 order-2 sm:order-1">
+                      <h3 className="courses-heading-4 courses-text-gradient mb-2 md:mb-3 line-clamp-2">{course.title}</h3>
+                      <p className="courses-body-small courses-text-secondary line-clamp-2 md:line-clamp-3 leading-relaxed">{course.desc}</p>
+                    </div>
+                    <div className="relative w-full sm:w-32 md:w-40 h-32 sm:h-20 md:h-24 overflow-hidden rounded-lg flex-shrink-0 order-1 sm:order-2">
+                      <img
+                        src={course.img}
+                        alt={course.title}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
+                    </div>
+                    <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:text-blue-400 transform group-hover:translate-x-1 transition-all duration-300 courses-text-muted flex-shrink-0 order-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Mobile Enroll Button */}
+              <div className="lg:hidden mt-8 flex justify-center">
+                <motion.button
+                  className="courses-button-primary py-3 px-8 rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105"
+                  onClick={() => handleAction("enroll")}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
+                  whileHover={{ y: -3 }}
+                  whileTap={{ y: 0 }}
+                >
+                  Enroll now
+                </motion.button>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Project Reviews Section */}
-        <section className="py-16 px-4 border-b border-gray-800">
-          <motion.h2
-            className="text-3xl font-bold text-center mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Project reviews from students
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
-            {projectReviews.map((review, idx) => (
-              <motion.div
-                key={idx}
-                className="bg-gray-800 hover:bg-gray-750 p-6 rounded-lg flex flex-col items-center shadow-lg cursor-pointer"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                onClick={() => handleInfo(review.review)}
-              >
-                <img src={review.img} alt={review.name} className="w-16 h-16 rounded-full mb-4 border-2 border-green-400" />
-                <h4 className="font-bold mb-2">{review.name}</h4>
-                <p className="text-gray-300 text-sm text-center">{review.review}</p>
-              </motion.div>
-            ))}
+        <section className="courses-stats-section py-16 md:py-20 px-4 transition-all duration-500 border-b">
+          <div className="courses-container-wide">
+            <motion.h2
+              className="courses-heading-2 courses-text-primary text-center mb-8 md:mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Project reviews from students
+            </motion.h2>
+            <div className="courses-grid courses-grid-3 mb-8 md:mb-12">
+              {projectReviews.map((review, idx) => (
+                <motion.div
+                  key={idx}
+                  className="courses-card flex flex-col items-center text-center cursor-pointer group"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
+                  onClick={() => handleInfo(review.review)}
+                >
+                  <div className="relative w-16 h-16 md:w-20 md:h-20 mb-4 md:mb-6">
+                    <div className="absolute inset-0 rounded-full blur-md opacity-50 group-hover:opacity-70 transition-opacity duration-300 bg-gradient-to-r from-green-400 to-emerald-500"/>
+                    <img
+                      src={review.img}
+                      alt={review.name}
+                      className="relative w-full h-full rounded-full object-cover border-3 border-green-400 group-hover:border-green-300 transition-all duration-300 z-10 shadow-lg"
+                    />
+                  </div>
+                  <h4 className="courses-heading-4 courses-text-gradient mb-3 md:mb-4">{review.name}</h4>
+                  <p className="courses-body-small courses-text-secondary text-center leading-relaxed line-clamp-4">
+                    {review.review}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* Topics Tag Cloud & Community Stats */}
-        <section className="py-16 px-4 border-b border-gray-800">
-          <motion.h3
-            className="text-2xl font-bold text-center mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            100+ topics taught...
-          </motion.h3>
-          <motion.div
-            className={`flex flex-wrap justify-center gap-3 mb-4 transition-all duration-500 ${showAllTopics ? 'max-h-none' : 'max-h-40 overflow-hidden'}`}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            {(showAllTopics ? topics : topics.slice(0, 20)).map((topic, idx) => (
-              <motion.span
-                key={idx}
-                className="bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded-full text-sm cursor-pointer"
-                whileHover={{ scale: 1.1, backgroundColor: "#4B5563" }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                {topic}
-              </motion.span>
-            ))}
-          </motion.div>
-          <motion.div
-            className="flex justify-center mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <button
-              className="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded-full transform transition hover:scale-105"
-              onClick={() => setShowAllTopics((v) => !v)}
+        <section className="courses-section py-16 md:py-20 px-4 transition-all duration-500 border-b">
+          <div className="courses-container-wide">
+            <motion.h3
+              className="courses-heading-3 courses-text-primary text-center mb-6 md:mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              {showAllTopics ? "Show less" : "Show more"}
-            </button>
-          </motion.div>
+              100+ topics taught...
+            </motion.h3>
+            <motion.div
+              className={`flex flex-wrap justify-center gap-2 md:gap-3 mb-6 transition-all duration-500 ${showAllTopics ? 'max-h-none' : 'max-h-32 md:max-h-40 overflow-hidden'}`}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              {(showAllTopics ? topics : topics.slice(0, 20)).map((topic, idx) => (
+                <motion.span
+                  key={idx}
+                  className="courses-topic-tag"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  {topic}
+                </motion.span>
+              ))}
+            </motion.div>
+            <motion.div
+              className="flex justify-center mb-8 md:mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <button
+                className="courses-button-ghost px-6 md:px-8 py-2 md:py-3 rounded-full font-semibold transform transition-all duration-300 hover:scale-105"
+                onClick={() => setShowAllTopics((v) => !v)}
+              >
+                {showAllTopics ? "Show less" : "Show more"}
+              </button>
+            </motion.div>
+          </div>
 
           {/* Community Stats */}
-          <div ref={statsRef} className="flex flex-col md:flex-row justify-center items-center gap-8 mt-12">
+          <div ref={statsRef} className="courses-grid courses-grid-3 mt-8 md:mt-12">
             {stats.map((stat, idx) => (
               <motion.div
                 key={idx}
-                className="group relative backdrop-blur-sm bg-gray-800/30 p-8 rounded-xl text-center min-w-[240px] shadow-lg border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300"
+                className="courses-stat-card group text-center"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-600/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"/>
                 <div className="relative z-10">
-                  <div className="text-4xl font-bold mb-3 flex justify-center items-baseline bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-300 group-hover:from-blue-400 group-hover:to-purple-400 transition-all duration-300">
-                    <motion.span 
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 flex justify-center items-baseline courses-text-gradient">
+                    <motion.span
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -855,10 +828,12 @@ export default function CoursesLanding() {
                     >
                       {isStatsVisible ? animatedStats[stat.label] : 0}
                     </motion.span>
-                    <span className="inline-block ml-1">{stat.suffix}</span>
+                    <span className="inline-block ml-1 text-lg md:text-xl lg:text-2xl">{stat.suffix}</span>
                   </div>
-                  <div className="text-gray-400 text-lg font-medium group-hover:text-gray-300 transition-colors duration-300">{stat.label}</div>
-                  <div className="mt-4 h-1 w-full bg-gray-700/50 rounded-full overflow-hidden">
+                  <div className="courses-body-large courses-text-secondary font-semibold transition-colors duration-300 mb-4 md:mb-6">
+                    {stat.label}
+                  </div>
+                  <div className="h-2 w-full rounded-full overflow-hidden bg-gradient-to-r from-gray-200 to-gray-300">
                     <motion.div
                       className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
                       initial={{ width: "0%" }}
@@ -873,54 +848,60 @@ export default function CoursesLanding() {
         </section>
 
         {/* FAQ Section */}
-        <section className="py-16 px-4 border-b border-gray-800">
-          <motion.h2
-            className="text-3xl font-bold text-center mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Commonly asked questions
-          </motion.h2>
-          <div className="max-w-2xl mx-auto">
-            {faqs.map((faq, idx) => (
-              <motion.div
-                key={idx}
-                className="mb-4 border-b border-gray-700 overflow-hidden"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-              >
-                <button
-                  className="w-full text-left py-4 px-4 text-lg font-semibold flex justify-between items-center focus:outline-none hover:bg-gray-800 rounded-t-lg transition-colors"
-                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+        <section className="courses-faq-section py-16 md:py-20 px-4 transition-all duration-500 border-b">
+          <div className="courses-container">
+            <motion.h2
+              className="courses-heading-2 courses-text-primary text-center mb-8 md:mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              Commonly asked questions
+            </motion.h2>
+            <div className="max-w-3xl mx-auto">
+              {faqs.map((faq, idx) => (
+                <motion.div
+                  key={idx}
+                  className="courses-faq-item mb-4 md:mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
                 >
-                  {faq.q}
-                  <span
-                    className="transform transition-transform duration-300"
-                    style={{ transform: openFaq === idx ? 'rotate(45deg)' : 'rotate(0)' }}
+                  <button
+                    className="courses-faq-button w-full text-left py-4 md:py-6 px-4 md:px-6 courses-body md:courses-body-large font-semibold flex justify-between items-center focus:outline-none transition-all duration-300"
+                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   >
-                    +
-                  </span>
-                </button>
-                <div
-                  className="transition-all duration-300 overflow-hidden"
-                  style={{
-                    maxHeight: openFaq === idx ? '500px' : '0',
-                    opacity: openFaq === idx ? 1 : 0
-                  }}
-                >
-                  <div className="py-4 px-4 text-gray-300 text-base bg-gray-800 rounded-b-lg">
-                    {faq.a}
+                    <span className="pr-4">{faq.q}</span>
+                    <span
+                      className="transform transition-transform duration-300 text-xl md:text-2xl flex-shrink-0"
+                      style={{ transform: openFaq === idx ? 'rotate(45deg)' : 'rotate(0)' }}
+                    >
+                      +
+                    </span>
+                  </button>
+                  <div
+                    className="transition-all duration-300 overflow-hidden"
+                    style={{
+                      maxHeight: openFaq === idx ? '500px' : '0',
+                      opacity: openFaq === idx ? 1 : 0
+                    }}
+                  >
+                    <div className="courses-faq-answer py-4 md:py-6 px-4 md:px-6 courses-body leading-relaxed">
+                      {faq.a}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
       </main>
     </Layout>
   );
-} 
+}
+
+export default function CoursesLanding() {
+  return <CoursesContent />;
+}

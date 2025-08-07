@@ -4,6 +4,32 @@ import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
 import Link from "@docusaurus/Link";
 import { useColorMode } from '@docusaurus/theme-common';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+
+// Safe hook for color mode that handles SSR
+function useSafeColorMode() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  let colorMode = 'light';
+  let isDark = false;
+
+  if (mounted && ExecutionEnvironment.canUseDOM) {
+    try {
+      const { useColorMode: useColorModeHook } = require('@docusaurus/theme-common');
+      const colorModeResult = useColorModeHook();
+      colorMode = colorModeResult.colorMode;
+      isDark = colorMode === 'dark';
+    } catch (error) {
+      console.warn('Failed to get color mode:', error);
+    }
+  }
+
+  return { colorMode, isDark, mounted };
+}
 
 // Animation variants for consistent animations
 const fadeIn = {
@@ -124,9 +150,8 @@ const testimonials = [
   }
 ];
 
-export default function CareersPage() {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === 'dark';
+function CareersContent() {
+  const { colorMode, isDark, mounted } = useSafeColorMode();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {
@@ -446,4 +471,8 @@ export default function CareersPage() {
       </div>
     </Layout>
   );
+}
+
+export default function CareersPage() {
+  return <CareersContent />;
 }
