@@ -1,12 +1,7 @@
 import React from 'react';
-import { Analytics } from '@vercel/analytics/react';
+import OriginalRoot from '@theme-original/Root';
 
-// Default implementation, that you can customize
-export default function Root({children}) {
-  return (
-    <>
-      {children}
-      <Analytics />
-    </>
-  );
+// Delegate entirely to the original Root to preserve all providers during SSG
+export default function Root(props) {
+  return <OriginalRoot {...props} />;
 }

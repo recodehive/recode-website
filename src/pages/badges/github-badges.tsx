@@ -3,33 +3,6 @@ import Head from '@docusaurus/Head';
 import { motion, HTMLMotionProps } from 'framer-motion';
 import type { ReactElement } from 'react';
 import Layout from '@theme/Layout';
-import { useColorMode } from '@docusaurus/theme-common';
-import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
-
-// Safe hook for color mode that handles SSR
-function useSafeColorMode() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  let colorMode = 'light';
-  let isDark = false;
-
-  if (mounted && ExecutionEnvironment.canUseDOM) {
-    try {
-      const { useColorMode: useColorModeHook } = require('@docusaurus/theme-common');
-      const colorModeResult = useColorModeHook();
-      colorMode = colorModeResult.colorMode;
-      isDark = colorMode === 'dark';
-    } catch (error) {
-      console.warn('Failed to get color mode:', error);
-    }
-  }
-
-  return { colorMode, isDark, mounted };
-}
 import styles from './github-badges.module.css';
 
 type MotionDivProps = HTMLMotionProps<"div">;
@@ -38,7 +11,13 @@ type MotionTrProps = HTMLMotionProps<"tr">;
 import Link from '@docusaurus/Link';
 
 const GithubBadgesContent = (): React.ReactElement => {
-  const { colorMode, isDark, mounted } = useSafeColorMode();
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    try {
+      const theme = document.documentElement.getAttribute('data-theme');
+      setIsDark(theme === 'dark');
+    } catch {}
+  }, []);
 
   // Scroll to top button logic
   useEffect(() => {
