@@ -10,6 +10,7 @@ keywords: [html, web development, elements, tags, html elements, html tags, html
 
 HTML Attributes and Values are used to provide additional information about HTML elements
 
+< />
 
 ## HTML Attributes
 

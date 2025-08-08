@@ -9,6 +9,7 @@ description: In this tutorial, you will learn about the how to create a GitHub r
 
 In the previous post we spoke about commit, fork, clone, in this post we gonna deep dive into the terminology by creating a GitHub Repository from the Scratch. 
 Inorder to create a project and host, the repository is a place where you add all your program code files and other documentation. 
+< />
 
 ### Prerequisites
 
@@ -45,6 +46,9 @@ Upon creation you will get a screen like this below, the explanation of each ele
 - **`<!-- Your content goes here -->`**: Represents a comment that is not displayed in the browser.
 
 
+
+< />
+
 ## Changing Readme and Adding more files.
 
 Im going to add my resume and add my name as heading to the ``readme.md`` file
@@ -70,11 +74,14 @@ This readme contains my resume, please refer to the attached file in the repo.
 When the above HTML code is rendered in a browser, it will display the following content:
 
 <BrowserWindow url="https://github.com/sanjay-kv/Git-Demo/edit/main/README.md">
+  <>
     <h1>Git-Demo</h1>
     <p>This is a demo installation via GUI</p>
 
     <h1>Developed by Sanjay Viswanathan</h1>
     <p>This readme contains my resume, please refer to the attached file in the repo.</p>
+    
+  </>
 </BrowserWindow>
 
 ### Explanation

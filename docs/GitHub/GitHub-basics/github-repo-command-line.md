@@ -9,6 +9,7 @@ description: In this tutorial, you will learn about the structure of an HTML doc
 
 HTML (Hypertext Markup Language) is the standard markup language for creating web pages. It provides the structure and layout of the content on the web. In this tutorial, you will learn about the syntax and structure of HTML.
 
+< />
 
 ## Prerequisites
 
@@ -55,6 +56,9 @@ git push -u origin main
 - **`<body>`**: Contains the visible content of the document.
 - **`<!-- Your content goes here -->`**: Represents a comment that is not displayed in the browser.
 
+
+
+< />
 
 
 ### Browser Rendering
@@ -106,6 +110,8 @@ git config --global user.name "Github username"
     ```
 
 ### Watch the video Tutorial
+
+
 
 
 <iframe width="880" height="480" src="https://www.youtube.com/embed/DO38CZcw5pg?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="Github create repo using command line" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

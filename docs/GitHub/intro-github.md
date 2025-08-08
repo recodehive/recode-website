@@ -15,6 +15,7 @@ description: In this tutorial, you will learn about GitHub, its importance, what
 ---
 
 GitHub is a web-based platform used for version control and collaboration. It allows developers to work together on projects from anywhere in the world. GitHub is built on top of Git, a distributed version control system created by Linus Torvalds in 2005.
+< />
 
 :::note
 Key Features of SQL:
@@ -90,9 +91,12 @@ The fork is a personal copy of the repo which is already present or uploaded in 
 
 :::
 
+< />
 
 ### Watch the video Tutorial
 <iframe width="880" height="480" src="https://www.youtube.com/embed/GrTV59Y84S8?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="How to start with GitHub in 2024 | Beginner&#39;s Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+< />
 
 ## Conclusion
 

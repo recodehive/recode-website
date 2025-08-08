@@ -16,6 +16,7 @@ description: In this tutorial, you will learn how to set up your development env
 
 Github is a way of version control your software development using Git, Github was founded in 2008 and recently Microsoft has bought the company now Microsoft is the parent organization of Github. Now setting up is very straight forward process , first you need to create a GitHub account online, then Install Git in your system and connect your Git with GitHub. So all the changes will be updated to the GitHub. 
 
+< />
 ### Installing Git on Mac
 
 There are four ways we can install Github on mac
@@ -49,7 +50,9 @@ brew install git-gui
     <BrowserWindow url="https://git-scm.com/downloads/win" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/7-git-installer.png)](https://git-scm.com/downloads/win)
     </BrowserWindow>
+        
 
+< />
 
 ## Conclusion
 
