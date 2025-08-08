@@ -110,7 +110,7 @@ const HeaderImage = () => {
     if (imgRef.current) {
       VanillaTilt.init(imgRef.current, {
         max: 25,
-        speed: 400,
+        speed: 50,
         glare: true,
         "max-glare": 0.5,
       });
