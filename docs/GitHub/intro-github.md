@@ -15,7 +15,6 @@ description: In this tutorial, you will learn about GitHub, its importance, what
 ---
 
 GitHub is a web-based platform used for version control and collaboration. It allows developers to work together on projects from anywhere in the world. GitHub is built on top of Git, a distributed version control system created by Linus Torvalds in 2005.
-< />
 
 :::note
 Key Features of SQL:
