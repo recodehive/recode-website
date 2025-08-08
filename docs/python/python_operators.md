@@ -25,14 +25,26 @@ In Python, **operators** are special symbols used to perform operations on varia
 
 Python provides the following types of operators:
 
-1. [Arithmetic Operators](#1-arithmetic-operators)
-2. [Comparison Operators](#2-comparison-operators)
-3. [Logical Operators](#3-logical-operators)
-4. [Assignment Operators](#4-assignment-operators)
-5. [Bitwise Operators](#5-bitwise-operators)
-6. [Membership Operators](#6-membership-operators)
-7. [Identity Operators](#7-identity-operators)
-8. [Operator Precedence](#8-operator-precedence)
+- [Python Operators](#python-operators)
+  - [Operator Categories](#operator-categories)
+  - [Arithmetic Operators](#arithmetic-operators)
+  - [Comparison Operators](#comparison-operators)
+  - [Logical Operators](#logical-operators)
+  - [Assignment Operators](#assignment-operators)
+  - [Bitwise Operators](#bitwise-operators)
+  - [Membership Operators](#membership-operators)
+  - [Identity Operators](#identity-operators)
+  - [Use Cases of Python Operators](#use-cases-of-python-operators)
+    - [1. **Arithmetic Operators**](#1-arithmetic-operators)
+    - [2. **Comparison Operators**](#2-comparison-operators)
+    - [3. **Logical Operators**](#3-logical-operators)
+    - [4. **Assignment Operators**](#4-assignment-operators)
+    - [5. **Bitwise Operators**](#5-bitwise-operators)
+    - [6. **Membership Operators**](#6-membership-operators)
+    - [7. **Identity Operators**](#7-identity-operators)
+    - [8. **Operator Precedence**](#8-operator-precedence)
+  - [Summary Table](#summary-table)
+  - [Conclusion](#conclusion)
 
 
 ## Arithmetic Operators
@@ -66,7 +78,7 @@ Used to compare two values and return a Boolean result (`True` or `False`).
 
 ## Logical Operators
 
-Used to combine conditional statements.
+Used to combine conditional statements here.
 
 | Operator | Description                       | Example              | Result |
 |----------|-----------------------------------|----------------------|--------|
