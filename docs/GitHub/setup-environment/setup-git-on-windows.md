@@ -16,7 +16,6 @@ description: In this tutorial, you will learn how to set up your development env
 
 Github provides two of installation, one the GitHub Desktop and command line by installing Git Software in your system. Personally from a developer perspective i would suggest you to use the command line as this will come in handy and more flexibility in terms of solving bugs and do more with version control, especially when the conflicts happens with the Git. This tutorial is focused on the command line version. 
 
-< />
 ### Step 1: Let’s Download the git 
 
 1. Go to the [Git Website](https://git-scm.com/) and click on download for windows button.
@@ -47,8 +46,6 @@ Github provides two of installation, one the GitHub Desktop and command line by 
 
    - 1. The next screen click next on Public Licence.
    - 2. Choose the location as default and click on Next
-
-< />
 
 ### Step 3: Understanding the Interface.
 
@@ -114,10 +111,6 @@ Execute the below command to see your current version of git in Git CMD or windo
     </TabItem>
 </Tabs>
 
-
-
-    
-< />
 
 ## Conclusion
 
