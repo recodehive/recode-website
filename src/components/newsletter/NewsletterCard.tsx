@@ -20,6 +20,7 @@ const NewsletterCard: React.FC<CardProps> = ({
   onSaveToggle,
 }) => {
   const handleShare = () => {
+    
     const shareUrl = `${window.location.href}?id=${post.id}`;
     if (navigator.share) {
       navigator.share({ title: post.title, text: post.summary, url: shareUrl });
@@ -31,17 +32,27 @@ const NewsletterCard: React.FC<CardProps> = ({
 
   return (
     <div className="rounded-xl shadow-md p-4 bg-white hover:shadow-xl transform hover:scale-[1.02] transition duration-300 bg-white/80 backdrop-blur-md rounded-lg p-6 shadow">
+      
       <img
         src={post.image}
         alt={post.title}
         className="w-full h-48 object-cover rounded-t-lg"
       />
       <div className="p-4">
+        {/*clickable title*/}
+        <a 
+          href={post.link}
+          target="_balnk"
+          rel="noopener noreferrer"
+          className="block hover:scale-105 transition-transform duration-300"
+          >
         <h3 className="text-xl font-semibold">{post.title}</h3>
+        </a>
         <p className="flex justify-between text-sm text-gray-500 mb-2">
           {new Date(post.date).toLocaleDateString()} • {post.author}
         </p>
         <p className="text-gray-700 mb-2">{post.summary}</p>
+        
         <div className="flex flex-wrap gap-1 mb-3">
           {post.tags.map((tg) => (
             <span key={tg} className="text-xs bg-gray-100 px-2 py-1 rounded-full">

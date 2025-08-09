@@ -8,6 +8,7 @@ export interface Post {
   tags: string[];
   image: string;
   likes: number;
+  link:string;
 }
 
 const posts: Post[] = [
@@ -18,8 +19,9 @@ const posts: Post[] = [
     date: "2025-08-01",
     author: "Sanjay Vishwanatham",
     tags: ["Open Source", "Community"],
-    image: "https://source.unsplash.com/featured/?ai,technology",
+    image: "/img/posts/open-source-community.jpeg",
     likes: 120,
+    link: "https://example.com/open-source-community",
   },
   {
     id: 2,
@@ -28,18 +30,20 @@ const posts: Post[] = [
     date: "2025-07-30",
     author: "Sanjay Vishwanatham",
     tags: ["AI", "Education"],
-    image: "https://source.unsplash.com/featured/?ai,technology",
+    image: "/img/posts/ai-education.jpeg",
     likes: 210,
+    link: "https://example.com/ai-education",
   },
   {
     id: 3,
     title: "The Future of AI: 2025 and Beyond",
     summary: "A deep dive into how AI will evolve in the near future and impact industries worldwide.",
-    date: "2025-07-0",
+    date: "2024-10-1",
     author: "Sanjay Vishwanatham",
     tags: ["AI", "Education","Technology", "Trends"],
-    image: "https://source.unsplash.com/featured/?ai,technology",
+    image: "/img/posts/future-ai.jpeg",
     likes: 20,
+    link: "https://example.com/future-ai",
   },
   {
     id: 4,
@@ -48,28 +52,31 @@ const posts: Post[] = [
     date: "2025-06-18",
     author: "Sanjay Vishwanatham",
     tags: ["UX", "Design", "Innovation"],
-    image: "https://source.unsplash.com/featured/?ai,technology",
+    image: "/img/posts/design-thinking.jpeg",
     likes: 20,
+    link: "https://example.com/design-thinking",
   },
   {
     id: 5,
     title: "Remote Work and Digital Nomadism",
     summary: "Exploring how remote work is changing lifestyles and productivity across the globe.",
-    date: "2025-07-0",
+    date: "2024-10-1",
     author: "Sanjay Vishwanatham",
     tags: ["Remote Work", "Lifestyle", "Productivity"],
-    image: "https://source.unsplash.com/featured/?ai,technology",
+    image: "/img/posts/remote-work.jpeg",
     likes: 20,
+    link: "https://example.com/remote-work",
   },
   {
     id: 6,
     title: "Cybersecurity Threats You Should Know",
     summary: "An overview of emerging cybersecurity threats and how to protect against them.",
-    date: "2025-07-0",
+    date: "2024-10-1",
     author: "Sanjay Vishwanatham",
     tags: ["Cybersecurity", "Technology", "Safety"],
-    image: "https://source.unsplash.com/featured/?ai,technology",
+    image: "/img/posts/cybersecurity.jpeg",
     likes: 20,
+    link: "https://example.com/cybersecurity",
   },
   // …add more posts
 ];

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { Post } from "@site/src/data/posts";
-import { FaBookmark } from "react-icons/fa";
+import { FaBookmark ,FaClock,FaFire,FaHourglassStart} from "react-icons/fa";
 import { HiOutlineAdjustments } from "react-icons/hi";
 import { Tooltip } from "react-tooltip";
 
@@ -50,39 +50,27 @@ const NewsletterSidebar: React.FC<SidebarProps> = ({
     return acc;
   }, {});
 
-  return (
-    <aside className="w-full md:w-64 p-4 sticky top-0 bg-white border-r border-gray-200 min-h-screen transition-all duration-300">
-      {/* Collapse Toggle */}
-      <button
-        onClick={() => setCollapsed((c) => !c)}
-        className="w-full flex justify-between items-center px-4 py-2 text-sm font-medium text-white bg-gradient-to-r from-purple-600 to-indigo-600 rounded-md shadow hover:opacity-90 transition mb-4"
-      >
-        <span>{collapsed ? "Show Filters" : "Hide Filters"}</span>
-        <svg
-          className={`w-4 h-4 transform transition-transform duration-200 ${
-            collapsed ? "rotate-0" : "rotate-180"
-          }`}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={2}
-          viewBox="0 0 24 24"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
+  const sortIcons: { [key: string]: ReactNode } = {
+    Latest: <FaClock className="text-sm mr-1" />,
+    Popular: <FaFire className="text-sm mr-1" />,
+    Oldest: <FaHourglassStart className="text-sm mr-1" />,
+  };
 
-      {!collapsed && (
-        <div className="space-y-5">
+  return (
+    <aside className="w-full md:w-64 p-4 sticky top-0 backdrop-blur-lg bg-white/70 shadow-xl borderborder-gray-200 min-h-screen transition-all duration-300">
+        <div className="w-full mb-6">
+          <h3 className="text-sm font-semibold text-gray-600 mb-2 pl-1 tracking-wide">Sort By</h3>
           {/* Sort by */}
-          <div className="flex items-center gap-1 bg-gray-100 p-1 rounded-full shadow-inner border border-gray-200">
+          <div className="flex flex-wrap items-center gap-2 bg-gray-100 p-2 rounded-xl shadow-inner border border-gray-200">
             {["Latest", "Popular", "Oldest"].map((option) => (
               <button
                 key={option}
                 onClick={() => setSortBy(option as "Latest" | "Popular" | "Oldest")}
-                className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  sortBy === option ? "bg-black text-white shadow" : "text-gray-600 hover:bg-white"
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm transition-all duration-200 font-medium shadow-sm border whitespace-nowrap ${
+                  sortBy === option ? "bg-gradient-to-r from-black to-gray-800 text-white" : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50"
                 }`}
               >
+                {sortIcons[option]}
                 {option}
               </button>
             ))}
@@ -109,7 +97,7 @@ const NewsletterSidebar: React.FC<SidebarProps> = ({
                 <>
                   <div className="relative group">
                     <button
-                      className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-md text-sm text-gray-700"
+                      className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded-md text-sm text-gray-700 relative z-10"
                       data-tooltip-id="tag-tooltip"
                       data-tooltip-html={hiddenTags
                         .map(
@@ -125,7 +113,7 @@ const NewsletterSidebar: React.FC<SidebarProps> = ({
                     <Tooltip
                       id="tag-tooltip"
                       place="top"
-                      className="whitespace-pre-line z-50 max-w-xs text-sm"
+                      className="backdrop-blur-md bg-white/80 border border-gray-300 shadow-lg rounded-lg text-gray-800 text-sm p-2 z-50 transition-all duration-300"
                       clickable
                     />
                   </div>
@@ -154,8 +142,9 @@ const NewsletterSidebar: React.FC<SidebarProps> = ({
                   : "bg-white text-gray-700 border-gray-300 hover:bg-gray-100"
               }`}
             >
-              <FaBookmark className={showSavedOnly ? "text-green-600" : "text-gray-500"} />
-              {showSavedOnly ? "Showing Saved" : "Show Saved Only"}
+              <FaBookmark className={`transition-transform duration-200 ${showSavedOnly ? 'scale-110 text-green-600' : 'text-gray-500 hover:text-black'}`} 
+              />
+            {showSavedOnly ? "Viewing Saved" : "View Saved"}
             </button>
           </div>
 
@@ -174,13 +163,13 @@ const NewsletterSidebar: React.FC<SidebarProps> = ({
           {(selectedTags.length > 0 || sortBy !== "Latest" || showSavedOnly) && (
             <button
               onClick={clearFilters}
-              className="text-red-500 text-sm hover:underline hover:text-red-700 transition"
+              className="text-red-500 text-sm  hover:text-red-700 transition animate-shake hover:animate-shake"
             >
-              Clear Filters
+               Clear Filters
             </button>
           )}
         </div>
-      )}
+      
     </aside>
   );
 };
