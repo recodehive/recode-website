@@ -11,8 +11,6 @@ description: In this tutorial, you will learn about the basic of git and 50 impo
 
 Git commands are handy when comes to fix any problems which you cant fix by the UI, for example consider a scenarion you need to fix the conflict in a page. Git Commands will help you to find the root cause and can explore the entire log history. At Git core it help you to keep a history of every change you made in the project files and help the user with track the changes, revert, helps to identify who made the changes. 
 
-< />
-
 ## Understanding Git: The Building Blocks
 
 In Setting up git on Windows tutorial you learned to perform how to check the current version of the git. Now below you will see how to add some changes to the files you have created. I assume you have a small project where you created a file called filename.ipynb, now you want to add that into the git. 
@@ -33,8 +31,6 @@ In Setting up git on Windows tutorial you learned to perform how to check the cu
 
 In this example, the `<h1>` tag creates a heading, and the `<p>` tag creates a paragraph. The browser interprets these tags and displays the content accordingly. HTML tags can be nested within each other to create more complex structures, such as lists, tables, forms, and more.
 
-
-< />
 
 ## How Web Browsers Render HTML
 
@@ -106,7 +102,6 @@ When a user requests a web page by entering a URL in the browser's address bar o
     :::
 By understanding how web browsers render HTML content, web developers can optimize their code and design to create fast and responsive web pages. Techniques such as minimizing the use of inline styles, reducing the number of DOM elements, and optimizing images can help improve the performance of web pages and provide a better user experience.
 
-< />
 
 ## Useful 50 Git Commands Cheatsheet
 

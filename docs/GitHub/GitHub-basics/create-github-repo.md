@@ -9,7 +9,6 @@ description: In this tutorial, you will learn about the how to create a GitHub r
 
 In the previous post we spoke about commit, fork, clone, in this post we gonna deep dive into the terminology by creating a GitHub Repository from the Scratch. 
 Inorder to create a project and host, the repository is a place where you add all your program code files and other documentation. 
-< />
 
 ### Prerequisites
 
@@ -44,10 +43,6 @@ Upon creation you will get a screen like this below, the explanation of each ele
 - **`<title>`**: Sets the title of the document (displayed in the browser tab).
 - **`<body>`**: Contains the visible content of the document.
 - **`<!-- Your content goes here -->`**: Represents a comment that is not displayed in the browser.
-
-
-
-< />
 
 ## Changing Readme and Adding more files.
 
