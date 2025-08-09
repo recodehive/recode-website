@@ -266,7 +266,7 @@ const DashboardContent: React.FC = () => {
     setLeaderboardError(null);
 
     try {
-      console.log("🔄 Fetching leaderboard data from RecodeHive GitHub API...");
+      
 
       // Fetch all repositories from RecodeHive organization
       const reposResponse = await fetchWithRateLimit(
@@ -278,11 +278,11 @@ const DashboardContent: React.FC = () => {
       }
 
       const repos = await reposResponse.json();
-      console.log(
-        "📊 GitHub Repos Response:",
-        repos.length,
-        "repositories found"
-      );
+      // console.log(
+      //   "📊 GitHub Repos Response:",
+      //   repos.length,
+      //   "repositories found"
+      // );
 
       if (!Array.isArray(repos)) {
         throw new Error("Invalid GitHub API response format");
@@ -307,7 +307,7 @@ const DashboardContent: React.FC = () => {
         .sort((a, b) => b.stargazers_count - a.stargazers_count)
         .slice(0, 10); // Limit to top 10 repos to reduce API calls
 
-      console.log(`📊 Processing top ${topRepos.length} repositories...`);
+      // console.log(`📊 Processing top ${topRepos.length} repositories...`);
 
       // Fetch contributors for each repository with delay to avoid rate limits
       for (let i = 0; i < topRepos.length; i++) {
@@ -397,11 +397,11 @@ const DashboardContent: React.FC = () => {
         .sort((a, b) => b.contributions - a.contributions) // Sort by contributions descending
         .map((item, index) => ({ ...item, rank: index + 1 })); // Update ranks after sorting
 
-      console.log(
-        "✅ Successfully processed RecodeHive contributors data:",
-        transformedData.length,
-        "contributors"
-      );
+      // console.log(
+      //   "✅ Successfully processed RecodeHive contributors data:",
+      //   transformedData.length,
+      //   "contributors"
+      // );
       setLeaderboardData(transformedData);
     } catch (error) {
       console.error("❌ Error fetching RecodeHive contributors data:", error);
