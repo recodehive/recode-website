@@ -266,11 +266,13 @@ const DashboardContent: React.FC = () => {
     setLeaderboardError(null);
 
     try {
-      console.log('🔄 Fetching leaderboard data from RecodeHive GitHub API...');
       
+
+      console.log('🔄 Fetching leaderboard data from RecodeHive GitHub API...');
+
       // Fetch all repositories from RecodeHive organization
       const reposResponse = await fetch('https://api.github.com/orgs/recodehive/repos?type=public&per_page=100');
-      
+
       if (!reposResponse.ok) {
         if (reposResponse.status === 403) {
           console.warn('GitHub API rate limit exceeded. Using fallback data.');
@@ -406,8 +408,13 @@ const DashboardContent: React.FC = () => {
       // );
       setLeaderboardData(transformedData);
     } catch (error) {
-      console.error('❌ Error fetching RecodeHive contributors data:', error);
+      console.error("❌ Error fetching RecodeHive contributors data:", error);
       setLeaderboardError(error.message);
+
+      // Load fallback demo data
+      console.log("📝 Loading demo data as fallback...");
+      console.warn('Using fallback leaderboard data due to GitHub API limitations');
+      setLeaderboardError('GitHub API rate limit reached. Showing demo data.');
       
       // Fallback demo data with similar structure
       console.log('📝 Loading demo data as fallback...');
