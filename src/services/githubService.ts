@@ -61,15 +61,9 @@ class GitHubService {
         });
 
         if (response.status === 403) {
-          // Rate limited, wait a bit
-          const resetTime = response.headers.get('X-RateLimit-Reset');
-          if (resetTime) {
-            const waitTime = Math.max(0, parseInt(resetTime) * 1000 - Date.now());
-            if (waitTime < 60000) { // Only wait if less than 1 minute
-              await new Promise(resolve => setTimeout(resolve, Math.min(waitTime, 5000)));
-              continue;
-            }
-          }
+          // Rate limited - don't retry, just throw error
+          console.warn('GitHub API rate limit exceeded');
+          throw new Error('GitHub API rate limit exceeded');
         }
 
         if (!response.ok) {
@@ -152,6 +146,10 @@ class GitHubService {
       );
 
       if (!response.ok) {
+        if (response.status === 403) {
+          console.warn('GitHub API rate limit exceeded while fetching repositories');
+          throw new Error('GitHub API rate limit exceeded');
+        }
         throw new Error(`Failed to fetch repositories: ${response.status}`);
       }
 

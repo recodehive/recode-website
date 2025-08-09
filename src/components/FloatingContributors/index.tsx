@@ -29,11 +29,18 @@ const FloatingContributors: React.FC = () => {
     const fetchContributors = async () => {
       try {
         setLoading(true);
-        
+
         // Fetch repositories from RecodeHive organization
         const reposResponse = await fetch('https://api.github.com/orgs/recodehive/repos?type=public&per_page=10&sort=updated');
+
+        // Check if the response is ok
+        if (!reposResponse.ok) {
+          console.warn(`GitHub API rate limit or error: ${reposResponse.status}`);
+          throw new Error(`GitHub API error: ${reposResponse.status}`);
+        }
+
         const repos = await reposResponse.json();
-        
+
         if (!Array.isArray(repos)) {
           throw new Error('Invalid repos response');
         }
@@ -90,8 +97,9 @@ const FloatingContributors: React.FC = () => {
         setLoading(false);
         
       } catch (error) {
-        console.error('Error fetching contributors:', error);
-        
+        // Silently handle GitHub API errors (rate limits, etc.)
+        console.warn('Using fallback contributor data due to GitHub API limitations');
+
         // Fallback demo data
         const demoContributors: Contributor[] = [
           {
