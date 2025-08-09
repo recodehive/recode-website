@@ -17,18 +17,81 @@ interface ContributorActivity {
   timeAgo: string;
 }
 
-const FloatingContributors: React.FC = () => {
+interface FloatingContributorsProps {
+  headerEmbedded?: boolean;
+}
+
+const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbedded = false }) => {
   const [contributors, setContributors] = useState<Contributor[]>([]);
   const [activities, setActivities] = useState<ContributorActivity[]>([]);
   const [currentActivityIndex, setCurrentActivityIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [loading, setLoading] = useState(true);
 
-  // Fetch contributors from RecodeHive organization
+
+
+  // Initialize with fallback data immediately to ensure toaster always appears
   useEffect(() => {
+    // Set fallback data immediately
+    const initializeFallbackData = () => {
+      const demoContributors: Contributor[] = [
+        {
+          id: '1',
+          login: 'sanjay-kv',
+          avatar_url: 'https://avatars.githubusercontent.com/u/30715153?v=4',
+          contributions: 127,
+          html_url: 'https://github.com/sanjay-kv',
+          lastActivity: '2 minutes ago',
+        },
+        {
+          id: '2',
+          login: 'recodehive-team',
+          avatar_url: 'https://avatars.githubusercontent.com/u/150000000?v=4',
+          contributions: 89,
+          html_url: 'https://github.com/recodehive',
+          lastActivity: '5 minutes ago',
+        },
+        {
+          id: '3',
+          login: 'contributor-1',
+          avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4',
+          contributions: 64,
+          html_url: 'https://github.com/contributor-1',
+          lastActivity: '12 minutes ago',
+        },
+        {
+          id: '4',
+          login: 'contributor-2',
+          avatar_url: 'https://avatars.githubusercontent.com/u/2?v=4',
+          contributions: 45,
+          html_url: 'https://github.com/contributor-2',
+          lastActivity: '1 hour ago',
+        },
+        {
+          id: '5',
+          login: 'contributor-3',
+          avatar_url: 'https://avatars.githubusercontent.com/u/3?v=4',
+          contributions: 32,
+          html_url: 'https://github.com/contributor-3',
+          lastActivity: '3 hours ago',
+        },
+      ];
+
+      setContributors(demoContributors);
+      setActivities(demoContributors.map(contributor => ({
+        contributor,
+        action: getRandomAction(),
+        timeAgo: contributor.lastActivity,
+      })));
+      setLoading(false);
+    };
+
+    // Initialize with fallback data immediately
+    initializeFallbackData();
+
+    // Then try to fetch real data
     const fetchContributors = async () => {
       try {
-        setLoading(true);
 
         // Fetch repositories from RecodeHive organization
         const reposResponse = await fetch('https://api.github.com/orgs/recodehive/repos?type=public&per_page=10&sort=updated');
@@ -84,57 +147,24 @@ const FloatingContributors: React.FC = () => {
           .sort((a, b) => b.contributions - a.contributions)
           .slice(0, 12); // Top 12 contributors
 
-        setContributors(contributorsList);
-        
-        // Generate activities
-        const generatedActivities: ContributorActivity[] = contributorsList.map(contributor => ({
-          contributor,
-          action: getRandomAction(),
-          timeAgo: generateRandomTimeAgo(),
-        }));
-        
-        setActivities(generatedActivities);
-        setLoading(false);
+        // Only update if we got real data
+        if (contributorsList.length > 0) {
+          setContributors(contributorsList);
+
+          // Generate activities
+          const generatedActivities: ContributorActivity[] = contributorsList.map(contributor => ({
+            contributor,
+            action: getRandomAction(),
+            timeAgo: generateRandomTimeAgo(),
+          }));
+
+          setActivities(generatedActivities);
+        }
         
       } catch (error) {
         // Silently handle GitHub API errors (rate limits, etc.)
         console.warn('Using fallback contributor data due to GitHub API limitations');
-
-        // Fallback demo data
-        const demoContributors: Contributor[] = [
-          {
-            id: '1',
-            login: 'sanjay-kv',
-            avatar_url: 'https://avatars.githubusercontent.com/u/30715153?v=4',
-            contributions: 250,
-            html_url: 'https://github.com/sanjay-kv',
-            lastActivity: '2 minutes ago',
-          },
-          {
-            id: '2',
-            login: 'vansh-codes',
-            avatar_url: 'https://avatars.githubusercontent.com/u/114163734?v=4',
-            contributions: 180,
-            html_url: 'https://github.com/vansh-codes',
-            lastActivity: '5 minutes ago',
-          },
-          {
-            id: '3',
-            login: 'Hemu21',
-            avatar_url: 'https://avatars.githubusercontent.com/u/106808387?v=4',
-            contributions: 120,
-            html_url: 'https://github.com/Hemu21',
-            lastActivity: '1 hour ago',
-          },
-        ];
-        
-        setContributors(demoContributors);
-        setActivities(demoContributors.map(contributor => ({
-          contributor,
-          action: getRandomAction(),
-          timeAgo: contributor.lastActivity,
-        })));
-        setLoading(false);
+        // Fallback data is already initialized, so no need to set it again
       }
     };
 
@@ -211,26 +241,26 @@ const FloatingContributors: React.FC = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className="floating-contributors-container"
-          initial={{ opacity: 0, y: 50, scale: 0.9 }}
-          animate={{ 
-            opacity: 1, 
-            y: 0, 
+          className={`floating-contributors-container ${headerEmbedded ? 'header-embedded' : ''}`}
+          initial={{ opacity: 0, y: headerEmbedded ? 0 : 50, scale: headerEmbedded ? 1 : 0.9 }}
+          animate={{
+            opacity: 1,
+            y: 0,
             scale: 1,
           }}
-          exit={{ opacity: 0, y: 50, scale: 0.9 }}
-          transition={{ 
-            duration: 0.6, 
-            ease: [0.4, 0, 0.2, 1] 
+          exit={{ opacity: 0, y: headerEmbedded ? 0 : 50, scale: headerEmbedded ? 1 : 0.9 }}
+          transition={{
+            duration: headerEmbedded ? 0.8 : 0.6,
+            ease: [0.4, 0, 0.2, 1]
           }}
         >
           {/* Main floating card */}
           <motion.div
             className="floating-contributors-card"
-            animate={{
+            animate={headerEmbedded ? {} : {
               y: [0, -8, 0],
             }}
-            transition={{
+            transition={headerEmbedded ? {} : {
               duration: 4,
               repeat: Infinity,
               ease: "easeInOut",
