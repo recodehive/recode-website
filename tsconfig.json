@@ -1,13 +1,23 @@
 {
-  // This file is not used in compilation. It is here just for a nice editor experience.
-  "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "jsx": "react",
-    "baseUrl": ".",
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node",
-    "resolveJsonModule": true
-    
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@site/*": ["./*"],
+      "@docusaurus/*": ["./node_modules/@docusaurus/core/lib/*"],
+      "@theme/*": [".docusaurus/theme-classic/lib/theme/*"]
+    }
   },
-  "exclude": [".docusaurus", "build"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
+  "exclude": ["node_modules", ".docusaurus", "build"]
 }
