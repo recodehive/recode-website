@@ -123,7 +123,7 @@ const HeaderImage = () => {
       <img
         src="/img/hero-img-01.gif"
         alt="Animated illustration of Recode Hive learning"
-        className="float-animation"
+        className=""
         data-tilt
         ref={imgRef}
       />
