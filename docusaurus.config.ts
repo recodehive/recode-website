@@ -184,6 +184,10 @@ const config: Config = {
               label: "🎙️ Podcast",
               to: "/podcasts/",
             },
+            {
+              label: "📰  Newsletter",
+              to: "/newsletter/",
+            },
           ],
         },
         {
