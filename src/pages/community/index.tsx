@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import { motion } from 'framer-motion';
+import ScrollBottomToTop from '@site/src/components/scroll/bottom-to-top';
 import './community.css';
 
 interface ContributionSection {
@@ -355,6 +356,9 @@ export default function CommunityPage(): JSX.Element {
           </div>
         </section>
       </main>
+
+      {/* Scroll to Top Button - Same as Home Page */}
+      <ScrollBottomToTop />
       </div>
     </Layout>
   );
