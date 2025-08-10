@@ -20,10 +20,16 @@ const config: Config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
-  // Google Analytics
+  // Google Analytics and Theme Scripts
   scripts: [
     {
+
       src: "https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR",
+      src: '/theme-init.js',
+      async: false, // Load synchronously to prevent flash
+    },
+    {
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR',
       async: true,
     },
     {
@@ -69,6 +75,11 @@ const config: Config = {
 
   themeConfig: {
     image: "img/docusaurus-social-card.jpg",
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       title: "Recode Hive",
       logo: {

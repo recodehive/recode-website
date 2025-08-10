@@ -20,21 +20,6 @@ tags:
 
 In Python, **operators** are special symbols used to perform operations on variables and values. Python supports a wide variety of operators categorized based on their functionality.
 
-
-## Operator Categories
-
-Python provides the following types of operators:
-
-1. [Arithmetic Operators](#1-arithmetic-operators)
-2. [Comparison Operators](#2-comparison-operators)
-3. [Logical Operators](#3-logical-operators)
-4. [Assignment Operators](#4-assignment-operators)
-5. [Bitwise Operators](#5-bitwise-operators)
-6. [Membership Operators](#6-membership-operators)
-7. [Identity Operators](#7-identity-operators)
-8. [Operator Precedence](#8-operator-precedence)
-
-
 ## Arithmetic Operators
 
 Used to perform basic mathematical operations:
@@ -66,7 +51,7 @@ Used to compare two values and return a Boolean result (`True` or `False`).
 
 ## Logical Operators
 
-Used to combine conditional statements.
+Used to combine conditional statements here.
 
 | Operator | Description                       | Example              | Result |
 |----------|-----------------------------------|----------------------|--------|

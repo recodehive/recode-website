@@ -11,9 +11,17 @@
   text-align: center;
 }
 
+[data-theme='dark'] .podcast-subtitle {
+  color: var(--dark-text-secondary);
+}
+
 h1 {
   text-align: center;
   margin-bottom: 1rem;
+}
+
+[data-theme='dark'] h1 {
+  color: var(--dark-text-primary);
 }
 
 .podcast-grid {
@@ -32,8 +40,17 @@ h1 {
   cursor: pointer;
 }
 
+[data-theme='dark'] .podcast-card {
+  background: var(--dark-card-bg);
+  box-shadow: var(--dark-shadow);
+}
+
 .podcast-card:hover {
   transform: translateY(-4px);
+}
+
+[data-theme='dark'] .podcast-card:hover {
+  box-shadow: var(--dark-shadow-lg);
 }
 
 .podcast-content {
@@ -52,6 +69,10 @@ h1 {
   color: #333;
 }
 
+[data-theme='dark'] .podcast-info h3 {
+  color: var(--dark-text-primary);
+}
+
 .podcast-description {
   font-size: 0.9rem;
   color: #666;
@@ -66,11 +87,19 @@ h1 {
   text-overflow: ellipsis;
 }
 
+[data-theme='dark'] .podcast-description {
+  color: var(--dark-text-secondary);
+}
+
 .podcast-publisher {
   font-size: 0.8rem;
   color: #888;
   margin: 0;
   font-style: italic;
+}
+
+[data-theme='dark'] .podcast-publisher {
+  color: var(--dark-text-muted);
 }
 
 .podcast-embed {
@@ -105,14 +134,29 @@ h1 {
   transition: all 0.2s ease;
 }
 
+[data-theme='dark'] .pagination-button {
+  background: var(--dark-bg-secondary);
+  border-color: var(--dark-border);
+  color: var(--dark-text-primary);
+}
+
 .pagination-button:hover {
   background: #f0f0f0;
+}
+
+[data-theme='dark'] .pagination-button:hover {
+  background: var(--dark-card-hover-bg);
 }
 
 .pagination-button.active {
   background: #0066cc;
   color: white;
   border-color: #0066cc;
+}
+
+[data-theme='dark'] .pagination-button.active {
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
 }
 
 @media (max-width: 968px) {
@@ -200,6 +244,10 @@ h1 {
   text-align: center;
 }
 
+[data-theme='dark'] .video-subtitle {
+  color: var(--dark-text-secondary);
+}
+
 .video-section {
   margin-bottom: 3rem;
 }
@@ -228,8 +276,17 @@ h1 {
   height: 100%;
 }
 
+[data-theme='dark'] .video-card {
+  background: var(--dark-card-bg);
+  box-shadow: var(--dark-shadow);
+}
+
 .video-card:hover {
   transform: translateY(-4px);
+}
+
+[data-theme='dark'] .video-card:hover {
+  box-shadow: var(--dark-shadow-lg);
 }
 
 .video-content {

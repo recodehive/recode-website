@@ -135,6 +135,7 @@ html.theme-dark .chh__header-content__input button {
   align-items: center;
   padding: 0.3rem;
   border-radius: 10% 40%;
+  min-height: 400px;
 }
 
 .chh__header-image img {
@@ -172,11 +173,19 @@ html.theme-dark .chh__header-content__input button {
   .chh__header-content {
     margin: 0 0 3rem;
   }
+
+  .chh__header-image {
+    min-height: 350px;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .gradient__text {
     text-align: center;
+  }
+
+  .chh__header-image {
+    min-height: 300px;
   }
 }
 
@@ -213,6 +222,10 @@ html.theme-dark .chh__header-content__input button {
   .chh__header-content__input button {
     font-size: 12px;
     line-height: 16px;
+  }
+
+  .chh__header-image {
+    min-height: 280px;
   }
 }
 

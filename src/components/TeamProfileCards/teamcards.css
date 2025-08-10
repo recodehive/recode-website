@@ -4,10 +4,20 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 0.5px solid black;
   }
-  
+
+[data-theme='dark'] .team-profile-card > .card {
+    border-color: var(--dark-border);
+    background: var(--dark-card-bg);
+    color: var(--dark-text-primary);
+  }
+
   .team-profile-card > .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+  }
+
+[data-theme='dark'] .team-profile-card > .card:hover {
+    box-shadow: var(--dark-shadow-lg);
   }
   
   .team-profile-card > .card > .card__header > .avatar > .avatar__photo--xl {
@@ -21,5 +31,15 @@
   
   .team-profile-card > .card > .card__footer > .button-group > .button:hover {
     background-color: #0056b3;
+  }
+
+[data-theme='dark'] .team-profile-card > .card > .card__footer > .button-group > .button {
+    background: var(--dark-bg-tertiary);
+    color: var(--dark-text-primary);
+    border-color: var(--dark-border);
+  }
+
+[data-theme='dark'] .team-profile-card > .card > .card__footer > .button-group > .button:hover {
+    background: var(--dark-card-hover-bg);
   }
   

@@ -39,17 +39,17 @@
   --blog-transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Dark Mode Variables */
+/* Dark Mode Variables - Using standardized colors */
 [data-theme='dark'] {
-  --blog-text-primary: #f7fafc;
-  --blog-text-secondary: #e2e8f0;
-  --blog-text-muted: #a0aec0;
-  --blog-bg-primary: #1a202c;
-  --blog-bg-secondary: #2d3748;
-  --blog-bg-card: #2d3748;
-  --blog-border: #4a5568;
-  --blog-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
-  --blog-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+  --blog-text-primary: var(--dark-text-primary);
+  --blog-text-secondary: var(--dark-text-secondary);
+  --blog-text-muted: var(--dark-text-muted);
+  --blog-bg-primary: var(--dark-bg-primary);
+  --blog-bg-secondary: var(--dark-bg-secondary);
+  --blog-bg-card: var(--dark-card-bg);
+  --blog-border: var(--dark-border);
+  --blog-shadow: var(--dark-shadow);
+  --blog-shadow-lg: var(--dark-shadow-lg);
   --blog-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
 }
 

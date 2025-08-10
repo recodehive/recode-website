@@ -6,8 +6,9 @@
   transition: background-color 0.3s ease;
 }
 
+/* Community page should maintain its own background regardless of theme */
 [data-theme='dark'] .community-page {
-  background: #121212;
+  background: transparent;
 }
 
 /* CSS Custom Properties for better browser support */
@@ -21,11 +22,11 @@
 }
 
 [data-theme='dark'] {
-  --text-primary: #ffffff;
-  --text-secondary: #edf2f7;
-  --bg-primary: #1a1a1a;
-  --bg-secondary: #121212;
-  --border-color: #2d2d2d;
+  --text-primary: var(--dark-text-primary);
+  --text-secondary: var(--dark-text-secondary);
+  --bg-primary: var(--dark-bg-secondary);
+  --bg-secondary: var(--dark-bg-primary);
+  --border-color: var(--dark-border);
 }
 
 /* Hero Section */
