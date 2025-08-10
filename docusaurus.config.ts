@@ -23,14 +23,14 @@ const config: Config = {
   // Google Analytics
   scripts: [
     {
-      src: 'https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR',
+      src: "https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR",
       async: true,
     },
     {
-      src: '/gtag-init.js',
+      src: "/gtag-init.js",
     },
     {
-      src: '/pinterest-init.js',
+      src: "/pinterest-init.js",
     },
   ],
 
@@ -41,7 +41,7 @@ const config: Config = {
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.ts"),
@@ -151,12 +151,17 @@ const config: Config = {
             {
               label: "🎖️ GitHub Badges",
               to: "/badges/github-badges/",
-            }, 
+            },
           ],
         },
         {
           to: "/blogs",
           html: '<span class="nav-emoji">📰</span> Blogs',
+          position: "left",
+        },
+        {
+          to: "/interview-questions",
+          html: '<span class="nav-emoji">🗒️</span> Interview Questions',
           position: "left",
         },
         {
@@ -186,6 +191,7 @@ const config: Config = {
             },
           ],
         },
+
         {
           type: "search",
           position: "right",
@@ -217,7 +223,7 @@ const config: Config = {
         //     },
         //   ],
         // },
-        
+
         // {
         //   href: "https://github.com/codeharborhub/codeharborhub",
         //   position: "right",
@@ -235,7 +241,7 @@ const config: Config = {
       // hideOnScroll: true,
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [],
       copyright: `Copyright © ${new Date().getFullYear()} recodehive. Built with Docusaurus.`,
     },

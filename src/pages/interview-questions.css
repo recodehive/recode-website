@@ -1,0 +1,51 @@
+.interview-questions-layout {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.interview-hero {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.interview-title .highlight {
+  color: #0078e7;
+}
+.interview-cards-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.interview-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+  padding: 2rem 1.5rem;
+  max-width: 350px;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.interview-card h2 {
+  margin-top: 0;
+}
+.interview-link {
+  margin-top: 1rem;
+  display: inline-block;
+  color: #fff;
+  background: #0078e7;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.interview-link:hover {
+  background: #005bb5;
+}
+
+h2,
+p {
+  color: black;
+}
