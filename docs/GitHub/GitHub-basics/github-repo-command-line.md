@@ -9,8 +9,6 @@ description: In this tutorial, you will learn about the structure of an HTML doc
 
 HTML (Hypertext Markup Language) is the standard markup language for creating web pages. It provides the structure and layout of the content on the web. In this tutorial, you will learn about the syntax and structure of HTML.
 
-< />
-
 ## Prerequisites
 
 You should have a Github account 2. Should have a basic understanding of how Git works/ and Git running in your OS.
@@ -55,10 +53,6 @@ git push -u origin main
 - **`<title>`**: Sets the title of the document (displayed in the browser tab).
 - **`<body>`**: Contains the visible content of the document.
 - **`<!-- Your content goes here -->`**: Represents a comment that is not displayed in the browser.
-
-
-
-< />
 
 
 ### Browser Rendering
