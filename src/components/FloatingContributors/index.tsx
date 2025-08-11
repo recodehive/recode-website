@@ -182,14 +182,6 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
     return () => clearInterval(interval);
   }, [activities.length]);
 
-  // Auto-hide after some time
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-    }, 30000); // Hide after 30 seconds
-
-    return () => clearTimeout(timer);
-  }, []);
 
   const generateRandomTimeAgo = (): string => {
     const timeOptions = [
