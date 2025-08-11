@@ -20,7 +20,7 @@ tags:
 
 In Python, **operators** are special symbols used to perform operations on variables and values. Python supports a wide variety of operators categorized based on their functionality.
 
-## Arithmetic Operators
+## Arithmetic Operators.
 
 Used to perform basic mathematical operations:
 
