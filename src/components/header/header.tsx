@@ -1,17 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "./header.css";
 import Link from "@docusaurus/Link";
-import VanillaTilt from "vanilla-tilt";
 import { motion } from "framer-motion";
 import ParticlesComponent from "../particle";
-
-declare global {
-  interface HTMLImageElement {
-    vanillaTilt?: {
-      destroy: () => void;
-    };
-  }
-}
+import FloatingContributors from "../FloatingContributors";
 
 const HeaderContent = () => {
   return (
@@ -87,30 +79,11 @@ const HeaderContent = () => {
   );
 };
 
-const HeaderImage = () => {
-  const imgRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    if (imgRef.current) {
-      VanillaTilt.init(imgRef.current, {
-        max: 25,
-        speed: 50,
-        glare: true,
-        "max-glare": 0.5,
-      });
-    }
-
-    return () => {
-      if (imgRef.current?.vanillaTilt) {
-        imgRef.current.vanillaTilt.destroy();
-      }
-    };
-  }, []);
-
+const HeaderToaster = () => {
   return (
     <motion.div
       initial={{ scale: 0, x: 10 }}
-      whileInView={{ scale: 0.8, x: 0 }}
+      whileInView={{ scale: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{
         duration: 1,
@@ -119,14 +92,22 @@ const HeaderImage = () => {
         delay: 0.3,
       }}
       className="chh__header-image"
+      style={{
+        position: 'relative',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        minHeight: '400px',
+        width: '100%'
+      }}
     >
-      <img
-        src="/img/hero-img-01.gif"
-        alt="Animated illustration of Recode Hive learning"
-        className=""
-        data-tilt
-        ref={imgRef}
-      />
+      {/* Render the FloatingContributors component as the header toaster */}
+      <div style={{
+        position: 'relative',
+        zIndex: 1
+      }}>
+        <FloatingContributors headerEmbedded={true} />
+      </div>
     </motion.div>
   );
 };
@@ -136,7 +117,7 @@ const Header: React.FC = () => {
     <div className="chh__header--body">
       <div className="chh__header">
         <HeaderContent />
-        <HeaderImage />
+        <HeaderToaster />
       </div>
     </div>
   );

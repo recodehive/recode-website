@@ -15,7 +15,6 @@ import { TestimonialCarousel } from "../components/testimonials/TestimonialCarou
 import { CommunityStatsProvider } from "../lib/statsProvider";
 import { LandingCommunity } from "../components/Community";
 import FAQs from "../components/faqs/faqs";
-import FloatingContributors from "../components/FloatingContributors";
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
@@ -76,9 +75,6 @@ export default function Home(): ReactNode {
           <div className="m-4">
             <FAQs />
           </div>
-
-          {/* Floating Contributors Showcase */}
-          <FloatingContributors />
 
           <ScrollTopToBottom />
           <ScrollBottomToTop />

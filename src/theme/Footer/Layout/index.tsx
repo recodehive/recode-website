@@ -1,3 +1,4 @@
+
 import React, {type ReactNode, useState, useEffect} from 'react';
 import Link from "@docusaurus/Link";
 import type {Props} from '@theme/Footer/Layout';
@@ -250,7 +251,6 @@ export default function FooterLayout({
                     Contact Us
                   </Link>
                 </li>
-
                 <li>
                   <Link to="/broadcasts" className="footer-link">
                     <span className="link-icon">📺</span>
@@ -264,6 +264,24 @@ export default function FooterLayout({
                   </Link>
                 </li>
               </ul>
+
+              {/* Quick Links Section moved here */}
+              <div className="quick-links-section">
+                <h4 className="quick-links-title">
+                  <span className="links-icon">🔗</span>
+                  QUICK LINKS
+                </h4>
+                <div className="quick-links-list">
+                  <Link to="/get-started" className="quick-link">
+                    <span className="quick-link-icon">🚀</span>
+                    Get Started
+                  </Link>
+                  <Link to="/dashboard" className="quick-link">
+                    <span className="quick-link-icon">📊</span>
+                    Dashboard
+                  </Link>
+                </div>
+              </div>
             </div>
 
             {/* Newsletter Column */}
@@ -294,24 +312,6 @@ export default function FooterLayout({
               </form>
               <div className="newsletter-stats">
                 <span className="newsletter-stat">📊 1.2K+ developers joined this week</span>
-              </div>
-
-              {/* Quick Links Section */}
-              <div className="quick-links-section">
-                <h4 className="quick-links-title">
-                  <span className="links-icon">🔗</span>
-                  QUICK LINKS
-                </h4>
-                <div className="quick-links-list">
-                  <Link to="/get-started" className="quick-link">
-                    <span className="quick-link-icon">🚀</span>
-                    Get Started
-                  </Link>
-                  <Link to="/dashboard" className="quick-link">
-                    <span className="quick-link-icon">📊</span>
-                    Dashboard
-                  </Link>
-                </div>
               </div>
             </div>
           </div>
@@ -378,18 +378,7 @@ export default function FooterLayout({
 
             <div className="footer-bottom-right">
               <div className="footer-copyright">
-                <span>© {currentYear} recodehive. Made with ❤️ by the community.</span>
-                <div className="footer-credits">
-                  <span>Developed by </span>
-                  <Link
-                    to="https://github.com/sanjay-kv"
-                    className="developer-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Sanjay Viswanathan
-                  </Link>
-                </div>
+                <span>© {currentYear} recodehive. Made with ❤️ by the Community.</span>
               </div>
             </div>
           </div>
