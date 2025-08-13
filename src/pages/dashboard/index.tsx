@@ -1,3 +1,4 @@
+import NavbarIcon from "../../components/navbar/NavbarIcon";
 import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
@@ -266,17 +267,17 @@ const DashboardContent: React.FC = () => {
     setLeaderboardError(null);
 
     try {
-      
-
-      console.log('🔄 Fetching leaderboard data from RecodeHive GitHub API...');
+      console.log("🔄 Fetching leaderboard data from RecodeHive GitHub API...");
 
       // Fetch all repositories from RecodeHive organization
-      const reposResponse = await fetch('https://api.github.com/orgs/recodehive/repos?type=public&per_page=100');
+      const reposResponse = await fetch(
+        "https://api.github.com/orgs/recodehive/repos?type=public&per_page=100"
+      );
 
       if (!reposResponse.ok) {
         if (reposResponse.status === 403) {
-          console.warn('GitHub API rate limit exceeded. Using fallback data.');
-          throw new Error('GitHub API rate limit exceeded');
+          console.warn("GitHub API rate limit exceeded. Using fallback data.");
+          throw new Error("GitHub API rate limit exceeded");
         }
         throw new Error(`GitHub API request failed: ${reposResponse.status}`);
       }
@@ -413,11 +414,13 @@ const DashboardContent: React.FC = () => {
 
       // Load fallback demo data
       console.log("📝 Loading demo data as fallback...");
-      console.warn('Using fallback leaderboard data due to GitHub API limitations');
-      setLeaderboardError('GitHub API rate limit reached. Showing demo data.');
-      
+      console.warn(
+        "Using fallback leaderboard data due to GitHub API limitations"
+      );
+      setLeaderboardError("GitHub API rate limit reached. Showing demo data.");
+
       // Fallback demo data with similar structure
-      console.log('📝 Loading demo data as fallback...');
+      console.log("📝 Loading demo data as fallback...");
       const demoData: LeaderboardEntry[] = [
         {
           rank: 1,
@@ -827,14 +830,18 @@ const DashboardContent: React.FC = () => {
               className={`nav-item ${activeTab === "home" ? "active" : ""}`}
               onClick={() => handleTabChange("home")}
             >
-              <span className="nav-icon">🏠</span>
+              <span className="nav-icon">
+                <NavbarIcon name="Dashboard" />
+              </span>
               <span className="nav-text">Home</span>
             </li>
             <li
               className={`nav-item ${activeTab === "discuss" ? "active" : ""}`}
               onClick={() => handleTabChange("discuss")}
             >
-              <span className="nav-icon">💬</span>
+              <span className="nav-icon">
+                <NavbarIcon name="Broadcast" />
+              </span>
               <span className="nav-text">Discuss</span>
             </li>
             <li
@@ -843,14 +850,18 @@ const DashboardContent: React.FC = () => {
               }`}
               onClick={() => handleTabChange("leaderboard")}
             >
-              <span className="nav-icon">🏆</span>
+              <span className="nav-icon">
+                <NavbarIcon name="Badges" />
+              </span>
               <span className="nav-text">Leaderboard</span>
             </li>
             <li
               className={`nav-item ${activeTab === "giveaway" ? "active" : ""}`}
               onClick={() => handleTabChange("giveaway")}
             >
-              <span className="nav-icon">🎁</span>
+              <span className="nav-icon">
+                <NavbarIcon name="Donate" />
+              </span>
               <span className="nav-text">Giveaway</span>
             </li>
           </ul>

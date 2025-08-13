@@ -17,6 +17,8 @@ const iconMap = [
   { id: "nav-community", name: "Community" },
   { id: "nav-broadcast", name: "Broadcast" },
   { id: "nav-podcast", name: "Podcast" },
+  { id: "nav-technical", name: "Technical" },
+  { id: "nav-behavioral", name: "Behavioral" },
 ];
 
 export default function NavbarIconInjector() {
