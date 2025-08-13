@@ -1,4 +1,55 @@
 /* Base styles - Mobile First */
+
+/* Dark theme support */
+[data-theme='dark'] .features {
+  background: var(--dark-bg-primary);
+  color: var(--dark-text-primary);
+}
+
+[data-theme='dark'] .sectionHeader h2 {
+  color: var(--dark-text-primary);
+}
+
+[data-theme='dark'] .sectionHeader p {
+  color: var(--dark-text-secondary);
+}
+
+[data-theme='dark'] .featuresGrid {
+  background: var(--dark-bg-primary);
+}
+
+[data-theme='dark'] .feature {
+  background: var(--dark-bg-secondary);
+  border-color: var(--dark-border);
+  color: var(--dark-text-primary);
+}
+
+[data-theme='dark'] .feature:hover {
+  background: var(--dark-card-hover-bg);
+  box-shadow: var(--dark-shadow-lg);
+}
+
+[data-theme='dark'] .statsSection {
+  background: var(--dark-bg-secondary);
+  color: var(--dark-text-primary);
+}
+
+[data-theme='dark'] .statCard {
+  background: var(--dark-bg-tertiary);
+  color: var(--dark-text-primary);
+  border-color: var(--dark-border);
+}
+
+[data-theme='dark'] .learningPath {
+  background: var(--dark-bg-secondary);
+  border-color: var(--dark-border);
+  color: var(--dark-text-primary);
+}
+
+[data-theme='dark'] .learningPath:hover {
+  background: var(--dark-card-hover-bg);
+  box-shadow: var(--dark-shadow-lg);
+}
 .buttons {
   display: flex;
   justify-content: center;

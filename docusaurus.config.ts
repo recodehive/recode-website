@@ -20,8 +20,12 @@ const config: Config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
-  // Google Analytics
+  // Google Analytics and Theme Scripts
   scripts: [
+    {
+      src: '/theme-init.js',
+      async: false, // Load synchronously to prevent flash
+    },
     {
       src: 'https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR',
       async: true,
@@ -69,6 +73,11 @@ const config: Config = {
 
   themeConfig: {
     image: "img/docusaurus-social-card.jpg",
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
+    },
     navbar: {
       title: "Recode Hive",
       logo: {
@@ -117,8 +126,8 @@ const config: Config = {
               value: `<div class="grid grid-cols-3 gap-4">
                 <a  class="border-r col-span-1" href="#" target="_self"> Interview Prep </a>
                 <div class="grid grid-cols-1 col-span-2">
-                  <a href="/docs/category/Technical/" target="_self" class="nav__icons"> 🧩Technical </a> <br />
-                  <a href="#" target="_self" class="nav__icons"> 💡Behaviour </a>
+                  <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a> <br />
+                  <a href="/interview-prep/" target="_self" class="nav__icons"> 💡Behavioral </a>
                 </div>
               </div>`,
             },
@@ -238,6 +247,11 @@ const config: Config = {
       ],
       // hideOnScroll: true,
     },
+    footer: {
+      style: 'dark',
+      links: [],
+      copyright: `Copyright © ${new Date().getFullYear()} recodehive. Built with Docusaurus.`,
+    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
@@ -275,19 +289,20 @@ const config: Config = {
         disableInDev: false,
       },
     ],
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "community",
-        path: "community",
-        routeBasePath: "community",
-        sidebarPath: require.resolve("./sidebarsCommunity.js"),
-        remarkPlugins: [remarkMath],
-        rehypePlugins: [rehypeKatex],
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
-      },
-    ],
+    // Commented out to use TSX-based community page instead
+    // [
+    //   "@docusaurus/plugin-content-docs",
+    //   {
+    //     id: "community",
+    //     path: "community",
+    //     routeBasePath: "community",
+    //     sidebarPath: require.resolve("./sidebarsCommunity.js"),
+    //     remarkPlugins: [remarkMath],
+    //     rehypePlugins: [rehypeKatex],
+    //     showLastUpdateAuthor: true,
+    //     showLastUpdateTime: true,
+    //   },
+    // ],
   ],
   //  scripts: [],
 };

@@ -17,6 +17,13 @@ const sponsors: Sponsor[] = [
     description: "Student ",
     github: "https://github.com/DevXavierNieto",
   },
+
+  {
+    name: "Austin Jian",
+    image: "https://avatars.githubusercontent.com/u/135089334?v=4",
+    description: "Student ",
+    github: "https://github.com/austinjiann",
+  },
     {
     name: "Takashi Arai",
     image: "https://avatars.githubusercontent.com/u/42265874?v=4",

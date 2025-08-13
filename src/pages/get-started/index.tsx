@@ -4,6 +4,33 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { motion, useAnimation, useInView } from "framer-motion";
 import Head from '@docusaurus/Head';
+import { useColorMode } from '@docusaurus/theme-common';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+
+// Safe hook for color mode that handles SSR
+function useSafeColorMode() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  let colorMode = 'light';
+  let isDark = false;
+
+  if (mounted && ExecutionEnvironment.canUseDOM) {
+    try {
+      const { useColorMode: useColorModeHook } = require('@docusaurus/theme-common');
+      const colorModeResult = useColorModeHook();
+      colorMode = colorModeResult.colorMode;
+      isDark = colorMode === 'dark';
+    } catch (error) {
+      console.warn('Failed to get color mode:', error);
+    }
+  }
+
+  return { colorMode, isDark, mounted };
+}
 import styles from "./styles.module.css";
 
 // Type definitions
@@ -606,8 +633,9 @@ const LearningPath = ({
   );
 };
 
-export default function GetStarted() {
+function GetStartedContent() {
   const { siteConfig } = useDocusaurusContext();
+  const { colorMode, isDark, mounted } = useSafeColorMode();
   type CompletedPaths = Record<string, boolean>;
 
   const [completedPaths, setCompletedPaths] = useState<CompletedPaths>(() => {
@@ -661,7 +689,9 @@ export default function GetStarted() {
       
       <GetStartedHeader />
       
-      <main>
+      <main className={`transition-colors duration-300 ${
+        isDark ? 'dark-bg-primary dark-text-primary' : 'bg-white text-black'
+      }`}>
         {/* Features Section */}
         <section className={styles.features}>
           <div className="container">
@@ -855,4 +885,8 @@ export default function GetStarted() {
       </main>
     </Layout>
   );
+}
+
+export default function GetStarted() {
+  return <GetStartedContent />;
 }

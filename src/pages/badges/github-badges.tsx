@@ -1,8 +1,35 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from '@docusaurus/Head';
 import { motion, HTMLMotionProps } from 'framer-motion';
 import type { ReactElement } from 'react';
 import Layout from '@theme/Layout';
+import { useColorMode } from '@docusaurus/theme-common';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
+
+// Safe hook for color mode that handles SSR
+function useSafeColorMode() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  let colorMode = 'light';
+  let isDark = false;
+
+  if (mounted && ExecutionEnvironment.canUseDOM) {
+    try {
+      const { useColorMode: useColorModeHook } = require('@docusaurus/theme-common');
+      const colorModeResult = useColorModeHook();
+      colorMode = colorModeResult.colorMode;
+      isDark = colorMode === 'dark';
+    } catch (error) {
+      console.warn('Failed to get color mode:', error);
+    }
+  }
+
+  return { colorMode, isDark, mounted };
+}
 import styles from './github-badges.module.css';
 
 type MotionDivProps = HTMLMotionProps<"div">;
@@ -10,7 +37,9 @@ type MotionTrProps = HTMLMotionProps<"tr">;
 
 import Link from '@docusaurus/Link';
 
-const GithubBadges = (): React.ReactElement => {
+const GithubBadgesContent = (): React.ReactElement => {
+  const { colorMode, isDark, mounted } = useSafeColorMode();
+
   // Scroll to top button logic
   useEffect(() => {
     const scrollToTopBtn = document.getElementById("scrollToTop");
@@ -43,7 +72,9 @@ const GithubBadges = (): React.ReactElement => {
       title="GitHub Achievements - RecodeHive"
       description="Explore GitHub achievements and badges"
     >
-      <div className={styles["github-badges-page"]}>
+      <div className={`${styles["github-badges-page"]} transition-colors duration-300 ${
+        isDark ? 'dark-bg-primary dark-text-primary' : 'bg-white text-black'
+      }`}>
       {/* Hero section */}
       <Head>
         <title>GitHub Achievements - RecodeHive</title>
@@ -762,6 +793,10 @@ const GithubBadges = (): React.ReactElement => {
 
 const handleScrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+const GithubBadges = (): React.ReactElement => {
+  return <GithubBadgesContent />;
 };
 
 export default GithubBadges;
