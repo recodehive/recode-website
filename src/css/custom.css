@@ -1223,3 +1223,77 @@ html {
   }
 }
 
+/* STAR section border fixes for dark mode */
+[data-theme='dark'] .star-border-red {
+  border-color: #ef4444 !important; 
+}
+
+[data-theme='dark'] .star-border-yellow {
+  border-color: #eab308 !important; 
+}
+
+[data-theme='dark'] .star-border-green {
+  border-color: #22c55e !important; 
+}
+
+[data-theme='dark'] .star-border-blue {
+  border-color: #3b82f6 !important; 
+}
+
+[data-theme='light'] .interview-prep-page h1,
+[data-theme='light'] .interview-prep-page h2,
+[data-theme='light'] .interview-prep-page h3,
+[data-theme='light'] .interview-prep-page h4,
+[data-theme='light'] .interview-prep-page h5,
+[data-theme='light'] .interview-prep-page h6 {
+  color: #ffffff !important;
+}
+
+.watch-video-btn {
+  background-color: #dc2626; 
+  color: #ffffff; 
+  padding: 0.5rem 1rem; 
+  border-radius: 0.5rem; 
+  font-size: 0.875rem; 
+  font-weight: 500;
+  display: inline-flex; 
+  align-items: center; 
+  transition: background-color 0.2s ease-in-out; 
+}
+
+.watch-video-btn:hover {
+  background-color: #b91c1c; 
+}
+
+[data-theme='dark'] .interview-prep-sidebar:hover {
+  border-color: #3b82f6 !important; 
+}
+
+[data-theme='dark'] .interview-prep-sidebar {
+  border-color:#4b5563 !important; 
+}
+
+/* Active tab in dark mode */
+[data-theme='dark'] .interview-prep-nav-tab-active {
+  border-bottom-color: #60a5fa !important; 
+  color: #60a5fa !important;
+}
+
+/* Inactive tab in dark mode */
+[data-theme='dark'] .interview-prep-nav-tab-inactive {
+  border-bottom-color: transparent !important;
+  color: #9ca3af !important; 
+}
+
+[data-theme='dark'] .interview-prep-nav-tab-inactive:hover {
+  color: #d1d5db !important; 
+}
+
+.interview-prep-discord-btn{
+  color:white;
+
+}
+
+[data-theme='dark'].interview-prep-join-comm{
+  border-color:#854D0E
+}
