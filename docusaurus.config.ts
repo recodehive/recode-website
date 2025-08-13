@@ -87,7 +87,7 @@ const config: Config = {
       items: [
         {
           type: "dropdown",
-          html: '<span class="nav-emoji">📚</span> Docs',
+          html: '<span id="nav-docs"></span> Docs',
           position: "left",
           items: [
             {
@@ -135,62 +135,62 @@ const config: Config = {
         },
         {
           to: "/showcase",
-          html: '<span class="nav-emoji">🌍</span> Showcase',
+          html: '<span id="nav-showcase"></span> Showcase',
           position: "left",
         },
         {
           to: "/dashboard",
-          html: '<span class="nav-emoji">📊</span> Dashboard',
+          html: '<span id="nav-dashboard"></span> Dashboard',
           position: "left",
         },
         {
           to: "/our-sponsors/",
-          html: '<span class="nav-emoji">💰</span> Donate',
+          html: '<span id="nav-donate"></span> Donate',
           position: "left",
         },
         {
           type: "dropdown",
-          html: '<span class="nav-emoji">👩🏻‍💻</span> Devfolio',
+          html: '<span id="nav-devfolio"></span> Devfolio',
           position: "left",
           items: [
             {
-              label: "💻GitHub Profiles",
+              html: '<span id="nav-github" style="display:inline-flex;align-items:center;"></span> GitHub Profiles',
               to: "https://dev.recodehive.com/devfolio",
             },
             {
-              label: "🎖️ GitHub Badges",
+              html: '<span id="nav-badges" style="display:inline-flex;align-items:center;"></span> GitHub Badges',
               to: "/badges/github-badges/",
             }, 
           ],
         },
         {
           to: "/blogs",
-          html: '<span class="nav-emoji">📰</span> Blogs',
+          html: '<span id="nav-blogs"></span> Blogs',
           position: "left",
         },
         {
           type: "dropdown",
-          html: '<span class="nav-emoji">🔗</span> More',
+          html: '<span id="nav-more"></span> More',
           position: "left",
           items: [
             {
-              label: "📚 E-books",
+              html: '<span id="nav-ebooks" style="display:inline-flex;align-items:center;"></span> E-books',
               to: "https://learn.recodehive.com/datascience",
             },
             {
-              label: "🛣️ Roadmap",
+              html: '<span id="nav-roadmap" style="display:inline-flex;align-items:center;"></span> Roadmap',
               to: "#",
             },
             {
-              label: "🤝 Community",
+              html: '<span id="nav-community" style="display:inline-flex;align-items:center;"></span> Community',
               to: "/community",
             },
             {
-              label: "📺 Broadcast",
+              html: '<span id="nav-broadcast" style="display:inline-flex;align-items:center;"></span> Broadcast',
               to: "/broadcasts/",
             },
             {
-              label: "🎙️ Podcast",
+              html: '<span id="nav-podcast" style="display:inline-flex;align-items:center;"></span> Podcast',
               to: "/podcasts/",
             },
           ],
