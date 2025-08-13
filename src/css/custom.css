@@ -177,6 +177,13 @@ textarea {
     border-radius: 12px !important;
     background-color: #24292e !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+  /* Increase sidebar width for better spacing */
+  .navbar-sidebar {
+    width: 270px !important;
+    min-width: 270px !important;
+    max-width: 320px !important;
+  }
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15) !important;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
     cursor: pointer !important;
