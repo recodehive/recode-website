@@ -8,7 +8,7 @@
 
 /* Sidebar Styles */
 .dashboard-sidebar {
-  width: 210px;
+  width: 300px;
   background: var(--ifm-card-background-color);
   border-right: 1px solid var(--ifm-toc-border-color);
   padding: 1.5rem 0;
