@@ -4,7 +4,6 @@ import Layout from "@theme/Layout"
 import Head from "@docusaurus/Head"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "@docusaurus/Link"
-import "../../css/custom.css"
 
 // Animation variants
 const fadeIn = {
@@ -894,7 +893,6 @@ const InterviewPrepPage: React.FC = () => {
                   ))}
                 </div>
               </motion.div>
-
               {/* Quick Stats */}
               <motion.div
                 className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-8 text-white"
