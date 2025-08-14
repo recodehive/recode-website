@@ -87,13 +87,13 @@ const config: Config = {
       items: [
         {
           type: "dropdown",
-          html: '<span class="nav-emoji">📚</span> Docs',
+          html: '<span id="nav-docs"></span> Docs',
           position: "left",
           items: [
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4 w-xl">
-                <a class="border-r col-span-1" href="/courses/">Tutorials</a>
+                <a class="border-r col-span-1" href="/courses/" style="color:black ; ">Tutorials</a>
                 <div class="grid grid-cols-4 col-span-2">
                   <a href="/docs/category/sql/" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
                   <a href="/docs/category/python/" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
@@ -109,7 +109,7 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
-                <a class="border-r col-span-1" href="/courses/"> Courses </a>
+                <a class="border-r col-span-1" href="/courses/" style="color:black"> Courses </a>
                 <div class="grid grid-cols-4 col-span-2">
                   <a href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/git.svg" alt="git" /> </a>
                   <a href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/postman.svg" alt="Postman" /> </a>
@@ -124,10 +124,10 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
-                <a  class="border-r col-span-1" href="#" target="_self"> Interview Prep </a>
+                <a  class="border-r col-span-1" href="#" target="_self" style="color:black"> Interview Prep </a>
                 <div class="grid grid-cols-1 col-span-2">
-                  <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a> <br />
-                  <a href="/interview-prep/" target="_self" class="nav__icons"> 💡Behavioral </a>
+                  <a href="/interview-prep/" target="_self" class="nav__icons"><span id="nav-technical" style="display:inline-flex;align-items:center;"></span> Technical</a> <br />
+                  <a href="/interview-prep/" target="_self" class="nav__icons"><span id="nav-behavioral" style="display:inline-flex;align-items:center;"></span> Behavioral</a>
                 </div>
               </div>`,
             },
@@ -135,62 +135,62 @@ const config: Config = {
         },
         {
           to: "/showcase",
-          html: '<span class="nav-emoji">🌍</span> Showcase',
+          html: '<span id="nav-showcase"></span> Showcase',
           position: "left",
         },
         {
           to: "/dashboard",
-          html: '<span class="nav-emoji">📊</span> Dashboard',
+          html: '<span id="nav-dashboard"></span> Dashboard',
           position: "left",
         },
         {
           to: "/our-sponsors/",
-          html: '<span class="nav-emoji">💰</span> Donate',
+          html: '<span id="nav-donate"></span> Donate',
           position: "left",
         },
         {
           type: "dropdown",
-          html: '<span class="nav-emoji">👩🏻‍💻</span> Devfolio',
+          html: '<span id="nav-devfolio"></span> Devfolio',
           position: "left",
           items: [
             {
-              label: "💻GitHub Profiles",
+              html: '<span id="nav-github" style="display:inline-flex;align-items:center;"></span> GitHub Profiles',
               to: "https://dev.recodehive.com/devfolio",
             },
             {
-              label: "🎖️ GitHub Badges",
+              html: '<span id="nav-badges" style="display:inline-flex;align-items:center;"></span> GitHub Badges',
               to: "/badges/github-badges/",
             }, 
           ],
         },
         {
           to: "/blogs",
-          html: '<span class="nav-emoji">📰</span> Blogs',
+          html: '<span id="nav-blogs"></span> Blogs',
           position: "left",
         },
         {
           type: "dropdown",
-          html: '<span class="nav-emoji">🔗</span> More',
+          html: '<span id="nav-more"></span> More',
           position: "left",
           items: [
             {
-              label: "📚 E-books",
+              html: '<span id="nav-ebooks" style="display:inline-flex;align-items:center;"></span> E-books',
               to: "https://learn.recodehive.com/datascience",
             },
             {
-              label: "🛣️ Roadmap",
+              html: '<span id="nav-roadmap" style="display:inline-flex;align-items:center;"></span> Roadmap',
               to: "#",
             },
             {
-              label: "🤝 Community",
+              html: '<span id="nav-community" style="display:inline-flex;align-items:center;"></span> Community',
               to: "/community",
             },
             {
-              label: "📺 Broadcast",
+              html: '<span id="nav-broadcast" style="display:inline-flex;align-items:center;"></span> Broadcast',
               to: "/broadcasts/",
             },
             {
-              label: "🎙️ Podcast",
+              html: '<span id="nav-podcast" style="display:inline-flex;align-items:center;"></span> Podcast',
               to: "/podcasts/",
             },
           ],
