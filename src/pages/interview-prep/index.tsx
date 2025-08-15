@@ -62,41 +62,279 @@ const interviewCategories = [
   },
 ]
 
-// Technical interview resources
 const technicalResources = [
   {
-    title: "Data Structures & Algorithms",
-    difficulty: "Beginner to Advanced",
-    problems: 150,
-    description: "Master arrays, linked lists, trees, graphs, and dynamic programming",
-    link: "/docs/category/technical",
-    tags: ["Arrays", "Trees", "Graphs", "DP"],
+    category: "📊 Data Structures & Algorithms",
+    description: "Master core algorithms and problem-solving patterns for interviews",
+    totalProblems: 220,
+    subcategories: [
+      {
+        title: "Arrays & Strings",
+        difficulty: "Easy",
+        problems: 50,
+        subtopics: [
+          "Two Pointers", "Sliding Window", "String Manipulation", "Prefix Sums", "Rotation & Reversal",
+          "Frequency Counting", "Hashing for Arrays", "Anagram Problems"
+        ],
+        resources: [
+          { name: "LeetCode Arrays", url: "https://leetcode.com/tag/array/" },
+          { name: "HackerRank Strings", url: "https://hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=strings" },
+          { name: "NeetCode Array Playlist", url: "https://www.youtube.com/playlist?list=PLot-Xpze53lfOdF3KwpMSFEyfE77zIwiP" }
+        ],
+      },
+      {
+        title: "Linked Lists",
+        difficulty: "Medium",
+        problems: 30,
+        subtopics: [
+          "Traversal", "Reversal", "Cycle Detection", "Merge Operations", "Dummy Nodes",
+          "Doubly Linked List", "Skip Lists"
+        ],
+        resources: [
+          { name: "LeetCode Linked List", url: "https://leetcode.com/tag/linked-list/" },
+          { name: "GeeksforGeeks", url: "https://geeksforgeeks.org/data-structures/linked-list/" },
+          { name: "FreeCodeCamp Linked List", url: "https://www.youtube.com/watch?v=Hj_rA0dhr2I" }
+        ],
+      },
+      {
+        title: "Trees & Graphs",
+        difficulty: "Hard",
+        problems: 50,
+        subtopics: [
+          "Binary Trees", "BST Operations", "Tree Traversals", "Graph Representations", "DFS & BFS",
+          "Shortest Path", "Topological Sort", "Union-Find", "Minimum Spanning Tree"
+        ],
+        resources: [
+          { name: "LeetCode Tree", url: "https://leetcode.com/tag/tree/" },
+          { name: "LeetCode Graph", url: "https://leetcode.com/tag/graph/" },
+          { name: "WilliamFiset Graph Theory", url: "https://www.youtube.com/playlist?list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu" }
+        ],
+      },
+      {
+        title: "Dynamic Programming",
+        difficulty: "Hard",
+        problems: 50,
+        subtopics: [
+          "1D DP", "2D DP", "Memoization", "Tabulation", "State Optimization",
+          "Knapsack Variants", "Subsequence Problems", "Game Theory DP"
+        ],
+        resources: [
+          { name: "LeetCode DP", url: "https://leetcode.com/tag/dynamic-programming/" },
+          { name: "DP Patterns", url: "https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns" },
+          { name: "NeetCode DP Playlist", url: "https://www.youtube.com/playlist?list=PLot-Xpze53ldVwtstag2TL4HQhAnC8m4D" }
+        ],
+      },
+      {
+        title: "Other Important Topics",
+        difficulty: "Medium",
+        problems: 40,
+        subtopics: [
+          "Heaps", "Hash Tables", "Bit Manipulation", "Greedy Algorithms", "Backtracking",
+          "Math & Number Theory", "Sorting Algorithms", "Binary Search Variants"
+        ],
+        resources: [
+          { name: "Heap Guide", url: "https://www.geeksforgeeks.org/heap-data-structure/" },
+          { name: "Backtracking Patterns", url: "https://leetcode.com/tag/backtracking/" },
+          { name: "Princeton Algorithms", url: "https://algs4.cs.princeton.edu/home/" }
+        ],
+      },
+    ],
   },
   {
-    title: "System Design",
-    difficulty: "Intermediate to Advanced",
-    problems: 25,
-    description: "Learn to design scalable systems and distributed architectures",
-    link: "/docs/category/technical",
-    tags: ["Scalability", "Databases", "Caching", "Load Balancing"],
+    category: "🏗️ System Design",
+    description: "Learn to design scalable, fault-tolerant systems",
+    totalProblems: 50,
+    subcategories: [
+      {
+        title: "Core Concepts",
+        difficulty: "Medium",
+        problems: 15,
+        subtopics: [
+          "Scalability", "Load Balancing", "Caching", "Database Sharding", "CAP Theorem",
+          "Consistency Models", "Fault Tolerance"
+        ],
+        resources: [
+          { name: "System Design Primer", url: "https://github.com/donnemartin/system-design-primer" },
+          { name: "High Scalability", url: "http://highscalability.com/" },
+          { name: "ByteByteGo YouTube", url: "https://www.youtube.com/c/ByteByteGo" }
+        ],
+      },
+      {
+        title: "Real-world Systems",
+        difficulty: "Hard",
+        problems: 20,
+        subtopics: [
+          "URL Shortener", "Chat System", "News Feed", "Search Engine", "Video Streaming",
+          "Payment Gateway", "Social Media Platform"
+        ],
+        resources: [
+          { name: "Grokking System Design", url: "https://educative.io/courses/grokking-the-system-design-interview" },
+          { name: "System Design Interview", url: "https://bytebytego.com/" }
+        ],
+      },
+      {
+        title: "Other Important Topics",
+        difficulty: "Medium",
+        problems: 15,
+        subtopics: [
+          "Monitoring & Logging", "Event-driven Architecture", "Message Queues", "Content Delivery Networks",
+          "Security in System Design"
+        ],
+        resources: [
+          { name: "Grafana Monitoring", url: "https://grafana.com/oss/grafana/" },
+          { name: "Event-driven Design", url: "https://microservices.io/patterns/rel/async-messaging.html" }
+        ],
+      },
+    ],
   },
   {
-    title: "Database Design",
-    difficulty: "Beginner to Intermediate",
-    problems: 40,
-    description: "SQL queries, database optimization, and schema design",
-    link: "/docs/category/sql",
-    tags: ["SQL", "NoSQL", "Indexing", "Normalization"],
+    category: "🗄️ Database Design",
+    description: "Learn relational & NoSQL databases for real-world applications",
+    totalProblems: 70,
+    subcategories: [
+      {
+        title: "SQL Basics",
+        difficulty: "Easy",
+        problems: 20,
+        subtopics: [
+          "SELECT Queries", "Joins", "Indexes", "Aggregate Functions", "Stored Procedures",
+          "Views", "Transactions"
+        ],
+        resources: [
+          { name: "SQLBolt", url: "https://sqlbolt.com/" },
+          { name: "LeetCode Database", url: "https://leetcode.com/problemset/database/" }
+        ],
+      },
+      {
+        title: "NoSQL & Scaling",
+        difficulty: "Medium",
+        problems: 20,
+        subtopics: [
+          "Document Stores", "Key-Value Stores", "Column Stores", "Graph Databases",
+          "Sharding", "Replication"
+        ],
+        resources: [
+          { name: "MongoDB Basics", url: "https://www.mongodb.com/basics" },
+          { name: "Cassandra Guide", url: "https://cassandra.apache.org/" }
+        ],
+      },
+      {
+        title: "Advanced Design",
+        difficulty: "Hard",
+        problems: 15,
+        subtopics: [
+          "Normalization", "Denormalization", "Indexing Strategies", "Partitioning",
+          "Data Warehousing", "Query Optimization"
+        ],
+        resources: [
+          { name: "Database Normalization", url: "https://www.guru99.com/database-normalization.html" },
+          { name: "AWS Data Warehousing", url: "https://aws.amazon.com/redshift/" }
+        ],
+      },
+      {
+        title: "Other Important Topics",
+        difficulty: "Medium",
+        problems: 15,
+        subtopics: [
+          "ACID Properties", "Database Security", "Backup & Recovery", "OLAP vs OLTP",
+          "Temporal Databases"
+        ],
+        resources: [
+          { name: "Transactions in SQL", url: "https://www.postgresql.org/docs/current/tutorial-transactions.html" }
+        ],
+      },
+    ],
   },
   {
-    title: "API Design & Development",
-    difficulty: "Intermediate",
-    problems: 30,
-    description: "RESTful APIs, GraphQL, and microservices architecture",
-    link: "/docs/category/technical",
-    tags: ["REST", "GraphQL", "Microservices", "Authentication"],
+    category: "🔌 API Design & Development",
+    description: "REST, GraphQL, and microservices for backend engineering",
+    totalProblems: 60,
+    subcategories: [
+      {
+        title: "REST API Design",
+        difficulty: "Easy",
+        problems: 15,
+        subtopics: [
+          "HTTP Methods", "CRUD Operations", "Error Handling", "Versioning", "Rate Limiting",
+          "Pagination", "CORS"
+        ],
+        resources: [
+          { name: "RESTful API Tutorial", url: "https://restfulapi.net/" },
+          { name: "Postman Learning Center", url: "https://learning.postman.com/" }
+        ],
+      },
+      {
+        title: "GraphQL",
+        difficulty: "Medium",
+        problems: 15,
+        subtopics: [
+          "Queries", "Mutations", "Subscriptions", "Schemas", "Resolvers",
+          "Apollo Server", "GraphQL Security"
+        ],
+        resources: [
+          { name: "GraphQL Official Docs", url: "https://graphql.org/learn/" },
+          { name: "Apollo GraphQL", url: "https://www.apollographql.com/docs/" }
+        ],
+      },
+      {
+        title: "Microservices & Security",
+        difficulty: "Hard",
+        problems: 15,
+        subtopics: [
+          "Service Discovery", "API Gateway", "Authentication", "Authorization", "JWT",
+          "OAuth2", "gRPC"
+        ],
+        resources: [
+          { name: "Microservices Guide", url: "https://microservices.io/" },
+          { name: "JWT Introduction", url: "https://jwt.io/introduction/" }
+        ],
+      },
+      {
+        title: "Other Important Topics",
+        difficulty: "Medium",
+        problems: 15,
+        subtopics: [
+          "API Testing", "OpenAPI/Swagger", "Async APIs", "WebSockets", "gRPC Streaming",
+          "API Performance Tuning"
+        ],
+        resources: [
+          { name: "OpenAPI Specification", url: "https://swagger.io/specification/" },
+          { name: "gRPC Basics", url: "https://grpc.io/docs/what-is-grpc/" }
+        ],
+      },
+    ],
   },
-]
+];
+
+
+
+const practicePlatforms = [
+  {
+    name: "LeetCode",
+    description: "Most popular coding interview platform",
+    problems: "2000+",
+    difficulty: ["Easy", "Medium", "Hard"],
+    url: "https://leetcode.com/",
+    features: ["Mock Interviews", "Company Tags", "Discussion Forums", "Premium Content"],
+  },
+  {
+    name: "HackerRank",
+    description: "Comprehensive coding challenges and assessments",
+    problems: "1000+",
+    difficulty: ["Easy", "Medium", "Hard"],
+    url: "https://hackerrank.com/",
+    features: ["Skill Assessments", "Certification", "Company Challenges", "Interview Prep"],
+  },
+  {
+    name: "CodeChef",
+    description: "Competitive programming and contests platform",
+    problems: "3000+",
+    difficulty: ["Easy", "Medium", "Hard"],
+    url: "https://www.codechef.com/",
+    features: ["Monthly Contests", "Long Challenge", "Cook-Off", "Practice Problems"],
+  },
+];
+
 
 // Behavioral interview questions
 const behavioralQuestions = [
@@ -923,53 +1161,361 @@ const InterviewPrepPage: React.FC = () => {
           {/* Technical Tab */}
           {activeTab === "technical" && (
             <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
-              <motion.div className="text-center mb-12" variants={fadeIn}>
-                <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-                  Technical Interview Preparation
-                </h2>
-                <p className="text-xl text-gray-600 dark:text-gray-300">
-                  Master coding challenges and technical concepts
-                </p>
+              <motion.div className="mb-12" variants={fadeIn}>
+                <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20 rounded-2xl p-8 border border-blue-100 dark:border-blue-800 technical-outer">
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium mb-4">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
+                      Technical Interview Mastery
+                    </div>
+                    <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+                      Master Technical Interviews
+                    </h2>
+                    <p className="text-lg text-gray-600 dark:text-gray-300">
+                      Technical interviews are the cornerstone of software engineering hiring. They evaluate your
+                      problem-solving abilities, coding skills, and understanding of computer science fundamentals.
+                      Success requires consistent practice, pattern recognition, and the ability to communicate your
+                      thought process clearly.
+                    </p>
+                  </div>
+                  <div className="grid md:grid-cols-3 gap-6 mb-8">
+                    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 technical-inner">
+                      <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
+                        <span className="text-2xl">🧠</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Problem Solving</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        Develop systematic approaches to break down complex problems into manageable components.
+                      </p>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700  technical-inner">
+                      <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-4">
+                        <span className="text-2xl">⚡</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Pattern Recognition</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        Learn to identify common patterns and apply proven techniques to solve similar problems
+                        efficiently.
+                      </p>
+                    </div>
+                    <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 technical-inner">
+                      <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-4">
+                        <span className="text-2xl">💬</span>
+                      </div>
+                      <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">Communication</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-300">
+                        Master the art of explaining your approach, discussing trade-offs, and collaborating with
+                        interviewers.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 rounded-lg p-6 border border-yellow-200 dark:border-yellow-700 technical-inner-success">
+                    <div className="flex items-start space-x-3">
+                      <span className="text-2xl">💡</span>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Success Strategy</h4>
+                        <p className="text-sm text-gray-700 dark:text-gray-300">
+                          Focus on understanding patterns rather than memorizing solutions. Practice explaining your
+                          thought process out loud, and always consider time/space complexity. Consistent daily practice
+                          for 2-3 months typically yields the best results.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
 
-              <div className="grid md:grid-cols-2 gap-8">
-                {technicalResources.map((resource, index) => (
-                  <motion.div
-                    key={index}
-                    className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300"
-                    variants={fadeIn}
-                  >
-                    <div className="flex justify-between items-start mb-4">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">{resource.title}</h3>
-                      <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full text-sm">
-                        {resource.problems} problems
-                      </span>
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">{resource.description}</p>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        Difficulty: {resource.difficulty}
-                      </span>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {resource.tags.map((tag, i) => (
-                        <span
-                          key={i}
-                          className="bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 px-2 py-1 rounded text-xs"
+
+              {/* Question Bank by Category - Collapsible */}
+              <motion.div className="mb-16" variants={fadeIn}>
+                <h3 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white text-center">
+                  📚 Question Bank by Category
+                </h3>
+                <div className="space-y-8">
+                  {technicalResources.map((category, categoryIndex) => {
+                    const headerColors = [
+                      { gradient: "from-purple-500 to-pink-400", border: "border-purple-500 dark:border-purple-400" },
+                      { gradient: "from-blue-500 to-sky-400", border: "border-blue-500 dark:border-blue-400" },
+                      { gradient: "from-green-500 to-green-400", border: "border-green-500 dark:border-green-400" },
+                      { gradient: "from-orange-500 to-red-500", border: "border-orange-500 dark:border-orange-400" },
+                      { gradient: "from-pink-500 to-yellow-500", border: "border-pink-500 dark:border-pink-400" },
+                      { gradient: "from-cyan-500 to-blue-500", border: "border-cyan-500 dark:border-cyan-400" },
+                    ];
+                    const { gradient, border } = headerColors[categoryIndex % headerColors.length];
+                    const subtopicBorderClasses = [
+                      "question-bank-subtopic-purple",
+                      "question-bank-subtopic-blue",
+                      "question-bank-subtopic-green",
+                      "question-bank-subtopic-orange",
+                      "question-bank-subtopic-pink",
+                      "question-bank-subtopic-cyan"
+                    ];
+                    return (
+                      <div key={categoryIndex} className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+                        {/* Outer header */}
+                        <button
+                          onClick={() => toggleCategory(categoryIndex)}
+                          className={`w-full bg-gradient-to-r ${gradient} p-6 text-left hover:opacity-90 transition-opacity`}
                         >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <Link
-                      to={resource.link}
-                      className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-block"
+                          <div className="flex justify-between items-center">
+                            <div>
+                              <h3 className="text-2xl font-bold mb-2 text-white">{category.category}</h3>
+                              <p className="text-blue-100">{category.description}</p>
+                              <span className="inline-block bg-white/20 text-sm font-medium px-3 py-1 rounded-full hover:bg-white/30 transition">
+                                <Link to='/docs/category/technical' className="explore-btn">Explore →</Link>
+                              </span>
+                            </div>
+                            <div className="flex flex-col items-end text-right">
+                              <div className="text-3xl font-bold text-white">{category.totalProblems}</div>
+                              <div className="text-sm text-blue-100">Total Problems</div>
+                              <span
+                                className="text-white text-2xl transform transition-transform duration-200 origin-center"
+                                style={{
+                                  transform: expandedCategories[categoryIndex]
+                                    ? "rotate(180deg)"
+                                    : "rotate(0deg)",
+                                }}
+                              >
+                                ▼
+                              </span>
+                            </div>
+
+
+                          </div>
+                        </button>
+
+                        {/* Collapsible Content */}
+                        {expandedCategories[categoryIndex] && (
+                          <motion.div
+                            className="p-6"
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+                              {category.subcategories.map((subcategory, subIndex) => (
+
+                                <div
+                                  key={subIndex}
+                                  className={`border rounded-xl p-5 hover:shadow-md transition-all duration-300 ${border} ${subtopicBorderClasses[categoryIndex % subtopicBorderClasses.length]} hover:border-opacity-80 technical-inner`}
+                                >
+                                  {/* Subcategory Header */}
+                                  <div className="flex justify-between items-start mb-4">
+                                    <h5 className="text-lg font-semibold text-gray-900 dark:text-white">
+                                      {subcategory.title}
+                                    </h5>
+                                    <div className="flex items-center space-x-2">
+                                      <span
+                                        className={`px-2 py-1 rounded-full text-xs font-medium ${subcategory.difficulty === "Easy"
+                                          ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                                          : subcategory.difficulty === "Medium"
+                                            ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                                            : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                                          }`}
+                                      >
+                                        {subcategory.difficulty}
+                                      </span>
+                                      <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs">
+                                        {subcategory.problems}
+                                      </span>
+                                    </div>
+                                  </div>
+
+                                  {/* Subtopics */}
+                                  <div className="mb-4">
+                                    <h6 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                      Key Topics:
+                                    </h6>
+                                    <div className="flex flex-wrap gap-1">
+                                      {subcategory.subtopics.map((topic, topicIndex) => (
+                                        <span
+                                          key={topicIndex}
+                                          className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded text-xs"
+                                        >
+                                          {topic}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+
+                                  {/* Resources */}
+                                  <div className="space-y-2">
+                                    <h6 className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                                      Practice Resources:
+                                    </h6>
+                                    {subcategory.resources.map((resource, resourceIndex) => (
+                                      <a
+                                        key={resourceIndex}
+                                        href={resource.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block text-sm text-blue-600 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-300 hover:underline"
+                                      >
+                                        🔗 {resource.name}
+                                      </a>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </div>
+                    );
+                  })}
+
+                </div>
+              </motion.div>
+
+
+              {/* Practice Platforms */}
+              <motion.div className="mb-16" variants={fadeIn}>
+                <h3 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white text-center">
+                  🎯 Recommended Practice Platforms
+                </h3>
+                <div className="grid md:grid-cols-3 gap-6 items-stretch">
+                  {practicePlatforms.map((platform, index) => (
+                    <motion.div
+                      key={index}
+                      className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 flex flex-col"
+                      variants={fadeIn}
                     >
-                      Start Learning
-                    </Link>
-                  </motion.div>
-                ))}
-              </div>
+                      <div className="text-center mb-4">
+                        <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{platform.name}</h4>
+                        <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">{platform.description}</p>
+                        <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{platform.problems}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400">Problems Available</div>
+                      </div>
+
+                      <div className="mb-4">
+                        <div className="flex justify-center space-x-2 mb-3">
+                          {platform.difficulty.map((diff, diffIndex) => (
+                            <span
+                              key={diffIndex}
+                              className={`px-2 py-1 rounded-full text-xs font-medium ${diff === "Easy"
+                                ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                                : diff === "Medium"
+                                  ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                                  : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                                }`}
+                            >
+                              {diff}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="mb-6">
+                        <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Key Features:</h5>
+                        <ul className="space-y-1">
+                          {platform.features.map((feature, featureIndex) => (
+                            <li key={featureIndex} className="text-xs text-gray-600 dark:text-gray-400 flex items-center">
+                              <span className="w-1 h-1 bg-blue-500 rounded-full mr-2"></span>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Push button to bottom */}
+                      <div className="mt-auto">
+                        <a
+                          href={platform.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="technical-btn w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-center block font-medium"
+                        >
+                          Start Practicing
+                        </a>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+
+              </motion.div>
+
+              {/* Tips & Best Practices */}
+              <motion.div
+                className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8"
+                variants={fadeIn}
+              >
+                <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">
+                  💡 Pro Tips for Technical Interview Success
+                </h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">1</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Start with Easy Problems</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Build confidence and understand patterns before tackling harder challenges.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">2</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Practice Consistently</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Solve 1-2 problems daily rather than cramming before interviews.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">3</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Focus on Patterns</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Learn common problem-solving patterns like two pointers, sliding window, etc.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">4</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Time Yourself</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Practice under time constraints to simulate real interview conditions.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">5</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Explain Your Thinking</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Practice verbalizing your approach and reasoning process.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                      <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <span className="text-white text-xs font-bold">6</span>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Review Solutions</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                          Study optimal solutions and alternative approaches after solving problems.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
           )}
 
