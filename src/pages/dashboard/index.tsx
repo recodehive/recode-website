@@ -183,6 +183,7 @@ const DashboardContent: React.FC = () => {
     },
   ]);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>(
     []
   );
@@ -692,6 +693,7 @@ const DashboardContent: React.FC = () => {
     tab: "home" | "discuss" | "leaderboard" | "giveaway"
   ) => {
     setActiveTab(tab);
+    setIsMobileSidebarOpen(false); // Close mobile sidebar
     if (tab === "discuss") {
       history.push("#discuss");
       window.scrollTo(0, 0);
@@ -981,12 +983,18 @@ const DashboardContent: React.FC = () => {
         <title>RecodeHive | Dashboard</title>
         <meta name="description" content="RecodeHive Community Dashboard" />
       </Head>
-      <div className="dashboard-layout">
+      <div className={`dashboard-layout ${isMobileSidebarOpen ? 'sidebar-open' : ''}`}>
+        {/* Mobile Menu Button */}
+        <button 
+          className={`mobile-menu-btn ${isMobileSidebarOpen ? 'open' : ''}`}
+          onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+          aria-label="Toggle mobile menu"
+        />
         {/* Sidebar Navigation */}
         <nav
           className={`dashboard-sidebar ${
             isSidebarCollapsed ? "collapsed" : ""
-          }`}
+          } ${isMobileSidebarOpen ? "show" : ""}`}
         >
           <div className="sidebar-header">
             <div className="sidebar-logo">
