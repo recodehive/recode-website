@@ -265,26 +265,9 @@ export default function FooterLayout({
                 </li>
               </ul>
 
-              {/* Quick Links Section moved here */}
-              <div className="quick-links-section">
-                <h4 className="quick-links-title">
-                  <span className="links-icon">🔗</span>
-                  QUICK LINKS
-                </h4>
-                <div className="quick-links-list">
-                  <Link to="/get-started" className="quick-link">
-                    <span className="quick-link-icon">🚀</span>
-                    Get Started
-                  </Link>
-                  <Link to="/dashboard" className="quick-link">
-                    <span className="quick-link-icon">📊</span>
-                    Dashboard
-                  </Link>
-                </div>
-              </div>
             </div>
 
-            {/* Newsletter Column */}
+            {/* Newsletter Column with Quick Links below */}
             <div className="footer-column newsletter-column">
               <h3 className="footer-column-title">
                 <div className="column-icon newsletter-icon">📧</div>
@@ -312,6 +295,23 @@ export default function FooterLayout({
               </form>
               <div className="newsletter-stats">
                 <span className="newsletter-stat">📊 1.2K+ developers joined this week</span>
+              </div>
+              {/* Quick Links Section moved below subscription */}
+              <div className="quick-links-section newsletter-quick-links">
+                <h4 className="quick-links-title">
+                  <span className="links-icon">🔗</span>
+                  QUICK LINKS
+                </h4>
+                <div className="quick-links-list">
+                  <Link to="/get-started" className="quick-link">
+                    <span className="quick-link-icon">🚀</span>
+                    Get Started
+                  </Link>
+                  <Link to="/dashboard" className="quick-link">
+                    <span className="quick-link-icon">📊</span>
+                    Dashboard
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
