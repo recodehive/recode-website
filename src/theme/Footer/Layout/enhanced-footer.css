@@ -672,6 +672,7 @@ html[data-theme='light'] .enhanced-footer {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1.2fr;
   gap: 40px;
+  align-items: start; /* prevent equal-height stretch; use content height */
 }
 
 .footer-column {
@@ -685,6 +686,7 @@ html[data-theme='light'] .enhanced-footer {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: visible;
+  align-self: start; /* prevent stretching to tallest column height */
 }
 
 .footer-column::before {
@@ -755,7 +757,7 @@ html[data-theme='light'] .enhanced-footer {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px; /* slightly tighter vertical spacing */
   overflow: visible;
 }
 
@@ -771,11 +773,12 @@ html[data-theme='light'] .enhanced-footer {
   border-radius: 12px;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   position: relative;
-  margin: 6px 0;
+  margin: 4px 0; /* reduce top/bottom margin per link */
   border: 1px solid rgba(255, 255, 255, 0.05);
   overflow: visible;
   backdrop-filter: blur(5px);
   background: rgba(255, 255, 255, 0.02);
+  white-space: nowrap; /* keep items like "Contact Us" on one line */
 }
 
 .footer-link::before {
@@ -1064,6 +1067,45 @@ html[data-theme='light'] .enhanced-footer {
 /* Quick Links Section */
 .quick-links-section {
   margin-top: 24px;
+}
+
+/* Newsletter-specific quick links styling */
+.newsletter-quick-links {
+  margin-top: 28px;
+  background: rgba(255,255,255,0.02);
+  border-radius: 12px;
+  padding: 18px 0 0 0;
+  box-shadow: none;
+}
+
+.newsletter-quick-links .quick-links-title {
+  color: #cbd5e1;
+  font-size: 13px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-align: left;
+}
+
+.newsletter-quick-links .quick-links-list {
+  gap: 10px;
+}
+
+.newsletter-quick-links .quick-link {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  color: #cbd5e1;
+  font-size: 13px;
+  padding: 10px 14px;
+  margin-bottom: 0;
+  box-shadow: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.newsletter-quick-links .quick-link:hover {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
 }
 
 .quick-links-title {
@@ -1456,6 +1498,7 @@ html[data-theme='light'] .enhanced-footer {
     border: 1px solid rgba(255, 255, 255, 0.05);
     border-radius: 10px;
     margin: 0;
+  white-space: nowrap; /* mobile-friendly single line; content fits */
   }
 
   .footer-link:hover {
