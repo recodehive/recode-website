@@ -183,7 +183,7 @@ const config: Config = {
             },
             {
               html: '<span id="nav-roadmap" style="display:inline-flex;align-items:center;"></span> Roadmap',
-              to: "#",
+              to: "https://github.com/orgs/recodehive/projects/9",
             },
             {
               html: '<span id="nav-community" style="display:inline-flex;align-items:center;"></span> Community',
