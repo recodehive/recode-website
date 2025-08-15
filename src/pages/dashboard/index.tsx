@@ -12,6 +12,25 @@ import Giscus from "@giscus/react";
 import { useLocation, useHistory } from "@docusaurus/router";
 import "./dashboard.css";
 
+type DiscussionTab = "discussions" | "trending" | "unanswered";
+type SortOption = "most_popular" | "latest" | "oldest";
+type Category = "all" | "react" | "typescript" | "nodejs" | "python" | "ai_ml";
+
+interface Discussion {
+  id: string;
+  title: string;
+  content: string;
+  author: {
+    name: string;
+    avatar: string;
+  };
+  createdAt: string;
+  likes: number;
+  comments: number;
+  tags: string[];
+  isPinned?: boolean;
+}
+
 interface LeaderboardEntry {
   rank: number;
   name: string;
@@ -82,12 +101,87 @@ const parseCSVToJSON = (csvText: string): any[] => {
   return data;
 };
 
+const categories: Category[] = [
+  "all",
+  "react",
+  "typescript",
+  "nodejs",
+  "python",
+  "ai_ml",
+];
+
 const DashboardContent: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
   const [activeTab, setActiveTab] = useState<
     "home" | "discuss" | "leaderboard" | "giveaway"
   >("home");
+
+  // Discussion state management
+  const [activeDiscussionTab, setActiveDiscussionTab] =
+    useState<DiscussionTab>("discussions");
+  const [selectedCategory, setSelectedCategory] = useState<Category>("all");
+  const [sortBy, setSortBy] = useState<SortOption>("most_popular");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [discussions, setDiscussions] = useState<Discussion[]>([
+    {
+      id: "1",
+      title: "Best practices for React component optimization",
+      content:
+        "I've been working on a large React application and noticed some performance issues. What are the most effective ways to optimize React components for better performance? I'm particularly interested in memo, useMemo, and useCallback usage patterns.",
+      author: {
+        name: "Sarah Chen",
+        avatar: "/img/default-avatar.png",
+      },
+      createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+      likes: 24,
+      comments: 8,
+      tags: ["react", "performance", "frontend"],
+      isPinned: true,
+    },
+    {
+      id: "2",
+      title: "Building scalable microservices with Node.js",
+      content:
+        "Looking for advice on architecting microservices using Node.js. What patterns and tools do you recommend?",
+      author: {
+        name: "Mike Rodriguez",
+        avatar: "/img/default-avatar.png",
+      },
+      createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+      likes: 31,
+      comments: 14,
+      tags: ["nodejs", "microservices", "architecture"],
+    },
+    {
+      id: "3",
+      title: "How to use AI/ML in Python for sentiment analysis?",
+      content:
+        "I'm new to AI/ML and want to build a sentiment analysis tool in Python. Where should I start? What libraries are recommended?",
+      author: {
+        name: "Alex Doe",
+        avatar: "/img/default-avatar.png",
+      },
+      createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+      likes: 15,
+      comments: 3,
+      tags: ["python", "ai_ml", "sentiment-analysis"],
+    },
+    {
+      id: "4",
+      title: "Getting started with TypeScript in a React project",
+      content:
+        "What are the benefits of using TypeScript with React? I'm looking for a simple guide to set it up.",
+      author: {
+        name: "Jane Smith",
+        avatar: "/img/default-avatar.png",
+      },
+      createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+      likes: 45,
+      comments: 0,
+      tags: ["react", "typescript"],
+    },
+  ]);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>(
     []
@@ -122,6 +216,89 @@ const DashboardContent: React.FC = () => {
       fetchLeaderboardData();
     }
   }, [activeTab]);
+
+  // Discussion handlers
+  const handleDiscussionTabChange = (tab: DiscussionTab) => {
+    setActiveDiscussionTab(tab);
+  };
+
+  const handleCategoryChange = (category: Category) => {
+    setSelectedCategory(category);
+  };
+
+  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSortBy(event.target.value as SortOption);
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleNewDiscussion = () => {
+    // This could open a modal or navigate to a new discussion form
+    alert("New discussion feature coming soon!");
+  };
+
+  // Filter discussions based on current state and tab
+  const getFilteredDiscussions = (discussions: Discussion[]) => {
+    return discussions
+      .filter((discussion) => {
+        // First apply tab filter
+        switch (activeDiscussionTab) {
+          case "trending":
+            return discussion.likes > 20; // Show discussions with more than 20 likes
+          case "unanswered":
+            return discussion.comments === 0;
+          default:
+            return true;
+        }
+      })
+      .filter((discussion) => {
+        // Then apply category filter
+        if (selectedCategory !== "all") {
+          return discussion.tags.some(
+            (tag) => tag.toLowerCase() === selectedCategory
+          );
+        }
+        return true;
+      })
+      .filter((discussion) => {
+        // Then apply search filter
+        if (searchQuery) {
+          return (
+            discussion.title
+              .toLowerCase()
+              .includes(searchQuery.toLowerCase()) ||
+            discussion.content.toLowerCase().includes(searchQuery.toLowerCase())
+          );
+        }
+        return true;
+      })
+      .sort((a, b) => {
+        // Pinned discussions first
+        if (a.isPinned && !b.isPinned) return -1;
+        if (!a.isPinned && b.isPinned) return 1;
+
+        // Finally sort the results
+        switch (sortBy) {
+          case "latest":
+            return (
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+            );
+          case "oldest":
+            return (
+              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+            );
+          default:
+            return b.likes - a.likes; // most_popular
+        }
+      });
+  };
+
+  const filteredDiscussions = React.useMemo(
+    () => getFilteredDiscussions(discussions),
+    [discussions, activeDiscussionTab, selectedCategory, searchQuery, sortBy]
+  );
 
   // Rate limit timer
   useEffect(() => {
@@ -1265,30 +1442,142 @@ const DashboardContent: React.FC = () => {
               </motion.section>
             </div>
           ) : activeTab === "discuss" ? (
-            <div className="discussion-container">
-              <h2>Community Discussions</h2>
-              <p>
-                Join the conversation, ask questions, and share your thoughts
-                with the RecodeHive community.
-              </p>
-              <div className="giscus-container">
-                <Giscus
-                  id="discussions"
-                  repo="recodehive/recode-website"
-                  repoId="R_kgDOOgGO-g"
-                  category="Announcements"
-                  categoryId="DIC_kwDOOgGO-s4Cb6wU"
-                  mapping="pathname"
-                  strict="0"
-                  reactionsEnabled="1"
-                  emitMetadata="0"
-                  inputPosition="bottom"
-                  theme="preferred_color_scheme"
-                  lang="en"
-                  loading="lazy"
-                />
+            <motion.div
+              className="discussion-container"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="discussion-header">
+                <h1>
+                  Community <span className="highlight">Discussions</span>
+                </h1>
+                <p>
+                  Join the conversation, ask questions, and share your thoughts
+                  with the RecodeHive community.
+                </p>
               </div>
-            </div>
+
+              <div className="discussion-toolbar">
+                <div className="toolbar-left">
+                  <button
+                    className={`tab-btn ${
+                      activeDiscussionTab === "discussions" ? "active" : ""
+                    }`}
+                    onClick={() => handleDiscussionTabChange("discussions")}
+                  >
+                    All Discussions
+                  </button>
+                  <button
+                    className={`tab-btn ${
+                      activeDiscussionTab === "trending" ? "active" : ""
+                    }`}
+                    onClick={() => handleDiscussionTabChange("trending")}
+                  >
+                    🔥 Trending
+                  </button>
+                  <button
+                    className={`tab-btn ${
+                      activeDiscussionTab === "unanswered" ? "active" : ""
+                    }`}
+                    onClick={() => handleDiscussionTabChange("unanswered")}
+                  >
+                    ❓ Unanswered
+                  </button>
+                </div>
+                <button
+                  className="new-discussion-btn"
+                  onClick={handleNewDiscussion}
+                >
+                  <NavbarIcon name="plus" /> New Discussion
+                </button>
+              </div>
+
+              <div className="categories-bar">
+                {categories.map((category) => (
+                  <div
+                    key={category}
+                    className={`category ${
+                      selectedCategory === category ? "active" : ""
+                    }`}
+                    onClick={() => handleCategoryChange(category)}
+                  >
+                    {category.charAt(0).toUpperCase() + category.slice(1)}
+                  </div>
+                ))}
+              </div>
+
+              <div className="search-filters">
+                <div className="search-bar">
+                  <span className="searchbar-icon">
+                    <NavbarIcon name="search" />
+                  </span>
+                  <input
+                    type="text"
+                    placeholder="Search discussions by title or content..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                  />
+                </div>
+                <div className="sort-dropdown">
+                  <select value={sortBy} onChange={handleSortChange}>
+                    <option value="most_popular">Most Popular</option>
+                    <option value="latest">Latest</option>
+                    <option value="oldest">Oldest</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="discussions-list">
+                {filteredDiscussions.map((discussion) => (
+                  <div
+                    key={discussion.id}
+                    className={`discussion-item ${
+                      discussion.isPinned ? "pinned" : ""
+                    }`}
+                  >
+                    <div className="discussion-avatar">
+                      <img
+                        src={discussion.author.avatar}
+                        alt={`${discussion.author.name}'s avatar`}
+                      />
+                    </div>
+                    <div className="discussion-content">
+                      <div className="discussion-header-content">
+                        <h3>{discussion.title}</h3>
+                        {discussion.isPinned && (
+                          <span className="pinned-badge">📌 Pinned</span>
+                        )}
+                      </div>
+                      <div className="discussion-body">
+                        <p>{discussion.content}</p>
+                      </div>
+                      <div className="discussion-meta">
+                        <div className="tags">
+                          {discussion.tags.map((tag) => (
+                            <span key={tag} className="tag">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="meta-info">
+                          <span>
+                            by <strong>{discussion.author.name}</strong>
+                          </span>
+                          <span>
+                            {new Date(
+                              discussion.createdAt
+                            ).toLocaleDateString()}
+                          </span>
+                          <span>👍 {discussion.likes}</span>
+                          <span>💬 {discussion.comments}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           ) : (
             // Giveaway tab content
             <div>
