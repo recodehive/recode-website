@@ -83,7 +83,7 @@ const config: Config = {
       respectPrefersColorScheme: false,
     },
     navbar: {
-      title: "Recode Hive",
+      
       logo: {
         alt: "RecodeHive Logo",
         src: "img/logo.png",
