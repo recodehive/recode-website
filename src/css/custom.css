@@ -6,11 +6,6 @@
 .dropdown-content a.col-span-2 {
   color: #111 !important;
 }
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
 
 /* You can override the default Infima variables here. */
 @import "tailwindcss";
@@ -42,13 +37,103 @@ textarea {
   transition: all 0.1s ease !important;
 }
 
-/* Instant navbar theme change */
+/* Navbar styling and alignment */
 .navbar,
 .navbar__inner,
 .navbar__brand,
 .navbar__item,
 .navbar__link {
   transition: background-color 0.1s ease, color 0.1s ease !important;
+}
+
+/* Fix navbar alignment and spacing */
+.navbar {
+  padding: 0.2rem 1rem;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  margin-left: 0.9rem;
+}
+
+.navbar__logo {
+  height: 3rem;
+  margin-right: 0.5rem;
+}
+
+.navbar__items {
+  display: flex;
+  align-items: center;
+  gap: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Adjust individual navbar items */
+.navbar__items > .navbar__item {
+  padding: 0.5rem 0.4rem !important;
+  margin: 0 !important;
+}
+
+.navbar__item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.navbar__link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Fix icon alignment in navbar */
+.navbar__link svg,
+.navbar__link img {
+  margin: auto;
+  vertical-align: middle;
+}
+
+/* Fix dropdown menu spacing and alignment */
+.dropdown {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.dropdown__menu {
+  min-width: max-content !important;
+  margin-top: 0.5rem !important;
+  padding: 0.25rem 0 !important;
+}
+
+.dropdown__link {
+  display: flex !important;
+  align-items: center !important;
+  padding: 0.4rem 0.75rem !important;
+  margin: 0 !important;
+  width: 100% !important;
+  font-size: 0.9rem !important;
+}
+
+/* Remove extra spacing between dropdown items */
+.dropdown__menu > .dropdown__link {
+  padding: 0.4rem 0.75rem !important;
+  margin: 0 !important;
+}
+
+/* Fix spacing between icon and text in dropdown */
+.dropdown__link svg,
+.dropdown__link img {
+  margin-right: 0.5rem !important;
+  margin-left: 0 !important;
 }
 
 /* Force instant theme updates for key elements */
@@ -128,6 +213,92 @@ textarea {
   --dark-input-focus-border: #25c2a0;
 }
 
+/* Mobile navigation styles */
+@media screen and (max-width: 996px) {
+  /* Hide text in navbar */
+  .navbar__items .navbar__item span,
+  .navbar__items .navbar__link span,
+  span[id^="nav-"] {
+    display: none !important;
+  }
+
+  /* Hide text but keep icons visible */
+  .navbar__items
+    .navbar__item:not(.navbar__toggle):not(.navbar__brand):not(
+      .quickstart-icons
+    ),
+  .navbar__items
+    .navbar__link:not(.navbar__toggle):not(.navbar__brand):not(
+      .quickstart-icons
+    ) {
+    font-size: 0 !important;
+    padding: 0.4rem !important;
+  }
+
+  /* Layout for mobile navbar */
+  .navbar {
+    justify-content: flex-start !important;
+    padding: 0.3rem 0.5rem !important;
+  }
+
+  .navbar__inner {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  /* Essential elements visibility and styling */
+  .navbar__toggle,
+  .navbar__search,
+  .navbar-sidebar__brand,
+  .navbar__brand,
+  .navbar-sidebar .navbar__item,
+  .quickstart-icons {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Icon sizes and visibility */
+  .navbar__toggle svg,
+  .navbar__search svg,
+  .navbar__link svg,
+  .navbar__link img,
+  .quickstart-icons svg,
+  .quickstart-icons img {
+    display: block !important;
+    width: 24px !important;
+    height: 24px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    color: currentColor !important;
+  }
+
+  /* Toggle and search button styling */
+  .navbar__toggle {
+    transform: scale(1.2) !important;
+    padding: 0.6rem !important;
+    margin-right: 0.5rem !important;
+  }
+
+  .navbar__search {
+    margin-left: 0.5rem !important;
+  }
+
+  /* Right side items */
+  .navbar__items--right {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.8rem !important;
+    margin-left: auto !important;
+  }
+
+  /* Logo size */
+  .navbar__logo {
+    height: 40px !important;
+  }
+}
+
 @media screen and (min-width: 1057px) {
   .nav-emoji {
     display: none;
@@ -178,12 +349,12 @@ textarea {
     background-color: #24292e !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
 
-  /* Increase sidebar width for better spacing */
-  .navbar-sidebar {
-    width: 270px !important;
-    min-width: 270px !important;
-    max-width: 320px !important;
-  }
+    /* Increase sidebar width for better spacing */
+    .navbar-sidebar {
+      width: 270px !important;
+      min-width: 270px !important;
+      max-width: 320px !important;
+    }
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15) !important;
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
     cursor: pointer !important;
@@ -449,7 +620,37 @@ textarea {
   border-right: 1px solid #4e8da0db;
   margin: 2px;
 }
+/* Fix navbar icon and text alignment */
+.navbar__items .navbar__link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.2rem !important;
+  height: 40px !important; /* Consistent height */
+  padding: 0.5rem 0.8rem !important;
+}
 
+/* Fix specific icon alignment in navbar */
+.navbar__link img,
+.navbar__link svg {
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 !important;
+  vertical-align: middle !important;
+}
+
+/* Ensure text and icons are centered */
+.navbar__link span {
+  display: inline-flex !important;
+  align-items: center !important;
+  line-height: 1 !important;
+}
+
+/* Adjust dropdown items alignment */
+.dropdown__link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.2rem !important;
+}
 .nav__icons {
   color: #111 !important;
   text-decoration: none;
@@ -1357,6 +1558,10 @@ html {
     pointer-events: auto !important;
   }
 
+  /* STAR section border fixes for dark mode */
+  [data-theme="dark"] .star-border-red {
+    border-color: #ef4444 !important;
+  }
 
   /* Fix: Remove extra box/space above dropdown nav items in sidebar */
   .navbar-sidebar__item,
@@ -1395,66 +1600,103 @@ html {
   border-color: #ef4444 !important; 
 }
 
-[data-theme='dark'] .star-border-yellow {
-  border-color: #eab308 !important; 
+  /* Fix: Remove extra box/space above dropdown nav items in sidebar */
+  .navbar-sidebar__item,
+  .navbar-sidebar__link,
+  .navbar-sidebar__brand {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+    box-shadow: none !important;
+  }
+  .navbar-sidebar__item:first-child,
+  .navbar-sidebar__link:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+    box-shadow: none !important;
+  }
+  /* Remove any unwanted hr or divider above dropdowns */
+  .navbar-sidebar hr,
+  .navbar-sidebar__item hr {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  /* Remove grid gap above dropdowns */
+  .navbar-sidebar .grid {
+    gap: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+
+/* STAR section border fixes for dark mode */
+[data-theme='dark'] .star-border-red {
+  border-color: #ef4444 !important; 
 }
 
-[data-theme='dark'] .star-border-green {
-  border-color: #22c55e !important; 
-}
+  [data-theme="dark"] .star-border-green {
+    border-color: #22c55e !important;
+  }
 
-[data-theme='dark'] .star-border-blue {
-  border-color: #3b82f6 !important; 
-}
+  [data-theme="dark"] .star-border-blue {
+    border-color: #3b82f6 !important;
+  }
 
-[data-theme='light'] .interview-prep-page h1,
-[data-theme='light'] .interview-prep-page h2,
-[data-theme='light'] .interview-prep-page h3,
-[data-theme='light'] .interview-prep-page h4,
-[data-theme='light'] .interview-prep-page h5,
-[data-theme='light'] .interview-prep-page h6 {
-  color: #ffffff !important;
-}
+  [data-theme="light"] .interview-prep-page h1,
+  [data-theme="light"] .interview-prep-page h2,
+  [data-theme="light"] .interview-prep-page h3,
+  [data-theme="light"] .interview-prep-page h4,
+  [data-theme="light"] .interview-prep-page h5,
+  [data-theme="light"] .interview-prep-page h6 {
+    color: #ffffff !important;
+  }
 
-.watch-video-btn {
-  background-color: #dc2626; 
-  color: #ffffff; 
-  padding: 0.5rem 1rem; 
-  border-radius: 0.5rem; 
-  font-size: 0.875rem; 
-  font-weight: 500;
-  display: inline-flex; 
-  align-items: center; 
-  transition: background-color 0.2s ease-in-out; 
-}
+  .watch-video-btn {
+    background-color: #dc2626;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.2s ease-in-out;
+  }
 
-.watch-video-btn:hover {
-  background-color: #b91c1c; 
-}
+  .watch-video-btn:hover {
+    background-color: #b91c1c;
+  }
 
-[data-theme='dark'] .interview-prep-sidebar:hover {
-  border-color: #3b82f6 !important; 
-}
+  [data-theme="dark"] .interview-prep-sidebar:hover {
+    border-color: #3b82f6 !important;
+  }
 
-[data-theme='dark'] .interview-prep-sidebar {
-  border-color:#4b5563 !important; 
-}
+  [data-theme="dark"] .interview-prep-sidebar {
+    border-color: #4b5563 !important;
+  }
 
-/* Active tab in dark mode */
-[data-theme='dark'] .interview-prep-nav-tab-active {
-  border-bottom-color: #60a5fa !important; 
-  color: #60a5fa !important;
-}
+  /* Active tab in dark mode */
+  [data-theme="dark"] .interview-prep-nav-tab-active {
+    border-bottom-color: #60a5fa !important;
+    color: #60a5fa !important;
+  }
 
-/* Inactive tab in dark mode */
-[data-theme='dark'] .interview-prep-nav-tab-inactive {
-  border-bottom-color: transparent !important;
-  color: #9ca3af !important; 
-}
+  /* Inactive tab in dark mode */
+  [data-theme="dark"] .interview-prep-nav-tab-inactive {
+    border-bottom-color: transparent !important;
+    color: #9ca3af !important;
+  }
 
-[data-theme='dark'] .interview-prep-nav-tab-inactive:hover {
-  color: #d1d5db !important; 
-}
+  [data-theme="dark"] .interview-prep-nav-tab-inactive:hover {
+    color: #d1d5db !important;
+  }
+
+  .interview-prep-discord-btn {
+    color: white;
+  }
 
 .interview-prep-discord-btn{
   color:white;
