@@ -8,28 +8,19 @@ import {
   CommunityStatsProvider,
 } from "@site/src/lib/statsProvider";
 import SlotCounter from "react-slot-counter";
-import Giscus from "@giscus/react";
 import { useLocation, useHistory } from "@docusaurus/router";
+import {
+  githubService,
+  GitHubDiscussion,
+} from "@site/src/services/githubService";
+import DiscussionCard from "@site/src/components/discussions/DiscussionCard";
+import { Megaphone, Lightbulb, HelpCircle, Star, MessageCircle, Search, TrendingUp } from "lucide-react";
+import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 
 type DiscussionTab = "discussions" | "trending" | "unanswered";
 type SortOption = "most_popular" | "latest" | "oldest";
-type Category = "all" | "react" | "typescript" | "nodejs" | "python" | "ai_ml";
-
-interface Discussion {
-  id: string;
-  title: string;
-  content: string;
-  author: {
-    name: string;
-    avatar: string;
-  };
-  createdAt: string;
-  likes: number;
-  comments: number;
-  tags: string[];
-  isPinned?: boolean;
-}
+type Category = "all" | "announcements" | "ideas" | "q-a" | "show-and-tell" | "general";
 
 interface LeaderboardEntry {
   rank: number;
@@ -65,49 +56,13 @@ interface RateLimitInfo {
   limit?: number;
 }
 
-// Helper function to parse CSV data from Google Sheets
-const parseCSVToJSON = (csvText: string): any[] => {
-  const lines = csvText.trim().split("\n");
-  if (lines.length < 2) return [];
-
-  // Get headers from first line (remove quotes)
-  const headers = lines[0]
-    .split(",")
-    .map((header) => header.replace(/"/g, "").trim());
-  console.log("📋 CSV Headers found:", headers);
-
-  // Parse data rows
-  const data: any[] = [];
-
-  for (let i = 1; i < lines.length; i++) {
-    const values = lines[i]
-      .split(",")
-      .map((value) => value.replace(/"/g, "").trim());
-    const row: any = {};
-
-    headers.forEach((header, index) => {
-      if (values[index]) {
-        row[header] = values[index];
-      }
-    });
-
-    // Only add rows that have meaningful data
-    if (row[headers[0]] && row[headers[0]] !== "") {
-      data.push(row);
-    }
-  }
-
-  console.log("📊 Parsed CSV data:", data);
-  return data;
-};
-
 const categories: Category[] = [
   "all",
-  "react",
-  "typescript",
-  "nodejs",
-  "python",
-  "ai_ml",
+  "announcements", 
+  "ideas",
+  "q-a",
+  "show-and-tell",
+  "general"
 ];
 
 const DashboardContent: React.FC = () => {
@@ -123,65 +78,9 @@ const DashboardContent: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category>("all");
   const [sortBy, setSortBy] = useState<SortOption>("most_popular");
   const [searchQuery, setSearchQuery] = useState("");
-  const [discussions, setDiscussions] = useState<Discussion[]>([
-    {
-      id: "1",
-      title: "Best practices for React component optimization",
-      content:
-        "I've been working on a large React application and noticed some performance issues. What are the most effective ways to optimize React components for better performance? I'm particularly interested in memo, useMemo, and useCallback usage patterns.",
-      author: {
-        name: "Sarah Chen",
-        avatar: "/img/default-avatar.png",
-      },
-      createdAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-      likes: 24,
-      comments: 8,
-      tags: ["react", "performance", "frontend"],
-      isPinned: true,
-    },
-    {
-      id: "2",
-      title: "Building scalable microservices with Node.js",
-      content:
-        "Looking for advice on architecting microservices using Node.js. What patterns and tools do you recommend?",
-      author: {
-        name: "Mike Rodriguez",
-        avatar: "/img/default-avatar.png",
-      },
-      createdAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
-      likes: 31,
-      comments: 14,
-      tags: ["nodejs", "microservices", "architecture"],
-    },
-    {
-      id: "3",
-      title: "How to use AI/ML in Python for sentiment analysis?",
-      content:
-        "I'm new to AI/ML and want to build a sentiment analysis tool in Python. Where should I start? What libraries are recommended?",
-      author: {
-        name: "Alex Doe",
-        avatar: "/img/default-avatar.png",
-      },
-      createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-      likes: 15,
-      comments: 3,
-      tags: ["python", "ai_ml", "sentiment-analysis"],
-    },
-    {
-      id: "4",
-      title: "Getting started with TypeScript in a React project",
-      content:
-        "What are the benefits of using TypeScript with React? I'm looking for a simple guide to set it up.",
-      author: {
-        name: "Jane Smith",
-        avatar: "/img/default-avatar.png",
-      },
-      createdAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-      likes: 45,
-      comments: 0,
-      tags: ["react", "typescript"],
-    },
-  ]);
+  const [discussions, setDiscussions] = useState<GitHubDiscussion[]>([]);
+  const [discussionsLoading, setDiscussionsLoading] = useState(true);
+  const [discussionsError, setDiscussionsError] = useState<string | null>(null);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>(
@@ -211,6 +110,29 @@ const DashboardContent: React.FC = () => {
     }
   }, [location]);
 
+  // Fetch discussions when discuss tab is active
+  useEffect(() => {
+    if (activeTab === "discuss") {
+      fetchDiscussions();
+    }
+  }, [activeTab]);
+
+  const fetchDiscussions = async () => {
+    try {
+      setDiscussionsLoading(true);
+      setDiscussionsError(null);
+      const discussionsData = await githubService.fetchDiscussions(20);
+      setDiscussions(discussionsData);
+    } catch (error) {
+      console.error("Failed to fetch discussions:", error);
+      setDiscussionsError(
+        error instanceof Error ? error.message : "Failed to load discussions"
+      );
+    } finally {
+      setDiscussionsLoading(false);
+    }
+  };
+
   // Fetch leaderboard data when leaderboard tab is active
   useEffect(() => {
     if (activeTab === "leaderboard") {
@@ -227,6 +149,30 @@ const DashboardContent: React.FC = () => {
     setSelectedCategory(category);
   };
 
+  const getCategoryIcon = (category: string) => {
+    const iconMap = {
+      'all': null,
+      'announcements': <Megaphone size={14} />,
+      'ideas': <Lightbulb size={14} />,
+      'q-a': <HelpCircle size={14} />,
+      'show-and-tell': <Star size={14} />,
+      'general': <MessageCircle size={14} />
+    };
+    return iconMap[category] || null;
+  };
+
+  const getCategoryDisplayName = (category: string) => {
+    const categoryMap = {
+      'all': 'All',
+      'announcements': 'Announcements',
+      'ideas': 'Ideas', 
+      'q-a': 'Q&A',
+      'show-and-tell': 'Show & Tell',
+      'general': 'General'
+    };
+    return categoryMap[category] || category;
+  };
+
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSortBy(event.target.value as SortOption);
   };
@@ -236,18 +182,20 @@ const DashboardContent: React.FC = () => {
   };
 
   const handleNewDiscussion = () => {
-    // This could open a modal or navigate to a new discussion form
-    alert("New discussion feature coming soon!");
+    window.open(
+      "https://github.com/recodehive/recode-website/discussions/new",
+      "_blank"
+    );
   };
 
   // Filter discussions based on current state and tab
-  const getFilteredDiscussions = (discussions: Discussion[]) => {
+  const getFilteredDiscussions = (discussions: GitHubDiscussion[]) => {
     return discussions
       .filter((discussion) => {
         // First apply tab filter
         switch (activeDiscussionTab) {
           case "trending":
-            return discussion.likes > 20; // Show discussions with more than 20 likes
+            return discussion.reactions.total_count > 5; // Show discussions with more than 5 reactions
           case "unanswered":
             return discussion.comments === 0;
           default:
@@ -257,9 +205,27 @@ const DashboardContent: React.FC = () => {
       .filter((discussion) => {
         // Then apply category filter
         if (selectedCategory !== "all") {
-          return discussion.tags.some(
-            (tag) => tag.toLowerCase() === selectedCategory
-          );
+          const categoryName = discussion.category.name.toLowerCase();
+          const selectedCat = selectedCategory.toLowerCase();
+          
+          // Map GitHub discussion categories to our filter categories
+          if (selectedCat === 'q-a' && (categoryName.includes('q&a') || categoryName.includes('question'))) {
+            return true;
+          }
+          if (selectedCat === 'show-and-tell' && categoryName.includes('show')) {
+            return true;
+          }
+          if (selectedCat === 'announcements' && categoryName.includes('announcement')) {
+            return true;
+          }
+          if (selectedCat === 'ideas' && categoryName.includes('idea')) {
+            return true;
+          }
+          if (selectedCat === 'general' && (categoryName.includes('general') || categoryName.includes('discussion'))) {
+            return true;
+          }
+          
+          return categoryName.includes(selectedCat);
         }
         return true;
       })
@@ -270,28 +236,26 @@ const DashboardContent: React.FC = () => {
             discussion.title
               .toLowerCase()
               .includes(searchQuery.toLowerCase()) ||
-            discussion.content.toLowerCase().includes(searchQuery.toLowerCase())
+            discussion.body.toLowerCase().includes(searchQuery.toLowerCase())
           );
         }
         return true;
       })
       .sort((a, b) => {
-        // Pinned discussions first
-        if (a.isPinned && !b.isPinned) return -1;
-        if (!a.isPinned && b.isPinned) return 1;
-
         // Finally sort the results
         switch (sortBy) {
           case "latest":
             return (
-              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+              new Date(b.created_at).getTime() -
+              new Date(a.created_at).getTime()
             );
           case "oldest":
             return (
-              new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+              new Date(a.created_at).getTime() -
+              new Date(b.created_at).getTime()
             );
           default:
-            return b.likes - a.likes; // most_popular
+            return b.reactions.total_count - a.reactions.total_count; // most_popular
         }
       });
   };
@@ -461,11 +425,6 @@ const DashboardContent: React.FC = () => {
       }
 
       const repos = await reposResponse.json();
-      // console.log(
-      //   "📊 GitHub Repos Response:",
-      //   repos.length,
-      //   "repositories found"
-      // );
 
       if (!Array.isArray(repos)) {
         throw new Error("Invalid GitHub API response format");
@@ -489,8 +448,6 @@ const DashboardContent: React.FC = () => {
       const topRepos = repos
         .sort((a, b) => b.stargazers_count - a.stargazers_count)
         .slice(0, 10); // Limit to top 10 repos to reduce API calls
-
-      // console.log(`📊 Processing top ${topRepos.length} repositories...`);
 
       // Fetch contributors for each repository with delay to avoid rate limits
       for (let i = 0; i < topRepos.length; i++) {
@@ -580,25 +537,16 @@ const DashboardContent: React.FC = () => {
         .sort((a, b) => b.contributions - a.contributions) // Sort by contributions descending
         .map((item, index) => ({ ...item, rank: index + 1 })); // Update ranks after sorting
 
-      // console.log(
-      //   "✅ Successfully processed RecodeHive contributors data:",
-      //   transformedData.length,
-      //   "contributors"
-      // );
       setLeaderboardData(transformedData);
     } catch (error) {
       console.error("❌ Error fetching RecodeHive contributors data:", error);
       setLeaderboardError(error.message);
 
       // Load fallback demo data
-      console.log("📝 Loading demo data as fallback...");
       console.warn(
         "Using fallback leaderboard data due to GitHub API limitations"
       );
       setLeaderboardError("GitHub API rate limit reached. Showing demo data.");
-
-      // Fallback demo data with similar structure
-      console.log("📝 Loading demo data as fallback...");
       const demoData: LeaderboardEntry[] = [
         {
           rank: 1,
@@ -839,59 +787,20 @@ const DashboardContent: React.FC = () => {
     topContributors: [],
   });
 
-  // Mock data for demonstration
-  const mockLeaderboardData: LeaderboardEntry[] = [
-    {
-      rank: 1,
-      name: "Vansh Codes",
-      avatar: "https://avatars.githubusercontent.com/u/79542825?v=4",
-      contributions: 982,
-      repositories: 8,
-      achievements: ["🚀 Rising Star", "💡 Bug Hunter", "📚 Documentation"],
-      github_url: "https://github.com/vansh-codes",
-    },
-    {
-      rank: 2,
-      name: "Community Member",
-      avatar: "https://avatars.githubusercontent.com/u/79542825?v=4",
-      contributions: 756,
-      repositories: 6,
-      achievements: ["🎨 UI/UX Expert", "🔧 Feature Builder"],
-      github_url: "https://github.com/example",
-    },
-    {
-      rank: 3,
-      name: "Open Source Dev",
-      avatar: "https://avatars.githubusercontent.com/u/79542825?v=4",
-      contributions: 523,
-      repositories: 4,
-      achievements: ["🌟 First Timer", "👥 Collaborator"],
-      github_url: "https://github.com/example2",
-    },
-    {
-      rank: 4,
-      name: "Code Contributor",
-      avatar: "https://avatars.githubusercontent.com/u/79542825?v=4",
-      contributions: 401,
-      repositories: 3,
-      achievements: ["🏅 Consistent", "🔍 Code Reviewer"],
-      github_url: "https://github.com/example3",
-    },
-  ];
-
   useEffect(() => {
     setDashboardStats({
       totalContributors: githubContributorsCount,
       totalRepositories: githubReposCount,
       totalStars: githubStarCount,
       totalForks: githubForksCount,
-      topContributors: mockLeaderboardData,
+      topContributors: leaderboardData.slice(0, 4),
     });
   }, [
     githubContributorsCount,
     githubReposCount,
     githubStarCount,
     githubForksCount,
+    leaderboardData,
   ]);
 
   const StatCard: React.FC<{
@@ -978,15 +887,19 @@ const DashboardContent: React.FC = () => {
   );
 
   return (
-    <Layout title="Dashboard" description="RecodeHive Community Dashboard">
+    <Layout title="Dashboard" description="RecodeHive Community Dashboard" noFooter>
       <Head>
         <title>RecodeHive | Dashboard</title>
         <meta name="description" content="RecodeHive Community Dashboard" />
       </Head>
-      <div className={`dashboard-layout ${isMobileSidebarOpen ? 'sidebar-open' : ''}`}>
+      <div
+        className={`dashboard-layout ${
+          isMobileSidebarOpen ? "sidebar-open" : ""
+        }`}
+      >
         {/* Mobile Menu Button */}
-        <button 
-          className={`mobile-menu-btn ${isMobileSidebarOpen ? 'open' : ''}`}
+        <button
+          className={`mobile-menu-btn ${isMobileSidebarOpen ? "open" : ""}`}
           onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
           aria-label="Toggle mobile menu"
         />
@@ -1456,18 +1369,17 @@ const DashboardContent: React.FC = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="discussion-header">
-                <h1>
-                  Community <span className="highlight">Discussions</span>
+              <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+                <h1 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '1rem', color: 'var(--ifm-color-emphasis-900)' }}>
+                  Community <span style={{ background: 'linear-gradient(135deg, var(--ifm-color-primary), #e74c3c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Discussions</span>
                 </h1>
-                <p>
-                  Join the conversation, ask questions, and share your thoughts
-                  with the RecodeHive community.
+                <p style={{ fontSize: '1.2rem', color: 'var(--ifm-color-emphasis-700)', maxWidth: '700px', margin: '0 auto', lineHeight: '1.6' }}>
+                  Join the conversation, ask questions, and share your thoughts with the RecodeHive community.
                 </p>
               </div>
 
-              <div className="discussion-toolbar">
-                <div className="toolbar-left">
+              <div className="discussion-tabs">
+                <div className="tabs-left">
                   <button
                     className={`tab-btn ${
                       activeDiscussionTab === "discussions" ? "active" : ""
@@ -1482,7 +1394,7 @@ const DashboardContent: React.FC = () => {
                     }`}
                     onClick={() => handleDiscussionTabChange("trending")}
                   >
-                    🔥 Trending
+                    <TrendingUp size={16} /> Trending
                   </button>
                   <button
                     className={`tab-btn ${
@@ -1490,45 +1402,45 @@ const DashboardContent: React.FC = () => {
                     }`}
                     onClick={() => handleDiscussionTabChange("unanswered")}
                   >
-                    ❓ Unanswered
+                    <HelpCircle size={16} /> Unanswered
                   </button>
                 </div>
                 <button
                   className="new-discussion-btn"
                   onClick={handleNewDiscussion}
                 >
-                  <NavbarIcon name="plus" /> New Discussion
+                  + New Discussion
                 </button>
               </div>
 
-              <div className="categories-bar">
+              <div className="category-filters">
                 {categories.map((category) => (
-                  <div
+                  <button
                     key={category}
-                    className={`category ${
+                    className={`category-filter ${
                       selectedCategory === category ? "active" : ""
                     }`}
                     onClick={() => handleCategoryChange(category)}
                   >
-                    {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </div>
+                    {getCategoryIcon(category)}
+                    {getCategoryDisplayName(category)}
+                  </button>
                 ))}
               </div>
 
-              <div className="search-filters">
-                <div className="search-bar">
-                  <span className="searchbar-icon">
-                    <NavbarIcon name="search" />
-                  </span>
+              <div className="search-sort-container">
+                <div className="search-wrapper">
+                  <Search className="search-icon" size={20} />
                   <input
                     type="text"
-                    placeholder="Search discussions by title or content..."
+                    placeholder="Search discussions..."
                     value={searchQuery}
                     onChange={handleSearchChange}
+                    className="search-field"
                   />
                 </div>
-                <div className="sort-dropdown">
-                  <select value={sortBy} onChange={handleSortChange}>
+                <div className="sort-wrapper">
+                  <select value={sortBy} onChange={handleSortChange} className="sort-select">
                     <option value="most_popular">Most Popular</option>
                     <option value="latest">Latest</option>
                     <option value="oldest">Oldest</option>
@@ -1536,55 +1448,331 @@ const DashboardContent: React.FC = () => {
                 </div>
               </div>
 
-              <div className="discussions-list">
-                {filteredDiscussions.map((discussion) => (
-                  <div
-                    key={discussion.id}
-                    className={`discussion-item ${
-                      discussion.isPinned ? "pinned" : ""
-                    }`}
-                  >
-                    <div className="discussion-avatar">
-                      <img
-                        src={discussion.author.avatar}
-                        alt={`${discussion.author.name}'s avatar`}
-                      />
-                    </div>
-                    <div className="discussion-content">
-                      <div className="discussion-header-content">
-                        <h3>{discussion.title}</h3>
-                        {discussion.isPinned && (
-                          <span className="pinned-badge">📌 Pinned</span>
-                        )}
-                      </div>
-                      <div className="discussion-body">
-                        <p>{discussion.content}</p>
-                      </div>
-                      <div className="discussion-meta">
-                        <div className="tags">
-                          {discussion.tags.map((tag) => (
-                            <span key={tag} className="tag">
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="meta-info">
-                          <span>
-                            by <strong>{discussion.author.name}</strong>
-                          </span>
-                          <span>
-                            {new Date(
-                              discussion.createdAt
-                            ).toLocaleDateString()}
-                          </span>
-                          <span>👍 {discussion.likes}</span>
-                          <span>💬 {discussion.comments}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <div className="discussions-count">
+                <span>
+                  {filteredDiscussions.length} discussion
+                  {filteredDiscussions.length !== 1 ? "s" : ""} found
+                </span>
               </div>
+
+              {discussionsLoading ? (
+                <div className="discussions-loading">
+                  <div className="loading-spinner"></div>
+                  <p>Loading discussions...</p>
+                </div>
+              ) : discussionsError ? (
+                <div className="discussions-error">
+                  <div className="error-icon">⚠️</div>
+                  <h3>Unable to load discussions</h3>
+                  <p>{discussionsError}</p>
+                  <button className="retry-button" onClick={fetchDiscussions}>
+                    Try Again
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="discussions-grid">
+                    {filteredDiscussions.length > 0 ? (
+                      filteredDiscussions.map((discussion, index) => (
+                        <DiscussionCard
+                          key={discussion.id}
+                          discussion={discussion}
+                          index={index}
+                        />
+                      ))
+                    ) : (
+                      <div className="no-discussions">
+                        <div className="no-discussions-icon">💬</div>
+                        <h3>No discussions found</h3>
+                        <p>
+                          {searchQuery || selectedCategory !== "all"
+                            ? "Try adjusting your filters or search terms."
+                            : "Be the first to start a discussion!"}
+                        </p>
+                        <a
+                          href="https://github.com/recodehive/recode-website/discussions/new"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="start-discussion-btn"
+                        >
+                          Start a Discussion
+                        </a>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Interactive Community Engagement Section */}
+                  <motion.section
+                    style={{
+                      position: "relative",
+                      background: "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
+                      padding: "5rem 2rem",
+                      textAlign: "center",
+                      borderRadius: "24px",
+                      marginTop: "4rem",
+                      color: "white",
+                      overflow: "hidden",
+                      boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
+                    }}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}
+                  >
+                    {/* Animated Background Elements */}
+                    <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, pointerEvents: "none" }}>
+                      {[...Array(6)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          style={{
+                            position: "absolute",
+                            width: "100px",
+                            height: "100px",
+                            borderRadius: "50%",
+                            background: "rgba(255,255,255,0.1)",
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                          }}
+                          animate={{
+                            y: [-20, 20, -20],
+                            x: [-10, 10, -10],
+                            scale: [1, 1.2, 1],
+                          }}
+                          transition={{
+                            duration: 4 + Math.random() * 2,
+                            repeat: Infinity,
+                            delay: Math.random() * 2,
+                          }}
+                        />
+                      ))}
+                    </div>
+
+                    <motion.h2
+                      style={{
+                        fontSize: "3rem",
+                        fontWeight: "800",
+                        marginBottom: "1.5rem",
+                        textShadow: "0 4px 8px rgba(0,0,0,0.3)",
+                        position: "relative",
+                        zIndex: 2,
+                      }}
+                      initial={{ scale: 0.8 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                      Ready to Join the Conversation?
+                    </motion.h2>
+                    
+                    <motion.p
+                      style={{
+                        fontSize: "1.3rem",
+                        marginBottom: "3rem",
+                        opacity: "0.95",
+                        maxWidth: "650px",
+                        margin: "0 auto 3rem auto",
+                        position: "relative",
+                        zIndex: 2,
+                      }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 0.95 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                      Share your thoughts, ask questions, or help others in our community.
+                    </motion.p>
+
+                    <div style={{ display: "flex", gap: "2.5rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "3rem", position: "relative", zIndex: 2 }}>
+                      {[
+                        { emoji: "❓", text: "Ask a Question", url: "https://github.com/recodehive/recode-website/discussions/new?category=q-a", gradient: "linear-gradient(135deg, #ff6b6b, #ff8e8e)", shadow: "#ff6b6b" },
+                        { emoji: "💡", text: "Share an Idea", url: "https://github.com/recodehive/recode-website/discussions/new?category=ideas", gradient: "linear-gradient(135deg, #4ecdc4, #44a08d)", shadow: "#4ecdc4" },
+                        { emoji: "🎉", text: "Show Your Work", url: "https://github.com/recodehive/recode-website/discussions/new?category=show-and-tell", gradient: "linear-gradient(135deg, #45b7d1, #96c93d)", shadow: "#45b7d1" }
+                      ].map((item, index) => (
+                        <motion.div
+                          key={index}
+                          style={{
+                            position: "relative",
+                            perspective: "1000px",
+                          }}
+                          initial={{ opacity: 0, y: 50, rotateX: 45 }}
+                          animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                          transition={{ duration: 0.8, delay: 0.6 + index * 0.2 }}
+                        >
+                          <motion.a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              background: "rgba(255, 255, 255, 0.1)",
+                              backdropFilter: "blur(20px)",
+                              border: "1px solid rgba(255, 255, 255, 0.2)",
+                              borderRadius: "24px",
+                              padding: "2rem 1.5rem",
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+                              gap: "1.2rem",
+                              textDecoration: "none",
+                              color: "white",
+                              minWidth: "200px",
+                              minHeight: "160px",
+                              position: "relative",
+                              overflow: "hidden",
+                              boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                            }}
+                            animate={{
+                              y: [0, -5, 0],
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              delay: index * 0.5,
+                            }}
+                            whileHover={{
+                              scale: 1.05,
+                              y: -15,
+                              rotateY: 5,
+                              boxShadow: `0 25px 50px rgba(0,0,0,0.2), 0 0 30px ${item.shadow}40`,
+                              background: "rgba(255, 255, 255, 0.15)",
+                            }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            {/* Animated gradient overlay */}
+                            <motion.div
+                              style={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                background: item.gradient,
+                                opacity: 0,
+                                borderRadius: "24px",
+                              }}
+                              whileHover={{ opacity: 0.1 }}
+                              transition={{ duration: 0.3 }}
+                            />
+                            
+                            {/* Floating particles */}
+                            <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, pointerEvents: "none" }}>
+                              {[...Array(3)].map((_, i) => (
+                                <motion.div
+                                  key={i}
+                                  style={{
+                                    position: "absolute",
+                                    width: "4px",
+                                    height: "4px",
+                                    borderRadius: "50%",
+                                    background: "rgba(255,255,255,0.6)",
+                                    left: `${20 + i * 30}%`,
+                                    top: `${20 + i * 20}%`,
+                                  }}
+                                  animate={{
+                                    y: [-10, 10, -10],
+                                    opacity: [0.3, 1, 0.3],
+                                  }}
+                                  transition={{
+                                    duration: 2 + i * 0.5,
+                                    repeat: Infinity,
+                                    delay: i * 0.3,
+                                  }}
+                                />
+                              ))}
+                            </div>
+
+                            {/* Animated emoji */}
+                            <motion.div
+                              style={{
+                                fontSize: "3rem",
+                                position: "relative",
+                                zIndex: 2,
+                                filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))",
+                              }}
+                              animate={{
+                                rotate: [0, 5, -5, 0],
+                                scale: [1, 1.1, 1],
+                              }}
+                              transition={{
+                                duration: 4,
+                                repeat: Infinity,
+                                delay: index * 0.7,
+                              }}
+                              whileHover={{
+                                rotate: [0, 15, -15, 0],
+                                scale: 1.3,
+                                y: -5,
+                              }}
+                            >
+                              {item.emoji}
+                            </motion.div>
+
+                            {/* Text with glow effect */}
+                            <motion.span
+                              style={{
+                                fontSize: "1.1rem",
+                                fontWeight: "700",
+                                position: "relative",
+                                zIndex: 2,
+                                textAlign: "center",
+                                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+                              }}
+                              whileHover={{
+                                textShadow: `0 0 20px ${item.shadow}80`,
+                              }}
+                            >
+                              {item.text}
+                            </motion.span>
+
+                            {/* Shimmer effect */}
+                            <motion.div
+                              style={{
+                                position: "absolute",
+                                top: 0,
+                                left: "-100%",
+                                width: "100%",
+                                height: "100%",
+                                background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
+                                borderRadius: "24px",
+                              }}
+                              animate={{
+                                left: ['-100%', '100%'],
+                              }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                delay: index * 2,
+                              }}
+                            />
+                          </motion.a>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    <motion.div
+                      style={{
+                        borderTop: "1px solid rgba(255, 255, 255, 0.3)",
+                        paddingTop: "2rem",
+                        marginTop: "2rem",
+                        position: "relative",
+                        zIndex: 2,
+                      }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.8, delay: 1 }}
+                    >
+                      <motion.p
+                        style={{
+                          fontSize: "1rem",
+                          opacity: "0.9",
+                          margin: "0",
+                          fontWeight: "500",
+                        }}
+                        animate={{ opacity: [0.7, 1, 0.7] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                      >
+                        Join thousands of developers sharing knowledge and building together 🚀
+                      </motion.p>
+                    </motion.div>
+                  </motion.section>
+                </>
+              )}
             </motion.div>
           ) : (
             // Giveaway tab content

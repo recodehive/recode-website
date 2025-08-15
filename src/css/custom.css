@@ -19,22 +19,54 @@ body {
   transition: background-color 0.15s ease, color 0.15s ease !important;
 }
 
-/* Instant transitions for theme-sensitive elements */
-*,
-*::before,
-*::after {
+/* Instant transitions for theme-sensitive elements - exclude stat icons */
+*:not(.stat-icon):not(.stat-icon *):not(svg.lucide):not(svg.lucide *),
+*:not(.stat-icon):not(.stat-icon *):not(svg.lucide):not(svg.lucide *)::before,
+*:not(.stat-icon):not(.stat-icon *):not(svg.lucide):not(svg.lucide *)::after {
   transition: background-color 0.15s ease, color 0.15s ease,
     border-color 0.15s ease, box-shadow 0.15s ease !important;
 }
 
-/* Very fast transitions for interactive elements */
-button,
-.button,
-a,
-input,
-select,
-textarea {
+/* Completely disable styling for stat icons and Lucide SVGs */
+.stat-icon,
+.stat-icon *,
+.stat-icon svg,
+.stat-icon svg *,
+svg.lucide,
+svg.lucide *,
+[class*="lucide"],
+[class*="lucide"] * {
+  transition: none !important;
+  border: 0 !important;
+  outline: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Very fast transitions for interactive elements - exclude SVG icons */
+button:not(.stat-icon):not(.stat-icon *),
+.button:not(.stat-icon):not(.stat-icon *),
+a:not(.stat-icon):not(.stat-icon *),
+input:not(.stat-icon):not(.stat-icon *),
+select:not(.stat-icon):not(.stat-icon *),
+textarea:not(.stat-icon):not(.stat-icon *) {
   transition: all 0.1s ease !important;
+}
+
+/* Disable all transitions and borders for stat icons */
+.stat-icon,
+.stat-icon *,
+.stat-icon svg,
+.stat-icon svg *,
+svg.lucide,
+svg.lucide * {
+  transition: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 /* Navbar styling and alignment */
