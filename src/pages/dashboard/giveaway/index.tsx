@@ -1,9 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Layout from "@theme/Layout";
-import Head from "@docusaurus/Head";
-import type confettiType from "canvas-confetti";
+import React, { useEffect, useState } from 'react';
+import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
+import NavbarIcon from "../../../components/navbar/NavbarIcon";
+import { useHistory } from "@docusaurus/router";
+import type confettiType from 'canvas-confetti';
+import "../dashboard.css";
 
 const GiveawayPage: React.FC = () => {
+  const history = useHistory();
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: "--",
     hours: "--",
@@ -11,7 +17,7 @@ const GiveawayPage: React.FC = () => {
     seconds: "--",
   });
 
-  const countdownTarget = new Date("2025-08-15T23:59:59").getTime(); // Update the deadline if needed
+  const countdownTarget = new Date('2025-08-15T23:59:59').getTime();
 
   // Countdown Timer Effect
   useEffect(() => {
@@ -63,70 +69,155 @@ const GiveawayPage: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleTabChange = (tab: "home" | "discuss" | "leaderboard" | "giveaway") => {
+    setIsMobileSidebarOpen(false);
+    if (tab === "discuss") {
+      history.push("/dashboard#discuss");
+    } else if (tab === "leaderboard") {
+      history.push("/dashboard#leaderboard");
+    } else if (tab === "home") {
+      history.push("/dashboard");
+    }
+  };
+
   return (
-    <Layout>
+    <Layout title="Giveaway" description="RecodeHive Giveaway">
       <Head>
         <title>🎁 RecodeHive Giveaway</title>
       </Head>
+      <div className={`dashboard-layout ${isMobileSidebarOpen ? 'sidebar-open' : ''}`}>
+        {/* Mobile Menu Button */}
+        <button 
+          className={`mobile-menu-btn ${isMobileSidebarOpen ? 'open' : ''}`}
+          onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
+          aria-label="Toggle mobile menu"
+        />
+        
+        {/* Sidebar Navigation */}
+        <nav
+          className={`dashboard-sidebar ${
+            isSidebarCollapsed ? "collapsed" : ""
+          } ${isMobileSidebarOpen ? "show" : ""}`}
+        >
+          <div className="sidebar-header">
+            <div className="sidebar-logo">
+              <h2>RecodeHive</h2>
+            </div>
+            <button
+              className="sidebar-toggle"
+              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+              aria-label={
+                isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+              }
+            >
+              {isSidebarCollapsed ? "→" : "←"}
+            </button>
+          </div>
+          <ul className="sidebar-nav">
+            <li
+              className="nav-item"
+              onClick={() => handleTabChange("home")}
+            >
+              <span className="nav-icon">
+                <NavbarIcon name="Dashboard" />
+              </span>
+              <span className="nav-text">Home</span>
+            </li>
+            <li
+              className="nav-item"
+              onClick={() => handleTabChange("discuss")}
+            >
+              <span className="nav-icon">
+                <NavbarIcon name="Broadcast" />
+              </span>
+              <span className="nav-text">Discuss</span>
+            </li>
+            <li
+              className="nav-item"
+              onClick={() => handleTabChange("leaderboard")}
+            >
+              <span className="nav-icon">
+                <NavbarIcon name="Badges" />
+              </span>
+              <span className="nav-text">Leaderboard</span>
+            </li>
+            <li
+              className="nav-item active"
+            >
+              <span className="nav-icon">
+                <NavbarIcon name="Donate" />
+              </span>
+              <span className="nav-text">Giveaway</span>
+            </li>
+          </ul>
+          <div className="sidebar-footer">
+            <button
+              className="sidebar-toggle bottom-toggle"
+              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+              aria-label={
+                isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+              }
+            >
+              {isSidebarCollapsed ? "→" : "←"}
+            </button>
+          </div>
+        </nav>
 
-      <div className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white py-10 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">
-            🎉 RecodeHive Giveaway
-          </h1>
-          <p className="text-lg mb-8">
-            Participate now and win exclusive swag, resources, and more!
-          </p>
+        <main
+          className={`dashboard-main ${
+            isSidebarCollapsed ? "sidebar-collapsed" : ""
+          }`}
+        >
+          <div className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white py-10 px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h1 className="text-4xl sm:text-5xl font-bold mb-6">🎉 RecodeHive Giveaway</h1>
+              <p className="text-lg mb-8">Participate now and win exclusive swag, resources, and more!</p>
 
-          <div className="flex justify-center gap-4 text-center mb-12">
-            {["days", "hours", "minutes", "seconds"].map((unit) => (
-              <div
-                key={unit}
-                className="bg-white/10 px-6 py-4 rounded-xl shadow-md"
-              >
-                <div className="text-3xl font-bold">
-                  {timeLeft[unit as keyof typeof timeLeft]}
-                </div>
-                <div className="text-sm uppercase tracking-widest">{unit}</div>
+              <div className="flex justify-center gap-4 text-center mb-12">
+                {['days', 'hours', 'minutes', 'seconds'].map((unit) => (
+                  <div key={unit} className="bg-white/10 px-6 py-4 rounded-xl shadow-md">
+                    <div className="text-3xl font-bold">{timeLeft[unit as keyof typeof timeLeft]}</div>
+                    <div className="text-sm uppercase tracking-widest">{unit}</div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <div className="bg-white/10 p-6 rounded-xl shadow-xl mb-10">
-            <h2 className="text-2xl font-semibold mb-4">🏆 Leaderboard</h2>
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="border-b border-white/20">
-                  <th className="pb-2 text-center">Rank</th>
-                  <th className="pb-2 text-center">Username</th>
-                  <th className="pb-2 text-center">Points</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-white/10">
-                  <td className="text-center">1</td>
-                  <td className="text-center">OpenSourcePro</td>
-                  <td className="text-center">1200</td>
-                </tr>
-                <tr className="border-b border-white/10">
-                  <td className="text-center">2</td>
-                  <td className="text-center">CodeWizard</td>
-                  <td className="text-center">950</td>
-                </tr>
-                <tr>
-                  <td className="text-center">3</td>
-                  <td className="text-center">DevChampion</td>
-                  <td className="text-center">875</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+              <div className="bg-white/10 p-6 rounded-xl shadow-xl mb-10">
+                <h2 className="text-2xl font-semibold mb-4">🏆 Leaderboard</h2>
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="border-b border-white/20">
+                      <th className="pb-2">Rank</th>
+                      <th className="pb-2">Username</th>
+                      <th className="pb-2">Points</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b border-white/10">
+                      <td>1</td>
+                      <td>OpenSourcePro</td>
+                      <td>1200</td>
+                    </tr>
+                    <tr className="border-b border-white/10">
+                      <td>2</td>
+                      <td>CodeWizard</td>
+                      <td>950</td>
+                    </tr>
+                    <tr>
+                      <td>3</td>
+                      <td>DevChampion</td>
+                      <td>875</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
 
-          <p className="text-sm text-white text-opacity-60 italic">
-            Winners will be announced after the countdown ends. Stay active on
-            the dashboard to climb up the leaderboard!
-          </p>
-        </div>
+              <p className="text-sm text-white text-opacity-60 italic">
+                Winners will be announced after the countdown ends. Stay active on the dashboard to climb up the leaderboard!
+              </p>
+            </div>
+          </div>
+        </main>
       </div>
     </Layout>
   );
