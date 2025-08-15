@@ -1558,10 +1558,43 @@ html {
     pointer-events: auto !important;
   }
 
-  /* STAR section border fixes for dark mode */
-  [data-theme="dark"] .star-border-red {
-    border-color: #ef4444 !important;
+
+  /* Fix: Remove extra box/space above dropdown nav items in sidebar */
+  .navbar-sidebar__item,
+  .navbar-sidebar__link,
+  .navbar-sidebar__brand {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+    box-shadow: none !important;
   }
+  .navbar-sidebar__item:first-child,
+  .navbar-sidebar__link:first-child {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-top: none !important;
+    box-shadow: none !important;
+  }
+  /* Remove any unwanted hr or divider above dropdowns */
+  .navbar-sidebar hr,
+  .navbar-sidebar__item hr {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+  }
+  /* Remove grid gap above dropdowns */
+  .navbar-sidebar .grid {
+    gap: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+}
+
+/* STAR section border fixes for dark mode */
+[data-theme='dark'] .star-border-red {
+  border-color: #ef4444 !important; 
+}
 
   [data-theme="dark"] .star-border-yellow {
     border-color: #eab308 !important;
@@ -1628,38 +1661,18 @@ html {
     color: white;
   }
 
-  [data-theme="dark"].interview-prep-join-comm {
-    border-color: #854d0e;
-  }
-
-  /* Fix: Remove extra box/space above dropdown nav items in sidebar */
-  .navbar-sidebar__item,
-  .navbar-sidebar__link,
-  .navbar-sidebar__brand {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    border-top: none !important;
-    box-shadow: none !important;
-  }
-  .navbar-sidebar__item:first-child,
-  .navbar-sidebar__link:first-child {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    border-top: none !important;
-    box-shadow: none !important;
-  }
-  /* Remove any unwanted hr or divider above dropdowns */
-  .navbar-sidebar hr,
-  .navbar-sidebar__item hr {
-    display: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-  }
-  /* Remove grid gap above dropdowns */
-  .navbar-sidebar .grid {
-    gap: 0 !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
+[data-theme='dark'] .overview-sidebar-blue{
+  border-color:#3b82f6
 }
+[data-theme='dark'] .overview-sidebar-green{
+  border-color:#22c55e
+}
+[data-theme='dark'] .overview-sidebar-yellow{
+  border-color:#eab308
+}
+[data-theme='dark'] .overview-sidebar-purple{
+  border-color: #a855f7
+
+}
+
+
