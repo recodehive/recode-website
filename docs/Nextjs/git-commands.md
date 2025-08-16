@@ -11,7 +11,6 @@ description: In this tutorial, you will learn about the basic of git and 50 impo
 
 I can create like teaching how to fork and clone and making changes. HTML, which stands for **HyperText Markup Language**, serves as the backbone of the World Wide Web. It is the standard language used to create web pages, providing the structure and content that browsers render for users to interact with. Understanding how HTML works with web browsers is fundamental for anyone diving into web development.
 
-< />
 
 ## Understanding Git: The Building Blocks
 
@@ -33,8 +32,6 @@ HTML is a markup language that uses tags to define the structure and content of 
 
 In this example, the `<h1>` tag creates a heading, and the `<p>` tag creates a paragraph. The browser interprets these tags and displays the content accordingly. HTML tags can be nested within each other to create more complex structures, such as lists, tables, forms, and more.
 
-
-< />
 
 ## How Web Browsers Render HTML
 
@@ -106,7 +103,6 @@ When a user requests a web page by entering a URL in the browser's address bar o
     :::
 By understanding how web browsers render HTML content, web developers can optimize their code and design to create fast and responsive web pages. Techniques such as minimizing the use of inline styles, reducing the number of DOM elements, and optimizing images can help improve the performance of web pages and provide a better user experience.
 
-< />
 
 ## Useful 50 Git Commands Cheatsheet
 
@@ -307,10 +303,6 @@ git push -u origin main #Push changes to remote repository and remember the bran
     :::
 By managing these resources efficiently, web developers can create engaging and interactive web pages that deliver a rich user experience. Understanding how HTML works with web browsers and how browsers render content is essential for building modern web applications that meet user expectations and performance standards.
 
-< />
-
-
-< />
 
 ## Conclusion
 
