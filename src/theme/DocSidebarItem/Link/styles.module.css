@@ -1,0 +1,77 @@
+.linkItem {
+  margin: 0;
+  width: 100%;
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  padding: 0.55rem 0.75rem;
+  padding-left: 2.75rem; /* Indent links more than categories */
+  font-size: 0.9rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  margin: 0.15rem 0;
+  opacity: 0.9;
+  position: relative;
+}
+
+.menuLink:hover {
+  background-color: rgba(72, 187, 120, 0.08);
+  text-decoration: none;
+  transform: translateX(4px);
+  opacity: 1;
+  color: #38a169;
+  box-shadow: 0 2px 6px rgba(72, 187, 120, 0.07);
+}
+
+.linkContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.linkDot {
+  width: 6px;
+  height: 6px;
+  background-color: rgba(28, 38, 32, 0.4);
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+  /* Make dots less visible by default */
+  opacity: 0.5;
+}
+
+/* Only show the green dot for truly active items */
+.menu__link--active .linkDot {
+  background-color: #38a169;
+  opacity: 1;
+}
+
+/* Active link styling */
+.menu__link--active .linkIcon {
+  color: #2f855a;
+}
+
+.activeIndicator {
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+  color: #38a169;
+}
+
+/* Dark mode adjustments */
+html[data-theme="dark"] .menu__link--active {
+  background-color: rgba(72, 187, 120, 0.2);
+  color: #9ae6b4;
+}
+
+html[data-theme="dark"] .linkDot {
+  background-color: rgba(154, 230, 180, 0.4);
+}
+
+html[data-theme="dark"] .menu__link--active .linkDot {
+  background-color: #9ae6b4;
+  box-shadow: 0 0 8px #68d391;
+}

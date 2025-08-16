@@ -1,0 +1,253 @@
+.categoryItem {
+  margin: 0;
+  width: 100%;
+}
+
+/* Adding specific styling for the GitHub category to move it down */
+.custom-sidebar-github {
+  margin-top: 1.5rem;
+}
+
+.categoryHeader {
+  display: flex;
+  width: 100%;
+}
+
+.categoryHeaderActive {
+  background-color: rgba(72, 187, 120, 0.15);
+  box-shadow: 0 2px 8px rgba(72, 187, 120, 0.12);
+}
+
+.categoryLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease;
+  border-radius: 8px;
+  font-weight: 500;
+  margin: 0.2rem 0;
+}
+
+.categoryLink:hover {
+  background-color: rgba(72, 187, 120, 0.08);
+  text-decoration: none;
+  transform: translateX(4px);
+  color: #38a169;
+}
+
+.categoryLinkContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.categoryIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  color: #38a169;
+  stroke-width: 1.5px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+/* Green-themed icon colors with varying shades */
+.githubIcon {
+  color: #2f855a;
+}
+
+.pythonIcon {
+  color: #38a169;
+}
+
+.sqlIcon {
+  color: #48bb78;
+}
+
+.nextjsIcon {
+  color: #276749;
+}
+
+.gsaIcon {
+  color: #68d391;
+}
+
+.technicalIcon {
+  color: #9ae6b4;
+}
+
+/* Scale up icons on hover */
+.categoryLink:hover .categoryIcon {
+  transform: scale(1.15);
+}
+
+.categoryLabel {
+  flex: 1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.categoryLink:hover .categoryLabel {
+  color: #38a169;
+}
+
+.categoryCollapseIcon {
+  color: #38a169;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.categoryLink:hover .categoryCollapseIcon {
+  opacity: 1;
+  transform: rotate(-5deg);
+}
+
+.chevronIcon {
+  transition: transform 0.2s ease;
+}
+
+.menu__link--active .chevronIcon {
+  color: var(--ifm-color-primary);
+}
+
+.categoryItem.menu__list-item--collapsed .categoryCollapseIcon {
+  opacity: 0.6;
+}
+
+.categoryList {
+  padding-left: 1rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.5rem; /* Add bottom margin for spacing */
+  max-height: 2000px; /* Increase max height to accommodate more items */
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  overflow: visible; /* Change to visible to prevent items from being cut off */
+  opacity: 1;
+}
+
+.menu__list-item--collapsed .categoryList {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out,
+    margin-top 0.2s ease-in-out, margin-bottom 0.2s ease-in-out;
+}
+
+/* Styling for subcategories */
+.categoryLevel1 > .categoryHeader > .categoryLink {
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+.categoryLevel2 > .categoryHeader > .categoryLink {
+  padding-left: 2rem;
+  font-size: 0.85rem;
+}
+
+/* Active category styling */
+.menu__link--active {
+  background-color: rgba(72, 187, 120, 0.15);
+  color: #2f855a;
+  transform: translateX(4px);
+  position: relative;
+  border-left: 1px solid #38a169;
+}
+
+.menu__link--active .categoryIcon {
+  color: #2f855a;
+  transform: scale(1.1);
+}
+
+/* Sidebar container styling */
+.sidebar {
+  padding: 1rem 0.5rem;
+  transition: width 0.2s ease;
+}
+
+/* Custom sidebar theme base styles */
+.custom-sidebar-github .categoryLink,
+.custom-sidebar-python .categoryLink,
+.custom-sidebar-sql .categoryLink,
+.custom-sidebar-nextjs .categoryLink,
+.custom-sidebar-gsa .categoryLink,
+.custom-sidebar-technical .categoryLink {
+  background-color: rgba(72, 187, 120, 0.05);
+  /* border-radius: 8px; */
+}
+
+.custom-sidebar-github .categoryLink:hover,
+.custom-sidebar-python .categoryLink:hover,
+.custom-sidebar-sql .categoryLink:hover,
+.custom-sidebar-nextjs .categoryLink:hover,
+.custom-sidebar-gsa .categoryLink:hover,
+.custom-sidebar-technical .categoryLink:hover {
+  background-color: rgba(72, 187, 120, 0.1);
+  box-shadow: 0 2px 6px rgba(72, 187, 120, 0.1);
+}
+
+/* Icon colors */
+.custom-sidebar-github .categoryLink .categoryIcon {
+  color: #2f855a;
+}
+
+.custom-sidebar-python .categoryLink .categoryIcon {
+  color: #38a169;
+}
+
+.custom-sidebar-sql .categoryLink .categoryIcon {
+  color: #48bb78;
+}
+
+.custom-sidebar-nextjs .categoryLink .categoryIcon {
+  color: #276749;
+}
+
+.custom-sidebar-gsa .categoryLink .categoryIcon {
+  color: #68d391;
+}
+
+.custom-sidebar-technical .categoryLink .categoryIcon {
+  color: #9ae6b4;
+}
+
+/* Modern additions for enhanced user experience */
+.categoryLink {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle hover effect */
+.categoryLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(to right, #38a169, #9ae6b4);
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.categoryLink:hover::after {
+  width: 100%;
+}
+
+/* Dark mode adjustments */
+html[data-theme="dark"] .categoryLink:hover {
+  background-color: rgba(72, 187, 120, 0.12);
+  color: #9ae6b4;
+}
+
+html[data-theme="dark"] .menu__link--active {
+  background-color: rgba(72, 187, 120, 0.2);
+  color: #9ae6b4;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}

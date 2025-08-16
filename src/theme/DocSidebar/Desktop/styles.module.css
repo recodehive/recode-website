@@ -1,0 +1,79 @@
+.sidebar {
+  height: 100vh;
+  min-height: 100vh; /* Ensure sidebar takes full viewport height */
+  position: sticky;
+  top: 0;
+  padding: 0;
+  transition: all 0.3s ease;
+  width: var(--doc-sidebar-width);
+  will-change: width;
+  z-index: calc(var(--ifm-z-index-fixed) - 1);
+  background-color: var(--ifm-background-color);
+  border-right: 1px solid var(--ifm-toc-border-color);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: visible; /* Change from hidden to visible to allow dropdowns to extend */
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(240, 242, 245, 0.05) 100%
+  );
+}
+
+.sidebarWithHideableNavbar {
+  padding-top: 0;
+}
+
+.sidebarHidden {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.sidebarTop {
+  height: 0;
+  margin: 0;
+  padding: 0;
+  display: none; /* Hide the element completely */
+}
+
+.sidebarLogo {
+  display: none; /* Hide the logo */
+}
+
+.sidebarInner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-top: 1rem; /* Add top padding to give space for the first item */
+  overflow: visible; /* Ensure content isn't cut off */
+}
+
+.menu {
+  padding: 1.25rem 0.5rem;
+  padding-top: 2.5rem; /* Significantly increase top padding to move GitHub down */
+  padding-bottom: 3rem; /* Add extra padding at bottom to prevent items from being cut off */
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: none; /* Ensure menu can grow as needed */
+}
+
+.sidebarTop {
+  padding: 1rem;
+  border-bottom: 1px solid var(--ifm-toc-border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    to right,
+    rgba(235, 237, 240, 0.8),
+    rgba(245, 247, 250, 0.8)
+  );
+}
+
+@media (max-width: 996px) {
+  .sidebar {
+    display: none;
+  }
+}
