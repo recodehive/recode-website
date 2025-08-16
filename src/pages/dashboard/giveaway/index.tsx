@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
-import NavbarIcon from "../../../components/navbar/NavbarIcon";
 import { useHistory } from "@docusaurus/router";
 import type confettiType from 'canvas-confetti';
 import "../dashboard.css";
@@ -118,35 +117,27 @@ const GiveawayPage: React.FC = () => {
               className="nav-item"
               onClick={() => handleTabChange("home")}
             >
-              <span className="nav-icon">
-                <NavbarIcon name="Dashboard" />
-              </span>
+              <span className="nav-icon">📊</span>
               <span className="nav-text">Home</span>
             </li>
             <li
               className="nav-item"
               onClick={() => handleTabChange("discuss")}
             >
-              <span className="nav-icon">
-                <NavbarIcon name="Broadcast" />
-              </span>
+              <span className="nav-icon">📺</span>
               <span className="nav-text">Discuss</span>
             </li>
             <li
               className="nav-item"
               onClick={() => handleTabChange("leaderboard")}
             >
-              <span className="nav-icon">
-                <NavbarIcon name="Badges" />
-              </span>
+              <span className="nav-icon">🏅</span>
               <span className="nav-text">Leaderboard</span>
             </li>
             <li
               className="nav-item active"
             >
-              <span className="nav-icon">
-                <NavbarIcon name="Donate" />
-              </span>
+              <span className="nav-icon">💰</span>
               <span className="nav-text">Giveaway</span>
             </li>
           </ul>

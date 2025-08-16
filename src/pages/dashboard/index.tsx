@@ -1,4 +1,3 @@
-import NavbarIcon from "../../components/navbar/NavbarIcon";
 import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
@@ -14,7 +13,6 @@ import {
   GitHubDiscussion,
 } from "@site/src/services/githubService";
 import DiscussionCard from "@site/src/components/discussions/DiscussionCard";
-import { Megaphone, Lightbulb, HelpCircle, Star, MessageCircle, Search, TrendingUp } from "lucide-react";
 import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 
@@ -152,11 +150,11 @@ const DashboardContent: React.FC = () => {
   const getCategoryIcon = (category: string) => {
     const iconMap = {
       'all': null,
-      'announcements': <Megaphone size={14} />,
-      'ideas': <Lightbulb size={14} />,
-      'q-a': <HelpCircle size={14} />,
-      'show-and-tell': <Star size={14} />,
-      'general': <MessageCircle size={14} />
+      'announcements': '📢',
+      'ideas': '💡',
+      'q-a': '❓',
+      'show-and-tell': '⭐',
+      'general': '💬'
     };
     return iconMap[category] || null;
   };
@@ -928,18 +926,14 @@ const DashboardContent: React.FC = () => {
               className={`nav-item ${activeTab === "home" ? "active" : ""}`}
               onClick={() => handleTabChange("home")}
             >
-              <span className="nav-icon">
-                <NavbarIcon name="Dashboard" />
-              </span>
+              <span className="nav-icon">📊</span>
               <span className="nav-text">Home</span>
             </li>
             <li
               className={`nav-item ${activeTab === "discuss" ? "active" : ""}`}
               onClick={() => handleTabChange("discuss")}
             >
-              <span className="nav-icon">
-                <NavbarIcon name="Broadcast" />
-              </span>
+              <span className="nav-icon">📺</span>
               <span className="nav-text">Discuss</span>
             </li>
             <li
@@ -948,18 +942,14 @@ const DashboardContent: React.FC = () => {
               }`}
               onClick={() => handleTabChange("leaderboard")}
             >
-              <span className="nav-icon">
-                <NavbarIcon name="Badges" />
-              </span>
+              <span className="nav-icon">🏅</span>
               <span className="nav-text">Leaderboard</span>
             </li>
             <li
               className={`nav-item ${activeTab === "giveaway" ? "active" : ""}`}
               onClick={() => handleTabChange("giveaway")}
             >
-              <span className="nav-icon">
-                <NavbarIcon name="Donate" />
-              </span>
+              <span className="nav-icon">💰</span>
               <span className="nav-text">Giveaway</span>
             </li>
           </ul>
@@ -1394,7 +1384,7 @@ const DashboardContent: React.FC = () => {
                     }`}
                     onClick={() => handleDiscussionTabChange("trending")}
                   >
-                    <TrendingUp size={16} /> Trending
+                    📈 Trending
                   </button>
                   <button
                     className={`tab-btn ${
@@ -1402,7 +1392,7 @@ const DashboardContent: React.FC = () => {
                     }`}
                     onClick={() => handleDiscussionTabChange("unanswered")}
                   >
-                    <HelpCircle size={16} /> Unanswered
+                    ❓ Unanswered
                   </button>
                 </div>
                 <button
@@ -1430,7 +1420,7 @@ const DashboardContent: React.FC = () => {
 
               <div className="search-sort-container">
                 <div className="search-wrapper">
-                  <Search className="search-icon" size={20} />
+                  <span className="search-icon">🔍</span>
                   <input
                     type="text"
                     placeholder="Search discussions..."
