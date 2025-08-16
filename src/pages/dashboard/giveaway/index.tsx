@@ -11,10 +11,10 @@ const GiveawayPage: React.FC = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
-    days: '--',
-    hours: '--',
-    minutes: '--',
-    seconds: '--',
+    days: "--",
+    hours: "--",
+    minutes: "--",
+    seconds: "--",
   });
 
   const countdownTarget = new Date('2025-08-15T23:59:59').getTime();
@@ -28,18 +28,22 @@ const GiveawayPage: React.FC = () => {
       if (distance <= 0) {
         clearInterval(interval);
         setTimeLeft({
-          days: '00',
-          hours: '00',
-          minutes: '00',
-          seconds: '00',
+          days: "00",
+          hours: "00",
+          minutes: "00",
+          seconds: "00",
         });
         return;
       }
 
       setTimeLeft({
         days: String(Math.floor(distance / (1000 * 60 * 60 * 24))),
-        hours: String(Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))),
-        minutes: String(Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))),
+        hours: String(
+          Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        ),
+        minutes: String(
+          Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
+        ),
         seconds: String(Math.floor((distance % (1000 * 60)) / 1000)),
       });
     }, 1000);
@@ -50,7 +54,7 @@ const GiveawayPage: React.FC = () => {
   // Confetti Effect
   useEffect(() => {
     const runConfetti = async () => {
-      const module = await import('canvas-confetti');
+      const module = await import("canvas-confetti");
       const confetti = module.default as typeof confettiType;
 
       confetti({
