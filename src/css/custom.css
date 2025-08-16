@@ -1306,10 +1306,6 @@ html {
   }
 }
 
-/* STAR section border fixes for dark mode */
-[data-theme="dark"] .star-border-red {
-  border-color: #ef4444 !important;
-}
 
 /* Fix: Remove extra box/space above dropdown nav items in sidebar */
 .navbar-sidebar__item,
@@ -1355,14 +1351,18 @@ html {
   border-color: #3b82f6 !important;
 }
 
-[data-theme="light"] .interview-prep-page h1,
-[data-theme="light"] .interview-prep-page h2,
-[data-theme="light"] .interview-prep-page h3,
-[data-theme="light"] .interview-prep-page h4,
-[data-theme="light"] .interview-prep-page h5,
-[data-theme="light"] .interview-prep-page h6 {
-  color: #ffffff !important;
-}
+   [data-theme="dark"] .star-border-yellow {
+    border-color: #eab308 !important;
+  }
+
+  [data-theme="light"] .interview-prep-page h1,
+  [data-theme="light"] .interview-prep-page h2,
+  [data-theme="light"] .interview-prep-page h3,
+  [data-theme="light"] .interview-prep-page h4,
+  [data-theme="light"] .interview-prep-page h5,
+  [data-theme="light"] .interview-prep-page h6 {
+    color: #ffffff !important;
+  }
 
 .watch-video-btn {
   background-color: #dc2626;
@@ -1514,6 +1514,7 @@ html {
   }
 }
 
+
 .navbar__items--right .navbar__item {
   display: flex !important;
   align-items: center !important;
@@ -1529,3 +1530,73 @@ html {
   justify-content: center !important;
   box-sizing: border-box !important;
 }
+
+.explore-btn:hover{
+  color:white;
+}
+
+.custom-input {
+  background-color: #374151;
+  color:white; /* cyan-500 */
+}
+.company-border{
+  border-color:#6b7280;
+  color:white;
+}
+.company-blue-border{
+  border-color:#3b82f6 ;
+}
+.company-green-border{
+  border-color: #22c55e;
+}
+.company-purple-border{
+  border-color: #a855f7;
+}
+
+/* System Design */
+[data-theme='dark'] .badge-system {
+  border-color: #60a5fa; /* dark:border-blue-300 */
+  color: #60a5fa;        /* dark:text-blue-300 */
+  background-color: rgba(30, 64, 175, 0.2); /* dark:bg-blue-900/20 */
+}
+
+/* Behavioral */
+[data-theme='dark'] .badge-behavioral {
+  border-color: #4ade80;
+  color: #4ade80;
+  background-color: rgba(20, 83, 45, 0.2);
+}
+
+/* Technical */
+
+[data-theme='dark'] .badge-technical {
+  border-color: #c084fc;
+  color: #c084fc;
+  background-color: rgba(88, 28, 135, 0.2);
+}
+
+
+[data-theme='dark'] .badge-other {
+  border-color: #fb923c;
+  color: #fb923c;
+  background-color: rgba(124, 45, 18, 0.2);
+}
+
+[data-theme='dark'] .question-card {
+  border-color: #1f2937; /* border-gray-800 */
+  background-color: #1f2937; /* bg-gray-800 */
+}
+.company-tab-link{
+  color: white;
+}
+.company-tab-link:hover{
+  color: white;
+}
+.company-tab-community-link{
+  color: #fdba74;
+}
+.company-tab-community-link:hover{
+  color: #fdba74;
+  text-decoration: none;
+}
+
