@@ -14,13 +14,27 @@ import {
   GitHubDiscussion,
 } from "@site/src/services/githubService";
 import DiscussionCard from "@site/src/components/discussions/DiscussionCard";
-import { Megaphone, Lightbulb, HelpCircle, Star, MessageCircle, Search, TrendingUp } from "lucide-react";
+import {
+  Megaphone,
+  Lightbulb,
+  HelpCircle,
+  Star,
+  MessageCircle,
+  Search,
+  TrendingUp,
+} from "lucide-react";
 import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 
 type DiscussionTab = "discussions" | "trending" | "unanswered";
 type SortOption = "most_popular" | "latest" | "oldest";
-type Category = "all" | "announcements" | "ideas" | "q-a" | "show-and-tell" | "general";
+type Category =
+  | "all"
+  | "announcements"
+  | "ideas"
+  | "q-a"
+  | "show-and-tell"
+  | "general";
 
 interface LeaderboardEntry {
   rank: number;
@@ -58,18 +72,18 @@ interface RateLimitInfo {
 
 const categories: Category[] = [
   "all",
-  "announcements", 
+  "announcements",
   "ideas",
   "q-a",
   "show-and-tell",
-  "general"
+  "general",
 ];
 
 const DashboardContent: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
   const [activeTab, setActiveTab] = useState<
-    "home" | "discuss" | "leaderboard" | "giveaway"
+    "home" | "discuss" | "leaderboard" | "giveaway" | "contributors"
   >("home");
 
   // Discussion state management
@@ -103,6 +117,8 @@ const DashboardContent: React.FC = () => {
       setActiveTab("discuss");
     } else if (location.hash === "#leaderboard") {
       setActiveTab("leaderboard");
+    } else if (location.hash === "#contributors") {
+      setActiveTab("contributors");
     } else if (location.hash === "#giveaway") {
       setActiveTab("giveaway");
     } else {
@@ -133,9 +149,9 @@ const DashboardContent: React.FC = () => {
     }
   };
 
-  // Fetch leaderboard data when leaderboard tab is active
+  // Fetch leaderboard data when leaderboard or contributors tab is active
   useEffect(() => {
-    if (activeTab === "leaderboard") {
+    if (activeTab === "leaderboard" || activeTab === "contributors") {
       fetchLeaderboardData();
     }
   }, [activeTab]);
@@ -151,24 +167,24 @@ const DashboardContent: React.FC = () => {
 
   const getCategoryIcon = (category: string) => {
     const iconMap = {
-      'all': null,
-      'announcements': <Megaphone size={14} />,
-      'ideas': <Lightbulb size={14} />,
-      'q-a': <HelpCircle size={14} />,
-      'show-and-tell': <Star size={14} />,
-      'general': <MessageCircle size={14} />
+      all: null,
+      announcements: <Megaphone size={14} />,
+      ideas: <Lightbulb size={14} />,
+      "q-a": <HelpCircle size={14} />,
+      "show-and-tell": <Star size={14} />,
+      general: <MessageCircle size={14} />,
     };
     return iconMap[category] || null;
   };
 
   const getCategoryDisplayName = (category: string) => {
     const categoryMap = {
-      'all': 'All',
-      'announcements': 'Announcements',
-      'ideas': 'Ideas', 
-      'q-a': 'Q&A',
-      'show-and-tell': 'Show & Tell',
-      'general': 'General'
+      all: "All",
+      announcements: "Announcements",
+      ideas: "Ideas",
+      "q-a": "Q&A",
+      "show-and-tell": "Show & Tell",
+      general: "General",
     };
     return categoryMap[category] || category;
   };
@@ -207,24 +223,37 @@ const DashboardContent: React.FC = () => {
         if (selectedCategory !== "all") {
           const categoryName = discussion.category.name.toLowerCase();
           const selectedCat = selectedCategory.toLowerCase();
-          
+
           // Map GitHub discussion categories to our filter categories
-          if (selectedCat === 'q-a' && (categoryName.includes('q&a') || categoryName.includes('question'))) {
+          if (
+            selectedCat === "q-a" &&
+            (categoryName.includes("q&a") || categoryName.includes("question"))
+          ) {
             return true;
           }
-          if (selectedCat === 'show-and-tell' && categoryName.includes('show')) {
+          if (
+            selectedCat === "show-and-tell" &&
+            categoryName.includes("show")
+          ) {
             return true;
           }
-          if (selectedCat === 'announcements' && categoryName.includes('announcement')) {
+          if (
+            selectedCat === "announcements" &&
+            categoryName.includes("announcement")
+          ) {
             return true;
           }
-          if (selectedCat === 'ideas' && categoryName.includes('idea')) {
+          if (selectedCat === "ideas" && categoryName.includes("idea")) {
             return true;
           }
-          if (selectedCat === 'general' && (categoryName.includes('general') || categoryName.includes('discussion'))) {
+          if (
+            selectedCat === "general" &&
+            (categoryName.includes("general") ||
+              categoryName.includes("discussion"))
+          ) {
             return true;
           }
-          
+
           return categoryName.includes(selectedCat);
         }
         return true;
@@ -638,7 +667,7 @@ const DashboardContent: React.FC = () => {
   };
 
   const handleTabChange = (
-    tab: "home" | "discuss" | "leaderboard" | "giveaway"
+    tab: "home" | "discuss" | "leaderboard" | "giveaway" | "contributors"
   ) => {
     setActiveTab(tab);
     setIsMobileSidebarOpen(false); // Close mobile sidebar
@@ -650,6 +679,9 @@ const DashboardContent: React.FC = () => {
       window.scrollTo(0, 0);
     } else if (tab === "giveaway") {
       history.push("/dashboard/giveaway");
+      window.scrollTo(0, 0);
+    } else if (tab === "contributors") {
+      history.push("#contributors");
       window.scrollTo(0, 0);
     } else {
       history.push("#");
@@ -887,7 +919,11 @@ const DashboardContent: React.FC = () => {
   );
 
   return (
-    <Layout title="Dashboard" description="RecodeHive Community Dashboard" noFooter>
+    <Layout
+      title="Dashboard"
+      description="RecodeHive Community Dashboard"
+      noFooter
+    >
       <Head>
         <title>RecodeHive | Dashboard</title>
         <meta name="description" content="RecodeHive Community Dashboard" />
@@ -962,6 +998,17 @@ const DashboardContent: React.FC = () => {
               </span>
               <span className="nav-text">Giveaway</span>
             </li>
+            <li
+              className={`nav-item ${
+                activeTab === "contributors" ? "active" : ""
+              }`}
+              onClick={() => handleTabChange("contributors")}
+            >
+              <span className="nav-icon">
+                <NavbarIcon name="Community" />
+              </span>
+              <span className="nav-text">Contributors</span>
+            </li>
           </ul>
           <div className="sidebar-footer">
             <button
@@ -983,7 +1030,645 @@ const DashboardContent: React.FC = () => {
           onClick={() => isSidebarCollapsed && setIsSidebarCollapsed(false)}
         >
           {activeTab === "leaderboard" ? (
-            /* Enhanced Leaderboard Tab with Filter Buttons */
+            /* Leaderboard Tab */
+            <motion.section
+              className="dashboard-hero"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <div className="hero-content">
+                <h1 className="dashboard-title">
+                  🏆 RecodeHive <span className="highlight">Leaderboard</span>
+                </h1>
+                <p className="dashboard-subtitle">Coming soon...</p>
+              </div>
+            </motion.section>
+          ) : activeTab === "home" ? (
+            // Home tab content
+            <div>
+              <motion.section
+                className="dashboard-hero"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+              >
+                <div className="hero-content">
+                  <h1 className="dashboard-title">
+                    Community <span className="highlight">Dashboard</span>
+                  </h1>
+                  <p className="dashboard-subtitle">
+                    Track our community's growth, celebrate top contributors,
+                    and explore project statistics
+                  </p>
+                </div>
+              </motion.section>
+
+              {/* Stats Grid */}
+              <motion.section
+                className="dashboard-stats-section"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="dashboard-stats-grid">
+                  <StatCard
+                    icon="⭐"
+                    title="Total Stars"
+                    value={dashboardStats.totalStars}
+                    valueText={githubStarCountText}
+                    description="Stars across all repositories"
+                  />
+                  <StatCard
+                    icon="👥"
+                    title="Contributors"
+                    value={dashboardStats.totalContributors}
+                    valueText={githubContributorsCountText}
+                    description="Amazing community members"
+                  />
+                  <StatCard
+                    icon="📚"
+                    title="Repositories"
+                    value={dashboardStats.totalRepositories}
+                    valueText={githubReposCountText}
+                    description="Open source projects"
+                  />
+                  <StatCard
+                    icon="🍴"
+                    title="Forks"
+                    value={dashboardStats.totalForks}
+                    valueText={githubForksCountText}
+                    description="Community contributions"
+                  />
+                </div>
+              </motion.section>
+
+              {/* Leaderboard Section */}
+              <motion.section
+                className="dashboard-leaderboard-section"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <div className="leaderboard-header">
+                  <h2 className="leaderboard-title">
+                    🏆 Top Contributors{" "}
+                    <span className="title-accent">Leaderboard</span>
+                  </h2>
+                  <p className="leaderboard-description">
+                    Celebrating our most active community members who make
+                    RecodeHive awesome!
+                  </p>
+                </div>
+
+                <div className="leaderboard-container">
+                  {error && (
+                    <div className="error-message">
+                      <p>⚠️ Some data may be cached or incomplete</p>
+                    </div>
+                  )}
+
+                  {dashboardStats.topContributors.map((entry, index) => (
+                    <LeaderboardCard
+                      key={entry.rank}
+                      entry={entry}
+                      index={index}
+                    />
+                  ))}
+                </div>
+              </motion.section>
+
+              {/* Call to Action */}
+              <motion.section
+                className="dashboard-cta"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <div className="cta-content">
+                  <h3>Want to see your name here?</h3>
+                  <p>
+                    Join our community and start contributing to open source
+                    projects!
+                  </p>
+                  <div className="cta-buttons">
+                    <a
+                      href="https://github.com/recodehive"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cta-primary"
+                    >
+                      Start Contributing
+                    </a>
+                    <a href="/community" className="cta-secondary">
+                      Join Community
+                    </a>
+                  </div>
+                </div>
+              </motion.section>
+            </div>
+          ) : activeTab === "discuss" ? (
+            <motion.div
+              className="discussion-container"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+                <h1
+                  style={{
+                    fontSize: "3.5rem",
+                    fontWeight: "800",
+                    marginBottom: "1rem",
+                    color: "var(--ifm-color-emphasis-900)",
+                  }}
+                >
+                  Community{" "}
+                  <span
+                    style={{
+                      background:
+                        "linear-gradient(135deg, var(--ifm-color-primary), #e74c3c)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    Discussions
+                  </span>
+                </h1>
+                <p
+                  style={{
+                    fontSize: "1.2rem",
+                    color: "var(--ifm-color-emphasis-700)",
+                    maxWidth: "700px",
+                    margin: "0 auto",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  Join the conversation, ask questions, and share your thoughts
+                  with the RecodeHive community.
+                </p>
+              </div>
+
+              <div className="discussion-tabs">
+                <div className="tabs-left">
+                  <button
+                    className={`tab-btn ${
+                      activeDiscussionTab === "discussions" ? "active" : ""
+                    }`}
+                    onClick={() => handleDiscussionTabChange("discussions")}
+                  >
+                    All Discussions
+                  </button>
+                  <button
+                    className={`tab-btn ${
+                      activeDiscussionTab === "trending" ? "active" : ""
+                    }`}
+                    onClick={() => handleDiscussionTabChange("trending")}
+                  >
+                    <TrendingUp size={16} /> Trending
+                  </button>
+                  <button
+                    className={`tab-btn ${
+                      activeDiscussionTab === "unanswered" ? "active" : ""
+                    }`}
+                    onClick={() => handleDiscussionTabChange("unanswered")}
+                  >
+                    <HelpCircle size={16} /> Unanswered
+                  </button>
+                </div>
+                <button
+                  className="new-discussion-btn"
+                  onClick={handleNewDiscussion}
+                >
+                  + New Discussion
+                </button>
+              </div>
+
+              <div className="category-filters">
+                {categories.map((category) => (
+                  <button
+                    key={category}
+                    className={`category-filter ${
+                      selectedCategory === category ? "active" : ""
+                    }`}
+                    onClick={() => handleCategoryChange(category)}
+                  >
+                    {getCategoryIcon(category)}
+                    {getCategoryDisplayName(category)}
+                  </button>
+                ))}
+              </div>
+
+              <div className="search-sort-container">
+                <div className="search-wrapper">
+                  <Search className="search-icon" size={20} />
+                  <input
+                    type="text"
+                    placeholder="Search discussions..."
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                    className="search-field"
+                  />
+                </div>
+                <div className="sort-wrapper">
+                  <select
+                    value={sortBy}
+                    onChange={handleSortChange}
+                    className="sort-select"
+                  >
+                    <option value="most_popular">Most Popular</option>
+                    <option value="latest">Latest</option>
+                    <option value="oldest">Oldest</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="discussions-count">
+                <span>
+                  {filteredDiscussions.length} discussion
+                  {filteredDiscussions.length !== 1 ? "s" : ""} found
+                </span>
+              </div>
+
+              {discussionsLoading ? (
+                <div className="discussions-loading">
+                  <div className="loading-spinner"></div>
+                  <p>Loading discussions...</p>
+                </div>
+              ) : discussionsError ? (
+                <div className="discussions-error">
+                  <div className="error-icon">⚠️</div>
+                  <h3>Unable to load discussions</h3>
+                  <p>{discussionsError}</p>
+                  <button className="retry-button" onClick={fetchDiscussions}>
+                    Try Again
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="discussions-grid">
+                    {filteredDiscussions.length > 0 ? (
+                      filteredDiscussions.map((discussion, index) => (
+                        <DiscussionCard
+                          key={discussion.id}
+                          discussion={discussion}
+                          index={index}
+                        />
+                      ))
+                    ) : (
+                      <div className="no-discussions">
+                        <div className="no-discussions-icon">💬</div>
+                        <h3>No discussions found</h3>
+                        <p>
+                          {searchQuery || selectedCategory !== "all"
+                            ? "Try adjusting your filters or search terms."
+                            : "Be the first to start a discussion!"}
+                        </p>
+                        <a
+                          href="https://github.com/recodehive/recode-website/discussions/new"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="start-discussion-btn"
+                        >
+                          Start a Discussion
+                        </a>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Interactive Community Engagement Section */}
+                  <motion.section
+                    style={{
+                      position: "relative",
+                      background:
+                        "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
+                      padding: "5rem 2rem",
+                      textAlign: "center",
+                      borderRadius: "24px",
+                      marginTop: "4rem",
+                      color: "white",
+                      overflow: "hidden",
+                      boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
+                    }}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1 }}
+                  >
+                    {/* Animated Background Elements */}
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        pointerEvents: "none",
+                      }}
+                    >
+                      {[...Array(6)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          style={{
+                            position: "absolute",
+                            width: "100px",
+                            height: "100px",
+                            borderRadius: "50%",
+                            background: "rgba(255,255,255,0.1)",
+                            left: `${Math.random() * 100}%`,
+                            top: `${Math.random() * 100}%`,
+                          }}
+                          animate={{
+                            y: [-20, 20, -20],
+                            x: [-10, 10, -10],
+                            scale: [1, 1.2, 1],
+                          }}
+                          transition={{
+                            duration: 4 + Math.random() * 2,
+                            repeat: Infinity,
+                            delay: Math.random() * 2,
+                          }}
+                        />
+                      ))}
+                    </div>
+
+                    <motion.h2
+                      style={{
+                        fontSize: "3rem",
+                        fontWeight: "800",
+                        marginBottom: "1.5rem",
+                        textShadow: "0 4px 8px rgba(0,0,0,0.3)",
+                        position: "relative",
+                        zIndex: 2,
+                      }}
+                      initial={{ scale: 0.8 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                    >
+                      Ready to Join the Conversation?
+                    </motion.h2>
+
+                    <motion.p
+                      style={{
+                        fontSize: "1.3rem",
+                        marginBottom: "3rem",
+                        opacity: "0.95",
+                        maxWidth: "650px",
+                        margin: "0 auto 3rem auto",
+                        position: "relative",
+                        zIndex: 2,
+                      }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 0.95 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                      Share your thoughts, ask questions, or help others in our
+                      community.
+                    </motion.p>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "2.5rem",
+                        justifyContent: "center",
+                        flexWrap: "wrap",
+                        marginBottom: "3rem",
+                        position: "relative",
+                        zIndex: 2,
+                      }}
+                    >
+                      {[
+                        {
+                          emoji: "❓",
+                          text: "Ask a Question",
+                          url: "https://github.com/recodehive/recode-website/discussions/new?category=q-a",
+                          gradient: "linear-gradient(135deg, #ff6b6b, #ff8e8e)",
+                          shadow: "#ff6b6b",
+                        },
+                        {
+                          emoji: "💡",
+                          text: "Share an Idea",
+                          url: "https://github.com/recodehive/recode-website/discussions/new?category=ideas",
+                          gradient: "linear-gradient(135deg, #4ecdc4, #44a08d)",
+                          shadow: "#4ecdc4",
+                        },
+                        {
+                          emoji: "🎉",
+                          text: "Show Your Work",
+                          url: "https://github.com/recodehive/recode-website/discussions/new?category=show-and-tell",
+                          gradient: "linear-gradient(135deg, #45b7d1, #96c93d)",
+                          shadow: "#45b7d1",
+                        },
+                      ].map((item, index) => (
+                        <motion.div
+                          key={index}
+                          style={{
+                            position: "relative",
+                            perspective: "1000px",
+                          }}
+                          initial={{ opacity: 0, y: 50, rotateX: 45 }}
+                          animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                          transition={{
+                            duration: 0.8,
+                            delay: 0.6 + index * 0.2,
+                          }}
+                        >
+                          <motion.a
+                            href={item.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                              background: "rgba(255, 255, 255, 0.1)",
+                              backdropFilter: "blur(20px)",
+                              border: "1px solid rgba(255, 255, 255, 0.2)",
+                              borderRadius: "24px",
+                              padding: "2rem 1.5rem",
+                              display: "flex",
+                              flexDirection: "column",
+                              alignItems: "center",
+                              gap: "1.2rem",
+                              textDecoration: "none",
+                              color: "white",
+                              minWidth: "200px",
+                              minHeight: "160px",
+                              position: "relative",
+                              overflow: "hidden",
+                              boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
+                            }}
+                            animate={{
+                              y: [0, -5, 0],
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              delay: index * 0.5,
+                            }}
+                            whileHover={{
+                              scale: 1.05,
+                              y: -15,
+                              rotateY: 5,
+                              boxShadow: `0 25px 50px rgba(0,0,0,0.2), 0 0 30px ${item.shadow}40`,
+                              background: "rgba(255, 255, 255, 0.15)",
+                            }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            {/* Animated gradient overlay */}
+                            <motion.div
+                              style={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                background: item.gradient,
+                                opacity: 0,
+                                borderRadius: "24px",
+                              }}
+                              whileHover={{ opacity: 0.1 }}
+                              transition={{ duration: 0.3 }}
+                            />
+
+                            {/* Floating particles */}
+                            <div
+                              style={{
+                                position: "absolute",
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                pointerEvents: "none",
+                              }}
+                            >
+                              {[...Array(3)].map((_, i) => (
+                                <motion.div
+                                  key={i}
+                                  style={{
+                                    position: "absolute",
+                                    width: "4px",
+                                    height: "4px",
+                                    borderRadius: "50%",
+                                    background: "rgba(255,255,255,0.6)",
+                                    left: `${20 + i * 30}%`,
+                                    top: `${20 + i * 20}%`,
+                                  }}
+                                  animate={{
+                                    y: [-10, 10, -10],
+                                    opacity: [0.3, 1, 0.3],
+                                  }}
+                                  transition={{
+                                    duration: 2 + i * 0.5,
+                                    repeat: Infinity,
+                                    delay: i * 0.3,
+                                  }}
+                                />
+                              ))}
+                            </div>
+
+                            {/* Animated emoji */}
+                            <motion.div
+                              style={{
+                                fontSize: "3rem",
+                                position: "relative",
+                                zIndex: 2,
+                                filter:
+                                  "drop-shadow(0 4px 8px rgba(0,0,0,0.2))",
+                              }}
+                              animate={{
+                                rotate: [0, 5, -5, 0],
+                                scale: [1, 1.1, 1],
+                              }}
+                              transition={{
+                                duration: 4,
+                                repeat: Infinity,
+                                delay: index * 0.7,
+                              }}
+                              whileHover={{
+                                rotate: [0, 15, -15, 0],
+                                scale: 1.3,
+                                y: -5,
+                              }}
+                            >
+                              {item.emoji}
+                            </motion.div>
+
+                            {/* Text with glow effect */}
+                            <motion.span
+                              style={{
+                                fontSize: "1.1rem",
+                                fontWeight: "700",
+                                position: "relative",
+                                zIndex: 2,
+                                textAlign: "center",
+                                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+                              }}
+                              whileHover={{
+                                textShadow: `0 0 20px ${item.shadow}80`,
+                              }}
+                            >
+                              {item.text}
+                            </motion.span>
+
+                            {/* Shimmer effect */}
+                            <motion.div
+                              style={{
+                                position: "absolute",
+                                top: 0,
+                                left: "-100%",
+                                width: "100%",
+                                height: "100%",
+                                background:
+                                  "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
+                                borderRadius: "24px",
+                              }}
+                              animate={{
+                                left: ["-100%", "100%"],
+                              }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                delay: index * 2,
+                              }}
+                            />
+                          </motion.a>
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    <motion.div
+                      style={{
+                        borderTop: "1px solid rgba(255, 255, 255, 0.3)",
+                        paddingTop: "2rem",
+                        marginTop: "2rem",
+                        position: "relative",
+                        zIndex: 2,
+                      }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.8, delay: 1 }}
+                    >
+                      <motion.p
+                        style={{
+                          fontSize: "1rem",
+                          opacity: "0.9",
+                          margin: "0",
+                          fontWeight: "500",
+                        }}
+                        animate={{ opacity: [0.7, 1, 0.7] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                      >
+                        Join thousands of developers sharing knowledge and
+                        building together 🚀
+                      </motion.p>
+                    </motion.div>
+                  </motion.section>
+                </>
+              )}
+            </motion.div>
+          ) : activeTab === "giveaway" ? (
+            /* Giveaway Tab - Empty for now */
             <div className="leaderboard-page-container">
               <motion.div
                 className="leaderboard-page-header"
@@ -992,7 +1677,21 @@ const DashboardContent: React.FC = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="leaderboard-page-title">
-                  🏆 RecodeHive <span className="highlight">Contributors</span>
+                  🎁 <span className="highlight">Giveaway</span>
+                </h1>
+              </motion.div>
+            </div>
+          ) : activeTab === "contributors" ? (
+            /* Contributors Tab - Shows the list of contributors */
+            <div className="leaderboard-page-container">
+              <motion.div
+                className="leaderboard-page-header"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <h1 className="leaderboard-page-title">
+                  👥 RecodeHive <span className="highlight">Contributors</span>
                 </h1>
                 <p className="leaderboard-page-subtitle">
                   Live rankings from RecodeHive GitHub Organization • Updated
@@ -1073,7 +1772,7 @@ const DashboardContent: React.FC = () => {
                 </motion.div>
               )}
 
-              {/* Leaderboard Content */}
+              {/* Contributors Content */}
               {!isLoadingLeaderboard && filteredLeaderboardData.length > 0 && (
                 <motion.div
                   className="leaderboard-content"
@@ -1086,7 +1785,7 @@ const DashboardContent: React.FC = () => {
                       <span className="stat-number">
                         {filteredLeaderboardData.length}
                       </span>
-                      <span className="stat-label">Participants</span>
+                      <span className="stat-label">Contributors</span>
                     </div>
                     <div className="stat-item">
                       <span className="stat-number">
@@ -1232,608 +1931,11 @@ const DashboardContent: React.FC = () => {
                     animate={{ opacity: 1 }}
                   >
                     <h3>📊 No data available</h3>
-                    <p>The leaderboard is empty. Check back later!</p>
+                    <p>No contributors found. Check back later!</p>
                   </motion.div>
                 )}
             </div>
-          ) : activeTab === "home" ? (
-            // Home tab content
-            <div>
-              <motion.section
-                className="dashboard-hero"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <div className="hero-content">
-                  <h1 className="dashboard-title">
-                    Community <span className="highlight">Dashboard</span>
-                  </h1>
-                  <p className="dashboard-subtitle">
-                    Track our community's growth, celebrate top contributors,
-                    and explore project statistics
-                  </p>
-                </div>
-              </motion.section>
-
-              {/* Stats Grid */}
-              <motion.section
-                className="dashboard-stats-section"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="dashboard-stats-grid">
-                  <StatCard
-                    icon="⭐"
-                    title="Total Stars"
-                    value={dashboardStats.totalStars}
-                    valueText={githubStarCountText}
-                    description="Stars across all repositories"
-                  />
-                  <StatCard
-                    icon="👥"
-                    title="Contributors"
-                    value={dashboardStats.totalContributors}
-                    valueText={githubContributorsCountText}
-                    description="Amazing community members"
-                  />
-                  <StatCard
-                    icon="📚"
-                    title="Repositories"
-                    value={dashboardStats.totalRepositories}
-                    valueText={githubReposCountText}
-                    description="Open source projects"
-                  />
-                  <StatCard
-                    icon="🍴"
-                    title="Forks"
-                    value={dashboardStats.totalForks}
-                    valueText={githubForksCountText}
-                    description="Community contributions"
-                  />
-                </div>
-              </motion.section>
-
-              {/* Leaderboard Section */}
-              <motion.section
-                className="dashboard-leaderboard-section"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <div className="leaderboard-header">
-                  <h2 className="leaderboard-title">
-                    🏆 Top Contributors{" "}
-                    <span className="title-accent">Leaderboard</span>
-                  </h2>
-                  <p className="leaderboard-description">
-                    Celebrating our most active community members who make
-                    RecodeHive awesome!
-                  </p>
-                </div>
-
-                <div className="leaderboard-container">
-                  {error && (
-                    <div className="error-message">
-                      <p>⚠️ Some data may be cached or incomplete</p>
-                    </div>
-                  )}
-
-                  {dashboardStats.topContributors.map((entry, index) => (
-                    <LeaderboardCard
-                      key={entry.rank}
-                      entry={entry}
-                      index={index}
-                    />
-                  ))}
-                </div>
-              </motion.section>
-
-              {/* Call to Action */}
-              <motion.section
-                className="dashboard-cta"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="cta-content">
-                  <h3>Want to see your name here?</h3>
-                  <p>
-                    Join our community and start contributing to open source
-                    projects!
-                  </p>
-                  <div className="cta-buttons">
-                    <a
-                      href="https://github.com/recodehive"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cta-primary"
-                    >
-                      Start Contributing
-                    </a>
-                    <a href="/community" className="cta-secondary">
-                      Join Community
-                    </a>
-                  </div>
-                </div>
-              </motion.section>
-            </div>
-          ) : activeTab === "discuss" ? (
-            <motion.div
-              className="discussion-container"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                <h1 style={{ fontSize: '3.5rem', fontWeight: '800', marginBottom: '1rem', color: 'var(--ifm-color-emphasis-900)' }}>
-                  Community <span style={{ background: 'linear-gradient(135deg, var(--ifm-color-primary), #e74c3c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Discussions</span>
-                </h1>
-                <p style={{ fontSize: '1.2rem', color: 'var(--ifm-color-emphasis-700)', maxWidth: '700px', margin: '0 auto', lineHeight: '1.6' }}>
-                  Join the conversation, ask questions, and share your thoughts with the RecodeHive community.
-                </p>
-              </div>
-
-              <div className="discussion-tabs">
-                <div className="tabs-left">
-                  <button
-                    className={`tab-btn ${
-                      activeDiscussionTab === "discussions" ? "active" : ""
-                    }`}
-                    onClick={() => handleDiscussionTabChange("discussions")}
-                  >
-                    All Discussions
-                  </button>
-                  <button
-                    className={`tab-btn ${
-                      activeDiscussionTab === "trending" ? "active" : ""
-                    }`}
-                    onClick={() => handleDiscussionTabChange("trending")}
-                  >
-                    <TrendingUp size={16} /> Trending
-                  </button>
-                  <button
-                    className={`tab-btn ${
-                      activeDiscussionTab === "unanswered" ? "active" : ""
-                    }`}
-                    onClick={() => handleDiscussionTabChange("unanswered")}
-                  >
-                    <HelpCircle size={16} /> Unanswered
-                  </button>
-                </div>
-                <button
-                  className="new-discussion-btn"
-                  onClick={handleNewDiscussion}
-                >
-                  + New Discussion
-                </button>
-              </div>
-
-              <div className="category-filters">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    className={`category-filter ${
-                      selectedCategory === category ? "active" : ""
-                    }`}
-                    onClick={() => handleCategoryChange(category)}
-                  >
-                    {getCategoryIcon(category)}
-                    {getCategoryDisplayName(category)}
-                  </button>
-                ))}
-              </div>
-
-              <div className="search-sort-container">
-                <div className="search-wrapper">
-                  <Search className="search-icon" size={20} />
-                  <input
-                    type="text"
-                    placeholder="Search discussions..."
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                    className="search-field"
-                  />
-                </div>
-                <div className="sort-wrapper">
-                  <select value={sortBy} onChange={handleSortChange} className="sort-select">
-                    <option value="most_popular">Most Popular</option>
-                    <option value="latest">Latest</option>
-                    <option value="oldest">Oldest</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="discussions-count">
-                <span>
-                  {filteredDiscussions.length} discussion
-                  {filteredDiscussions.length !== 1 ? "s" : ""} found
-                </span>
-              </div>
-
-              {discussionsLoading ? (
-                <div className="discussions-loading">
-                  <div className="loading-spinner"></div>
-                  <p>Loading discussions...</p>
-                </div>
-              ) : discussionsError ? (
-                <div className="discussions-error">
-                  <div className="error-icon">⚠️</div>
-                  <h3>Unable to load discussions</h3>
-                  <p>{discussionsError}</p>
-                  <button className="retry-button" onClick={fetchDiscussions}>
-                    Try Again
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <div className="discussions-grid">
-                    {filteredDiscussions.length > 0 ? (
-                      filteredDiscussions.map((discussion, index) => (
-                        <DiscussionCard
-                          key={discussion.id}
-                          discussion={discussion}
-                          index={index}
-                        />
-                      ))
-                    ) : (
-                      <div className="no-discussions">
-                        <div className="no-discussions-icon">💬</div>
-                        <h3>No discussions found</h3>
-                        <p>
-                          {searchQuery || selectedCategory !== "all"
-                            ? "Try adjusting your filters or search terms."
-                            : "Be the first to start a discussion!"}
-                        </p>
-                        <a
-                          href="https://github.com/recodehive/recode-website/discussions/new"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="start-discussion-btn"
-                        >
-                          Start a Discussion
-                        </a>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Interactive Community Engagement Section */}
-                  <motion.section
-                    style={{
-                      position: "relative",
-                      background: "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
-                      padding: "5rem 2rem",
-                      textAlign: "center",
-                      borderRadius: "24px",
-                      marginTop: "4rem",
-                      color: "white",
-                      overflow: "hidden",
-                      boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
-                    }}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                  >
-                    {/* Animated Background Elements */}
-                    <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, pointerEvents: "none" }}>
-                      {[...Array(6)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          style={{
-                            position: "absolute",
-                            width: "100px",
-                            height: "100px",
-                            borderRadius: "50%",
-                            background: "rgba(255,255,255,0.1)",
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                          }}
-                          animate={{
-                            y: [-20, 20, -20],
-                            x: [-10, 10, -10],
-                            scale: [1, 1.2, 1],
-                          }}
-                          transition={{
-                            duration: 4 + Math.random() * 2,
-                            repeat: Infinity,
-                            delay: Math.random() * 2,
-                          }}
-                        />
-                      ))}
-                    </div>
-
-                    <motion.h2
-                      style={{
-                        fontSize: "3rem",
-                        fontWeight: "800",
-                        marginBottom: "1.5rem",
-                        textShadow: "0 4px 8px rgba(0,0,0,0.3)",
-                        position: "relative",
-                        zIndex: 2,
-                      }}
-                      initial={{ scale: 0.8 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.8, delay: 0.2 }}
-                    >
-                      Ready to Join the Conversation?
-                    </motion.h2>
-                    
-                    <motion.p
-                      style={{
-                        fontSize: "1.3rem",
-                        marginBottom: "3rem",
-                        opacity: "0.95",
-                        maxWidth: "650px",
-                        margin: "0 auto 3rem auto",
-                        position: "relative",
-                        zIndex: 2,
-                      }}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 0.95 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                      Share your thoughts, ask questions, or help others in our community.
-                    </motion.p>
-
-                    <div style={{ display: "flex", gap: "2.5rem", justifyContent: "center", flexWrap: "wrap", marginBottom: "3rem", position: "relative", zIndex: 2 }}>
-                      {[
-                        { emoji: "❓", text: "Ask a Question", url: "https://github.com/recodehive/recode-website/discussions/new?category=q-a", gradient: "linear-gradient(135deg, #ff6b6b, #ff8e8e)", shadow: "#ff6b6b" },
-                        { emoji: "💡", text: "Share an Idea", url: "https://github.com/recodehive/recode-website/discussions/new?category=ideas", gradient: "linear-gradient(135deg, #4ecdc4, #44a08d)", shadow: "#4ecdc4" },
-                        { emoji: "🎉", text: "Show Your Work", url: "https://github.com/recodehive/recode-website/discussions/new?category=show-and-tell", gradient: "linear-gradient(135deg, #45b7d1, #96c93d)", shadow: "#45b7d1" }
-                      ].map((item, index) => (
-                        <motion.div
-                          key={index}
-                          style={{
-                            position: "relative",
-                            perspective: "1000px",
-                          }}
-                          initial={{ opacity: 0, y: 50, rotateX: 45 }}
-                          animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                          transition={{ duration: 0.8, delay: 0.6 + index * 0.2 }}
-                        >
-                          <motion.a
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              background: "rgba(255, 255, 255, 0.1)",
-                              backdropFilter: "blur(20px)",
-                              border: "1px solid rgba(255, 255, 255, 0.2)",
-                              borderRadius: "24px",
-                              padding: "2rem 1.5rem",
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "center",
-                              gap: "1.2rem",
-                              textDecoration: "none",
-                              color: "white",
-                              minWidth: "200px",
-                              minHeight: "160px",
-                              position: "relative",
-                              overflow: "hidden",
-                              boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-                            }}
-                            animate={{
-                              y: [0, -5, 0],
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              delay: index * 0.5,
-                            }}
-                            whileHover={{
-                              scale: 1.05,
-                              y: -15,
-                              rotateY: 5,
-                              boxShadow: `0 25px 50px rgba(0,0,0,0.2), 0 0 30px ${item.shadow}40`,
-                              background: "rgba(255, 255, 255, 0.15)",
-                            }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            {/* Animated gradient overlay */}
-                            <motion.div
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                background: item.gradient,
-                                opacity: 0,
-                                borderRadius: "24px",
-                              }}
-                              whileHover={{ opacity: 0.1 }}
-                              transition={{ duration: 0.3 }}
-                            />
-                            
-                            {/* Floating particles */}
-                            <div style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0, pointerEvents: "none" }}>
-                              {[...Array(3)].map((_, i) => (
-                                <motion.div
-                                  key={i}
-                                  style={{
-                                    position: "absolute",
-                                    width: "4px",
-                                    height: "4px",
-                                    borderRadius: "50%",
-                                    background: "rgba(255,255,255,0.6)",
-                                    left: `${20 + i * 30}%`,
-                                    top: `${20 + i * 20}%`,
-                                  }}
-                                  animate={{
-                                    y: [-10, 10, -10],
-                                    opacity: [0.3, 1, 0.3],
-                                  }}
-                                  transition={{
-                                    duration: 2 + i * 0.5,
-                                    repeat: Infinity,
-                                    delay: i * 0.3,
-                                  }}
-                                />
-                              ))}
-                            </div>
-
-                            {/* Animated emoji */}
-                            <motion.div
-                              style={{
-                                fontSize: "3rem",
-                                position: "relative",
-                                zIndex: 2,
-                                filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.2))",
-                              }}
-                              animate={{
-                                rotate: [0, 5, -5, 0],
-                                scale: [1, 1.1, 1],
-                              }}
-                              transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                delay: index * 0.7,
-                              }}
-                              whileHover={{
-                                rotate: [0, 15, -15, 0],
-                                scale: 1.3,
-                                y: -5,
-                              }}
-                            >
-                              {item.emoji}
-                            </motion.div>
-
-                            {/* Text with glow effect */}
-                            <motion.span
-                              style={{
-                                fontSize: "1.1rem",
-                                fontWeight: "700",
-                                position: "relative",
-                                zIndex: 2,
-                                textAlign: "center",
-                                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-                              }}
-                              whileHover={{
-                                textShadow: `0 0 20px ${item.shadow}80`,
-                              }}
-                            >
-                              {item.text}
-                            </motion.span>
-
-                            {/* Shimmer effect */}
-                            <motion.div
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: "-100%",
-                                width: "100%",
-                                height: "100%",
-                                background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
-                                borderRadius: "24px",
-                              }}
-                              animate={{
-                                left: ['-100%', '100%'],
-                              }}
-                              transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                delay: index * 2,
-                              }}
-                            />
-                          </motion.a>
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    <motion.div
-                      style={{
-                        borderTop: "1px solid rgba(255, 255, 255, 0.3)",
-                        paddingTop: "2rem",
-                        marginTop: "2rem",
-                        position: "relative",
-                        zIndex: 2,
-                      }}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 1 }}
-                    >
-                      <motion.p
-                        style={{
-                          fontSize: "1rem",
-                          opacity: "0.9",
-                          margin: "0",
-                          fontWeight: "500",
-                        }}
-                        animate={{ opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                      >
-                        Join thousands of developers sharing knowledge and building together 🚀
-                      </motion.p>
-                    </motion.div>
-                  </motion.section>
-                </>
-              )}
-            </motion.div>
-          ) : (
-            // Giveaway tab content
-            <div>
-              <motion.section
-                className="dashboard-hero"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <div className="hero-content">
-                  <h1 className="dashboard-title">
-                    🎁 <span className="highlight">Giveaway</span>
-                  </h1>
-                  <p className="dashboard-subtitle">
-                    Participate in exclusive giveaways and win exciting prizes!
-                  </p>
-                </div>
-              </motion.section>
-
-              {/* Giveaway Stats Grid */}
-              <motion.section
-                className="dashboard-stats-section"
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="dashboard-stats-grid">
-                  <StatCard
-                    icon="⏳"
-                    title="Next Giveaway"
-                    value={5}
-                    valueText="5 Days"
-                    description="Time remaining"
-                  />
-                  <StatCard
-                    icon="🎫"
-                    title="Entries"
-                    value={1420}
-                    valueText="1,420"
-                    description="Total participants"
-                  />
-                  <StatCard
-                    icon="📈"
-                    title="Your Rank"
-                    value={32}
-                    valueText="32"
-                    description="Based on your contribution"
-                  />
-                  <StatCard
-                    icon="🏅"
-                    title="Total Winners"
-                    value={10}
-                    valueText="10"
-                    description="Winners per giveaway"
-                  />
-                </div>
-              </motion.section>
-            </div>
-          )}
+          ) : null}
         </main>
       </div>
     </Layout>

@@ -3444,6 +3444,141 @@
   color: black !important;
 }
 
+/* ===== CONTRIBUTORS PAGE STYLING ===== */
+
+.contributors-page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.contributors-hero .hero-content {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contributors-content {
+  margin-top: 3rem;
+}
+
+.contributors-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contributors-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ifm-color-emphasis-900);
+  margin-bottom: 1rem;
+}
+
+.contributors-header p {
+  font-size: 1.2rem;
+  color: var(--ifm-color-emphasis-600);
+}
+
+.contributors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.contributor-card {
+  background: var(--ifm-card-background-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.contributor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--ifm-color-primary);
+}
+
+.contributor-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid var(--ifm-color-primary-light);
+}
+
+.contributor-avatar.placeholder {
+  background: var(--ifm-color-primary-lightest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: var(--ifm-color-primary);
+  margin: 0 auto 1rem;
+}
+
+.contributor-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-900);
+  margin-bottom: 0.5rem;
+}
+
+.contributor-card p {
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.contributor-stats {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.contributor-stats span {
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary-darker);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Dark theme support for contributors */
+[data-theme="dark"] .contributor-card {
+  background: var(--ifm-background-surface-color);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme="dark"] .contributor-avatar.placeholder {
+  background: var(--ifm-color-primary-darkest);
+}
+
+[data-theme="dark"] .contributor-stats span {
+  background: var(--ifm-color-primary-darkest);
+  color: var(--ifm-color-primary-lighter);
+}
+
+/* Responsive design for contributors */
+@media (max-width: 768px) {
+  .contributors-page-container {
+    padding: 1rem;
+  }
+
+  .contributors-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contributors-header h2 {
+    font-size: 2rem;
+  }
+}
+
 /* Light theme github buttons */
 [data-theme="light"] .github-profile-btn,
 [data-theme="light"] .github-link {
