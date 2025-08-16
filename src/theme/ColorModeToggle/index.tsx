@@ -6,28 +6,8 @@ export default function ColorModeToggle(): JSX.Element {
 
   const toggleColorMode = () => {
     const newMode = colorMode === 'dark' ? 'light' : 'dark';
-
-    // INSTANT theme change - update all elements immediately
-    document.documentElement.setAttribute('data-theme', newMode);
-    document.body.setAttribute('data-theme', newMode);
-    document.body.className = document.body.className.replace(/theme-\w+/g, '') + ` theme-${newMode}`;
-
-    // Force immediate CSS variable updates
-    if (newMode === 'light') {
-      document.documentElement.style.setProperty('--ifm-background-color', '#ffffff');
-      document.documentElement.style.setProperty('--ifm-font-color-base', '#1a202c');
-      document.body.style.backgroundColor = '#ffffff';
-      document.body.style.color = '#1a202c';
-    } else {
-      document.documentElement.style.setProperty('--ifm-background-color', '#121212');
-      document.documentElement.style.setProperty('--ifm-font-color-base', '#ffffff');
-      document.body.style.backgroundColor = '#121212';
-      document.body.style.color = '#ffffff';
-    }
-
-    // Update Docusaurus state (this can be slower)
+    // Only use Docusaurus's setColorMode - it handles everything properly
     setColorMode(newMode);
-    localStorage.setItem('theme', newMode);
   };
 
   return (

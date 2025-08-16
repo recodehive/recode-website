@@ -1,4 +1,4 @@
-import React, {type ReactNode} from 'react';
+import React, {type ReactNode, useMemo} from 'react';
 import {useThemeConfig, ErrorCauseBoundary} from '@docusaurus/theme-common';
 import {
   splitNavbarItems,
@@ -14,27 +14,29 @@ import NavbarSearch from '@theme/Navbar/Search';
 import styles from './styles.module.css';
 
 function useNavbarItems() {
-  // TODO temporary casting until ThemeConfig type is improved
   return useThemeConfig().navbar.items as NavbarItemConfig[];
 }
 
 function NavbarItems({items}: {items: NavbarItemConfig[]}): ReactNode {
   return (
     <>
-      {items.map((item, i) => (
-        <ErrorCauseBoundary
-          key={i}
-          onError={(error) =>
-            new Error(
-              `A theme navbar item failed to render.
+      {items.map((item, i) => {
+        const key = `${item.label || item.to || item.href || 'item'}-${i}`;
+        return (
+          <ErrorCauseBoundary
+            key={key}
+            onError={(error) =>
+              new Error(
+                `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
 ${JSON.stringify(item, null, 2)}`,
-              {cause: error},
-            )
-          }>
-          <NavbarItem {...item} />
-        </ErrorCauseBoundary>
-      ))}
+                {cause: error},
+              )
+            }>
+            <NavbarItem {...item} />
+          </ErrorCauseBoundary>
+        );
+      })}
     </>
   );
 }
@@ -56,11 +58,10 @@ function NavbarContentLayout({
 
 export default function NavbarContent(): ReactNode {
   const mobileSidebar = useNavbarMobileSidebar();
-
   const items = useNavbarItems();
-  const [leftItems, rightItems] = splitNavbarItems(items);
-
-  const searchBarItem = items.find((item) => item.type === 'search');
+  
+  const [leftItems, rightItems] = useMemo(() => splitNavbarItems(items), [items]);
+  const searchBarItem = useMemo(() => items.find((item) => item.type === 'search'), [items]);
 
   return (
     <NavbarContentLayout

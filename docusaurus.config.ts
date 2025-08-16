@@ -23,8 +23,8 @@ const config: Config = {
   // Google Analytics and Theme Scripts
   scripts: [
     {
-      src: '/theme-init.js',
-      async: false, // Load synchronously to prevent flash
+      src: '/instant-theme.js',
+      async: false,
     },
     {
       src: 'https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR',
@@ -80,11 +80,12 @@ const config: Config = {
     colorMode: {
       defaultMode: 'light',
       disableSwitch: false,
-      respectPrefersColorScheme: false,
+      respectPrefersColorScheme: false, // Let users manually control theme
     },
     navbar: {
-      
+       title:"Recode Hive",
       logo: {
+       
         alt: "RecodeHive Logo",
         src: "img/logo.png",
       },
@@ -97,7 +98,7 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4 w-xl">
-                <a class="border-r col-span-1" href="/courses/" style="color:black ; ">Tutorials</a>
+                <a class="border-r col-span-1" href="/courses/">Tutorials</a>
                 <div class="grid grid-cols-4 col-span-2">
                   <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
                   <a href="/docs/python/intro-python" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
@@ -113,7 +114,7 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
-                <a class="border-r col-span-1" href="/courses/" style="color:black"> Courses </a>
+                <a class="border-r col-span-1" href="/courses/"> Courses </a>
                 <div class="grid grid-cols-4 col-span-2">
                   <a href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/git.svg" alt="git" /> </a>
                   <a href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/postman.svg" alt="Postman" /> </a>
@@ -128,7 +129,7 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
-                <a  class="border-r col-span-1" href="#" target="_self" style="color:black"> Interview Prep </a>
+                <a  class="border-r col-span-1" href="#" target="_self"> Interview Prep </a>
                 <div class="grid grid-cols-1 col-span-2">
                   <a href="/interview-prep/" target="_self" class="nav__icons"><span id="nav-technical" style="display:inline-flex;align-items:center;"></span> Technical</a> <br />
                   <a href="/interview-prep/" target="_self" class="nav__icons"><span id="nav-behavioral" style="display:inline-flex;align-items:center;"></span> Behavioral</a>

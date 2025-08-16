@@ -1,7 +1,3 @@
-import React from "react";
-import OriginalNavbarItem from "@theme-original/NavbarItem";
-
-// This wrapper ensures a valid default export for NavbarItem
-export default function NavbarItem(props: any) {
-  return <OriginalNavbarItem {...props} />;
-}
+// This file can be removed as it's just a pass-through wrapper
+// Docusaurus will use the original NavbarItem component directly
+export { default } from "@theme-original/NavbarItem";
