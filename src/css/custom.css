@@ -10,6 +10,208 @@
 /* You can override the default Infima variables here. */
 @import "tailwindcss";
 
+/* ===== UNIFIED SIDEBAR STYLING ===== */
+/**
+ * Combined sidebar styles from:
+ * - custom-sidebar.css
+ * - menu-fixes.css
+ * - sidebar-active.css
+ * - active-sidebar-override.css
+ */
+
+/* ================= SECTION 1: BASIC MENU STRUCTURE ================= */
+
+/* Fix menu overflow and ensure proper display */
+.menu__list {
+  overflow: visible;
+  padding-bottom: 2rem;
+}
+
+/* Ensure the sidebar container allows content to overflow when needed */
+.sidebar {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 5rem;
+}
+
+/* Style for expanded categories to ensure they're fully visible */
+.menu__list-item {
+  overflow: visible;
+  margin: 2px 0;
+}
+
+/* Custom spacing for sidebar */
+.theme-doc-sidebar-container {
+  --doc-sidebar-width: 320px;
+}
+
+/* ================= SECTION 2: ACTIVE ITEM STYLING ================= */
+
+/* Better transitions for all menu links */
+.menu__link {
+  transition: all 0.25s ease-in-out;
+}
+
+/* Force high visibility for active sidebar items - Green Theme */
+.menu__link--active {
+  background-color: #ecfdf5; /* Light green background */
+  color: #2f855a; /* Strong green text */
+  font-weight: bold;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(56, 161, 105, 0.2);
+}
+
+/* Make the active icon stand out in the sidebar */
+.menu__link--active .categoryIcon,
+.menu__link--active .linkIcon {
+  color: #38a169;
+}
+
+/* Make active text bold and larger */
+.menu__link--active span {
+  font-weight: 700;
+  color: #2f855a; /* Strong green color */
+  font-size: 1.05em;
+}
+
+/* ================= SECTION 3: ACTIVE INDICATORS ================= */
+
+/* Add bright indicators */
+.menu__link--active::before {
+  content: "•";
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  color: #38a169; /* Green dot */
+  animation: breatheGreen 2s infinite;
+}
+
+/* Add arrow indicator to the right */
+.menu__link--active::after {
+  content: "→";
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #38a169;
+  font-weight: bold;
+}
+
+/* Breathing animation for active indicators */
+@keyframes breatheGreen {
+  0% {
+    opacity: 0.7;
+    transform: translateY(-50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.2);
+  }
+  100% {
+    opacity: 0.7;
+    transform: translateY(-50%) scale(1);
+  }
+}
+
+/* ================= SECTION 4: CUSTOM SIDEBAR CATEGORY THEMES ================= */
+
+/* GitHub theme */
+.custom-sidebar-github > .menu__list-item-collapsible > .menu__link {
+  background: linear-gradient(135deg, #24292e, #586069);
+  color: white;
+  border-radius: 8px;
+  margin: 4px 0;
+  font-weight: 600;
+}
+
+/* Python theme */
+.custom-sidebar-python > .menu__list-item-collapsible > .menu__link {
+  background: linear-gradient(135deg, #3776ab, #ffd43b);
+  color: white;
+  border-radius: 8px;
+  margin: 4px 0;
+  font-weight: 600;
+}
+
+/* SQL theme */
+.custom-sidebar-sql > .menu__list-item-collapsible > .menu__link {
+  background: linear-gradient(135deg, #336791, #4479a1);
+  color: white;
+  border-radius: 8px;
+  margin: 4px 0;
+  font-weight: 600;
+}
+
+/* Next.js theme */
+.custom-sidebar-nextjs > .menu__list-item-collapsible > .menu__link {
+  background: linear-gradient(135deg, #000000, #333333);
+  color: white;
+  border-radius: 8px;
+  margin: 4px 0;
+  font-weight: 600;
+}
+
+/* Google Student Ambassador theme */
+.custom-sidebar-gsa > .menu__list-item-collapsible > .menu__link {
+  background: linear-gradient(135deg, #4285f4, #34a853);
+  color: white;
+  border-radius: 8px;
+  margin: 4px 0;
+  font-weight: 600;
+}
+
+/* Technical theme */
+.custom-sidebar-technical > .menu__list-item-collapsible > .menu__link {
+  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+  color: white;
+  border-radius: 8px;
+  margin: 4px 0;
+  font-weight: 600;
+}
+
+/* Custom subcategory styling */
+.custom-sidebar-setup > .menu__list-item-collapsible > .menu__link,
+.custom-sidebar-basics > .menu__list-item-collapsible > .menu__link,
+.custom-sidebar-maintainer > .menu__list-item-collapsible > .menu__link {
+  background: rgba(36, 41, 46, 0.1);
+  border-left: 3px solid #24292e;
+  padding-left: 16px;
+  margin-left: 8px;
+}
+
+/* Hover effects for all custom categories */
+.custom-sidebar-github > .menu__list-item-collapsible > .menu__link:hover,
+.custom-sidebar-python > .menu__list-item-collapsible > .menu__link:hover,
+.custom-sidebar-sql > .menu__list-item-collapsible > .menu__link:hover,
+.custom-sidebar-nextjs > .menu__list-item-collapsible > .menu__link:hover,
+.custom-sidebar-gsa > .menu__list-item-collapsible > .menu__link:hover,
+.custom-sidebar-technical > .menu__list-item-collapsible > .menu__link:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+/* ================= SECTION 5: DARK MODE ADJUSTMENTS ================= */
+
+/* Dark mode styles for active items */
+html[data-theme="dark"] .menu__link--active {
+  background-color: rgba(72, 187, 120, 0.15);
+  color: #9ae6b4;
+}
+
+/* Dark mode text color */
+html[data-theme="dark"] .menu__link--active span {
+  color: #9ae6b4;
+}
+
+/* Dark mode indicator colors */
+html[data-theme="dark"] .menu__link--active::before,
+html[data-theme="dark"] .menu__link--active::after {
+  color: #68d391;
+}
+
 /* ===== INSTANT THEME TRANSITIONS ===== */
 html {
   transition: background-color 0.15s ease, color 0.15s ease !important;
@@ -1590,7 +1792,6 @@ html {
     pointer-events: auto !important;
   }
 
-
   /* Fix: Remove extra box/space above dropdown nav items in sidebar */
   .navbar-sidebar__item,
   .navbar-sidebar__link,
@@ -1624,107 +1825,106 @@ html {
 }
 
 /* STAR section border fixes for dark mode */
-[data-theme='dark'] .star-border-red {
-  border-color: #ef4444 !important; 
+[data-theme="dark"] .star-border-red {
+  border-color: #ef4444 !important;
 }
 
-  /* Fix: Remove extra box/space above dropdown nav items in sidebar */
-  .navbar-sidebar__item,
-  .navbar-sidebar__link,
-  .navbar-sidebar__brand {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    border-top: none !important;
-    box-shadow: none !important;
-  }
-  .navbar-sidebar__item:first-child,
-  .navbar-sidebar__link:first-child {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    border-top: none !important;
-    box-shadow: none !important;
-  }
-  /* Remove any unwanted hr or divider above dropdowns */
-  .navbar-sidebar hr,
-  .navbar-sidebar__item hr {
-    display: none !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-  }
-  /* Remove grid gap above dropdowns */
-  .navbar-sidebar .grid {
-    gap: 0 !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-  }
-
+/* Fix: Remove extra box/space above dropdown nav items in sidebar */
+.navbar-sidebar__item,
+.navbar-sidebar__link,
+.navbar-sidebar__brand {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+  box-shadow: none !important;
+}
+.navbar-sidebar__item:first-child,
+.navbar-sidebar__link:first-child {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  border-top: none !important;
+  box-shadow: none !important;
+}
+/* Remove any unwanted hr or divider above dropdowns */
+.navbar-sidebar hr,
+.navbar-sidebar__item hr {
+  display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+/* Remove grid gap above dropdowns */
+.navbar-sidebar .grid {
+  gap: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
 
 /* STAR section border fixes for dark mode */
-[data-theme='dark'] .star-border-red {
-  border-color: #ef4444 !important; 
+[data-theme="dark"] .star-border-red {
+  border-color: #ef4444 !important;
 }
 
-  [data-theme="dark"] .star-border-green {
-    border-color: #22c55e !important;
-  }
+[data-theme="dark"] .star-border-green {
+  border-color: #22c55e !important;
+}
 
-  [data-theme="dark"] .star-border-blue {
-    border-color: #3b82f6 !important;
-  }
+[data-theme="dark"] .star-border-blue {
+  border-color: #3b82f6 !important;
+}
 
-  [data-theme="light"] .interview-prep-page h1,
-  [data-theme="light"] .interview-prep-page h2,
-  [data-theme="light"] .interview-prep-page h3,
-  [data-theme="light"] .interview-prep-page h4,
-  [data-theme="light"] .interview-prep-page h5,
-  [data-theme="light"] .interview-prep-page h6 {
-    color: #ffffff !important;
-  }
+[data-theme="light"] .interview-prep-page h1,
+[data-theme="light"] .interview-prep-page h2,
+[data-theme="light"] .interview-prep-page h3,
+[data-theme="light"] .interview-prep-page h4,
+[data-theme="light"] .interview-prep-page h5,
+[data-theme="light"] .interview-prep-page h6 {
+  color: #ffffff !important;
+}
 
-  .watch-video-btn {
-    background-color: #dc2626;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    transition: background-color 0.2s ease-in-out;
-  }
+.watch-video-btn {
+  background-color: #dc2626;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: background-color 0.2s ease-in-out;
+}
 
-  .watch-video-btn:hover {
-    background-color: #b91c1c;
-  }
+.watch-video-btn:hover {
+  background-color: #b91c1c;
+}
 
-  [data-theme="dark"] .interview-prep-sidebar:hover {
-    border-color: #3b82f6 !important;
-  }
+[data-theme="dark"] .interview-prep-sidebar:hover {
+  border-color: #3b82f6 !important;
+}
 
-  [data-theme="dark"] .interview-prep-sidebar {
-    border-color: #4b5563 !important;
-  }
+[data-theme="dark"] .interview-prep-sidebar {
+  border-color: #4b5563 !important;
+}
 
-  /* Active tab in dark mode */
-  [data-theme="dark"] .interview-prep-nav-tab-active {
-    border-bottom-color: #60a5fa !important;
-    color: #60a5fa !important;
-  }
+/* Active tab in dark mode */
+[data-theme="dark"] .interview-prep-nav-tab-active {
+  border-bottom-color: #60a5fa !important;
+  color: #60a5fa !important;
+}
 
-  /* Inactive tab in dark mode */
-  [data-theme="dark"] .interview-prep-nav-tab-inactive {
-    border-bottom-color: transparent !important;
-    color: #9ca3af !important;
-  }
+/* Inactive tab in dark mode */
+[data-theme="dark"] .interview-prep-nav-tab-inactive {
+  border-bottom-color: transparent !important;
+  color: #9ca3af !important;
+}
 
-  [data-theme="dark"] .interview-prep-nav-tab-inactive:hover {
-    color: #d1d5db !important;
-  }
+[data-theme="dark"] .interview-prep-nav-tab-inactive:hover {
+  color: #d1d5db !important;
+}
 
-  .interview-prep-discord-btn {
-    color: white;
-  }
+.interview-prep-discord-btn {
+  color: white;
+}
 
 .interview-prep-discord-btn{
   color:white;
@@ -1735,18 +1935,17 @@ html {
 
 }
 
-[data-theme='dark'] .overview-sidebar-blue{
-  border-color:#3b82f6
+[data-theme="dark"] .overview-sidebar-blue {
+  border-color: #3b82f6;
 }
-[data-theme='dark'] .overview-sidebar-green{
-  border-color:#22c55e
+[data-theme="dark"] .overview-sidebar-green {
+  border-color: #22c55e;
 }
-[data-theme='dark'] .overview-sidebar-yellow{
-  border-color:#eab308
+[data-theme="dark"] .overview-sidebar-yellow {
+  border-color: #eab308;
 }
-[data-theme='dark'] .overview-sidebar-purple{
-  border-color: #a855f7
-
+[data-theme="dark"] .overview-sidebar-purple {
+  border-color: #a855f7;
 }
 [data-theme='dark'] .technical-outer{
   border-color: #3b82f6
