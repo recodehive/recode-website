@@ -1,36 +1,36 @@
 import React, { useEffect } from "react";
+import { createRoot } from "react-dom/client";
 import NavbarIcon from "./NavbarIcon";
-
-const iconMap = [
-  { id: "nav-docs", name: "Docs" },
-  { id: "nav-showcase", name: "Showcase" },
-  { id: "nav-dashboard", name: "Dashboard" },
-  { id: "nav-donate", name: "Donate" },
-  { id: "nav-devfolio", name: "Devfolio" },
-  { id: "nav-blogs", name: "Blogs" },
-  { id: "nav-more", name: "More" },
-  // Sub nav items
-  { id: "nav-github", name: "GitHub" },
-  { id: "nav-badges", name: "Badges" },
-  { id: "nav-ebooks", name: "Ebooks" },
-  { id: "nav-roadmap", name: "Roadmap" },
-  { id: "nav-community", name: "Community" },
-  { id: "nav-broadcast", name: "Broadcast" },
-  { id: "nav-podcast", name: "Podcast" },
-  { id: "nav-technical", name: "Technical" },
-  { id: "nav-behavioral", name: "Behavioral" },
-];
+import { NAVBAR_ICONS, type NavbarIconName } from "../../constants/navbarConfig";
 
 export default function NavbarIconInjector() {
   useEffect(() => {
-    iconMap.forEach(({ id, name }) => {
-      const el = document.getElementById(id);
-      if (el && el.childNodes.length === 0) {
-        import("react-dom").then((ReactDOM) => {
-          (ReactDOM.default as any).render(<NavbarIcon name={name} />, el);
-        });
+    const roots = new Map<string, any>();
+    
+    NAVBAR_ICONS.forEach((name: NavbarIconName) => {
+      const id = `nav-${name.toLowerCase()}`;
+      try {
+        const el = document.getElementById(id);
+        if (el && !roots.has(id)) {
+          const root = createRoot(el);
+          root.render(<NavbarIcon name={name} />);
+          roots.set(id, root);
+        }
+      } catch (error) {
+        console.warn(`Failed to inject navbar icon for ${name}:`, error);
       }
     });
+
+    return () => {
+      roots.forEach((root, id) => {
+        try {
+          root.unmount();
+        } catch (error) {
+          console.warn(`Failed to unmount navbar icon for ${id}:`, error);
+        }
+      });
+    };
   }, []);
+
   return null;
 }
