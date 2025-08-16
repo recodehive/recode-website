@@ -2219,6 +2219,15 @@
   color: var(--ifm-color-emphasis-900);
 }
 
+/* Light theme page title */
+[data-theme="light"] .leaderboard-page-title {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .leaderboard-page-subtitle {
+  color: #4a5568 !important;
+}
+
 .leaderboard-page-title .highlight {
   background: linear-gradient(135deg, #ffd700, #ff8c00);
   -webkit-background-clip: text;
@@ -2298,6 +2307,32 @@
   color: var(--ifm-font-color-base);
 }
 
+/* Light theme loading and error states */
+[data-theme="light"] .loading-container {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #1a202c;
+}
+
+[data-theme="light"] .loading-text {
+  color: #4a5568 !important;
+}
+
+[data-theme="light"] .error-container {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #1a202c;
+}
+
+[data-theme="light"] .error-container h3 {
+  color: #dc2626 !important;
+}
+
+[data-theme="light"] .error-container p,
+[data-theme="light"] .error-help {
+  color: #374151 !important;
+}
+
 .retry-button {
   background: var(--ifm-color-danger);
   color: white;
@@ -2346,6 +2381,21 @@
   font-weight: 500;
 }
 
+/* Light theme leaderboard stats */
+[data-theme="light"] .leaderboard-stats {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .leaderboard-stats .stat-number {
+  color: var(--ifm-color-primary) !important;
+}
+
+[data-theme="light"] .leaderboard-stats .stat-label {
+  color: #4a5568 !important;
+}
+
 /* Leaderboard Grid */
 .leaderboard-grid {
   display: grid;
@@ -2362,6 +2412,20 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  color: var(--ifm-font-color-base);
+}
+
+/* Light theme specific styles */
+[data-theme="light"] .leaderboard-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #1a202c;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .leaderboard-item:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border-color: var(--ifm-color-primary);
 }
 
 .leaderboard-item::before {
@@ -2462,6 +2526,19 @@
   font-style: italic;
 }
 
+/* Light theme text visibility fixes */
+[data-theme="light"] .user-name {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .user-username {
+  color: #4a5568 !important;
+}
+
+[data-theme="light"] .leaderboard-item .user-info {
+  color: #1a202c;
+}
+
 /* Score Display */
 .score-display {
   margin-bottom: 1.5rem;
@@ -2479,6 +2556,15 @@
   color: var(--ifm-color-emphasis-600);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+/* Light theme score visibility */
+[data-theme="light"] .score-number {
+  color: var(--ifm-color-primary) !important;
+}
+
+[data-theme="light"] .score-label {
+  color: #4a5568 !important;
 }
 
 /* User Stats */
@@ -2512,6 +2598,20 @@
   letter-spacing: 0.5px;
 }
 
+/* Light theme stats visibility */
+[data-theme="light"] .user-stats .stat {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .stat-value {
+  color: var(--ifm-color-primary) !important;
+}
+
+[data-theme="light"] .stat-text {
+  color: #4a5568 !important;
+}
+
 /* Achievements */
 .achievements {
   display: flex;
@@ -2530,6 +2630,13 @@
   font-weight: 500;
   border: 1px solid var(--ifm-color-primary-light);
   white-space: nowrap;
+}
+
+/* Light theme achievement tags */
+[data-theme="light"] .achievement-tag {
+  background: #e6fffa;
+  color: #234e52;
+  border: 1px solid #81e6d9;
 }
 
 /* Actions Section */
@@ -2577,6 +2684,21 @@
 .empty-state p {
   font-size: 1.1rem;
   margin-bottom: 0;
+}
+
+/* Light theme empty state */
+[data-theme="light"] .empty-state {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #4a5568;
+}
+
+[data-theme="light"] .empty-state h3 {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .empty-state p {
+  color: #4a5568 !important;
 }
 
 /* Responsive Design */
@@ -3230,6 +3352,21 @@
   margin: 1rem 0;
 }
 
+/* Light theme rate limit warning */
+[data-theme="light"] .rate-limit-warning {
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+}
+
+[data-theme="light"] .rate-limit-warning h4,
+[data-theme="light"] .rate-limit-warning p {
+  color: #92400e !important;
+}
+
+[data-theme="light"] .rate-limit-timer {
+  color: #dc2626 !important;
+}
+
 @media (max-width: 768px) {
   .leaderboard-header-controls {
     flex-direction: column;
@@ -3250,4 +3387,161 @@
 .filter-loading {
   opacity: 0.6;
   pointer-events: none;
+}
+
+/* Light theme comprehensive fixes */
+[data-theme="light"] .leaderboard-page-container {
+  color: #1a202c;
+}
+
+[data-theme="light"] .leaderboard-content {
+  color: #1a202c;
+}
+
+[data-theme="light"] .leaderboard-item * {
+  color: inherit;
+}
+
+[data-theme="light"] .leaderboard-item .user-info * {
+  color: inherit;
+}
+
+/* Ensure all text in leaderboard is visible in light theme */
+[data-theme="light"] .leaderboard-item,
+[data-theme="light"] .leaderboard-item .user-info,
+[data-theme="light"] .leaderboard-item .user-stats,
+[data-theme="light"] .leaderboard-item .achievements {
+  color: #1a202c !important;
+}
+
+[data-theme="light"] .leaderboard-item .user-name,
+[data-theme="light"] .leaderboard-item .user-username,
+[data-theme="light"] .leaderboard-item .stat-text {
+  color: inherit !important;
+}
+
+/* Force visibility for all leaderboard text elements */
+[data-theme="light"] .leaderboard-page-container * {
+  color: inherit;
+}
+
+[data-theme="light"] .leaderboard-page-container h1,
+[data-theme="light"] .leaderboard-page-container h2,
+[data-theme="light"] .leaderboard-page-container h3,
+[data-theme="light"] .leaderboard-page-container h4,
+[data-theme="light"] .leaderboard-page-container p {
+  color: #1a202c !important;
+}
+
+/* Keep giveaway page text white in light theme, but table text black */
+[data-theme="light"]
+  .min-h-screen.bg-gradient-to-br
+  *:not(table):not(th):not(td) {
+  color: white !important;
+}
+[data-theme="light"] .min-h-screen.bg-gradient-to-br table th,
+[data-theme="light"] .min-h-screen.bg-gradient-to-br table td {
+  color: black !important;
+}
+
+/* Light theme github buttons */
+[data-theme="light"] .github-profile-btn,
+[data-theme="light"] .github-link {
+  background: var(--ifm-color-primary);
+  color: white !important;
+}
+
+[data-theme="light"] .github-profile-btn:hover,
+[data-theme="light"] .github-link:hover {
+  background: var(--ifm-color-primary-darker);
+  color: white !important;
+  text-decoration: none;
+}
+
+/* Light theme refresh button */
+[data-theme="light"] .refresh-button {
+  background: var(--ifm-color-primary);
+  color: white !important;
+}
+
+[data-theme="light"] .refresh-button:hover:not(:disabled) {
+  background: var(--ifm-color-primary-darker);
+  color: white !important;
+}
+
+/* Light theme rate limit status */
+[data-theme="light"] .rate-limit-status {
+  color: #4a5568 !important;
+}
+
+/* ===== COMPREHENSIVE LIGHT THEME LEADERBOARD FIXES ===== */
+
+/* Force all leaderboard text to be visible in light theme */
+[data-theme="light"] .leaderboard-page-container,
+[data-theme="light"] .leaderboard-page-container *,
+[data-theme="light"] .leaderboard-content,
+[data-theme="light"] .leaderboard-content *,
+[data-theme="light"] .leaderboard-grid,
+[data-theme="light"] .leaderboard-grid *,
+[data-theme="light"] .leaderboard-item,
+[data-theme="light"] .leaderboard-item * {
+  color: #1a202c !important;
+}
+
+/* Override specific elements that need different colors */
+[data-theme="light"] .score-display,
+[data-theme="light"] .score-display * {
+  color: white !important;
+}
+
+[data-theme="light"] .rank-badge,
+[data-theme="light"] .rank-badge * {
+  color: white !important;
+}
+
+[data-theme="light"] .github-profile-btn,
+[data-theme="light"] .github-profile-btn *,
+[data-theme="light"] .github-link,
+[data-theme="light"] .github-link * {
+  color: white !important;
+}
+
+[data-theme="light"] .refresh-button,
+[data-theme="light"] .refresh-button * {
+  color: white !important;
+}
+
+/* Ensure primary colored elements remain visible */
+[data-theme="light"] .stat-value,
+[data-theme="light"] .score-number {
+  color: var(--ifm-color-primary) !important;
+}
+
+/* Fix any remaining invisible text */
+[data-theme="light"] .leaderboard-page-header *,
+[data-theme="light"] .leaderboard-stats *,
+[data-theme="light"] .user-info *,
+[data-theme="light"] .user-stats *,
+[data-theme="light"] .achievements * {
+  color: inherit !important;
+}
+
+/* Ensure proper contrast for all interactive elements */
+[data-theme="light"] .filter-button {
+  color: var(--ifm-color-primary) !important;
+  border-color: var(--ifm-color-primary) !important;
+}
+
+[data-theme="light"] .filter-button.active {
+  background: var(--ifm-color-primary) !important;
+  color: white !important;
+}
+
+/* Final fallback for any missed elements */
+[data-theme="light"] .dashboard-main * {
+  color: inherit;
+}
+
+[data-theme="light"] .dashboard-main {
+  color: #1a202c;
 }
