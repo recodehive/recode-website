@@ -3,32 +3,32 @@ id: filtering-data
 title: SQL Filtering Data
 sidebar_label: SQL Filtering Data
 sidebar_position: 3
-tags: [html, web-development, attributes, values]
-description: In this tutorial, you will learn about HTML attributes and values. HTML attributes provide additional information about elements, and values define the specific settings or properties of the attributes.
-keywords: [html, web development, attributes, values, html attributes, html values, html tutorial, html basics, web design, web pages, websites, html structure, html attributes tutorial, html values tutorial, html in 2024]
+tags: [html, web-development, attributes, values, SQL]
+description: This document is a tutorial on SQL data filtering techniques, designed for beginners learning database querying. It covers the fundamental concepts and practical applications of retrieving specific data from database tables.
+keywords:  [sql filtering, sql where clause, sql distinct, sql select statement, sql tutorial, sql basics, sql data filtering, sql query tutorial, sql database filtering, sql conditional queries, sql duplicate removal, sql unique values, sql filtering examples, sql beginner tutorial, sql data retrieval, sql filtering techniques, sql where examples, sql distinct tutorial, sql filtering rows, sql column selection, sql 2024]
 ---
 
-## 📙 Using Conditions
+## 📙 Selecting Data
 
 Welcome to the **Selecting Data** module! This foundational learning path is designed to help you master the basics of querying data, particularly focusing on how to retrieve specific information from databases effectively.
 
-### 📘 Using Coditions
+### 📘 Using Conditions with the WHERE Clause
 
 In this tutorial, you'll learn how to interpret and use rows in a database table. Tables are essential to storing structured data, and each **row** in a table represents a unique **item or record**.
-> The first step in filtering is selecting the Items
-> We use WHERE keyword to filter the data., we also apply the condition over there. 
-> We filter the table items we slect to get only items that satisy certain conditions.
-> The condition we want our items to fulfil comes after the where keyword
+> The first step in filtering is selecting the items.
+> We use **WHERE** keyword to filter the data by applying conditions. 
+> We filter the table items, we select to get only items that satisfy certain conditions.
+> The condition we want our items to fulfill comes after the where keyword
 
 
-For example, consider a table named `Friends`. Below is how a simple table might look:
+For example, consider a table named `Students`. Below is how a simple table might look:
 
 
 
-    :::info
+:::info
 <Tabs>
   <TabItem value="SQL Table" label="SQL Table">
-```sql title="Friends"
+```sql title="Students"
 | name        | year | major   |
 |-------------|------|---------|
 | Ava Smith   | 1    | Biology |
@@ -37,42 +37,41 @@ For example, consider a table named `Friends`. Below is how a simple table might
 ```
   </TabItem>
 
-<TabItem value="SQL Code" label="SQL Code">
+  <TabItem value="SQL Code" label="SQL Code">
   
-  ```sql title="Creating SQL Tables & db. "
-SELECT *		
-FROM students	
-WHERE major = 'Biology';
+  ```sql title="Select command with a condition"
+  SELECT *		
+  FROM Students	
+  WHERE major = 'Biology';
+   ```
 
-    ```
-
-    </TabItem>
+  </TabItem>
     
-    <TabItem value="how-git-works" label="Output ">
+  <TabItem value="Students" label="Output ">
 | name      | year | major   |
 |-----------|------|---------|
 | Ava Smith | 1    | Biology |
 | Lin Wong  | 3    | Biology |
     </TabItem>
 </Tabs>
+:::
 
 
 
 
+### 📘 Practice Example
 
-### 📘 Practise Example
-
-> To query data from a table, use the FROM clause followed by the table's name.
-
-
-For example, consider a table named `Friends`. Below is how a simple table might look:
+> To query data from a table, use the FROM clause followed by the table&apos;s name and then the WHERE clause to specify the conditions for the data you want to retrieve.
 
 
+For example, consider a table named `Students`. Below is how a simple table might look:
 
-    :::info
+
+
+:::info
 <Tabs>
   <TabItem value="SQL Table" label="SQL Table">
-```sql title="Friends"
+```sql title="Students"
 | name | email             | type  |
 |------|-------------------|-------|
 | Sam  | sam17@mail.com    | free  |
@@ -82,52 +81,46 @@ For example, consider a table named `Friends`. Below is how a simple table might
 ```
   </TabItem>
 
-<TabItem value="SQL Code" label="SQL Code">
+  <TabItem value="SQL Code" label="SQL Code">
   
-  ```sql title="Creating SQL Tables. "
+```sql title="Data from the table where type is pro"
 SELECT *
-FROM friends
+FROM Students
 WHERE type = 'pro';
-    ```
-
-    </TabItem>
+```
+  </TabItem>
     
-    <TabItem value="how-git-works" label="Output">
+  <TabItem value="Students table" label="Output">
 | name  | email         | type |
 |-------|---------------|------|
 | Re my | rem@mail.com  | pro  |
 | Kim   | kimz@mail.com | pro  |
-    </TabItem>
+  </TabItem>
 </Tabs>
-
-
 :::
 
 
 
 :::tip
- When requesting data with SQL staments like SELECT, we say that we are making a query.
-From helps in select the name col from
-While not necessary but its a good practice to finish the sql queries with;
-
-
-By following these best practices, 
+When requesting data with SQL statements like SELECT, we say that we are making a query.
+From helps in selecting columns from the table we are working on.
+While not necessary but it&apos;s a good practice to finish the sql queries with ";" 
 :::
 
 ### 🔄 Checking Equality
 
   > We use the = operator to check if the two values are equal.
 
-> The values like text values are writtern between single quotes. 
+  > The values like text values are written between single quotes. 
 
-> We can also use the numeric properties , it dont need to put in the quotes. 
+  > We can also use numeric values, we don&apos;t need to put them in the quotes. 
 
-> the = sign check if the two values are equal. 
+  > the = sign check if the two values are equal. 
 
-    :::info
+:::info
 <Tabs>
   <TabItem value="SQL Table" label="SQL Table">
-```sql title="friends"
+```sql title="Students"
 | name        | year | major   |
 |-------------|------|---------|
 | Ava Smith   | 1    | Biology |
@@ -136,38 +129,77 @@ By following these best practices,
 ```
   </TabItem>
 
-<TabItem value="SQL Code" label="SQL Code">
+  <TabItem value="SQL Code" label="SQL Code">
   
-  ```sql title="Creating SQL Tables. "
+```sql title="Selecting data WHERE major = Biology"
 SELECT *
-FROM students
+FROM Students
 WHERE major = 'Biology';
-    ```
-
-    </TabItem>
+```
+  </TabItem>
     
-    <TabItem value="how-git-works" label="Output">
+  <TabItem value="Students table" label="Output">
 | name      | year | major   |
 | --------- | ---- | ------- |
 | Ava Smith | 1    | Biology |
 | Lin Wong  | 3    | Biology |
 
-    </TabItem>
+  </TabItem>
 </Tabs>
-
-
 :::
 
-## 🧹 Selecting Unique Values with numeric
+### 🧹 Selecting Unique Values with DISTINCT
 
-We can also use `=` with numeric properties, like selecting only students that have the year value `1`.
+DISTINCT removes duplicate rows from the result set, returning only unique values or combinations.
+
+> In the table below, duplicate rows (if any student appears multiple times with identical name, year, and major) will be removed.
 
 ---
 
-    :::info
+:::info
 <Tabs>
   <TabItem value="SQL Table" label="SQL Table">
-```sql title="Subscribers"
+```sql title="Students"
+| name        | year | major   |
+|-------------|------|---------|
+| Ava Smith   | 1    | Biology |
+| Luis Garcia | 1    | Physics |
+| Lin Wong    | 3    | Biology |
+| Ava Smith   | 1    | Biology |
+```
+  </TabItem>
+
+<TabItem value="SQL Code" label="SQL Code">
+  
+  ```sql title="Selecting unique values."
+SELECT DISTINCT name, year, major 
+FROM Students;
+  ```
+
+  </TabItem>
+    
+  <TabItem value="Students table" label="Output">
+| name        | year | major   |
+| ----------- | ---- | ------- |
+| Ava Smith   | 1    | Biology |
+| Luis Garcia | 1    | Physics |
+| Lin Wong    | 3    | Biology |
+  </TabItem>
+</Tabs>
+
+:::
+
+### 🧹 Filtering columns
+
+When using conditions we don&apos;t have to select all columns with *, we can select only a couple like name and year. 
+> We don&apos;t have to select all columns when filtering. 
+
+---
+
+:::info
+<Tabs>
+  <TabItem value="SQL Table" label="SQL Table">
+```sql title="Students"
 | name        | year | major   |
 |-------------|------|---------|
 | Ava Smith   | 1    | Biology |
@@ -178,85 +210,43 @@ We can also use `=` with numeric properties, like selecting only students that h
 
 <TabItem value="SQL Code" label="SQL Code">
   
-  ```sql title="Creating SQL Tables. "
-SELECT *
-FROM students
-WHERE year = 1;
-    ```
+  ```sql title="Selecting name and year columns."
+SELECT name, year
+FROM Students;
+  ```
 
-    </TabItem>
-    
-    <TabItem value="how-git-works" label="Output">
-| name        | year | major   |
-| ----------- | ---- | ------- |
-| Ava Smith   | 1    | Biology |
-| Luis Garcia | 1    | Physics |
-
-
-    </TabItem>
-</Tabs>
-
-
-:::
-
-## 🧹 Filtering coloumns
-
-When using contions we dont have to select all coloumns with *, we can select only a couple like name and year. 
-> We dont have to select all colouns when filtering. 
-
----
-
-    :::info
-<Tabs>
-  <TabItem value="SQL Table" label="SQL Table">
-```sql title="Subscribers"
-| name        | year | major   |
-|-------------|------|---------|
-| Ava Smith   | 1    | Biology |
-| Luis Garcia | 1    | Physics |
-| Lin Wong    | 3    | Biology |
-```
   </TabItem>
-
-<TabItem value="SQL Code" label="SQL Code">
-  
-  ```sql title="Creating SQL Tables. "
-SELECT *
-FROM students
-WHERE year = 1;
-    ```
-
-    </TabItem>
     
-    <TabItem value="how-git-works" label="Output">
-| name        | year | major   |
-| ----------- | ---- | ------- |
-| Ava Smith   | 1    | Biology |
-| Luis Garcia | 1    | Physics |
+  <TabItem value="Table with selected columns" label="Output">
+| name        | year |
+| ----------- | ---- |
+| Ava Smith   | 1    |
+| Luis Garcia | 1    |
+| Lin Wong    | 3    |
 
-
-
-    </TabItem>
+  </TabItem>
 </Tabs>
 
 
 :::
 
 
-## ✅ What You have Learned
+## ✅ What You have Learnt
 
 This module covers four essential topics in data selection:
 
 - **Rows and Columns**  
-  Learn how to access specific rows and columns in a dataset or table, the building blocks of any query.
+>  Learn how to access specific rows and columns in a dataset or table, the building blocks of any query.
+>  We selected specific rows using conditions and columns using the SELECT statement.
+
 
 - **Select Data**  
-  Understand the basic `SELECT` statement to retrieve data from a database.
+>  Understand the basic `SELECT` statement to retrieve data from a database.
 
 - **Select Multiple Columns**  
-  Retrieve more than one column at a time in your queries to get the information you need all at once.
+>  Retrieve more than one column at a time in your queries to get the information you need all at once.
 
 - **Select Distinct Values**  
-  Use `DISTINCT` to eliminate duplicate records and identify unique entries within your dataset.
+>  Use `DISTINCT` to eliminate duplicate records and identify unique entries within your dataset.
 
 ---

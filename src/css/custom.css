@@ -1926,8 +1926,13 @@ html {
   color: white;
 }
 
-.interview-prep-discord-btn {
-  color: white;
+.interview-prep-discord-btn{
+  color:white;
+
+}
+.interview-prep-discord-btn:hover{
+  color:white;
+
 }
 
 [data-theme="dark"] .overview-sidebar-blue {
@@ -1941,4 +1946,76 @@ html {
 }
 [data-theme="dark"] .overview-sidebar-purple {
   border-color: #a855f7;
+}
+[data-theme='dark'] .technical-outer{
+  border-color: #3b82f6
+
+}
+[data-theme='dark'] .technical-inner{
+  border-color: #374151
+
+}
+[data-theme='dark'] .technical-inner-success{
+  border-color: #92400e
+}
+
+[data-theme='dark'] .question-bank-purple{
+  border-color: #a855f7
+}
+[data-theme='dark'] .question-bank-blue{
+  border-color: #3b82f6
+}
+[data-theme='dark'] .question-bank-green{
+  border-color: #22c55e
+}
+[data-theme='dark'] .question-bank-orange{
+  border-color: v
+}
+.technical-btn{
+  color: white;
+}
+
+.technical-btn:hover{
+  color:white;
+}
+
+/* Dark mode border overrides for Technical tab subtopic cards */
+
+/* Purple */
+[data-theme='dark'] .question-bank-subtopic-purple {
+  border-color: #a855f7 !important; /* purple-500 */
+}
+
+/* Blue */
+[data-theme='dark'] .question-bank-subtopic-blue {
+  border-color: #3b82f6 !important; /* blue-500 */
+}
+
+/* Green */
+[data-theme='dark'] .question-bank-subtopic-green {
+  border-color: #22c55e !important; /* green-500 */
+}
+
+/* Orange */
+[data-theme='dark'] .question-bank-subtopic-orange {
+  border-color: #f97316 !important; /* orange-500 */
+}
+
+/* Pink */
+[data-theme='dark'] .question-bank-subtopic-pink {
+  border-color: #ec4899 !important; /* pink-500 */
+}
+
+/* Cyan */
+[data-theme='dark'] .question-bank-subtopic-cyan {
+  border-color: #06b6d4 !important; /* cyan-500 */
+}
+
+
+.explore-btn{
+  color:white;
+}
+
+.explore-btn:hover{
+  color:white;
 }

@@ -58,6 +58,14 @@ const sponsors: Sponsor[] = [
     description: "Student",
     github: "https://github.com/milosmatovicup",
   },
+  {
+    name: "Tirth Patel",
+    image: "https://avatars.githubusercontent.com/u/111308497?v=4",
+    description: "Student",
+    github: "https://github.com/TirthWillLearn",
+    linkedin: "https://www.linkedin.com/in/tirth-k-patel/",
+    twitter: "https://x.com/codewithtirth",
+  },
 
   {
     name: "Takashi Arai",
