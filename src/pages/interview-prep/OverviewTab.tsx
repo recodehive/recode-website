@@ -13,12 +13,114 @@ interface OverviewTabProps {
 }
 
 const OverviewTab: React.FC<OverviewTabProps> = ({
-    toggleTips,
-    toggleQuestions,
-    showTips,
-    showQuestions,
-    setActiveTab,
+    toggleTips = () => { },
+    toggleQuestions = () => { },
+    showTips = {},
+    showQuestions = {},
+    setActiveTab = () => { },
 }) => {
+    const stages = [
+        {
+            step: "01",
+            title: "Resume Optimization",
+            subtitle: "Foundation Building Phase",
+            icon: "📄",
+            description:
+                "Craft a compelling resume that showcases your achievements, aligns with job requirements, and passes ATS screening systems",
+            color: "from-blue-500 to-blue-600",
+            bgColor: "bg-blue-500",
+            duration: "Ongoing preparation",
+            difficulty: "Medium",
+            keyFocus: "Professional Presentation & ATS Optimization",
+            tips: [
+                "Tailor resume for each specific role and company",
+                "Use action verbs and quantify achievements with metrics",
+                "Optimize for ATS with relevant keywords from job description",
+                "Keep format clean, consistent, and easy to scan",
+                "Include relevant projects, certifications, and technical skills",
+            ],
+            commonQuestions: [
+                "Walk me through your resume",
+                "Tell me about this project on your resume",
+                "Why did you choose this career path?",
+            ],
+        },
+        {
+            step: "02",
+            title: "Technical Assessment",
+            subtitle: "Core Competency Evaluation",
+            icon: "💻",
+            description:
+                "Deep dive into coding abilities, algorithmic thinking, system design knowledge, and technical problem-solving approach",
+            color: "from-green-500 to-green-600",
+            bgColor: "bg-green-500",
+            duration: "60-120 minutes",
+            difficulty: "Hard",
+            keyFocus: "Problem Solving & Code Quality",
+            tips: [
+                "Practice coding on whiteboard/shared editor daily",
+                "Think out loud - explain your thought process clearly",
+                "Ask clarifying questions before jumping into code",
+                "Test your solution with edge cases and optimize",
+                "Know time/space complexity of your solutions",
+            ],
+            commonQuestions: [
+                "Implement [data structure/algorithm]",
+                "Design a system for [specific use case]",
+                "Optimize this code for better performance",
+            ],
+        },
+        {
+            step: "03",
+            title: "Behavioral Deep-Dive",
+            subtitle: "Leadership & Culture Assessment",
+            icon: "🤝",
+            description:
+                "Comprehensive evaluation of soft skills, leadership potential, conflict resolution abilities, and team collaboration style",
+            color: "from-purple-500 to-purple-600",
+            bgColor: "bg-purple-500",
+            duration: "45-75 minutes",
+            difficulty: "Medium",
+            keyFocus: "Leadership & Collaboration",
+            tips: [
+                "Master the STAR method (Situation, Task, Action, Result)",
+                "Prepare 5-7 detailed stories covering different competencies",
+                "Show growth mindset - discuss lessons learned from failures",
+                "Demonstrate impact with specific metrics and outcomes",
+                "Practice active listening and ask follow-up questions",
+            ],
+            commonQuestions: [
+                "Tell me about a time you led a difficult project",
+                "Describe a conflict with a teammate and resolution",
+                "Share an example of when you failed and what you learned",
+            ],
+        },
+        {
+            step: "04",
+            title: "Final Alignment",
+            subtitle: "Mutual Fit Confirmation",
+            icon: "🎯",
+            description:
+                "Final evaluation covering compensation expectations, role clarity, team dynamics, and long-term career alignment",
+            color: "from-orange-500 to-red-500",
+            bgColor: "bg-orange-500",
+            duration: "30-60 minutes",
+            difficulty: "Medium",
+            keyFocus: "Mutual Fit & Expectations",
+            tips: [
+                "Research industry salary benchmarks thoroughly",
+                "Prepare thoughtful questions about team and growth",
+                "Show genuine enthusiasm for the role and company",
+                "Discuss career goals and how role aligns with them",
+                "Be ready to negotiate professionally and respectfully",
+            ],
+            commonQuestions: [
+                "What are your career goals for the next 2-3 years?",
+                "How do you handle work-life balance?",
+                "What questions do you have for us?",
+            ],
+        },
+    ]
     return (
         <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.div className="mb-16" variants={fadeIn}>
@@ -132,110 +234,9 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
 
                     {/* Diagonal flowchart */}
                     <div className="relative">
-                        {[
-                            {
-                                step: "01",
-                                title: "Resume Optimization",
-                                subtitle: "Foundation Building Phase",
-                                icon: "📄",
-                                description:
-                                    "Craft a compelling resume that showcases your achievements, aligns with job requirements, and passes ATS screening systems",
-                                color: "from-blue-500 to-blue-600",
-                                bgColor: "bg-blue-500",
-                                duration: "Ongoing preparation",
-                                difficulty: "Medium",
-                                keyFocus: "Professional Presentation & ATS Optimization",
-                                tips: [
-                                    "Tailor resume for each specific role and company",
-                                    "Use action verbs and quantify achievements with metrics",
-                                    "Optimize for ATS with relevant keywords from job description",
-                                    "Keep format clean, consistent, and easy to scan",
-                                    "Include relevant projects, certifications, and technical skills",
-                                ],
-                                commonQuestions: [
-                                    "Walk me through your resume",
-                                    "Tell me about this project on your resume",
-                                    "Why did you choose this career path?",
-                                ],
-                            },
-                            {
-                                step: "02",
-                                title: "Technical Assessment",
-                                subtitle: "Core Competency Evaluation",
-                                icon: "💻",
-                                description:
-                                    "Deep dive into coding abilities, algorithmic thinking, system design knowledge, and technical problem-solving approach",
-                                color: "from-green-500 to-green-600",
-                                bgColor: "bg-green-500",
-                                duration: "60-120 minutes",
-                                difficulty: "Hard",
-                                keyFocus: "Problem Solving & Code Quality",
-                                tips: [
-                                    "Practice coding on whiteboard/shared editor daily",
-                                    "Think out loud - explain your thought process clearly",
-                                    "Ask clarifying questions before jumping into code",
-                                    "Test your solution with edge cases and optimize",
-                                    "Know time/space complexity of your solutions",
-                                ],
-                                commonQuestions: [
-                                    "Implement [data structure/algorithm]",
-                                    "Design a system for [specific use case]",
-                                    "Optimize this code for better performance",
-                                ],
-                            },
-                            {
-                                step: "03",
-                                title: "Behavioral Deep-Dive",
-                                subtitle: "Leadership & Culture Assessment",
-                                icon: "🤝",
-                                description:
-                                    "Comprehensive evaluation of soft skills, leadership potential, conflict resolution abilities, and team collaboration style",
-                                color: "from-purple-500 to-purple-600",
-                                bgColor: "bg-purple-500",
-                                duration: "45-75 minutes",
-                                difficulty: "Medium",
-                                keyFocus: "Leadership & Collaboration",
-                                tips: [
-                                    "Master the STAR method (Situation, Task, Action, Result)",
-                                    "Prepare 5-7 detailed stories covering different competencies",
-                                    "Show growth mindset - discuss lessons learned from failures",
-                                    "Demonstrate impact with specific metrics and outcomes",
-                                    "Practice active listening and ask follow-up questions",
-                                ],
-                                commonQuestions: [
-                                    "Tell me about a time you led a difficult project",
-                                    "Describe a conflict with a teammate and resolution",
-                                    "Share an example of when you failed and what you learned",
-                                ],
-                            },
-                            {
-                                step: "04",
-                                title: "Final Alignment",
-                                subtitle: "Mutual Fit Confirmation",
-                                icon: "🎯",
-                                description:
-                                    "Final evaluation covering compensation expectations, role clarity, team dynamics, and long-term career alignment",
-                                color: "from-orange-500 to-red-500",
-                                bgColor: "bg-orange-500",
-                                duration: "30-60 minutes",
-                                difficulty: "Medium",
-                                keyFocus: "Mutual Fit & Expectations",
-                                tips: [
-                                    "Research industry salary benchmarks thoroughly",
-                                    "Prepare thoughtful questions about team and growth",
-                                    "Show genuine enthusiasm for the role and company",
-                                    "Discuss career goals and how role aligns with them",
-                                    "Be ready to negotiate professionally and respectfully",
-                                ],
-                                commonQuestions: [
-                                    "What are your career goals for the next 2-3 years?",
-                                    "How do you handle work-life balance?",
-                                    "What questions do you have for us?",
-                                ],
-                            },
-                        ].map((stage, index) => {
+                        {(stages || []).map((stage, index) => {
                             return (
-                                <motion.div
+                                stage ? (<motion.div
                                     key={index}
                                     className="relative mb-20 last:mb-0"
                                     initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
@@ -360,7 +361,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                                     >
                                                         <h4 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
                                                             <span className="text-green-500">💡</span>
-                                                            Preparation Tips ({stage.tips.length})
+                                                            Preparation Tips ({stage.tips?.length || 0})
                                                         </h4>
                                                         <motion.div
                                                             animate={{ rotate: showTips[index] ? 180 : 0 }}
@@ -391,7 +392,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                                                 className="overflow-hidden"
                                                             >
                                                                 <ul className="space-y-3 mt-4">
-                                                                    {stage.tips.map((tip, tipIndex) => (
+                                                                    {stage.tips?.map((tip, tipIndex) => (
                                                                         <motion.li
                                                                             key={tipIndex}
                                                                             className="flex items-start gap-3 text-gray-600 dark:text-gray-300"
@@ -416,7 +417,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                                     >
                                                         <h4 className="font-semibold text-gray-900 dark:text-white flex items-center gap-2">
                                                             <span className="text-purple-500">❓</span>
-                                                            Common Questions ({stage.commonQuestions.length})
+                                                            Common Questions ({stage.commonQuestions?.length || 0})
                                                         </h4>
                                                         <motion.div
                                                             animate={{ rotate: showQuestions[index] ? 180 : 0 }}
@@ -447,7 +448,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                                                 className="overflow-hidden"
                                                             >
                                                                 <div className="space-y-2 mt-4">
-                                                                    {stage.commonQuestions.map((question, qIndex) => (
+                                                                    {stage.commonQuestions?.map((question, qIndex) => (
                                                                         <motion.div
                                                                             key={qIndex}
                                                                             className="p-3 bg-gray-50 dark:bg-gray-700 rounded-lg border-l-3 border-purple-500 overview-sidebar-purple"
@@ -467,7 +468,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                         </motion.div>
                                     </div>
                                 </motion.div>
-                            )
+                                ) : null)
                         })}
                     </div>
                 </div>
@@ -562,8 +563,8 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                             color: "from-orange-500 to-orange-600",
                             items: ["Live Practice", "Feedback", "Time Management"],
                         },
-                    ].map((section) => (
-                        <motion.div
+                    ]?.map((section) => (
+                        section ? (<motion.div
                             key={section.id}
                             className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer flex flex-col"
                             variants={fadeIn}
@@ -577,11 +578,11 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                             <div className="p-6 flex flex-col flex-grow">
                                 <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">{section.description}</p>
                                 <div className="space-y-2 mb-4">
-                                    {section.items.map((item, i) => (
-                                        <div key={i} className="flex items-center text-xs text-gray-500 dark:text-gray-400">
+                                    {section.items?.map((item, i) => (
+                                        item ? (<div key={i} className="flex items-center text-xs text-gray-500 dark:text-gray-400">
                                             <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2"></span>
                                             {item}
-                                        </div>
+                                        </div>) : null
                                     ))}
                                 </div>
                                 <div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-700">
@@ -590,7 +591,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                     </span>
                                 </div>
                             </div>
-                        </motion.div>
+                        </motion.div>) : null
                     ))}
                 </div>
             </motion.div>

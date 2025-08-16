@@ -37,7 +37,7 @@ interface CompanyTip {
 }
 
 interface CompaniesTabProps {
-    companyTips: CompanyTip[];
+    companyTips?: CompanyTip[];
     toggleTips: (index: number) => void;
     toggleQuestions: (index: number) => void;
     showTips: { [key: number]: boolean };
@@ -47,15 +47,14 @@ interface CompaniesTabProps {
 const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
 const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
 
-const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips }) => {
+const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips=[] }) => {
     const [searchTerm, setSearchTerm] = useState("")
     const [selectedIndustry, setSelectedIndustry] = useState("")
     const [selectedRole, setSelectedRole] = useState("")
     const [expandedQuestions, setExpandedQuestions] = useState<{ [key: string]: boolean }>({})
-    const [isOpen, setIsOpen] = useState(false)
 
     const filteredCompanies = useMemo(() => {
-        return companyTips.filter((company) => {
+        return (companyTips || []).filter((company) => {
             const matchesSearch =
                 company.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 company.focus.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -68,8 +67,8 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips }) => {
         })
     }, [companyTips, searchTerm, selectedIndustry, selectedRole])
 
-    const industries = [...new Set(companyTips.map((c) => c.industry))]
-    const roles = [...new Set(companyTips.flatMap((c) => c.roleTypes))]
+    const industries = [...new Set((companyTips || []).map((c) => c.industry))]
+    const roles = [...new Set((companyTips || []).flatMap((c) => c.roleTypes))]
 
     const toggleQuestion = (companyIndex: number, questionIndex: number) => {
         const key = `${companyIndex}-${questionIndex}`
@@ -153,8 +152,8 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips }) => {
                                 bgColor: "bg-orange-500",
                                 stats: "100+ Questions",
                             },
-                        ].map((item, i) => (
-                            <motion.div
+                        ]?.map((item, i) => (
+                            item?(<motion.div
                                 key={i}
                                 className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                                 whileHover={{ y: -5 }}
@@ -177,7 +176,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips }) => {
                                 <div className="inline-flex items-center px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-semibold text-gray-700 dark:text-gray-300">
                                     {item.stats}
                                 </div>
-                            </motion.div>
+                            </motion.div>):null
                         ))}
                     </div>
 
@@ -186,7 +185,8 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips }) => {
                             { metric: "92%", label: "Interview Success Rate", icon: "📈", color: "text-green-600" },
                             { metric: "150+", label: "Companies Covered", icon: "🏢", color: "text-blue-600" },
                             { metric: "50K+", label: "Successful Candidates", icon: "👥", color: "text-purple-600" },
-                        ].map((stat, i) => (
+                        ]?.map((stat, i) => (
+                            stat?(
                             <motion.div
                                 key={i}
                                 className="text-center p-6 bg-white/50 dark:bg-gray-800/50 rounded-xl backdrop-blur-sm border company-border"
@@ -199,7 +199,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips }) => {
                                     <span>{stat.icon}</span>
                                     {stat.label}
                                 </div>
-                            </motion.div>
+                            </motion.div>):null
                         ))}
                     </div>
                 </div>
@@ -250,7 +250,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips }) => {
                 <div className="flex items-center justify-between">
                     <div className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
                         <Building2 className="w-4 h-4" />
-                        Showing {filteredCompanies.length} of {companyTips.length} companies
+                        Showing {filteredCompanies.length} of {companyTips?.length||0} companies
                     </div>
                     <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
                         <Star className="w-3 h-3" />
@@ -261,6 +261,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips }) => {
 
             <div className="space-y-12">
                 {filteredCompanies.map((company, companyIndex) => {
+                    const [isOpen, setIsOpen] = useState(false)
                     return (
                         <motion.div key={companyIndex} variants={fadeIn} className="group">
                             <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] border-0">

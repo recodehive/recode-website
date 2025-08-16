@@ -8,16 +8,16 @@ interface BehavioralCategory {
 }
 
 interface BehavioralTabProps {
-  behavioralQuestions: BehavioralCategory[];
-  expandedCategories: { [key: number]: boolean };
+  behavioralQuestions?: BehavioralCategory[];
+  expandedCategories?: { [key: number]: boolean };
   toggleCategory: (index: number) => void;
 }
 
 const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
 const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.2 } } };
 
-const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions,
-  expandedCategories,
+const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
+  expandedCategories=[],
   toggleCategory, }) => {
   return (
     <motion.div initial="hidden" animate="visible" variants={staggerContainer}>

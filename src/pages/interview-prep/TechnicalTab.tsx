@@ -30,9 +30,9 @@ interface PracticePlatform {
 }
 
 interface TechnicalTabProps {
-    technicalResources: TechnicalCategory[];
-    practicePlatforms: PracticePlatform[];
-    expandedCategories: { [key: number]: boolean };
+    technicalResources?: TechnicalCategory[];
+    practicePlatforms?: PracticePlatform[];
+    expandedCategories?: { [key: number]: boolean };
     toggleCategory: (index: number) => void;
 }
 
@@ -40,9 +40,9 @@ const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, tra
 const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.2 } } };
 
 const TechnicalTab: React.FC<TechnicalTabProps> = ({
-    technicalResources,
-    practicePlatforms,
-    expandedCategories,
+    technicalResources=[],
+    practicePlatforms=[],
+    expandedCategories=[],
     toggleCategory,
 }) => {
     return (
