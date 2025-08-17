@@ -10,6 +10,7 @@ const config: Config = {
   title: "Recode Hive",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
+ 
 
   url: "https://your-docusaurus-site.example.com",
   baseUrl: "/",

@@ -1,12 +1,3 @@
-.dropdown-content .border-r,
-.dropdown-content .col-span-1,
-.dropdown-content .col-span-2,
-.dropdown-content a.border-r,
-.dropdown-content a.col-span-1,
-.dropdown-content a.col-span-2 {
-  color: var(--ifm-font-color-base);
-}
-
 /* You can override the default Infima variables here. */
 @import "tailwindcss";
 
@@ -222,17 +213,19 @@ html[data-theme="dark"] .menu__link--active::after {
     color var(--ifm-transition-fast) ease;
 }
 
-/* Fix navbar alignment and spacing */
+/*======= SECTION 6: Fix navbar alignment and spacing ======== */
 .navbar {
-  padding: 0.5rem 1rem;
+  /* padding: 0 1rem; */
+  padding-left: 0 !important;
+  margin: 0;
   height: 60px;
   display: flex;
-  align-items: center;
 }
 
 .navbar__brand {
   display: flex;
-  align-items: center;
+  align-items: center !important;
+  justify-content: flex-start !important;
   margin-right: 1rem;
   margin-left: 0;
   flex-shrink: 0;
@@ -257,7 +250,7 @@ html[data-theme="dark"] .menu__link--active::after {
   padding: 0 !important;
 }
 
-/* Adjust individual navbar items */
+/* ======== SECTION 7 : Adjust individual navbar items ==========*/
 .navbar__items > .navbar__item {
   padding: 0.2rem 0.3rem !important;
   margin: 0 !important;
@@ -284,7 +277,7 @@ html[data-theme="dark"] .menu__link--active::after {
   vertical-align: middle;
 }
 
-/* ===== CRITICAL FIX: DROPDOWN HOVER BEHAVIOR ===== */
+/* ===== SECTION 8: CRITICAL FIX: DROPDOWN HOVER BEHAVIOR ===== */
 .dropdown {
   display: inline-flex !important;
   align-items: center !important;
@@ -303,6 +296,14 @@ html[data-theme="dark"] .menu__link--active::after {
   height: 10px !important;
   background: transparent !important;
   z-index: 999 !important;
+}
+.dropdown-content .border-r,
+.dropdown-content .col-span-1,
+.dropdown-content .col-span-2,
+.dropdown-content a.border-r,
+.dropdown-content a.col-span-1,
+.dropdown-content a.col-span-2 {
+  color: var(--ifm-font-color-base);
 }
 
 /* Show dropdown on hover with delay */
@@ -374,7 +375,7 @@ html[data-theme="dark"] .menu__link--active::after {
   --ifm-transition-slow: 300ms;
 }
 
-/* Smooth theme transitions */
+/* ======= SECTION 9 :Smooth theme transitions ========== */
 html,
 body {
   transition: background-color 150ms ease, color 150ms ease;
@@ -409,145 +410,10 @@ body {
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
-/* ===== CRITICAL FIX: MOBILE NAVBAR BEHAVIOR ===== */
-@media screen and (max-width: 996px) {
-  /* Hide TOP navbar items on mobile (not sidebar) */
-  .navbar__items:not(.navbar__items--right)
-    .navbar__item:not(.navbar__toggle):not(.navbar__brand) {
-    display: none !important;
-  }
-
-  /* Keep sidebar items visible */
-  .navbar-sidebar .navbar__item,
-  .navbar-sidebar .navbar__link,
-  .navbar-sidebar .dropdown {
-    display: block !important;
-  }
-
-  /* Only show essential elements in TOP navbar */
-  .navbar__toggle,
-  .navbar__brand,
-  .navbar__search,
-  #firebase-auth-github-navbar,
-  .colorModeToggle {
-    display: flex !important;
-  }
-
-  /* Clean mobile navbar layout - prevent overflow */
-  .navbar {
-    padding: 0.5rem 0.5rem !important;
-    height: 56px !important;
-  }
-
-  .navbar__inner {
-    width: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-  }
-
-  /* Right side items - only essential ones with proper spacing */
-  .navbar__items--right {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between;
-    gap: 0.2rem !important;
-    margin-left: auto !important;
-    flex-shrink: 0 !important;
-  }
-
-  /* Logo and brand adjustments */
-  .navbar__brand {
-    margin-right: 1.5rem !important;
-  }
-
-  .navbar__logo {
-    height: 32px !important;
-  }
-
-  .navbar__title {
-    font-size: 1rem !important;
-  }
-
-  /* Mobile search button - fixed spacing */
-  .DocSearch-Button {
-    min-width: 36px !important;
-    width: 36px !important;
-    height: 36px !important;
-    padding: 0.3rem !important;
-    margin: 0 0.25rem !important;
-    flex-shrink: 0 !important;
-    box-sizing: border-box !important;
-  }
-
-  .DocSearch-Button-Placeholder,
-  .DocSearch-Button-Keys {
-    display: none !important;
-  }
-
-  /* Mobile GitHub button - fixed spacing */
-  #firebase-auth-github-navbar {
-    display: flex !important;
-    flex-shrink: 0 !important;
-    position: relative !important;
-  }
-
-  #firebase-auth-github-navbar button {
-    height: 36px !important;
-    width: 36px !important;
-    min-width: 36px !important;
-    padding: 0.3rem !important;
-    font-size: 0 !important;
-    margin: 0 0.25rem !important;
-    flex-shrink: 0 !important;
-    position: relative !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-  }
-
-  #firebase-auth-github-navbar button svg {
-    margin-right: 0 !important;
-  }
-
-  /* Mobile theme toggle - fixed spacing */
-  .colorModeToggle {
-    width: 36px !important;
-    height: 36px !important;
-    min-width: 36px !important;
-    padding: 0.3rem !important;
-    margin: 0 0.25rem !important;
-    flex-shrink: 0 !important;
-    position: relative !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    box-sizing: border-box !important;
-  }
-
-  /* Ensure sidebar toggle is always visible */
-  .navbar__toggle {
-    display: block !important;
-    margin-right: 0.5rem !important;
-  }
-}
-
-@media screen and (min-width: 1057px) {
-  .nav-emoji {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 1205px) {
-  .nav-emoji {
-    display: inline-block;
-  }
-}
-
-/* ===== TABLET AND DESKTOP NAVBAR (997px+) ===== */
-@media (min-width: 997px) {
+/* =====  SECTION 10: DESKTOP NAVBAR ENHANCEMENTS ===== */
+@media (min-width: 1300px) {
   /* Enhanced dropdown hover behavior */
+
   .dropdown:hover .dropdown__menu {
     display: block !important;
     visibility: visible !important;
@@ -568,9 +434,9 @@ body {
   /* Better spacing for desktop navbar */
   .navbar__inner {
     max-width: 1400px;
-    margin: 0 auto;
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
+    display: flex;
   }
 
   .navbar__items:not(.navbar__items--right) {
@@ -579,178 +445,55 @@ body {
     margin-left: 0;
     margin-right: 2rem;
   }
-
-  /* Ensure proper spacing between left and right items */
-  .navbar__items--right {
-    margin-left: auto !important;
-  }
 }
-
-/* Icon-only navbar design for tablets and smaller screens */
-@media (max-width: 1200px) and (min-width: 997px) {
-  /* Right navbar container with proper spacing */
-  .navbar .navbar__inner .navbar__items.navbar__items--right {
-    display: flex !important;
-    align-items: center;
-    gap: 0.5rem;
-    margin-left: auto;
-    flex-shrink: 0;
-    height: 100%;
-    padding: 0;
-  }
-
-  /* Make all right navbar items visible with consistent layout */
-  .navbar .navbar__inner .navbar__items.navbar__items--right .navbar__item {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    margin: 0 !important;
-    align-items: center;
-    justify-content: center;
-  }
-
-  /* GitHub auth button - improved styling */
-  #firebase-auth-github-navbar button {
-    height: 36px !important;
-    padding: 0.5rem 0.75rem !important;
-    font-size: 0.8rem !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    border-radius: 6px !important;
-    background-color: #24292e !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-    transition: all 0.2s ease !important;
-    cursor: pointer !important;
-    white-space: nowrap !important;
-  }
-
-  #firebase-auth-github-navbar button:hover {
-    background-color: #1a1e22 !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
-  }
-
-  #firebase-auth-github-navbar button svg {
-    width: 16px !important;
-    height: 16px !important;
-    color: white !important;
-    flex-shrink: 0 !important;
-    margin-right: 0.5rem !important;
-  }
-
-  /* Search button - consistent styling */
-  .DocSearch-Button {
-    height: 36px !important;
-    min-width: 180px !important;
-    padding: 0.5rem 0.75rem !important;
-    border-radius: 6px !important;
-    margin: 0 !important;
-    display: flex !important;
-    justify-content: flex-start !important;
-    align-items: center !important;
-    background-color: var(--ifm-color-emphasis-200) !important;
-    border: 1px solid var(--ifm-color-emphasis-300) !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-    transition: all 0.2s ease !important;
-    cursor: pointer !important;
-  }
-
-  .DocSearch-Button:hover {
-    background-color: var(--ifm-color-emphasis-300) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18) !important;
-    border-color: var(--ifm-color-emphasis-400) !important;
-  }
-
-  .DocSearch-Button-Placeholder,
-  .DocSearch-Button-Keys {
+/* ===== SECTION 11: CRITICAL FIX: TABLET/IPAD NAVBAR BEHAVIOR ===== */
+@media screen and (max-width: 1300px) {
+  /* Hide TOP navbar items on mobile (not sidebar) */
+  .navbar__items .navbar__item:not(.navbar__toggle):not(.navbar__brand) {
     display: none !important;
   }
 
-  .DocSearch-Search-Icon {
-    width: 16px !important;
-    height: 16px !important;
-    margin-right: 0.5rem !important;
-    color: var(--ifm-color-emphasis-600) !important;
-    flex-shrink: 0 !important;
-  }
-
-  .DocSearch-Button-Placeholder {
+  /* Keep sidebar items visible */
+  .navbar-sidebar .navbar__item,
+  .navbar-sidebar .navbar__link,
+  .navbar-sidebar .dropdown {
     display: block !important;
-    font-size: 0.8rem !important;
-    color: var(--ifm-color-emphasis-600) !important;
   }
 
-  .DocSearch-Button-Keys {
-    display: flex !important;
-    margin-left: auto !important;
+  /* Clean mobile navbar layout - prevent overflow */
+  .navbar {
+    padding: 0.5rem 0.5rem !important;
+    height: 56px !important;
   }
 
-  /* Theme toggle - improved styling */
-  .colorModeToggle {
-    display: flex !important;
-    width: 36px !important;
-    height: 36px !important;
-    padding: 0.5rem !important;
-    border-radius: 6px !important;
+  .navbar__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 0 !important;
-    background-color: var(--ifm-color-emphasis-200) !important;
-    border: 1px solid var(--ifm-color-emphasis-300) !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
-    transition: all 0.2s ease !important;
-    justify-content: center !important;
-    align-items: center !important;
-    cursor: pointer !important;
-    flex-shrink: 0 !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    width: 100% !important;
   }
 
-  .colorModeToggle:hover {
-    background-color: var(--ifm-color-emphasis-300) !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
-    border-color: var(--ifm-color-emphasis-400) !important;
+  /* Logo and brand adjustments */
+  .navbar__brand {
+    margin-right: 1.5rem !important;
   }
 
-  .colorModeToggle svg {
-    width: 16px !important;
-    height: 16px !important;
-    color: var(--ifm-color-emphasis-700) !important;
-    flex-shrink: 0 !important;
+  .navbar__logo {
+    height: 32px !important;
   }
 
-  /* Dark theme adjustments for mobile icons */
-  [data-theme="dark"] .DocSearch-Button {
-    background-color: var(--dark-bg-tertiary) !important;
-    border-color: var(--dark-border) !important;
+  .navbar__title {
+    font-size: 1rem !important;
   }
 
-  [data-theme="dark"] .DocSearch-Button:hover {
-    background-color: var(--dark-card-hover-bg) !important;
+  /* Ensure sidebar toggle is always visible */
+  .navbar__toggle {
+    display: block !important;
+    margin-right: 0.5rem !important;
   }
-
-  [data-theme="dark"] .DocSearch-Search-Icon {
-    color: var(--dark-text-secondary) !important;
-  }
-
-  [data-theme="dark"] .colorModeToggle {
-    background-color: var(--dark-bg-tertiary) !important;
-    border-color: var(--dark-border) !important;
-  }
-
-  [data-theme="dark"] .colorModeToggle:hover {
-    background-color: var(--dark-card-hover-bg) !important;
-  }
-
-  [data-theme="dark"] .colorModeToggle svg {
-    color: var(--dark-text-secondary) !important;
-  }
-}
-
-/* ===== MOBILE SIDEBAR IMPROVEMENTS ===== */
-@media (max-width: 996px) {
   /* Ensure sidebar is fully functional */
   .navbar-sidebar {
     display: block !important;
@@ -800,23 +543,6 @@ body {
 
   .navbar-sidebar .dropdown__link:hover {
     background-color: var(--ifm-color-emphasis-300) !important;
-  }
-
-  /* Right side items spacing */
-  .navbar .navbar__inner .navbar__items.navbar__items--right {
-    gap: 0.55rem !important;
-    margin-right: 0 !important;
-  }
-
-  /* Hide GitHub button text on mobile - show only icon */
-  #firebase-auth-github-navbar .github-text {
-    display: none !important;
-  }
-
-  #firebase-auth-github-navbar button {
-    padding: 0.5rem !important;
-    min-width: 44px !important;
-    justify-content: center !important;
   }
 }
 
@@ -874,64 +600,6 @@ body {
 [data-theme="dark"] .navbar__link:not(:has(img)):not(:has(svg))::after,
 [data-theme="dark"] .dropdown-content a:not(:has(img)):not(:has(svg))::after {
   background: var(--ifm-color-primary);
-}
-
-/* Mobile screen adjustments */
-@media (max-width: 768px) {
-  .navbar .navbar__inner .navbar__items.navbar__items--right {
-    gap: 16px !important;
-    margin: auto auto;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Compact but comfortable spacing for small screens */
-  .navbar .navbar__inner .navbar__items.navbar__items--right {
-    gap: 14px !important;
-    margin: auto auto;
-  }
-
-  /* Comfortable button size for small screens */
-  #firebase-auth-github-navbar button,
-  .DocSearch-Button,
-  .colorModeToggle {
-    width: 44px !important;
-    height: 44px !important;
-    padding: 10px !important;
-    border-radius: 10px !important;
-  }
-
-  #firebase-auth-github-navbar button svg,
-  .DocSearch-Search-Icon,
-  .colorModeToggle svg {
-    width: 20px !important;
-    height: 20px !important;
-  }
-}
-
-@media (max-width: 360px) {
-  /* Minimal but usable spacing for very small screens */
-  .navbar .navbar__inner .navbar__items.navbar__items--right {
-    gap: 12px !important;
-    margin: auto auto;
-  }
-
-  /* Minimum usable button size */
-  #firebase-auth-github-navbar button,
-  .DocSearch-Button,
-  .colorModeToggle {
-    width: 40px !important;
-    height: 40px !important;
-    padding: 8px !important;
-    border-radius: 8px !important;
-  }
-
-  #firebase-auth-github-navbar button svg,
-  .DocSearch-Search-Icon,
-  .colorModeToggle svg {
-    width: 18px !important;
-    height: 18px !important;
-  }
 }
 
 .dropdown_grid {
@@ -1102,7 +770,7 @@ html.theme-light .text-gray-900 {
   color: #1a1a1a !important;
 }
 
-/* Modern Blog Enhancements */
+/*==== SECTION 13 Modern Blog Enhancements ======*/
 .modern-gradient-bg {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
@@ -1162,13 +830,13 @@ html {
   color: inherit;
 }
 
-/* ===== STEP 3: BASIC FOOTER PROTECTION ===== */
+/* =====  BASIC FOOTER PROTECTION ===== */
 /* Prevent global dark theme container rule from affecting footer */
 [data-theme="dark"] .enhanced-footer .container {
   background-color: transparent !important;
 }
 
-/* ===== STEP 4: FOOTER BACKGROUND PROTECTION ===== */
+/* ===== FOOTER BACKGROUND PROTECTION ===== */
 /* Ensure footer maintains its gradient background in dark mode */
 [data-theme="dark"] .enhanced-footer {
   background: linear-gradient(
@@ -1229,39 +897,8 @@ html {
   color: inherit !important;
 }
 
-/* ===== REMOVE THEME TOGGLE FROM MOBILE SIDEBAR ===== */
+/* ===== REMOVE THEME TOGGLE FROM MOBILE SIDEBAR AS THERE IS ONE ON THE NAVBAR ===== */
 @media (max-width: 1200px) {
-  /* Aggressively hide theme toggle in mobile sidebar */
-  .navbar-sidebar__brand
-    button:not(.navbar-sidebar__close):not([class*="close"]),
-  .navbar-sidebar__brand .colorModeToggle,
-  .navbar-sidebar .colorModeToggle,
-  .navbar-sidebar__brand button[class*="colorModeToggle"],
-  .navbar-sidebar button[class*="colorModeToggle"],
-  .navbar-sidebar__brand
-    .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
-  .navbar-sidebar .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
-  .navbar-sidebar__brand [class*="toggle_"]:not(.navbar-sidebar__close),
-  .navbar-sidebar [class*="toggle_"]:not(.navbar-sidebar__close),
-  .navbar-sidebar__brand button[aria-label*="mode"],
-  .navbar-sidebar button[aria-label*="mode"],
-  .navbar-sidebar__brand button[aria-label*="theme"],
-  .navbar-sidebar button[aria-label*="theme"],
-  .navbar-sidebar__brand button[aria-label*="Switch"],
-  .navbar-sidebar button[aria-label*="Switch"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    position: absolute !important;
-    left: -9999px !important;
-    pointer-events: none !important;
-  }
-
   /* Ensure close button is always visible */
   .navbar-sidebar__brand .navbar-sidebar__close,
   .navbar-sidebar__brand button[class*="close"],
@@ -1306,38 +943,6 @@ html {
   }
 }
 
-
-/* Fix: Remove extra box/space above dropdown nav items in sidebar */
-.navbar-sidebar__item,
-.navbar-sidebar__link,
-.navbar-sidebar__brand {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-  border-top: none !important;
-  box-shadow: none !important;
-}
-.navbar-sidebar__item:first-child,
-.navbar-sidebar__link:first-child {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-  border-top: none !important;
-  box-shadow: none !important;
-}
-/* Remove any unwanted hr or divider above dropdowns */
-.navbar-sidebar hr,
-.navbar-sidebar__item hr {
-  display: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: none !important;
-}
-/* Remove grid gap above dropdowns */
-.navbar-sidebar .grid {
-  gap: 0 !important;
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-
 /* STAR section border fixes for dark mode */
 [data-theme="dark"] .star-border-red {
   border-color: #ef4444 !important;
@@ -1351,18 +956,18 @@ html {
   border-color: #3b82f6 !important;
 }
 
-   [data-theme="dark"] .star-border-yellow {
-    border-color: #eab308 !important;
-  }
+[data-theme="dark"] .star-border-yellow {
+  border-color: #eab308 !important;
+}
 
-  [data-theme="light"] .interview-prep-page h1,
-  [data-theme="light"] .interview-prep-page h2,
-  [data-theme="light"] .interview-prep-page h3,
-  [data-theme="light"] .interview-prep-page h4,
-  [data-theme="light"] .interview-prep-page h5,
-  [data-theme="light"] .interview-prep-page h6 {
-    color: #ffffff !important;
-  }
+[data-theme="light"] .interview-prep-page h1,
+[data-theme="light"] .interview-prep-page h2,
+[data-theme="light"] .interview-prep-page h3,
+[data-theme="light"] .interview-prep-page h4,
+[data-theme="light"] .interview-prep-page h5,
+[data-theme="light"] .interview-prep-page h6 {
+  color: #ffffff !important;
+}
 
 .watch-video-btn {
   background-color: #dc2626;
@@ -1408,9 +1013,6 @@ html {
   color: white;
 }
 
-.interview-prep-discord-btn {
-  color: white;
-}
 .interview-prep-discord-btn:hover {
   color: white;
 }
@@ -1493,34 +1095,6 @@ html {
   color: white;
 }
 
-.explore-btn:hover {
-  color: white;
-}
-/* Global alignment fix for navbar right elements */
-.navbar .navbar__inner .navbar__items--right {
-  display: flex !important;
-  align-items: center !important;
-  gap: 1rem !important;
-  margin-right: 1rem !important;
-  padding-right: 0 !important;
-  /* transform: translateX(-60px) !important; */
-}
-
-@media (min-width: 997px) {
-  .navbar .navbar__inner .navbar__items--right {
-    margin-right: 1.5rem !important;
-    transform: none !important;
-    gap: 0.5rem !important;
-  }
-}
-
-
-.navbar__items--right .navbar__item {
-  display: flex !important;
-  align-items: center !important;
-  height: 36px !important;
-}
-
 .DocSearch-Button,
 #firebase-auth-github-navbar button,
 .colorModeToggle {
@@ -1531,37 +1105,37 @@ html {
   box-sizing: border-box !important;
 }
 
-.explore-btn:hover{
-  color:white;
+.explore-btn:hover {
+  color: white;
 }
 
 .custom-input {
   background-color: #374151;
-  color:white; /* cyan-500 */
+  color: white; /* cyan-500 */
 }
-.company-border{
-  border-color:#6b7280;
-  color:white;
+.company-border {
+  border-color: #6b7280;
+  color: white;
 }
-.company-blue-border{
-  border-color:#3b82f6 ;
+.company-blue-border {
+  border-color: #3b82f6;
 }
-.company-green-border{
+.company-green-border {
   border-color: #22c55e;
 }
-.company-purple-border{
+.company-purple-border {
   border-color: #a855f7;
 }
 
 /* System Design */
-[data-theme='dark'] .badge-system {
+[data-theme="dark"] .badge-system {
   border-color: #60a5fa; /* dark:border-blue-300 */
-  color: #60a5fa;        /* dark:text-blue-300 */
+  color: #60a5fa; /* dark:text-blue-300 */
   background-color: rgba(30, 64, 175, 0.2); /* dark:bg-blue-900/20 */
 }
 
 /* Behavioral */
-[data-theme='dark'] .badge-behavioral {
+[data-theme="dark"] .badge-behavioral {
   border-color: #4ade80;
   color: #4ade80;
   background-color: rgba(20, 83, 45, 0.2);
@@ -1569,34 +1143,46 @@ html {
 
 /* Technical */
 
-[data-theme='dark'] .badge-technical {
+[data-theme="dark"] .badge-technical {
   border-color: #c084fc;
   color: #c084fc;
   background-color: rgba(88, 28, 135, 0.2);
 }
 
-
-[data-theme='dark'] .badge-other {
+[data-theme="dark"] .badge-other {
   border-color: #fb923c;
   color: #fb923c;
   background-color: rgba(124, 45, 18, 0.2);
 }
 
-[data-theme='dark'] .question-card {
+[data-theme="dark"] .question-card {
   border-color: #1f2937; /* border-gray-800 */
   background-color: #1f2937; /* bg-gray-800 */
 }
-.company-tab-link{
+.company-tab-link {
   color: white;
 }
-.company-tab-link:hover{
+.company-tab-link:hover {
   color: white;
 }
-.company-tab-community-link{
+.company-tab-community-link {
   color: #fdba74;
 }
-.company-tab-community-link:hover{
+.company-tab-community-link:hover {
   color: #fdba74;
   text-decoration: none;
 }
+/* Move navbar right items to absolute right corner */
+.navbar__items--right {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}
 
+.navbar__inner {
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+}
+
+.navbar {
+  padding-right: 0 !important;
+}
