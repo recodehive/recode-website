@@ -235,7 +235,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
                         >
                             Mock Interview Practice
                         </motion.h2>
-                        <p className="text-xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                        <p className="text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
                             Simulate real interview scenarios with our interactive practice sessions. Track your progress, time your
                             responses, and get instant feedback to improve your interview performance.
                         </p>
