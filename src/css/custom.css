@@ -1173,16 +1173,36 @@ html {
   text-decoration: none;
 }
 /* Move navbar right items to absolute right corner */
-.navbar__items--right {
-  margin-right: 0 !important;
-  padding-right: 0 !important;
+.navbar .navbar__inner {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  width: 100% !important;
+  max-width: none !important;
 }
 
-.navbar__inner {
-  padding-right: 0 !important;
-  margin-right: 0 !important;
+.navbar .navbar__items {
+  display: flex !important;
+  align-items: center !important;
 }
 
+.navbar .navbar__items--right {
+  margin-left: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure the navbar container takes full width */
 .navbar {
-  padding-right: 0 !important;
+  padding-left: var(--ifm-navbar-padding-horizontal) !important;
+  padding-right: var(--ifm-navbar-padding-horizontal) !important;
+}
+
+.navbar > .container,
+.navbar > .container-fluid {
+  max-width: none !important;
+  width: 100% !important;
+  padding: 0 !important;
 }
