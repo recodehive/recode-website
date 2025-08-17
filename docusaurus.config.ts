@@ -93,12 +93,13 @@ const config: Config = {
       items: [
         {
           type: "dropdown",
-          html: '<span id="nav-docs"></span> Docs',
+          html: '<span class="nav-emoji">📚</span> Docs',
           position: "left",
           items: [
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4 w-xl">
+                <a class="border-r col-span-1" href="/courses/">Tutorials</a>
                 <a class="border-r col-span-1" href="/courses/">Tutorials</a>
                 <div class="grid grid-cols-4 col-span-2">
                   <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
@@ -116,6 +117,7 @@ const config: Config = {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
                 <a class="border-r col-span-1" href="/courses/"> Courses </a>
+                <a class="border-r col-span-1" href="/courses/"> Courses </a>
                 <div class="grid grid-cols-4 col-span-2">
                   <a href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/git.svg" alt="git" /> </a>
                   <a href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/postman.svg" alt="Postman" /> </a>
@@ -131,9 +133,10 @@ const config: Config = {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
                 <a  class="border-r col-span-1" href="#" target="_self"> Interview Prep </a>
+                <a  class="border-r col-span-1" href="#" target="_self"> Interview Prep </a>
                 <div class="grid grid-cols-1 col-span-2">
-                  <a href="/interview-prep/" target="_self" class="nav__icons"><span id="nav-technical" style="display:inline-flex;align-items:center;"></span> Technical</a> <br />
-                  <a href="/interview-prep/" target="_self" class="nav__icons"><span id="nav-behavioral" style="display:inline-flex;align-items:center;"></span> Behavioral</a>
+                  <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a> <br />
+                  <a href="/interview-prep/" target="_self" class="nav__icons"> 💡Behavioral </a>
                 </div>
               </div>`,
             },
@@ -141,46 +144,46 @@ const config: Config = {
         },
         {
           to: "/showcase",
-          html: '<span id="nav-showcase"></span> Showcase',
+          html: '<span class="nav-emoji">🌍</span> Showcase',
           position: "left",
         },
         {
           to: "/dashboard",
-          html: '<span id="nav-dashboard"></span> Dashboard',
+          html: '<span class="nav-emoji">📊</span> Dashboard',
           position: "left",
         },
         {
           to: "/our-sponsors/",
-          html: '<span id="nav-donate"></span> Donate',
+          html: '<span class="nav-emoji">💰</span> Donate',
           position: "left",
         },
         {
           type: "dropdown",
-          html: '<span id="nav-devfolio"></span> Devfolio',
+          html: '<span class="nav-emoji">👩🏻‍💻</span> Devfolio',
           position: "left",
           items: [
             {
-              html: '<span id="nav-github" style="display:inline-flex;align-items:center;"></span> GitHub Profiles',
+              label: "💻GitHub Profiles",
               to: "https://dev.recodehive.com/devfolio",
             },
             {
-              html: '<span id="nav-badges" style="display:inline-flex;align-items:center;"></span> GitHub Badges',
+              label: "🎖️ GitHub Badges",
               to: "/badges/github-badges/",
             }, 
           ],
         },
         {
           to: "/blogs",
-          html: '<span id="nav-blogs"></span> Blogs',
+          html: '<span class="nav-emoji">📰</span> Blogs',
           position: "left",
         },
         {
           type: "dropdown",
-          html: '<span id="nav-more"></span> More',
+          html: '<span class="nav-emoji">🔗</span> More',
           position: "left",
           items: [
             {
-              html: '<span id="nav-ebooks" style="display:inline-flex;align-items:center;"></span> E-books',
+              label: "📚 E-books",
               to: "https://learn.recodehive.com/datascience",
             },
             {
@@ -188,15 +191,15 @@ const config: Config = {
               to: "https://github.com/orgs/recodehive/projects/9",
             },
             {
-              html: '<span id="nav-community" style="display:inline-flex;align-items:center;"></span> Community',
+              label: "🤝 Community",
               to: "/community",
             },
             {
-              html: '<span id="nav-broadcast" style="display:inline-flex;align-items:center;"></span> Broadcast',
+              label: "📺 Broadcast",
               to: "/broadcasts/",
             },
             {
-              html: '<span id="nav-podcast" style="display:inline-flex;align-items:center;"></span> Podcast',
+              label: "🎙️ Podcast",
               to: "/podcasts/",
             },
           ],
