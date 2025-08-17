@@ -1,98 +1,79 @@
-import React, { useEffect, useState } from 'react';
-import Layout from '@theme/Layout';
-import Head from '@docusaurus/Head';
+import React, { useState } from "react";
+import Layout from "@theme/Layout";
+import Head from "@docusaurus/Head";
+import { motion } from "framer-motion";
+import SlotCounter from "react-slot-counter";
 import NavbarIcon from "../../../components/navbar/NavbarIcon";
 import { useHistory } from "@docusaurus/router";
-import type confettiType from 'canvas-confetti';
 import "../dashboard.css";
 
 const GiveawayPage: React.FC = () => {
   const history = useHistory();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-  const [timeLeft, setTimeLeft] = useState({
-    days: "--",
-    hours: "--",
-    minutes: "--",
-    seconds: "--",
-  });
 
-  const countdownTarget = new Date('2025-08-15T23:59:59').getTime();
-
-  // Countdown Timer Effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countdownTarget - now;
-
-      if (distance <= 0) {
-        clearInterval(interval);
-        setTimeLeft({
-          days: "00",
-          hours: "00",
-          minutes: "00",
-          seconds: "00",
-        });
-        return;
-      }
-
-      setTimeLeft({
-        days: String(Math.floor(distance / (1000 * 60 * 60 * 24))),
-        hours: String(
-          Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        ),
-        minutes: String(
-          Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60))
-        ),
-        seconds: String(Math.floor((distance % (1000 * 60)) / 1000)),
-      });
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Confetti Effect
-  useEffect(() => {
-    const runConfetti = async () => {
-      const module = await import("canvas-confetti");
-      const confetti = module.default as typeof confettiType;
-
-      confetti({
-        particleCount: 150,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
-    };
-
-    const timer = setTimeout(runConfetti, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handleTabChange = (tab: "home" | "discuss" | "leaderboard" | "giveaway") => {
+  const handleTabChange = (
+    tab: "home" | "discuss" | "leaderboard" | "contributors" | "giveaway"
+  ) => {
     setIsMobileSidebarOpen(false);
     if (tab === "discuss") {
       history.push("/dashboard#discuss");
     } else if (tab === "leaderboard") {
       history.push("/dashboard#leaderboard");
+    } else if (tab === "contributors") {
+      history.push("/dashboard#contributors");
     } else if (tab === "home") {
       history.push("/dashboard");
     }
   };
+
+  const StatCard: React.FC<{
+    icon: string;
+    title: string;
+    value: number;
+    valueText: string;
+    description: string;
+  }> = ({ icon, title, value, valueText, description }) => (
+    <motion.div
+      className="dashboard-stat-card"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{ once: true }}
+      whileHover={{ scale: 1.02 }}
+    >
+      <div className="dashboard-stat-icon">{icon}</div>
+      <div className="dashboard-stat-content">
+        <h3 className="dashboard-stat-title">{title}</h3>
+        <div className="dashboard-stat-value">
+          <SlotCounter
+            value={valueText}
+            autoAnimationStart={true}
+            duration={1}
+          />
+        </div>
+        <p className="dashboard-stat-description">{description}</p>
+      </div>
+    </motion.div>
+  );
 
   return (
     <Layout title="Giveaway" description="RecodeHive Giveaway">
       <Head>
         <title>🎁 RecodeHive Giveaway</title>
       </Head>
-      <div className={`dashboard-layout ${isMobileSidebarOpen ? 'sidebar-open' : ''}`}>
+      <div
+        className={`dashboard-layout ${
+          isMobileSidebarOpen ? "sidebar-open" : ""
+        }`}
+      >
         {/* Mobile Menu Button */}
-        <button 
-          className={`mobile-menu-btn ${isMobileSidebarOpen ? 'open' : ''}`}
+        <button
+          className={`mobile-menu-btn ${isMobileSidebarOpen ? "open" : ""}`}
           onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
           aria-label="Toggle mobile menu"
         />
-        
+
         {/* Sidebar Navigation */}
         <nav
           className={`dashboard-sidebar ${
@@ -114,19 +95,13 @@ const GiveawayPage: React.FC = () => {
             </button>
           </div>
           <ul className="sidebar-nav">
-            <li
-              className="nav-item"
-              onClick={() => handleTabChange("home")}
-            >
+            <li className="nav-item" onClick={() => handleTabChange("home")}>
               <span className="nav-icon">
                 <NavbarIcon name="Dashboard" />
               </span>
               <span className="nav-text">Home</span>
             </li>
-            <li
-              className="nav-item"
-              onClick={() => handleTabChange("discuss")}
-            >
+            <li className="nav-item" onClick={() => handleTabChange("discuss")}>
               <span className="nav-icon">
                 <NavbarIcon name="Broadcast" />
               </span>
@@ -141,13 +116,20 @@ const GiveawayPage: React.FC = () => {
               </span>
               <span className="nav-text">Leaderboard</span>
             </li>
-            <li
-              className="nav-item active"
-            >
+            <li className="nav-item active">
               <span className="nav-icon">
                 <NavbarIcon name="Donate" />
               </span>
               <span className="nav-text">Giveaway</span>
+            </li>
+            <li
+              className="nav-item"
+              onClick={() => handleTabChange("contributors")}
+            >
+              <span className="nav-icon">
+                <NavbarIcon name="Community" />
+              </span>
+              <span className="nav-text">Contributors</span>
             </li>
           </ul>
           <div className="sidebar-footer">
@@ -168,55 +150,61 @@ const GiveawayPage: React.FC = () => {
             isSidebarCollapsed ? "sidebar-collapsed" : ""
           }`}
         >
-          <div className="min-h-screen bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white py-10 px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl sm:text-5xl font-bold mb-6">🎉 RecodeHive Giveaway</h1>
-              <p className="text-lg mb-8">Participate now and win exclusive swag, resources, and more!</p>
-
-              <div className="flex justify-center gap-4 text-center mb-12">
-                {['days', 'hours', 'minutes', 'seconds'].map((unit) => (
-                  <div key={unit} className="bg-white/10 px-6 py-4 rounded-xl shadow-md">
-                    <div className="text-3xl font-bold">{timeLeft[unit as keyof typeof timeLeft]}</div>
-                    <div className="text-sm uppercase tracking-widest">{unit}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="bg-white/10 p-6 rounded-xl shadow-xl mb-10">
-                <h2 className="text-2xl font-semibold mb-4">🏆 Leaderboard</h2>
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="border-b border-white/20">
-                      <th className="pb-2">Rank</th>
-                      <th className="pb-2">Username</th>
-                      <th className="pb-2">Points</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b border-white/10">
-                      <td>1</td>
-                      <td>OpenSourcePro</td>
-                      <td>1200</td>
-                    </tr>
-                    <tr className="border-b border-white/10">
-                      <td>2</td>
-                      <td>CodeWizard</td>
-                      <td>950</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>DevChampion</td>
-                      <td>875</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-
-              <p className="text-sm text-white text-opacity-60 italic">
-                Winners will be announced after the countdown ends. Stay active on the dashboard to climb up the leaderboard!
+          <motion.section
+            className="dashboard-hero"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="hero-content">
+              <h1 className="dashboard-title">
+                🎁 <span className="highlight">Giveaway</span>
+              </h1>
+              <p className="dashboard-subtitle">
+                Participate in exclusive giveaways and win exciting prizes!
               </p>
             </div>
-          </div>
+          </motion.section>
+
+          {/* Giveaway Stats Grid */}
+          <motion.section
+            className="dashboard-stats-section"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <div className="dashboard-stats-grid">
+              <StatCard
+                icon="⏳"
+                title="Next Giveaway"
+                value={5}
+                valueText="5 Days"
+                description="Time remaining"
+              />
+              <StatCard
+                icon="🎫"
+                title="Entries"
+                value={1420}
+                valueText="1,420"
+                description="Total participants"
+              />
+              <StatCard
+                icon="📈"
+                title="Your Rank"
+                value={32}
+                valueText="32"
+                description="Based on your contribution"
+              />
+              <StatCard
+                icon="🏅"
+                title="Total Winners"
+                value={10}
+                valueText="10"
+                description="Winners per giveaway"
+              />
+            </div>
+          </motion.section>
         </main>
       </div>
     </Layout>
