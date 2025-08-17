@@ -1600,3 +1600,10 @@ html {
   text-decoration: none;
 }
 
+.practice-tab-link:hover{
+  color: white;
+  text-decoration: none;
+}
+.practice-tab-link{
+  color: white;
+}
