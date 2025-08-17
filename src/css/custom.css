@@ -899,6 +899,36 @@ html {
 
 /* ===== REMOVE THEME TOGGLE FROM MOBILE SIDEBAR AS THERE IS ONE ON THE NAVBAR ===== */
 @media (max-width: 1200px) {
+  /* Aggressively hide theme toggle in mobile sidebar */
+  .navbar-sidebar__brand
+    button:not(.navbar-sidebar__close):not([class*="close"]),
+  .navbar-sidebar__brand .colorModeToggle,
+  .navbar-sidebar .colorModeToggle,
+  .navbar-sidebar__brand button[class*="colorModeToggle"],
+  .navbar-sidebar button[class*="colorModeToggle"],
+  .navbar-sidebar__brand
+    .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
+  .navbar-sidebar .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
+  .navbar-sidebar__brand [class*="toggle_"]:not(.navbar-sidebar__close),
+  .navbar-sidebar [class*="toggle_"]:not(.navbar-sidebar__close),
+  .navbar-sidebar__brand button[aria-label*="mode"],
+  .navbar-sidebar button[aria-label*="mode"],
+  .navbar-sidebar__brand button[aria-label*="theme"],
+  .navbar-sidebar button[aria-label*="theme"],
+  .navbar-sidebar__brand button[aria-label*="Switch"],
+  .navbar-sidebar button[aria-label*="Switch"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+    pointer-events: none !important;
+  }
   /* Ensure close button is always visible */
   .navbar-sidebar__brand .navbar-sidebar__close,
   .navbar-sidebar__brand button[class*="close"],
