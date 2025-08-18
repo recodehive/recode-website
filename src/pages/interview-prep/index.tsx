@@ -380,25 +380,355 @@ const InterviewPrepPage: React.FC = () => {
   ]
 
   const mockInterviewQuestions = [
+    // 🔹 Technical
+
+    // Arrays & Strings
     {
+      id: "tech-arr-1",
       type: "technical",
-      question: "Implement a function to reverse a linked list",
-      difficulty: "Medium",
-      hints: ["Think about iterative vs recursive approach", "Consider edge cases like empty list"],
+      question: "Find the first non-repeating character in a string",
+      difficulty: "Easy",
+      hints: ["Use a hash map to count frequencies", "Return the first character with count 1"],
+      estimatedTime: 10,
+      category: "Strings",
+      links: [
+        { title: "LeetCode - First Unique Character", url: "https://leetcode.com/problems/first-unique-character-in-a-string/", type: "example" },
+        { title: "MDN - Map Object", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map", type: "documentation" }
+      ]
     },
     {
+      id: "tech-arr-2",
+      type: "technical",
+      question: "Merge two sorted arrays without using extra space",
+      difficulty: "Medium",
+      hints: ["Two-pointer technique works well", "Consider edge cases where one array is empty"],
+      estimatedTime: 15,
+      category: "Arrays",
+      links: [
+        { title: "LeetCode - Merge Sorted Array", url: "https://leetcode.com/problems/merge-sorted-array/", type: "example" },
+        { title: "GeeksforGeeks - Merge Without Extra Space", url: "https://www.geeksforgeeks.org/merge-two-sorted-arrays-o1-extra-space/", type: "tutorial" }
+      ]
+    },
+
+    // Linked Lists
+    {
+      id: "tech-ll-1",
+      type: "technical",
+      question: "Reverse a linked list",
+      difficulty: "Medium",
+      hints: ["Think about iterative vs recursive approach", "Consider edge cases like empty list"],
+      estimatedTime: 20,
+      category: "Linked List",
+      links: [
+        { title: "LeetCode - Reverse Linked List", url: "https://leetcode.com/problems/reverse-linked-list/", type: "example" },
+        { title: "GeeksforGeeks - Reverse Linked List", url: "https://www.geeksforgeeks.org/reverse-a-linked-list/", type: "tutorial" }
+      ]
+    },
+    {
+      id: "tech-ll-2",
+      type: "technical",
+      question: "Detect if a linked list has a cycle",
+      difficulty: "Medium",
+      hints: ["Use fast and slow pointers (Floyd’s cycle detection)", "Watch out for null references"],
+      estimatedTime: 15,
+      category: "Linked List",
+      links: [
+        { title: "LeetCode - Linked List Cycle", url: "https://leetcode.com/problems/linked-list-cycle/", type: "example" },
+        { title: "GeeksForGeeks- Detect Loop in a Linked List", url: "https://www.geeksforgeeks.org/dsa/detect-loop-in-a-linked-list/", type: "reference" }
+      ]
+    },
+
+    // Trees & Graphs
+    {
+      id: "tech-tree-1",
+      type: "technical",
+      question: "Maximum Depth of Binary Tree",
+      difficulty: "Easy",
+      hints: ["Use recursion (DFS)", "Think about base case (null node)"],
+      estimatedTime: 10,
+      category: "Trees",
+      links: [
+        { title: "LeetCode - Maximum Depth of Binary Tree", url: "https://leetcode.com/problems/maximum-depth-of-binary-tree/", type: "example" },
+        { title: "GeeksForGeeks - DFS", url: "https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/", type: "reference" }
+      ]
+    },
+    {
+      id: "tech-graph-1",
+      type: "technical",
+      question: "Clone a Graph",
+      difficulty: "Medium",
+      hints: ["Use DFS or BFS", "Maintain a hash map of visited nodes"],
+      estimatedTime: 25,
+      category: "Graphs",
+      links: [
+        { title: "LeetCode - Clone Graph", url: "https://leetcode.com/problems/clone-graph/", type: "example" },
+        { title: "GeeksforGeeks - Clone Graph", url: "https://www.geeksforgeeks.org/clone-an-undirected-graph/", type: "tutorial" }
+      ]
+    },
+
+    // Dynamic Programming
+    {
+      id: "tech-dp-1",
+      type: "technical",
+      question: "Climbing Stairs",
+      difficulty: "Easy",
+      hints: ["Think Fibonacci", "DP with memoization or bottom-up"],
+      estimatedTime: 15,
+      category: "Dynamic Programming",
+      links: [
+        { title: "LeetCode - Climbing Stairs", url: "https://leetcode.com/problems/climbing-stairs/", type: "example" },
+        { title: "DP Introduction", url: "https://www.geeksforgeeks.org/dynamic-programming/", type: "tutorial" }
+      ]
+    },
+    {
+      id: "tech-dp-2",
+      type: "technical",
+      question: "Longest Increasing Subsequence",
+      difficulty: "Medium",
+      hints: ["DP with O(n^2)", "Can be optimized with Binary Search (O(n log n))"],
+      estimatedTime: 35,
+      category: "Dynamic Programming",
+      links: [
+        { title: "LeetCode - Longest Increasing Subsequence", url: "https://leetcode.com/problems/longest-increasing-subsequence/", type: "example" },
+        { title: "GeeksforGeeks - LIS Explained", url: "https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/", type: "tutorial" }
+      ]
+    },
+
+    // Greedy Algorithms
+    {
+      id: "tech-greedy-1",
+      type: "technical",
+      question: "Jump Game",
+      difficulty: "Medium",
+      hints: ["Track the maximum reachable index", "Greedy works better than DP"],
+      estimatedTime: 20,
+      category: "Greedy",
+      links: [
+        { title: "LeetCode - Jump Game", url: "https://leetcode.com/problems/jump-game/", type: "example" },
+        { title: "Greedy Algorithm Basics", url: "https://www.geeksforgeeks.org/greedy-algorithms/", type: "reference" }
+      ]
+    },
+    {
+      id: "tech-greedy-2",
+      type: "technical",
+      question: "Activity Selection Problem",
+      difficulty: "Medium",
+      hints: ["Sort by finish time", "Pick earliest finishing activity"],
+      estimatedTime: 25,
+      category: "Greedy",
+      links: [
+        { title: "GeeksforGeeks - Activity Selection", url: "https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/", type: "tutorial" },
+        { title: "MIT Greedy Algorithms Notes", url: "https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-notes/MIT6_006F11_lec05.pdf", type: "reference" }
+      ]
+    },
+
+    // Bit Manipulation
+    {
+      id: "tech-bit-1",
+      type: "technical",
+      question: "Single Number (Find element appearing once)",
+      difficulty: "Easy",
+      hints: ["Use XOR property", "a ^ a = 0"],
+      estimatedTime: 10,
+      category: "Bit Manipulation",
+      links: [
+        { title: "LeetCode - Single Number", url: "https://leetcode.com/problems/single-number/", type: "example" },
+        { title: "Bitwise Operators in C++", url: "https://cplusplus.com/doc/tutorial/operators/#bitwise", type: "documentation" }
+      ]
+    },
+    {
+      id: "tech-bit-2",
+      type: "technical",
+      question: "Number of 1 Bits (Hamming Weight)",
+      difficulty: "Easy",
+      hints: ["Use n & (n-1) trick", "Loop until n=0"],
+      estimatedTime: 12,
+      category: "Bit Manipulation",
+      links: [
+        { title: "LeetCode - Number of 1 Bits", url: "https://leetcode.com/problems/number-of-1-bits/", type: "example" },
+        { title: "Hamming Weight Explained", url: "https://www.geeksforgeeks.org/count-set-bits-in-an-integer/", type: "tutorial" }
+      ]
+    },
+
+    // Sorting Algorithms
+    {
+      id: "tech-sort-1",
+      type: "technical",
+      question: "Sort Colors (Dutch National Flag problem)",
+      difficulty: "Medium",
+      hints: ["Use three pointers (low, mid, high)", "In-place solution required"],
+      estimatedTime: 20,
+      category: "Sorting",
+      links: [
+        { title: "LeetCode - Sort Colors", url: "https://leetcode.com/problems/sort-colors/", type: "example" },
+        { title: "Dutch National Flag Problem", url: "https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/", type: "tutorial" }
+      ]
+    },
+    {
+      id: "tech-sort-2",
+      type: "technical",
+      question: "Kth Largest Element in an Array",
+      difficulty: "Medium",
+      hints: ["QuickSelect algorithm", "Or use Min-Heap"],
+      estimatedTime: 25,
+      category: "Sorting/Heap",
+      links: [
+        { title: "LeetCode - Kth Largest Element", url: "https://leetcode.com/problems/kth-largest-element-in-an-array/", type: "example" },
+        { title: "QuickSelect Algorithm", url: "https://www.geeksforgeeks.org/quickselect-algorithm/", type: "tutorial" }
+      ]
+    },
+
+    // Binary Search
+    {
+      id: "tech-bs-1",
+      type: "technical",
+      question: "Binary Search",
+      difficulty: "Easy",
+      hints: ["Classic divide and conquer", "Midpoint check"],
+      estimatedTime: 10,
+      category: "Binary Search",
+      links: [
+        { title: "LeetCode - Binary Search", url: "https://leetcode.com/problems/binary-search/", type: "example" },
+        { title: "Binary Search Explained", url: "https://www.geeksforgeeks.org/binary-search/", type: "tutorial" }
+      ]
+    },
+    {
+      id: "tech-bs-2",
+      type: "technical",
+      question: "Find Minimum in Rotated Sorted Array",
+      difficulty: "Medium",
+      hints: ["Modified binary search", "Check mid vs right"],
+      estimatedTime: 20,
+      category: "Binary Search",
+      links: [
+        { title: "LeetCode - Find Minimum in Rotated Array", url: "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/", type: "example" },
+        { title: "Binary Search Variants", url: "https://www.geeksforgeeks.org/binary-search/", type: "reference" }
+      ]
+    },
+
+    // 🔹 Behavioral
+    {
+      id: "behavioral-2",
       type: "behavioral",
       question: "Tell me about a time you had to work with a difficult team member",
       framework: "STAR Method",
+      difficulty: "Medium",
       hints: ["Situation", "Task", "Action", "Result"],
+      estimatedTime: 15,
+      category: "Teamwork",
+      links: [
+        { title: "Behavioral Interview Tips", url: "https://www.youtube.com/watch?v=OqoGEMlNk_g", type: "tutorial" }
+      ]
     },
     {
+      id: "behavioral-3",
+      type: "behavioral",
+      question: "Describe a situation where you had to meet a tight deadline",
+      framework: "STAR Method",
+      difficulty: "Medium",
+      hints: ["Explain how you prioritized tasks", "Mention communication with stakeholders", "Highlight the outcome"],
+      estimatedTime: 12,
+      category: "Time Management",
+      links: [
+        { title: "STAR Method Guide", url: "https://mondo.com/insights/how-to-use-star-method-to-answer-performace-based-interview-questions/#:~:text=Talk%20about%20a%20time%20when%20you%20had%20to,timeline%20and%20assigned%20tasks%20to%20each%20team%20member.", type: "tutorial" }
+      ]
+    },
+    {
+      id: "behavioral-4",
+      type: "behavioral",
+      question: "What’s the most challenging project you have worked on?",
+      framework: "STAR Method",
+      difficulty: "Medium",
+      hints: ["Focus on the problem complexity", "Explain how you collaborated", "Highlight measurable outcomes"],
+      estimatedTime: 15,
+      category: "Problem Solving",
+      links: [
+        { title: "Problem Solving in Interviews", url: "https://megainterview.com/what-was-the-most-challenging-project-you-have-worked-on/", type: "reference" }
+      ]
+    },
+    {
+      id: "behavioral-5",
+      type: "behavioral",
+      question: "Tell me about a time you failed. How did you handle it?",
+      framework: "STAR Method",
+      difficulty: "Hard",
+      hints: ["Be honest but professional", "Emphasize what you learned", "Show resilience and growth"],
+      estimatedTime: 15,
+      category: "Resilience",
+      links: [
+        { title: "Answering Failure Questions", url: "https://interviewpenguin.com/tell-me-about-a-time-when-you-failed/", type: "tutorial" }
+      ]
+    },
+
+    // 🔹 System Design
+    {
+      id: "system-2",
       type: "system-design",
       question: "Design a URL shortener like bit.ly",
       difficulty: "Hard",
       hints: ["Consider scale", "Database design", "Caching strategy"],
+      estimatedTime: 40,
+      category: "Web Systems",
+      links: [
+        { title: "System Design - URL Shortener", url: "https://www.geeksforgeeks.org/system-design/system-design-url-shortening-service/", type: "example" },
+        { title: "High Scalability - URL Shortener", url: "https://www.hellointerview.com/learn/system-design/problem-breakdowns/bitly", type: "reference" }
+      ]
     },
+    {
+      id: "system-3",
+      type: "system-design",
+      question: "Design a chat application like WhatsApp",
+      difficulty: "Hard",
+      hints: ["Think about message delivery guarantees", "Consider real-time sync across devices", "Handle offline users gracefully"],
+      estimatedTime: 60,
+      category: "Messaging Systems",
+      links: [
+        { title: "System Design - WhatsApp", url: "https://blog.algomaster.io/p/design-a-chat-application-like-whatsapp", type: "example" },
+        { title: "Scalable Chat App Design", url: "https://www.youtube.com/watch?v=3HXFy_7M12E&t=1s", type: "tutorial" }
+      ]
+    },
+    {
+      id: "system-4",
+      type: "system-design",
+      question: "Design an online food delivery system like Swiggy/Zomato",
+      difficulty: "Hard",
+      hints: ["Users, restaurants, delivery partners → entities", "Real-time location tracking", "Scalability and load balancing"],
+      estimatedTime: 70,
+      category: "Distributed Systems",
+      links: [
+        { title: "System Design - Food Delivery", url: "https://upvey.com/technology/interview/system-design/design-architecture-food-delivery-service-like-swiggy-or-ubereats/#google_vignette", type: "example" },
+        { title: "Scalable Food Delivery Architecture", url: "https://www.youtube.com/watch?v=rZyAgZuuZiA&t=8s", type: "tutorial" }
+      ]
+    },
+    {
+      id: "system-5",
+      type: "system-design",
+      question: "Design a recommendation system for an e-commerce website",
+      difficulty: "Medium",
+      hints: ["Collaborative filtering", "Content-based recommendations", "Cold start problem"],
+      estimatedTime: 50,
+      category: "Machine Learning Systems",
+      links: [
+        { title: "Recommendation Systems Intro", url: "https://www.geeksforgeeks.org/recommendation-system-in-python/", type: "tutorial" },
+        { title: "System Design - Recommendation Engine", url: "https://webkul.com/blog/e-commerce-recommendation-system/", type: "reference" }
+      ]
+    },
+    {
+      id: "system-6",
+      type: "system-design",
+      question: "Design YouTube (video streaming platform)",
+      difficulty: "Hard",
+      hints: ["Video upload, transcoding, and storage", "Content delivery networks (CDNs)", "Search and recommendation engine"],
+      estimatedTime: 90,
+      category: "Media Systems",
+      links: [
+        { title: "System Design - YouTube", url: "https://www.geeksforgeeks.org/system-design/system-design-of-youtube-a-complete-architecture/", type: "example" },
+        { title: "Designing Video Streaming Platforms", url: "https://www.youtube.com/watch?v=jPKTo1iGQiE&t=1s", type: "tutorial" }
+      ]
+    }
   ]
+
+
 
   const practicePlatforms = [
     {

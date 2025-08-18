@@ -47,7 +47,7 @@ interface CompaniesTabProps {
 const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
 const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
 
-const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips=[] }) => {
+const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
     const [searchTerm, setSearchTerm] = useState("")
     const [selectedIndustry, setSelectedIndustry] = useState("")
     const [selectedRole, setSelectedRole] = useState("")
@@ -77,6 +77,15 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips=[] }) => {
             [key]: !prev[key],
         }))
     }
+    const [expandedCompanies, setExpandedCompanies] = useState<{ [key: number]: boolean }>({})
+
+    const toggleCompany = (index: number) => {
+        setExpandedCompanies(prev => ({
+            ...prev,
+            [index]: !prev[index]
+        }))
+    }
+
 
     return (
         <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-8">
@@ -153,7 +162,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips=[] }) => {
                                 stats: "100+ Questions",
                             },
                         ]?.map((item, i) => (
-                            item?(<motion.div
+                            item ? (<motion.div
                                 key={i}
                                 className="bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                                 whileHover={{ y: -5 }}
@@ -176,7 +185,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips=[] }) => {
                                 <div className="inline-flex items-center px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-semibold text-gray-700 dark:text-gray-300">
                                     {item.stats}
                                 </div>
-                            </motion.div>):null
+                            </motion.div>) : null
                         ))}
                     </div>
 
@@ -186,20 +195,20 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips=[] }) => {
                             { metric: "150+", label: "Companies Covered", icon: "🏢", color: "text-blue-600" },
                             { metric: "50K+", label: "Successful Candidates", icon: "👥", color: "text-purple-600" },
                         ]?.map((stat, i) => (
-                            stat?(
-                            <motion.div
-                                key={i}
-                                className="text-center p-6 bg-white/50 dark:bg-gray-800/50 rounded-xl backdrop-blur-sm border company-border"
-                                initial={{ opacity: 0, scale: 0.8 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
-                            >
-                                <div className={`text-3xl font-bold ${stat.color} mb-2`}>{stat.metric}</div>
-                                <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center justify-center gap-2">
-                                    <span>{stat.icon}</span>
-                                    {stat.label}
-                                </div>
-                            </motion.div>):null
+                            stat ? (
+                                <motion.div
+                                    key={i}
+                                    className="text-center p-6 bg-white/50 dark:bg-gray-800/50 rounded-xl backdrop-blur-sm border company-border"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
+                                >
+                                    <div className={`text-3xl font-bold ${stat.color} mb-2`}>{stat.metric}</div>
+                                    <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center justify-center gap-2">
+                                        <span>{stat.icon}</span>
+                                        {stat.label}
+                                    </div>
+                                </motion.div>) : null
                         ))}
                     </div>
                 </div>
@@ -250,7 +259,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips=[] }) => {
                 <div className="flex items-center justify-between">
                     <div className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
                         <Building2 className="w-4 h-4" />
-                        Showing {filteredCompanies.length} of {companyTips?.length||0} companies
+                        Showing {filteredCompanies.length} of {companyTips?.length || 0} companies
                     </div>
                     <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
                         <Star className="w-3 h-3" />
@@ -261,7 +270,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips=[] }) => {
 
             <div className="space-y-12">
                 {filteredCompanies.map((company, companyIndex) => {
-                    const [isOpen, setIsOpen] = useState(false)
+                    const isOpen = expandedCompanies[companyIndex] || false
                     return (
                         <motion.div key={companyIndex} variants={fadeIn} className="group">
                             <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] border-0">
@@ -355,7 +364,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips=[] }) => {
 
                                             {/* collapse toggle */}
                                             <button
-                                                onClick={() => setIsOpen(!isOpen)}
+                                                onClick={() => toggleCompany(companyIndex)}
                                                 className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
                                             >
                                                 <motion.div animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.2 }}>
@@ -440,12 +449,12 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips=[] }) => {
                                                                             <Badge
                                                                                 variant="outline"
                                                                                 className={`text-xs px-2 py-1 rounded-full ${item.category === "System Design"
-                                                                                        ? "badge-system border-blue-300 text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/20"
-                                                                                        : item.category === "Behavioral"
-                                                                                            ? "badge-behavioral border-green-300 text-green-700 dark:text-green-300 bg-green-50 dark:bg-green-900/20"
-                                                                                            : item.category === "Technical"
-                                                                                                ? "badge-technical border-purple-300 text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-900/20"
-                                                                                                : "badge-other border-orange-300 text-orange-700 dark:text-orange-300 bg-orange-50 dark:bg-orange-900/20"
+                                                                                    ? "badge-system border-blue-300 text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/20"
+                                                                                    : item.category === "Behavioral"
+                                                                                        ? "badge-behavioral border-green-300 text-green-700 dark:text-green-300 bg-green-50 dark:bg-green-900/20"
+                                                                                        : item.category === "Technical"
+                                                                                            ? "badge-technical border-purple-300 text-purple-700 dark:text-purple-300 bg-purple-50 dark:bg-purple-900/20"
+                                                                                            : "badge-other border-orange-300 text-orange-700 dark:text-orange-300 bg-orange-50 dark:bg-orange-900/20"
                                                                                     }`}
                                                                             >
                                                                                 {item.category}

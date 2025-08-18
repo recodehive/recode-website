@@ -1191,6 +1191,7 @@ html {
   max-width: none !important;
 }
 
+
 .navbar .navbar__items {
   display: flex !important;
   align-items: center !important;
@@ -1215,4 +1216,12 @@ html {
   max-width: none !important;
   width: 100% !important;
   padding: 0 !important;
+
+.practice-tab-link:hover{
+  color: white;
+  text-decoration: none;
+}
+.practice-tab-link{
+  color: white;
+
 }
