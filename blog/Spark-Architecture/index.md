@@ -48,7 +48,8 @@ The key insight that makes Spark special? It keeps data in memory between operat
 
 ## The Big Picture: High-Level Architecture
 
-![Spark Architecture](\img\blogs\07-spark_architecture.png)
+![Spark Architecture](/img/blogs/07-spark_architecture.png)
+
 
 When you look at Spark's architecture, you're essentially looking at a well-orchestrated system with three main types of components working together:
 
