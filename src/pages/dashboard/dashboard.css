@@ -2002,6 +2002,7 @@
     var(--ifm-color-primary) 0%,
     var(--ifm-color-primary-dark) 100%
   ); */
+  /* not removed the properties as this can be used later on  */
   background-clip: text;
   font-size: 3rem;
   font-weight: 800;
