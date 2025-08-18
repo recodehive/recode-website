@@ -8,29 +8,29 @@ tags:
 
 date: 2025-07-18 09:32:00
 description: Understanding Apache Spark Architecture: A Deep Dive into Distributed Computing
-draft: true
+draft: false
 canonical_url: 
 # meta:
 #   - name: "robots"
 #     content: "index, follow"
 #   - property: "og:title"
-#     content: "Spark Architecture Explained"
+#     content: "What is Google DeepMind AI?"
 #   - property: "og:description"
-#     content: "Understanding Apache Spark Architecture: A Deep Dive into Distributed Computing"
+#     content: "DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI called AI"
 #   - property: "og:type"
 #     content: "article"
 #   - property: "og:url"
 #     content: "/blog/getting-started-with-mern"
 #   - property: "og:image"
-#     content: "\static\img\blogs\spark.png"
+#     content: "/assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
 #   - name: "twitter:card"
 #     content: "summary_large_image"
 #   - name: "twitter:title"
-#     content: "Understanding Apache Spark Architecture: A Deep Dive into Distributed Computing"
+#     content: "A Comprehensive Guide to Get You Started with MERN Stack"
 #   - name: "twitter:description"
-#     content: "Understanding Apache Spark Architecture: A Deep Dive into Distributed Computing"
+#     content: "DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI called AI"
 #   - name: "twitter:image"
-#     content: "\static\img\blogs\spark.png"
+#     content: "assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
 
 ---
 
@@ -306,3 +306,5 @@ Whether you're processing terabytes of log data, training machine learning model
 ---
 
 *The next time you see a Spark architecture diagram, I hope you'll see what I see now - not a confusing web of boxes and arrows, but an elegant dance of distributed computing components working in perfect harmony. Happy Sparking! 🚀*
+
+<GiscusComments/>
