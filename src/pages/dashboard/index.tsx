@@ -1,7 +1,7 @@
-import NavbarIcon from "../../components/navbar/NavbarIcon";
 import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 import { motion } from "framer-motion";
 import {
   useCommunityStatsContext,
@@ -22,7 +22,14 @@ import {
   MessageCircle,
   Search,
   TrendingUp,
+  Home,
+  Trophy,
+  Gift,
+  Calendar,
+  BarChart3,
+  ArrowLeft,
 } from "lucide-react";
+import NavbarIcon from "@site/src/components/navbar/NavbarIcon";
 import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 
@@ -97,6 +104,27 @@ const DashboardContent: React.FC = () => {
   const [discussionsError, setDiscussionsError] = useState<string | null>(null);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [showDashboardMenu, setShowDashboardMenu] = useState(false);
+
+  // Close dashboard menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      if (showDashboardMenu && 
+          !target.closest('.dashboard-mobile-menu') && 
+          !target.closest('.dashboard-menu-btn')) {
+        setShowDashboardMenu(false);
+      }
+    };
+
+    if (showDashboardMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showDashboardMenu]);
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>(
     []
   );
@@ -438,17 +466,14 @@ const DashboardContent: React.FC = () => {
     setLeaderboardError(null);
 
     try {
-      console.log("🔄 Fetching leaderboard data from RecodeHive GitHub API...");
+      console.log('Fetching leaderboard data from RecodeHive GitHub API...');
 
       // Fetch all repositories from RecodeHive organization
-      const reposResponse = await fetch(
-        "https://api.github.com/orgs/recodehive/repos?type=public&per_page=100"
-      );
+      const reposResponse = await fetch('https://api.github.com/orgs/recodehive/repos?type=public&per_page=100');
 
       if (!reposResponse.ok) {
         if (reposResponse.status === 403) {
-          console.warn("GitHub API rate limit exceeded. Using fallback data.");
-          throw new Error("GitHub API rate limit exceeded");
+          throw new Error('GitHub API rate limit exceeded');
         }
         throw new Error(`GitHub API request failed: ${reposResponse.status}`);
       }
@@ -568,13 +593,11 @@ const DashboardContent: React.FC = () => {
 
       setLeaderboardData(transformedData);
     } catch (error) {
-      console.error("❌ Error fetching RecodeHive contributors data:", error);
+      console.error("Error fetching RecodeHive contributors data:", error);
       setLeaderboardError(error.message);
 
       // Load fallback demo data
-      console.warn(
-        "Using fallback leaderboard data due to GitHub API limitations"
-      );
+      console.warn("Using fallback leaderboard data due to GitHub API limitations");
       setLeaderboardError("GitHub API rate limit reached. Showing demo data.");
       const demoData: LeaderboardEntry[] = [
         {
@@ -585,7 +608,7 @@ const DashboardContent: React.FC = () => {
           contributions: 250,
           repositories: 25,
           score: 2500,
-          achievements: ["🏆 Top Contributor", "👑 Founder", "🚀 Maintainer"],
+          achievements: ["Top Contributor", "Founder", "Maintainer"],
           github_url: "https://github.com/sanjay-kv",
           streak: 15,
           postManTag: false,
@@ -601,11 +624,7 @@ const DashboardContent: React.FC = () => {
           contributions: 180,
           repositories: 22,
           score: 1800,
-          achievements: [
-            "🚀 Rising Star",
-            "💪 Active Contributor",
-            "⭐ Star Contributor",
-          ],
+          achievements: ["Rising Star", "Active Contributor", "Star Contributor"],
           github_url: "https://github.com/vansh-codes",
           streak: 8,
           postManTag: false,
@@ -621,11 +640,7 @@ const DashboardContent: React.FC = () => {
           contributions: 120,
           repositories: 18,
           score: 1200,
-          achievements: [
-            "💪 Power User",
-            "⭐ Star Contributor",
-            "🔥 Consistent",
-          ],
+          achievements: ["Power User", "Star Contributor", "Consistent"],
           github_url: "https://github.com/Hemu21",
           streak: 5,
           postManTag: false,
@@ -645,25 +660,18 @@ const DashboardContent: React.FC = () => {
     contributions: number
   ): string[] => {
     const achievements: string[] = [];
-
-    // Score-based achievements (GSSoC style)
-    if (score >= 5000) achievements.push("🏆 Elite Contributor");
-    if (score >= 3000) achievements.push("⭐ Master Contributor");
-    if (score >= 1000) achievements.push("🚀 Advanced Contributor");
-    if (score >= 500) achievements.push("💪 Active Contributor");
-    if (score >= 100) achievements.push("🌟 Rising Star");
-
-    // PR count-based achievements
-    if (contributions >= 100) achievements.push("📈 Century Club");
-    if (contributions >= 50) achievements.push("🎯 Half Century");
-    if (contributions >= 25) achievements.push("⚡ Quick Contributor");
-    if (contributions >= 10) achievements.push("🔥 Consistent");
-
-    // Special milestone achievements
-    if (score >= 7000) achievements.push("👑 Legend");
-    if (contributions >= 150) achievements.push("🎖️ PR Master");
-
-    return achievements.slice(0, 3); // Limit to 3 achievements for UI
+    if (score >= 5000) achievements.push("Elite Contributor");
+    if (score >= 3000) achievements.push("Master Contributor");
+    if (score >= 1000) achievements.push("Advanced Contributor");
+    if (score >= 500) achievements.push("Active Contributor");
+    if (score >= 100) achievements.push("Rising Star");
+    if (contributions >= 100) achievements.push("Century Club");
+    if (contributions >= 50) achievements.push("Half Century");
+    if (contributions >= 25) achievements.push("Quick Contributor");
+    if (contributions >= 10) achievements.push("Consistent");
+    if (score >= 7000) achievements.push("Legend");
+    if (contributions >= 150) achievements.push("PR Master");
+    return achievements.slice(0, 3);
   };
 
   const handleTabChange = (
@@ -671,6 +679,7 @@ const DashboardContent: React.FC = () => {
   ) => {
     setActiveTab(tab);
     setIsMobileSidebarOpen(false); // Close mobile sidebar
+    setShowDashboardMenu(false); // Close dashboard menu
     if (tab === "discuss") {
       history.push("#discuss");
       window.scrollTo(0, 0);
@@ -679,7 +688,6 @@ const DashboardContent: React.FC = () => {
       window.scrollTo(0, 0);
     } else if (tab === "giveaway") {
       history.push("/dashboard/giveaway");
-      window.scrollTo(0, 0);
     } else if (tab === "contributors") {
       history.push("#contributors");
       window.scrollTo(0, 0);
@@ -726,7 +734,7 @@ const DashboardContent: React.FC = () => {
         onClick={() => handleFilterChange("weekly")}
         disabled={isLoadingLeaderboard || rateLimitInfo.isLimited}
       >
-        <span className="filter-icon">📅</span>
+        <Calendar size={16} />
         Weekly
       </button>
       <button
@@ -740,7 +748,7 @@ const DashboardContent: React.FC = () => {
         onClick={() => handleFilterChange("monthly")}
         disabled={isLoadingLeaderboard || rateLimitInfo.isLimited}
       >
-        <span className="filter-icon">📊</span>
+        <BarChart3 size={16} />
         Monthly
       </button>
       <button
@@ -754,7 +762,7 @@ const DashboardContent: React.FC = () => {
         onClick={() => handleFilterChange("overall")}
         disabled={isLoadingLeaderboard || rateLimitInfo.isLimited}
       >
-        <span className="filter-icon">🏆</span>
+        <Trophy size={16} />
         Overall
       </button>
     </motion.div>
@@ -767,7 +775,7 @@ const DashboardContent: React.FC = () => {
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
       >
-        <h4>⚠️ GitHub API Rate Limit Reached</h4>
+        <h4>GitHub API Rate Limit Reached</h4>
         <p>
           We've temporarily reached the GitHub API rate limit. The leaderboard
           will automatically refresh when the limit resets.
@@ -778,10 +786,7 @@ const DashboardContent: React.FC = () => {
             {(retryTimer % 60).toString().padStart(2, "0")}
           </div>
         )}
-        <p>
-          <strong>💡 Pro Tip:</strong> For unlimited access, consider setting up
-          a GitHub Personal Access Token.
-        </p>
+
       </motion.div>
     ) : rateLimitInfo.remaining && rateLimitInfo.remaining < 20 ? (
       <motion.div
@@ -789,7 +794,7 @@ const DashboardContent: React.FC = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
-        <h4>⚠️ API Rate Limit Low</h4>
+        <h4>API Rate Limit Low</h4>
         <p>
           GitHub API requests remaining: {rateLimitInfo.remaining}/
           {rateLimitInfo.limit}
@@ -855,7 +860,7 @@ const DashboardContent: React.FC = () => {
         <h3 className="dashboard-stat-title">{title}</h3>
         <div className="dashboard-stat-value">
           {loading ? (
-            <div className="loading-spinner">⏳</div>
+            <div className="loading-spinner">Loading...</div>
           ) : (
             <SlotCounter
               value={valueText}
@@ -919,31 +924,111 @@ const DashboardContent: React.FC = () => {
   );
 
   return (
-    <Layout
-      title="Dashboard"
-      description="RecodeHive Community Dashboard"
-      noFooter
-    >
-      <Head>
-        <title>RecodeHive | Dashboard</title>
-        <meta name="description" content="RecodeHive Community Dashboard" />
-      </Head>
-      <div
-        className={`dashboard-layout ${
-          isMobileSidebarOpen ? "sidebar-open" : ""
-        }`}
-      >
-        {/* Mobile Menu Button */}
+    <div className="dashboard-layout">
+        {/* Dashboard Menu Button - Only visible on mobile */}
         <button
-          className={`mobile-menu-btn ${isMobileSidebarOpen ? "open" : ""}`}
-          onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
-          aria-label="Toggle mobile menu"
-        />
-        {/* Sidebar Navigation */}
+          className={`dashboard-menu-btn ${showDashboardMenu ? "open" : ""}`}
+          onClick={() => setShowDashboardMenu(!showDashboardMenu)}
+          aria-label="Toggle dashboard menu"
+        >
+          {showDashboardMenu ? "✕" : "☰"}
+        </button>
+        
+        {/* Dashboard Mobile Menu */}
+        <div className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}>
+          {/* Overlay */}
+          {showDashboardMenu && (
+            <div 
+              className="dashboard-menu-overlay"
+              onClick={() => setShowDashboardMenu(false)}
+            />
+          )}
+          <div className="dashboard-menu-header">
+            <h3>Dashboard Menu</h3>
+            <button
+              className="close-menu-btn"
+              onClick={() => setShowDashboardMenu(false)}
+              aria-label="Close menu"
+            >
+              ✕
+            </button>
+          </div>
+          
+
+          {/* Dashboard navigation items */}
+          <div className="dashboard-menu-items">
+            <div
+              className={`menu-item ${activeTab === "home" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("home");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon">
+                <Home size={18} />
+              </span>
+              <span className="menu-text">Home</span>
+            </div>
+            <div
+              className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("discuss");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon">
+                <MessageCircle size={18} />
+              </span>
+              <span className="menu-text">Discuss</span>
+            </div>
+            <div
+              className={`menu-item ${
+                activeTab === "leaderboard" ? "active" : ""
+              }`}
+              onClick={() => {
+                handleTabChange("leaderboard");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon">
+                <Trophy size={18} />
+              </span>
+              <span className="menu-text">Leaderboard</span>
+            </div>
+            <div
+              className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("giveaway");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon">
+                <Gift size={18} />
+              </span>
+              <span className="menu-text">Giveaway</span>
+            </div>
+            <div
+              className={`menu-item ${
+                activeTab === "contributors" ? "active" : ""
+              }`}
+              onClick={() => {
+                handleTabChange("contributors");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon">
+                <NavbarIcon name="Community" />
+              </span>
+              <span className="menu-text">Contributors</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Sidebar Navigation - Hidden on mobile */}
         <nav
           className={`dashboard-sidebar ${
             isSidebarCollapsed ? "collapsed" : ""
-          } ${isMobileSidebarOpen ? "show" : ""}`}
+          }`}
         >
           <div className="sidebar-header">
             <div className="sidebar-logo">
@@ -965,7 +1050,7 @@ const DashboardContent: React.FC = () => {
               onClick={() => handleTabChange("home")}
             >
               <span className="nav-icon">
-                <NavbarIcon name="Dashboard" />
+                <Home size={18} />
               </span>
               <span className="nav-text">Home</span>
             </li>
@@ -974,7 +1059,7 @@ const DashboardContent: React.FC = () => {
               onClick={() => handleTabChange("discuss")}
             >
               <span className="nav-icon">
-                <NavbarIcon name="Broadcast" />
+                <MessageCircle size={18} />
               </span>
               <span className="nav-text">Discuss</span>
             </li>
@@ -985,7 +1070,7 @@ const DashboardContent: React.FC = () => {
               onClick={() => handleTabChange("leaderboard")}
             >
               <span className="nav-icon">
-                <NavbarIcon name="Badges" />
+                <Trophy size={18} />
               </span>
               <span className="nav-text">Leaderboard</span>
             </li>
@@ -994,7 +1079,7 @@ const DashboardContent: React.FC = () => {
               onClick={() => handleTabChange("giveaway")}
             >
               <span className="nav-icon">
-                <NavbarIcon name="Donate" />
+                <Gift size={18} />
               </span>
               <span className="nav-text">Giveaway</span>
             </li>
@@ -1039,7 +1124,7 @@ const DashboardContent: React.FC = () => {
             >
               <div className="hero-content">
                 <h1 className="dashboard-title">
-                  🏆 RecodeHive <span className="highlight">Leaderboard</span>
+                  RecodeHive <span className="highlight">Leaderboard</span>
                 </h1>
                 <p className="dashboard-subtitle">Coming soon...</p>
               </div>
@@ -1114,8 +1199,7 @@ const DashboardContent: React.FC = () => {
               >
                 <div className="leaderboard-header">
                   <h2 className="leaderboard-title">
-                    🏆 Top Contributors{" "}
-                    <span className="title-accent">Leaderboard</span>
+                    Top Contributors <span className="title-accent">Leaderboard</span>
                   </h2>
                   <p className="leaderboard-description">
                     Celebrating our most active community members who make
@@ -1126,7 +1210,7 @@ const DashboardContent: React.FC = () => {
                 <div className="leaderboard-container">
                   {error && (
                     <div className="error-message">
-                      <p>⚠️ Some data may be cached or incomplete</p>
+                      <p>Some data may be cached or incomplete</p>
                     </div>
                   )}
 
@@ -1301,7 +1385,7 @@ const DashboardContent: React.FC = () => {
                 </div>
               ) : discussionsError ? (
                 <div className="discussions-error">
-                  <div className="error-icon">⚠️</div>
+                  <div className="error-icon">!</div>
                   <h3>Unable to load discussions</h3>
                   <p>{discussionsError}</p>
                   <button className="retry-button" onClick={fetchDiscussions}>
@@ -1321,7 +1405,7 @@ const DashboardContent: React.FC = () => {
                       ))
                     ) : (
                       <div className="no-discussions">
-                        <div className="no-discussions-icon">💬</div>
+                        <div className="no-discussions-icon">No discussions</div>
                         <h3>No discussions found</h3>
                         <p>
                           {searchQuery || selectedCategory !== "all"
@@ -1340,330 +1424,85 @@ const DashboardContent: React.FC = () => {
                     )}
                   </div>
 
-                  {/* Interactive Community Engagement Section */}
-                  <motion.section
-                    style={{
-                      position: "relative",
-                      background:
-                        "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)",
-                      padding: "5rem 2rem",
-                      textAlign: "center",
-                      borderRadius: "24px",
-                      marginTop: "4rem",
-                      color: "white",
-                      overflow: "hidden",
-                      boxShadow: "0 20px 60px rgba(0,0,0,0.2)",
-                    }}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                  >
-                    {/* Animated Background Elements */}
-                    <div
-                      style={{
-                        position: "absolute",
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        pointerEvents: "none",
-                      }}
-                    >
-                      {[...Array(6)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          style={{
-                            position: "absolute",
-                            width: "100px",
-                            height: "100px",
-                            borderRadius: "50%",
-                            background: "rgba(255,255,255,0.1)",
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                          }}
-                          animate={{
-                            y: [-20, 20, -20],
-                            x: [-10, 10, -10],
-                            scale: [1, 1.2, 1],
-                          }}
-                          transition={{
-                            duration: 4 + Math.random() * 2,
-                            repeat: Infinity,
-                            delay: Math.random() * 2,
-                          }}
-                        />
-                      ))}
-                    </div>
-
-                    <motion.h2
-                      style={{
-                        fontSize: "3rem",
-                        fontWeight: "800",
-                        marginBottom: "1.5rem",
-                        textShadow: "0 4px 8px rgba(0,0,0,0.3)",
-                        position: "relative",
-                        zIndex: 2,
-                      }}
-                      initial={{ scale: 0.8 }}
-                      animate={{ scale: 1 }}
-                      transition={{ duration: 0.8, delay: 0.2 }}
-                    >
-                      Ready to Join the Conversation?
-                    </motion.h2>
-
-                    <motion.p
-                      style={{
-                        fontSize: "1.3rem",
-                        marginBottom: "3rem",
-                        opacity: "0.95",
-                        maxWidth: "650px",
-                        margin: "0 auto 3rem auto",
-                        position: "relative",
-                        zIndex: 2,
-                      }}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 0.95 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                    >
-                      Share your thoughts, ask questions, or help others in our
-                      community.
-                    </motion.p>
-
-                    <div
-                      style={{
-                        display: "flex",
-                        gap: "2.5rem",
-                        justifyContent: "center",
-                        flexWrap: "wrap",
-                        marginBottom: "3rem",
-                        position: "relative",
-                        zIndex: 2,
-                      }}
-                    >
-                      {[
-                        {
-                          emoji: "❓",
-                          text: "Ask a Question",
-                          url: "https://github.com/recodehive/recode-website/discussions/new?category=q-a",
-                          gradient: "linear-gradient(135deg, #ff6b6b, #ff8e8e)",
-                          shadow: "#ff6b6b",
-                        },
-                        {
-                          emoji: "💡",
-                          text: "Share an Idea",
-                          url: "https://github.com/recodehive/recode-website/discussions/new?category=ideas",
-                          gradient: "linear-gradient(135deg, #4ecdc4, #44a08d)",
-                          shadow: "#4ecdc4",
-                        },
-                        {
-                          emoji: "🎉",
-                          text: "Show Your Work",
-                          url: "https://github.com/recodehive/recode-website/discussions/new?category=show-and-tell",
-                          gradient: "linear-gradient(135deg, #45b7d1, #96c93d)",
-                          shadow: "#45b7d1",
-                        },
-                      ].map((item, index) => (
-                        <motion.div
-                          key={index}
-                          style={{
-                            position: "relative",
-                            perspective: "1000px",
-                          }}
-                          initial={{ opacity: 0, y: 50, rotateX: 45 }}
-                          animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                          transition={{
-                            duration: 0.8,
-                            delay: 0.6 + index * 0.2,
-                          }}
-                        >
-                          <motion.a
-                            href={item.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{
-                              background: "rgba(255, 255, 255, 0.1)",
-                              backdropFilter: "blur(20px)",
-                              border: "1px solid rgba(255, 255, 255, 0.2)",
-                              borderRadius: "24px",
-                              padding: "2rem 1.5rem",
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "center",
-                              gap: "1.2rem",
-                              textDecoration: "none",
-                              color: "white",
-                              minWidth: "200px",
-                              minHeight: "160px",
-                              position: "relative",
-                              overflow: "hidden",
-                              boxShadow: "0 8px 32px rgba(0,0,0,0.1)",
-                            }}
-                            animate={{
-                              y: [0, -5, 0],
-                            }}
-                            transition={{
-                              duration: 3,
-                              repeat: Infinity,
-                              delay: index * 0.5,
-                            }}
-                            whileHover={{
-                              scale: 1.05,
-                              y: -15,
-                              rotateY: 5,
-                              boxShadow: `0 25px 50px rgba(0,0,0,0.2), 0 0 30px ${item.shadow}40`,
-                              background: "rgba(255, 255, 255, 0.15)",
-                            }}
-                            whileTap={{ scale: 0.98 }}
-                          >
-                            {/* Animated gradient overlay */}
-                            <motion.div
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                background: item.gradient,
-                                opacity: 0,
-                                borderRadius: "24px",
-                              }}
-                              whileHover={{ opacity: 0.1 }}
-                              transition={{ duration: 0.3 }}
-                            />
-
-                            {/* Floating particles */}
-                            <div
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: 0,
-                                right: 0,
-                                bottom: 0,
-                                pointerEvents: "none",
-                              }}
-                            >
-                              {[...Array(3)].map((_, i) => (
-                                <motion.div
-                                  key={i}
-                                  style={{
-                                    position: "absolute",
-                                    width: "4px",
-                                    height: "4px",
-                                    borderRadius: "50%",
-                                    background: "rgba(255,255,255,0.6)",
-                                    left: `${20 + i * 30}%`,
-                                    top: `${20 + i * 20}%`,
-                                  }}
-                                  animate={{
-                                    y: [-10, 10, -10],
-                                    opacity: [0.3, 1, 0.3],
-                                  }}
-                                  transition={{
-                                    duration: 2 + i * 0.5,
-                                    repeat: Infinity,
-                                    delay: i * 0.3,
-                                  }}
-                                />
-                              ))}
-                            </div>
-
-                            {/* Animated emoji */}
-                            <motion.div
-                              style={{
-                                fontSize: "3rem",
-                                position: "relative",
-                                zIndex: 2,
-                                filter:
-                                  "drop-shadow(0 4px 8px rgba(0,0,0,0.2))",
-                              }}
-                              animate={{
-                                rotate: [0, 5, -5, 0],
-                                scale: [1, 1.1, 1],
-                              }}
-                              transition={{
-                                duration: 4,
-                                repeat: Infinity,
-                                delay: index * 0.7,
-                              }}
-                              whileHover={{
-                                rotate: [0, 15, -15, 0],
-                                scale: 1.3,
-                                y: -5,
-                              }}
-                            >
-                              {item.emoji}
-                            </motion.div>
-
-                            {/* Text with glow effect */}
-                            <motion.span
-                              style={{
-                                fontSize: "1.1rem",
-                                fontWeight: "700",
-                                position: "relative",
-                                zIndex: 2,
-                                textAlign: "center",
-                                textShadow: "0 2px 4px rgba(0,0,0,0.3)",
-                              }}
-                              whileHover={{
-                                textShadow: `0 0 20px ${item.shadow}80`,
-                              }}
-                            >
-                              {item.text}
-                            </motion.span>
-
-                            {/* Shimmer effect */}
-                            <motion.div
-                              style={{
-                                position: "absolute",
-                                top: 0,
-                                left: "-100%",
-                                width: "100%",
-                                height: "100%",
-                                background:
-                                  "linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)",
-                                borderRadius: "24px",
-                              }}
-                              animate={{
-                                left: ["-100%", "100%"],
-                              }}
-                              transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                delay: index * 2,
-                              }}
-                            />
-                          </motion.a>
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    <motion.div
-                      style={{
-                        borderTop: "1px solid rgba(255, 255, 255, 0.3)",
-                        paddingTop: "2rem",
-                        marginTop: "2rem",
-                        position: "relative",
-                        zIndex: 2,
-                      }}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.8, delay: 1 }}
-                    >
-                      <motion.p
-                        style={{
-                          fontSize: "1rem",
-                          opacity: "0.9",
-                          margin: "0",
-                          fontWeight: "500",
+                  {/* Community Engagement Section */}
+                  <div className="community-cta-box" style={{ 
+                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)", 
+                    padding: "2.5rem 2rem", 
+                    borderRadius: "16px", 
+                    marginTop: "3rem", 
+                    textAlign: "center",
+                    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)",
+                    color: "white"
+                  }}>
+                    <h2 style={{ fontSize: "2rem", fontWeight: "700", marginBottom: "1rem", color: "white" }}>
+                      💬 Join the Conversation
+                    </h2>
+                    <p style={{ fontSize: "1.1rem", marginBottom: "2rem", color: "rgba(255,255,255,0.9)", maxWidth: "500px", margin: "0 auto 2rem" }}>
+                      Connect with our community! Share ideas, ask questions, and showcase your amazing work.
+                    </p>
+                    <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
+                      <motion.a 
+                        href="https://github.com/recodehive/recode-website/discussions/new?category=q-a" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ 
+                          background: "rgba(255,255,255,0.2)", 
+                          color: "white", 
+                          padding: "0.875rem 1.5rem", 
+                          borderRadius: "10px", 
+                          textDecoration: "none", 
+                          fontWeight: "600", 
+                          fontSize: "0.95rem",
+                          border: "1px solid rgba(255,255,255,0.3)",
+                          display: "inline-block"
                         }}
-                        animate={{ opacity: [0.7, 1, 0.7] }}
-                        transition={{ duration: 3, repeat: Infinity }}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
                       >
-                        Join thousands of developers sharing knowledge and
-                        building together 🚀
-                      </motion.p>
-                    </motion.div>
-                  </motion.section>
+                        ❓ Ask Question
+                      </motion.a>
+                      <motion.a 
+                        href="https://github.com/recodehive/recode-website/discussions/new?category=ideas" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ 
+                          background: "rgba(255,255,255,0.2)", 
+                          color: "white", 
+                          padding: "0.875rem 1.5rem", 
+                          borderRadius: "10px", 
+                          textDecoration: "none", 
+                          fontWeight: "600", 
+                          fontSize: "0.95rem",
+                          border: "1px solid rgba(255,255,255,0.3)",
+                          display: "inline-block"
+                        }}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        💡 Share Idea
+                      </motion.a>
+                      <motion.a 
+                        href="https://github.com/recodehive/recode-website/discussions/new?category=show-and-tell" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        style={{ 
+                          background: "rgba(255,255,255,0.2)", 
+                          color: "white", 
+                          padding: "0.875rem 1.5rem", 
+                          borderRadius: "10px", 
+                          textDecoration: "none", 
+                          fontWeight: "600", 
+                          fontSize: "0.95rem",
+                          border: "1px solid rgba(255,255,255,0.3)",
+                          display: "inline-block"
+                        }}
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        🎉 Show Work
+                      </motion.a>
+                    </div>
+                  </div>
                 </>
               )}
             </motion.div>
@@ -1677,7 +1516,7 @@ const DashboardContent: React.FC = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="leaderboard-page-title">
-                  🎁 <span className="highlight">Giveaway</span>
+                  <span className="highlight">Giveaway</span>
                 </h1>
               </motion.div>
             </div>
@@ -1691,7 +1530,7 @@ const DashboardContent: React.FC = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="leaderboard-page-title">
-                  👥 RecodeHive <span className="highlight">Contributors</span>
+                  RecodeHive <span className="highlight">Contributors</span>
                 </h1>
                 <p className="leaderboard-page-subtitle">
                   Live rankings from RecodeHive GitHub Organization • Updated
@@ -1707,8 +1546,8 @@ const DashboardContent: React.FC = () => {
                       className="refresh-button"
                     >
                       {isLoadingLeaderboard
-                        ? "🔄 Loading..."
-                        : "🔄 Refresh Data"}
+                        ? "Loading..."
+                        : "Refresh Data"}
                     </button>
                     {rateLimitInfo.remaining && (
                       <p
@@ -1740,7 +1579,7 @@ const DashboardContent: React.FC = () => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                 >
-                  <div className="loading-spinner-large">⏳</div>
+                  <div className="loading-spinner-large">Loading...</div>
                   <p className="loading-text">
                     Fetching latest contributor data...
                   </p>
@@ -1754,7 +1593,7 @@ const DashboardContent: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                 >
-                  <div className="error-icon">⚠️</div>
+                  <div className="error-icon">!</div>
                   <h3>Unable to Load Latest Data</h3>
                   <p>{leaderboardError}</p>
                   {!rateLimitInfo.isLimited && (
@@ -1911,7 +1750,7 @@ const DashboardContent: React.FC = () => {
                             rel="noopener noreferrer"
                             className="github-link"
                           >
-                            <span className="github-icon">👤</span>
+                            <span className="github-icon">GitHub</span>
                             View Profile
                           </a>
                         </div>
@@ -1930,7 +1769,7 @@ const DashboardContent: React.FC = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                   >
-                    <h3>📊 No data available</h3>
+                    <h3>No data available</h3>
                     <p>No contributors found. Check back later!</p>
                   </motion.div>
                 )}
@@ -1938,15 +1777,28 @@ const DashboardContent: React.FC = () => {
           ) : null}
         </main>
       </div>
-    </Layout>
-  );
+    );
 };
 
 const Dashboard: React.FC = () => {
   return (
-    <CommunityStatsProvider>
-      <DashboardContent />
-    </CommunityStatsProvider>
+    <Layout
+      title="Dashboard"
+      description="RecodeHive Community Dashboard"
+      noFooter
+    >
+      <Head>
+        <title>RecodeHive | Dashboard</title>
+        <meta name="description" content="RecodeHive Community Dashboard" />
+      </Head>
+      <BrowserOnly fallback={<div>Loading...</div>}>
+        {() => (
+          <CommunityStatsProvider>
+            <DashboardContent />
+          </CommunityStatsProvider>
+        )}
+      </BrowserOnly>
+    </Layout>
   );
 };
 
