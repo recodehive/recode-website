@@ -1,6 +1,7 @@
 ---
 title: "Spark Architecture Explained"
 authors: [Aditya-Singh-Rathore]
+sidebar_label: "Spark Architecture Explained"
 tags: [Apache Spark, Spark Architecture, Big Data, Distributed Computing, Data Engineering]
 date: 2025-08-18
 
@@ -37,7 +38,7 @@ canonical_url:
 Hey there, fellow data enthusiasts! 👋 
 
 I remember the first time I encountered a Spark architecture diagram. It looked like a complex web of boxes and arrows that seemed to communicate in some secret distributed computing language. But once I understood what each component actually does and how they work together, everything clicked into place.
-
+static
 Today, I want to walk you through Spark's architecture in a way that I wish someone had explained it to me back then - focusing on the core components and how this beautiful system actually works under the hood.
 
 ## What is Apache Spark?
@@ -48,7 +49,7 @@ The key insight that makes Spark special? It keeps data in memory between operat
 
 ## The Big Picture: High-Level Architecture
 
-![Spark Architecture](/img/blogs/07-spark_architecture.png)
+![Spark Architecture](/img/blogs/Spark_architecture.png)
 
 
 When you look at Spark's architecture, you're essentially looking at a well-orchestrated system with three main types of components working together:
