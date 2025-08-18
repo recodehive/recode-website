@@ -31,7 +31,7 @@ These operators let you add, subtract, multiply, divide, or find remainders. The
 The main ones:
 - **+** (Addition): Adds numbers.
 - **-** (Subtraction): Subtracts numbers.
-- *** (Multiplication): Multiplies numbers.
+- **\*** (Multiplication): Multiplies numbers.
 - **/** (Division): Divides numbers.
 - **%** (Modulus): Gives the remainder.
 
