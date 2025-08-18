@@ -313,6 +313,7 @@
   border: 1px solid var(--ifm-color-border);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   backdrop-filter: blur(10px);
+  /* background-color: rgba(255, 255, 255, 0.95); */
   position: relative;
   overflow: hidden;
 }
@@ -1986,20 +1987,32 @@
 }
 
 .dashboard-stat-value {
-  font-size: 3rem;
+  /* font-size: 3rem;
   font-weight: 800;
-  background: linear-gradient(
-    135deg,
-    var(--ifm-color-primary) 0%,
-    var(--ifm-color-primary-dark) 100%
-  );
+  
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
+
   margin-bottom: 0.5rem;
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  position: relative; */
+  /* background: linear-gradient(
+    135deg,
+    var(--ifm-color-primary) 0%,
+    var(--ifm-color-primary-dark) 100%
+  ); */
+  /* not removed the properties as this can be used later on  */
+  background-clip: text;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--ifm-color-primary);
+  margin-bottom: 0.5rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: color 0.3s ease;
   position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .dashboard-stat-card:hover .dashboard-stat-value {
