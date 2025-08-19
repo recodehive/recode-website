@@ -24,6 +24,7 @@ import {
   TrendingUp,
   Home,
   Trophy,
+  Users,
   Gift,
   Calendar,
   BarChart3,
@@ -829,7 +830,7 @@ const DashboardContent: React.FC = () => {
       >
         <h4>GitHub API Rate Limit Reached</h4>
         <p>
-          We've temporarily reached the GitHub API rate limit. The leaderboard
+          We've temporarily reached the GitHub API rate limit. The contributors page
           will automatically refresh when the limit resets.
         </p>
         {retryTimer && (
@@ -1056,9 +1057,9 @@ const DashboardContent: React.FC = () => {
               }}
             >
               <span className="menu-icon">
-                <Trophy size={18} />
+                <Users size={18} />
               </span>
-              <span className="menu-text">Leaderboard</span>
+              <span className="menu-text">Contributors</span>
             </div>
           </div>
         </div>
@@ -1119,9 +1120,9 @@ const DashboardContent: React.FC = () => {
               onClick={() => handleTabChange("contributors")}
             >
               <span className="nav-icon">
-                <Trophy size={18} />
+                <Users size={18} />
               </span>
-              <span className="nav-text">Leaderboard</span>
+              <span className="nav-text">Contributors</span>
             </li>
           </ul>
           <div className="sidebar-footer">
@@ -1213,7 +1214,7 @@ const DashboardContent: React.FC = () => {
               >
                 <div className="leaderboard-header">
                   <h2 className="leaderboard-title">
-                    Top Contributors <span className="title-accent">Leaderboard</span>
+                    Top Contributors <span className="title-accent">Board</span>
                   </h2>
                   <p className="leaderboard-description">
                     Celebrating our most active community members who make
@@ -1544,7 +1545,7 @@ const DashboardContent: React.FC = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="leaderboard-page-title">
-                  RecodeHive <span className="highlight">Leaderboard</span>
+                  RecodeHive <span className="highlight">Contributors</span>
                 </h1>
                 <p className="leaderboard-page-subtitle">
                   Live rankings from RecodeHive GitHub Organization • Updated
@@ -1619,7 +1620,7 @@ const DashboardContent: React.FC = () => {
                     </button>
                   )}
                   <p className="error-help">
-                    Showing cached data below. The leaderboard will
+                    Showing cached data below. The contributors page will
                     automatically refresh when possible.
                   </p>
                 </motion.div>
