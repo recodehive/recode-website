@@ -277,88 +277,78 @@ html[data-theme="dark"] .menu__link--active::after {
   vertical-align: middle;
 }
 
-/* ===== SECTION 8: CRITICAL FIX: DROPDOWN HOVER BEHAVIOR ===== */
-.dropdown {
-  display: inline-flex !important;
-  align-items: center !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  position: relative !important;
-}
+/* ===== SECTION 8: DROPDOWN BEHAVIOR FIXES ===== */
+/* Fix dropdown visibility and styling issues */
 
-/* Create hover bridge between trigger and menu */
-.dropdown::after {
-  content: "" !important;
-  position: absolute !important;
-  top: 100% !important;
-  left: 0 !important;
-  right: 0 !important;
-  height: 10px !important;
-  background: transparent !important;
-  z-index: 999 !important;
-}
-.dropdown-content .border-r,
-.dropdown-content .col-span-1,
-.dropdown-content .col-span-2,
-.dropdown-content a.border-r,
-.dropdown-content a.col-span-1,
-.dropdown-content a.col-span-2 {
-  color: var(--ifm-font-color-base);
-}
+/* Ensure dropdowns are visible on big screens */
+@media (min-width: 1300px) {
+  .navbar__item.dropdown,
+  .navbar__item:has(.dropdown-content) {
+    position: relative !important;
+    overflow: visible !important;
+  }
 
-/* Show dropdown on hover with delay */
-.dropdown:hover .dropdown__menu {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  transition-delay: 0s !important;
-}
+  .navbar__item.dropdown .dropdown__menu,
+  .navbar__item .dropdown-content {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    z-index: 9999 !important;
+    display: none !important;
+    min-width: 50px !important;
+    max-width: 420px !important;
+    width: max-content !important;
+    background: var(--ifm-background-color) !important;
+    border: 1px solid var(--ifm-color-emphasis-300) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    padding: 0.75rem !important;
+    margin-top: 8px !important;
+    overflow: visible !important;
+  }
 
-/* Keep dropdown visible when hovering over menu itself */
-.dropdown__menu:hover {
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
+  .navbar__item.dropdown:hover .dropdown__menu,
+  .navbar__item:hover .dropdown-content,
+  .navbar__item.dropdown .dropdown__menu:hover,
+  .navbar__item .dropdown-content:hover {
+    display: block !important;
+  }
+  
+  /* Add hover bridge to prevent dropdown from disappearing */
+  .navbar__item.dropdown::after,
+  .navbar__item:has(.dropdown-content)::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: transparent;
+    z-index: 9998;
+  }
 
-.dropdown__menu {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  min-width: max-content !important;
-  margin-top: 10px !important;
-  padding: 0.5rem 0 !important;
-  position: absolute !important;
-  top: 100% !important;
-  left: 0 !important;
-  z-index: 1000 !important;
-  background: var(--ifm-background-color) !important;
-  border: 1px solid var(--ifm-color-emphasis-300) !important;
-  border-radius: 6px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-  transition: opacity 0.15s ease 0.3s, visibility 0.15s ease 0.3s !important;
-}
+  .dropdown__link {
+    display: block !important;
+    padding: 0.75rem 1rem !important;
+    color: var(--ifm-font-color-base) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    border-radius: 6px !important;
+    margin: 2px 0 !important;
+  }
 
-.dropdown__link {
-  display: flex !important;
-  align-items: center !important;
-  padding: 0.6rem 1rem !important;
-  margin: 0 !important;
-  width: 100% !important;
-  font-size: 0.9rem !important;
-  transition: background-color 0.15s ease !important;
-  white-space: nowrap !important;
-}
+  .dropdown__link:hover {
+    background-color: var(--ifm-color-emphasis-200) !important;
+    color: var(--ifm-color-primary) !important;
+    transform: translateX(4px) !important;
+  }
 
-.dropdown__link:hover {
-  background-color: var(--ifm-color-emphasis-200) !important;
-}
-
-/* Fix spacing between icon and text in dropdown */
-.dropdown__link svg,
-.dropdown__link img {
-  margin-right: 0.5rem !important;
-  margin-left: 0 !important;
+  /* Ensure navbar container doesn't clip dropdowns */
+  .navbar,
+  .navbar__inner,
+  .navbar__items {
+    overflow: visible !important;
+  }
 }
 
 :root {
@@ -412,25 +402,6 @@ body {
 
 /* =====  SECTION 10: DESKTOP NAVBAR ENHANCEMENTS ===== */
 @media (min-width: 1300px) {
-  /* Enhanced dropdown hover behavior */
-
-  .dropdown:hover .dropdown__menu {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    transition-delay: 0s !important;
-  }
-
-  /* Slower hide transition to prevent accidental closing */
-  .dropdown:not(:hover) .dropdown__menu {
-    transition-delay: 0.5s !important;
-  }
-
-  /* Expand hover area for easier navigation */
-  .dropdown {
-    padding-bottom: 10px !important;
-  }
-
   /* Better spacing for desktop navbar */
   .navbar__inner {
     max-width: 1400px;
@@ -447,7 +418,7 @@ body {
   }
 }
 /* ===== SECTION 11: CRITICAL FIX: TABLET/IPAD NAVBAR BEHAVIOR ===== */
-@media screen and (max-width: 1300px) {
+@media screen and (max-width: 1299px) {
   /* Hide TOP navbar items on mobile (not sidebar) */
   .navbar__items .navbar__item:not(.navbar__toggle):not(.navbar__brand) {
     display: none !important;
@@ -532,6 +503,7 @@ body {
     margin: 0 !important;
     padding: 0.5rem 0 !important;
     background: transparent !important;
+    overflow: visible !important;
   }
 
   .navbar-sidebar .dropdown__link {
@@ -539,10 +511,13 @@ body {
     border-radius: 4px !important;
     margin: 2px 0 !important;
     font-size: 0.9rem !important;
+    display: block !important;
+    color: var(--ifm-font-color-base) !important;
   }
 
   .navbar-sidebar .dropdown__link:hover {
     background-color: var(--ifm-color-emphasis-300) !important;
+    color: var(--ifm-color-primary) !important;
   }
 }
 
@@ -565,47 +540,11 @@ body {
   position: relative;
 }
 
-/* Fancy underline animation for nav/subnav text only */
-.navbar__item:not(:has(img)):not(:has(svg)),
-.navbar__link:not(:has(img)):not(:has(svg)),
-.dropdown-content a:not(:has(img)):not(:has(svg)) {
-  overflow: hidden;
-}
-.navbar__item:not(:has(img)):not(:has(svg))::after,
-.navbar__link:not(:has(img)):not(:has(svg))::after,
-.dropdown-content a:not(:has(img)):not(:has(svg))::after {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--ifm-color-primary);
-  transform: scaleX(0);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.navbar__item:hover:not(:has(img)):not(:has(svg))::after,
-.navbar__link:hover:not(:has(img)):not(:has(svg))::after,
-.dropdown-content a:hover:not(:has(img)):not(:has(svg))::after {
-  transform: scaleX(1);
-}
-
-[data-theme="dark"] .navbar__item:hover:not(:has(img)):not(:has(svg)),
-[data-theme="dark"] .navbar__link:hover:not(:has(img)):not(:has(svg)),
-[data-theme="dark"] .dropdown-content a:hover:not(:has(img)):not(:has(svg)) {
-  color: var(--ifm-color-primary);
-}
-[data-theme="dark"] .navbar__item:not(:has(img)):not(:has(svg))::after,
-[data-theme="dark"] .navbar__link:not(:has(img)):not(:has(svg))::after,
-[data-theme="dark"] .dropdown-content a:not(:has(img)):not(:has(svg))::after {
-  background: var(--ifm-color-primary);
-}
-
 .dropdown_grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  z-index: 9999 !important;
 }
 
 .dropbtn {
@@ -618,7 +557,9 @@ body {
   cursor: pointer;
   border-right: 1px solid var(--ifm-color-emphasis-300);
   margin: 2px;
+  position: relative;
 }
+
 /* Fix navbar icon and text alignment */
 .navbar__items .navbar__link {
   display: inline-flex !important;
@@ -671,8 +612,47 @@ body {
 }
 
 .dropdown-content {
-  position: relative;
-  min-width: 180px;
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  min-width: 250px !important;
+  max-width: 320px !important;
+  width: max-content !important;
+  z-index: 9999 !important;
+  background: var(--ifm-background-color) !important;
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+  padding: 1rem !important;
+  margin-top: 8px !important;
+  display: none;
+  overflow: visible !important;
+}
+
+.dropdown:hover .dropdown-content,
+.navbar__item:hover .dropdown-content,
+.dropdown .dropdown-content:hover,
+.navbar__item .dropdown-content:hover {
+  display: block !important;
+}
+
+/* Add hover bridge for second dropdown section */
+.dropdown::after,
+.navbar__item:has(.dropdown-content)::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: transparent;
+  z-index: 9998;
+}
+
+/* Fix for custom dropdown containers */
+.navbar__item:has(.dropdown-content),
+.dropdown {
+  position: relative !important;
 }
 .dropdown-content a {
   color: var(--ifm-font-color-base);
@@ -695,7 +675,7 @@ body {
 
 /* Force left alignment for all tabs */
 .tabs,
-[class*='tabs--'] {
+[class*="tabs--"] {
   display: flex !important;
   justify-content: flex-start !important;
   text-align: left !important;
@@ -706,18 +686,18 @@ body {
 
 /* Target all possible tab item variations */
 .tabs__item,
-[class*='tabs__item'],
+[class*="tabs__item"],
 .tabItem_LNqP,
-[role='tab'] {
+[role="tab"] {
   text-align: left !important;
   justify-content: flex-start !important;
 }
 
 /* Active tab styles */
 .tabs__item--active,
-[class*='tabs__item--active'],
-.tabItem_LNqP[aria-selected='true'],
-[role='tab'][aria-selected='true'] {
+[class*="tabs__item--active"],
+.tabItem_LNqP[aria-selected="true"],
+[role="tab"][aria-selected="true"] {
   border-color: var(--ifm-toc-border-color) !important;
   border-bottom-color: var(--ifm-background-color) !important;
   background: var(--ifm-background-color) !important;
@@ -727,21 +707,21 @@ body {
 
 /* Hover state */
 .tabs__item:not(.tabs__item--active):hover,
-[class*='tabs__item']:not([class*='--active']):hover,
-[role='tab']:not([aria-selected='true']):hover {
+[class*="tabs__item"]:not([class*="--active"]):hover,
+[role="tab"]:not([aria-selected="true"]):hover {
   background-color: var(--ifm-menu-color-background-active) !important;
 }
 
 /* Remove any right margin/padding that might be pushing content */
 .tabs-container,
-[class*='tabs-container'] {
+[class*="tabs-container"] {
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
 }
 
 /* Ensure tab list takes full width */
-[role='tablist'] {
+[role="tablist"] {
   width: 100% !important;
   display: flex !important;
   justify-content: flex-start !important;
@@ -776,7 +756,8 @@ html.theme-light .text-gray-900 {
 }
 
 .modern-card-shadow {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .modern-card-shadow-hover {
@@ -831,63 +812,82 @@ html {
 
 /* =====  BASIC FOOTER PROTECTION ===== */
 /* Prevent global dark theme container rule from affecting footer */
-[data-theme='dark'] .enhanced-footer .container {
+[data-theme="dark"] .enhanced-footer .container {
   background-color: transparent !important;
 }
 
 /* ===== FOOTER BACKGROUND PROTECTION ===== */
 /* Ensure footer maintains its gradient background in dark mode */
-[data-theme='dark'] .enhanced-footer {
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%) !important;
+[data-theme="dark"] .enhanced-footer {
+  background: linear-gradient(
+    135deg,
+    #0f0f23 0%,
+    #1a1a2e 25%,
+    #16213e 50%,
+    #0f3460 75%,
+    #533483 100%
+  ) !important;
   color: #e2e8f0 !important;
 }
 
 /* ===== STEP 5: FOOTER SECTION PROTECTION ===== */
 /* Protect specific footer sections from global overrides */
-[data-theme='dark'] .enhanced-footer .footer-links-section {
+[data-theme="dark"] .enhanced-footer .footer-links-section {
   background: rgba(0, 0, 0, 0.15) !important;
 }
 
-[data-theme='dark'] .enhanced-footer .footer-bottom {
+[data-theme="dark"] .enhanced-footer .footer-bottom {
   background: rgba(0, 0, 0, 0.2) !important;
 }
 
 /* ===== STEP 6: MAXIMUM SPECIFICITY PROTECTION ===== */
 /* Override the exact problematic global rule with same specificity */
-[data-theme='dark'] body:not(:has(.community-page)) .enhanced-footer .container {
+[data-theme="dark"]
+  body:not(:has(.community-page))
+  .enhanced-footer
+  .container {
   background-color: transparent !important;
 }
 
-[data-theme='dark'] body:not(:has(.community-page)) .enhanced-footer {
-  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%) !important;
+[data-theme="dark"] body:not(:has(.community-page)) .enhanced-footer {
+  background: linear-gradient(
+    135deg,
+    #0f0f23 0%,
+    #1a1a2e 25%,
+    #16213e 50%,
+    #0f3460 75%,
+    #533483 100%
+  ) !important;
   color: #e2e8f0 !important;
 }
 
 /* ===== STEP 7: COMPREHENSIVE ELEMENT PROTECTION ===== */
 /* Protect all footer elements from any global overrides */
-[data-theme='dark'] .enhanced-footer *,
-[data-theme='dark'] .enhanced-footer .row,
-[data-theme='dark'] .enhanced-footer .col,
-[data-theme='dark'] .enhanced-footer div,
-[data-theme='dark'] .enhanced-footer section {
+[data-theme="dark"] .enhanced-footer *,
+[data-theme="dark"] .enhanced-footer .row,
+[data-theme="dark"] .enhanced-footer .col,
+[data-theme="dark"] .enhanced-footer div,
+[data-theme="dark"] .enhanced-footer section {
   background-color: transparent !important;
 }
 
 /* Ensure text colors inherit properly */
-[data-theme='dark'] .enhanced-footer,
-[data-theme='dark'] .enhanced-footer * {
+[data-theme="dark"] .enhanced-footer,
+[data-theme="dark"] .enhanced-footer * {
   color: inherit !important;
 }
 
 /* ===== REMOVE THEME TOGGLE FROM MOBILE SIDEBAR AS THERE IS ONE ON THE NAVBAR ===== */
 @media (max-width: 1200px) {
   /* Aggressively hide theme toggle in mobile sidebar */
-  .navbar-sidebar__brand button:not(.navbar-sidebar__close):not([class*="close"]),
+  .navbar-sidebar__brand
+    button:not(.navbar-sidebar__close):not([class*="close"]),
   .navbar-sidebar__brand .colorModeToggle,
   .navbar-sidebar .colorModeToggle,
   .navbar-sidebar__brand button[class*="colorModeToggle"],
   .navbar-sidebar button[class*="colorModeToggle"],
-  .navbar-sidebar__brand .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
+  .navbar-sidebar__brand
+    .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
   .navbar-sidebar .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
   .navbar-sidebar__brand [class*="toggle_"]:not(.navbar-sidebar__close),
   .navbar-sidebar [class*="toggle_"]:not(.navbar-sidebar__close),
