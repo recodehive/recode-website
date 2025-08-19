@@ -38,7 +38,7 @@ canonical_url:
 Hey there, fellow data enthusiasts! 👋 
 
 I remember the first time I encountered a Spark architecture diagram. It looked like a complex web of boxes and arrows that seemed to communicate in some secret distributed computing language. But once I understood what each component actually does and how they work together, everything clicked into place.
-static
+
 Today, I want to walk you through Spark's architecture in a way that I wish someone had explained it to me back then - focusing on the core components and how this beautiful system actually works under the hood.
 
 ## What is Apache Spark?
