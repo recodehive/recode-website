@@ -90,7 +90,7 @@ const DashboardContent: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
   const [activeTab, setActiveTab] = useState<
-    "home" | "discuss" | "leaderboard" | "giveaway" | "contributors"
+    "home" | "discuss" | "giveaway" | "contributors"
   >("home");
 
   // Discussion state management
@@ -143,8 +143,6 @@ const DashboardContent: React.FC = () => {
     // Set active tab based on URL hash
     if (location.hash === "#discuss") {
       setActiveTab("discuss");
-    } else if (location.hash === "#leaderboard") {
-      setActiveTab("leaderboard");
     } else if (location.hash === "#contributors") {
       setActiveTab("contributors");
     } else if (location.hash === "#giveaway") {
@@ -177,12 +175,69 @@ const DashboardContent: React.FC = () => {
     }
   };
 
-  // Fetch leaderboard data when leaderboard or contributors tab is active
+  // Fetch leaderboard data when contributors tab is active or on initial load
   useEffect(() => {
-    if (activeTab === "leaderboard" || activeTab === "contributors") {
+    if (activeTab === "contributors") {
       fetchLeaderboardData();
     }
   }, [activeTab]);
+
+  // Load initial demo data if no data exists
+  useEffect(() => {
+    if (leaderboardData.length === 0) {
+      const initialData: LeaderboardEntry[] = [
+        {
+          rank: 1,
+          name: "sanjay-kv",
+          username: "sanjay-kv",
+          avatar: "https://avatars.githubusercontent.com/u/30715153?v=4",
+          contributions: 250,
+          repositories: 25,
+          score: 2500,
+          achievements: ["Top Contributor", "Founder", "Maintainer"],
+          github_url: "https://github.com/sanjay-kv",
+          streak: 15,
+          postManTag: false,
+          web3hack: false,
+          weeklyContributions: 35,
+          monthlyContributions: 120,
+        },
+        {
+          rank: 2,
+          name: "vansh-codes",
+          username: "vansh-codes",
+          avatar: "https://avatars.githubusercontent.com/u/114163734?v=4",
+          contributions: 180,
+          repositories: 22,
+          score: 1800,
+          achievements: ["Rising Star", "Active Contributor", "Star Contributor"],
+          github_url: "https://github.com/vansh-codes",
+          streak: 8,
+          postManTag: false,
+          web3hack: false,
+          weeklyContributions: 25,
+          monthlyContributions: 85,
+        },
+        {
+          rank: 3,
+          name: "Hemu21",
+          username: "Hemu21",
+          avatar: "https://avatars.githubusercontent.com/u/106808387?v=4",
+          contributions: 120,
+          repositories: 18,
+          score: 1200,
+          achievements: ["Power User", "Star Contributor", "Consistent"],
+          github_url: "https://github.com/Hemu21",
+          streak: 5,
+          postManTag: false,
+          web3hack: false,
+          weeklyContributions: 18,
+          monthlyContributions: 60,
+        },
+      ];
+      setLeaderboardData(initialData);
+    }
+  }, []);
 
   // Discussion handlers
   const handleDiscussionTabChange = (tab: DiscussionTab) => {
@@ -675,16 +730,13 @@ const DashboardContent: React.FC = () => {
   };
 
   const handleTabChange = (
-    tab: "home" | "discuss" | "leaderboard" | "giveaway" | "contributors"
+    tab: "home" | "discuss" | "giveaway" | "contributors"
   ) => {
     setActiveTab(tab);
     setIsMobileSidebarOpen(false); // Close mobile sidebar
     setShowDashboardMenu(false); // Close dashboard menu
     if (tab === "discuss") {
       history.push("#discuss");
-      window.scrollTo(0, 0);
-    } else if (tab === "leaderboard") {
-      history.push("#leaderboard");
       window.scrollTo(0, 0);
     } else if (tab === "giveaway") {
       history.push("/dashboard/giveaway");
@@ -981,20 +1033,7 @@ const DashboardContent: React.FC = () => {
               </span>
               <span className="menu-text">Discuss</span>
             </div>
-            <div
-              className={`menu-item ${
-                activeTab === "leaderboard" ? "active" : ""
-              }`}
-              onClick={() => {
-                handleTabChange("leaderboard");
-                setShowDashboardMenu(false);
-              }}
-            >
-              <span className="menu-icon">
-                <Trophy size={18} />
-              </span>
-              <span className="menu-text">Leaderboard</span>
-            </div>
+
             <div
               className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
               onClick={() => {
@@ -1017,9 +1056,9 @@ const DashboardContent: React.FC = () => {
               }}
             >
               <span className="menu-icon">
-                <NavbarIcon name="Community" />
+                <Trophy size={18} />
               </span>
-              <span className="menu-text">Contributors</span>
+              <span className="menu-text">Leaderboard</span>
             </div>
           </div>
         </div>
@@ -1063,17 +1102,7 @@ const DashboardContent: React.FC = () => {
               </span>
               <span className="nav-text">Discuss</span>
             </li>
-            <li
-              className={`nav-item ${
-                activeTab === "leaderboard" ? "active" : ""
-              }`}
-              onClick={() => handleTabChange("leaderboard")}
-            >
-              <span className="nav-icon">
-                <Trophy size={18} />
-              </span>
-              <span className="nav-text">Leaderboard</span>
-            </li>
+
             <li
               className={`nav-item ${activeTab === "giveaway" ? "active" : ""}`}
               onClick={() => handleTabChange("giveaway")}
@@ -1090,9 +1119,9 @@ const DashboardContent: React.FC = () => {
               onClick={() => handleTabChange("contributors")}
             >
               <span className="nav-icon">
-                <NavbarIcon name="Community" />
+                <Trophy size={18} />
               </span>
-              <span className="nav-text">Contributors</span>
+              <span className="nav-text">Leaderboard</span>
             </li>
           </ul>
           <div className="sidebar-footer">
@@ -1114,22 +1143,7 @@ const DashboardContent: React.FC = () => {
           } ${isSidebarCollapsed ? "sidebar-collapsed" : ""}`}
           onClick={() => isSidebarCollapsed && setIsSidebarCollapsed(false)}
         >
-          {activeTab === "leaderboard" ? (
-            /* Leaderboard Tab */
-            <motion.section
-              className="dashboard-hero"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="hero-content">
-                <h1 className="dashboard-title">
-                  RecodeHive <span className="highlight">Leaderboard</span>
-                </h1>
-                <p className="dashboard-subtitle">Coming soon...</p>
-              </div>
-            </motion.section>
-          ) : activeTab === "home" ? (
+          {activeTab === "home" ? (
             // Home tab content
             <div>
               <motion.section
@@ -1530,7 +1544,7 @@ const DashboardContent: React.FC = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="leaderboard-page-title">
-                  RecodeHive <span className="highlight">Contributors</span>
+                  RecodeHive <span className="highlight">Leaderboard</span>
                 </h1>
                 <p className="leaderboard-page-subtitle">
                   Live rankings from RecodeHive GitHub Organization • Updated
