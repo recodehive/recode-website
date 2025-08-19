@@ -1,6 +1,6 @@
 ---
 title: "Spark Architecture Explained"
-authors: [Aditya-Singh-Rathore]
+authors: [Aditya-Singh-Rathore,sanjay-kv]
 sidebar_label: "Spark Architecture Explained"
 tags: [Apache Spark, Spark Architecture, Big Data, Distributed Computing, Data Engineering]
 date: 2025-08-18
