@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import BlogCard from "./blogCard";
 import blogs from "../../database/blogs";
 import Autoplay from "embla-carousel-autoplay";
+import "./blogCarousel.css";
 
 export function BlogCarousel() {
   const [api, setApi] = useState<CarouselApi>();
@@ -33,6 +34,7 @@ export function BlogCarousel() {
 
   return (
     <div className="w-full max-w-8xl mx-auto px-4">
+      
       <Carousel
         setApi={setApi}
         className="w-full"
@@ -42,13 +44,14 @@ export function BlogCarousel() {
         }}
         plugins={[
           Autoplay({
-            delay: 2000,
+            delay: 4000,
+            stopOnInteraction: true,
           }),
         ]}
       >
         <CarouselContent className="my-10">
-          {blogs.map((blog) => (
-            <CarouselItem key={blog.id} className="md:basis-1/2 lg:basis-1/4">
+          {blogs.map((blog, index) => (
+            <CarouselItem key={blog.id} className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
               <BlogCard
                 type="blog"
                 date="2024-01-01"
@@ -56,30 +59,31 @@ export function BlogCarousel() {
                 content={blog.description}
                 imageUrl={blog.image}
                 id={blog.slug}
+                authors={blog.authors}
               />
             </CarouselItem>
           ))}
         </CarouselContent>
 
-        {/* Carousel controls */}
-        <div className="flex items-center justify-center gap-2 mt-4">
-          <CarouselPrevious className="static translate-y-0 dark:bg-gray-800 dark:text-white" />
+        {/* Enhanced Carousel controls */}
+        <div className="flex items-center justify-center gap-4 mt-8">
+          <CarouselPrevious className="static translate-y-0 h-12 w-12 border-2 border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 hover:scale-110" />
           <div className="flex gap-2">
             {Array.from({ length: count }).map((_, index) => (
               <Button
                 key={index}
-                variant={current === index + 1 ? "default" : "outline"}
-                size="icon"
-                className={`h-2 w-2 p-0 rounded-full transition-colors ${
+                variant="ghost"
+                size="sm"
+                className={`h-3 w-3 p-0 rounded-full transition-all duration-300 ${
                   current === index + 1
-                    ? "bg-black dark:bg-white"
-                    : "bg-gray-300 dark:bg-gray-600"
+                    ? "bg-gradient-to-r from-blue-500 to-purple-500 scale-125"
+                    : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
                 }`}
                 onClick={() => api?.scrollTo(index)}
               />
             ))}
           </div>
-          <CarouselNext className="static translate-y-0 dark:bg-gray-800 dark:text-white" />
+          <CarouselNext className="static translate-y-0 h-12 w-12 border-2 border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 hover:scale-110" />
         </div>
       </Carousel>
     </div>

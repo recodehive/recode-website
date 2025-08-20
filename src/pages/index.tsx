@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import type { ReactNode } from "react";
@@ -18,6 +18,23 @@ import FAQs from "../components/faqs/faqs";
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
+  
+  useEffect(() => {
+    // Add page transition animation on mount
+    const mainElement = document.querySelector('main');
+    if (mainElement) {
+      mainElement.style.opacity = '0';
+      mainElement.style.transform = 'translateY(20px)';
+      mainElement.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+      
+      // Trigger animation after a brief delay
+      setTimeout(() => {
+        mainElement.style.opacity = '1';
+        mainElement.style.transform = 'translateY(0)';
+      }, 100);
+    }
+  }, []);
+  
   return (
     <Layout
       title={`${siteConfig.title}`}
@@ -32,13 +49,13 @@ export default function Home(): ReactNode {
       </Head>
 
       {/* ✅ Wrap in solid background to fix light mode */}
-      <div className="   transition-colors duration-300"style={{ backgroundColor: "var(--ifm-background-color)", color: "var(--ifm-font-color-base)" }}>
-      <main className="transition-colors duration-300" style={{ backgroundColor: "var(--ifm-background-color)", color: "var(--ifm-font-color-base)" }}>
+      <div className="transition-colors duration-300" style={{ backgroundColor: "var(--ifm-background-color)", color: "var(--ifm-font-color-base)" }}>
+      <main className="transition-colors duration-300 page-enter" style={{ backgroundColor: "var(--ifm-background-color)", color: "var(--ifm-font-color-base)" }}>
       <div className="m-4">
             <Header />
           </div>
 
-          <div className="m-4">
+          <div className="blog-carousel-section">
             <BlogCarousel />
           </div>
 

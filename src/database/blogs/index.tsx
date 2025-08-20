@@ -4,6 +4,7 @@ interface Blog {
   image: string;
   description: string;
   slug: string;
+  authors: string[];
 }
 
 const blogs: Blog[] = [
@@ -14,6 +15,7 @@ const blogs: Blog[] = [
     description:
       "User experience design can be overwhelming because of the number of factors that influence what a product should look like and how it should function.",
     slug: "streamline-ux-ui",
+    authors: ["dharshibalasubramaniyam", "sanjay-kv"],
   },
 
   {
@@ -23,6 +25,7 @@ const blogs: Blog[] = [
     description:
       " Are you passionate about design and dreaming of a career in it? Or maybe you are already in the design space and looking to pivot into UI/UX? ",
     slug: "ux-ui-design-job",
+    authors: ["dharshibalasubramaniyam", "sanjay-kv"],
   },
   {
     id: 3,
@@ -31,6 +34,7 @@ const blogs: Blog[] = [
     description:
       "The impact of technology on UX design is undeniable. Automation and artificial intelligence are making it easier to identify user needs and create tailored experiences.",
     slug: "ux-designers-ai",
+    authors: ["dharshibalasubramaniyam", "sanjay-kv"],
   },
     {
     id: 4,
@@ -39,14 +43,16 @@ const blogs: Blog[] = [
     description:
       "DeepMind is an auxiliary of Google that centers around man-made brainpower. It utilizes a part of AI called AI",
     slug: "google-deepmind",
+    authors: ["dharshibalasubramaniyam", "sanjay-kv"],
   },
       {
     id: 5,
     title: "What are backlinks for SEO",
     image: "/img/blogs/01-seo-image.png",
     description:
-      "An SEO backlink is created when one website links to another, and they’re extremely important for SEO. ",
+      "An SEO backlink is created when one website links to another, and they're extremely important for SEO. ",
     slug: "google-backlinks",
+    authors: ["sanjay-kv"],
   },
 
         {
@@ -56,14 +62,16 @@ const blogs: Blog[] = [
     description:
       "The GitHub Copilot Coding Agent is an asynchronous software engineering agent that assists developers by suggesting code snippets",
     slug: "git-coding-agent",
+    authors: ["sanjay-kv"],
   },
       {
-    id: 6,
+    id: 7,
     title: "Apache Spark Tutorial",
     image: "/img/blogs/07-spark-blog-banner.png",
     description:
       "Apache Spark is an open-source unified analytics engine for large-scale data processing, with built-in modules for streaming, SQL, machine learning, and graph processing.",
     slug: "spark-architecture",
+    authors: ["dharshibalasubramaniyam", "sanjay-kv"],
   },
 ];
 
