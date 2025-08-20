@@ -70,7 +70,7 @@ const blogs: Blog[] = [
     image: "/img/blogs/07-spark-blog-banner.png",
     description:
       "Apache Spark is an open-source unified analytics engine for large-scale data processing, with built-in modules for streaming, SQL, machine learning, and graph processing.",
-    slug: "spark-architecture",
+    slug: "Spark-Architecture",
     authors: ["dharshibalasubramaniyam", "sanjay-kv"],
   },
 ];
