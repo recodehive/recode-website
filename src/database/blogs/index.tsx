@@ -57,10 +57,10 @@ const blogs: Blog[] = [
       "The GitHub Copilot Coding Agent is an asynchronous software engineering agent that assists developers by suggesting code snippets",
     slug: "git-coding-agent",
   },
-          {
-    id: 6,
-    title: "Spark Architecture Explained",
-    image: "/img/blogs/07-spark.png",
+      {
+    id: 7,
+    title: "Apache Spark Tutorial",
+    image: "/img/blogs/07-spark-blog-banner.png",
     description:
       "Spark is a unified analytics engine for big data processing, with built-in modules for streaming, SQL, machine learning, and graph processing.",
     slug: "spark-architecture",
