@@ -124,10 +124,11 @@ function GetStartedHeader() {
 
   return (
     <header className={styles.heroBanner}>
+    <div className={styles.heroOverlay}></div>
       <div className="container">
         <div className={styles.heroContent}>
           <motion.h1
-            className="hero__title"
+            className={`hero__title ${styles.heroTitle}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -137,7 +138,7 @@ function GetStartedHeader() {
           </motion.h1>
 
           <motion.p
-            className="hero__subtitle"
+            className={`hero__subtitle ${styles.heroSubtitle}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -152,21 +153,15 @@ function GetStartedHeader() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <div className={styles.typingText}>
-              <span className={styles.staticText}>Start</span>
-              <div className={styles.typingAnimation}>
-                {texts.map((text, i) => (
-                  <span
-                    key={i}
-                    className={`${styles.typingWord} ${
-                      i === textIndex ? styles.visible : ""
-                    }`}
-                  >
-                    {text}
-                  </span>
-                ))}
-              </div>
-              <span className={styles.staticText}>Today</span>
+            <div className={styles.staticText}>
+              <span className={styles.staticText}>Start&nbsp;</span>
+              <span className={styles.dynamicText}>
+                <span className={styles.typingWord}>Code</span>
+                <span className={styles.typingWord}>Build</span>
+                <span className={styles.typingWord}>Deploy</span>
+                <span className={styles.typingWord}>Learn</span>
+              </span>
+              <span className={styles.staticText}>&nbsp;Today</span>
             </div>
           </motion.div>
 
