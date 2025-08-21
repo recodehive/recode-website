@@ -122,8 +122,8 @@ const FAQs: React.FC = () => {
                       }
                       [&_a]:text-indigo-600 [&_a]:hover:text-indigo-800
                       dark:[&_a]:text-indigo-400 dark:[&_a]:hover:text-indigo-300
-                      [&_strong]:font-semibold [&_strong]:text-gray-800
-                      dark:[&_strong]:text-gray-200`}
+                      [&_strong]:font-semibold [&_strong]:text-gray-500
+                      dark:[&_strong]:text-gray-600`}
                       dangerouslySetInnerHTML={{ __html: faq.answer }}
                     />
                   </motion.div>
