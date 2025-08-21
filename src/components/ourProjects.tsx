@@ -95,13 +95,15 @@ const HeadingComponent = ({
   );
 };
 
+// Project URLs configuration
+const PROJECT_URLS: Record<string, string> = {
+  "Awesome GitHub Profile": "https://recodehive.github.io/awesome-github-profiles/",
+  "Machine Learning Repository": "https://machine-learning-repos.vercel.app/"
+};
+
 // Helper function to get website URLs
 const getWebsiteUrl = (title: string) => {
-  const urls = {
-    "Awesome GitHub Profile": "https://recodehive.github.io/awesome-github-profiles/",
-    "Machine Learning Repository": "https://machine-learning-repos.vercel.app/"
-  };
-  return urls[title] || "https://github.com/recodehive";
+  return PROJECT_URLS[title] || "https://github.com/recodehive";
 };
 
 // Select Component
@@ -312,10 +314,7 @@ const SelectComponent = ({
                   >
                     <motion.iframe
                       key={activeItem}
-                      src={items[activeItem].title === "Awesome GitHub Profile" 
-                        ? "https://recodehive.github.io/awesome-github-profiles/"
-                        : "https://machine-learning-repos.vercel.app/"
-                      }
+                      src={PROJECT_URLS[items[activeItem].title] || "about:blank"}
                       className="w-full h-[200%] border-0 origin-top pointer-events-none"
                       initial={{ opacity: 0, y: 0 }}
                       animate={{ 
@@ -326,7 +325,7 @@ const SelectComponent = ({
                         opacity: { duration: 0.8 },
                         y: { duration: 8, repeat: Infinity, ease: "easeInOut" }
                       }}
-                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                      sandbox="allow-scripts allow-popups allow-forms"
                     />
                   </motion.div>
                 ) : (

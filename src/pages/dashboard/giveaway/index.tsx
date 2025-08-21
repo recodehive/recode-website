@@ -461,12 +461,12 @@ const GiveawayPage: React.FC = () => {
   }, []);
 
   const handleTabChange = (
-    tab: "home" | "discuss" | "leaderboard" | "giveaway"
+    tab: "home" | "discuss" | "contributors" | "giveaway"
   ) => {
     setIsMobileSidebarOpen(false);
     if (tab === "discuss") {
       history.push("/dashboard#discuss");
-    } else if (tab === "leaderboard") {
+    } else if (tab === "contributors") {
       history.push("/dashboard#contributors");
     } else if (tab === "home") {
       history.push("/dashboard");
@@ -561,12 +561,12 @@ const GiveawayPage: React.FC = () => {
             </li>
             <li
               className="nav-item"
-              onClick={() => handleTabChange("leaderboard")}
+              onClick={() => handleTabChange("contributors")}
             >
               <span className="nav-icon">
                 <Trophy size={18} />
               </span>
-              <span className="nav-text">Leaderboard</span>
+              <span className="nav-text">Contributors</span>
             </li>
           </ul>
           <div className="sidebar-footer">
