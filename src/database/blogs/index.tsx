@@ -58,7 +58,7 @@ const blogs: Blog[] = [
     slug: "git-coding-agent",
   },
       {
-    id: 6,
+    id: 7,
     title: "Apache Spark Tutorial",
     image: "/img/blogs/07-spark-blog-banner.png",
     description:
