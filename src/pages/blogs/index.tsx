@@ -196,7 +196,7 @@ const BlogCard = ({ blog, index }) => {
           </div>
           <span className="card-read-time">5 min read</span>
         </div>
-        <Link to={`/blogs/${blog.slug}`} className="card-read-more">
+        <Link to={`/blog/${blog.slug}`} className="card-read-more">
           Read Article →
         </Link>
       </div>
