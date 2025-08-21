@@ -159,12 +159,21 @@ export default function CommunityPage(): JSX.Element {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; 
+      const offset = 80;
       const top = element.offsetTop - offset;
       window.scrollTo({ top, behavior: "smooth" });
       setSelectedSection(sectionId);
     }
   };
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
 
   return (
@@ -236,7 +245,10 @@ export default function CommunityPage(): JSX.Element {
                     <motion.div
                       key={section.id}
                       id={section.id}
-                      className={`contribution-section ${selectedSection === section.id ? 'selected' : ''}`}
+                      className={`contribution-section ${(isMobile ? activeSections.includes(section.id) : selectedSection === section.id)
+                          ? 'selected'
+                          : ''
+                        }`}
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.1 * index }}
