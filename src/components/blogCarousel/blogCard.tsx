@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "@docusaurus/Link";
 import { Card, CardContent } from "../ui/card";
+import { getAuthorNames } from "../../utils/authors";
 
 const BlogCard = ({
   type,
@@ -11,70 +12,76 @@ const BlogCard = ({
   title,
   content,
   imageUrl,
-  id
+  id,
+  authors
 }) => {
-  const [currentUrl] = useState(
-    typeof window !== "undefined" ? window.location.href : ""
-  );
+
   const [isHovered, setIsHovered] = useState(false);
 
   if (!id || !type) {
     return <div>data not fetched properly, imageId and entryId not found</div>;
   }
 
-  return (
-      <motion.div
-        initial={false}
-        animate={{scale: isHovered ? 1.05 : 1 }}
-        transition={{ duration: 0.3 }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        className="relative overflow-hidden h-full shadow-2xl border border-gray-200 dark:border-gray-700 rounded-2xl transition-all duration-300"
-      >
-        <Link href={`${currentUrl}blog/${id}`}>
-          {/* Hover shimmer effect */}
-          <motion.div
-            initial={{ opacity: 0, left: "50%", right: "50%" }}
-            animate={
-              isHovered
-                ? {
-                    opacity: 1,
-                    left: "-100%",
-                    right: "-100%",
-                    transition: { duration: 0.6, ease: "easeInOut" },
-                  }
-                : {
-                    opacity: 0,
-                    left: "100%",
-                    right: "100%",
-                    transition: { duration: 0.6, ease: "easeInOut" },
-                  }
-            }
-            className="absolute top-0 h-full shimmer-layer pointer-events-none"
-          />
+  // Get category from title for demo purposes
+  const getCategory = (title) => {
+    if (title.toLowerCase().includes('design') || title.toLowerCase().includes('ux')) return 'Design';
+    if (title.toLowerCase().includes('ai') || title.toLowerCase().includes('deepmind')) return 'AI & Tech';
+    if (title.toLowerCase().includes('github') || title.toLowerCase().includes('git')) return 'Development';
+    return 'Resources';
+  };
 
-          <Card className="blog-card max-w-md w-full p-4 h-full border-none rounded-2xl transition-colors duration-300">
-            <img
-              src={imageUrl}
-              alt=""
-              width={400}
-              height={200}
-              className="w-full h-48 object-contain rounded-lg"
-            />
-            <CardContent className="p-4 space-y-2">
-              <div className="blog-card-date text-sm">
-                {date}
+  const category = getCategory(title);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      whileHover={{ 
+        y: -8, 
+        scale: 1.02,
+        transition: { duration: 0.4, ease: "easeOut" }
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative overflow-hidden h-full transition-all duration-300"
+    >
+      <Link 
+        to={`/blog/${id}`}
+        className="block h-full text-decoration-none"
+        style={{ textDecoration: 'none' }}
+      >
+        <div className="article-card h-full">
+          {/* Category Badge */}
+          <div className="card-category">{category}</div>
+          
+          {/* Card Image */}
+          <div className="card-image">
+            <img src={imageUrl} alt={title} />
+          </div>
+          
+          {/* Card Content */}
+          <div className="card-content">
+            <h3 className="card-title">{title}</h3>
+            <p className="card-description">{content}</p>
+            
+            {/* Card Meta */}
+            <div className="card-meta">
+              <div className="card-author">
+                <span className="author-avatar">👤</span>
+                <span className="author-name" data-full-name={getAuthorNames(authors || [])}>{getAuthorNames(authors || [])}</span>
               </div>
-              <h2 className="blog-card-title text-lg font-semibold">
-                {title}
-              </h2>
-              <div className="blog-card-content text-sm line-clamp-3">
-                {content}
-              </div>
-            </CardContent>
-          </Card>
-        </Link>
-      </motion.div>
+              <span className="card-read-time">5 min read</span>
+            </div>
+            
+            {/* Read More Button */}
+            <div className="card-read-more">
+              Read Article →
+            </div>
+          </div>
+        </div>
+      </Link>
+    </motion.div>
   );
 };
 

@@ -1225,3 +1225,60 @@ html {
   color: white;
 
 }
+
+/* ===== SECTION 14: SMOOTH PAGE TRANSITIONS ===== */
+/* Global page transition styles */
+main {
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Blog carousel section background */
+.blog-carousel-section {
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 50%, #e8ebff 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .blog-carousel-section {
+  background: linear-gradient(135deg, #1b1b1d 0%, #121212 50%, #1a202c 100%);
+}
+
+.blog-carousel-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.06) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+/* Enhanced link transitions */
+a {
+  transition: all 0.2s ease;
+}
+
+/* Smooth hover effects for cards */
+.article-card,
+.blog-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Page load animation */
+@keyframes pageSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: pageSlideIn 0.6s ease-out;
+}
