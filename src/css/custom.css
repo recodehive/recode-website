@@ -295,14 +295,17 @@ html[data-theme="dark"] .menu__link--active::after {
     left: 0 !important;
     z-index: 9999 !important;
     display: none !important;
-    min-width: 50px !important;
-    max-width: 420px !important;
+  min-width: 50px !important;
+  /* Give a little more room so icons never clip */
+  max-width: 520px !important;
+  box-sizing: border-box !important;
     width: max-content !important;
     background: var(--ifm-background-color) !important;
     border: 1px solid var(--ifm-color-emphasis-300) !important;
     border-radius: 8px !important;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
-    padding: 0.75rem !important;
+  /* Slightly more breathing room inside dropdown */
+  padding: 1rem !important;
     margin-top: 8px !important;
     overflow: visible !important;
   }
@@ -611,22 +614,77 @@ body {
   border-radius: 50%;
 }
 
+/* Ensure monochrome icons (GitHub, Next.js) are visible in dark mode */
+[data-theme="dark"] .dropdown-content .nav__icons img[alt="GitHub"],
+[data-theme="dark"] .dropdown-content .nav__icons img[alt="Nextjs"],
+[data-theme="dark"] .dropdown-content img[src$="/icons/github.svg"],
+[data-theme="dark"] .dropdown-content img[src$="/icons/nextjs.svg"],
+[data-theme="dark"] .dropdown__menu .nav__icons img[alt="GitHub"],
+[data-theme="dark"] .dropdown__menu .nav__icons img[alt="Nextjs"],
+[data-theme="dark"] .dropdown__menu img[src$="/icons/github.svg"],
+[data-theme="dark"] .dropdown__menu img[src$="/icons/nextjs.svg"] {
+  filter: invert(1) brightness(1.1) contrast(1.05) !important;
+}
+
 .dropdown-content {
   position: absolute !important;
   top: 100% !important;
   left: 0 !important;
   min-width: 250px !important;
-  max-width: 320px !important;
+  max-width: 380px !important;
+  box-sizing: border-box !important;
   width: max-content !important;
   z-index: 9999 !important;
   background: var(--ifm-background-color) !important;
   border: 1px solid var(--ifm-color-emphasis-300) !important;
   border-radius: 8px !important;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
-  padding: 1rem !important;
+  padding: 1.1rem !important;
   margin-top: 8px !important;
   display: none;
   overflow: visible !important;
+}
+
+/* Give dividers a touch more space inside dropdowns */
+.dropdown__menu hr,
+.dropdown-content hr {
+  margin: 0.6rem 0 !important;
+}
+
+/* Prevent grid content from forcing overflow in the dropdown rows */
+.dropdown__menu .grid > .col-span-2,
+.dropdown-content .grid > .col-span-2 {
+  min-width: 0 !important; /* allow the icon column to shrink inside the 3-col grid */
+}
+
+/* Ensure grid rows use full available width for internal layout */
+.dropdown__menu .grid,
+.dropdown-content .grid {
+  width: 100% !important;
+  /* Comfortable space between the label column and icons column */
+  column-gap: 1rem !important;
+  /* Subtle vertical space per row */
+  padding: 0.35rem 0 !important;
+}
+
+/* Add spacing between the individual icons within the 4-col icon grid */
+.dropdown__menu .grid .grid,
+.dropdown-content .grid .grid {
+  gap: 0.6rem !important; /* slightly tighter to reduce big gaps */
+}
+
+/* Add breathing room between the left label and the vertical separator */
+.dropdown__menu .grid > .border-r.col-span-1,
+.dropdown-content .grid > .border-r.col-span-1 {
+  padding-right: 0.5rem !important;
+}
+
+/* Interview Prep links are stacked; keep them tighter */
+.dropdown__menu .grid .col-span-2 .nav__icons,
+.dropdown-content .grid .col-span-2 .nav__icons {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0.2rem 0 !important; /* reduce extra space between Technical & Behavioral */
 }
 
 .dropdown:hover .dropdown-content,
