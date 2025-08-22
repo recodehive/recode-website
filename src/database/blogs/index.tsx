@@ -64,6 +64,15 @@ const blogs: Blog[] = [
     slug: "git-coding-agent",
     authors: ["sanjay-kv"],
   },
+    {
+    id: 7,
+    title: "Apache Spark Architecture Explained",
+    image: "img/blogs/07-spark-blog-banner.png",
+    description:
+      "Apache Spark is a fast, open-source big data framework that leverages in-memory computing for high performance. Its architecture powers scalable distributed processing across clusters, making it essential for analytics and machine learning.",
+    slug: "spark-architecture",
+    authors: ["Aditya-Singh-Rathore","sanjay-kv"],
+  },
 
 ];
 
