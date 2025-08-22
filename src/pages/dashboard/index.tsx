@@ -238,7 +238,7 @@ const DashboardContent: React.FC = () => {
       ];
       setLeaderboardData(initialData);
     }
-  }, []);
+  }, [leaderboardData.length]);
 
   // Discussion handlers
   const handleDiscussionTabChange = (tab: DiscussionTab) => {
