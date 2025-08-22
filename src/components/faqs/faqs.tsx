@@ -7,7 +7,7 @@ const faqData = [
   {
     question: "What is the recode hive?",
     answer:
-      "Recode Hive is a comprehensive platform focused on providing students with the right resources at the right time. We help you focus on important topics and tools used in current industry standards compared to traditional university curricula. This includes data engineering tutorials, blogs, and opportunities for open-source contributions with earning potential. <br><br>🌐 <a href='https://recodehive.com/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Visit our official website</a> | 📚 <a href='/docs/intro' class='text-indigo-600 hover:text-indigo-800 underline'>Explore our documentation</a>",
+      "Recode Hive is a comprehensive platform focused on providing students with the right resources at the right time. We help you focus on important topics and tools used in current industry standards compared to traditional university curricula. This includes data engineering tutorials, blogs, and opportunities for open-source contribution with earning potential. <br><br>🌐 <a href='https://recodehive.com/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Visit our official website</a> | 📚 <a href='/docs/intro' class='text-indigo-600 hover:text-indigo-800 underline'>Explore our documentation</a>",
   },
   {
     question: "What features do the recode hive provides?",
@@ -118,13 +118,20 @@ const FAQs: React.FC = () => {
                   >
                     <div
                       className={`mt-2 text-base transition-colors duration-200 ${
-                        isDark ? "text-gray-400" : "text-gray-600"
-                      }
-                      [&_a]:text-indigo-600 [&_a]:hover:text-indigo-800
-                      dark:[&_a]:text-indigo-400 dark:[&_a]:hover:text-indigo-300
-                      [&_strong]:font-semibold [&_strong]:text-gray-800
-                      dark:[&_strong]:text-gray-200`}
-                      dangerouslySetInnerHTML={{ __html: faq.answer }}
+                        isDark ? "text-gray-300" : "text-gray-900"
+                      }`}
+                      style={{
+                        color: isDark ? '#d1d5db' : '#111827'
+                      }}
+                      dangerouslySetInnerHTML={{ 
+                        __html: faq.answer.replace(
+                          /<strong>/g, 
+                          `<strong style="color: ${isDark ? '#f3f4f6' : '#000000'}; font-weight: 600;">`
+                        ).replace(
+                          /<a /g,
+                          `<a style="color: ${isDark ? '#818cf8' : '#4f46e5'};" `
+                        )
+                      }}
                     />
                   </motion.div>
                 </motion.div>
