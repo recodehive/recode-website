@@ -25,8 +25,7 @@ const testimonials = [
     avatar: "/icons/adobe.png",
     rating: 5,
     role: "Data Scientist",
-    company: "TechCorp",
-    location: "Bangalore, India"
+  
   },
   {
     name: "Namith Kumar",
@@ -36,8 +35,7 @@ const testimonials = [
     avatar: "/icons/google.png",
     rating: 5,
     role: "Frontend Developer",
-    company: "InnovateTech",
-    location: "Mumbai, India"
+    
   },
   {
     name: "Prithwi Gajanan",
@@ -47,43 +45,9 @@ const testimonials = [
     avatar: "/icons/amazon.png",
     rating: 5,
     role: "Software Engineer",
-    company: "FutureTech",
-    location: "Pune, India"
-  },
-  {
-    name: "Sarah Chen",
-    username: "sarahchen",
-    content: "RecodeHive has transformed my learning journey! The structured approach and hands-on projects helped me build a solid foundation. The community is incredibly supportive and the mentors are world-class. #WebDevelopment #Learning #Community",
-    date: "Dec 15, 2024",
-    avatar: "/icons/apple.png",
-    rating: 5,
-    role: "Full Stack Developer",
-    company: "StartupXYZ",
-    location: "San Francisco, CA"
-  },
-  {
-    name: "Marcus Johnson",
-    username: "marcusj",
-    content: "I love the remote-first culture here. The flexibility to work from anywhere has allowed me to travel while building my career. The learning opportunities are endless and the quality is consistently high. #RemoteWork #CareerGrowth #Tech",
-    date: "Jan 10, 2024",
-    avatar: "/icons/microsoft.png",
-    rating: 5,
-    role: "DevOps Engineer",
-    company: "CloudTech",
-    location: "Austin, TX"
-  },
-  {
-    name: "Priya Patel",
-    username: "priyapatel",
-    content: "The growth mindset at RecodeHive is real. I've been able to take on new challenges and expand my skill set with full support from leadership. The projects are practical and industry-relevant. #Growth #Leadership #Innovation",
-    date: "Feb 5, 2024",
-    avatar: "/icons/netflix.png",
-    rating: 5,
-    role: "Product Manager",
-    company: "InnovateLab",
-    location: "New York, NY"
-  }
-];
+    
+  }, 
+]
 
 // Enhanced Particle component for background effects
 const Particle = ({ x, y, delay, size = 2 }: { x: number; y: number; delay: number; size?: number }) => {
@@ -523,6 +487,8 @@ export function TestimonialCarousel() {
           href="https://github.com/recodehive" 
           target="_blank" 
           rel="noopener noreferrer"
+          className="no-underline block"
+          
         >
           <motion.button 
             className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-200 bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg hover:shadow-xl flex items-center gap-2`}

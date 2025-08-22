@@ -58,7 +58,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             : '1px solid rgba(229, 231, 235, 0.6)',
           boxShadow: isDark
             ? '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(59, 130, 246, 0.15)'
-            : '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.08)'
+            : '0 25px 50px -12px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.08)',
+          paddingBottom: '32px', // increase bottom padding to prevent content cut off
         }}
       >
         {/* Enhanced Animated Background Elements */}
@@ -248,51 +249,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           </motion.div>
 
           {/* Enhanced Footer */}
-          <motion.div 
-            className="mt-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9 }}
-          >
-            <div className={`flex items-center justify-between text-xs pt-4 border-t ${
-              isDark ? "border-gray-700/50" : "border-gray-200/50"
-            }`}>
-              {/* Enhanced Hashtags */}
-              <div className="flex gap-2 flex-wrap">
-                <AnimatePresence>
-                  {content.match(/#\w+/g)?.map((hashtag, index) => (
-                    <motion.span
-                      key={index}
-                      className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
-                        isDark 
-                          ? "bg-blue-500/20 text-blue-300 hover:bg-blue-500/30 border border-blue-500/30" 
-                          : "bg-blue-100 text-blue-600 hover:bg-blue-200 border border-blue-200"
-                      }`}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      transition={{ delay: 1 + index * 0.1 }}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {hashtag}
-                    </motion.span>
-                  ))}
-                </AnimatePresence>
-              </div>
-
-              {/* Enhanced Date */}
-              <motion.div 
-                className={`flex items-center gap-1 text-xs ${isDark ? "text-gray-500" : "text-gray-400"}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.2 }}
-              >
-                <Calendar size={12} />
-                {date}
-              </motion.div>
-            </div>
-          </motion.div>
+          {/* Footer section removed for cleaner carousel cards */}
         </div>
 
         {/* Hover overlay removed per feedback */}
