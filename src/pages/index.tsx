@@ -74,12 +74,20 @@ export default function Home(): ReactNode {
             <OurProjects OurProjectsData={projectsData} />
           </div>
 
-          <div className="m-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-            <div className="col-span-1">
-              <TopMateSection />
+          <div className="relative m-4">
+            <div className="pointer-events-none absolute inset-0 -z-10 hidden md:block 2xl:hidden">
+              <div className="absolute -top-8 left-6 w-72 h-72 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 right-10 w-64 h-64 bg-gradient-to-l from-pink-500/10 to-indigo-500/10 rounded-full blur-3xl" />
+              <div className="absolute top-1/3 right-1/3 w-40 h-40 bg-gradient-to-tr from-teal-400/10 to-emerald-400/10 rounded-full blur-2xl" />
             </div>
-            <div className="col-span-2">
-              <TestimonialCarousel />
+
+            <div className="grid grid-cols-1 2xl:grid-cols-3 gap-8 md:gap-8 items-start">
+              <div className="2xl:col-span-1 xl:mt-12 2xl:mt-16">
+                <TopMateSection />
+              </div>
+              <div className="2xl:col-span-2">
+                <TestimonialCarousel />
+              </div>
             </div>
           </div>
 
