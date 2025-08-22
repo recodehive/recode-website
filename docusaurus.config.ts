@@ -100,7 +100,6 @@ const config: Config = {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4 w-xl">
                 <a class="border-r col-span-1" href="/docs/">Tutorials</a>
-                <a class="border-r col-span-1" href="/docs/category/technical">Technical Docs</a>
                 <div class="grid grid-cols-4 col-span-2">
                   <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
                   <a href="/docs/python/intro-python" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
@@ -117,7 +116,6 @@ const config: Config = {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
                 <a class="border-r col-span-1" href="/courses/">Courses</a>
-                <a class="border-r col-span-1" href="/blog">Blog Posts</a>
                 <div class="grid grid-cols-4 col-span-2">
                   <a href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/git.svg" alt="git" /> </a>
                   <a href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/postman.svg" alt="Postman" /> </a>
@@ -133,9 +131,8 @@ const config: Config = {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
                 <a class="border-r col-span-1" href="/interview-prep/" target="_self">Interview Prep</a>
-                <a class="border-r col-span-1" href="/showcase" target="_self">Showcase</a>
                 <div class="grid grid-cols-1 col-span-2">
-                  <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a> <br />
+                  <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a>
                   <a href="/interview-prep/" target="_self" class="nav__icons"> 💡Behavioral </a>
                 </div>
               </div>`,
