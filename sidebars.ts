@@ -115,9 +115,9 @@ const sidebars: SidebarsConfig = {
       label: '⚡ Next.js',
       className: 'custom-sidebar-nextjs',
       items: [
-        'Nextjs/intro-github',
-        'Nextjs/setup-environment',
-        'Nextjs/git-commands',
+        'Nextjs/intro-nextjs',
+        // 'Nextjs/setup-environment',
+        // 'Nextjs/git-commands',
       ],
     },
     {
