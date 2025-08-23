@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://www.recodehive.com">
-    <img src="https://github.com/recodehive/recode-website/blob/main/static/icons/Logo-512X512.png" alt="recode Logo" width="150" />
+  <img src="static/icons/Logo-512X512.png" alt="Recode logo" width="150" />
   </a>
 </div>
 <h1 align="center">recode hive</h1>
@@ -30,7 +30,7 @@ Now, resolve your all doubts and communicate with our all contributors.
 
 ## Getting Started
 
-To get started with contributing to Recode-Hive, please refer to our [Contributing Guidelines](CONTRIBUTING.md).
+To get started with contributing to Recode-Hive, please refer to our [Contributing Guidelines](community/contributing-guidelines.md).
 
 <div>
     <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
