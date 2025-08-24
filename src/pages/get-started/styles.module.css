@@ -1,43 +1,9 @@
 /* Base styles - Mobile First */
 
 /* Dark theme support */
-[data-theme='dark'] .features {
-  background: var(--dark-bg-primary);
-  color: var(--dark-text-primary);
-}
-
-[data-theme='dark'] .sectionHeader h2 {
-  color: var(--dark-text-primary);
-}
-
-[data-theme='dark'] .sectionHeader p {
-  color: var(--dark-text-secondary);
-}
-
-[data-theme='dark'] .featuresGrid {
-  background: var(--dark-bg-primary);
-}
-
-[data-theme='dark'] .feature {
-  background: var(--dark-bg-secondary);
-  border-color: var(--dark-border);
-  color: var(--dark-text-primary);
-}
-
-[data-theme='dark'] .feature:hover {
-  background: var(--dark-card-hover-bg);
-  box-shadow: var(--dark-shadow-lg);
-}
-
-[data-theme='dark'] .statsSection {
-  background: var(--dark-bg-secondary);
-  color: var(--dark-text-primary);
-}
-
-[data-theme='dark'] .statCard {
-  background: var(--dark-bg-tertiary);
-  color: var(--dark-text-primary);
-  border-color: var(--dark-border);
+[data-theme='dark'] {
+  background: linear-gradient(135deg, #000000 0%, #0a0a0f 100%);
+  color: #f9fafb;
 }
 
 [data-theme='dark'] .learningPath {
@@ -443,7 +409,7 @@
   padding: 1.75rem 1.5rem;
   border-radius: 12px;
   background: white;
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.06);
+  box-shadow: none !important;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid rgba(226, 232, 240, 0.8);
   position: relative;
@@ -478,7 +444,7 @@
 
 .feature:hover {
   transform: translateY(-8px) translateZ(0);
-  box-shadow: 0 12px 32px rgba(30, 58, 138, 0.12);
+  box-shadow: none !important;
   border-color: rgba(191, 219, 254, 0.8);
 }
 
@@ -634,6 +600,82 @@
 .feature:hover .featureDescription {
   color: #475569;
 }
+/*dark theme*/
+
+[data-theme='dark'] .features {
+  background: radial-gradient(circle at top left, #0f172a, #020617);
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .features::before {
+  background: linear-gradient(to bottom right, transparent 49%, #0f172a 50%), 
+              linear-gradient(-45deg, #0f172a 16px, transparent 0);
+}
+
+[data-theme='dark'] .feature {
+  background: linear-gradient(145deg, #111827, #1e293b);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), inset 0 0 12px rgba(59, 130, 246, 0.05);
+  color: #f1f5f9;
+  transition: all 0.3s ease-in-out;
+}
+
+[data-theme='dark'] .feature:hover {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border-color: rgba(96, 165, 250, 0.5);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7), 
+              0 0 18px rgba(96, 165, 250, 0.3);
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Title */
+[data-theme='dark'] .featureTitle {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .featureTitle::after {
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+}
+
+/* Description */
+[data-theme='dark'] .featureDescription {
+  color: #cbd5e1;
+}
+
+[data-theme='dark'] .feature:hover .featureDescription {
+  color: #e2e8f0;
+}
+
+/* Icons */
+[data-theme='dark'] .featureIcon {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.15), rgba(167, 139, 250, 0.15));
+  color: #60a5fa;
+  border: 1px solid rgba(167, 139, 250, 0.25);
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.25);
+  transition: all 0.3s ease;
+}
+
+[data-theme='dark'] .feature:hover .featureIcon {
+  color: #a78bfa;
+  box-shadow: 0 6px 18px rgba(167, 139, 250, 0.4),
+              0 0 16px rgba(96, 165, 250, 0.3);
+  transform: translateY(-4px) scale(1.1);
+}
+
+/* Headings inside feature */
+[data-theme='dark'] .feature h3 {
+  color: #f8fafc;
+}
+
+[data-theme='dark'] .feature h3::after {
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+}
+
+/* Hover underline glow */
+[data-theme='dark'] .feature:hover::before {
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+}
+
 
 /* Buttons Container */
 .buttons {
@@ -1202,15 +1244,13 @@
 }
 
 .statCard {
-  background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background:  linear-gradient(145deg, #ffffff, #f8fafc);
   border-radius: 18px;
   padding: 2.25rem 1.75rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(99, 102, 241, 0.25);
+  border: 1px solid rgba(0,0,0,0.1);
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
   height: 100%;
@@ -1218,66 +1258,30 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 
-    0 10px 30px -5px rgba(0, 0, 0, 0.25),
-    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: none !important;
   transform: translateZ(0);
   will-change: transform;
 }
 
 .statCard::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle at 50% 50%,
-    rgba(99, 102, 241, 0.15) 0%,
-    rgba(99, 102, 241, 0) 70%
-  );
-  pointer-events: none;
-  transition: opacity 0.6s ease;
-  opacity: 0;
-  z-index: -1;
+  display: none !important;
+  content: none !important;
 }
 
+/* Hover Glow Effect */
 .statCard:hover {
-  transform: translateZ(0) translateY(-5px);
+  transform: translateY(-6px) scale(1.02);
   border-color: rgba(99, 102, 241, 0.4);
   box-shadow: 
-    0 20px 40px -10px rgba(0, 0, 0, 0.3),
-    0 10px 10px -10px rgba(0, 0, 0, 0.1);
+    0 0 20px rgba(99, 102, 241, 0.4),
+    0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .statCard:hover::before {
   opacity: 1;
 }
 
-.statCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), transparent);
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-
-.statCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  border-color: rgba(79, 70, 229, 0.3);
-}
-
-.statCard:hover::before {
-  opacity: 1;
-}
-
+/* ===== Stat Value ===== */
 .statValue {
   font-size: 3.25rem;
   font-weight: 800;
@@ -1323,6 +1327,7 @@
   opacity: 1;
 }
 
+/* ===== Stat Label ===== */
 .statLabel {
   font-size: 1.05rem;
   font-weight: 600;
@@ -1331,22 +1336,26 @@
   text-transform: uppercase;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   letter-spacing: 0.1em;
-  background: linear-gradient(90deg, #e0e7ff, #a5b4fc, #818cf8);
+  background: linear-gradient(90deg, #6366f1, #4f46e5);
   -webkit-background-clip: text;
   background-clip: text;
-  color: #e0e7ff;
-  -webkit-text-fill-color: transparent;
-  text-fill-color: transparent;
-  position: relative;
+  /* position: relative; */
   padding: 0.5rem 0;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
   opacity: 0.9;
 }
 
+/* Light Theme label contrast */
+body:not(.dark) .statLabel {
+  color: #111111;
+  -webkit-text-fill-color: initial;
+  background: none;
+  opacity: 0.8;
+}
+
 .statCard:hover .statLabel {
   opacity: 1;
   transform: translateY(1px);
-  background-position: 100% center;
 }
 
 .statLabel::after {
@@ -1366,15 +1375,79 @@
   transform: translateX(-50%) scaleX(1);
 }
 
-.statCard:hover .statLabel {
+/* .statCard:hover .statLabel {
   color: white;
   opacity: 1;
-}
+} */
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
 }
+
+[data-theme='dark'] .statCard {
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  border-radius: 18px;
+  padding: 2.25rem 1.75rem;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease-in-out;
+  color: #f8fafc;
+  
+}
+
+
+[data-theme='dark'] .statCard:hover {
+  background: linear-gradient(145deg, #1e293b, #0f172a);
+  border-color: rgba(96, 165, 250, 0.4);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* Big numbers */
+[data-theme='dark'] .statValue {
+  font-size: 3.25rem;   /* SAME as light theme */
+  font-weight: 800;
+  background: linear-gradient(135deg, #60a5fa, #3b82f6, #2563eb);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin: 0.5rem 0 1rem;
+  line-height: 1.1;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 0 2px 8px rgba(96, 165, 250, 0.4);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-theme='dark'] .statCard:hover .statValue {
+  background-position: 100% center;
+  text-shadow: 0 4px 12px rgba(96, 165, 250, 0.6);
+  transform: scale(1.03);
+}
+
+/* Labels */
+[data-theme='dark'] .statLabel {
+  font-size: 1.05rem;  
+  font-weight: 600;
+  margin: 0.25rem 0 0;
+  text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.9;
+  text-shadow: none;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+[data-theme="dark"] .statLabel,
+[data-theme="dark"] .statLabel * {
+  color: #ffffff !important; 
+}
+[data-theme='dark'] .statCard:hover .statLabel {
+  color: #e2e8f0;
+  opacity: 1;
+}
+
 
 /* Learning Paths Section */
 .learningPaths {
