@@ -1340,3 +1340,23 @@ a {
 .page-enter {
   animation: pageSlideIn 0.6s ease-out;
 }
+
+
+@media screen and (max-width: 768px) {
+  .navbar .navbar__items--right {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+  }
+
+  .navbar .DocSearch-Button {
+    min-width: 36px;
+    margin-right: 30px;
+  }
+
+  .navbar .colorModeToggle {
+    margin-left: 4px;
+    flex-shrink: 0;
+  }
+}
+
