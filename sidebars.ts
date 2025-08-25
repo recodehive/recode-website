@@ -76,6 +76,7 @@ const sidebars: SidebarsConfig = {
         'python/python-dictionaries',
         'python/python-array',
         'python/python-conditional-statements',
+        'python/python-loops',
       ],
     },
     {
@@ -90,11 +91,14 @@ const sidebars: SidebarsConfig = {
           label: '📊 SQL Basics',
           className: 'custom-sidebar-sql-basics',
           items: [
+            'sql/SQL-basics/sql-constraints',
             'sql/SQL-basics/selecting-data',
             'sql/SQL-basics/filtering-data',
             'sql/SQL-basics/ordering-data',
             'sql/SQL-basics/grouping-data',
             'sql/SQL-basics/the-inequality-operator',
+            'sql/SQL-basics/sql-datatypes',
+            'sql/SQL-basics/primary-key-foreign-key'
           ],
         },
         {
