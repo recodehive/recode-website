@@ -96,11 +96,18 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
               </a>
             </div>
           </div>
-          <img
-            src="/icons/topmate.png"
-            alt="Topmate"
-            className="h-4 w-auto opacity-80"
-          />
+          <div className="flex items-center gap-2">
+            {/* Show only the circular icon part of the Topmate logo */}
+            <div className="h-4 w-4 overflow-hidden flex-shrink-0 rounded-sm">
+              <img
+                src="/icons/topmate.png"
+                alt="Topmate icon"
+                className="h-4 w-auto object-cover object-left opacity-90"
+              />
+            </div>
+            {/* Theme-aware text to ensure readability on dark backgrounds */}
+            <span className={`text-sm font-semibold ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>topmate</span>
+          </div>
         </div>
       </div>
 
