@@ -79,12 +79,12 @@ const FAQs: React.FC = () => {
               </p>
             </div>
 
-            {/* Accordion Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-auto">
+    {/* Accordion Masonry Columns to prevent sibling expansion */}
+    <div className="columns-1 md:columns-2 md:gap-x-6">
               {faqData.map((faq, index) => (
                 <motion.div
                   key={index}
-                  className="accordion h-fit border-gray-200 dark:border-gray-700 pb-4"
+      className="accordion h-fit border-gray-200 dark:border-gray-700 pb-4 mb-4 break-inside-avoid"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
