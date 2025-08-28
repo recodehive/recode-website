@@ -113,6 +113,15 @@ const sidebars: SidebarsConfig = {
             'sql/table-transformation/list-drop-table',
           ],
         },
+        {
+          type: 'category',
+          label: '🔗 SQL Joins',
+          className: 'custom-sidebar-sql-joins',
+          items: [
+            'sql/SQL-joins/intro-sql-joins',
+            'sql/SQL-joins/inner-join',
+          ],
+        },
       ],
     },
     {
@@ -144,7 +153,6 @@ const sidebars: SidebarsConfig = {
         'Technical/intro-github',
       ],
     },
-    
   ],
 };
 
