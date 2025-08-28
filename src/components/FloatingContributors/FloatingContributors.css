@@ -25,22 +25,22 @@
 }
 
 .floating-contributors-card {
-  background: rgba(15, 23, 42, 0.95);
+  background: linear-gradient(135deg, #fdfcfb 0%, #e0d4fc 40%, #c7d2fe 100%);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(148, 163, 184, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 24px;
   padding: 24px;
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    0 20px 40px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   pointer-events: auto;
   position: relative;
   overflow: hidden;
-  color: white;
+  color: #1a202c;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-width: 400px;
+  transition: all 0.4s ease;
 }
 
 /* Header embedded version - larger size */
@@ -50,26 +50,36 @@
   border-radius: 28px;
 }
 
-/* Dark theme support - using website theme colors */
-[data-theme='dark'] .floating-contributors-card {
-  background: rgba(26, 26, 26, 0.95);
-  border-color: rgba(45, 45, 45, 0.8);
-  color: #ffffff;
-  box-shadow:
-    0 25px 50px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+[data-theme='light'] .floating-contributors-card {
+  background: linear-gradient(
+    135deg,
+    #fff7e1 0%,   /* pastel yellow */
+    #fde2e4 30%,  /* peachy pink */
+    #e3d5ff 65%,  /* soft lavender */
+    #d0e1ff 100%  /* light sky blue */
+  );
+  color: #1a202c; /* dark text */
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Light theme support - using website theme colors */
-[data-theme='light'] .floating-contributors-card {
-  background: rgba(255, 255, 255, 0.98);
-  color: #1a202c;
-  border-color: rgba(0, 0, 0, 0.1);
-  box-shadow:
-    0 25px 50px rgba(0, 0, 0, 0.08),
-    0 0 0 1px rgba(0, 0, 0, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+
+[data-theme='dark'] .floating-contributors-card {
+  background: linear-gradient(
+    135deg,
+    #1a1a2e 0%,   /* dark navy */
+    #2e2e3e 30%,  /* muted purple/gray */
+    #3a3a4f 65%,  /* desaturated indigo */
+    #2b2b3b 100%  /* deep midnight blue */
+  );
+  color: #e0e0e0; /* light text for contrast */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* subtle border */
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); /* stronger shadow for depth */
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .floating-contributors-card::before {
