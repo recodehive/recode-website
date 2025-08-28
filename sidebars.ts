@@ -120,7 +120,8 @@ const sidebars: SidebarsConfig = {
           items: [
             'sql/SQL-joins/intro-sql-joins',
             'sql/SQL-joins/inner-join',
-            'sql/SQL-joins/left-join'
+            'sql/SQL-joins/left-join',
+            'sql/SQL-joins/right-join'
           ],
         },
       ],
