@@ -115,11 +115,12 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: 'category',
-          label: '🔗 SQL Joins',
+          label: 'SQL Joins',
           className: 'custom-sidebar-sql-joins',
           items: [
             'sql/SQL-joins/intro-sql-joins',
             'sql/SQL-joins/inner-join',
+            'sql/SQL-joins/left-join'
           ],
         },
       ],
