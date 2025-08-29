@@ -401,6 +401,24 @@ body {
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* Global dark theme tokens used across feature pages (courses, broadcasts, sponsors, etc.) */
+  /* Backgrounds */
+  --dark-bg-primary: #0b1220;     /* base page background (deep navy) */
+  --dark-bg-secondary: #0f172a;   /* section alt background */
+  --dark-bg-tertiary: #111827;    /* subtle surfaces */
+  /* Cards */
+  --dark-card-bg: #111827;        /* card background */
+  --dark-card-hover-bg: #0f172a;  /* card hover background */
+  /* Text */
+  --dark-text-primary: #e5e7eb;   /* gray-200 */
+  --dark-text-secondary: #cbd5e1; /* slate-300 */
+  --dark-text-muted: #94a3b8;     /* slate-400 */
+  /* Borders */
+  --dark-border: #334155;         /* slate-700 */
+  /* Shadows */
+  --dark-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --dark-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
 }
 
 /* =====  SECTION 10: DESKTOP NAVBAR ENHANCEMENTS ===== */
