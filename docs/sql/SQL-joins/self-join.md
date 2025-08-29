@@ -18,7 +18,7 @@ tags:
 description: Learn about SQL SELF JOIN, how to join a table with itself, syntax, examples, and use cases for hierarchical data and comparing rows within the same table.
 ---
 
-## 
+## What is SELF JOIN?
 
 SQL **SELF JOIN** is a technique where a table is joined with itself to compare rows within the same table or to work with hierarchical data structures. This is accomplished by treating the same table as if it were two separate tables using different table aliases.
 
