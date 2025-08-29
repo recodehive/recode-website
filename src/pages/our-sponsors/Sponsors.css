@@ -182,13 +182,14 @@
 
 .sponsor-page .sponsor-card .sponsor-desc {
     font-size: 0.95rem;
-    color: #4b5563;
+    color: #374151;
     margin-bottom: 10px;
     line-height: 1.4;
 }
 
 [data-theme='dark'] .sponsor-page .sponsor-card .sponsor-desc {
     color: var(--dark-text-secondary);
+    opacity: 0.95;
 }
 
 .sponsor-page .sponsor-card .social-links {
@@ -319,11 +320,17 @@
     width: 100%;
     background: white;
 }
-
+[data-theme='dark'] .scanner-content p,
+[data-theme='dark'] .scanner-content .sponsor-desc {
+  color: var(--dark-text-primary) !important;   /* force high-contrast text */
+  opacity: 1 !important;                        /* ensure no dimming */
+  line-height: 1.6;
+}
 [data-theme='dark'] .scanner-content {
     background: var(--dark-bg-secondary);
     color: var(--dark-text-primary);
 }
+[data-theme='dark'] .scanner-popup { background: rgba(0,0,0,0.7); }
 
 .sponsors-section {
     margin-top: 2rem;
