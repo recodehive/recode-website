@@ -10,8 +10,7 @@ tags:
     left outer join,
     sql left join,
     outer join,
-    join tables,
-    
+    join tables
   ]
 description: Learn about SQL LEFT JOIN (LEFT OUTER JOIN), how it works, syntax, examples, and when to use it for including all records from the left table.
 ---
