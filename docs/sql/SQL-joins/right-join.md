@@ -29,7 +29,7 @@ SQL **RIGHT JOIN** (also known as RIGHT OUTER JOIN) returns all records from the
 :::
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/right-join.png)](https://github.com/sanjay-kv)
+     [![GitHub](./assets/right-join.gif)](https://www.learnsqlonline.org/)
     </BrowserWindow>
 
 :::success
