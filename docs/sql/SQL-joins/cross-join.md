@@ -17,7 +17,7 @@ tags:
 description: Learn about SQL CROSS JOIN, how it creates Cartesian products, syntax, examples, and when to use it for generating all possible combinations.
 ---
 
-## 
+## What is CROSS JOIN?
 
 SQL **CROSS JOIN** produces the Cartesian product of two tables, returning all possible combinations of rows from both tables. Unlike other joins, CROSS JOIN doesn't require a join condition and combines every row from the first table with every row from the second table.
 
