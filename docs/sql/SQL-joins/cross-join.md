@@ -334,7 +334,6 @@ WHERE EXISTS (
 );
 ```
 :::
-`
 
 ## Best Practices & Guidelines
 
