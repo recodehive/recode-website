@@ -18,7 +18,7 @@ tags:
 description: In this tutorial, you will learn about SQL Joins, their importance, types of joins, when to use each join type, and how they work with relational databases.
 ---
 
-## 
+## What are SQL Joins?
 
 SQL **Joins** are operations used to combine rows from two or more tables based on a related column between them. Joins are fundamental to relational databases as they allow you to retrieve data that is spread across multiple tables, following the principles of database normalization.
 
