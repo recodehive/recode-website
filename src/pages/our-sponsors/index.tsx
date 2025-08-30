@@ -61,11 +61,19 @@ export default function OurSponsors(): ReactElement {
   //   return 'bronze';
   // };
 
-  // Convert sponsors to our format with proper categorization
-  const processedSponsors: FilteredSponsor[] = sponsors.map(sponsor => {
+const processedSponsors = sponsors
+  .filter(sponsor => {
+    // Ensure sponsor has required fields
+    return sponsor && 
+           sponsor.name && 
+           typeof sponsor.name === 'string' && 
+           sponsor.name.trim() !== '' &&
+           sponsor.description &&
+           typeof sponsor.description === 'string';
+  })
+  .map(sponsor => {
     let category: 'current' | 'past' | 'we-sponsor' = 'current';
     
-    // Determine category based on flags
     if (sponsor.isWeSponsor) {
       category = 'we-sponsor';
     } else if (sponsor.isPastSponsor) {
@@ -75,10 +83,17 @@ export default function OurSponsors(): ReactElement {
     }
 
     return {
-      ...sponsor,
+      name: sponsor.name,
+      image: sponsor.image || '',
+      description: sponsor.description,
+      github: sponsor.github,
+      linkedin: sponsor.linkedin,
+      twitter: sponsor.twitter,
+      instagram: sponsor.instagram,
       category
     };
   });
+
 
   // Filter sponsors based on search term only
   const filteredSponsors = processedSponsors.filter(sponsor => {
@@ -309,10 +324,6 @@ export default function OurSponsors(): ReactElement {
                           <span className="benefit-text">Mentorship</span>
                         </div>
                       </div>
-                      <button className="partnership-button secondary">
-                        <span className="button-icon">📝</span>
-                        Apply for Sponsorship
-                      </button>
                     </div>
                   </div>
                 </div>
