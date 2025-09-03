@@ -2,6 +2,7 @@
 import React, {type ReactNode, useState, useEffect} from 'react';
 import Link from "@docusaurus/Link";
 import type {Props} from '@theme/Footer/Layout';
+import SlotCounter from "react-slot-counter";
 import './enhanced-footer.css';
 
 // Dynamic stats interface
@@ -11,6 +12,15 @@ interface FooterStats {
   successRate: string;
   supportHours: string;
 }
+
+// Helper function to parse stat values for SlotCounter
+const parseStatValue = (statValue: string) => {
+  // Extract numeric part and suffix from strings like "52K+", "215+", "95%", "24/7"
+  const numericMatch = statValue.match(/^(\d+)/);
+  const numericValue = numericMatch ? parseInt(numericMatch[1]) : 0;
+  const suffix = statValue.replace(/^\d+/, '');
+  return { numericValue, suffix };
+};
 
 export default function FooterLayout({
   style,
@@ -105,7 +115,16 @@ export default function FooterLayout({
                 </svg>
               </div>
               <div className="stat-content">
-                <div className="stat-number">{stats.activeUsers}</div>
+                <div className="stat-number">
+                  <SlotCounter
+                    value={parseStatValue(stats.activeUsers).numericValue}
+                    animateOnVisible={true}
+                    duration={1200}
+                    delay={100}
+                    sequentialAnimationMode={true}
+                  />
+                  {parseStatValue(stats.activeUsers).suffix}
+                </div>
                 <div className="stat-label">Active Learners</div>
               </div>
             </div>
@@ -117,7 +136,16 @@ export default function FooterLayout({
                 </svg>
               </div>
               <div className="stat-content">
-                <div className="stat-number">{stats.tutorials}</div>
+                <div className="stat-number">
+                  <SlotCounter
+                    value={parseStatValue(stats.tutorials).numericValue}
+                    animateOnVisible={true}
+                    duration={1200}
+                    delay={200}
+                    sequentialAnimationMode={true}
+                  />
+                  {parseStatValue(stats.tutorials).suffix}
+                </div>
                 <div className="stat-label">Tutorials</div>
               </div>
             </div>
@@ -129,7 +157,16 @@ export default function FooterLayout({
                 </svg>
               </div>
               <div className="stat-content">
-                <div className="stat-number">{stats.successRate}</div>
+                <div className="stat-number">
+                  <SlotCounter
+                    value={parseStatValue(stats.successRate).numericValue}
+                    animateOnVisible={true}
+                    duration={1200}
+                    delay={300}
+                    sequentialAnimationMode={true}
+                  />
+                  {parseStatValue(stats.successRate).suffix}
+                </div>
                 <div className="stat-label">Success Rate</div>
               </div>
             </div>
@@ -141,7 +178,38 @@ export default function FooterLayout({
                 </svg>
               </div>
               <div className="stat-content">
-                <div className="stat-number">{stats.supportHours}</div>
+                <div className="stat-number">
+                  {stats.supportHours === '24/7' ? (
+                    <>
+                      <SlotCounter
+                        value={24}
+                        animateOnVisible={true}
+                        duration={1200}
+                        delay={400}
+                        sequentialAnimationMode={true}
+                      />
+                      /
+                      <SlotCounter
+                        value={7}
+                        animateOnVisible={true}
+                        duration={1200}
+                        delay={500}
+                        sequentialAnimationMode={true}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <SlotCounter
+                        value={parseStatValue(stats.supportHours).numericValue}
+                        animateOnVisible={true}
+                        duration={1200}
+                        delay={400}
+                        sequentialAnimationMode={true}
+                      />
+                      {parseStatValue(stats.supportHours).suffix}
+                    </>
+                  )}
+                </div>
                 <div className="stat-label">Support</div>
               </div>
             </div>
