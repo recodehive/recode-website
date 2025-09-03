@@ -118,8 +118,10 @@ export default function FooterLayout({
                 <div className="stat-number">
                   <SlotCounter
                     value={parseStatValue(stats.activeUsers).numericValue}
-                    autoAnimationStart={true}
-                    duration={1.2}
+                    animateOnVisible={true}
+                    duration={1200}
+                    delay={100}
+                    sequentialAnimationMode={true}
                   />
                   {parseStatValue(stats.activeUsers).suffix}
                 </div>
@@ -137,8 +139,10 @@ export default function FooterLayout({
                 <div className="stat-number">
                   <SlotCounter
                     value={parseStatValue(stats.tutorials).numericValue}
-                    autoAnimationStart={true}
-                    duration={1.2}
+                    animateOnVisible={true}
+                    duration={1200}
+                    delay={200}
+                    sequentialAnimationMode={true}
                   />
                   {parseStatValue(stats.tutorials).suffix}
                 </div>
@@ -156,8 +160,10 @@ export default function FooterLayout({
                 <div className="stat-number">
                   <SlotCounter
                     value={parseStatValue(stats.successRate).numericValue}
-                    autoAnimationStart={true}
-                    duration={1.2}
+                    animateOnVisible={true}
+                    duration={1200}
+                    delay={300}
+                    sequentialAnimationMode={true}
                   />
                   {parseStatValue(stats.successRate).suffix}
                 </div>
@@ -177,22 +183,28 @@ export default function FooterLayout({
                     <>
                       <SlotCounter
                         value={24}
-                        autoAnimationStart={true}
-                        duration={1.2}
+                        animateOnVisible={true}
+                        duration={1200}
+                        delay={400}
+                        sequentialAnimationMode={true}
                       />
                       /
                       <SlotCounter
                         value={7}
-                        autoAnimationStart={true}
-                        duration={1.2}
+                        animateOnVisible={true}
+                        duration={1200}
+                        delay={500}
+                        sequentialAnimationMode={true}
                       />
                     </>
                   ) : (
                     <>
                       <SlotCounter
                         value={parseStatValue(stats.supportHours).numericValue}
-                        autoAnimationStart={true}
-                        duration={1.2}
+                        animateOnVisible={true}
+                        duration={1200}
+                        delay={400}
+                        sequentialAnimationMode={true}
                       />
                       {parseStatValue(stats.supportHours).suffix}
                     </>
