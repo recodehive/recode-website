@@ -11,18 +11,17 @@ import ShowcaseFilterToggle, {
 } from './_components/ShowcaseFilterToggle';
 import ShowcaseCard from './_components/ShowcaseCard';
 import ShowcaseTooltip from './_components/ShowcaseTooltip';
-
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 import Translate, { translate } from '@docusaurus/Translate';
 import { useHistory, useLocation } from '@docusaurus/router';
 import { usePluralForm } from '@docusaurus/theme-common';
 import { motion } from "framer-motion";
-import styles from './styles.module.css';
+import './styles.css';
 import { sortedUsers,
-    Tags,
-    TagList,
-    type User,
-    type TagType,} from '@site/src/data/users';
+  Tags,
+  TagList,
+  type User,
+  type TagType,} from '@site/src/data/users';
 import FavoriteIcon from '@site/src/components/svgIcons/FavoriteIcon';
 import { useColorMode } from '@docusaurus/theme-common';
 
@@ -54,7 +53,6 @@ export function prepareUserState(): UserState | undefined {
       focusedElementId: document.activeElement?.id,
     };
   }
-
   return undefined;
 }
 
@@ -91,18 +89,16 @@ function filterUsers(
 }
 
 function useFilteredUsers() {
-  const location = useLocation<UserState>();
+  const location = useLocation();
   const [operator, setOperator] = useState<Operator>('OR');
-  // On SSR / first mount (hydration) no tag is selected
   const [selectedTags, setSelectedTags] = useState<TagType[]>([]);
   const [searchName, setSearchName] = useState<string | null>(null);
-  // Sync tags from QS to state (delayed on purpose to avoid SSR/Client
-  // hydration mismatch)
+
   useEffect(() => {
     setSelectedTags(readSearchTags(location.search));
     setOperator(readOperator(location.search));
     setSearchName(readSearchName(location.search));
-    restoreUserState(location.state);
+    // restoreUserState(location?.state);
   }, [location]);
 
   return useMemo(
@@ -113,53 +109,49 @@ function useFilteredUsers() {
 
 function ShowcaseHeader() {
   return (
-    <section className="margin-top--lg margin-bottom--lg text--center">
-      <motion.h1
-        initial={{ opacity: 0, x: -15 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
-        transition={{
-          duration: 1,
-          type: "spring",
-          stiffness: 100,
-          delay: 0.2,
-        }} className={styles.TitleText}
-      >{TITLE}</motion.h1>
-      <motion.p
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{
-          duration: 1,
-          type: "spring",
-          stiffness: 100,
-          delay: 0.3,
-        }}
-      >{DESCRIPTION}</motion.p>
+    <div className="enhanced-showcase-hero">
+      <div className="showcase-hero-content">
+        <div className="hero-badge">
+          <span className="badge-icon">🚀</span>
+          <span className="badge-text">Community Showcase</span>
+        </div>
+        <h1 className="showcase-hero-title">
+          Open Source Projects Hub
+        </h1>
+        <p className="showcase-hero-description">
+          {DESCRIPTION}
+        </p>
+        
+        {/* Stats */}
+        <div className="showcase-stats">
+          <div className="stat-item">
+            <div className="stat-number">{sortedUsers.length}+</div>
+            <div className="stat-label">Projects</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-number">1050+</div>
+            <div className="stat-label">Forks</div>
+          </div>
+          <div className="stat-item">
+            <div className="stat-number">950+</div>
+            <div className="stat-label">Stars</div>
+          </div>
+        </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{
-          duration: 1,
-          type: "spring",
-          stiffness: 100,
-          delay: 0.5,
-        }}
-      >
-        <a
-          className="button button--primary"
-          href={EDIT_URL}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <Translate id="showcase.header.button">
-            🌟 Join the Hive Community
-          </Translate>
-        </a>
-      </motion.div>
-    </section>
+        {/* CTA Button */}
+        <div className="showcase-cta">
+          <a 
+            href="https://github.com/recodehive" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="primary-cta-button"
+          >
+            <span className="cta-icon">⭐</span>
+            Join the Hive Community
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -173,7 +165,7 @@ function useSiteCountPlural() {
           id: 'showcase.filters.resultCount',
           description:
             'Pluralized label for the number of sites found on the showcase. Use as much plural forms (separated by "|") as your language support (see https://www.unicode.org/cldr/cldr-aux/charts/34/supplemental/language_plural_rules.html)',
-          message: '1 site|{sitesCount} sites',
+          message: '1 project|{sitesCount} projects',
         },
         {sitesCount},
       ),
@@ -183,88 +175,98 @@ function useSiteCountPlural() {
 function ShowcaseFilters() {
   const filteredUsers = useFilteredUsers();
   const siteCountPlural = useSiteCountPlural();
-  return (
-    <section className="container margin-top--l margin-bottom--lg">
-      <div className={clsx('margin-bottom--sm', styles.filterCheckbox)}>
-        <div>
-          <motion.h2
-            initial={{ opacity: 0, x: -15 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 1,
-              type: "spring",
-              stiffness: 100,
-              delay: 0.2,
-            }}
-          >
-            <Translate id="showcase.filters.title">Filters</Translate>
-          </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, x: -15 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{
-              duration: 1,
-              type: "spring",
-              stiffness: 100,
-              delay: 0.3,
-            }}
-          >
-            <span>{siteCountPlural(filteredUsers.length)}</span>
-          </motion.div>
-        </div>
-        <ShowcaseFilterToggle />
-      </div>
-      <motion.ul
-                initial={{ opacity: 0}}
-                whileInView={{ opacity: 1}}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 4,
-                  type: "spring",
-                  stiffness: 100,
-                  delay: 0.5,
-                }}
-                className={clsx('clean-list', styles.checkboxList)}
-              >
-        {TagList.map((tag, i) => {
-          const {label, description, color} = Tags[tag];
-          const id = `showcase_checkbox_id_${tag}`;
 
-          return (
-            <li key={i} className={styles.checkboxListItem}>
+  return (
+    <div className="enhanced-showcase-filters">
+      <div className="filters-header">
+        <h2 className="filters-title">
+          <span className="title-icon">🔍</span>
+          Explore Projects
+        </h2>
+        <div className="results-count">
+          {siteCountPlural(filteredUsers.length)}
+        </div>
+      </div>
+      
+      <div className="filters-content">
+        <div className="filter-toggle-section">
+          <ShowcaseFilterToggle />
+        </div>
+        
+        <div className="tags-grid">
+          {TagList.map((tag, i) => {
+            const {label, description, color} = Tags[tag];
+            const id = `showcase_checkbox_id_${tag}`;
+
+            return (
               <ShowcaseTooltip
-                id={id}
+                key={tag}
                 text={description}
-                anchorEl="#__docusaurus"
+                anchorEl={`#${id}`}
+                id={id}
               >
                 <ShowcaseTagSelect
                   tag={tag}
                   id={id}
                   label={label}
                   icon={
-                    tag === 'favorite' ? (
-                      <FavoriteIcon svgClass={styles.svgIconFavoriteXs} />
-                    ) : (
-                      <span
-                        style={{
-                          backgroundColor: color,
-                          width: 10,
-                          height: 10,
-                          borderRadius: '50%',
-                          marginLeft: 8,
-                        }}
-                      />
-                    )
+                    <span
+                      style={{
+                        backgroundColor: color,
+                        width: 10,
+                        height: 10,
+                        borderRadius: '50%',
+                        marginLeft: 6,
+                      }}
+                    />
                   }
                 />
               </ShowcaseTooltip>
-            </li>
-          );
-        })}
-      </motion.ul>
-    </section>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SearchBar() {
+  const history = useHistory();
+  const location = useLocation();
+  const [value, setValue] = useState<string | null>(null);
+
+  useEffect(() => {
+    setValue(readSearchName(location.search));
+  }, [location]);
+
+  return (
+    <div className="enhanced-search-section">
+      <div className="search-wrapper">
+        <div className="search-icon">🔍</div>
+        <input
+          id="searchbar"
+          placeholder="Search projects..."
+          value={value ?? ''}
+          className="search-input"
+          onInput={(e) => {
+            setValue(e.currentTarget.value);
+            const newSearch = new URLSearchParams(location.search);
+            newSearch.delete(SearchNameQueryKey);
+            if (e.currentTarget.value) {
+              newSearch.set(SearchNameQueryKey, e.currentTarget.value);
+            }
+            history.push({
+              ...location,
+              search: newSearch.toString(),
+              state: prepareUserState(),
+            });
+            setTimeout(() => {
+              document.getElementById('searchbar')?.focus();
+            }, 0);
+          }}
+        />
+      </div>
+    </div>
   );
 }
 
@@ -275,180 +277,92 @@ const otherUsers = sortedUsers.filter(
   (user) => !user.tags.includes('favorite'),
 );
 
-function SearchBar() {
-  const history = useHistory();
-  const location = useLocation();
-  const [value, setValue] = useState<string | null>(null);
-  useEffect(() => {
-    setValue(readSearchName(location.search));
-  }, [location]);
-  return (
-    <div className={styles.searchContainer}>
-      <input
-        id="searchbar"
-        placeholder={translate({
-          message: 'Search for site name...',
-          id: 'showcase.searchBar.placeholder',
-        })}
-        value={value ?? undefined}
-        onInput={(e) => {
-          setValue(e.currentTarget.value);
-          const newSearch = new URLSearchParams(location.search);
-          newSearch.delete(SearchNameQueryKey);
-          if (e.currentTarget.value) {
-            newSearch.set(SearchNameQueryKey, e.currentTarget.value);
-          }
-          history.push({
-            ...location,
-            search: newSearch.toString(),
-            state: prepareUserState(),
-          });
-          setTimeout(() => {
-            document.getElementById('searchbar')?.focus();
-          }, 0);
-        }}
-      />
-    </div>
-  );
-}
-
 function ShowcaseCards() {
   const filteredUsers = useFilteredUsers();
 
   if (filteredUsers.length === 0) {
     return (
-      <section className="margin-top--lg margin-bottom--xl">
-        <div className="container padding-vert--md text--center">
-          <h2>
-            <Translate id="showcase.usersList.noResult">No result</Translate>
-          </h2>
-          <SearchBar />
-        </div>
-      </section>
+      <div className="no-results">
+        <div className="no-results-icon">🔍</div>
+        <h3>No projects found</h3>
+        <p>Try adjusting your filters or search terms</p>
+      </div>
     );
   }
 
   return (
-    <section className="margin-top--lg margin-bottom--xl">
+    <div className="showcase-content-section">
       {filteredUsers.length === sortedUsers.length ? (
         <>
-          <div className={styles.showcaseFavorite}>
-            <div className="container">
-              <div
-                className={clsx(
-                  'margin-bottom--md',
-                  styles.showcaseFavoriteHeader,
-                )}
-              >
-                <motion.h2
-                  initial={{ opacity: 0, x: -15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 1,
-                    type: "spring",
-                    stiffness: 100,
-                    delay: 0.3,
-                  }}
-                >
-                  <Translate id="showcase.favoritesList.title">
-                    Best of the Hive
-                  </Translate>
-                </motion.h2>
-                <motion.h2
-                  initial={{ opacity: 0, x: -15 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 1,
-                    type: "spring",
-                    stiffness: 100,
-                    delay: 0.3,
-                  }}
-                >
-                  <FavoriteIcon svgClass={styles.svgIconFavorite} />
-                </motion.h2>
-                <SearchBar />
-              </div>
-              <motion.ul
-                initial={{ opacity: 0}}
-                whileInView={{ opacity: 1}}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 4,
-                  type: "spring",
-                  stiffness: 100,
-                  delay: 0.4,
-                }}
-                className={clsx('container', 'clean-list', styles.showcaseList)}
-              >
-
-                {favoriteUsers.map((user) => (
-                  <ShowcaseCard key={user.title} user={user} />
+          {favoriteUsers.length > 0 && (
+            <div className="featured-projects-section">
+              <h2 className="section-title">
+                <span className="title-icon">⭐</span>
+                Best of the Hive
+                <span className="section-count">({favoriteUsers.length})</span>
+              </h2>
+              <div className="projects-grid featured-grid">
+                {favoriteUsers.map((user, index) => (
+                  <motion.div
+                    key={user.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="project-wrapper"
+                  >
+                    <ShowcaseCard key={user.title} user={user} />
+                  </motion.div>
                 ))}
-              </motion.ul>
+              </div>
             </div>
-          </div>
-          <div className="container margin-top--lg">
-            <motion.h2
-              initial={{ opacity: 0, x: -15 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 1,
-                type: "spring",
-                stiffness: 100,
-                delay: 0.5,
-              }}
-              className={styles.showcaseHeader}
-            >
-              <Translate id="showcase.usersList.allUsers">All sites</Translate>
-            </motion.h2>
-            <motion.ul
-              initial={{ opacity: 0}}
-              whileInView={{ opacity: 1}}
-              viewport={{ once: true }}
-              transition={{
-                duration: 4,
-                type: "spring",
-                stiffness: 100,
-                delay: 0.5,
-              }}
-              className={clsx('clean-list', styles.showcaseList)}
-            >
-              {otherUsers.map((user) => (
-                <ShowcaseCard key={user.title} user={user} />
-              ))}
-            </motion.ul>
-          </div>
+          )}
+          
+          {otherUsers.length > 0 && (
+            <div className="all-projects-section">
+              <h2 className="section-title">
+                <span className="title-icon">🌟</span>
+                All Projects
+                <span className="section-count">({otherUsers.length})</span>
+              </h2>
+              <div className="projects-grid">
+                {otherUsers.map((user, index) => (
+                  <motion.div
+                    key={user.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="project-wrapper"
+                  >
+                    <ShowcaseCard key={user.title} user={user} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
         </>
       ) : (
-        <div className="container">
-          <div
-            className={clsx('margin-bottom--md', styles.showcaseFavoriteHeader)}
-          >
-            <SearchBar />
-          </div>
-          <ul className={clsx('clean-list', styles.showcaseList)}>
-            {filteredUsers.map((user) => (
-              <ShowcaseCard key={user.title} user={user} />
+        <div className="filtered-projects-section">
+          <h2 className="section-title">
+            <span className="title-icon">🔍</span>
+            Search Results
+            <span className="section-count">({filteredUsers.length})</span>
+          </h2>
+          <div className="projects-grid">
+            {filteredUsers.map((user, index) => (
+              <motion.div
+                key={user.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="project-wrapper"
+              >
+                <ShowcaseCard key={user.title} user={user} />
+              </motion.div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
-    </section>
-  );
-}
-
-export default function Showcase(): JSX.Element {
-
-  return (
-    <Layout
-      title="Showcase of CodeHarborHub"
-      description="Showcase of CodeHarborHub for CodeHarborHub Learners and users"
-    >
-      <ShowcaseContent />
-    </Layout>
+    </div>
   );
 }
 
@@ -457,23 +371,23 @@ function ShowcaseContent() {
   const isDark = colorMode === "dark";
 
   return (
-    <main
-      className={clsx(
-        "",
-        isDark ? "bg-[#121212] text-white" : "bg-white text-black"
-      )}
-    >
-      <Head>
-        <script
-          async
-          custom-element="amp-auto-ads"
-          src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
-        />
-      </Head>
-
+    <div className="enhanced-showcase-container">
       <ShowcaseHeader />
+      <SearchBar />
       <ShowcaseFilters />
       <ShowcaseCards />
-    </main>
+    </div>
+  );
+}
+
+export default function Showcase(): JSX.Element {
+  return (
+    <Layout title={TITLE} description={DESCRIPTION}>
+      <Head>
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
+      </Head>
+      <ShowcaseContent />
+    </Layout>
   );
 }
