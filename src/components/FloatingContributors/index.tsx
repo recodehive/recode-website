@@ -1,19 +1,94 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import './FloatingContributors.css';
 
+// Format relative time (e.g., "2 hours ago")
+const formatTimeAgo = (date: Date): string => {
+  const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
+  
+  let interval = Math.floor(seconds / 31536000);
+  if (interval > 1) return `${interval} years ago`;
+  
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) return `${interval} months ago`;
+  
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) return `${interval} days ago`;
+  if (interval === 1) return `1 day ago`;
+  
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) return `${interval} hours ago`;
+  if (interval === 1) return `1 hour ago`;
+  
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) return `${interval} minutes ago`;
+  if (interval === 1) return `1 minute ago`;
+  
+  return `just now`;
+};
+
+// Type definitions
 interface Contributor {
   id: string;
   login: string;
   avatar_url: string;
   contributions: number;
   html_url: string;
-  lastActivity: string;
+}
+
+interface GitHubEvent {
+  id: string;
+  type: string;
+  created_at: string;
+  actor: {
+    id: number;
+    login: string;
+    avatar_url: string;
+    url: string;
+  };
+  repo: {
+    id: number;
+    name: string;
+    url: string;
+  };
+  payload: {
+    action?: string;
+    ref?: string;
+    ref_type?: string;
+    push_id?: number;
+    size?: number;
+    distinct_size?: number;
+    head?: string;
+    commits?: Array<{
+      sha: string;
+      message: string;
+      url: string;
+    }>;
+    issue?: {
+      number: number;
+      title: string;
+    };
+    pull_request?: {
+      merged: boolean;
+      title: string;
+      number: number;
+    };
+    comment?: {
+      body: string;
+    };
+  };
 }
 
 interface ContributorActivity {
-  contributor: Contributor;
-  action: 'checked-in' | 'contributed' | 'starred' | 'forked';
+  id: string;
+  contributor: {
+    login: string;
+    avatar_url: string;
+    html_url: string;
+  };
+  action: 'pushed' | 'created' | 'merged' | 'opened' | 'commented' | 'closed' | 'other';
+  message?: string;
+  timestamp: Date;
   timeAgo: string;
 }
 
@@ -27,208 +102,328 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
   const [currentActivityIndex, setCurrentActivityIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [lastFetched, setLastFetched] = useState<number | null>(null);
+  const refreshTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-
-
-  // Initialize with fallback data immediately to ensure toaster always appears
-  useEffect(() => {
-    // Set fallback data immediately
-    const initializeFallbackData = () => {
-      const demoContributors: Contributor[] = [
-        {
-          id: '1',
-          login: 'sanjay-kv',
-          avatar_url: 'https://avatars.githubusercontent.com/u/30715153?v=4',
-          contributions: 127,
-          html_url: 'https://github.com/sanjay-kv',
-          lastActivity: '2 minutes ago',
+  // Create fallback activities for when API fails
+  const createFallbackActivities = useCallback((): ContributorActivity[] => {
+    const fallbackContributors = [
+      {
+        login: 'sanjay-kv',
+        avatar_url: 'https://avatars.githubusercontent.com/u/30715153?v=4',
+        html_url: 'https://github.com/sanjay-kv',
+      },
+      {
+        login: 'recodehive-team',
+        avatar_url: 'https://avatars.githubusercontent.com/u/150000000?v=4', 
+        html_url: 'https://github.com/recodehive',
+      },
+      {
+        login: 'open-source-contributor',
+        avatar_url: 'https://avatars.githubusercontent.com/u/583231?v=4',
+        html_url: 'https://github.com/open-source-contributor',
+      },
+      {
+        login: 'developer',
+        avatar_url: 'https://avatars.githubusercontent.com/u/9919?v=4',
+        html_url: 'https://github.com/developer',
+      },
+      {
+        login: 'coder',
+        avatar_url: 'https://avatars.githubusercontent.com/u/6154722?v=4', 
+        html_url: 'https://github.com/coder',
+      },
+    ];
+    
+    const actions: ContributorActivity['action'][] = ['pushed', 'created', 'merged', 'opened', 'commented'];
+    const timeOffsets = [5, 10, 30, 60, 120, 240, 480]; // minutes
+    const messages = [
+      'Updated documentation',
+      'Fixed styling issues',
+      'Added new feature',
+      'Resolved conflict in package.json',
+      'Implemented responsive design',
+      'Updated dependencies',
+      'Fixed typo in README'
+    ];
+    
+    return fallbackContributors.map((contributor, index) => {
+      const now = new Date();
+      const timestamp = new Date(now.getTime() - (timeOffsets[index % timeOffsets.length] * 60 * 1000));
+      
+      return {
+        id: `fallback-${index}`,
+        contributor: {
+          login: contributor.login,
+          avatar_url: contributor.avatar_url,
+          html_url: contributor.html_url,
         },
-        {
-          id: '2',
-          login: 'recodehive-team',
-          avatar_url: 'https://avatars.githubusercontent.com/u/150000000?v=4',
-          contributions: 89,
-          html_url: 'https://github.com/recodehive',
-          lastActivity: '5 minutes ago',
-        },
-        {
-          id: '3',
-          login: 'contributor-1',
-          avatar_url: 'https://avatars.githubusercontent.com/u/1?v=4',
-          contributions: 64,
-          html_url: 'https://github.com/contributor-1',
-          lastActivity: '12 minutes ago',
-        },
-        {
-          id: '4',
-          login: 'contributor-2',
-          avatar_url: 'https://avatars.githubusercontent.com/u/2?v=4',
-          contributions: 45,
-          html_url: 'https://github.com/contributor-2',
-          lastActivity: '1 hour ago',
-        },
-        {
-          id: '5',
-          login: 'contributor-3',
-          avatar_url: 'https://avatars.githubusercontent.com/u/3?v=4',
-          contributions: 32,
-          html_url: 'https://github.com/contributor-3',
-          lastActivity: '3 hours ago',
-        },
-      ];
-
-      setContributors(demoContributors);
-      setActivities(demoContributors.map(contributor => ({
-        contributor,
-        action: getRandomAction(),
-        timeAgo: contributor.lastActivity,
-      })));
-      setLoading(false);
-    };
-
-    // Initialize with fallback data immediately
-    initializeFallbackData();
-
-    // Then try to fetch real data
-    const fetchContributors = async () => {
-      try {
-
-        // Fetch repositories from RecodeHive organization
-        const reposResponse = await fetch('https://api.github.com/orgs/recodehive/repos?type=public&per_page=10&sort=updated');
-
-        // Check if the response is ok
-        if (!reposResponse.ok) {
-          console.warn(`GitHub API rate limit or error: ${reposResponse.status}`);
-          throw new Error(`GitHub API error: ${reposResponse.status}`);
+        action: actions[index % actions.length],
+        message: messages[index % messages.length],
+        timestamp,
+        timeAgo: formatTimeAgo(timestamp),
+      };
+    });
+  }, []);
+  
+  // Fetch live data from GitHub
+  const fetchLiveData = useCallback(async () => {
+    try {
+      // Use specific cache key for this repository's events
+      const CACHE_KEY = 'recodehive_website_events';
+      const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes - short for "live" data
+      
+      // Check if we have recent data already
+      const now = Date.now();
+      if (lastFetched && now - lastFetched < 30000) {
+        // Don't fetch more than once every 30 seconds
+        return;
+      }
+      
+      // Check for cached events
+      let events: GitHubEvent[] = [];
+      if (typeof window !== 'undefined') {
+        try {
+          const cachedData = localStorage.getItem(CACHE_KEY);
+          if (cachedData) {
+            const { data, timestamp } = JSON.parse(cachedData);
+            if (now - timestamp < CACHE_DURATION) {
+              events = data;
+            }
+          }
+        } catch (e) {
+          console.warn('Error retrieving cached events', e);
         }
-
-        const repos = await reposResponse.json();
-
-        if (!Array.isArray(repos)) {
-          throw new Error('Invalid repos response');
-        }
-
-        // Collect contributors from multiple repositories
-        const contributorsMap = new Map<string, Contributor>();
+      }
+      
+      // If no valid cache, fetch fresh data
+      if (events.length === 0) {
+        setLoading(true);
         
-        for (const repo of repos.slice(0, 5)) { // Limit to top 5 repos for performance
+        // Fetch repository events from GitHub API
+        const eventsResponse = await fetch('https://api.github.com/repos/recodehive/recode-website/events?per_page=30');
+        
+        if (!eventsResponse.ok) {
+          throw new Error(`GitHub API error: ${eventsResponse.status}`);
+        }
+        
+        events = await eventsResponse.json();
+        
+        // Save to cache
+        if (typeof window !== 'undefined' && Array.isArray(events)) {
           try {
-            const contributorsResponse = await fetch(`https://api.github.com/repos/${repo.full_name}/contributors?per_page=20`);
+            localStorage.setItem(CACHE_KEY, JSON.stringify({
+              data: events,
+              timestamp: now,
+            }));
+          } catch (e) {
+            console.warn('Error caching events data', e);
+          }
+        }
+      }
+      
+      // Process events into activities
+      if (Array.isArray(events) && events.length > 0) {
+        // Convert GitHub events to our activity format
+        const newActivities: ContributorActivity[] = events.map((event) => {
+          // Map GitHub event types to our action types
+          let action: ContributorActivity['action'] = 'other';
+          let message: string | undefined;
+          
+          switch (event.type) {
+            case 'PushEvent':
+              action = 'pushed';
+              message = event.payload.commits && event.payload.commits[0]?.message;
+              break;
+            case 'PullRequestEvent':
+              if (event.payload.action === 'opened') action = 'opened';
+              else if (event.payload.action === 'closed' && event.payload.pull_request?.merged) action = 'merged';
+              else if (event.payload.action === 'closed') action = 'closed';
+              break;
+            case 'CreateEvent':
+              action = 'created';
+              break;
+            case 'IssueCommentEvent':
+            case 'CommitCommentEvent':
+            case 'PullRequestReviewCommentEvent':
+              action = 'commented';
+              message = event.payload.comment?.body?.slice(0, 60);
+              break;
+            default:
+              action = 'other';
+          }
+          
+          const timestamp = new Date(event.created_at);
+          
+          return {
+            id: event.id,
+            contributor: {
+              login: event.actor.login,
+              avatar_url: event.actor.avatar_url,
+              html_url: `https://github.com/${event.actor.login}`,
+            },
+            action,
+            message: message?.slice(0, 60), // Limit message length
+            timestamp,
+            timeAgo: formatTimeAgo(timestamp),
+          };
+        });
+        
+        // Update only if we have events
+        if (newActivities.length > 0) {
+          setActivities(newActivities);
+          
+          // Extract contributors from these events
+          const contributorsMap = new Map<string, Contributor>();
+          
+          // Also fetch contributors directly for contribution counts
+          try {
+            const contributorsResponse = await fetch('https://api.github.com/repos/recodehive/recode-website/contributors?per_page=100');
             
             if (contributorsResponse.ok) {
-              const repoContributors = await contributorsResponse.json();
+              const contributorsData = await contributorsResponse.json();
               
-              if (Array.isArray(repoContributors)) {
-                repoContributors.forEach(contributor => {
+              if (Array.isArray(contributorsData)) {
+                contributorsData.forEach(contributor => {
                   if (contributor.login && contributor.type === 'User') {
-                    const existing = contributorsMap.get(contributor.login);
-                    if (existing) {
-                      existing.contributions += contributor.contributions;
-                    } else {
-                      contributorsMap.set(contributor.login, {
-                        id: contributor.id.toString(),
-                        login: contributor.login,
-                        avatar_url: contributor.avatar_url,
-                        contributions: contributor.contributions,
-                        html_url: contributor.html_url,
-                        lastActivity: generateRandomTimeAgo(),
-                      });
-                    }
+                    contributorsMap.set(contributor.login, {
+                      id: contributor.id.toString(),
+                      login: contributor.login,
+                      avatar_url: contributor.avatar_url,
+                      contributions: contributor.contributions,
+                      html_url: contributor.html_url,
+                    });
                   }
                 });
               }
             }
           } catch (error) {
-            console.warn(`Error fetching contributors for ${repo.name}:`, error);
+            console.warn('Error fetching contributors:', error);
+            
+            // If we couldn't get contributors data, at least use actors from events
+            events.forEach(event => {
+              const login = event.actor.login;
+              if (!contributorsMap.has(login)) {
+                contributorsMap.set(login, {
+                  id: event.actor.id.toString(),
+                  login,
+                  avatar_url: event.actor.avatar_url,
+                  contributions: 1, // We don't know the actual count
+                  html_url: `https://github.com/${login}`,
+                });
+              }
+            });
+          }
+          
+          // Update contributors if we found any
+          if (contributorsMap.size > 0) {
+            setContributors(Array.from(contributorsMap.values()));
           }
         }
-
-        const contributorsList = Array.from(contributorsMap.values())
-          .sort((a, b) => b.contributions - a.contributions)
-          .slice(0, 12); // Top 12 contributors
-
-        // Only update if we got real data
-        if (contributorsList.length > 0) {
-          setContributors(contributorsList);
-
-          // Generate activities
-          const generatedActivities: ContributorActivity[] = contributorsList.map(contributor => ({
-            contributor,
-            action: getRandomAction(),
-            timeAgo: generateRandomTimeAgo(),
-          }));
-
-          setActivities(generatedActivities);
-        }
+      }
+      
+      setLastFetched(now);
+      setLoading(false);
+      
+      // Set up next refresh
+      if (refreshTimerRef.current) {
+        clearTimeout(refreshTimerRef.current);
+      }
+      refreshTimerRef.current = setTimeout(() => {
+        fetchLiveData();
+      }, 60000); // Refresh every minute
+      
+    } catch (error) {
+      console.warn('Error fetching GitHub events:', error);
+      
+      // Use fallback data if we have no activities yet
+      if (activities.length === 0) {
+        const fallbackActivities = createFallbackActivities();
+        setActivities(fallbackActivities);
         
-      } catch (error) {
-        // Silently handle GitHub API errors (rate limits, etc.)
-        console.warn('Using fallback contributor data due to GitHub API limitations');
-        // Fallback data is already initialized, so no need to set it again
+        // Create fallback contributors
+        const contributorsMap = new Map<string, Contributor>();
+        fallbackActivities.forEach(activity => {
+          const login = activity.contributor.login;
+          if (!contributorsMap.has(login)) {
+            contributorsMap.set(login, {
+              id: `fallback-${login}`,
+              login,
+              avatar_url: activity.contributor.avatar_url,
+              contributions: Math.floor(Math.random() * 50) + 10,
+              html_url: activity.contributor.html_url,
+            });
+          }
+        });
+        
+        setContributors(Array.from(contributorsMap.values()));
+      }
+      
+      setLoading(false);
+    }
+  }, [activities.length, createFallbackActivities, lastFetched]);
+  
+  // Initialize component and start data fetching
+  useEffect(() => {
+    // Set loading state
+    setLoading(true);
+    
+    // Fetch data immediately
+    fetchLiveData();
+    
+    // Clean up on unmount
+    return () => {
+      if (refreshTimerRef.current) {
+        clearTimeout(refreshTimerRef.current);
       }
     };
-
-    fetchContributors();
-  }, []);
-
+  }, [fetchLiveData]);
+  
   // Cycle through activities
   useEffect(() => {
-    if (activities.length === 0) return;
+    if (activities.length <= 1) return;
     
     const interval = setInterval(() => {
       setCurrentActivityIndex((prev) => (prev + 1) % activities.length);
     }, 4000);
-
+    
     return () => clearInterval(interval);
   }, [activities.length]);
-
-
-  const generateRandomTimeAgo = (): string => {
-    const timeOptions = [
-      'a few seconds ago',
-      '2 minutes ago',
-      '5 minutes ago',
-      '10 minutes ago',
-      '30 minutes ago',
-      '1 hour ago',
-      '2 hours ago',
-      'a day ago',
-      '2 days ago',
-    ];
-    return timeOptions[Math.floor(Math.random() * timeOptions.length)];
-  };
-
-  const getRandomAction = (): ContributorActivity['action'] => {
-    const actions: ContributorActivity['action'][] = ['checked-in', 'contributed', 'starred', 'forked'];
-    return actions[Math.floor(Math.random() * actions.length)];
-  };
-
+  
+  // Get icon for action type
   const getActionIcon = (action: ContributorActivity['action']): string => {
     switch (action) {
-      case 'checked-in': return '✅';
-      case 'contributed': return '🚀';
-      case 'starred': return '⭐';
-      case 'forked': return '🍴';
+      case 'pushed': return '🚀';
+      case 'created': return '✨';
+      case 'merged': return '🔄';
+      case 'opened': return '📝';
+      case 'commented': return '💬';
+      case 'closed': return '✅';
       default: return '💻';
     }
   };
-
+  
+  // Get text for action type
   const getActionText = (action: ContributorActivity['action']): string => {
     switch (action) {
-      case 'checked-in': return 'Checked-in';
-      case 'contributed': return 'Contributed';
-      case 'starred': return 'Starred';
-      case 'forked': return 'Forked';
+      case 'pushed': return 'Pushed code';
+      case 'created': return 'Created';
+      case 'merged': return 'Merged PR';
+      case 'opened': return 'Opened PR';
+      case 'commented': return 'Commented';
+      case 'closed': return 'Closed';
       default: return 'Active';
     }
   };
-
-  if (loading || activities.length === 0) {
+  
+  // Don't render anything while initial loading
+  if (loading && activities.length === 0) {
     return null;
   }
-
+  
+  // Get current activity to display
   const currentActivity = activities[currentActivityIndex];
-
+  
   return (
     <AnimatePresence>
       {isVisible && (
@@ -274,7 +469,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                 <span>Live Activity</span>
               </div>
               <div className="floating-contributors-subtitle">
-                RecodeHive Community
+                recodehive/recode-website
               </div>
             </div>
 
@@ -309,6 +504,9 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                       {getActionText(currentActivity.action)}
                     </span>
                   </div>
+                  {currentActivity.message && (
+                    <div className="activity-message">{currentActivity.message}</div>
+                  )}
                   <div className="activity-time">{currentActivity.timeAgo}</div>
                 </div>
               </motion.div>
@@ -322,40 +520,41 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
               </div>
               
               <div className="contributors-avatars">
-                {contributors.slice(0, 8).map((contributor, index) => (
+                {contributors.slice(0, 12).map((contributor, index) => (
                   <motion.div
                     key={contributor.id}
                     className="contributor-avatar-wrapper"
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ 
-                      delay: index * 0.1,
+                      delay: index * 0.05,
                       type: "spring",
-                      stiffness: 400,
-                      damping: 10
+                      stiffness: 300,
+                      damping: 15
                     }}
-                    whileHover={{ 
-                      scale: 1.2,
-                      zIndex: 10,
-                      transition: { duration: 0.2 }
-                    }}
+                    whileHover={{ scale: 1.1, zIndex: 5 }}
                   >
-                    <img
-                      src={contributor.avatar_url}
-                      alt={contributor.login}
-                      className="contributor-avatar"
-                      title={`${contributor.login} - ${contributor.contributions} contributions`}
-                    />
-                    <div className="contributor-tooltip">
-                      <div className="tooltip-name">@{contributor.login}</div>
-                      <div className="tooltip-contributions">{contributor.contributions} contributions</div>
-                    </div>
+                    <a 
+                      href={contributor.html_url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                    >
+                      <img
+                        src={contributor.avatar_url}
+                        alt={contributor.login}
+                        className="contributor-avatar"
+                      />
+                      <div className="contributor-tooltip">
+                        <div className="tooltip-username">@{contributor.login}</div>
+                        <div className="tooltip-contributions">{contributor.contributions || 0} contributions</div>
+                      </div>
+                    </a>
                   </motion.div>
                 ))}
                 
-                {contributors.length > 8 && (
+                {contributors.length > 12 && (
                   <div className="contributors-more">
-                    <span>+{contributors.length - 8}</span>
+                    <span>+{contributors.length - 12} more</span>
                   </div>
                 )}
               </div>
