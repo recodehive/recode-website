@@ -3,6 +3,7 @@ import React, {type ReactNode, useState, useEffect} from 'react';
 import Link from "@docusaurus/Link";
 import type {Props} from '@theme/Footer/Layout';
 import './enhanced-footer.css';
+import Counter from './Counter';
 
 // Dynamic stats interface
 interface FooterStats {
@@ -105,7 +106,9 @@ export default function FooterLayout({
                 </svg>
               </div>
               <div className="stat-content">
-                <div className="stat-number">{stats.activeUsers}</div>
+                <div className="stat-number">
+                <Counter value={parseInt(stats.activeUsers)} suffix="K+" />
+                </div>
                 <div className="stat-label">Active Learners</div>
               </div>
             </div>
@@ -117,7 +120,9 @@ export default function FooterLayout({
                 </svg>
               </div>
               <div className="stat-content">
-                <div className="stat-number">{stats.tutorials}</div>
+                <div className="stat-number">
+                  <Counter value={parseInt(stats.tutorials)} suffix="+" />
+                </div>
                 <div className="stat-label">Tutorials</div>
               </div>
             </div>
@@ -129,7 +134,9 @@ export default function FooterLayout({
                 </svg>
               </div>
               <div className="stat-content">
-                <div className="stat-number">{stats.successRate}</div>
+                <div className="stat-number">
+                  <Counter value={parseInt(stats.successRate)} suffix="%" />
+                </div>
                 <div className="stat-label">Success Rate</div>
               </div>
             </div>
