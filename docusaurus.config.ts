@@ -6,17 +6,18 @@ import rehypeKatex from "rehype-katex";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+
 const config: Config = {
   title: "Recode Hive",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
  
 
-  url: "https://your-docusaurus-site.example.com",
+  url: "https://recodehive.com",
   baseUrl: "/",
 
-  organizationName: "facebook",
-  projectName: "docusaurus",
+  organizationName: "recodehive",
+  projectName: "recode-website",
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -49,9 +50,11 @@ const config: Config = {
       'classic',
       {
         docs: {
+          path: "docs", 
+          routeBasePath: "docs",
           sidebarPath: require.resolve("./sidebars.ts"),
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: ({ docPath }) =>
+          `https://github.com/recodehive/recode-website/tree/main/docs/${docPath}`,
         },
         blog: {
           showReadingTime: true,
@@ -60,7 +63,7 @@ const config: Config = {
             xslt: true,
           },
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/recodehive/recode-website/tree/main",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
@@ -104,7 +107,7 @@ const config: Config = {
                   <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
                   <a href="/docs/python/intro-python" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
                   <a href="/docs/GitHub/intro-github" class="nav__icons" > <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
-                  <a href="/docs/Nextjs/intro-github" class="nav__icons" > <img src="/icons/nextjs.svg" title="Nextjs" alt="Nextjs" /> </a>
+                  <a href="/docs/Nextjs/intro-nextjs" class="nav__icons" > <img src="/icons/nextjs.svg" title="Nextjs" alt="Nextjs" /> </a>
                 </div>
               </div>`,
             },
@@ -119,7 +122,7 @@ const config: Config = {
                 <div class="grid grid-cols-4 col-span-2">
                   <a href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/git.svg" alt="git" /> </a>
                   <a href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/postman.svg" alt="Postman" /> </a>
-                  <a href="/docs/category/google-student-ambassador" class="nav__icons"> <img src="https://avatars.githubusercontent.com/u/222021622?s=400&u=cb88492d19d9023cac470c3959b25285bb5abcfa&v=4" alt="Google" /> </a>
+                  <a href="/docs/google-campus-ambassador-part-1" class="nav__icons"> <img src="https://avatars.githubusercontent.com/u/222021622?s=400&u=cb88492d19d9023cac470c3959b25285bb5abcfa&v=4" alt="Google" /> </a>
                 </div>
               </div>`,
             },

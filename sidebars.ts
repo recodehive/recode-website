@@ -113,6 +113,20 @@ const sidebars: SidebarsConfig = {
             'sql/table-transformation/list-drop-table',
           ],
         },
+        {
+          type: 'category',
+          label: 'SQL Joins',
+          className: 'custom-sidebar-sql-joins',
+          items: [
+            'sql/SQL-joins/intro-sql-joins',
+            'sql/SQL-joins/inner-join',
+            'sql/SQL-joins/left-join',
+            'sql/SQL-joins/right-join',
+            'sql/SQL-joins/full-outer-join',
+            'sql/SQL-joins/cross-join',
+            'sql/SQL-joins/self-join',
+          ],
+        },
       ],
     },
     {
