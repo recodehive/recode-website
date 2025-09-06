@@ -6,17 +6,18 @@ import rehypeKatex from "rehype-katex";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+
 const config: Config = {
   title: "Recode Hive",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
  
 
-  url: "https://your-docusaurus-site.example.com",
+  url: "https://recodehive.com",
   baseUrl: "/",
 
-  organizationName: "facebook",
-  projectName: "docusaurus",
+  organizationName: "recodehive",
+  projectName: "recode-website",
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -49,9 +50,11 @@ const config: Config = {
       'classic',
       {
         docs: {
+          path: "docs", 
+          routeBasePath: "docs",
           sidebarPath: require.resolve("./sidebars.ts"),
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: ({ docPath }) =>
+          `https://github.com/recodehive/recode-website/tree/main/docs/${docPath}`,
         },
         blog: {
           showReadingTime: true,
@@ -60,7 +63,7 @@ const config: Config = {
             xslt: true,
           },
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/recodehive/recode-website/tree/main",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
