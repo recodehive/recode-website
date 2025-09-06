@@ -1029,6 +1029,77 @@ html {
   }
 }
 
+/* Mobile-only visibility & spacing fixes for Tutorials icons (320–768px) */
+@media screen and (max-width: 768px) {
+  /* Ensure the label + icons row inside Docs dropdown uses the full width */
+  .navbar-sidebar .grid,
+  .navbar-sidebar .dropdown__menu .grid,
+  .navbar-sidebar .dropdown-content .grid {
+    width: 100% !important;
+  column-gap: 0.5rem !important;
+  row-gap: 0.6rem !important; 
+  align-items: center !important; /* align titles with icons vertically */
+  }
+
+  /* So the icon column doesn't get clipped in the 3-col layout */
+  .navbar-sidebar .grid > .col-span-2 {
+    min-width: 0 !important;
+  }
+
+  /* Tighten label space and drop the border on very small screens */
+  .navbar-sidebar .grid > .border-r.col-span-1 {
+    border-right: 0 !important;
+    padding-right: 0.25rem !important;
+    font-weight: 600;
+  display: flex !important;           /* center the title block */
+  align-items: center !important;     /* vertically center with icons */
+  line-height: 1.1 !important;        /* avoid baseline drift */
+  }
+
+  /* The inner icon group for Tutorials/Courses only (have grid-cols-4) */
+  .navbar-sidebar .grid .grid.grid-cols-4,
+  .navbar-sidebar .dropdown__menu .grid .grid.grid-cols-4,
+  .navbar-sidebar .dropdown-content .grid .grid.grid-cols-4 {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  column-gap: 0.5rem !important; /* keep columns tight */
+  row-gap: 1.5rem !important;   
+    overflow: visible !important;
+  }
+
+  /* Make each Tutorial/Course icon compact while readable */
+  .navbar-sidebar .grid .grid.grid-cols-4 .nav__icons {
+    padding: 0 !important;
+    margin: 0.4rem 0 !important; /* even more vertical breathing room */
+  }
+  .navbar-sidebar .grid .grid.grid-cols-4 .nav__icons img {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  /* Keep Interview Prep text links comfortable and not cramped */
+  .navbar-sidebar .grid .grid.grid-cols-1 .nav__icons {
+    display: inline-flex !important;
+    align-items: center !important;
+    padding: 0.25rem 0.1rem !important;
+    font-size: 0.95rem !important;
+  }
+
+  /* Add vertical space between Tutorials, Courses, Interview Prep blocks */
+  .navbar-sidebar .dropdown__menu > .grid {
+  padding: 1rem 0 !important;  
+  margin: 1rem 0 !important;   
+  }
+
+  /* Dark mode: ensure GitHub/Next.js icons are visible in Tutorials on mobile */
+  [data-theme="dark"] .navbar-sidebar .nav__icons img[alt="GitHub"],
+  [data-theme="dark"] .navbar-sidebar .nav__icons img[alt="Nextjs"],
+  [data-theme="dark"] .navbar-sidebar img[src$="/icons/github.svg"],
+  [data-theme="dark"] .navbar-sidebar img[src$="/icons/nextjs.svg"] {
+    filter: invert(1) brightness(1.1) contrast(1.05) !important;
+  }
+}
+
 /* STAR section border fixes for dark mode */
 [data-theme="dark"] .star-border-red {
   border-color: #ef4444 !important;
