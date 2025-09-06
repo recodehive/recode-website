@@ -43,8 +43,8 @@ const contributionSections: ContributionSection[] = [
       'Share design feedback'
     ],
     links: [
-      { text: 'Figma', url: '/community' },
-      { text: 'Adobe XD', url: '/community' }
+      { text: 'Figma', url: 'https://www.figma.com/' },
+      { text: 'Adobe XD', url: 'https://helpx.adobe.com/support/xd.html' }
     ],
     color: '#ec4899'
   },
@@ -59,7 +59,7 @@ const contributionSections: ContributionSection[] = [
       'Translate content 🌍'
     ],
     links: [
-      { text: 'GitHub Docs', url: '/community' }
+      { text: 'GitHub Docs', url: 'https://github.com/recodehive/recode-website/tree/main/docs' }
     ],
     color: '#f59e0b'
   },
