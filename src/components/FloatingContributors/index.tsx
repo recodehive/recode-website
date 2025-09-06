@@ -390,6 +390,26 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
     return () => clearInterval(interval);
   }, [activities.length]);
   
+  // Get GitHub URL for event
+  const getGitHubEventUrl = (activity: ContributorActivity): string => {
+    const repoUrl = 'https://github.com/recodehive/recode-website';
+    
+    switch (activity.action) {
+      case 'pushed':
+        return `${repoUrl}/commits`;
+      case 'merged':
+      case 'opened':
+      case 'closed':
+        return `${repoUrl}/pulls`;
+      case 'commented':
+        return `${repoUrl}/issues`;
+      case 'created':
+        return repoUrl;
+      default:
+        return repoUrl;
+    }
+  };
+  
   // Get icon for action type
   const getActionIcon = (action: ContributorActivity['action']): string => {
     switch (action) {
@@ -477,11 +497,15 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentActivityIndex}
-                className="floating-contributors-activity"
+                className="floating-contributors-activity contributor-activity-item"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.4 }}
+                onClick={() => window.open(getGitHubEventUrl(currentActivity), '_blank')}
+                tabIndex={0}
+                role="link"
+                aria-label={`View ${currentActivity.contributor.login}'s ${currentActivity.action} activity on GitHub`}
               >
                 <div className="activity-avatar-container">
                   <motion.img
@@ -538,6 +562,8 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                       href={contributor.html_url} 
                       target="_blank" 
                       rel="noopener noreferrer"
+                      aria-label={`View ${contributor.login}'s GitHub profile`}
+                      className="contributor-link"
                     >
                       <img
                         src={contributor.avatar_url}
@@ -563,15 +589,16 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
             {/* Footer */}
             <div className="floating-contributors-footer">
               <motion.a
-                href="https://github.com/recodehive"
+                href="https://github.com/recodehive/recode-website"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contributors-cta"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                aria-label="View repository on GitHub and join the community"
               >
                 <span className="cta-icon">🚀</span>
-                <span>Join the Community</span>
+                <span>View Repository on GitHub</span>
                 <span className="cta-arrow">→</span>
               </motion.a>
             </div>
