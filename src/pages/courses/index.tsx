@@ -34,21 +34,21 @@ const projects = [
 
 const testimonials = [
   {
-    img: "https://dummyimage.com/80x80/222/fff&text=MH",
-    name: "Muhammad Aziq Hamidun",
-    review: "I personally want to thank Darshil for a well executed SQL outline for a beginner, especially in the field of DE. Most course out there just provide the theory and what to do but not really on how to do it with hands on practice. I really learn a lot and I am very confident to be a handy DE. Thanks once again Darchil, God bless you for having a heart to reach out and sharing your expertise to help us.",
+    img: "https://dummyimage.com/80x80/222/fff&text=S",
+    name: "Sachin",
+    review: "Sanjay has been a great support in knowing various career paths and upcoming tech. The call was very crisp but valueable at the same time. For sure I am gonna schedule a call probably next month to give him updates. Thanks a ton Sanjay :)",
     stars: 5,
   },
   {
-    img: "https://dummyimage.com/80x80/333/fff&text=BD",
-    name: "binayak dash",
-    review: "Hi Darshil,Thank you so much for this awesome course.I have enrolled myself in various SQL courses available in the market because SQL is the core and backbone of DATA ENGINEERS.I just want to let you know that,I have not completed any SQL courses which I have enrolled except your course.I have completed this course thoroughly and with great enthusiasm.Thank you again!!!!I feel you should have added the indexing concept also as that is one optimisation technique.Hope you will answer my queries.",
+    img: "https://dummyimage.com/80x80/333/fff&text=KP",
+    name: "Kumar Priyanshu",
+    review: "I was thoroughly impressed by his clear, engaging communication and deep understanding of my issue. He listened attentively and offered valuable insights and solutions, leaving me extremely satisfied and confident in the guidance I received." ,
     stars: 5,
   },
   {
-    img: "https://dummyimage.com/80x80/444/fff&text=RB",
-    name: "RABBANI BAJI SHAIK",
-    review: "I am pleased to provide my review of an exceptional course by Darshil Parmar that serves as an excellent introduction to a data engineering career. Unlike traditional SQL learning paths, this course focuses on PostgreSQL, offering a unique and real-time experience of project work. By showcasing your practical skills, it enhances job prospects. The course not only imparts technical knowledge but also nurtures an understanding of professional data engineering. I highly recommend this course to anyone looking for innovative ways to learn SQL and kickstart their data engineering journey",
+    img: "https://dummyimage.com/80x80/444/fff&text=AV",
+    name: "Aman Vohra",
+    review: "It was an amazing session with you. And i can't thank you enough for your time and the great and valuable insights you have given me. Thank you so much🙌🏻",
     stars: 5,
   },
 ];
