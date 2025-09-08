@@ -1,0 +1,58 @@
+/* THIS CSS IS ONLY FOR " OUR PROJECT "  as the width available for embeded page is extremly small */
+
+/* Responsive overrides for embedded preview on small screens */
+
+/* For widths below 768px: give the card extra height and reduce chrome */
+@media (max-width: 767px) {
+  .ourprojects-embed-container {
+    min-height: 82vh !important;
+  }
+  .ourprojects-embed-card {
+    height: 82vh !important;
+    border-radius: 1.25rem !important; /* smaller radius to fit */
+  }
+  .ourprojects-iframe {
+    height: 220% !important; /* more scrollable viewport */
+  }
+  /* Improve readability on dark previews */
+  .ourprojects-overlay { 
+    background: linear-gradient(to top, rgba(0,0,0,0.35), transparent 50%, transparent) !important;
+  }
+  .ourprojects-live-indicator { 
+    display: none !important; /* avoid overlapping text, see red arrow in screenshot */
+  }
+}
+
+/* For ultra small widths below 360px (covers 320px phones) */
+@media (max-width: 360px) {
+  .ourprojects-embed-container {
+    min-height: 88vh !important;
+  }
+  .ourprojects-embed-card {
+    height: 88vh !important;
+  }
+  .ourprojects-iframe {
+    height: 250% !important;
+  }
+  .ourprojects-live-indicator { display: none !important; }
+}
+
+/* Safety for <320px specifically if needed */
+@media (max-width: 320px) {
+  .ourprojects-embed-container {
+    min-height: 92vh !important;
+  }
+  .ourprojects-embed-card {
+    height: 92vh !important;
+  }
+  .ourprojects-iframe {
+    height: 280% !important;
+  }
+  .ourprojects-live-indicator { display: none !important; }
+}
+
+/* Subtle text shadow to enhance contrast for any headings rendered inside iframe snapshot area
+   Note: This only affects overlay/indicators we own, not cross-origin iframe content */
+.ourprojects-embed-card .text-shadow-soft { 
+  text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}
