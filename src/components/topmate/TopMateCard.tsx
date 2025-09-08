@@ -74,8 +74,8 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'} mb-6`}>{description}</p>
 
         {/* Profile Section */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between flex-wrap md:flex-nowrap gap-y-3">
+          <div className="flex items-center gap-3 min-w-0">
             <img
               src={profileImage}
               alt="Profile"
@@ -89,14 +89,14 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
                 href={`https://topmate.io/${username}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-purple-500 font-semibold hover:text-purple-600 transition-colors flex items-center gap-1"
+                className="text-purple-500 font-semibold hover:text-purple-600 transition-colors flex items-center gap-1 truncate"
               >
-                topmate.io/{username}
+                <span className="truncate">topmate.io/{username}</span>
                 <ArrowUpRight size={16} />
               </a>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 shrink-0">
             {/* Show only the circular icon part of the Topmate logo */}
             <div className="h-4 w-4 overflow-hidden flex-shrink-0 rounded-sm">
               <img
@@ -106,7 +106,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
               />
             </div>
             {/* Theme-aware text to ensure readability on dark backgrounds */}
-            <span className={`text-sm font-semibold ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>topmate</span>
+            <span className={`text-sm font-semibold shrink-0 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>topmate</span>
           </div>
         </div>
       </div>

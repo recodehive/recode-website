@@ -5,6 +5,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import React from "react";
 import { useColorMode } from "@docusaurus/theme-common";
+// Mobile-specific overrides for very small screens (<768px and <320px)
+import "./ourProjects.mobile.css";
 
 export interface OurProjectsData {
   tag: string;
@@ -160,7 +162,7 @@ const SelectComponent = ({
         ))}
       </div>
 
-      <div className={`col-span-1 md:col-span-8 p-4 md:p-8 relative overflow-hidden min-h-[70vh]`}>
+  <div className={`col-span-1 md:col-span-8 p-4 md:p-8 relative overflow-hidden min-h-[80vh] md:min-h-[70vh] ourprojects-embed-container`}>
         {/* Animated Mesh Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-blue-600/30 via-cyan-500/30 to-emerald-500/30 rounded-3xl">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)] animate-pulse"></div>
@@ -196,7 +198,7 @@ const SelectComponent = ({
         <motion.div 
           animate={{ y: [-10, 10, -10], rotate: [0, 5, 0] }}
           transition={{ duration: 4, repeat: Infinity }}
-          className="absolute top-8 right-8 w-16 h-16 bg-gradient-to-br from-purple-500 via-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-2xl backdrop-blur-sm border border-white/20"
+          className="hidden md:flex absolute top-8 right-8 w-16 h-16 bg-gradient-to-br from-purple-500 via-blue-500 to-cyan-500 rounded-2xl items-center justify-center shadow-2xl backdrop-blur-sm border border-white/20"
         >
           <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
@@ -207,7 +209,7 @@ const SelectComponent = ({
         <motion.div 
           animate={{ x: [-5, 5, -5], rotate: [0, -10, 0] }}
           transition={{ duration: 3, repeat: Infinity }}
-          className="absolute top-20 left-8 w-12 h-12 bg-gradient-to-br from-emerald-400 via-blue-500 to-purple-600 rounded-xl shadow-xl backdrop-blur-sm border border-white/20 flex items-center justify-center"
+          className="hidden md:flex absolute top-20 left-8 w-12 h-12 bg-gradient-to-br from-emerald-400 via-blue-500 to-purple-600 rounded-xl shadow-xl backdrop-blur-sm border border-white/20 items-center justify-center"
         >
           <span className="text-white text-xl">⚡</span>
         </motion.div>
@@ -215,7 +217,7 @@ const SelectComponent = ({
         <motion.div 
           animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-20 right-16 w-10 h-10 bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-600 rounded-full shadow-lg backdrop-blur-sm border border-white/30 flex items-center justify-center"
+          className="hidden md:flex absolute bottom-20 right-16 w-10 h-10 bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-600 rounded-full shadow-lg backdrop-blur-sm border border-white/30 items-center justify-center"
         >
           <span className="text-white text-sm">🚀</span>
         </motion.div>
@@ -228,14 +230,14 @@ const SelectComponent = ({
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative z-10 perspective-1000"
         >
-          <div className={`h-[35vh] md:h-[65vh] rounded-3xl overflow-hidden shadow-2xl backdrop-blur-md border-2 transform hover:scale-105 hover:rotateY-5 transition-all duration-700 group ${
+          <div className={`h-[78vh] sm:h-[80vh] md:h-[65vh] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl backdrop-blur-md border-2 transform hover:scale-105 md:hover:rotateY-5 transition-all duration-700 group ourprojects-embed-card ${
             isDark ? 'bg-gray-900/95 border-purple-500/50 shadow-purple-500/25' : 'bg-white/95 border-blue-400/50 shadow-blue-500/25'
           }`}>
             {/* Holographic Border Effect */}
             <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
             
             {/* Premium Browser Header */}
-            <div className={`relative flex items-center px-6 py-4 border-b backdrop-blur-xl ${
+            <div className={`relative flex items-center px-3 py-2 sm:px-6 sm:py-4 border-b backdrop-blur-xl ${
               isDark ? 'bg-gray-800/90 border-gray-600/50' : 'bg-gray-50/90 border-gray-300/50'
             }`}>
               <div className="flex space-x-3 mr-6">
@@ -259,7 +261,7 @@ const SelectComponent = ({
                 </motion.div>
               </div>
               
-              <div className={`flex-1 px-4 py-3 rounded-2xl text-sm font-mono flex items-center backdrop-blur-sm relative overflow-hidden ${
+              <div className={`flex-1 px-2 py-2 sm:px-4 sm:py-3 rounded-2xl text-xs sm:text-sm font-mono flex items-center backdrop-blur-sm relative overflow-hidden ${
                 isDark ? 'bg-gray-700/70 text-gray-200 border border-gray-500/50' : 'bg-white/80 text-gray-700 border border-gray-300/50 shadow-inner'
               }`}>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse"></div>
@@ -285,7 +287,7 @@ const SelectComponent = ({
               <motion.div 
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className={`ml-4 px-4 py-2 rounded-xl text-xs font-bold flex items-center backdrop-blur-sm ${
+                className={`ml-2 sm:ml-4 px-2 py-1 sm:px-4 sm:py-2 rounded-xl text-[10px] sm:text-xs font-bold flex items-center backdrop-blur-sm ${
                   isDark ? 'bg-gradient-to-r from-emerald-600 to-green-600 text-white shadow-lg' : 'bg-gradient-to-r from-emerald-100 to-green-100 text-emerald-700 shadow-md'
                 }`}
               >
@@ -306,7 +308,7 @@ const SelectComponent = ({
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="relative h-full overflow-hidden group"
               >
-                {(items[activeItem].title === "Awesome GitHub Profile" || items[activeItem].title === "Machine Learning Repository") ? (
+        {(items[activeItem].title === "Awesome GitHub Profile" || items[activeItem].title === "Machine Learning Repository") ? (
                   /* Auto-scrolling Website Iframe */
                   <motion.div 
                     className="relative w-full h-full overflow-hidden cursor-pointer"
@@ -315,7 +317,7 @@ const SelectComponent = ({
                     <motion.iframe
                       key={activeItem}
                       src={PROJECT_URLS[items[activeItem].title] || "about:blank"}
-                      className="w-full h-[200%] border-0 origin-top pointer-events-none"
+          className="w-full h-[220%] sm:h-[200%] border-0 origin-top pointer-events-none ourprojects-iframe"
                       initial={{ opacity: 0, y: 0 }}
                       animate={{ 
                         opacity: 1,
@@ -360,7 +362,7 @@ const SelectComponent = ({
                 
                 {/* Dynamic Indicator */}
                 <motion.div
-                  className={`absolute bottom-4 right-4 backdrop-blur-sm rounded-full px-3 py-2 text-white text-xs font-medium flex items-center ${
+                  className={`ourprojects-live-indicator absolute bottom-4 right-4 backdrop-blur-sm rounded-full px-3 py-2 text-white text-xs font-medium flex items-center ${
                     (items[activeItem].title === "Awesome GitHub Profile" || items[activeItem].title === "Machine Learning Repository")
                       ? "bg-green-600/90" 
                       : "bg-blue-600/90"
@@ -379,7 +381,7 @@ const SelectComponent = ({
                 </motion.div>
                 
                 {/* Holographic Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none">
+                <div className="ourprojects-overlay absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-cyan-500/10"></div>
                 </div>
                 
@@ -390,7 +392,7 @@ const SelectComponent = ({
         </motion.div>
         
         {/* 3D Floating Background Mockups */}
-        <div className="absolute inset-0 pointer-events-none">
+  <div className="hidden md:block absolute inset-0 pointer-events-none">
           {items.map((item, index) => {
             if (index === activeItem) return null;
             const positions = [
