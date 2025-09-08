@@ -135,7 +135,7 @@ const sidebars: SidebarsConfig = {
       className: 'custom-sidebar-nextjs',
       items: [
         'Nextjs/intro-nextjs',
-        // 'Nextjs/setup-environment',
+        'Nextjs/setup-environment',
         // 'Nextjs/git-commands',
       ],
     },
