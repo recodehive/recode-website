@@ -544,39 +544,42 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
               </div>
               
               <div className="contributors-avatars">
-                {contributors.slice(0, 12).map((contributor, index) => (
-                  <motion.div
-                    key={contributor.id}
-                    className="contributor-avatar-wrapper"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ 
-                      delay: index * 0.05,
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 15
-                    }}
-                    whileHover={{ scale: 1.1, zIndex: 5 }}
-                  >
-                    <a 
-                      href={contributor.html_url} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      aria-label={`View ${contributor.login}'s GitHub profile`}
-                      className="contributor-link"
+                {contributors
+                  .sort((a, b) => b.contributions - a.contributions) // Sort contributors by contributions in descending order
+                  .slice(0, 5) // Limit to top 5 contributors
+                  .map((contributor, index) => (
+                    <motion.div
+                      key={contributor.id}
+                      className="contributor-avatar-wrapper"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ 
+                        delay: index * 0.05,
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 15
+                      }}
+                      whileHover={{ scale: 1.1, zIndex: 5 }}
                     >
-                      <img
-                        src={contributor.avatar_url}
-                        alt={contributor.login}
-                        className="contributor-avatar"
-                      />
-                      <div className="contributor-tooltip">
-                        <div className="tooltip-username">@{contributor.login}</div>
-                        <div className="tooltip-contributions">{contributor.contributions || 0} contributions</div>
-                      </div>
-                    </a>
-                  </motion.div>
-                ))}
+                      <a 
+                        href={contributor.html_url} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        aria-label={`View ${contributor.login}'s GitHub profile`}
+                        className="contributor-link"
+                      >
+                        <img
+                          src={contributor.avatar_url}
+                          alt={contributor.login}
+                          className="contributor-avatar"
+                        />
+                        <div className="contributor-tooltip">
+                          <div className="tooltip-username">@{contributor.login}</div>
+                          <div className="tooltip-contributions">{contributor.contributions || 0} contributions</div>
+                        </div>
+                      </a>
+                    </motion.div>
+                  ))}
                 
                 {contributors.length > 12 && (
                   <div className="contributors-more">
