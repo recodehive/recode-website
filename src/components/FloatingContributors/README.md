@@ -95,3 +95,12 @@ The `FloatingContributors` component is a dynamic React component that displays 
 - It uses `localStorage` for caching API responses.
 
 ---
+
+## References
+
+For future reference, you can check out the following GitHub profiles:
+
+- [Sanjay KV](https://github.com/sanjay-kv)
+- [Irfan](https://github.com/iitzIrFan)
+
+---
