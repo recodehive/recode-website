@@ -1,3 +1,4 @@
+// src/pages/dashboard/LeaderBoard/leaderboard.tsx
 import React, { JSX, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -10,20 +11,11 @@ import {
 } from "react-icons/fa";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useColorMode } from "@docusaurus/theme-common";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext"; // ✅ New import
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-const GITHUB_REPO = "recodehive/recode-website"; // Change to your repo
-// ❌ Remove this line, it will cause the "process is not defined" error
-// const token = process.env.DOCUSAURUS_GIT_TOKEN;
+const GITHUB_ORG = "recodehive"; // <- Set your organization here
+const POINTS_PER_PR = 10;
 
-// Points configuration for different PR levels
-const POINTS: Record<string, number> = {
-  "level-1": 3, // Easy
-  "level-2": 7, // Medium
-  "level-3": 10, // Hard/Feature
-};
-
-// Types
 interface Contributor {
   username: string;
   avatar: string;
@@ -38,24 +30,18 @@ interface Stats {
   flooredTotalPoints: number;
 }
 
-interface BadgeProps {
-  count: number;
-  label: string;
-  color: { background: string; color: string };
-}
-
 interface User {
   login: string;
   avatar_url: string;
   html_url: string;
 }
 
-interface PullRequest {
+interface PullRequestItem {
   user: User;
-  labels: { name: string }[];
+  merged_at?: string | null;
 }
 
-function Badge({ count, label, color }: BadgeProps) {
+function Badge({ count, label, color }: { count: number; label: string; color: { background: string; color: string } }) {
   return (
     <span
       style={{
@@ -73,11 +59,11 @@ function Badge({ count, label, color }: BadgeProps) {
 }
 
 export default function LeaderBoard(): JSX.Element {
-  // ✅ Use this hook to get the custom fields from docusaurus.config.ts
   const {
     siteConfig: { customFields },
   } = useDocusaurusContext();
-  const token = customFields.gitToken; // ✅ Access the token from customFields
+  // token fallback: prefer customFields.gitToken, otherwise environment var
+  const token = customFields?.gitToken || (process.env.DOCUSAURUS_GIT_TOKEN as string) || "";
 
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
@@ -91,9 +77,53 @@ export default function LeaderBoard(): JSX.Element {
   const itemsPerPage = 10;
 
   useEffect(() => {
+    const fetchAllOrgRepos = async (headers: Record<string, string>) => {
+      const repos: any[] = [];
+      let page = 1;
+      while (true) {
+        const resp = await fetch(`https://api.github.com/orgs/${GITHUB_ORG}/repos?type=public&per_page=100&page=${page}`, {
+          headers,
+        });
+        if (!resp.ok) {
+          throw new Error(`Failed to fetch org repos: ${resp.status} ${resp.statusText}`);
+        }
+        const data = await resp.json();
+        repos.push(...data);
+        if (!Array.isArray(data) || data.length < 100) break;
+        page++;
+      }
+      return repos;
+    };
+
+    const fetchMergedPRsForRepo = async (repoName: string, headers: Record<string, string>) => {
+      const mergedPRs: PullRequestItem[] = [];
+      let page = 1;
+      while (true) {
+        // list PRs (closed) then filter merged
+        const resp = await fetch(
+          `https://api.github.com/repos/${GITHUB_ORG}/${repoName}/pulls?state=closed&per_page=100&page=${page}`,
+          { headers }
+        );
+        if (!resp.ok) {
+          // if a particular repo fails (permissions, archived, etc.) skip it
+          console.warn(`Failed to fetch PRs for ${repoName}: ${resp.status} ${resp.statusText}`);
+          break;
+        }
+        const prs: PullRequestItem[] = await resp.json();
+        if (!Array.isArray(prs) || prs.length === 0) break;
+
+        const merged = prs.filter((pr) => Boolean(pr.merged_at));
+        mergedPRs.push(...merged);
+
+        if (prs.length < 100) break;
+        page++;
+      }
+      return mergedPRs;
+    };
+
     const fetchLeaderboard = async () => {
       if (!token) {
-        setError("GitHub token not found. Please set DOCUSAURUS_GIT_TOKEN.");
+        setError("GitHub token not found. Please set customFields.gitToken or DOCUSAURUS_GIT_TOKEN.");
         setLoading(false);
         return;
       }
@@ -102,65 +132,47 @@ export default function LeaderBoard(): JSX.Element {
       setError(null);
 
       try {
-        const headers = {
+        const headers: Record<string, string> = {
           Authorization: `token ${token}`,
+          Accept: "application/vnd.github.v3+json",
         };
 
-        const fetchPRs = async (state: "open" | "closed") => {
-          let allPRs: PullRequest[] = [];
-          let page = 1;
-          let hasNextPage = true;
+        // 1) fetch all repos in the org (paged)
+        const repos = await fetchAllOrgRepos(headers);
 
-          while (hasNextPage) {
-            const response = await fetch(
-              `https://api.github.com/repos/${GITHUB_REPO}/pulls?state=${state}&per_page=100&page=${page}`,
-              { headers }
-            );
-
-            if (!response.ok) {
-              throw new Error(
-                `Failed to fetch pull requests: ${response.statusText}`
-              );
-            }
-
-            const prs: PullRequest[] = await response.json();
-            allPRs = allPRs.concat(prs);
-            hasNextPage = prs.length === 100;
-            page++;
-          }
-          return allPRs;
-        };
-
-        const [openPRs, closedPRs] = await Promise.all([
-          fetchPRs("open"),
-          fetchPRs("closed"),
-        ]);
-
-        const allPRs = [...openPRs, ...closedPRs];
-
+        // 2) for each repo, fetch merged PRs and aggregate
         const contributorMap = new Map<string, Contributor>();
+        let totalMergedPRs = 0;
 
-        for (const pr of allPRs) {
-          const username = pr.user.login;
-          if (!contributorMap.has(username)) {
-            contributorMap.set(username, {
-              username,
-              avatar: pr.user.avatar_url,
-              profile: pr.user.html_url,
-              points: 0,
-              prs: 0,
-            });
+        // sequentially to be friendly to rate limits; if you expect small org, you can parallelize
+        for (const repo of repos) {
+          // skip forks or archived repos if desired
+          if (repo.archived) continue;
+
+          const repoName = repo.name;
+          try {
+            const mergedPRs = await fetchMergedPRsForRepo(repoName, headers);
+            totalMergedPRs += mergedPRs.length;
+
+            for (const pr of mergedPRs) {
+              const username = pr.user.login;
+              if (!contributorMap.has(username)) {
+                contributorMap.set(username, {
+                  username,
+                  avatar: pr.user.avatar_url,
+                  profile: pr.user.html_url,
+                  points: 0,
+                  prs: 0,
+                });
+              }
+              const contributor = contributorMap.get(username)!;
+              contributor.prs++;
+              contributor.points += POINTS_PER_PR; // fixed points per merged PR
+            }
+          } catch (repoErr) {
+            console.warn(`Skipping repo ${repoName} due to error:`, repoErr);
+            continue;
           }
-
-          const contributor = contributorMap.get(username)!;
-          contributor.prs++;
-
-          let prPoints = 0;
-          const label = pr.labels.find((l) => l.name in POINTS)?.name;
-          if (label) {
-            prPoints = POINTS[label];
-          }
-          contributor.points += prPoints;
         }
 
         const sortedContributors = Array.from(contributorMap.values()).sort(
@@ -169,22 +181,19 @@ export default function LeaderBoard(): JSX.Element {
 
         setContributors(sortedContributors);
         setStats({
-          flooredTotalPRs: allPRs.length,
+          flooredTotalPRs: totalMergedPRs,
           totalContributors: sortedContributors.length,
-          flooredTotalPoints: sortedContributors.reduce(
-            (sum, c) => sum + c.points,
-            0
-          ),
+          flooredTotalPoints: sortedContributors.reduce((sum, c) => sum + c.points, 0),
         });
         setLoading(false);
       } catch (e: any) {
-        setError(e.message);
+        setError(e?.message || String(e));
         setLoading(false);
       }
     };
 
     fetchLeaderboard();
-  }, [token]); // The token is now a dependency of the useEffect hook
+  }, [token]);
 
   const filteredContributors = contributors.filter((contributor) =>
     contributor.username.toLowerCase().includes(searchQuery.toLowerCase())
@@ -195,7 +204,7 @@ export default function LeaderBoard(): JSX.Element {
   const indexOfFirst = indexOfLast - itemsPerPage;
   const currentItems = filteredContributors.slice(indexOfFirst, indexOfLast);
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber: number) => setCurrentPage(Math.max(1, Math.min(pageNumber, totalPages)));
 
   const renderPaginationButtons = () => {
     const pages = [];
@@ -234,9 +243,7 @@ export default function LeaderBoard(): JSX.Element {
           maxWidth: 960,
           margin: "0 auto",
           background: isDark ? "#1f2937" : "#f9fafb",
-          boxShadow: isDark
-            ? "0 4px 6px rgba(0,0,0,0.2)"
-            : "0 4px 6px rgba(0,0,0,0.1)",
+          boxShadow: isDark ? "0 4px 6px rgba(0,0,0,0.2)" : "0 4px 6px rgba(0,0,0,0.1)",
           borderRadius: 8,
           padding: "24px",
         }}
@@ -256,9 +263,9 @@ export default function LeaderBoard(): JSX.Element {
             Recode Hive Leaderboard
           </h1>
           <p style={{ color: isDark ? "#9ca3af" : "#6b7280" }}>
-            Top contributors to the open-source project
+            Top contributors across the <strong>{GITHUB_ORG}</strong> organization
             <a
-              href={`https://github.com/${GITHUB_REPO}`}
+              href={`https://github.com/${GITHUB_ORG}`}
               target="_blank"
               rel="noreferrer"
               style={{
@@ -291,17 +298,8 @@ export default function LeaderBoard(): JSX.Element {
               }}
             >
               <FaCode style={{ fontSize: 28, color: "#a78bfa" }} />
-              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>
-                {stats.flooredTotalPRs}
-              </div>
-              <div
-                style={{
-                  fontSize: 14,
-                  color: isDark ? "#9ca3af" : "#6b7280",
-                }}
-              >
-                Total PRs
-              </div>
+              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>{stats.flooredTotalPRs}</div>
+              <div style={{ fontSize: 14, color: isDark ? "#9ca3af" : "#6b7280" }}>Merged PRs</div>
             </div>
             <div
               style={{
@@ -313,17 +311,8 @@ export default function LeaderBoard(): JSX.Element {
               }}
             >
               <FaStar style={{ fontSize: 28, color: "#fcd34d" }} />
-              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>
-                {stats.flooredTotalPoints}
-              </div>
-              <div
-                style={{
-                  fontSize: 14,
-                  color: isDark ? "#9ca3af" : "#6b7280",
-                }}
-              >
-                Total Points
-              </div>
+              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>{stats.flooredTotalPoints}</div>
+              <div style={{ fontSize: 14, color: isDark ? "#9ca3af" : "#6b7280" }}>Total Points</div>
             </div>
             <div
               style={{
@@ -335,17 +324,8 @@ export default function LeaderBoard(): JSX.Element {
               }}
             >
               <FaUsers style={{ fontSize: 28, color: "#60a5fa" }} />
-              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>
-                {stats.totalContributors}
-              </div>
-              <div
-                style={{
-                  fontSize: 14,
-                  color: isDark ? "#9ca3af" : "#6b7280",
-                }}
-              >
-                Total Contributors
-              </div>
+              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>{stats.totalContributors}</div>
+              <div style={{ fontSize: 14, color: isDark ? "#9ca3af" : "#6b7280" }}>Total Contributors</div>
             </div>
           </div>
         )}
@@ -393,7 +373,7 @@ export default function LeaderBoard(): JSX.Element {
                 animation: "spin 1s linear infinite",
                 margin: "0 auto",
               }}
-            ></div>
+            />
             <p style={{ marginTop: 16 }}>Loading leaderboard...</p>
           </div>
         )}
@@ -412,7 +392,6 @@ export default function LeaderBoard(): JSX.Element {
 
         {!loading && !error && filteredContributors.length > 0 && (
           <div style={{ overflowX: "auto" }}>
-            {/* Table */}
             <div
               style={{
                 display: "flex",
@@ -450,9 +429,7 @@ export default function LeaderBoard(): JSX.Element {
                     borderBottom: `1px solid ${isDark ? "#444" : "#eee"}`,
                   }}
                 >
-                  <div style={{ marginRight: 16 }}>
-                    {indexOfFirst + index + 1}
-                  </div>
+                  <div style={{ marginRight: 16 }}>{indexOfFirst + index + 1}</div>
                   <img
                     src={contributor.avatar}
                     alt={contributor.username}
@@ -464,30 +441,12 @@ export default function LeaderBoard(): JSX.Element {
                     }}
                   />
                   <div style={{ flex: 1 }}>
-                    <a
-                      href={contributor.profile}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
+                    <a href={contributor.profile} target="_blank" rel="noreferrer">
                       {contributor.username}
                     </a>
                     <div>
-                      <Badge
-                        count={contributor.prs}
-                        label="PRs"
-                        color={{
-                          background: "#dbeafe",
-                          color: "#2563eb",
-                        }}
-                      />
-                      <Badge
-                        count={contributor.points}
-                        label="Points"
-                        color={{
-                          background: "#ede9fe",
-                          color: "#7c3aed",
-                        }}
-                      />
+                      <Badge count={contributor.prs} label="PRs" color={{ background: "#dbeafe", color: "#2563eb" }} />
+                      <Badge count={contributor.points} label="Points" color={{ background: "#ede9fe", color: "#7c3aed" }} />
                     </div>
                   </div>
                 </motion.div>
@@ -496,16 +455,8 @@ export default function LeaderBoard(): JSX.Element {
           </div>
         )}
 
-        {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              marginTop: 24,
-            }}
-          >
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: 24 }}>
             <button
               onClick={() => paginate(currentPage - 1)}
               disabled={currentPage === 1}
@@ -538,12 +489,9 @@ export default function LeaderBoard(): JSX.Element {
           </div>
         )}
       </div>
+
       <style>{`
-        @keyframes spin {
-          to {
-            transform: rotate(360deg);
-          }
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
       `}</style>
     </div>
   );
