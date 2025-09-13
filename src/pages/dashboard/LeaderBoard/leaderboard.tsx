@@ -12,8 +12,9 @@ import {
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useColorMode } from "@docusaurus/theme-common";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import "./leaderboard.css";
 
-const GITHUB_ORG = "recodehive"; 
+const GITHUB_ORG = "recodehive";
 const POINTS_PER_PR = 10;
 
 interface Contributor {
@@ -43,18 +44,33 @@ interface PullRequestItem {
 
 function Badge({ count, label, color }: { count: number; label: string; color: { background: string; color: string } }) {
   return (
-    <span
-      style={{
-        fontSize: 12,
-        fontWeight: 600,
-        padding: "4px 8px",
-        borderRadius: "9999px",
-        marginRight: 8,
-        ...color,
-      }}
-    >
+    <span className="badge" style={{ ...color }}>
       {count} {label}
     </span>
+  );
+}
+
+function TopPerformerCard({ contributor, rank }: { contributor: Contributor; rank: number }) {
+  const { colorMode } = useColorMode();
+  const isDark = colorMode === "dark";
+  const rankClass = rank === 1 ? "top-1" : rank === 2 ? "top-2" : "top-3";
+  
+  return (
+    <div className={`top-performer-card ${isDark ? "dark" : "light"}`}>
+      <img src={contributor.avatar} alt={contributor.username} className="avatar large" />
+      <div className={`rank-overlay ${rankClass}`}>
+        <span className="rank-text">{rank}</span>
+      </div>
+      <div className="performer-info">
+        <a href={contributor.profile} target="_blank" rel="noreferrer" className="username-link">
+          {contributor.username}
+        </a>
+        <div className="badges-container">
+          <Badge count={contributor.prs} label="PRs" color={{ background: "#dbeafe", color: "#2563eb" }} />
+          <Badge count={contributor.points} label="Points" color={{ background: "#ede9fe", color: "#7c3aed" }} />
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -62,8 +78,7 @@ export default function LeaderBoard(): JSX.Element {
   const {
     siteConfig: { customFields },
   } = useDocusaurusContext();
-  // token fallback: prefer customFields.gitToken, otherwise environment var
-  const token = customFields?.gitToken || (process.env.DOCUSAURUS_GIT_TOKEN as string) || "";
+  const token = customFields?.gitToken || "";
 
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
@@ -99,13 +114,11 @@ export default function LeaderBoard(): JSX.Element {
       const mergedPRs: PullRequestItem[] = [];
       let page = 1;
       while (true) {
-        // list PRs (closed) then filter merged
         const resp = await fetch(
           `https://api.github.com/repos/${GITHUB_ORG}/${repoName}/pulls?state=closed&per_page=100&page=${page}`,
           { headers }
         );
         if (!resp.ok) {
-          // if a particular repo fails (permissions, archived, etc.) skip it
           console.warn(`Failed to fetch PRs for ${repoName}: ${resp.status} ${resp.statusText}`);
           break;
         }
@@ -123,7 +136,7 @@ export default function LeaderBoard(): JSX.Element {
 
     const fetchLeaderboard = async () => {
       if (!token) {
-        setError("GitHub token not found. Please set customFields.gitToken or DOCUSAURUS_GIT_TOKEN.");
+        setError("GitHub token not found. Please set customFields.gitToken in docusaurus.config.js.");
         setLoading(false);
         return;
       }
@@ -137,14 +150,11 @@ export default function LeaderBoard(): JSX.Element {
           Accept: "application/vnd.github.v3+json",
         };
 
-        // 1) fetch all repos in the org (paged)
         const repos = await fetchAllOrgRepos(headers);
 
-        // 2) for each repo, fetch merged PRs and aggregate
         const contributorMap = new Map<string, Contributor>();
         let totalMergedPRs = 0;
 
-        
         for (const repo of repos) {
           if (repo.archived) continue;
 
@@ -166,7 +176,7 @@ export default function LeaderBoard(): JSX.Element {
               }
               const contributor = contributorMap.get(username)!;
               contributor.prs++;
-              contributor.points += POINTS_PER_PR; // fixed points per merged PR
+              contributor.points += POINTS_PER_PR;
             }
           } catch (repoErr) {
             console.warn(`Skipping repo ${repoName} due to error:`, repoErr);
@@ -212,15 +222,7 @@ export default function LeaderBoard(): JSX.Element {
         <button
           key={i}
           onClick={() => paginate(i)}
-          className={`px-3 py-1 rounded-full mx-1 ${
-            currentPage === i
-              ? isDark
-                ? "bg-gray-700 text-white"
-                : "bg-gray-300 text-gray-800"
-              : isDark
-              ? "bg-gray-800 hover:bg-gray-700 text-gray-300"
-              : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-          }`}
+          className={`page-btn ${currentPage === i ? "active" : ""} `}
         >
           {i}
         </button>
@@ -229,269 +231,213 @@ export default function LeaderBoard(): JSX.Element {
     return pages;
   };
 
-  return (
-    <div
-      style={{
-        padding: "40px 20px",
-        fontFamily: "'Inter', sans-serif",
-        color: isDark ? "#f3f4f6" : "#1f2937",
-      }}
-    >
-      <div
-        style={{
-          maxWidth: 960,
-          margin: "0 auto",
-          background: isDark ? "#1f2937" : "#f9fafb",
-          boxShadow: isDark ? "0 4px 6px rgba(0,0,0,0.2)" : "0 4px 6px rgba(0,0,0,0.1)",
-          borderRadius: 8,
-          padding: "24px",
-        }}
-      >
-        <div style={{ textAlign: "center", marginBottom: 24 }}>
-          <h1
-            style={{
-              fontSize: 32,
-              fontWeight: 800,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              marginBottom: 8,
-            }}
-          >
-            <FaTrophy style={{ marginRight: 16, color: "#f59e0b" }} />
-            Recode Hive Leaderboard
-          </h1>
-          <p style={{ color: isDark ? "#9ca3af" : "#6b7280" }}>
-            Top contributors across the <strong>{GITHUB_ORG}</strong> organization
-            <a
-              href={`https://github.com/${GITHUB_ORG}`}
-              target="_blank"
-              rel="noreferrer"
-              style={{
-                marginLeft: 8,
-                color: isDark ? "#dbeafe" : "#2563eb",
-                textDecoration: "underline",
-              }}
-            >
-              <FaGithub style={{ marginLeft: 4 }} />
-            </a>
-          </p>
-        </div>
+  const getRankClass = (index: number) => {
+    if (index === 0) return "top-1";
+    if (index === 1) return "top-2";
+    if (index === 2) return "top-3";
+    return "regular";
+  };
 
-        {stats && (
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: 24,
-              marginBottom: 32,
-            }}
-          >
-            <div
-              style={{
-                background: isDark ? "#374151" : "#fff",
-                borderRadius: 8,
-                padding: 24,
-                textAlign: "center",
-                boxShadow: isDark ? "none" : "0 2px 4px rgba(0,0,0,0.05)",
-              }}
-            >
-              <FaCode style={{ fontSize: 28, color: "#a78bfa" }} />
-              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>{stats.flooredTotalPRs}</div>
-              <div style={{ fontSize: 14, color: isDark ? "#9ca3af" : "#6b7280" }}>Merged PRs</div>
-            </div>
-            <div
-              style={{
-                background: isDark ? "#374151" : "#fff",
-                borderRadius: 8,
-                padding: 24,
-                textAlign: "center",
-                boxShadow: isDark ? "none" : "0 2px 4px rgba(0,0,0,0.05)",
-              }}
-            >
-              <FaStar style={{ fontSize: 28, color: "#fcd34d" }} />
-              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>{stats.flooredTotalPoints}</div>
-              <div style={{ fontSize: 14, color: isDark ? "#9ca3af" : "#6b7280" }}>Total Points</div>
-            </div>
-            <div
-              style={{
-                background: isDark ? "#374151" : "#fff",
-                borderRadius: 8,
-                padding: 24,
-                textAlign: "center",
-                boxShadow: isDark ? "none" : "0 2px 4px rgba(0,0,0,0.05)",
-              }}
-            >
-              <FaUsers style={{ fontSize: 28, color: "#60a5fa" }} />
-              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>{stats.totalContributors}</div>
-              <div style={{ fontSize: 14, color: isDark ? "#9ca3af" : "#6b7280" }}>Total Contributors</div>
+  return (
+    <div className={`leaderboard-container ${isDark ? "dark" : "light"}`}>
+      <div className="leaderboard-content">
+        {/* Header */}
+        <motion.div
+          className="header"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="title">Recode Hive Leaderboard</h1>
+          <p className={`subtitle ${isDark ? "dark" : "light"}`}>
+            Top contributors across the <strong>{GITHUB_ORG}</strong> organization
+          
+          </p>
+        </motion.div>
+
+        {/* Top 3 Performers Section */}
+        {!loading && !error && contributors.length > 2 && (
+          <div className="top-performers-container">
+            <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>recodehive Top Performers</h2>
+            <div className="top-performers-grid">
+              <TopPerformerCard contributor={contributors[1]} rank={2} />
+              <TopPerformerCard contributor={contributors[0]} rank={1} />
+              <TopPerformerCard contributor={contributors[2]} rank={3} />
             </div>
           </div>
         )}
 
-        <div style={{ position: "relative", marginBottom: 24 }}>
-          <FaSearch
-            style={{
-              position: "absolute",
-              top: "50%",
-              left: 16,
-              transform: "translateY(-50%)",
-              color: isDark ? "#6b7280" : "#9ca3af",
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Search contributors..."
-            value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setCurrentPage(1);
-            }}
-            style={{
-              width: "100%",
-              padding: "12px 16px 12px 48px",
-              borderRadius: 9999,
-              border: isDark ? "1px solid #4b5563" : "1px solid #d1d5db",
-              background: isDark ? "#374151" : "#fff",
-              color: isDark ? "#f3f4f6" : "#1f2937",
-              fontSize: 16,
-              outline: "none",
-            }}
-          />
+        {/* Stats */}
+        {stats && (
+          <div className="stats-grid">
+            <div className={`stat-card ${isDark ? "dark" : "light"}`}>
+              <div className="stat-content">
+                <div className={`stat-icon users`}>
+                  <FaUsers />
+                </div>
+                <div>
+                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>{stats.totalContributors}</div>
+                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>Total Contributors</div>
+                </div>
+              </div>
+            </div>
+            <div className={`stat-card ${isDark ? "dark" : "light"}`}>
+              <div className="stat-content">
+                <div className={`stat-icon prs`}>
+                  <FaCode />
+                </div>
+                <div>
+                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>{stats.flooredTotalPRs}</div>
+                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>Merged PRs</div>
+                </div>
+              </div>
+            </div>
+            <div className={`stat-card ${isDark ? "dark" : "light"}`}>
+              <div className="stat-content">
+                <div className={`stat-icon points`}>
+                  <FaStar />
+                </div>
+                <div>
+                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>{stats.flooredTotalPoints}</div>
+                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>Total Points</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Search */}
+        <div className="search-container">
+          <div className="search-wrapper">
+            <FaSearch className={`search-icon ${isDark ? "dark" : "light"}`} />
+            <input
+              type="text"
+              placeholder="Search contributors..."
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setCurrentPage(1);
+              }}
+              className={`search-input ${isDark ? "dark" : "light"}`}
+            />
+          </div>
         </div>
 
         {loading && (
-          <div style={{ textAlign: "center", padding: "48px 0" }}>
-            <div
-              style={{
-                width: 48,
-                height: 48,
-                borderRadius: "50%",
-                border: "4px solid #f3f4f6",
-                borderTopColor: "#60a5fa",
-                animation: "spin 1s linear infinite",
-                margin: "0 auto",
-              }}
-            />
-            <p style={{ marginTop: 16 }}>Loading leaderboard...</p>
+          <div className={`skeleton-loader ${isDark ? "dark" : "light"}`}>
+            <div className="skeleton-header">
+              <div>#</div>
+              <div>Contributor</div>
+              <div>Contributions</div>
+            </div>
+            {[...Array(itemsPerPage)].map((_, i) => (
+              <div key={i} className="skeleton-row">
+                <div className="skeleton-avatar" />
+                <div className="skeleton-avatar large" />
+                <div className="skeleton-info">
+                  <div className="skeleton-bar" />
+                  <div className="skeleton-badges">
+                    <div className="skeleton-badge" />
+                    <div className="skeleton-badge" />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         )}
 
         {error && (
-          <div style={{ textAlign: "center", color: "#ef4444", padding: 24 }}>
+          <div className="no-contributors">
             <p>Error: {error}</p>
           </div>
         )}
 
         {!loading && !error && filteredContributors.length === 0 && (
-          <div style={{ textAlign: "center", padding: "48px 0" }}>
+          <div className="no-contributors">
             <p>No contributors found.</p>
           </div>
         )}
 
         {!loading && !error && filteredContributors.length > 0 && (
-          <div style={{ overflowX: "auto" }}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                border: isDark ? "1px solid #4b5563" : "1px solid #d1d5db",
-                borderRadius: 8,
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  padding: "16px 24px",
-                  fontWeight: 600,
-                  fontSize: 14,
-                  textTransform: "uppercase",
-                  color: isDark ? "#9ca3af" : "#6b7280",
-                  borderBottom: `1px solid ${isDark ? "#4b5563" : "#d1d5db"}`,
-                }}
+          <div className={`contributors-container ${isDark ? "dark" : "light"}`}>
+            <div className="contributors-header">
+                <div className="contributor-cell rank">Rank</div>
+                <div className="contributor-cell avatar-cell">Avatar</div>
+                <div className="contributor-cell username-cell">User</div>
+                <div className="contributor-cell prs-cell">PRs</div>
+                <div className="contributor-cell points-cell">Points</div>
+            </div>
+            {currentItems.map((contributor, index) => (
+              <motion.div
+                key={contributor.username}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className={`contributor-row ${isDark ? (index % 2 === 0 ? "even" : "odd") : (index % 2 === 0 ? "even" : "odd")}`}
               >
-                <div style={{ width: 40, marginRight: 16 }}>#</div>
-                <div style={{ flex: 1, marginRight: 16 }}>User</div>
-                <div style={{ width: 100 }}>Points</div>
-              </div>
-
-              {currentItems.map((contributor, index) => (
-                <motion.div
-                  key={contributor.username}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    padding: "16px 24px",
-                    borderBottom: `1px solid ${isDark ? "#444" : "#eee"}`,
-                  }}
-                >
-                  <div style={{ marginRight: 16 }}>{indexOfFirst + index + 1}</div>
+                <div className={`contributor-cell rank-cell`}>
+                  <div className={`rank-badge ${getRankClass(indexOfFirst + index)}`}>
+                    {indexOfFirst + index + 1}
+                  </div>
+                </div>
+                <div className="contributor-cell avatar-cell">
                   <img
                     src={contributor.avatar}
                     alt={contributor.username}
-                    style={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: "50%",
-                      marginRight: 16,
-                    }}
+                    className={`avatar ${isDark ? "dark" : "light"}`}
                   />
-                  <div style={{ flex: 1 }}>
-                    <a href={contributor.profile} target="_blank" rel="noreferrer">
+                </div>
+                <div className="contributor-cell username-cell">
+                    <a href={contributor.profile} target="_blank" rel="noreferrer" className={`username-link ${isDark ? "dark" : "light"}`}>
                       {contributor.username}
                     </a>
-                    <div>
-                      <Badge count={contributor.prs} label="PRs" color={{ background: "#dbeafe", color: "#2563eb" }} />
-                      <Badge count={contributor.points} label="Points" color={{ background: "#ede9fe", color: "#7c3aed" }} />
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                </div>
+                <div className="contributor-cell prs-cell">
+                  <Badge count={contributor.prs} label="PRs" color={{ background: "#dbeafe", color: "#2563eb" }} />
+                </div>
+                <div className="contributor-cell points-cell">
+                  <Badge count={contributor.points} label="Points" color={{ background: "#ede9fe", color: "#7c3aed" }} />
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className={`pagination ${isDark ? "dark" : "light"}`}>
+                <button
+                  onClick={() => paginate(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className={`pagination-btn ${currentPage === 1 ? "disabled" : ""}`}
+                >
+                  <ChevronLeft size={16} />
+                </button>
+                <div className="page-numbers">{renderPaginationButtons()}</div>
+                <button
+                  onClick={() => paginate(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className={`pagination-btn ${currentPage === totalPages ? "disabled" : ""}`}
+                >
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            )}
+            
+            {/* CTA Footer */}
+            <div className={`cta-footer ${isDark ? "dark" : "light"}`}>
+              <p className={`cta-text ${isDark ? "dark" : "light"}`}>Want to get on this leaderboard?</p>
+              <a
+                href={`https://github.com/${GITHUB_ORG}`}
+                target="_blank"
+                rel="noreferrer"
+                className="cta-button"
+              >
+                <FaGithub style={{ marginRight: 8 }} />
+                Contribute on GitHub
+              </a>
             </div>
           </div>
         )}
-
-        {totalPages > 1 && (
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", marginTop: 24 }}>
-            <button
-              onClick={() => paginate(currentPage - 1)}
-              disabled={currentPage === 1}
-              style={{
-                padding: 8,
-                borderRadius: "50%",
-                background: isDark ? "#374151" : "#e5e7eb",
-                color: isDark ? "#d1d5db" : "#6b7280",
-                cursor: currentPage === 1 ? "not-allowed" : "pointer",
-                border: "none",
-              }}
-            >
-              <ChevronLeft size={16} />
-            </button>
-            <div style={{ margin: "0 8px" }}>{renderPaginationButtons()}</div>
-            <button
-              onClick={() => paginate(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              style={{
-                padding: 8,
-                borderRadius: "50%",
-                background: isDark ? "#374151" : "#e5e7eb",
-                color: isDark ? "#d1d5db" : "#6b7280",
-                cursor: currentPage === totalPages ? "not-allowed" : "pointer",
-                border: "none",
-              }}
-            >
-              <ChevronRight size={16} />
-            </button>
-          </div>
-        )}
       </div>
-
-      <style>{`
-        @keyframes spin { to { transform: rotate(360deg); } }
-      `}</style>
     </div>
   );
 }
