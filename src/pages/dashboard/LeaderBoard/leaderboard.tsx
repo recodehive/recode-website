@@ -13,7 +13,7 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useColorMode } from "@docusaurus/theme-common";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-const GITHUB_ORG = "recodehive"; // <- Set your organization here
+const GITHUB_ORG = "recodehive"; 
 const POINTS_PER_PR = 10;
 
 interface Contributor {
@@ -144,9 +144,8 @@ export default function LeaderBoard(): JSX.Element {
         const contributorMap = new Map<string, Contributor>();
         let totalMergedPRs = 0;
 
-        // sequentially to be friendly to rate limits; if you expect small org, you can parallelize
+        
         for (const repo of repos) {
-          // skip forks or archived repos if desired
           if (repo.archived) continue;
 
           const repoName = repo.name;
