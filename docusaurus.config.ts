@@ -11,7 +11,6 @@ const config: Config = {
   title: "Recode Hive",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
- 
 
   url: "https://recodehive.com",
   baseUrl: "/",
@@ -25,18 +24,18 @@ const config: Config = {
   // Google Analytics and Theme Scripts
   scripts: [
     {
-      src: '/instant-theme.js',
+      src: "/instant-theme.js",
       async: false,
     },
     {
-      src: 'https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR',
+      src: "https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR",
       async: true,
     },
     {
-      src: '/gtag-init.js',
+      src: "/gtag-init.js",
     },
     {
-      src: '/pinterest-init.js',
+      src: "/pinterest-init.js",
     },
   ],
 
@@ -47,7 +46,7 @@ const config: Config = {
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
           path: "docs", 
@@ -72,7 +71,7 @@ const config: Config = {
           customCss: require.resolve("./src/css/custom.css"),
         },
         gtag: {
-          trackingID: 'G-W02Z2VJYCR',
+          trackingID: "G-W02Z2VJYCR",
           anonymizeIP: false,
         },
       } satisfies Preset.Options,
@@ -82,14 +81,13 @@ const config: Config = {
   themeConfig: {
     image: "img/docusaurus-social-card.jpg",
     colorMode: {
-      defaultMode: 'light',
+      defaultMode: "light",
       disableSwitch: false,
       respectPrefersColorScheme: false, // Let users manually control theme
     },
     navbar: {
-       title:"Recode Hive",
+      title: "Recode Hive",
       logo: {
-       
         alt: "RecodeHive Logo",
         src: "img/logo.png",
       },
@@ -164,12 +162,12 @@ const config: Config = {
           items: [
             {
               label: "💻GitHub Profiles",
-              to: "https://dev.recodehive.com/devfolio",
+              to: "/devfolio",
             },
             {
               label: "🎖️ GitHub Badges",
               to: "/badges/github-badges/",
-            }, 
+            },
           ],
         },
         {
@@ -235,7 +233,7 @@ const config: Config = {
         //     },
         //   ],
         // },
-        
+
         // {
         //   href: "https://github.com/codeharborhub/codeharborhub",
         //   position: "right",
@@ -253,7 +251,7 @@ const config: Config = {
       // hideOnScroll: true,
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [],
       copyright: `Copyright © ${new Date().getFullYear()} recodehive. Built with Docusaurus.`,
     },
