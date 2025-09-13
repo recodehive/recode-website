@@ -43,6 +43,113 @@
   min-width: 400px;
 }
 
+/* New activity feed styles */
+.contributors-activities {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.contributors-activities::-webkit-scrollbar {
+  width: 4px;
+}
+
+.contributors-activities::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.contributors-activities::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.contributor-activity-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  cursor: pointer; /* Add pointer cursor to indicate clickable */
+}
+
+.contributor-activity-item:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px); /* Slight lift effect on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.contributor-activity-item:focus {
+  outline: 2px solid rgba(102, 126, 234, 0.6);
+  outline-offset: 2px;
+}
+
+.contributor-activity-item:active {
+  transform: translateY(0);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.activity-item-avatar {
+  margin-right: 12px;
+  position: relative;
+}
+
+.activity-item-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.activity-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.activity-item-user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.activity-item-username {
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.activity-item-badge {
+  background-color: rgba(59, 130, 246, 0.2);
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.activity-item-action {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 2px;
+}
+
+.activities-more {
+  text-align: center;
+  padding: 8px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-top: 4px;
+}
+
 /* Header embedded version - larger size */
 .floating-contributors-container.header-embedded .floating-contributors-card {
   min-width: 450px;
@@ -175,12 +282,43 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .floating-contributors-activity:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(102, 126, 234, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.floating-contributors-activity:focus {
+  outline: 2px solid rgba(102, 126, 234, 0.6);
+  outline-offset: 2px;
+}
+
+.floating-contributors-activity:active {
   transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle link indicator */
+.floating-contributors-activity::after {
+  content: "→";
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%) translateX(20px);
+  opacity: 0;
+  font-size: 16px;
+  color: rgba(102, 126, 234, 0.8);
+  transition: all 0.3s ease;
+}
+
+.floating-contributors-activity:hover::after {
+  transform: translateY(-50%) translateX(0);
+  opacity: 1;
 }
 
 [data-theme='light'] .floating-contributors-activity {
@@ -369,6 +507,30 @@
   transform: scale(1.1);
 }
 
+.contributor-link {
+  position: relative;
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.contributor-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.contributor-link:focus {
+  outline: none;
+}
+
+.contributor-link:focus::after {
+  border-color: rgba(102, 126, 234, 0.8);
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+}
+
 [data-theme='light'] .contributor-avatar {
   border-color: rgba(0, 0, 0, 0.2);
 }
@@ -414,7 +576,8 @@
   transform: translateX(-50%) translateY(-8px);
 }
 
-.tooltip-name {
+.tooltip-name,
+.tooltip-username {
   font-weight: 600;
   margin-bottom: 2px;
 }
