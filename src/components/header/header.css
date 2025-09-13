@@ -5,13 +5,13 @@
   transform-style: preserve-3d;
   overflow: hidden;
   padding: 3rem auto;
-  background-color: var(--ifm-background-color);
+  background-color: #fff;;
   color: #000;
   transition: background 0.4s ease, color 0.4s ease;
 }
 
-html.theme-dark .chh__header--body {
-  background: linear-gradient(to right, #121212, #1e1e1e);
+[data-theme='dark'] .chh__header--body {
+  background: linear-gradient(to right, #222121, #1d1b1b);
   color: #fff;
 }
 
@@ -19,6 +19,8 @@ html.theme-dark .chh__header--body {
   display: flex;
   flex-direction: row;
   position: relative;
+  gap: 2rem;
+  margin-left: 1rem;
 }
 
 .chh__header-content {
@@ -30,41 +32,52 @@ html.theme-dark .chh__header--body {
   flex-direction: column;
   margin-right: 2rem;
 }
-
-.chh__header-content h1 {
+[data-theme='light'] .chh__header-content h1 {
   font-weight: 700;
-  font-size: 62px;
-  line-height: 75px;
+  font-size: 56px;
+  line-height: 65px;
   letter-spacing: -0.04em;
   background: linear-gradient(
-    30deg,
-    rgba(206, 86, 174, 0.972) 0%,
-    rgb(253 29 29 / 100%) 50%,
-    rgb(252 176 69 / 100%) 100%
+    90deg,
+    #e44d26 0%,   /* orange */
+    #f16529 30%,  /* lighter orange */
+    #d16ba5 60%,  /* pink */
+    #6a5acd 100%  /* purple */
   );
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: background 0.3s ease-in-out;
 }
 
-html.theme-dark .chh__header-content h1 {
+[data-theme='dark'] .chh__header-content h1 {
+  font-weight: 700;
+  font-size: 56px;
+  line-height: 65px;
+  letter-spacing: -0.04em;
   background: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.9),
-    rgba(180, 180, 255, 0.9)
+    135deg,
+    #a1c4fd 0%,   /* soft sky blue (pops gently) */
+    #c2e9fb 25%,  /* pastel cyan */
+    #d4a5f9 60%,  /* muted lavender */
+    #fbc2eb 100%  /* soft rose pink */
   );
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  transition: background 0.3s ease-in-out;
 }
+
+
 
 .chh__header-content p {
   font-family: var(--font-family);
   font-weight: 400;
-  font-size: 22px;
+  font-size: 20px;
   text-align: justify;
   line-height: 30px;
   margin-top: 1.5rem;
-  color: #000; /* Light mode text */
+  color: #333; /* Light mode text */
   transition: color 0.3s ease-in-out;
 }
 
@@ -83,6 +96,7 @@ html.theme-dark .chh__header-content p {
   margin: 2rem 0 1rem;
   display: flex;
   flex-direction: row;
+  gap: 1rem;
 }
 
 .chh__header-content__input--link {
@@ -90,40 +104,95 @@ html.theme-dark .chh__header-content p {
   font-size: 20px;
   line-height: 28px;
   font-weight: 600;
+  color: black;
 }
 
 .chh__header-content__input--link:hover {
   text-decoration: none;
+  color:#121212;
 }
 
 .chh__header-content__input button {
-  flex: 0.6;
-  width: 100%;
-  min-height: 50px;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
-  border: 2px solid #ff4820;
-  padding: 0 0.8rem;
+  flex: 1;
+  min-height: 56px;
+  font-weight: 600;
+  font-size: 18px;
+  border: none;
   cursor: pointer;
   outline: none;
-  border-radius: 5px;
-  margin: 0 1rem 0 0;
-  background: linear-gradient(90deg, #07ab8a5f 0%, transparent 100%);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
-html.theme-dark .chh__header-content__input button {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: #4fe3c5;
-  color: #fff;
+.chh__header-content__input button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.08) 30%,
+    transparent 60%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.8s ease-in-out;
+  pointer-events: none;
 }
 
-.chh__header-content__input button:last-child {
-  background: transparent;
+.chh__header-content__input button:hover::after {
+  left: 100%;
 }
 
 .chh__header-content__input button:hover {
-  background: linear-gradient(90deg, #f0a90fd0 0%, transparent 100%);
+  transform: scale(1.03); /* very subtle lift */
+}
+
+.chh__header-content__input button:first-child {
+  background: linear-gradient(135deg, #fda085 0%, #f6d365 100%);
+}
+
+.chh__header-content__input button:first-child:hover {
+  background: linear-gradient(135deg, #f76b1c 0%, #fca65f 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='dark'] .chh__header-content__input button:first-child {
+  background: linear-gradient(135deg, #9b4d89 0%, #6b3a9c 100%); 
+}
+
+[data-theme='dark'] .chh__header-content__input button:first-child:hover {
+  background: linear-gradient(135deg, #b45ea5 0%, #8050c4 100%); 
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.chh__header-content__input button:last-child {
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+}
+
+.chh__header-content__input button:last-child:hover {
+  background: linear-gradient(135deg, #ae8dca 0%, #b3a7cb 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+[data-theme='dark'] .chh__header-content__input button:last-child {
+  background: linear-gradient(135deg, #2c2c36 0%, #3d3d4f 100%);
+  color: #e0e0e0;
+}
+
+[data-theme='dark'] .chh__header-content__input button:last-child:hover {
+  background: linear-gradient(135deg, #3d3d4f 0%, #50506b 100%); 
+  transform: translateY(-2px) scale(1.02); 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); 
 }
 
 .chh__header-image {
@@ -136,6 +205,7 @@ html.theme-dark .chh__header-content__input button {
   padding: 0.3rem;
   border-radius: 10% 40%;
   min-height: 400px;
+  
 }
 
 .chh__header-image img {
