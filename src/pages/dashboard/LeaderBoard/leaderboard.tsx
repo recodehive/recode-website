@@ -1,5 +1,5 @@
 // src/pages/dashboard/LeaderBoard/leaderboard.tsx
-import React, { JSX, useEffect, useState } from "react";
+import React, { JSX, useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaTrophy,
@@ -11,11 +11,10 @@ import {
 } from "react-icons/fa";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useColorMode } from "@docusaurus/theme-common";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import { useCommunityStatsContext } from "@site/src/lib/statsProvider";
 import "./leaderboard.css";
 
-const GITHUB_ORG = "recodehive";
-const POINTS_PER_PR = 10;
+const GITHUB_ORG = "recodehive"; 
 
 interface Contributor {
   username: string;
@@ -29,17 +28,6 @@ interface Stats {
   flooredTotalPRs: number;
   totalContributors: number;
   flooredTotalPoints: number;
-}
-
-interface User {
-  login: string;
-  avatar_url: string;
-  html_url: string;
-}
-
-interface PullRequestItem {
-  user: User;
-  merged_at?: string | null;
 }
 
 function Badge({ count, label, color }: { count: number; label: string; color: { background: string; color: string } }) {
@@ -75,134 +63,13 @@ function TopPerformerCard({ contributor, rank }: { contributor: Contributor; ran
 }
 
 export default function LeaderBoard(): JSX.Element {
-  const {
-    siteConfig: { customFields },
-  } = useDocusaurusContext();
-  const token = customFields?.gitToken || "";
-
+  const { contributors, stats, loading, error } = useCommunityStatsContext();
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
 
-  const [contributors, setContributors] = useState<Contributor[]>([]);
-  const [stats, setStats] = useState<Stats | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-
-  useEffect(() => {
-    const fetchAllOrgRepos = async (headers: Record<string, string>) => {
-      const repos: any[] = [];
-      let page = 1;
-      while (true) {
-        const resp = await fetch(`https://api.github.com/orgs/${GITHUB_ORG}/repos?type=public&per_page=100&page=${page}`, {
-          headers,
-        });
-        if (!resp.ok) {
-          throw new Error(`Failed to fetch org repos: ${resp.status} ${resp.statusText}`);
-        }
-        const data = await resp.json();
-        repos.push(...data);
-        if (!Array.isArray(data) || data.length < 100) break;
-        page++;
-      }
-      return repos;
-    };
-
-    const fetchMergedPRsForRepo = async (repoName: string, headers: Record<string, string>) => {
-      const mergedPRs: PullRequestItem[] = [];
-      let page = 1;
-      while (true) {
-        const resp = await fetch(
-          `https://api.github.com/repos/${GITHUB_ORG}/${repoName}/pulls?state=closed&per_page=100&page=${page}`,
-          { headers }
-        );
-        if (!resp.ok) {
-          console.warn(`Failed to fetch PRs for ${repoName}: ${resp.status} ${resp.statusText}`);
-          break;
-        }
-        const prs: PullRequestItem[] = await resp.json();
-        if (!Array.isArray(prs) || prs.length === 0) break;
-
-        const merged = prs.filter((pr) => Boolean(pr.merged_at));
-        mergedPRs.push(...merged);
-
-        if (prs.length < 100) break;
-        page++;
-      }
-      return mergedPRs;
-    };
-
-    const fetchLeaderboard = async () => {
-      if (!token) {
-        setError("GitHub token not found. Please set customFields.gitToken in docusaurus.config.js.");
-        setLoading(false);
-        return;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      try {
-        const headers: Record<string, string> = {
-          Authorization: `token ${token}`,
-          Accept: "application/vnd.github.v3+json",
-        };
-
-        const repos = await fetchAllOrgRepos(headers);
-
-        const contributorMap = new Map<string, Contributor>();
-        let totalMergedPRs = 0;
-
-        for (const repo of repos) {
-          if (repo.archived) continue;
-
-          const repoName = repo.name;
-          try {
-            const mergedPRs = await fetchMergedPRsForRepo(repoName, headers);
-            totalMergedPRs += mergedPRs.length;
-
-            for (const pr of mergedPRs) {
-              const username = pr.user.login;
-              if (!contributorMap.has(username)) {
-                contributorMap.set(username, {
-                  username,
-                  avatar: pr.user.avatar_url,
-                  profile: pr.user.html_url,
-                  points: 0,
-                  prs: 0,
-                });
-              }
-              const contributor = contributorMap.get(username)!;
-              contributor.prs++;
-              contributor.points += POINTS_PER_PR;
-            }
-          } catch (repoErr) {
-            console.warn(`Skipping repo ${repoName} due to error:`, repoErr);
-            continue;
-          }
-        }
-
-        const sortedContributors = Array.from(contributorMap.values()).sort(
-          (a, b) => b.points - a.points || b.prs - a.prs
-        );
-
-        setContributors(sortedContributors);
-        setStats({
-          flooredTotalPRs: totalMergedPRs,
-          totalContributors: sortedContributors.length,
-          flooredTotalPoints: sortedContributors.reduce((sum, c) => sum + c.points, 0),
-        });
-        setLoading(false);
-      } catch (e: any) {
-        setError(e?.message || String(e));
-        setLoading(false);
-      }
-    };
-
-    fetchLeaderboard();
-  }, [token]);
 
   const filteredContributors = contributors.filter((contributor) =>
     contributor.username.toLowerCase().includes(searchQuery.toLowerCase())
@@ -251,14 +118,13 @@ export default function LeaderBoard(): JSX.Element {
           <h1 className="title">Recode Hive Leaderboard</h1>
           <p className={`subtitle ${isDark ? "dark" : "light"}`}>
             Top contributors across the <strong>{GITHUB_ORG}</strong> organization
-          
           </p>
         </motion.div>
 
         {/* Top 3 Performers Section */}
         {!loading && !error && contributors.length > 2 && (
           <div className="top-performers-container">
-            <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>recodehive Top Performers</h2>
+            <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>RecodeHive Top Performers</h2>
             <div className="top-performers-grid">
               <TopPerformerCard contributor={contributors[1]} rank={2} />
               <TopPerformerCard contributor={contributors[0]} rank={1} />
