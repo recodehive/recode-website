@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { JSX, useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import BrowserOnly from "@docusaurus/BrowserOnly";
@@ -29,11 +29,12 @@ import {
   Calendar,
   BarChart3,
   ArrowLeft,
+  GitFork,
 } from "lucide-react";
 import NavbarIcon from "@site/src/components/navbar/NavbarIcon";
 import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
-import LeaderBoard from "./LeaderBoard/leaderboard"; // ✅ NEW IMPORT FOR LEADERBOARD COMPONENT
+import LeaderBoard from "./LeaderBoard/leaderboard";
 
 type DiscussionTab = "discussions" | "trending" | "unanswered";
 type SortOption = "most_popular" | "latest" | "oldest";
@@ -45,38 +46,11 @@ type Category =
   | "show-and-tell"
   | "general";
 
-interface LeaderboardEntry {
-  rank: number;
-  name: string;
-  username?: string;
-  avatar: string;
-  contributions: number;
-  repositories: number;
-  achievements: string[];
-  github_url: string;
-  score?: number;
-  streak?: number;
-  postManTag?: boolean;
-  web3hack?: boolean;
-  weeklyContributions?: number;
-  monthlyContributions?: number;
-}
-
-type FilterPeriod = "weekly" | "monthly" | "overall";
-
 interface DashboardStats {
   totalContributors: number;
   totalRepositories: number;
   totalStars: number;
   totalForks: number;
-  topContributors: LeaderboardEntry[];
-}
-
-interface RateLimitInfo {
-  isLimited: boolean;
-  resetTime?: number;
-  remaining?: number;
-  limit?: number;
 }
 
 const categories: Category[] = [
@@ -104,8 +78,6 @@ const DashboardContent: React.FC = () => {
   const [discussions, setDiscussions] = useState<GitHubDiscussion[]>([]);
   const [discussionsLoading, setDiscussionsLoading] = useState(true);
   const [discussionsError, setDiscussionsError] = useState<string | null>(null);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
   const [showDashboardMenu, setShowDashboardMenu] = useState(false);
 
   // Close dashboard menu when clicking outside
@@ -127,24 +99,6 @@ const DashboardContent: React.FC = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showDashboardMenu]);
-  
-  // ❌ REMOVE THE FOLLOWING STATE VARIABLES FOR THE LEADERBOARD
-  /*
-  const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>(
-    []
-  );
-  const [filteredLeaderboardData, setFilteredLeaderboardData] = useState<
-    LeaderboardEntry[]
-  >([]);
-  const [filterPeriod, setFilterPeriod] = useState<FilterPeriod>("monthly");
-  const [isLoadingLeaderboard, setIsLoadingLeaderboard] = useState(false);
-  const [leaderboardError, setLeaderboardError] = useState<string | null>(null);
-  const [rateLimitInfo, setRateLimitInfo] = useState<RateLimitInfo>({
-    isLimited: false,
-  });
-  const [retryTimer, setRetryTimer] = useState<number | null>(null);
-  */
-  
 
   useEffect(() => {
     // Set active tab based on URL hash
@@ -181,76 +135,6 @@ const DashboardContent: React.FC = () => {
       setDiscussionsLoading(false);
     }
   };
-
-  // ❌ REMOVE THE FOLLOWING useEffect HOOK FOR LEADERBOARD DATA
-  /*
-  // Fetch leaderboard data when contributors tab is active or on initial load
-  useEffect(() => {
-    if (activeTab === "contributors") {
-      fetchLeaderboardData();
-    }
-  }, [activeTab]);
-  */
-
-  // ❌ REMOVE THE FOLLOWING useEffect HOOK FOR INITIAL DEMO DATA
-  /*
-  // Load initial demo data if no data exists
-  useEffect(() => {
-    if (leaderboardData.length === 0) {
-      const initialData: LeaderboardEntry[] = [
-        {
-          rank: 1,
-          name: "sanjay-kv",
-          username: "sanjay-kv",
-          avatar: "https://avatars.githubusercontent.com/u/30715153?v=4",
-          contributions: 250,
-          repositories: 25,
-          score: 2500,
-          achievements: ["Top Contributor", "Founder", "Maintainer"],
-          github_url: "https://github.com/sanjay-kv",
-          streak: 15,
-          postManTag: false,
-          web3hack: false,
-          weeklyContributions: 35,
-          monthlyContributions: 120,
-        },
-        {
-          rank: 2,
-          name: "vansh-codes",
-          username: "vansh-codes",
-          avatar: "https://avatars.githubusercontent.com/u/114163734?v=4",
-          contributions: 180,
-          repositories: 22,
-          score: 1800,
-          achievements: ["Rising Star", "Active Contributor", "Star Contributor"],
-          github_url: "https://github.com/vansh-codes",
-          streak: 8,
-          postManTag: false,
-          web3hack: false,
-          weeklyContributions: 25,
-          monthlyContributions: 85,
-        },
-        {
-          rank: 3,
-          name: "Hemu21",
-          username: "Hemu21",
-          avatar: "https://avatars.githubusercontent.com/u/106808387?v=4",
-          contributions: 120,
-          repositories: 18,
-          score: 1200,
-          achievements: ["Power User", "Star Contributor", "Consistent"],
-          github_url: "https://github.com/Hemu21",
-          streak: 5,
-          postManTag: false,
-          web3hack: false,
-          weeklyContributions: 18,
-          monthlyContributions: 60,
-        },
-      ];
-      setLeaderboardData(initialData);
-    }
-  }, [leaderboardData.length]);
-  */
 
   // Discussion handlers
   const handleDiscussionTabChange = (tab: DiscussionTab) => {
@@ -307,7 +191,7 @@ const DashboardContent: React.FC = () => {
         // First apply tab filter
         switch (activeDiscussionTab) {
           case "trending":
-            return discussion.reactions.total_count > 5; // Show discussions with more than 5 reactions
+            return discussion.reactions.total_count > 5;
           case "unanswered":
             return discussion.comments === 0;
           default:
@@ -380,7 +264,7 @@ const DashboardContent: React.FC = () => {
               new Date(b.created_at).getTime()
             );
           default:
-            return b.reactions.total_count - a.reactions.total_count; // most_popular
+            return b.reactions.total_count - a.reactions.total_count;
         }
       });
   };
@@ -390,367 +274,11 @@ const DashboardContent: React.FC = () => {
     [discussions, activeDiscussionTab, selectedCategory, searchQuery, sortBy]
   );
 
-  // ❌ REMOVE THE FOLLOWING RATE LIMIT AND LEADERBOARD DATA FETCHING LOGIC
-  /*
-  // Rate limit timer
-  useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (rateLimitInfo.isLimited && rateLimitInfo.resetTime) {
-      interval = setInterval(() => {
-        const now = Date.now();
-        const resetTime = rateLimitInfo.resetTime * 1000;
-        const timeLeft = Math.max(0, resetTime - now);
-
-        if (timeLeft <= 0) {
-          setRateLimitInfo({ isLimited: false });
-          setRetryTimer(null);
-        } else {
-          setRetryTimer(Math.ceil(timeLeft / 1000));
-        }
-      }, 1000);
-    }
-
-    return () => {
-      if (interval) clearInterval(interval);
-    };
-  }, [rateLimitInfo]);
-
-  // Function to get GitHub headers with token if available
-  const getGitHubHeaders = () => {
-    return {
-      Accept: "application/vnd.github.v3+json",
-      "User-Agent": "RecodeHive-Dashboard/1.0",
-    };
-  };
-
-  // Function to fetch data with rate limit handling
-  const fetchWithRateLimit = async (url: string): Promise<Response> => {
-    try {
-      const response = await fetch(url, {
-        headers: getGitHubHeaders(),
-      });
-
-      // Check rate limit headers
-      const rateLimitRemaining = response.headers.get("X-RateLimit-Remaining");
-      const rateLimitReset = response.headers.get("X-RateLimit-Reset");
-      const rateLimitLimit = response.headers.get("X-RateLimit-Limit");
-
-      // Handle rate limit more gracefully
-      if (response.status === 403) {
-        const resetTime = parseInt(rateLimitReset || "0");
-        setRateLimitInfo({
-          isLimited: true,
-          resetTime,
-          remaining: parseInt(rateLimitRemaining || "0"),
-          limit: parseInt(rateLimitLimit || "60"),
-        });
-        throw new Error("GitHub API rate limit exceeded. Using cached data.");
-      }
-
-      // Update rate limit info for display
-      if (rateLimitRemaining && rateLimitLimit) {
-        setRateLimitInfo({
-          isLimited: false,
-          remaining: parseInt(rateLimitRemaining),
-          limit: parseInt(rateLimitLimit),
-        });
-      }
-
-      return response;
-    } catch (error) {
-      // More specific error handling
-      if (error.message.includes("rate limit")) {
-        throw error;
-      }
-
-      // Generic network error
-      console.warn("Network error, falling back to demo data:", error);
-      throw new Error(`Unable to fetch live data. Showing demo data instead.`);
-    }
-  };
-
-  // Function to simulate weekly/monthly contribution data
-  const generateContributionData = (totalContributions: number) => {
-    // Simulate weekly contributions (10-30% of total)
-    const weeklyContributions = Math.floor(
-      totalContributions * (0.1 + Math.random() * 0.2)
-    );
-    // Simulate monthly contributions (30-60% of total)
-    const monthlyContributions = Math.floor(
-      totalContributions * (0.3 + Math.random() * 0.3)
-    );
-
-    return {
-      weeklyContributions,
-      monthlyContributions,
-    };
-  };
-
-  // Filter leaderboard data based on selected period
-  const filterLeaderboardData = (
-    data: LeaderboardEntry[],
-    period: FilterPeriod
-  ) => {
-    let sortedData = [...data];
-
-    switch (period) {
-      case "weekly":
-        sortedData.sort(
-          (a, b) => (b.weeklyContributions || 0) - (a.weeklyContributions || 0)
-        );
-        break;
-      case "monthly":
-        sortedData.sort(
-          (a, b) =>
-            (b.monthlyContributions || 0) - (a.monthlyContributions || 0)
-        );
-        break;
-      case "overall":
-      default:
-        sortedData.sort((a, b) => b.contributions - a.contributions);
-        break;
-    }
-
-    // Update ranks based on filtered sorting
-    return sortedData.map((item, index) => ({
-      ...item,
-      rank: index + 1,
-    }));
-  };
-
-  // Update filtered data when period or data changes
-  useEffect(() => {
-    const filtered = filterLeaderboardData(leaderboardData, filterPeriod);
-    setFilteredLeaderboardData(filtered);
-  }, [leaderboardData, filterPeriod]);
-
-  const fetchLeaderboardData = async () => {
-    if (rateLimitInfo.isLimited) {
-      setLeaderboardError(
-        "Rate limit exceeded. Please wait before trying again."
-      );
-      return;
-    }
-
-    setIsLoadingLeaderboard(true);
-    setLeaderboardError(null);
-
-    try {
-      console.log('Fetching leaderboard data from RecodeHive GitHub API...');
-
-      // Fetch all repositories from RecodeHive organization
-      const reposResponse = await fetch('https://api.github.com/orgs/recodehive/repos?type=public&per_page=100');
-
-      if (!reposResponse.ok) {
-        if (reposResponse.status === 403) {
-          throw new Error('GitHub API rate limit exceeded');
-        }
-        throw new Error(`GitHub API request failed: ${reposResponse.status}`);
-      }
-
-      const repos = await reposResponse.json();
-
-      if (!Array.isArray(repos)) {
-        throw new Error("Invalid GitHub API response format");
-      }
-
-      // Collect all contributors from all repositories (limit to avoid rate limits)
-      const contributorsMap = new Map<
-        string,
-        {
-          login: string;
-          avatar_url: string;
-          html_url: string;
-          contributions: number;
-          repositories: number;
-          weeklyContributions: number;
-          monthlyContributions: number;
-        }
-      >();
-
-      // Process only top repositories to avoid rate limits
-      const topRepos = repos
-        .sort((a, b) => b.stargazers_count - a.stargazers_count)
-        .slice(0, 10); // Limit to top 10 repos to reduce API calls
-
-      // Fetch contributors for each repository with delay to avoid rate limits
-      for (let i = 0; i < topRepos.length; i++) {
-        const repo = topRepos[i];
-        try {
-          // Add delay between requests to avoid hitting rate limits
-          if (i > 0) {
-            await new Promise((resolve) => setTimeout(resolve, 100));
-          }
-
-          const contributorsResponse = await fetchWithRateLimit(
-            `https://api.github.com/repos/${repo.full_name}/contributors?per_page=100`
-          );
-
-          if (contributorsResponse.ok) {
-            const contributors = await contributorsResponse.json();
-
-            if (Array.isArray(contributors)) {
-              contributors.forEach((contributor) => {
-                if (contributor.login && contributor.type === "User") {
-                  const existing = contributorsMap.get(contributor.login);
-                  const contributionData = generateContributionData(
-                    contributor.contributions
-                  );
-
-                  if (existing) {
-                    existing.contributions += contributor.contributions;
-                    existing.repositories += 1;
-                    existing.weeklyContributions +=
-                      contributionData.weeklyContributions;
-                    existing.monthlyContributions +=
-                      contributionData.monthlyContributions;
-                  } else {
-                    contributorsMap.set(contributor.login, {
-                      login: contributor.login,
-                      avatar_url: contributor.avatar_url,
-                      html_url: contributor.html_url,
-                      contributions: contributor.contributions,
-                      repositories: 1,
-                      weeklyContributions: contributionData.weeklyContributions,
-                      monthlyContributions:
-                        contributionData.monthlyContributions,
-                    });
-                  }
-                }
-              });
-            }
-          }
-        } catch (error) {
-          console.warn(`Error fetching contributors for ${repo.name}:`, error);
-          if (error.message.includes("rate limit")) {
-            // Stop processing if we hit rate limit
-            break;
-          }
-        }
-      }
-
-      // Transform contributors data to match our LeaderboardEntry interface
-      const transformedData: LeaderboardEntry[] = Array.from(
-        contributorsMap.values()
-      )
-        .filter((contributor) => contributor.contributions > 0)
-        .map((contributor, index) => {
-          const score = contributor.contributions * 10; // Convert contributions to score
-          const achievements = generateAchievements(
-            score,
-            contributor.contributions
-          );
-
-          return {
-            rank: index + 1,
-            name: contributor.login,
-            username: contributor.login,
-            avatar: contributor.avatar_url,
-            contributions: contributor.contributions,
-            repositories: contributor.repositories,
-            score,
-            achievements,
-            github_url: contributor.html_url,
-            streak: Math.floor(Math.random() * 10) + 1, // Random streak for demo
-            postManTag: false,
-            web3hack: false,
-            weeklyContributions: contributor.weeklyContributions,
-            monthlyContributions: contributor.monthlyContributions,
-          };
-        })
-        .sort((a, b) => b.contributions - a.contributions) // Sort by contributions descending
-        .map((item, index) => ({ ...item, rank: index + 1 })); // Update ranks after sorting
-
-      setLeaderboardData(transformedData);
-    } catch (error) {
-      console.error("Error fetching RecodeHive contributors data:", error);
-      setLeaderboardError(error.message);
-
-      // Load fallback demo data
-      console.warn("Using fallback leaderboard data due to GitHub API limitations");
-      setLeaderboardError("GitHub API rate limit reached. Showing demo data.");
-      const demoData: LeaderboardEntry[] = [
-        {
-          rank: 1,
-          name: "sanjay-kv",
-          username: "sanjay-kv",
-          avatar: "https://avatars.githubusercontent.com/u/30715153?v=4",
-          contributions: 250,
-          repositories: 25,
-          score: 2500,
-          achievements: ["Top Contributor", "Founder", "Maintainer"],
-          github_url: "https://github.com/sanjay-kv",
-          streak: 15,
-          postManTag: false,
-          web3hack: false,
-          weeklyContributions: 35,
-          monthlyContributions: 120,
-        },
-        {
-          rank: 2,
-          name: "vansh-codes",
-          username: "vansh-codes",
-          avatar: "https://avatars.githubusercontent.com/u/114163734?v=4",
-          contributions: 180,
-          repositories: 22,
-          score: 1800,
-          achievements: ["Rising Star", "Active Contributor", "Star Contributor"],
-          github_url: "https://github.com/vansh-codes",
-          streak: 8,
-          postManTag: false,
-          web3hack: false,
-          weeklyContributions: 25,
-          monthlyContributions: 85,
-        },
-        {
-          rank: 3,
-          name: "Hemu21",
-          username: "Hemu21",
-          avatar: "https://avatars.githubusercontent.com/u/106808387?v=4",
-          contributions: 120,
-          repositories: 18,
-          score: 1200,
-          achievements: ["Power User", "Star Contributor", "Consistent"],
-          github_url: "https://github.com/Hemu21",
-          streak: 5,
-          postManTag: false,
-          web3hack: false,
-          weeklyContributions: 18,
-          monthlyContributions: 60,
-        },
-      ];
-      setLeaderboardData(demoData);
-    } finally {
-      setIsLoadingLeaderboard(false);
-    }
-  };
-
-  const generateAchievements = (
-    score: number,
-    contributions: number
-  ): string[] => {
-    const achievements: string[] = [];
-    if (score >= 5000) achievements.push("Elite Contributor");
-    if (score >= 3000) achievements.push("Master Contributor");
-    if (score >= 1000) achievements.push("Advanced Contributor");
-    if (score >= 500) achievements.push("Active Contributor");
-    if (score >= 100) achievements.push("Rising Star");
-    if (contributions >= 100) achievements.push("Century Club");
-    if (contributions >= 50) achievements.push("Half Century");
-    if (contributions >= 25) achievements.push("Quick Contributor");
-    if (contributions >= 10) achievements.push("Consistent");
-    if (score >= 7000) achievements.push("Legend");
-    if (contributions >= 150) achievements.push("PR Master");
-    return achievements.slice(0, 3);
-  };
-  */
-
   const handleTabChange = (
     tab: "home" | "discuss" | "giveaway" | "contributors"
   ) => {
     setActiveTab(tab);
-    setIsMobileSidebarOpen(false); // Close mobile sidebar
-    setShowDashboardMenu(false); // Close dashboard menu
+    setShowDashboardMenu(false);
     if (tab === "discuss") {
       history.push("#discuss");
       window.scrollTo(0, 0);
@@ -764,116 +292,6 @@ const DashboardContent: React.FC = () => {
     }
   };
 
-  // ❌ REMOVE THE FOLLOWING FILTER FUNCTIONS FOR THE LEADERBOARD
-  /*
-  // Filter functions
-  const handleFilterChange = (period: FilterPeriod) => {
-    setFilterPeriod(period);
-  };
-
-  const getContributionCount = (
-    entry: LeaderboardEntry,
-    period: FilterPeriod
-  ) => {
-    switch (period) {
-      case "weekly":
-        return entry.weeklyContributions || 0;
-      case "monthly":
-        return entry.monthlyContributions || 0;
-      case "overall":
-      default:
-        return entry.contributions;
-    }
-  };
-
-  const FilterButtons = () => (
-    <motion.div
-      className="leaderboard-filters"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
-    >
-      <button
-        className={`filter-button ${
-          filterPeriod === "weekly" ? "active" : ""
-        } ${
-          isLoadingLeaderboard || rateLimitInfo.isLimited
-            ? "filter-loading"
-            : ""
-        }`}
-        onClick={() => handleFilterChange("weekly")}
-        disabled={isLoadingLeaderboard || rateLimitInfo.isLimited}
-      >
-        <Calendar size={16} />
-        Weekly
-      </button>
-      <button
-        className={`filter-button ${
-          filterPeriod === "monthly" ? "active" : ""
-        } ${
-          isLoadingLeaderboard || rateLimitInfo.isLimited
-            ? "filter-loading"
-            : ""
-        }`}
-        onClick={() => handleFilterChange("monthly")}
-        disabled={isLoadingLeaderboard || rateLimitInfo.isLimited}
-      >
-        <BarChart3 size={16} />
-        Monthly
-      </button>
-      <button
-        className={`filter-button ${
-          filterPeriod === "overall" ? "active" : ""
-        } ${
-          isLoadingLeaderboard || rateLimitInfo.isLimited
-            ? "filter-loading"
-            : ""
-        }`}
-        onClick={() => handleFilterChange("overall")}
-        disabled={isLoadingLeaderboard || rateLimitInfo.isLimited}
-      >
-        <Trophy size={16} />
-        Overall
-      </button>
-    </motion.div>
-  );
-
-  const RateLimitWarning = () =>
-    rateLimitInfo.isLimited ? (
-      <motion.div
-        className="rate-limit-warning"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-      >
-        <h4>GitHub API Rate Limit Reached</h4>
-        <p>
-          We've temporarily reached the GitHub API rate limit. The contributors page
-          will automatically refresh when the limit resets.
-        </p>
-        {retryTimer && (
-          <div className="rate-limit-timer">
-            Retry in: {Math.floor(retryTimer / 60)}:
-            {(retryTimer % 60).toString().padStart(2, "0")}
-          </div>
-        )}
-
-      </motion.div>
-    ) : rateLimitInfo.remaining && rateLimitInfo.remaining < 20 ? (
-      <motion.div
-        className="rate-limit-warning"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        <h4>API Rate Limit Low</h4>
-        <p>
-          GitHub API requests remaining: {rateLimitInfo.remaining}/
-          {rateLimitInfo.limit}
-        </p>
-      </motion.div>
-    ) : null;
-  */
-
-  // Rest of your component code remains the same...
   const {
     githubStarCount,
     githubContributorsCount,
@@ -888,7 +306,6 @@ const DashboardContent: React.FC = () => {
     totalRepositories: 0,
     totalStars: 0,
     totalForks: 0,
-    topContributors: [], // You can keep this as an empty array or an initial state if needed
   });
 
   useEffect(() => {
@@ -897,7 +314,6 @@ const DashboardContent: React.FC = () => {
       totalRepositories: githubReposCount,
       totalStars: githubStarCount,
       totalForks: githubForksCount,
-      topContributors: [], // This will be handled by the new LeaderBoard component
     });
   }, [
     githubContributorsCount,
@@ -907,7 +323,7 @@ const DashboardContent: React.FC = () => {
   ]);
 
   const StatCard: React.FC<{
-    icon: string;
+    icon: React.ReactNode;
     title: string;
     value: number;
     valueText: string;
@@ -926,7 +342,7 @@ const DashboardContent: React.FC = () => {
         <h3 className="dashboard-stat-title">{title}</h3>
         <div className="dashboard-stat-value">
           {loading ? (
-            <div className="loading-spinner">Loading...</div>
+            <div className="loading-spinner"></div>
           ) : (
             <SlotCounter
               value={valueText}
@@ -960,59 +376,59 @@ const DashboardContent: React.FC = () => {
               onClick={() => setShowDashboardMenu(false)}
             />
           )}
-          <div className="dashboard-menu-header">
-            <h3>Dashboard Menu</h3>
-            <button
-              className="close-menu-btn"
-              onClick={() => setShowDashboardMenu(false)}
-              aria-label="Close menu"
-            >
-              ✕
-            </button>
-          </div>
-          
-
-          {/* Dashboard navigation items */}
-          <div className="dashboard-menu-items">
-            <div
-              className={`menu-item ${activeTab === "home" ? "active" : ""}`}
-              onClick={() => {
-                handleTabChange("home");
-                setShowDashboardMenu(false);
-              }}
-            >
-              <span className="menu-icon"><Home size={18} /></span> Home
+          <div>
+            <div className="dashboard-menu-header">
+              <h3>Dashboard Menu</h3>
+              <button
+                className="close-menu-btn"
+                onClick={() => setShowDashboardMenu(false)}
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
             </div>
-            <div
-              className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
-              onClick={() => {
-                handleTabChange("discuss");
-                setShowDashboardMenu(false);
-              }}
-            >
-              <span className="menu-icon"><MessageCircle size={18} /></span> Discussions
-            </div>
-            <div
-              className={`menu-item ${activeTab === "contributors" ? "active" : ""}`}
-              onClick={() => {
-                handleTabChange("contributors");
-                setShowDashboardMenu(false);
-              }}
-            >
-              <span className="menu-icon"><Users size={18} /></span> Contributors
-            </div>
-            <div
-              className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
-              onClick={() => {
-                handleTabChange("giveaway");
-                setShowDashboardMenu(false);
-              }}
-            >
-              <span className="menu-icon"><Gift size={18} /></span> Giveaways
+            
+            {/* Dashboard navigation items */}
+            <div className="dashboard-menu-items">
+              <div
+                className={`menu-item ${activeTab === "home" ? "active" : ""}`}
+                onClick={() => {
+                  handleTabChange("home");
+                  setShowDashboardMenu(false);
+                }}
+              >
+                <span className="menu-icon"><Home size={18} /></span> Home
+              </div>
+              <div
+                className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
+                onClick={() => {
+                  handleTabChange("discuss");
+                  setShowDashboardMenu(false);
+                }}
+              >
+                <span className="menu-icon"><MessageCircle size={18} /></span> Discussions
+              </div>
+              <div
+                className={`menu-item ${activeTab === "contributors" ? "active" : ""}`}
+                onClick={() => {
+                  handleTabChange("contributors");
+                  setShowDashboardMenu(false);
+                }}
+              >
+                <span className="menu-icon"><Users size={18} /></span> LeaderBoard
+              </div>
+              <div
+                className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
+                onClick={() => {
+                  handleTabChange("giveaway");
+                  setShowDashboardMenu(false);
+                }}
+              >
+                <span className="menu-icon"><Gift size={18} /></span> Giveaways
+              </div>
             </div>
           </div>
         </div>
-
 
       <div className="dashboard-sidebar">
         <div className="sidebar-header">
@@ -1039,7 +455,8 @@ const DashboardContent: React.FC = () => {
           />
           <NavbarIcon
             icon={<Users size={20} />}
-            text="Contributors"
+            text="LeaderBoard
+"
             active={activeTab === "contributors"}
             onClick={() => handleTabChange("contributors")}
           />
@@ -1077,36 +494,36 @@ const DashboardContent: React.FC = () => {
                   title="Total Stars"
                   value={dashboardStats.totalStars}
                   valueText={
-                    useCommunityStatsContext().githubStarCountText || "0"
+                    useCommunityStatsContext().githubStarCountText || "937"
                   }
-                  description="Stars across all our public repositories."
+                  description="Stars across all our public repositories"
                 />
                 <StatCard
                   icon={<Users size={24} />}
-                  title="Total Contributors"
+                  title="Contributors"
                   value={dashboardStats.totalContributors}
                   valueText={
-                    useCommunityStatsContext().githubContributorsCountText || "0"
+                    useCommunityStatsContext().githubContributorsCountText || "444"
                   }
-                  description="Users who have contributed to our repos."
-                />
-                <StatCard
-                  icon={<Trophy size={24} />}
-                  title="Total Repositories"
-                  value={dashboardStats.totalRepositories}
-                  valueText={
-                    useCommunityStatsContext().githubReposCountText || "0"
-                  }
-                  description="Public repositories in our organization."
+                  description="Amazing community members"
                 />
                 <StatCard
                   icon={<BarChart3 size={24} />}
-                  title="Total Forks"
+                  title="Repositories"
+                  value={dashboardStats.totalRepositories}
+                  valueText={
+                    useCommunityStatsContext().githubReposCountText || "10"
+                  }
+                  description="Open source projects"
+                />
+                <StatCard
+                  icon={<GitFork size={24} />}
+                  title="Forks"
                   value={dashboardStats.totalForks}
                   valueText={
-                    useCommunityStatsContext().githubForksCountText || "0"
+                    useCommunityStatsContext().githubForksCountText || "1.03K"
                   }
-                  description="Total forks of all our repositories."
+                  description="Community contributions"
                 />
               </div>
             </section>
@@ -1216,7 +633,7 @@ const DashboardContent: React.FC = () => {
           </motion.div>
         )}
 
-        {/* ✅ REPLACED CONTRIBUTORS SECTION WITH THE NEW LEADERBOARD COMPONENT */}
+        {/* Contributors section with new LeaderBoard component */}
         {activeTab === "contributors" && (
           <motion.div
             className="dashboard-contributors"
