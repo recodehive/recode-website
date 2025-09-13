@@ -1,14 +1,20 @@
 import React, { JSX, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { FaTrophy, FaStar, FaCode, FaUsers, FaGithub, FaSearch, FaBook, FaBookOpen } from "react-icons/fa";
+import {
+  FaTrophy,
+  FaStar,
+  FaCode,
+  FaUsers,
+  FaGithub,
+  FaSearch,
+} from "react-icons/fa";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-// import { useTheme } from "../ThemeContext"; // Theme context
-// import { useNavigate } from 'react-router-dom'
+import { useColorMode } from "@docusaurus/theme-common";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext"; // ✅ New import
 
 const GITHUB_REPO = "recodehive/recode-website"; // Change to your repo
-const token = process.env.GIT_TOKEN; // Add your GitHub token here or use environment variables
-
-
+// ❌ Remove this line, it will cause the "process is not defined" error
+// const token = process.env.DOCUSAURUS_GIT_TOKEN;
 
 // Points configuration for different PR levels
 const POINTS: Record<string, number> = {
@@ -38,459 +44,507 @@ interface BadgeProps {
   color: { background: string; color: string };
 }
 
-interface SkeletonLoaderProps {
-  isDark: boolean;
+interface User {
+  login: string;
+  avatar_url: string;
+  html_url: string;
 }
 
-// Badge component for PR counts
-const Badge: React.FC<BadgeProps> = ({ count, label, color }) => (
-  <div className="badge" style={color}>
-    <FaCode style={{ marginRight: 6, fontSize: 12 }} />
-    <span>
+interface PullRequest {
+  user: User;
+  labels: { name: string }[];
+}
+
+function Badge({ count, label, color }: BadgeProps) {
+  return (
+    <span
+      style={{
+        fontSize: 12,
+        fontWeight: 600,
+        padding: "4px 8px",
+        borderRadius: "9999px",
+        marginRight: 8,
+        ...color,
+      }}
+    >
       {count} {label}
     </span>
-    <style>{`
-      .badge {
-        display: flex;
-        align-items: center;
-        padding: 4px 12px;
-        border-radius: 9999px;
-        font-size: 13px;
-        font-weight: 500;
-        background: rgba(0,0,0,0.04);
-      }
-    `}</style>
-  </div>
-);
-
-// Skeleton Loader Component
-const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({ isDark }) => (
-  <div className="skeleton-loader" style={{ background: isDark ? '#23272f' : '#fff', border: `1px solid ${isDark ? '#444' : '#eee'}` }}>
-    <div className="skeleton-header">
-      <div>#</div>
-      <div>Contributor</div>
-      <div>Contributions</div>
-    </div>
-    <div>
-      {[...Array(10)].map((_, i) => (
-        <div key={i} className="skeleton-row">
-          <div className="skeleton-avatar" />
-          <div className="skeleton-avatar" style={{ width: 40, height: 40 }} />
-          <div className="skeleton-info">
-            <div className="skeleton-bar" style={{ width: 96 }} />
-            <div className="skeleton-badges">
-              <div className="skeleton-badge" />
-              <div className="skeleton-badge" />
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-    <style jsx>{`
-      .skeleton-loader {
-        border-radius: 16px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-        overflow: hidden;
-        margin-bottom: 24px;
-      }
-      .skeleton-header {
-        display: flex;
-        justify-content: space-between;
-        padding: 16px;
-        font-size: 15px;
-        font-weight: 500;
-        background: #f6f6f6;
-        border-bottom: 1px solid #eee;
-      }
-      .skeleton-row {
-        display: flex;
-        align-items: center;
-        padding: 16px;
-        gap: 16px;
-      }
-      .skeleton-avatar {
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        background: #e5e7eb;
-        animation: pulse 1.5s infinite;
-      }
-      .skeleton-info {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .skeleton-bar {
-        height: 16px;
-        border-radius: 8px;
-        background: #e5e7eb;
-        animation: pulse 1.5s infinite;
-      }
-      .skeleton-badges {
-        display: flex;
-        gap: 8px;
-      }
-      .skeleton-badge {
-        width: 48px;
-        height: 24px;
-        border-radius: 9999px;
-        background: #e5e7eb;
-        animation: pulse 1.5s infinite;
-      }
-      @keyframes pulse {
-        0% { opacity: 1; }
-        50% { opacity: 0.5; }
-        100% { opacity: 1; }
-      }
-    `}</style>
-  </div>
-);
+  );
+}
 
 export default function LeaderBoard(): JSX.Element {
+  // ✅ Use this hook to get the custom fields from docusaurus.config.ts
+  const {
+    siteConfig: { customFields },
+  } = useDocusaurusContext();
+  const token = customFields.gitToken; // ✅ Access the token from customFields
+
+  const { colorMode } = useColorMode();
+  const isDark = colorMode === "dark";
+
   const [contributors, setContributors] = useState<Contributor[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [stats, setStats] = useState<Stats>({
-    flooredTotalPRs: 0,
-    totalContributors: 0,
-    flooredTotalPoints: 0,
-  });
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const { theme } = useTheme();
-  const isDark = theme === 'dark';
-  const navigate = useNavigate()
+  const [stats, setStats] = useState<Stats | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
-    const fetchContributorsWithPoints = async (): Promise<void> => {
+    const fetchLeaderboard = async () => {
+      if (!token) {
+        setError("GitHub token not found. Please set DOCUSAURUS_GIT_TOKEN.");
+        setLoading(false);
+        return;
+      }
+
+      setLoading(true);
+      setError(null);
+
       try {
-        let contributorsMap: Record<string, Contributor> = {};
-        let page = 1;
-        const MAX_PAGES = 10;
-        let keepFetching = true;
+        const headers = {
+          Authorization: `token ${token}`,
+        };
 
-        while (keepFetching && page <= MAX_PAGES) {
-          const res = await fetch(
-            `https://api.github.com/repos/${GITHUB_REPO}/pulls?state=closed&per_page=100&page=${page}`,
-            {
-              headers: {
-                Accept: "application/vnd.github.v3+json",
-                ...(token ? { Authorization: `Bearer ${token}` } : {}),
-              },
+        const fetchPRs = async (state: "open" | "closed") => {
+          let allPRs: PullRequest[] = [];
+          let page = 1;
+          let hasNextPage = true;
+
+          while (hasNextPage) {
+            const response = await fetch(
+              `https://api.github.com/repos/${GITHUB_REPO}/pulls?state=${state}&per_page=100&page=${page}`,
+              { headers }
+            );
+
+            if (!response.ok) {
+              throw new Error(
+                `Failed to fetch pull requests: ${response.statusText}`
+              );
             }
-          );
-          const prs = await res.json();
 
-          if (!Array.isArray(prs) || prs.length === 0 || (prs.length === 1 && prs[0].message)) {
-            keepFetching = false;
-            break;
+            const prs: PullRequest[] = await response.json();
+            allPRs = allPRs.concat(prs);
+            hasNextPage = prs.length === 100;
+            page++;
+          }
+          return allPRs;
+        };
+
+        const [openPRs, closedPRs] = await Promise.all([
+          fetchPRs("open"),
+          fetchPRs("closed"),
+        ]);
+
+        const allPRs = [...openPRs, ...closedPRs];
+
+        const contributorMap = new Map<string, Contributor>();
+
+        for (const pr of allPRs) {
+          const username = pr.user.login;
+          if (!contributorMap.has(username)) {
+            contributorMap.set(username, {
+              username,
+              avatar: pr.user.avatar_url,
+              profile: pr.user.html_url,
+              points: 0,
+              prs: 0,
+            });
           }
 
-          prs.forEach((pr: any) => {
-            if (!pr.merged_at) return;
-            const labels = pr.labels.map((l: any) => l.name.toLowerCase());
-            if (!labels.includes("gssoc'25")) return;
+          const contributor = contributorMap.get(username)!;
+          contributor.prs++;
 
-            const author = pr.user.login;
-            let points = 0;
-            labels.forEach((label: string) => {
-              if (POINTS[label]) points += POINTS[label];
-            });
-
-            if (!contributorsMap[author]) {
-              contributorsMap[author] = {
-                username: author,
-                avatar: pr.user.avatar_url,
-                profile: pr.user.html_url,
-                points: 0,
-                prs: 0,
-              };
-            }
-
-            contributorsMap[author].points += points;
-            contributorsMap[author].prs += 1;
-          });
-
-          page += 1;
+          let prPoints = 0;
+          const label = pr.labels.find((l) => l.name in POINTS)?.name;
+          if (label) {
+            prPoints = POINTS[label];
+          }
+          contributor.points += prPoints;
         }
 
-        setContributors(
-          Object.values(contributorsMap).sort((a, b) => b.points - a.points)
+        const sortedContributors = Array.from(contributorMap.values()).sort(
+          (a, b) => b.points - a.points || b.prs - a.prs
         );
-      } catch (error) {
-        console.error("Error fetching contributors:", error);
-      } finally {
+
+        setContributors(sortedContributors);
+        setStats({
+          flooredTotalPRs: allPRs.length,
+          totalContributors: sortedContributors.length,
+          flooredTotalPoints: sortedContributors.reduce(
+            (sum, c) => sum + c.points,
+            0
+          ),
+        });
+        setLoading(false);
+      } catch (e: any) {
+        setError(e.message);
         setLoading(false);
       }
     };
 
-    fetchContributorsWithPoints();
-  }, []);
+    fetchLeaderboard();
+  }, [token]); // The token is now a dependency of the useEffect hook
 
-  useEffect(() => {
-    if (contributors.length > 0) {
-      const totalPRs = contributors.reduce((sum, c) => sum + Number(c.prs), 0);
-      const totalPoints = contributors.reduce(
-        (sum, c) => sum + Number(c.points),
-        0
-      );
-
-      const flooredTotalPRs = Math.floor(totalPRs / 10) * 10;
-      const flooredTotalPoints = Math.floor(totalPoints / 10) * 10;
-      const flooredContributorsCount =
-        Math.floor(contributors.length / 10) * 10;
-
-      setStats({
-        flooredTotalPRs,
-        totalContributors: flooredContributorsCount,
-        flooredTotalPoints,
-      });
-    }
-  }, [contributors]);
-
-  // Filter contributors by search term (username)
-  const filteredContributors = contributors.filter((c) =>
-    c.username.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredContributors = contributors.filter((contributor) =>
+    contributor.username.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  // Pagination variables and states
-  const PAGE_SIZE = 10;
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  const totalPages = Math.ceil(filteredContributors.length / itemsPerPage);
+  const indexOfLast = currentPage * itemsPerPage;
+  const indexOfFirst = indexOfLast - itemsPerPage;
+  const currentItems = filteredContributors.slice(indexOfFirst, indexOfLast);
 
-  // Calculate which contributors to show on current page
-  const indexOfLast = currentPage * PAGE_SIZE;
-  const indexOfFirst = indexOfLast - PAGE_SIZE;
-  const currentContributors = filteredContributors.slice(indexOfFirst, indexOfLast);
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  const totalPages = Math.ceil(filteredContributors.length / PAGE_SIZE);
-
-  // Gradient backgrounds from Footer.jsx theme
-  const gradientBg = isDark
-    ? "bg-gradient-to-br from-dark-bg-primary to-dark-bg-secondary"
-    : "bg-gradient-to-br from-blue-50 to-indigo-50 backdrop-blur-xl";
-
-  const cardBg = isDark
-    ? "bg-dark-bg-tertiary border-dark-border"
-    : "bg-light-bg-tertiary border-light-border";
-
-  // Button styles
-  const buttonStyle: React.CSSProperties = {
-    padding: '8px 16px',
-    borderRadius: '8px',
-    background: isDark ? '#23272f' : '#e0e7ff',
-    color: isDark ? '#a78bfa' : '#3730a3',
-    border: 'none',
-    fontWeight: '500',
-    cursor: 'pointer',
-    margin: '0 4px',
-    opacity: 1,
-    transition: 'opacity 0.2s',
-  };
-  const buttonActiveStyle: React.CSSProperties = {
-    ...buttonStyle,
-    background: isDark ? '#3b82f6' : '#2563eb',
-    color: '#fff',
-  };
-  const buttonDisabledStyle: React.CSSProperties = {
-    ...buttonStyle,
-    opacity: 0.5,
-    cursor: 'not-allowed',
+  const renderPaginationButtons = () => {
+    const pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(
+        <button
+          key={i}
+          onClick={() => paginate(i)}
+          className={`px-3 py-1 rounded-full mx-1 ${
+            currentPage === i
+              ? isDark
+                ? "bg-gray-700 text-white"
+                : "bg-gray-300 text-gray-800"
+              : isDark
+              ? "bg-gray-800 hover:bg-gray-700 text-gray-300"
+              : "bg-gray-100 hover:bg-gray-200 text-gray-700"
+          }`}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pages;
   };
 
   return (
-    <div style={{ background: isDark ? '#23272f' : '#f6f6f6', minHeight: '100vh', padding: '32px 8px' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        {/* Header */}
-        <motion.div
-          style={{ textAlign: 'center', marginBottom: 48, padding: '0 8px' }}
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 style={{ fontSize: 32, fontWeight: 700, marginBottom: 12, color: '#6366f1' }}>
-            GSSoC'25 Leaderboard
+    <div
+      style={{
+        padding: "40px 20px",
+        fontFamily: "'Inter', sans-serif",
+        color: isDark ? "#f3f4f6" : "#1f2937",
+      }}
+    >
+      <div
+        style={{
+          maxWidth: 960,
+          margin: "0 auto",
+          background: isDark ? "#1f2937" : "#f9fafb",
+          boxShadow: isDark
+            ? "0 4px 6px rgba(0,0,0,0.2)"
+            : "0 4px 6px rgba(0,0,0,0.1)",
+          borderRadius: 8,
+          padding: "24px",
+        }}
+      >
+        <div style={{ textAlign: "center", marginBottom: 24 }}>
+          <h1
+            style={{
+              fontSize: 32,
+              fontWeight: 800,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: 8,
+            }}
+          >
+            <FaTrophy style={{ marginRight: 16, color: "#f59e0b" }} />
+            Recode Hive Leaderboard
           </h1>
-          <p style={{ fontSize: 17, maxWidth: 600, margin: '0 auto', color: isDark ? '#b3b3b3' : '#555', lineHeight: 1.6 }}>
-            Celebrating the amazing contributions from GSSoC'25 participants. Join us in building something incredible together!
-          </p>
-        </motion.div>
-
-        {/* Search Bar */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 24 }}>
-          <div style={{ position: 'relative', width: '100%', maxWidth: 320 }}>
-            <input
-              type="text"
-              placeholder="Search contributor..."
-              value={searchTerm}
-              onChange={(e) => {
-                setSearchTerm(e.target.value);
-                setCurrentPage(1);
-              }}
+          <p style={{ color: isDark ? "#9ca3af" : "#6b7280" }}>
+            Top contributors to the open-source project
+            <a
+              href={`https://github.com/${GITHUB_REPO}`}
+              target="_blank"
+              rel="noreferrer"
               style={{
-                width: '100%',
-                padding: '8px 16px 8px 36px',
-                borderRadius: 8,
-                border: `1px solid ${isDark ? '#444' : '#ddd'}`,
-                background: isDark ? '#23272f' : '#fff',
-                color: isDark ? '#fff' : '#222',
-                fontSize: 15,
-                outline: 'none',
+                marginLeft: 8,
+                color: isDark ? "#dbeafe" : "#2563eb",
+                textDecoration: "underline",
               }}
-            />
-            <FaSearch style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: isDark ? '#b3b3b3' : '#aaa' }} />
-          </div>
+            >
+              <FaGithub style={{ marginLeft: 4 }} />
+            </a>
+          </p>
         </div>
 
-        {/* Stats Cards */}
-        <div style={{ display: 'flex', gap: 18, marginBottom: 48, flexWrap: 'wrap' }}>
-          <div style={{ flex: 1, minWidth: 220, padding: 24, borderRadius: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: `1px solid ${isDark ? '#444' : '#eee'}`, background: isDark ? 'linear-gradient(135deg,#23272f,#1a1d23)' : 'linear-gradient(135deg,#e0e7ff,#f3f4f6)' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{ padding: 12, borderRadius: 12, background: isDark ? 'rgba(59,130,246,0.2)' : '#dbeafe', color: isDark ? '#60a5fa' : '#2563eb', marginRight: 16 }}>
-                <FaUsers style={{ fontSize: 22 }} />
+        {stats && (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: 24,
+              marginBottom: 32,
+            }}
+          >
+            <div
+              style={{
+                background: isDark ? "#374151" : "#fff",
+                borderRadius: 8,
+                padding: 24,
+                textAlign: "center",
+                boxShadow: isDark ? "none" : "0 2px 4px rgba(0,0,0,0.05)",
+              }}
+            >
+              <FaCode style={{ fontSize: 28, color: "#a78bfa" }} />
+              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>
+                {stats.flooredTotalPRs}
               </div>
-              <div>
-                <p style={{ fontSize: 14, color: isDark ? '#b3b3b3' : '#555' }}>Contributors</p>
-                <p style={{ fontSize: 22, fontWeight: 700, color: isDark ? '#fff' : '#222' }}>{loading ? '...' : stats.totalContributors}+</p>
-              </div>
-            </div>
-          </div>
-          <div style={{ flex: 1, minWidth: 220, padding: 24, borderRadius: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: `1px solid ${isDark ? '#444' : '#eee'}`, background: isDark ? 'linear-gradient(135deg,#23272f,#1a1d23)' : 'linear-gradient(135deg,#e0e7ff,#f3f4f6)' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{ padding: 12, borderRadius: 12, background: isDark ? 'rgba(16,185,129,0.2)' : '#bbf7d0', color: isDark ? '#34d399' : '#059669', marginRight: 16 }}>
-                <FaCode style={{ fontSize: 22 }} />
-              </div>
-              <div>
-                <p style={{ fontSize: 14, color: isDark ? '#b3b3b3' : '#555' }}>Pull Requests</p>
-                <p style={{ fontSize: 22, fontWeight: 700, color: isDark ? '#fff' : '#222' }}>{loading ? '...' : stats.flooredTotalPRs}+</p>
-              </div>
-            </div>
-          </div>
-          <div style={{ flex: 1, minWidth: 220, padding: 24, borderRadius: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: `1px solid ${isDark ? '#444' : '#eee'}`, background: isDark ? 'linear-gradient(135deg,#23272f,#1a1d23)' : 'linear-gradient(135deg,#e0e7ff,#f3f4f6)' }}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div style={{ padding: 12, borderRadius: 12, background: isDark ? 'rgba(139,92,246,0.2)' : '#ede9fe', color: isDark ? '#a78bfa' : '#7c3aed', marginRight: 16 }}>
-                <FaStar style={{ fontSize: 22 }} />
-              </div>
-              <div>
-                <p style={{ fontSize: 14, color: isDark ? '#b3b3b3' : '#555' }}>Total Points</p>
-                <p style={{ fontSize: 22, fontWeight: 700, color: isDark ? '#fff' : '#222' }}>{loading ? '...' : stats.flooredTotalPoints}+</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {loading ? (
-          <SkeletonLoader isDark={isDark} />
-        ) : (
-          <div style={{ borderRadius: 16, boxShadow: '0 2px 8px rgba(0,0,0,0.04)', border: `1px solid ${isDark ? '#444' : '#eee'}`, overflow: 'hidden', margin: '0 8px' }}>
-            {/* Contributors List */}
-            <div>
-              {currentContributors.length === 0 ? (
-                <div style={{ textAlign: 'center', padding: '32px 0', color: isDark ? '#b3b3b3' : '#555' }}>
-                  No contributors found.
-                </div>
-              ) : (
-                currentContributors.map((contributor, index) => (
-                  <motion.div
-                    key={contributor.username}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.03 }}
-                    style={{ display: 'flex', alignItems: 'center', padding: '16px 24px', borderBottom: `1px solid ${isDark ? '#444' : '#eee'}`, background: index % 2 === 0 ? (isDark ? '#23272f' : '#fff') : (isDark ? '#1a1d23' : '#f6f6f6') }}
-                  >
-                    {/* Rank Badge */}
-                    <div style={{ width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 500, marginRight: 16, background: index === 0 ? (isDark ? 'rgba(253,224,71,0.2)' : '#fef9c3') : index === 1 ? (isDark ? 'rgba(156,163,175,0.2)' : '#f3f4f6') : index === 2 ? (isDark ? 'rgba(251,191,36,0.2)' : '#fef3c7') : (isDark ? '#23272f' : '#e5e7eb'), color: index === 0 ? (isDark ? '#fde047' : '#ca8a04') : index === 1 ? (isDark ? '#d1d5db' : '#6b7280') : index === 2 ? (isDark ? '#fbbf24' : '#f59e42') : (isDark ? '#b3b3b3' : '#555') }}>
-                      {indexOfFirst + index + 1}
-                    </div>
-                    {/* Avatar */}
-                    <img
-                      src={contributor.avatar}
-                      alt={contributor.username}
-                      style={{ width: 40, height: 40, borderRadius: '50%', border: `2px solid ${isDark ? '#444' : '#fff'}`, boxShadow: '0 1px 4px rgba(0,0,0,0.04)', marginRight: 16 }}
-                    />
-                    {/* User Info */}
-                    <div style={{ flex: 1 }}>
-                      <a
-                        href={contributor.profile}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ fontWeight: 500, color: isDark ? '#fff' : '#222', fontSize: 15, textDecoration: 'none', marginBottom: 4, display: 'block' }}
-                      >
-                        {contributor.username}
-                      </a>
-                      <a
-                        href={`https://github.com/${GITHUB_REPO}/pulls?q=is:pr+author:${contributor.username}+is:merged`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{ fontSize: 13, color: isDark ? '#b3b3b3' : '#555', textDecoration: 'none', marginBottom: 4, display: 'block' }}
-                      >
-                        View Contributions →
-                      </a>
-                      <div style={{ display: 'flex', gap: 8, marginTop: 8 }}>
-                        <Badge
-                          count={contributor.prs}
-                          label={`PR${contributor.prs !== 1 ? "s" : ""}`}
-                          color={{ background: isDark ? 'rgba(59,130,246,0.2)' : '#dbeafe', color: isDark ? '#60a5fa' : '#2563eb' }}
-                        />
-                        <Badge
-                          count={contributor.points}
-                          label="Points"
-                          color={{ background: isDark ? 'rgba(139,92,246,0.2)' : '#ede9fe', color: isDark ? '#a78bfa' : '#7c3aed' }}
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                ))
-              )}
-            </div>
-
-            {/* Pagination Controls */}
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 8, padding: '16px 0', borderTop: `1px solid ${isDark ? '#444' : '#eee'}` }}>
-              <button
-                disabled={currentPage === 1}
-                onClick={() => setCurrentPage((p) => p - 1)}
-                style={currentPage === 1 ? buttonDisabledStyle : buttonStyle}
+              <div
+                style={{
+                  fontSize: 14,
+                  color: isDark ? "#9ca3af" : "#6b7280",
+                }}
               >
-                <ChevronLeft size={16} />
-              </button>
-              <div style={{ display: 'flex', gap: 8 }}>
-                {Array.from(
-                  { length: Math.ceil(filteredContributors.length / PAGE_SIZE) },
-                  (_, i) => (
-                    <button
-                      key={i + 1}
-                      onClick={() => setCurrentPage(i + 1)}
-                      style={currentPage === i + 1 ? buttonActiveStyle : buttonStyle}
-                    >
-                      {i + 1}
-                    </button>
-                  )
-                )}
+                Total PRs
               </div>
-              <button
-                disabled={currentPage === totalPages}
-                onClick={() => setCurrentPage((p) => p + 1)}
-                style={currentPage === totalPages ? buttonDisabledStyle : buttonStyle}
-              >
-                <ChevronRight size={16} />
-              </button>
             </div>
-
-            {/* CTA Footer */}
-            <div style={{ padding: '16px 24px', textAlign: 'center', borderTop: `1px solid ${isDark ? '#444' : '#eee'}`, background: isDark ? '#23272f' : '#f6f6f6' }}>
-              <p style={{ fontSize: 14, color: isDark ? '#b3b3b3' : '#555', marginBottom: 12 }}>
-                Want to see your name here? Join GSSoC'25 and start contributing!
-              </p>
-              <a
-                href="https://gssoc.girlscript.tech/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ display: 'inline-flex', alignItems: 'center', padding: '8px 16px', background: isDark ? '#3b82f6' : '#6366f1', color: '#fff', fontSize: 15, fontWeight: 500, borderRadius: 8, textDecoration: 'none' }}
+            <div
+              style={{
+                background: isDark ? "#374151" : "#fff",
+                borderRadius: 8,
+                padding: 24,
+                textAlign: "center",
+                boxShadow: isDark ? "none" : "0 2px 4px rgba(0,0,0,0.05)",
+              }}
+            >
+              <FaStar style={{ fontSize: 28, color: "#fcd34d" }} />
+              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>
+                {stats.flooredTotalPoints}
+              </div>
+              <div
+                style={{
+                  fontSize: 14,
+                  color: isDark ? "#9ca3af" : "#6b7280",
+                }}
               >
-                <FaGithub style={{ marginRight: 8 }} /> Join GSSoC'25
-              </a>
+                Total Points
+              </div>
+            </div>
+            <div
+              style={{
+                background: isDark ? "#374151" : "#fff",
+                borderRadius: 8,
+                padding: 24,
+                textAlign: "center",
+                boxShadow: isDark ? "none" : "0 2px 4px rgba(0,0,0,0.05)",
+              }}
+            >
+              <FaUsers style={{ fontSize: 28, color: "#60a5fa" }} />
+              <div style={{ fontSize: 28, fontWeight: 700, marginTop: 8 }}>
+                {stats.totalContributors}
+              </div>
+              <div
+                style={{
+                  fontSize: 14,
+                  color: isDark ? "#9ca3af" : "#6b7280",
+                }}
+              >
+                Total Contributors
+              </div>
             </div>
           </div>
         )}
+
+        <div style={{ position: "relative", marginBottom: 24 }}>
+          <FaSearch
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: 16,
+              transform: "translateY(-50%)",
+              color: isDark ? "#6b7280" : "#9ca3af",
+            }}
+          />
+          <input
+            type="text"
+            placeholder="Search contributors..."
+            value={searchQuery}
+            onChange={(e) => {
+              setSearchQuery(e.target.value);
+              setCurrentPage(1);
+            }}
+            style={{
+              width: "100%",
+              padding: "12px 16px 12px 48px",
+              borderRadius: 9999,
+              border: isDark ? "1px solid #4b5563" : "1px solid #d1d5db",
+              background: isDark ? "#374151" : "#fff",
+              color: isDark ? "#f3f4f6" : "#1f2937",
+              fontSize: 16,
+              outline: "none",
+            }}
+          />
+        </div>
+
+        {loading && (
+          <div style={{ textAlign: "center", padding: "48px 0" }}>
+            <div
+              style={{
+                width: 48,
+                height: 48,
+                borderRadius: "50%",
+                border: "4px solid #f3f4f6",
+                borderTopColor: "#60a5fa",
+                animation: "spin 1s linear infinite",
+                margin: "0 auto",
+              }}
+            ></div>
+            <p style={{ marginTop: 16 }}>Loading leaderboard...</p>
+          </div>
+        )}
+
+        {error && (
+          <div style={{ textAlign: "center", color: "#ef4444", padding: 24 }}>
+            <p>Error: {error}</p>
+          </div>
+        )}
+
+        {!loading && !error && filteredContributors.length === 0 && (
+          <div style={{ textAlign: "center", padding: "48px 0" }}>
+            <p>No contributors found.</p>
+          </div>
+        )}
+
+        {!loading && !error && filteredContributors.length > 0 && (
+          <div style={{ overflowX: "auto" }}>
+            {/* Table */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                border: isDark ? "1px solid #4b5563" : "1px solid #d1d5db",
+                borderRadius: 8,
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  padding: "16px 24px",
+                  fontWeight: 600,
+                  fontSize: 14,
+                  textTransform: "uppercase",
+                  color: isDark ? "#9ca3af" : "#6b7280",
+                  borderBottom: `1px solid ${isDark ? "#4b5563" : "#d1d5db"}`,
+                }}
+              >
+                <div style={{ width: 40, marginRight: 16 }}>#</div>
+                <div style={{ flex: 1, marginRight: 16 }}>User</div>
+                <div style={{ width: 100 }}>Points</div>
+              </div>
+
+              {currentItems.map((contributor, index) => (
+                <motion.div
+                  key={contributor.username}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    padding: "16px 24px",
+                    borderBottom: `1px solid ${isDark ? "#444" : "#eee"}`,
+                  }}
+                >
+                  <div style={{ marginRight: 16 }}>
+                    {indexOfFirst + index + 1}
+                  </div>
+                  <img
+                    src={contributor.avatar}
+                    alt={contributor.username}
+                    style={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: "50%",
+                      marginRight: 16,
+                    }}
+                  />
+                  <div style={{ flex: 1 }}>
+                    <a
+                      href={contributor.profile}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      {contributor.username}
+                    </a>
+                    <div>
+                      <Badge
+                        count={contributor.prs}
+                        label="PRs"
+                        color={{
+                          background: "#dbeafe",
+                          color: "#2563eb",
+                        }}
+                      />
+                      <Badge
+                        count={contributor.points}
+                        label="Points"
+                        color={{
+                          background: "#ede9fe",
+                          color: "#7c3aed",
+                        }}
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 24,
+            }}
+          >
+            <button
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+              style={{
+                padding: 8,
+                borderRadius: "50%",
+                background: isDark ? "#374151" : "#e5e7eb",
+                color: isDark ? "#d1d5db" : "#6b7280",
+                cursor: currentPage === 1 ? "not-allowed" : "pointer",
+                border: "none",
+              }}
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <div style={{ margin: "0 8px" }}>{renderPaginationButtons()}</div>
+            <button
+              onClick={() => paginate(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              style={{
+                padding: 8,
+                borderRadius: "50%",
+                background: isDark ? "#374151" : "#e5e7eb",
+                color: isDark ? "#d1d5db" : "#6b7280",
+                cursor: currentPage === totalPages ? "not-allowed" : "pointer",
+                border: "none",
+              }}
+            >
+              <ChevronRight size={16} />
+            </button>
+          </div>
+        )}
       </div>
+      <style>{`
+        @keyframes spin {
+          to {
+            transform: rotate(360deg);
+          }
+        }
+      `}</style>
     </div>
   );
 }

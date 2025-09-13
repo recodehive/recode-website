@@ -33,6 +33,7 @@ import {
 import NavbarIcon from "@site/src/components/navbar/NavbarIcon";
 import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
+import LeaderBoard from "./LeaderBoard/leaderboard"; // ✅ NEW IMPORT FOR LEADERBOARD COMPONENT
 
 type DiscussionTab = "discussions" | "trending" | "unanswered";
 type SortOption = "most_popular" | "latest" | "oldest";
@@ -126,6 +127,9 @@ const DashboardContent: React.FC = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showDashboardMenu]);
+  
+  // ❌ REMOVE THE FOLLOWING STATE VARIABLES FOR THE LEADERBOARD
+  /*
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardEntry[]>(
     []
   );
@@ -139,6 +143,8 @@ const DashboardContent: React.FC = () => {
     isLimited: false,
   });
   const [retryTimer, setRetryTimer] = useState<number | null>(null);
+  */
+  
 
   useEffect(() => {
     // Set active tab based on URL hash
@@ -176,13 +182,18 @@ const DashboardContent: React.FC = () => {
     }
   };
 
+  // ❌ REMOVE THE FOLLOWING useEffect HOOK FOR LEADERBOARD DATA
+  /*
   // Fetch leaderboard data when contributors tab is active or on initial load
   useEffect(() => {
     if (activeTab === "contributors") {
       fetchLeaderboardData();
     }
   }, [activeTab]);
+  */
 
+  // ❌ REMOVE THE FOLLOWING useEffect HOOK FOR INITIAL DEMO DATA
+  /*
   // Load initial demo data if no data exists
   useEffect(() => {
     if (leaderboardData.length === 0) {
@@ -239,6 +250,7 @@ const DashboardContent: React.FC = () => {
       setLeaderboardData(initialData);
     }
   }, [leaderboardData.length]);
+  */
 
   // Discussion handlers
   const handleDiscussionTabChange = (tab: DiscussionTab) => {
@@ -378,6 +390,8 @@ const DashboardContent: React.FC = () => {
     [discussions, activeDiscussionTab, selectedCategory, searchQuery, sortBy]
   );
 
+  // ❌ REMOVE THE FOLLOWING RATE LIMIT AND LEADERBOARD DATA FETCHING LOGIC
+  /*
   // Rate limit timer
   useEffect(() => {
     let interval: NodeJS.Timeout;
@@ -729,6 +743,7 @@ const DashboardContent: React.FC = () => {
     if (contributions >= 150) achievements.push("PR Master");
     return achievements.slice(0, 3);
   };
+  */
 
   const handleTabChange = (
     tab: "home" | "discuss" | "giveaway" | "contributors"
@@ -749,6 +764,8 @@ const DashboardContent: React.FC = () => {
     }
   };
 
+  // ❌ REMOVE THE FOLLOWING FILTER FUNCTIONS FOR THE LEADERBOARD
+  /*
   // Filter functions
   const handleFilterChange = (period: FilterPeriod) => {
     setFilterPeriod(period);
@@ -854,17 +871,14 @@ const DashboardContent: React.FC = () => {
         </p>
       </motion.div>
     ) : null;
+  */
 
   // Rest of your component code remains the same...
   const {
     githubStarCount,
-    githubStarCountText,
     githubContributorsCount,
-    githubContributorsCountText,
     githubForksCount,
-    githubForksCountText,
     githubReposCount,
-    githubReposCountText,
     loading,
     error,
   } = useCommunityStatsContext();
@@ -874,7 +888,7 @@ const DashboardContent: React.FC = () => {
     totalRepositories: 0,
     totalStars: 0,
     totalForks: 0,
-    topContributors: [],
+    topContributors: [], // You can keep this as an empty array or an initial state if needed
   });
 
   useEffect(() => {
@@ -883,14 +897,13 @@ const DashboardContent: React.FC = () => {
       totalRepositories: githubReposCount,
       totalStars: githubStarCount,
       totalForks: githubForksCount,
-      topContributors: leaderboardData.slice(0, 4),
+      topContributors: [], // This will be handled by the new LeaderBoard component
     });
   }, [
     githubContributorsCount,
     githubReposCount,
     githubStarCount,
     githubForksCount,
-    leaderboardData,
   ]);
 
   const StatCard: React.FC<{
@@ -923,55 +936,6 @@ const DashboardContent: React.FC = () => {
           )}
         </div>
         <p className="dashboard-stat-description">{description}</p>
-      </div>
-    </motion.div>
-  );
-
-  const LeaderboardCard: React.FC<{
-    entry: LeaderboardEntry;
-    index: number;
-  }> = ({ entry, index }) => (
-    <motion.div
-      className="leaderboard-card"
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      viewport={{ once: true }}
-      whileHover={{ scale: 1.01, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
-    >
-      <div className="leaderboard-rank">
-        <span className={`rank-badge rank-${entry.rank}`}>#{entry.rank}</span>
-      </div>
-      <div className="leaderboard-avatar">
-        <img src={entry.avatar} alt={entry.name} />
-      </div>
-      <div className="leaderboard-info">
-        <h4 className="leaderboard-name">{entry.name}</h4>
-        <div className="leaderboard-stats">
-          <span className="stat-item">
-            <strong>{entry.contributions}</strong> Contributions
-          </span>
-          <span className="stat-item">
-            <strong>{entry.repositories}</strong> Repositories
-          </span>
-        </div>
-        <div className="leaderboard-achievements">
-          {entry.achievements.map((achievement, i) => (
-            <span key={i} className="achievement-badge">
-              {achievement}
-            </span>
-          ))}
-        </div>
-      </div>
-      <div className="leaderboard-actions">
-        <a
-          href={entry.github_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="github-profile-btn"
-        >
-          View Profile
-        </a>
       </div>
     </motion.div>
   );
@@ -1017,10 +981,7 @@ const DashboardContent: React.FC = () => {
                 setShowDashboardMenu(false);
               }}
             >
-              <span className="menu-icon">
-                <Home size={18} />
-              </span>
-              <span className="menu-text">Home</span>
+              <span className="menu-icon"><Home size={18} /></span> Home
             </div>
             <div
               className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
@@ -1029,12 +990,17 @@ const DashboardContent: React.FC = () => {
                 setShowDashboardMenu(false);
               }}
             >
-              <span className="menu-icon">
-                <MessageCircle size={18} />
-              </span>
-              <span className="menu-text">Discuss</span>
+              <span className="menu-icon"><MessageCircle size={18} /></span> Discussions
             </div>
-
+            <div
+              className={`menu-item ${activeTab === "contributors" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("contributors");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon"><Users size={18} /></span> Contributors
+            </div>
             <div
               className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
               onClick={() => {
@@ -1042,771 +1008,265 @@ const DashboardContent: React.FC = () => {
                 setShowDashboardMenu(false);
               }}
             >
-              <span className="menu-icon">
-                <Gift size={18} />
-              </span>
-              <span className="menu-text">Giveaway</span>
-            </div>
-            <div
-              className={`menu-item ${
-                activeTab === "contributors" ? "active" : ""
-              }`}
-              onClick={() => {
-                handleTabChange("contributors");
-                setShowDashboardMenu(false);
-              }}
-            >
-              <span className="menu-icon">
-                <Users size={18} />
-              </span>
-              <span className="menu-text">Contributors</span>
+              <span className="menu-icon"><Gift size={18} /></span> Giveaways
             </div>
           </div>
         </div>
-        
-        {/* Sidebar Navigation - Hidden on mobile */}
-        <nav
-          className={`dashboard-sidebar ${
-            isSidebarCollapsed ? "collapsed" : ""
-          }`}
-        >
-          <div className="sidebar-header">
-            <div className="sidebar-logo">
-              <h2>RecodeHive</h2>
-            </div>
-            <button
-              className="sidebar-toggle"
-              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-              aria-label={
-                isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
-              }
-            >
-              {isSidebarCollapsed ? "→" : "←"}
-            </button>
-          </div>
-          <ul className="sidebar-nav">
-            <li
-              className={`nav-item ${activeTab === "home" ? "active" : ""}`}
-              onClick={() => handleTabChange("home")}
-            >
-              <span className="nav-icon">
-                <Home size={18} />
-              </span>
-              <span className="nav-text">Home</span>
-            </li>
-            <li
-              className={`nav-item ${activeTab === "discuss" ? "active" : ""}`}
-              onClick={() => handleTabChange("discuss")}
-            >
-              <span className="nav-icon">
-                <MessageCircle size={18} />
-              </span>
-              <span className="nav-text">Discuss</span>
-            </li>
 
-            <li
-              className={`nav-item ${activeTab === "giveaway" ? "active" : ""}`}
-              onClick={() => handleTabChange("giveaway")}
-            >
-              <span className="nav-icon">
-                <Gift size={18} />
-              </span>
-              <span className="nav-text">Giveaway</span>
-            </li>
-            <li
-              className={`nav-item ${
-                activeTab === "contributors" ? "active" : ""
-              }`}
-              onClick={() => handleTabChange("contributors")}
-            >
-              <span className="nav-icon">
-                <Users size={18} />
-              </span>
-              <span className="nav-text">Contributors</span>
-            </li>
-          </ul>
-          <div className="sidebar-footer">
-            <button
-              className="sidebar-toggle bottom-toggle"
-              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-              aria-label={
-                isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
-              }
-            >
-              {isSidebarCollapsed ? "→" : "←"}
-            </button>
-          </div>
-        </nav>
 
-        <main
-          className={`dashboard-main ${
-            activeTab === "discuss" ? "discuss-view" : ""
-          } ${isSidebarCollapsed ? "sidebar-collapsed" : ""}`}
-          onClick={() => isSidebarCollapsed && setIsSidebarCollapsed(false)}
-        >
-          {activeTab === "home" ? (
-            // Home tab content
-            <div>
-              <motion.section
-                className="dashboard-hero"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <div className="hero-content">
-                  <h1 className="dashboard-title">
-                    Community <span className="highlight">Dashboard</span>
-                  </h1>
-                  <p className="dashboard-subtitle">
-                    Track our community's growth, celebrate top contributors,
-                    and explore project statistics
-                  </p>
-                </div>
-              </motion.section>
+      <div className="dashboard-sidebar">
+        <div className="sidebar-header">
+          <button
+            className="back-button"
+            onClick={() => history.goBack()}
+            aria-label="Go back"
+          >
+            <ArrowLeft size={20} />
+          </button>
+        </div>
+        <div className="sidebar-nav">
+          <NavbarIcon
+            icon={<Home size={20} />}
+            text="Home"
+            active={activeTab === "home"}
+            onClick={() => handleTabChange("home")}
+          />
+          <NavbarIcon
+            icon={<MessageCircle size={20} />}
+            text="Discussions"
+            active={activeTab === "discuss"}
+            onClick={() => handleTabChange("discuss")}
+          />
+          <NavbarIcon
+            icon={<Users size={20} />}
+            text="Contributors"
+            active={activeTab === "contributors"}
+            onClick={() => handleTabChange("contributors")}
+          />
+          <NavbarIcon
+            icon={<Gift size={20} />}
+            text="Giveaways"
+            active={activeTab === "giveaway"}
+            onClick={() => handleTabChange("giveaway")}
+          />
+        </div>
+      </div>
 
-              {/* Stats Grid */}
-              <motion.section
-                className="dashboard-stats-section"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="dashboard-stats-grid">
-                  <StatCard
-                    icon="⭐"
-                    title="Total Stars"
-                    value={dashboardStats.totalStars}
-                    valueText={githubStarCountText}
-                    description="Stars across all repositories"
-                  />
-                  <StatCard
-                    icon="👥"
-                    title="Contributors"
-                    value={dashboardStats.totalContributors}
-                    valueText={githubContributorsCountText}
-                    description="Amazing community members"
-                  />
-                  <StatCard
-                    icon="📚"
-                    title="Repositories"
-                    value={dashboardStats.totalRepositories}
-                    valueText={githubReposCountText}
-                    description="Open source projects"
-                  />
-                  <StatCard
-                    icon="🍴"
-                    title="Forks"
-                    value={dashboardStats.totalForks}
-                    valueText={githubForksCountText}
-                    description="Community contributions"
-                  />
-                </div>
-              </motion.section>
+      <div className="dashboard-main-content">
+        <Head>
+          <title>Dashboard | Recode Hive</title>
+        </Head>
 
-              {/* Leaderboard Section */}
-              <motion.section
-                className="dashboard-leaderboard-section"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <div className="leaderboard-header">
-                  <h2 className="leaderboard-title">
-                    Top Contributors <span className="title-accent">Board</span>
-                  </h2>
-                  <p className="leaderboard-description">
-                    Celebrating our most active community members who make
-                    RecodeHive awesome!
-                  </p>
-                </div>
+        {activeTab === "home" && (
+          <motion.div
+            className="dashboard-home-container"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="dashboard-main-title">Recode Hive Community Dashboard</h1>
+            <p className="dashboard-description">
+              Welcome to the Recode Hive community hub! Explore our stats, engage in discussions, and connect with fellow contributors.
+            </p>
 
-                <div className="leaderboard-container">
-                  {error && (
-                    <div className="error-message">
-                      <p>Some data may be cached or incomplete</p>
-                    </div>
-                  )}
-
-                  {dashboardStats.topContributors.map((entry, index) => (
-                    <LeaderboardCard
-                      key={entry.rank}
-                      entry={entry}
-                      index={index}
-                    />
-                  ))}
-                </div>
-              </motion.section>
-
-              {/* Call to Action */}
-              <motion.section
-                className="dashboard-cta"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-              >
-                <div className="cta-content">
-                  <h3>Want to see your name here?</h3>
-                  <p>
-                    Join our community and start contributing to open source
-                    projects!
-                  </p>
-                  <div className="cta-buttons">
-                    <a
-                      href="https://github.com/recodehive"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="cta-primary"
-                    >
-                      Start Contributing
-                    </a>
-                    <a href="/community" className="cta-secondary">
-                      Join Community
-                    </a>
-                  </div>
-                </div>
-              </motion.section>
-            </div>
-          ) : activeTab === "discuss" ? (
-            <motion.div
-              className="discussion-container"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-                <h1
-                  style={{
-                    fontSize: "3.5rem",
-                    fontWeight: "800",
-                    marginBottom: "1rem",
-                    color: "var(--ifm-color-emphasis-900)",
-                  }}
-                >
-                  Community{" "}
-                  <span
-                    style={{
-                      background:
-                        "linear-gradient(135deg, var(--ifm-color-primary), #e74c3c)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                    }}
-                  >
-                    Discussions
-                  </span>
-                </h1>
-                <p
-                  style={{
-                    fontSize: "1.2rem",
-                    color: "var(--ifm-color-emphasis-700)",
-                    maxWidth: "700px",
-                    margin: "0 auto",
-                    lineHeight: "1.6",
-                  }}
-                >
-                  Join the conversation, ask questions, and share your thoughts
-                  with the RecodeHive community.
-                </p>
+            <section className="dashboard-stats-section">
+              <h2 className="section-title">Community At a Glance</h2>
+              <div className="stat-cards-container">
+                <StatCard
+                  icon={<Star size={24} />}
+                  title="Total Stars"
+                  value={dashboardStats.totalStars}
+                  valueText={
+                    useCommunityStatsContext().githubStarCountText || "0"
+                  }
+                  description="Stars across all our public repositories."
+                />
+                <StatCard
+                  icon={<Users size={24} />}
+                  title="Total Contributors"
+                  value={dashboardStats.totalContributors}
+                  valueText={
+                    useCommunityStatsContext().githubContributorsCountText || "0"
+                  }
+                  description="Users who have contributed to our repos."
+                />
+                <StatCard
+                  icon={<Trophy size={24} />}
+                  title="Total Repositories"
+                  value={dashboardStats.totalRepositories}
+                  valueText={
+                    useCommunityStatsContext().githubReposCountText || "0"
+                  }
+                  description="Public repositories in our organization."
+                />
+                <StatCard
+                  icon={<BarChart3 size={24} />}
+                  title="Total Forks"
+                  value={dashboardStats.totalForks}
+                  valueText={
+                    useCommunityStatsContext().githubForksCountText || "0"
+                  }
+                  description="Total forks of all our repositories."
+                />
               </div>
+            </section>
+          </motion.div>
+        )}
 
+        {activeTab === "discuss" && (
+          <motion.div
+            className="dashboard-discussions"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="discussions-header">
+              <h1>Community Discussions</h1>
+              <p>
+                Engage with the community, ask questions, and share your projects.
+              </p>
+            </div>
+            <div className="discussions-controls">
               <div className="discussion-tabs">
-                <div className="tabs-left">
-                  <button
-                    className={`tab-btn ${
-                      activeDiscussionTab === "discussions" ? "active" : ""
-                    }`}
-                    onClick={() => handleDiscussionTabChange("discussions")}
-                  >
-                    All Discussions
-                  </button>
-                  <button
-                    className={`tab-btn ${
-                      activeDiscussionTab === "trending" ? "active" : ""
-                    }`}
-                    onClick={() => handleDiscussionTabChange("trending")}
-                  >
-                    <TrendingUp size={16} /> Trending
-                  </button>
-                  <button
-                    className={`tab-btn ${
-                      activeDiscussionTab === "unanswered" ? "active" : ""
-                    }`}
-                    onClick={() => handleDiscussionTabChange("unanswered")}
-                  >
-                    <HelpCircle size={16} /> Unanswered
-                  </button>
-                </div>
                 <button
-                  className="new-discussion-btn"
-                  onClick={handleNewDiscussion}
+                  onClick={() => handleDiscussionTabChange("discussions")}
+                  className={`tab-button ${activeDiscussionTab === "discussions" ? "active" : ""
+                    }`}
                 >
-                  + New Discussion
+                  <MessageCircle size={18} /> All Discussions
+                </button>
+                <button
+                  onClick={() => handleDiscussionTabChange("trending")}
+                  className={`tab-button ${activeDiscussionTab === "trending" ? "active" : ""
+                    }`}
+                >
+                  <TrendingUp size={18} /> Trending
+                </button>
+                <button
+                  onClick={() => handleDiscussionTabChange("unanswered")}
+                  className={`tab-button ${activeDiscussionTab === "unanswered" ? "active" : ""
+                    }`}
+                >
+                  <HelpCircle size={18} /> Unanswered
                 </button>
               </div>
-
-              <div className="category-filters">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    className={`category-filter ${
-                      selectedCategory === category ? "active" : ""
-                    }`}
-                    onClick={() => handleCategoryChange(category)}
-                  >
-                    {getCategoryIcon(category)}
-                    {getCategoryDisplayName(category)}
-                  </button>
-                ))}
-              </div>
-
-              <div className="search-sort-container">
-                <div className="search-wrapper">
-                  <Search className="search-icon" size={20} />
+              <div className="search-and-sort">
+                <div className="search-bar">
+                  <Search size={16} />
                   <input
                     type="text"
                     placeholder="Search discussions..."
                     value={searchQuery}
                     onChange={handleSearchChange}
-                    className="search-field"
                   />
                 </div>
-                <div className="sort-wrapper">
-                  <select
-                    value={sortBy}
-                    onChange={handleSortChange}
-                    className="sort-select"
-                  >
-                    <option value="most_popular">Most Popular</option>
-                    <option value="latest">Latest</option>
-                    <option value="oldest">Oldest</option>
-                  </select>
-                </div>
+                <select onChange={handleSortChange} value={sortBy}>
+                  <option value="most_popular">Most Popular</option>
+                  <option value="latest">Latest</option>
+                  <option value="oldest">Oldest</option>
+                </select>
+                <button
+                  className="new-discussion-btn"
+                  onClick={handleNewDiscussion}
+                >
+                  New Discussion
+                </button>
               </div>
-
-              <div className="discussions-count">
-                <span>
-                  {filteredDiscussions.length} discussion
-                  {filteredDiscussions.length !== 1 ? "s" : ""} found
-                </span>
-              </div>
-
-              {discussionsLoading ? (
-                <div className="discussions-loading">
-                  <div className="loading-spinner"></div>
-                  <p>Loading discussions...</p>
-                </div>
-              ) : discussionsError ? (
-                <div className="discussions-error">
-                  <div className="error-icon">!</div>
-                  <h3>Unable to load discussions</h3>
-                  <p>{discussionsError}</p>
-                  <button className="retry-button" onClick={fetchDiscussions}>
-                    Try Again
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <div className="discussions-grid">
-                    {filteredDiscussions.length > 0 ? (
-                      filteredDiscussions.map((discussion, index) => (
-                        <DiscussionCard
-                          key={discussion.id}
-                          discussion={discussion}
-                          index={index}
-                        />
-                      ))
-                    ) : (
-                      <div className="no-discussions">
-                        <div className="no-discussions-icon">No discussions</div>
-                        <h3>No discussions found</h3>
-                        <p>
-                          {searchQuery || selectedCategory !== "all"
-                            ? "Try adjusting your filters or search terms."
-                            : "Be the first to start a discussion!"}
-                        </p>
-                        <a
-                          href="https://github.com/recodehive/recode-website/discussions/new"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="start-discussion-btn"
-                        >
-                          Start a Discussion
-                        </a>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Community Engagement Section */}
-                  <div className="community-cta-box" style={{ 
-                    background: "linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%)", 
-                    padding: "2.5rem 2rem", 
-                    borderRadius: "16px", 
-                    marginTop: "3rem", 
-                    textAlign: "center",
-                    boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)",
-                    color: "white"
-                  }}>
-                    <h2 style={{ fontSize: "2rem", fontWeight: "700", marginBottom: "1rem", color: "white" }}>
-                      💬 Join the Conversation
-                    </h2>
-                    <p style={{ fontSize: "1.1rem", marginBottom: "2rem", color: "rgba(255,255,255,0.9)", maxWidth: "500px", margin: "0 auto 2rem" }}>
-                      Connect with our community! Share ideas, ask questions, and showcase your amazing work.
-                    </p>
-                    <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
-                      <motion.a 
-                        href="https://github.com/recodehive/recode-website/discussions/new?category=q-a" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        style={{ 
-                          background: "rgba(255,255,255,0.2)", 
-                          color: "white", 
-                          padding: "0.875rem 1.5rem", 
-                          borderRadius: "10px", 
-                          textDecoration: "none", 
-                          fontWeight: "600", 
-                          fontSize: "0.95rem",
-                          border: "1px solid rgba(255,255,255,0.3)",
-                          display: "inline-block"
-                        }}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        ❓ Ask Question
-                      </motion.a>
-                      <motion.a 
-                        href="https://github.com/recodehive/recode-website/discussions/new?category=ideas" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        style={{ 
-                          background: "rgba(255,255,255,0.2)", 
-                          color: "white", 
-                          padding: "0.875rem 1.5rem", 
-                          borderRadius: "10px", 
-                          textDecoration: "none", 
-                          fontWeight: "600", 
-                          fontSize: "0.95rem",
-                          border: "1px solid rgba(255,255,255,0.3)",
-                          display: "inline-block"
-                        }}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        💡 Share Idea
-                      </motion.a>
-                      <motion.a 
-                        href="https://github.com/recodehive/recode-website/discussions/new?category=show-and-tell" 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        style={{ 
-                          background: "rgba(255,255,255,0.2)", 
-                          color: "white", 
-                          padding: "0.875rem 1.5rem", 
-                          borderRadius: "10px", 
-                          textDecoration: "none", 
-                          fontWeight: "600", 
-                          fontSize: "0.95rem",
-                          border: "1px solid rgba(255,255,255,0.3)",
-                          display: "inline-block"
-                        }}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        🎉 Show Work
-                      </motion.a>
-                    </div>
-                  </div>
-                </>
-              )}
-            </motion.div>
-          ) : activeTab === "giveaway" ? (
-            /* Giveaway Tab - Empty for now */
-            <div className="leaderboard-page-container">
-              <motion.div
-                className="leaderboard-page-header"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <h1 className="leaderboard-page-title">
-                  <span className="highlight">Giveaway</span>
-                </h1>
-              </motion.div>
             </div>
-          ) : activeTab === "contributors" ? (
-            /* Contributors Tab - Shows the list of contributors */
-            <div className="leaderboard-page-container">
-              <motion.div
-                className="leaderboard-page-header"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <h1 className="leaderboard-page-title">
-                  RecodeHive <span className="highlight">Contributors</span>
-                </h1>
-                <p className="leaderboard-page-subtitle">
-                  Live rankings from RecodeHive GitHub Organization • Updated
-                  automatically
-                </p>
-
-                {/* Header Controls: Refresh Button + Filter Buttons */}
-                <div className="leaderboard-header-controls">
-                  <div className="refresh-section">
-                    <button
-                      onClick={fetchLeaderboardData}
-                      disabled={isLoadingLeaderboard || rateLimitInfo.isLimited}
-                      className="refresh-button"
+            <div className="discussions-main-content">
+              <div className="category-sidebar">
+                <h3>Categories</h3>
+                <ul>
+                  {categories.map((cat) => (
+                    <li
+                      key={cat}
+                      className={selectedCategory === cat ? "active" : ""}
+                      onClick={() => handleCategoryChange(cat)}
                     >
-                      {isLoadingLeaderboard
-                        ? "Loading..."
-                        : "Refresh Data"}
-                    </button>
-                    {rateLimitInfo.remaining && (
-                      <p
-                        className="rate-limit-status"
-                        style={{
-                          margin: 0,
-                          fontSize: "0.8rem",
-                          color: "var(--ifm-color-emphasis-600)",
-                        }}
-                      >
-                        API calls remaining: {rateLimitInfo.remaining}/
-                        {rateLimitInfo.limit}
-                      </p>
-                    )}
+                      {getCategoryIcon(cat)} {getCategoryDisplayName(cat)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="discussion-list">
+                {discussionsLoading && (
+                  <div className="loading-spinner-container">
+                    <div className="loading-spinner"></div>
                   </div>
-
-                  {/* Filter Buttons positioned to the right */}
-                  <FilterButtons />
-                </div>
-              </motion.div>
-
-              {/* Rate Limit Warning */}
-              <RateLimitWarning />
-
-              {/* Loading State */}
-              {isLoadingLeaderboard && (
-                <motion.div
-                  className="loading-container"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
-                  <div className="loading-spinner-large">Loading...</div>
-                  <p className="loading-text">
-                    Fetching latest contributor data...
-                  </p>
-                </motion.div>
-              )}
-
-              {/* Error State */}
-              {leaderboardError && !isLoadingLeaderboard && (
-                <motion.div
-                  className="error-container"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                >
-                  <div className="error-icon">!</div>
-                  <h3>Unable to Load Latest Data</h3>
-                  <p>{leaderboardError}</p>
-                  {!rateLimitInfo.isLimited && (
-                    <button
-                      onClick={fetchLeaderboardData}
-                      className="retry-button"
-                    >
-                      Try Again
-                    </button>
-                  )}
-                  <p className="error-help">
-                    Showing cached data below. The contributors page will
-                    automatically refresh when possible.
-                  </p>
-                </motion.div>
-              )}
-
-              {/* Contributors Content */}
-              {!isLoadingLeaderboard && filteredLeaderboardData.length > 0 && (
-                <motion.div
-                  className="leaderboard-content"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3, duration: 0.6 }}
-                >
-                  <div className="leaderboard-stats">
-                    <div className="stat-item">
-                      <span className="stat-number">
-                        {filteredLeaderboardData.length}
-                      </span>
-                      <span className="stat-label">Contributors</span>
-                    </div>
-                    <div className="stat-item">
-                      <span className="stat-number">
-                        {getContributionCount(
-                          filteredLeaderboardData[0],
-                          filterPeriod
-                        ) || 0}
-                      </span>
-                      <span className="stat-label">
-                        Top{" "}
-                        {filterPeriod.charAt(0).toUpperCase() +
-                          filterPeriod.slice(1)}
-                      </span>
-                    </div>
-                    <div className="stat-item">
-                      <span className="stat-number">
-                        {Math.round(
-                          filteredLeaderboardData.reduce(
-                            (acc, user) =>
-                              acc + getContributionCount(user, filterPeriod),
-                            0
-                          ) / filteredLeaderboardData.length
-                        )}
-                      </span>
-                      <span className="stat-label">
-                        Avg{" "}
-                        {filterPeriod.charAt(0).toUpperCase() +
-                          filterPeriod.slice(1)}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="leaderboard-grid">
-                    {filteredLeaderboardData.map((entry, index) => (
-                      <motion.div
-                        key={entry.rank}
-                        className="leaderboard-item"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.1, duration: 0.5 }}
-                        whileHover={{
-                          scale: 1.02,
-                          boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
-                        }}
-                      >
-                        {/* Streak Display */}
-                        {entry.streak && entry.streak > 1 && (
-                          <div className="streak-display">
-                            {entry.streak} Day Streak
-                          </div>
-                        )}
-
-                        <div className="rank-section">
-                          <div
-                            className={`rank-badge ${
-                              entry.rank <= 3
-                                ? `rank-${entry.rank}`
-                                : "rank-other"
-                            }`}
-                          >
-                            #{entry.rank}
-                          </div>
-                        </div>
-
-                        <div className="avatar-section">
-                          <img
-                            src={entry.avatar}
-                            alt={entry.name}
-                            className="user-avatar"
-                            loading="lazy"
-                          />
-                        </div>
-
-                        <div className="user-info">
-                          <h3 className="user-name">{entry.name}</h3>
-                          {entry.username && entry.username !== entry.name && (
-                            <p className="user-username">@{entry.username}</p>
-                          )}
-
-                          <div className="score-display">
-                            <span className="score-number">
-                              {getContributionCount(entry, filterPeriod)}
-                            </span>
-                            <span className="score-label">
-                              {filterPeriod === "weekly"
-                                ? "this week"
-                                : filterPeriod === "monthly"
-                                ? "this month"
-                                : "total"}
-                            </span>
-                          </div>
-
-                          <div className="user-stats">
-                            <div className="stat">
-                              <span className="stat-value">
-                                {entry.contributions}
-                              </span>
-                              <span className="stat-text">Total PRs</span>
-                            </div>
-                            <div className="stat">
-                              <span className="stat-value">
-                                {entry.repositories}
-                              </span>
-                              <span className="stat-text">Repos</span>
-                            </div>
-                          </div>
-
-                          {entry.achievements.length > 0 && (
-                            <div className="achievements">
-                              {entry.achievements.map((achievement, i) => (
-                                <span key={i} className="achievement-tag">
-                                  {achievement}
-                                </span>
-                              ))}
-                            </div>
-                          )}
-                        </div>
-
-                        <div className="leaderboard-actions">
-                          <a
-                            href={entry.github_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="github-link"
-                          >
-                            <span className="github-icon">GitHub</span>
-                            View Profile
-                          </a>
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
-              {/* Empty State */}
-              {!isLoadingLeaderboard &&
-                !leaderboardError &&
-                filteredLeaderboardData.length === 0 && (
-                  <motion.div
-                    className="empty-state"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                  >
-                    <h3>No data available</h3>
-                    <p>No contributors found. Check back later!</p>
-                  </motion.div>
                 )}
+                {discussionsError && (
+                  <div className="discussions-error-message">
+                    <p>{discussionsError}</p>
+                  </div>
+                )}
+                {!discussionsLoading &&
+                  !discussionsError &&
+                  filteredDiscussions.length === 0 && (
+                    <div className="no-discussions-found">
+                      <p>No discussions found matching your criteria.</p>
+                    </div>
+                  )}
+                {!discussionsLoading &&
+                  !discussionsError &&
+                  filteredDiscussions.map((discussion) => (
+                    <DiscussionCard key={discussion.id} discussion={discussion} />
+                  ))}
+              </div>
             </div>
-          ) : null}
-        </main>
+          </motion.div>
+        )}
+
+        {/* ✅ REPLACED CONTRIBUTORS SECTION WITH THE NEW LEADERBOARD COMPONENT */}
+        {activeTab === "contributors" && (
+          <motion.div
+            className="dashboard-contributors"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <LeaderBoard />
+          </motion.div>
+        )}
+
+        {activeTab === "giveaway" && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="giveaway-section"
+          >
+            <h1>Giveaways</h1>
+            <p>
+              Participate in our exciting giveaways for a chance to win awesome prizes!
+            </p>
+            <div className="giveaway-content">
+              <p>
+                Stay tuned for our next giveaway. Follow our social media channels for updates!
+              </p>
+            </div>
+          </motion.div>
+        )}
       </div>
-    );
+    </div>
+  );
 };
 
 const Dashboard: React.FC = () => {
   return (
-    <Layout
-      title="Dashboard"
-      description="RecodeHive Community Dashboard"
-      noFooter
-    >
+    <Layout>
       <Head>
-        <title>RecodeHive | Dashboard</title>
-        <meta name="description" content="RecodeHive Community Dashboard" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-      <BrowserOnly fallback={<div>Loading...</div>}>
+      <BrowserOnly fallback={<div>Loading Dashboard...</div>}>
         {() => (
           <CommunityStatsProvider>
             <DashboardContent />
