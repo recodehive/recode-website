@@ -16,6 +16,9 @@ import "./leaderboard.css";
 
 const GITHUB_ORG = "recodehive"; 
 
+// Users to exclude from the leaderboard
+const EXCLUDED_USERS = ["sanjay-kv", "allcontributors", "allcontributors[bot]"];
+
 interface Contributor {
   username: string;
   avatar: string;
@@ -71,9 +74,16 @@ export default function LeaderBoard(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
-  const filteredContributors = contributors.filter((contributor) =>
-    contributor.username.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Filter out excluded users and then apply search filter
+  const filteredContributors = contributors
+    .filter((contributor) => 
+      !EXCLUDED_USERS.some(excludedUser => 
+        contributor.username.toLowerCase() === excludedUser.toLowerCase()
+      )
+    )
+    .filter((contributor) =>
+      contributor.username.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
   const totalPages = Math.ceil(filteredContributors.length / itemsPerPage);
   const indexOfLast = currentPage * itemsPerPage;
@@ -122,13 +132,13 @@ export default function LeaderBoard(): JSX.Element {
         </motion.div>
 
         {/* Top 3 Performers Section */}
-        {!loading && !error && contributors.length > 2 && (
+        {!loading && !error && filteredContributors.length > 2 && (
           <div className="top-performers-container">
             <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>RecodeHive Top Performers</h2>
             <div className="top-performers-grid">
-              <TopPerformerCard contributor={contributors[1]} rank={2} />
-              <TopPerformerCard contributor={contributors[0]} rank={1} />
-              <TopPerformerCard contributor={contributors[2]} rank={3} />
+              <TopPerformerCard contributor={filteredContributors[1]} rank={2} />
+              <TopPerformerCard contributor={filteredContributors[0]} rank={1} />
+              <TopPerformerCard contributor={filteredContributors[2]} rank={3} />
             </div>
           </div>
         )}
