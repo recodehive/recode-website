@@ -34,7 +34,7 @@ import {
 import NavbarIcon from "@site/src/components/navbar/NavbarIcon";
 import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
-import LeaderBoard from "./LeaderBoard/leaderboard";
+import LeaderBoard from "@site/src/components/dashboard/LeaderBoard/leaderboard";
 
 type DiscussionTab = "discussions" | "trending" | "unanswered";
 type SortOption = "most_popular" | "latest" | "oldest";

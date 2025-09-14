@@ -178,6 +178,54 @@
   gap: 8px;
 }
 
+/* Navbar Icon Items for Dashboard */
+.navbar-icon-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--ifm-color-content);
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+}
+
+.navbar-icon-item:hover {
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-content);
+}
+
+.navbar-icon-item.active {
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+}
+
+.navbar-icon-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--ifm-color-primary);
+  border-radius: 0 2px 2px 0;
+}
+
+.navbar-icon {
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.navbar-text {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
 /* Main Content */
 .dashboard-main-content {
   flex: 1;
