@@ -212,7 +212,6 @@
 .video-title {
   margin: 0 0 1rem 0;
   font-size: 1.25rem;
-  color: var(--ifm-heading-color);
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
@@ -221,19 +220,17 @@
   line-height: 1.5;
   font-weight: 700;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, var(--ifm-heading-color) 0%, var(--ifm-color-emphasis-800) 100%);
+  background: linear-gradient(135deg, #333 0%, #666 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
 }
 
 [data-theme='dark'] .video-title {
-  background: linear-gradient(135deg, var(--dark-text-primary) 0%, #cbd5e1 100%);
+  background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
 }
 
 .video-type {

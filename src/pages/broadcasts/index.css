@@ -553,3 +553,11 @@ h1 {
 .pagination span {
   font-weight: bold;
 }
+.video-info .video-title {
+  color: #333 !important;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .video-info .video-title {
+  color: #fff !important;
+}
