@@ -167,6 +167,7 @@ const VideoCard: React.FC<{
                 src={thumbnailUrl}
                 alt={title}
                 className="thumbnail-img"
+                style={{ objectFit: 'cover' }}
                 loading="lazy"
                 onError={(e) => {
                   const img = e.target as HTMLImageElement;
