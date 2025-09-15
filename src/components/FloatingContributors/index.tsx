@@ -159,7 +159,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
           html_url: contributor.html_url,
         },
         action: actions[index % actions.length],
-        message: messages[index % messages.length],
+        message: messages[index % messages.length]?.slice(0, 50), // Consistent message length
         timestamp,
         timeAgo: formatTimeAgo(timestamp),
       };
@@ -233,7 +233,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
           switch (event.type) {
             case 'PushEvent':
               action = 'pushed';
-              message = event.payload.commits && event.payload.commits[0]?.message;
+              message = event.payload.commits && event.payload.commits[0]?.message?.slice(0, 50);
               break;
             case 'PullRequestEvent':
               if (event.payload.action === 'opened') action = 'opened';
@@ -247,7 +247,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
             case 'CommitCommentEvent':
             case 'PullRequestReviewCommentEvent':
               action = 'commented';
-              message = event.payload.comment?.body?.slice(0, 60);
+              message = event.payload.comment?.body?.slice(0, 50);
               break;
             default:
               action = 'other';
@@ -263,7 +263,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
               html_url: `https://github.com/${event.actor.login}`,
             },
             action,
-            message: message?.slice(0, 60), // Limit message length
+            message: message?.slice(0, 50), // Consistent message length limit
             timestamp,
             timeAgo: formatTimeAgo(timestamp),
           };
@@ -426,13 +426,13 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
   // Get text for action type
   const getActionText = (action: ContributorActivity['action']): string => {
     switch (action) {
-      case 'pushed': return 'Pushed code';
-      case 'created': return 'Created';
-      case 'merged': return 'Merged PR';
-      case 'opened': return 'Opened PR';
-      case 'commented': return 'Commented';
-      case 'closed': return 'Closed';
-      default: return 'Active';
+      case 'pushed': return 'PUSHED';
+      case 'created': return 'CREATED';
+      case 'merged': return 'MERGED';
+      case 'opened': return 'OPENED';
+      case 'commented': return 'COMMENTED';
+      case 'closed': return 'CLOSED';
+      default: return 'ACTIVE';
     }
   };
   
@@ -522,14 +522,15 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                 
                 <div className="activity-details">
                   <div className="activity-user">
-                    <span className="activity-username">@{currentActivity.contributor.login}</span>
+                    <span className="activity-username" title={`@${currentActivity.contributor.login}`}>@{currentActivity.contributor.login}</span>
                     <span className="activity-action-badge">
-                      <span className="action-icon">{getActionIcon(currentActivity.action)}</span>
                       {getActionText(currentActivity.action)}
                     </span>
                   </div>
                   {currentActivity.message && (
-                    <div className="activity-message">{currentActivity.message}</div>
+                    <div className="activity-message" title={currentActivity.message}>
+                      {currentActivity.message}
+                    </div>
                   )}
                   <div className="activity-time">{currentActivity.timeAgo}</div>
                 </div>
@@ -602,7 +603,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
               >
                 <span className="cta-icon">🚀</span>
                 <span>View Repository on GitHub</span>
-                <span className="cta-arrow">→</span>
+                <span className="cta-arrow">↗</span>
               </motion.a>
             </div>
           </motion.div>

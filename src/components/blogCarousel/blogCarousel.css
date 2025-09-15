@@ -394,7 +394,7 @@
 /* Blog Carousel Section Enhancements */
 .blog-carousel-section {
   background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 50%, #e8ebff 100%);
-  padding: 60px 0;
+  padding: 5px;
   position: relative;
   overflow: hidden;
 }
