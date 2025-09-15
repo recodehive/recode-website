@@ -69,6 +69,8 @@
   transition: var(--courses-transition-slow);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
 }
 
 /* Section Layouts */
@@ -924,11 +926,39 @@
   }
 }
 
-/* Mobile Large (576px - 767px) */
-@media (max-width: 767px) and (min-width: 576px) {
+/* Mobile and Small Tablet (320px - 768px) - RESPONSIVE FIX */
+@media (max-width: 768px) and (min-width: 320px) {
+  /* Main page layout fixes */
+  .courses-page {
+    min-height: 100vh;
+    position: relative;
+    padding-bottom: var(--courses-spacing-xl);
+  }
+
   .courses-container {
-    max-width: 540px;
+    max-width: 100%;
     padding: 0 var(--courses-spacing-md);
+  }
+
+  .courses-container-wide {
+    max-width: 100%;
+    padding: 0 var(--courses-spacing-md);
+  }
+
+  /* Ensure proper section spacing */
+  .courses-section {
+    margin-bottom: var(--courses-spacing-lg);
+    padding: var(--courses-spacing-lg) 0;
+  }
+
+  .courses-stats-section {
+    margin-bottom: var(--courses-spacing-lg);
+    padding: var(--courses-spacing-lg) 0;
+  }
+
+  .courses-faq-section {
+    margin-bottom: var(--courses-spacing-xl);
+    padding: var(--courses-spacing-lg) 0;
   }
 
   .courses-heading-1 {
@@ -947,10 +977,59 @@
     text-align: center;
   }
 
+  /* Force all grids to single column for better mobile experience */
   .courses-grid-4,
   .courses-grid-3,
   .courses-grid-2 {
     grid-template-columns: 1fr;
+    gap: var(--courses-spacing-md);
+  }
+
+  /* Enhanced card styling for mobile */
+  .courses-card {
+    padding: var(--courses-spacing-md);
+    margin-bottom: var(--courses-spacing-sm);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Testimonial cards specific improvements */
+  .courses-card img {
+    width: 60px !important;
+    height: 60px !important;
+    margin-bottom: var(--courses-spacing-sm);
+  }
+
+  .courses-card h4 {
+    margin-bottom: var(--courses-spacing-xs);
+    font-size: var(--courses-text-lg);
+  }
+
+  .courses-card p {
+    line-height: 1.5;
+    font-size: var(--courses-text-sm);
+    text-align: center;
+  }
+
+  /* Stat cards improvements */
+  .courses-stat-card {
+    padding: var(--courses-spacing-md);
+    text-align: center;
+  }
+
+  /* Timeline cards improvements */
+  .courses-timeline-card {
+    padding: var(--courses-spacing-md);
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .courses-flex {
+    flex-direction: column;
     gap: var(--courses-spacing-md);
   }
 
@@ -972,18 +1051,12 @@
     text-align: center;
   }
 
-  /* Cards */
-  .courses-card,
-  .courses-stat-card,
-  .courses-timeline-card {
-    padding: var(--courses-spacing-md);
-  }
-
   /* Buttons */
   .courses-button {
     width: 100%;
     padding: var(--courses-spacing-md) var(--courses-spacing-lg);
     font-size: var(--courses-text-base);
+    justify-content: center;
   }
 
   .courses-button-primary,
