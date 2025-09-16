@@ -3,15 +3,15 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 
 const config: Config = {
   title: "Recode Hive",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
- 
 
   url: "https://recodehive.com",
   baseUrl: "/",
@@ -25,18 +25,18 @@ const config: Config = {
   // Google Analytics and Theme Scripts
   scripts: [
     {
-      src: '/instant-theme.js',
+      src: "/instant-theme.js",
       async: false,
     },
     {
-      src: 'https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR',
+      src: "https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR",
       async: true,
     },
     {
-      src: '/gtag-init.js',
+      src: "/gtag-init.js",
     },
     {
-      src: '/pinterest-init.js',
+      src: "/pinterest-init.js",
     },
   ],
 
@@ -47,14 +47,14 @@ const config: Config = {
 
   presets: [
     [
-      'classic',
+      "classic",
       {
         docs: {
-          path: "docs", 
+          path: "docs",
           routeBasePath: "docs",
           sidebarPath: require.resolve("./sidebars.ts"),
           editUrl: ({ docPath }) =>
-          `https://github.com/recodehive/recode-website/tree/main/docs/${docPath}`,
+            `https://github.com/recodehive/recode-website/tree/main/docs/${docPath}`,
         },
         blog: {
           showReadingTime: true,
@@ -62,8 +62,7 @@ const config: Config = {
             type: ["rss", "atom"],
             xslt: true,
           },
-          editUrl:
-            "https://github.com/recodehive/recode-website/tree/main",
+          editUrl: "https://github.com/recodehive/recode-website/tree/main",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
@@ -72,7 +71,7 @@ const config: Config = {
           customCss: require.resolve("./src/css/custom.css"),
         },
         gtag: {
-          trackingID: 'G-W02Z2VJYCR',
+          trackingID: "G-W02Z2VJYCR",
           anonymizeIP: false,
         },
       } satisfies Preset.Options,
@@ -82,14 +81,13 @@ const config: Config = {
   themeConfig: {
     image: "img/docusaurus-social-card.jpg",
     colorMode: {
-      defaultMode: 'light',
+      defaultMode: "light",
       disableSwitch: false,
       respectPrefersColorScheme: false, // Let users manually control theme
     },
     navbar: {
-       title:"Recode Hive",
+      title: "Recode Hive",
       logo: {
-       
         alt: "RecodeHive Logo",
         src: "img/logo.png",
       },
@@ -102,14 +100,14 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4 w-xl">
-                <a class="border-r col-span-1" href="/docs/">Tutorials</a>
-                <div class="grid grid-cols-4 col-span-2">
-                  <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
-                  <a href="/docs/python/intro-python" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
-                  <a href="/docs/GitHub/intro-github" class="nav__icons" > <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
-                  <a href="/docs/Nextjs/intro-nextjs" class="nav__icons" > <img src="/icons/nextjs.svg" title="Nextjs" alt="Nextjs" /> </a>
-                </div>
-              </div>`,
+                 <a class="border-r col-span-1" href="/docs/">Tutorials</a>
+                 <div class="grid grid-cols-4 col-span-2">
+                   <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
+                   <a href="/docs/python/intro-python" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
+                   <a href="/docs/GitHub/intro-github" class="nav__icons" > <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
+                   <a href="/docs/Nextjs/intro-nextjs" class="nav__icons" > <img src="/icons/nextjs.svg" title="Nextjs" alt="Nextjs" /> </a>
+                 </div>
+               </div>`,
             },
             {
               type: "html",
@@ -118,13 +116,13 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
-                <a class="border-r col-span-1" href="/courses/">Courses</a>
-                <div class="grid grid-cols-4 col-span-2">
-                  <a href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/git.svg" alt="git" /> </a>
-                  <a href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/postman.svg" alt="Postman" /> </a>
-                  <a href="/docs/google-campus-ambassador-part-1" class="nav__icons"> <img src="https://avatars.githubusercontent.com/u/222021622?s=400&u=cb88492d19d9023cac470c3959b25285bb5abcfa&v=4" alt="Google" /> </a>
-                </div>
-              </div>`,
+                 <a class="border-r col-span-1" href="/courses/">Courses</a>
+                 <div class="grid grid-cols-4 col-span-2">
+                   <a href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/git.svg" alt="git" /> </a>
+                   <a href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/postman.svg" alt="Postman" /> </a>
+                   <a href="/docs/google-campus-ambassador-part-1" class="nav__icons"> <img src="https://avatars.githubusercontent.com/u/222021622?s=400&u=cb88492d19d9023cac470c3959b25285bb5abcfa&v=4" alt="Google" /> </a>
+                 </div>
+               </div>`,
             },
             {
               type: "html",
@@ -133,12 +131,12 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
-                <a class="border-r col-span-1" href="/interview-prep/" target="_self">Interview Prep</a>
-                <div class="grid grid-cols-1 col-span-2">
-                  <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a>
-                  <a href="/interview-prep/" target="_self" class="nav__icons"> 💡Behavioral </a>
-                </div>
-              </div>`,
+                 <a class="border-r col-span-1" href="/interview-prep/" target="_self">Interview Prep</a>
+                 <div class="grid grid-cols-1 col-span-2">
+                   <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a>
+                   <a href="/interview-prep/" target="_self" class="nav__icons"> 💡Behavioral </a>
+                 </div>
+               </div>`,
             },
           ],
         },
@@ -169,7 +167,7 @@ const config: Config = {
             {
               label: "🎖️ GitHub Badges",
               to: "/badges/github-badges/",
-            }, 
+            },
           ],
         },
         {
@@ -213,47 +211,10 @@ const config: Config = {
           position: "right",
           value: '<div id="firebase-auth-github-navbar"></div>',
         },
-        // {
-        //   type: "dropdown",
-        //   html: '<span class="nav-emoji">🏷️</span> Tags',
-        //   position: "left",
-        //   items: [
-        //     {
-        //       label: "🏷️ Tutorial Tags 📚",
-        //       to: "/docs/tags/",
-        //       activeBaseRegex: "/docs/tags/",
-        //     },
-        //     {
-        //       label: "🏷️ Courses Tags 🎓",
-        //       to: "/courses/tags/",
-        //       activeBaseRegex: "/courses/tags/",
-        //     },
-        //     {
-        //       label: "🏷️ DSA Tags 🧠",
-        //       to: "/dsa/tags/",
-        //       activeBaseRegex: "/dsa/tags/",
-        //     },
-        //   ],
-        // },
-        
-        // {
-        //   href: "https://github.com/codeharborhub/codeharborhub",
-        //   position: "right",
-        //   className: "header-github-link",
-        //   "aria-label": "GitHub repository",
-        // },
-        // {
-        //   href: "https://www.codeharborhub.live/register",
-        //   position: "right",
-        //   className: "header-signup-link",
-        //   "aria-label": "Auth",
-        //   label: "Auth",
-        // },
       ],
-      // hideOnScroll: true,
     },
     footer: {
-      style: 'dark',
+      style: "dark",
       links: [],
       copyright: `Copyright © ${new Date().getFullYear()} recodehive. Built with Docusaurus.`,
     },
@@ -294,22 +255,12 @@ const config: Config = {
         disableInDev: false,
       },
     ],
-    // Commented out to use TSX-based community page instead
-    // [
-    //   "@docusaurus/plugin-content-docs",
-    //   {
-    //     id: "community",
-    //     path: "community",
-    //     routeBasePath: "community",
-    //     sidebarPath: require.resolve("./sidebarsCommunity.js"),
-    //     remarkPlugins: [remarkMath],
-    //     rehypePlugins: [rehypeKatex],
-    //     showLastUpdateAuthor: true,
-    //     showLastUpdateTime: true,
-    //   },
-    // ],
   ],
-  //  scripts: [],
+
+  // ✅ Add this customFields object to expose the token to the client-side
+  customFields: {
+    gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
+  },
 };
 
 export default config;

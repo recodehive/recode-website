@@ -1,64 +1,227 @@
+// src/lib/statsProvider.tsx
+
 /** @jsxImportSource react */
 import React, {
-    createContext,
-    useCallback,
-    useContext,
-    useEffect,
-    useMemo,
-    useState,
-  } from "react";
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  ReactNode,
+} from "react";
 import { githubService, type GitHubOrgStats } from "../services/githubService";
-  
-  interface ICommunityStatsContext {
-    githubStarCount: number;
-    githubStarCountText: string;
-    githubContributorsCount: number;
-    githubContributorsCountText: string;
-    githubForksCount: number;
-    githubForksCountText: string;
-    githubReposCount: number;
-    githubReposCountText: string;
-    githubDiscussionsCount: number;
-    githubDiscussionsCountText: string;
-    loading: boolean;
-    error: string | null;
-    lastUpdated: Date | null;
-    refetch: (signal: AbortSignal) => Promise<void>;
-    clearCache: () => void;
-  }
-  
-  export const CommunityStatsContext = createContext<ICommunityStatsContext | undefined>(undefined);
-  
-  interface CommunityStatsProviderProps {
-    children: React.ReactNode;
-  }
-  
-  export function CommunityStatsProvider({ children }: CommunityStatsProviderProps) {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<string | null>(null);
-    const [githubStarCount, setGithubStarCount] = useState(0);
-    const [githubContributorsCount, setGithubContributorsCount] = useState(0);
-    const [githubForksCount, setGithubForksCount] = useState(0);
-    const [githubReposCount, setGithubReposCount] = useState(0);
-    const [githubDiscussionsCount, setGithubDiscussionsCount] = useState(0);
-    const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
-    const fetchGithubStats = useCallback(async (signal: AbortSignal) => {
-      try {
-        setLoading(true);
-        setError(null);
+interface ICommunityStatsContext {
+  githubStarCount: number;
+  githubStarCountText: string;
+  githubContributorsCount: number;
+  githubContributorsCountText: string;
+  githubForksCount: number;
+  githubForksCountText: string;
+  githubReposCount: number;
+  githubReposCountText: string;
+  githubDiscussionsCount: number;
+  githubDiscussionsCountText: string;
+  loading: boolean;
+  error: string | null;
+  lastUpdated: Date | null;
+  refetch: (signal: AbortSignal) => Promise<void>;
+  clearCache: () => void;
+  // New properties for leaderboard
+  contributors: Contributor[];
+  stats: Stats | null;
+}
 
-        const stats: GitHubOrgStats = await githubService.fetchOrganizationStats(signal);
+// Define types for leaderboard data
+interface Contributor {
+  username: string;
+  avatar: string;
+  profile: string;
+  points: number;
+  prs: number;
+}
+
+interface Stats {
+  flooredTotalPRs: number;
+  totalContributors: number;
+  flooredTotalPoints: number;
+}
+
+interface PullRequestItem {
+  user: {
+    login: string;
+    avatar_url: string;
+    html_url: string;
+  };
+  merged_at?: string | null;
+}
+
+export const CommunityStatsContext = createContext<ICommunityStatsContext | undefined>(undefined);
+
+interface CommunityStatsProviderProps {
+  children: ReactNode;
+}
+
+const GITHUB_ORG = "recodehive";
+const POINTS_PER_PR = 10;
+const MAX_CONCURRENT_REQUESTS = 5; // Limit concurrent requests to avoid rate limiting
+
+export function CommunityStatsProvider({ children }: CommunityStatsProviderProps) {
+  const {
+    siteConfig: { customFields },
+  } = useDocusaurusContext();
+  const token = customFields?.gitToken || "";
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [githubStarCount, setGithubStarCount] = useState(0);
+  const [githubContributorsCount, setGithubContributorsCount] = useState(0);
+  const [githubForksCount, setGithubForksCount] = useState(0);
+  const [githubReposCount, setGithubReposCount] = useState(0);
+  const [githubDiscussionsCount, setGithubDiscussionsCount] = useState(0);
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
+  
+  // New state for leaderboard data
+  const [contributors, setContributors] = useState<Contributor[]>([]);
+  const [stats, setStats] = useState<Stats | null>(null);
+
+  const fetchAllOrgRepos = useCallback(async (headers: Record<string, string>) => {
+    const repos: any[] = [];
+    let page = 1;
+    while (true) {
+      const resp = await fetch(`https://api.github.com/orgs/${GITHUB_ORG}/repos?type=public&per_page=100&page=${page}`, {
+        headers,
+      });
+      if (!resp.ok) {
+        throw new Error(`Failed to fetch org repos: ${resp.status} ${resp.statusText}`);
+      }
+      const data = await resp.json();
+      repos.push(...data);
+      if (!Array.isArray(data) || data.length < 100) break;
+      page++;
+    }
+    return repos;
+  }, []);
+
+  const fetchMergedPRsForRepo = useCallback(async (repoName: string, headers: Record<string, string>) => {
+    const mergedPRs: PullRequestItem[] = [];
+    let page = 1;
+    while (true) {
+      const resp = await fetch(
+        `https://api.github.com/repos/${GITHUB_ORG}/${repoName}/pulls?state=closed&per_page=100&page=${page}`,
+        { headers }
+      );
+      if (!resp.ok) {
+        console.warn(`Failed to fetch PRs for ${repoName}: ${resp.status} ${resp.statusText}`);
+        break;
+      }
+      const prs: PullRequestItem[] = await resp.json();
+      if (!Array.isArray(prs) || prs.length === 0) break;
+
+      const merged = prs.filter((pr) => Boolean(pr.merged_at));
+      mergedPRs.push(...merged);
+
+      if (prs.length < 100) break;
+      page++;
+    }
+    return mergedPRs;
+  }, []);
+
+  // NEW: Concurrent processing function with controlled concurrency
+  const processBatch = useCallback(async (
+    repos: any[],
+    headers: Record<string, string>
+  ): Promise<{ contributorMap: Map<string, Contributor>; totalMergedPRs: number }> => {
+    const contributorMap = new Map<string, Contributor>();
+    let totalMergedPRs = 0;
+
+    // Process repos in batches to control concurrency
+    for (let i = 0; i < repos.length; i += MAX_CONCURRENT_REQUESTS) {
+      const batch = repos.slice(i, i + MAX_CONCURRENT_REQUESTS);
+      
+      const promises = batch.map(async (repo) => {
+        if (repo.archived) return { mergedPRs: [], repoName: repo.name };
         
-        setGithubStarCount(stats.totalStars);
-        setGithubContributorsCount(stats.totalContributors);
-        setGithubForksCount(stats.totalForks);
-        setGithubReposCount(stats.publicRepositories);
-        setGithubDiscussionsCount(stats.discussionsCount);
-        setLastUpdated(new Date(stats.lastUpdated));
+        try {
+          const mergedPRs = await fetchMergedPRsForRepo(repo.name, headers);
+          return { mergedPRs, repoName: repo.name };
+        } catch (error) {
+          console.warn(`Skipping repo ${repo.name} due to error:`, error);
+          return { mergedPRs: [], repoName: repo.name };
+        }
+      });
 
-        console.log("GitHub organization stats fetched successfully:", stats);
-      } catch (err) {
+      // Wait for current batch to complete
+      const results = await Promise.all(promises);
+      
+      // Process results from this batch
+      results.forEach(({ mergedPRs }) => {
+        totalMergedPRs += mergedPRs.length;
+        
+        mergedPRs.forEach((pr) => {
+          const username = pr.user.login;
+          if (!contributorMap.has(username)) {
+            contributorMap.set(username, {
+              username,
+              avatar: pr.user.avatar_url,
+              profile: pr.user.html_url,
+              points: 0,
+              prs: 0,
+            });
+          }
+          const contributor = contributorMap.get(username)!;
+          contributor.prs++;
+          contributor.points += POINTS_PER_PR;
+        });
+      });
+    }
+
+    return { contributorMap, totalMergedPRs };
+  }, [fetchMergedPRsForRepo]);
+
+  const fetchAllStats = useCallback(async (signal: AbortSignal) => {
+    setLoading(true);
+    setError(null);
+    if (!token) {
+        setError("GitHub token not found. Please set customFields.gitToken in docusaurus.config.js.");
+        setLoading(false);
+        return;
+    }
+
+    try {
+        const headers: Record<string, string> = {
+            Authorization: `token ${token}`,
+            Accept: "application/vnd.github.v3+json",
+        };
+
+        // Fetch general organization stats (unchanged)
+        const orgStats: GitHubOrgStats = await githubService.fetchOrganizationStats(signal);
+        setGithubStarCount(orgStats.totalStars);
+        setGithubContributorsCount(orgStats.totalContributors);
+        setGithubForksCount(orgStats.totalForks);
+        setGithubReposCount(orgStats.publicRepositories);
+        setGithubDiscussionsCount(orgStats.discussionsCount);
+        setLastUpdated(new Date(orgStats.lastUpdated));
+
+        // Fetch leaderboard data with concurrent processing
+        const repos = await fetchAllOrgRepos(headers);
+        
+        // NEW: Use concurrent processing instead of sequential
+        const { contributorMap, totalMergedPRs } = await processBatch(repos, headers);
+
+        const sortedContributors = Array.from(contributorMap.values()).sort(
+          (a, b) => b.points - a.points || b.prs - a.prs
+        );
+        setContributors(sortedContributors);
+        setStats({
+          flooredTotalPRs: totalMergedPRs,
+          totalContributors: sortedContributors.length,
+          flooredTotalPoints: sortedContributors.reduce((sum, c) => sum + c.points, 0),
+        });
+
+      } catch (err: any) {
         if (err.name !== 'AbortError') {
           console.error("Error fetching GitHub organization stats:", err);
           setError(err instanceof Error ? err.message : 'Failed to fetch GitHub stats');
@@ -73,90 +236,76 @@ import { githubService, type GitHubOrgStats } from "../services/githubService";
       } finally {
         setLoading(false);
       }
-    }, []);
+  }, [token, fetchAllOrgRepos, processBatch]);
 
-    const clearCache = useCallback(() => {
-      githubService.clearCache();
-      // Optionally refetch after clearing cache
-      const abortController = new AbortController();
-      fetchGithubStats(abortController.signal);
-    }, [fetchGithubStats]);
+  const clearCache = useCallback(() => {
+    githubService.clearCache();
+    const abortController = new AbortController();
+    fetchAllStats(abortController.signal);
+  }, [fetchAllStats]);
 
-    useEffect(() => {
-      const abortController = new AbortController();
-      fetchGithubStats(abortController.signal);
+  useEffect(() => {
+    const abortController = new AbortController();
+    fetchAllStats(abortController.signal);
 
-      return () => {
-        abortController.abort();
-      };
-    }, [fetchGithubStats]);
-
-    const githubStarCountText = useMemo(() => {
-      return convertStatToText(githubStarCount);
-    }, [githubStarCount]);
-
-    const githubContributorsCountText = useMemo(() => {
-      return convertStatToText(githubContributorsCount);
-    }, [githubContributorsCount]);
-
-    const githubForksCountText = useMemo(() => {
-      return convertStatToText(githubForksCount);
-    }, [githubForksCount]);
-
-    const githubReposCountText = useMemo(() => {
-      return convertStatToText(githubReposCount);
-    }, [githubReposCount]);
-
-    const githubDiscussionsCountText = useMemo(() => {
-      return convertStatToText(githubDiscussionsCount);
-    }, [githubDiscussionsCount]);
-
-    const value: ICommunityStatsContext = {
-      githubStarCount,
-      githubStarCountText,
-      githubContributorsCount,
-      githubContributorsCountText,
-      githubForksCount,
-      githubForksCountText,
-      githubReposCount,
-      githubReposCountText,
-      githubDiscussionsCount,
-      githubDiscussionsCountText,
-      loading,
-      error,
-      lastUpdated,
-      refetch: fetchGithubStats,
-      clearCache,
+    return () => {
+      abortController.abort();
     };
-  
-    return (
-      <CommunityStatsContext.Provider value={value}>
-        {children}
-      </CommunityStatsContext.Provider>
-    );
+  }, [fetchAllStats]);
+
+  const githubStarCountText = useMemo(() => convertStatToText(githubStarCount), [githubStarCount]);
+  const githubContributorsCountText = useMemo(() => convertStatToText(githubContributorsCount), [githubContributorsCount]);
+  const githubForksCountText = useMemo(() => convertStatToText(githubForksCount), [githubForksCount]);
+  const githubReposCountText = useMemo(() => convertStatToText(githubReposCount), [githubReposCount]);
+  const githubDiscussionsCountText = useMemo(() => convertStatToText(githubDiscussionsCount), [githubDiscussionsCount]);
+
+  const value: ICommunityStatsContext = {
+    githubStarCount,
+    githubStarCountText,
+    githubContributorsCount,
+    githubContributorsCountText,
+    githubForksCount,
+    githubForksCountText,
+    githubReposCount,
+    githubReposCountText,
+    githubDiscussionsCount,
+    githubDiscussionsCountText,
+    loading,
+    error,
+    lastUpdated,
+    refetch: fetchAllStats,
+    clearCache,
+    contributors,
+    stats,
+  };
+
+  return (
+    <CommunityStatsContext.Provider value={value}>
+      {children}
+    </CommunityStatsContext.Provider>
+  );
+}
+
+export const useCommunityStatsContext = (): ICommunityStatsContext => {
+  const context = useContext(CommunityStatsContext);
+  if (context === undefined) {
+    throw new Error("useCommunityStatsContext must be used within a CommunityStatsProvider");
   }
-  
-  export const useCommunityStatsContext = (): ICommunityStatsContext => {
-    const context = useContext(CommunityStatsContext);
-    if (context === undefined) {
-      throw new Error("useCommunityStatsContext must be used within a CommunityStatsProvider");
-    }
-    return context;
-  };
-  
-  export const convertStatToText = (num: number): string => {
-    const hasIntlSupport =
-      typeof Intl === "object" && Intl && typeof Intl.NumberFormat === "function";
-  
-    if (!hasIntlSupport) {
-      return `${(num / 1000).toFixed(1)}k`;
-    }
-  
-    const formatter = new Intl.NumberFormat("en-US", {
-      notation: "compact",
-      compactDisplay: "short",
-      maximumSignificantDigits: 3,
-    });
-    return formatter.format(num);
-  };
-  
+  return context;
+};
+
+export const convertStatToText = (num: number): string => {
+  const hasIntlSupport =
+    typeof Intl === "object" && Intl && typeof Intl.NumberFormat === "function";
+
+  if (!hasIntlSupport) {
+    return `${(num / 1000).toFixed(1)}k`;
+  }
+
+  const formatter = new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    compactDisplay: "short",
+    maximumSignificantDigits: 3,
+  });
+  return formatter.format(num);
+};
