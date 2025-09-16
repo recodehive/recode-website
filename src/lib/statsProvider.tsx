@@ -66,6 +66,7 @@ interface CommunityStatsProviderProps {
 
 const GITHUB_ORG = "recodehive";
 const POINTS_PER_PR = 10;
+const MAX_CONCURRENT_REQUESTS = 5; // Limit concurrent requests to avoid rate limiting
 
 export function CommunityStatsProvider({ children }: CommunityStatsProviderProps) {
   const {
@@ -128,6 +129,58 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
     return mergedPRs;
   }, []);
 
+  // NEW: Concurrent processing function with controlled concurrency
+  const processBatch = useCallback(async (
+    repos: any[],
+    headers: Record<string, string>
+  ): Promise<{ contributorMap: Map<string, Contributor>; totalMergedPRs: number }> => {
+    const contributorMap = new Map<string, Contributor>();
+    let totalMergedPRs = 0;
+
+    // Process repos in batches to control concurrency
+    for (let i = 0; i < repos.length; i += MAX_CONCURRENT_REQUESTS) {
+      const batch = repos.slice(i, i + MAX_CONCURRENT_REQUESTS);
+      
+      const promises = batch.map(async (repo) => {
+        if (repo.archived) return { mergedPRs: [], repoName: repo.name };
+        
+        try {
+          const mergedPRs = await fetchMergedPRsForRepo(repo.name, headers);
+          return { mergedPRs, repoName: repo.name };
+        } catch (error) {
+          console.warn(`Skipping repo ${repo.name} due to error:`, error);
+          return { mergedPRs: [], repoName: repo.name };
+        }
+      });
+
+      // Wait for current batch to complete
+      const results = await Promise.all(promises);
+      
+      // Process results from this batch
+      results.forEach(({ mergedPRs }) => {
+        totalMergedPRs += mergedPRs.length;
+        
+        mergedPRs.forEach((pr) => {
+          const username = pr.user.login;
+          if (!contributorMap.has(username)) {
+            contributorMap.set(username, {
+              username,
+              avatar: pr.user.avatar_url,
+              profile: pr.user.html_url,
+              points: 0,
+              prs: 0,
+            });
+          }
+          const contributor = contributorMap.get(username)!;
+          contributor.prs++;
+          contributor.points += POINTS_PER_PR;
+        });
+      });
+    }
+
+    return { contributorMap, totalMergedPRs };
+  }, [fetchMergedPRsForRepo]);
+
   const fetchAllStats = useCallback(async (signal: AbortSignal) => {
     setLoading(true);
     setError(null);
@@ -143,7 +196,7 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
             Accept: "application/vnd.github.v3+json",
         };
 
-        // Fetch general organization stats
+        // Fetch general organization stats (unchanged)
         const orgStats: GitHubOrgStats = await githubService.fetchOrganizationStats(signal);
         setGithubStarCount(orgStats.totalStars);
         setGithubContributorsCount(orgStats.totalContributors);
@@ -152,38 +205,11 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
         setGithubDiscussionsCount(orgStats.discussionsCount);
         setLastUpdated(new Date(orgStats.lastUpdated));
 
-        // Fetch leaderboard data
+        // Fetch leaderboard data with concurrent processing
         const repos = await fetchAllOrgRepos(headers);
-        const contributorMap = new Map<string, Contributor>();
-        let totalMergedPRs = 0;
-
-        for (const repo of repos) {
-          if (repo.archived) continue;
-          const repoName = repo.name;
-          try {
-            const mergedPRs = await fetchMergedPRsForRepo(repoName, headers);
-            totalMergedPRs += mergedPRs.length;
-
-            for (const pr of mergedPRs) {
-              const username = pr.user.login;
-              if (!contributorMap.has(username)) {
-                contributorMap.set(username, {
-                  username,
-                  avatar: pr.user.avatar_url,
-                  profile: pr.user.html_url,
-                  points: 0,
-                  prs: 0,
-                });
-              }
-              const contributor = contributorMap.get(username)!;
-              contributor.prs++;
-              contributor.points += POINTS_PER_PR;
-            }
-          } catch (repoErr) {
-            console.warn(`Skipping repo ${repoName} due to error:`, repoErr);
-            continue;
-          }
-        }
+        
+        // NEW: Use concurrent processing instead of sequential
+        const { contributorMap, totalMergedPRs } = await processBatch(repos, headers);
 
         const sortedContributors = Array.from(contributorMap.values()).sort(
           (a, b) => b.points - a.points || b.prs - a.prs
@@ -210,7 +236,7 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
       } finally {
         setLoading(false);
       }
-  }, [token, fetchAllOrgRepos, fetchMergedPRsForRepo]);
+  }, [token, fetchAllOrgRepos, processBatch]);
 
   const clearCache = useCallback(() => {
     githubService.clearCache();
