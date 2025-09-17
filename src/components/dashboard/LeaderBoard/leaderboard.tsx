@@ -94,17 +94,91 @@ export default function LeaderBoard(): JSX.Element {
 
   const renderPaginationButtons = () => {
     const pages = [];
-    for (let i = 1; i <= totalPages; i++) {
+    const maxVisibleButtons = 5; // Maximum number of page buttons to show directly
+    
+    // Special case: if we have 7 or fewer pages, show all of them without ellipsis
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) {
+        pages.push(
+          <button
+            key={i}
+            onClick={() => paginate(i)}
+            className={`page-btn ${currentPage === i ? "active" : ""}`}
+          >
+            {i}
+          </button>
+        );
+      }
+      return pages;
+    }
+    
+    // For more than 7 pages, use the ellipsis approach
+    
+    // Always show first page
+    pages.push(
+      <button
+        key={1}
+        onClick={() => paginate(1)}
+        className={`page-btn ${currentPage === 1 ? "active" : ""}`}
+      >
+        1
+      </button>
+    );
+    
+    // Calculate the range of pages to show (middle section)
+    // We want to show current page and 1-2 pages before and after when possible
+    let startPage = Math.max(2, currentPage - 1);
+    let endPage = Math.min(totalPages - 1, currentPage + 1);
+    
+    // Adjust start and end page if we're near the beginning or end
+    if (currentPage <= 3) {
+      // Near the beginning, show pages 2, 3, 4
+      startPage = 2;
+      endPage = Math.min(4, totalPages - 1);
+    } else if (currentPage >= totalPages - 2) {
+      // Near the end, show the three pages before the last page
+      endPage = totalPages - 1;
+      startPage = Math.max(2, totalPages - 3);
+    }
+    
+    // Show ellipsis if needed before the middle range
+    if (startPage > 2) {
+      pages.push(
+        <span key="ellipsis-1" className="pagination-ellipsis">...</span>
+      );
+    }
+    
+    // Show pages in the middle range
+    for (let i = startPage; i <= endPage; i++) {
       pages.push(
         <button
           key={i}
           onClick={() => paginate(i)}
-          className={`page-btn ${currentPage === i ? "active" : ""} `}
+          className={`page-btn ${currentPage === i ? "active" : ""}`}
         >
           {i}
         </button>
       );
     }
+    
+    // Show ellipsis if needed after the middle range
+    if (endPage < totalPages - 1) {
+      pages.push(
+        <span key="ellipsis-2" className="pagination-ellipsis">...</span>
+      );
+    }
+    
+    // Always show last page
+    pages.push(
+      <button
+        key={totalPages}
+        onClick={() => paginate(totalPages)}
+        className={`page-btn ${currentPage === totalPages ? "active" : ""}`}
+      >
+        {totalPages}
+      </button>
+    );
+    
     return pages;
   };
 
