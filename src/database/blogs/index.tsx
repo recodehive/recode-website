@@ -73,6 +73,15 @@ const blogs: Blog[] = [
     slug: "spark-architecture",
     authors: ["Aditya-Singh-Rathore","sanjay-kv"],
   },
+  {
+    id: 8,
+    title: "N8N: The Future of Workflow Automation",
+    image: "/img/blogs/n8n-logo.png",
+    description:
+      "N8N is an open-source workflow automation tool that enables users to connect various apps and services to automate tasks without extensive coding knowledge.",
+    slug: "n8n-workflow-automation",
+    authors: ["Aditya-Singh-Rathore",],
+  }
 
 ];
 
