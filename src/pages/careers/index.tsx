@@ -174,9 +174,9 @@ function CareersContent() {
         />
       </Head>
 
-      <div className={`careers-page transition-colors duration-300 ${
+      <div className={`careers-page transition-colors duration-300 min-h-screen ${
         isDark
-          ? 'bg-gradient-to-b from-gray-900 to-black'
+          ? 'bg-gray-900'
           : 'bg-gradient-to-b from-white to-gray-50'
       }`}>
         {/* Hero Section */}
@@ -224,6 +224,9 @@ function CareersContent() {
         <motion.section
           id="culture"
           className="culture-section py-20 px-4"
+          style={{
+            backgroundColor: isDark ? '#111827' : '#ffffff'
+          }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -231,38 +234,61 @@ function CareersContent() {
         >
           <div className="max-w-6xl mx-auto">
             <motion.div className="text-center mb-16" variants={fadeIn}>
-              <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
-                isDark ? 'text-white' : 'text-gray-900'
-              }`}>
+              <h2 
+                className="text-4xl md:text-5xl font-bold mb-6"
+                style={{
+                  color: isDark ? '#ffffff' : '#111827'
+                }}
+              >
                 Our Culture & Values
               </h2>
-              <p className={`text-xl max-w-3xl mx-auto ${
-                isDark ? 'text-gray-300' : 'text-gray-600'
-              }`}>
-                We're building more than just a company—we're creating a community of learners, innovators, and leaders.
-              </p>
+              <div 
+                className="w-full flex justify-center"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <p 
+                  className="text-xl max-w-3xl"
+                  style={{
+                    color: isDark ? '#d1d5db' : '#4b5563',
+                    textAlign: 'center',
+                    margin: '0 auto'
+                  }}
+                >
+                  We're building more than just a company—we're creating a community of learners, innovators, and leaders.
+                </p>
+              </div>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-8">
               {cultureValues.map((value, index) => (
                 <motion.div
                   key={index}
-                  className={`culture-card rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
-                    isDark ? 'bg-gray-800' : 'bg-white'
-                  }`}
+                  className="culture-card rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  style={{
+                    backgroundColor: isDark ? '#0f172a' : '#ffffff'
+                  }}
                   variants={fadeIn}
                 >
                   <div className="h-48 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg mb-6 flex items-center justify-center">
                     <span className="text-6xl">🚀</span>
                   </div>
-                  <h3 className={`text-2xl font-bold mb-4 ${
-                    isDark ? 'text-white' : 'text-gray-900'
-                  }`}>
+                  <h3 
+                    className="text-2xl font-bold mb-4"
+                    style={{
+                      color: isDark ? '#ffffff' : '#111827'
+                    }}
+                  >
                     {value.title}
                   </h3>
-                  <p className={`${
-                    isDark ? 'text-gray-300' : 'text-gray-600'
-                  }`}>
+                  <p 
+                    style={{
+                      color: isDark ? '#d1d5db' : '#4b5563'
+                    }}
+                  >
                     {value.description}
                   </p>
                 </motion.div>
@@ -273,7 +299,10 @@ function CareersContent() {
 
         {/* Perks & Benefits Section */}
         <motion.section
-          className="perks-section py-20 px-4 bg-gray-50 dark:bg-gray-900"
+          className="perks-section py-20 px-4"
+          style={{
+            backgroundColor: isDark ? '#0f172a' : '#f9fafb'
+          }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -281,26 +310,59 @@ function CareersContent() {
         >
           <div className="max-w-6xl mx-auto">
             <motion.div className="text-center mb-16" variants={fadeIn}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              <h2 
+                className="text-4xl md:text-5xl font-bold mb-6"
+                style={{
+                  color: isDark ? '#ffffff' : '#111827'
+                }}
+              >
                 Perks & Benefits
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-                We take care of our team so they can focus on doing their best work.
-              </p>
+              <div 
+                className="w-full flex justify-center"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <p 
+                  className="text-xl max-w-3xl"
+                  style={{
+                    color: isDark ? '#d1d5db' : '#4b5563',
+                    textAlign: 'center',
+                    margin: '0 auto'
+                  }}
+                >
+                  We take care of our team so they can focus on doing their best work.
+                </p>
+              </div>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {perks.map((perk, index) => (
                 <motion.div
                   key={index}
-                  className="perk-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  className="perk-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  style={{
+                    backgroundColor: isDark ? '#1f2937' : '#ffffff'
+                  }}
                   variants={fadeIn}
                 >
                   <div className="text-4xl mb-4">{perk.icon}</div>
-                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                  <h3 
+                    className="text-xl font-bold mb-3"
+                    style={{
+                      color: isDark ? '#ffffff' : '#111827'
+                    }}
+                  >
                     {perk.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
+                  <p 
+                    style={{
+                      color: isDark ? '#d1d5db' : '#4b5563'
+                    }}
+                  >
                     {perk.description}
                   </p>
                 </motion.div>
@@ -313,6 +375,9 @@ function CareersContent() {
         <motion.section
           id="openings"
           className="jobs-section py-20 px-4"
+          style={{
+            backgroundColor: isDark ? '#111827' : '#ffffff'
+          }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -320,10 +385,20 @@ function CareersContent() {
         >
           <div className="max-w-6xl mx-auto">
             <motion.div className="text-center mb-16" variants={fadeIn}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              <h2 
+                className="text-4xl md:text-5xl font-bold mb-6"
+                style={{
+                  color: isDark ? '#ffffff' : '#111827'
+                }}
+              >
                 Open Positions
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+              <p 
+                className="text-xl max-w-3xl mx-auto text-center"
+                style={{
+                  color: isDark ? '#d1d5db' : '#4b5563'
+                }}
+              >
                 Find your next opportunity and help us build the future of coding education.
               </p>
             </motion.div>
@@ -332,35 +407,64 @@ function CareersContent() {
               {jobOpenings.map((job, index) => (
                 <motion.div
                   key={index}
-                  className="job-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="job-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                  style={{
+                    backgroundColor: isDark ? '#1f2937' : '#ffffff'
+                  }}
                   variants={fadeIn}
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div className="flex-1">
                       <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
-                        <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                        <h3 
+                          className="text-2xl font-bold"
+                          style={{
+                            color: isDark ? '#ffffff' : '#111827'
+                          }}
+                        >
                           {job.title}
                         </h3>
                         <div className="flex gap-2">
-                          <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm">
+                          <span className={`px-3 py-1 rounded-full text-sm ${
+                            isDark 
+                              ? 'bg-blue-900 text-blue-200' 
+                              : 'bg-blue-100 text-blue-800'
+                          }`}>
                             {job.department}
                           </span>
-                          <span className="px-3 py-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm">
+                          <span className={`px-3 py-1 rounded-full text-sm ${
+                            isDark 
+                              ? 'bg-green-900 text-green-200' 
+                              : 'bg-green-100 text-green-800'
+                          }`}>
                             {job.location}
                           </span>
-                          <span className="px-3 py-1 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm">
+                          <span className={`px-3 py-1 rounded-full text-sm ${
+                            isDark 
+                              ? 'bg-purple-900 text-purple-200' 
+                              : 'bg-purple-100 text-purple-800'
+                          }`}>
                             {job.type}
                           </span>
                         </div>
                       </div>
-                      <p className="text-gray-600 dark:text-gray-300 mb-4">
+                      <p 
+                        className="mb-4"
+                        style={{
+                          color: isDark ? '#d1d5db' : '#4b5563'
+                        }}
+                      >
                         {job.description}
                       </p>
                     </div>
                     <div className="md:ml-6">
                       <Link
                         to="/contact-us"
-                        className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg inline-block"
+                        className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-block"
+                        style={{
+                          color: '#ffffff',
+                          textDecoration: 'none'
+                        }}
                       >
                         Apply Now
                       </Link>
@@ -374,7 +478,10 @@ function CareersContent() {
 
         {/* Testimonials Section */}
         <motion.section
-          className="testimonials-section py-20 px-4 bg-gray-50 dark:bg-gray-900"
+          className="testimonials-section py-20 px-4"
+          style={{
+            backgroundColor: isDark ? '#0f172a' : '#f9fafb'
+          }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -382,30 +489,57 @@ function CareersContent() {
         >
           <div className="max-w-4xl mx-auto">
             <motion.div className="text-center mb-16" variants={fadeIn}>
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+              <h2 
+                className="text-4xl md:text-5xl font-bold mb-6"
+                style={{
+                  color: isDark ? '#ffffff' : '#111827'
+                }}
+              >
                 What Our Team Says
               </h2>
-              <p className="text-xl text-gray-600 dark:text-gray-300">
+              <p 
+                className="text-xl text-center"
+                style={{
+                  color: isDark ? '#d1d5db' : '#4b5563'
+                }}
+              >
                 Hear from our team members about their experience at RecodeHive.
               </p>
             </motion.div>
 
             <motion.div
-              className="testimonial-carousel bg-white dark:bg-gray-800 rounded-xl p-8 shadow-lg"
+              className="testimonial-carousel rounded-xl p-8 shadow-lg"
+              style={{
+                backgroundColor: isDark ? '#111827' : '#ffffff'
+              }}
               variants={fadeIn}
             >
               <div className="testimonial-content text-center">
                 <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <span className="text-2xl">👤</span>
                 </div>
-                <blockquote className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mb-6 italic">
+                <blockquote 
+                  className="text-lg md:text-xl mb-6 italic"
+                  style={{
+                    color: isDark ? '#d1d5db' : '#374151'
+                  }}
+                >
                   "{testimonials[activeTestimonial].content}"
                 </blockquote>
                 <div className="testimonial-author">
-                  <h4 className="text-xl font-bold text-gray-900 dark:text-white">
+                  <h4 
+                    className="text-xl font-bold"
+                    style={{
+                      color: isDark ? '#ffffff' : '#111827'
+                    }}
+                  >
                     {testimonials[activeTestimonial].name}
                   </h4>
-                  <p className="text-gray-600 dark:text-gray-400">
+                  <p 
+                    style={{
+                      color: isDark ? '#9ca3af' : '#4b5563'
+                    }}
+                  >
                     {testimonials[activeTestimonial].role}
                   </p>
                 </div>
@@ -418,7 +552,9 @@ function CareersContent() {
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${
                       index === activeTestimonial 
                         ? 'bg-blue-600 scale-110' 
-                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400'
+                        : isDark 
+                          ? 'bg-gray-600 hover:bg-gray-500' 
+                          : 'bg-gray-300 hover:bg-gray-400'
                     }`}
                     onClick={() => setActiveTestimonial(index)}
                   />
