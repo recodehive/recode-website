@@ -1,8 +1,92 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "@theme/Layout";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { Mail, MapPin, Clock } from "lucide-react";
 
 const ContactUs: React.FC = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const validate = () => {
+    const newErrors = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      subject: "",
+      message: "",
+    };
+
+    if (!formData.firstName) {
+      newErrors.firstName = "First Name is required.";
+    }
+
+    if (!formData.lastName) {
+      newErrors.lastName = "Last Name is required.";
+    }
+
+    if (!formData.email) {
+      newErrors.email = "Email is required.";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is invalid.";
+    }
+
+    if (!formData.subject) {
+      newErrors.subject = "Subject is required.";
+    }
+
+    if (!formData.message) {
+      newErrors.message = "Message is required.";
+    }
+
+    return newErrors;
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newErrors = validate();
+    if (Object.values(newErrors).some((error) => error)) {
+      setErrors(newErrors);
+    } else {
+      // Form is valid, you can submit it here
+      console.log("Form submitted successfully:", formData);
+      setErrors({
+        firstName: "",
+        lastName: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+      // You can reset the form here if needed
+      // setFormData({
+      //   firstName: "",
+      //   lastName: "",
+      //   email: "",
+      //   subject: "",
+      //   message: "",
+      // });
+    }
+  };
+
   return (
     <Layout
       title="Contact Us"
@@ -119,7 +203,7 @@ const ContactUs: React.FC = () => {
                 Send us a message
               </h2>
               
-              <form className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -129,10 +213,12 @@ const ContactUs: React.FC = () => {
                       type="text"
                       id="firstName"
                       name="firstName"
+                      value={formData.firstName}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                       placeholder="Your first name"
-                      required
                     />
+                    {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
                   </div>
                   <div>
                     <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -142,10 +228,12 @@ const ContactUs: React.FC = () => {
                       type="text"
                       id="lastName"
                       name="lastName"
+                      value={formData.lastName}
+                      onChange={handleChange}
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                       placeholder="Your last name"
-                      required
                     />
+                    {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
                   </div>
                 </div>
 
@@ -157,10 +245,12 @@ const ContactUs: React.FC = () => {
                     type="email"
                     id="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                     placeholder="your.email@example.com"
-                    required
                   />
+                  {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                 </div>
 
                 <div>
@@ -170,8 +260,9 @@ const ContactUs: React.FC = () => {
                   <select
                     id="subject"
                     name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
-                    required
                   >
                     <option value="">Select a subject</option>
                     <option value="general">General Inquiry</option>
@@ -181,6 +272,7 @@ const ContactUs: React.FC = () => {
                     <option value="feedback">Feedback</option>
                     <option value="other">Other</option>
                   </select>
+                  {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
                 </div>
 
                 <div>
@@ -191,10 +283,12 @@ const ContactUs: React.FC = () => {
                     id="message"
                     name="message"
                     rows={6}
+                    value={formData.message}
+                    onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none"
                     placeholder="Tell us more about your inquiry..."
-                    required
                   ></textarea>
+                  {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                 </div>
 
                 <button
