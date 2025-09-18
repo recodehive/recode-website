@@ -3,6 +3,8 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import * as dotenv from "dotenv";
+dotenv.config();
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -11,11 +13,11 @@ const config: Config = {
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
-  url: "https://your-docusaurus-site.example.com",
+  url: "https://recodehive.com",
   baseUrl: "/",
 
-  organizationName: "facebook",
-  projectName: "docusaurus",
+  organizationName: "recodehive",
+  projectName: "recode-website",
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -48,9 +50,11 @@ const config: Config = {
       "classic",
       {
         docs: {
+          path: "docs",
+          routeBasePath: "docs",
           sidebarPath: require.resolve("./sidebars.ts"),
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: ({ docPath }) =>
+            `https://github.com/recodehive/recode-website/tree/main/docs/${docPath}`,
         },
         blog: {
           showReadingTime: true,
@@ -58,8 +62,7 @@ const config: Config = {
             type: ["rss", "atom"],
             xslt: true,
           },
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          editUrl: "https://github.com/recodehive/recode-website/tree/main",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
@@ -97,14 +100,14 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4 w-xl">
-                <a class="border-r col-span-1" href="/docs/">Tutorials</a>
-                <div class="grid grid-cols-4 col-span-2">
-                  <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
-                  <a href="/docs/python/intro-python" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
-                  <a href="/docs/GitHub/intro-github" class="nav__icons" > <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
-                  <a href="/docs/Nextjs/intro-nextjs" class="nav__icons" > <img src="/icons/nextjs.svg" title="Nextjs" alt="Nextjs" /> </a>
-                </div>
-              </div>`,
+                 <a class="border-r col-span-1" href="/docs/">Tutorials</a>
+                 <div class="grid grid-cols-4 col-span-2">
+                   <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
+                   <a href="/docs/python/intro-python" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
+                   <a href="/docs/GitHub/intro-github" class="nav__icons" > <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
+                   <a href="/docs/Nextjs/intro-nextjs" class="nav__icons" > <img src="/icons/nextjs.svg" title="Nextjs" alt="Nextjs" /> </a>
+                 </div>
+               </div>`,
             },
             {
               type: "html",
@@ -113,13 +116,13 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
-                <a class="border-r col-span-1" href="/courses/">Courses</a>
-                <div class="grid grid-cols-4 col-span-2">
-                  <a href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/git.svg" alt="git" /> </a>
-                  <a href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/postman.svg" alt="Postman" /> </a>
-                  <a href="/docs/google-campus-ambassador-part-1" class="nav__icons"> <img src="https://avatars.githubusercontent.com/u/222021622?s=400&u=cb88492d19d9023cac470c3959b25285bb5abcfa&v=4" alt="Google" /> </a>
-                </div>
-              </div>`,
+                 <a class="border-r col-span-1" href="/courses/">Courses</a>
+                 <div class="grid grid-cols-4 col-span-2">
+                   <a href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/git.svg" alt="git" /> </a>
+                   <a href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/postman.svg" alt="Postman" /> </a>
+                   <a href="/docs/google-campus-ambassador-part-1" class="nav__icons"> <img src="https://avatars.githubusercontent.com/u/222021622?s=400&u=cb88492d19d9023cac470c3959b25285bb5abcfa&v=4" alt="Google" /> </a>
+                 </div>
+               </div>`,
             },
             {
               type: "html",
@@ -128,12 +131,12 @@ const config: Config = {
             {
               type: "html",
               value: `<div class="grid grid-cols-3 gap-4">
-                <a class="border-r col-span-1" href="/interview-prep/" target="_self">Interview Prep</a>
-                <div class="grid grid-cols-1 col-span-2">
-                  <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a>
-                  <a href="/interview-prep/" target="_self" class="nav__icons"> 💡Behavioral </a>
-                </div>
-              </div>`,
+                 <a class="border-r col-span-1" href="/interview-prep/" target="_self">Interview Prep</a>
+                 <div class="grid grid-cols-1 col-span-2">
+                   <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a>
+                   <a href="/interview-prep/" target="_self" class="nav__icons"> 💡Behavioral </a>
+                 </div>
+               </div>`,
             },
           ],
         },
@@ -208,6 +211,7 @@ const config: Config = {
           position: "right",
           value: '<div id="firebase-auth-github-navbar"></div>',
         },
+
         // {
         //   type: "dropdown",
         //   html: '<span class="nav-emoji">🏷️</span> Tags',
@@ -244,8 +248,8 @@ const config: Config = {
         //   "aria-label": "Auth",
         //   label: "Auth",
         // },
+
       ],
-      // hideOnScroll: true,
     },
     footer: {
       style: "dark",
@@ -289,22 +293,12 @@ const config: Config = {
         disableInDev: false,
       },
     ],
-    // Commented out to use TSX-based community page instead
-    // [
-    //   "@docusaurus/plugin-content-docs",
-    //   {
-    //     id: "community",
-    //     path: "community",
-    //     routeBasePath: "community",
-    //     sidebarPath: require.resolve("./sidebarsCommunity.js"),
-    //     remarkPlugins: [remarkMath],
-    //     rehypePlugins: [rehypeKatex],
-    //     showLastUpdateAuthor: true,
-    //     showLastUpdateTime: true,
-    //   },
-    // ],
   ],
-  //  scripts: [],
+
+  // ✅ Add this customFields object to expose the token to the client-side
+  customFields: {
+    gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
+  },
 };
 
 export default config;

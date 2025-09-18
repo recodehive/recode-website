@@ -92,6 +92,7 @@ const sponsors: Sponsor[] = [
     linkedin: "https://www.linkedin.com/in/prakharsaxena5/",
     isPastSponsor: true,
   },
+  
 
   {
     name: "Varghese Baby",
@@ -234,6 +235,23 @@ const sponsors: Sponsor[] = [
     linkedin: "https://www.linkedin.com/in/akshitha-chiluka-b19245259",
     twitter: "https://x.com/AkshithaChiluka?t=5ztRGbV2DDB6Wf5tlCyHrw&s=09",
     isPastSponsor: true,
+  },
+
+  {
+    name: "Medha", 
+    image: "https://avatars.githubusercontent.com/u/90996890?v=4",
+    description: "Student: NextJs Developer",
+    github: "https://github.com/medss19",
+    linkedin: "https://www.linkedin.com/in/medha-agarwal-01b33725a/",
+    isWeSponsor: true,
+  },
+  {
+    name: "Aadil Latif", 
+    image: "https://avatars.githubusercontent.com/u/145087959?v=4",
+    description: "Founder TechXNinjas",
+    github: "https://github.com/iaadillatif",
+    linkedin: "https://www.linkedin.com/in/iaadillatif/",
+    isWeSponsor: true,
   },
 
   {

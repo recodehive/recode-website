@@ -28,7 +28,7 @@ const contributionSections: ContributionSection[] = [
     ],
     links: [
       { text: 'GitHub', url: 'https://github.com/recodehive' },
-      { text: 'GitLab', url: '/community' }
+  { text: 'GitLab', url: 'https://gitlab.com' }
     ],
     color: '#8b5cf6'
   },
@@ -43,8 +43,8 @@ const contributionSections: ContributionSection[] = [
       'Share design feedback'
     ],
     links: [
-      { text: 'Figma', url: '/community' },
-      { text: 'Adobe XD', url: '/community' }
+      { text: 'Figma', url: 'https://www.figma.com/' },
+      { text: 'Adobe XD', url: 'https://helpx.adobe.com/support/xd.html' }
     ],
     color: '#ec4899'
   },
@@ -59,7 +59,7 @@ const contributionSections: ContributionSection[] = [
       'Translate content 🌍'
     ],
     links: [
-      { text: 'GitHub Docs', url: '/community' }
+      { text: 'GitHub Docs', url: 'https://github.com/recodehive/recode-website/tree/main/docs' }
     ],
     color: '#f59e0b'
   },
@@ -74,8 +74,8 @@ const contributionSections: ContributionSection[] = [
       'Share knowledge and insights'
     ],
     links: [
-      { text: 'Discord', url: '/community' },
-      { text: 'Slack', url: '/community' }
+  { text: 'Discord', url: 'https://discord.gg/Yxv9RA3r' },
+  { text: 'Slack', url: 'https://slack.com' }
     ],
     color: '#10b981'
   },
@@ -90,8 +90,8 @@ const contributionSections: ContributionSection[] = [
       'Pick a task or area you\'re excited about!'
     ],
     links: [
-      { text: 'Discord', url: '/community' },
-      { text: 'Slack', url: '/community' },
+  { text: 'Discord', url: 'https://discord.gg/Yxv9RA3r' },
+  { text: 'Slack', url: 'https://slack.com' },
       { text: 'GitHub', url: 'https://github.com/recodehive' }
     ],
     color: '#6366f1'
@@ -108,7 +108,7 @@ const tableOfContents = [
   { id: 'thank-you', title: 'Thank You', icon: '💚' }
 ];
 
-export default function CommunityPage(): JSX.Element {
+export default function CommunityPage(): React.ReactElement {
   const [activeSections, setActiveSections] = useState<string[]>(['how-you-can-contribute']);
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
 

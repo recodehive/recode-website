@@ -877,3 +877,50 @@
     padding: 0 20px 24px;
   }
 }
+.section-header h2,
+.section-header h3,
+.contribution-section h2,
+.contribution-section h3 {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+[data-theme='dark'] .section-header h2,
+[data-theme='dark'] .section-header h3,
+[data-theme='dark'] .contribution-section h2,
+[data-theme='dark'] .contribution-section h3 {
+  color: #ffffff;
+}
+
+/* force the heading for a constant theme */
+.contribution-section > h2,
+.contribution-section > h3,
+.contribution-section > h4 {
+  color: #1e293b;
+  font-weight: 700;
+}
+
+[data-theme='dark'] .contribution-section > h2,
+[data-theme='dark'] .contribution-section > h3,
+[data-theme='dark'] .contribution-section > h4 {
+  color: #ffffff;
+}
+
+/* Generic fix for any heading contribution sections */
+.contribution-section h1,
+.contribution-section h2,
+.contribution-section h3,
+.contribution-section h4,
+.contribution-section h5,
+.contribution-section h6 {
+  color: #1e293b;
+}
+
+[data-theme='dark'] .contribution-section h1,
+[data-theme='dark'] .contribution-section h2,
+[data-theme='dark'] .contribution-section h3,
+[data-theme='dark'] .contribution-section h4,
+[data-theme='dark'] .contribution-section h5,
+[data-theme='dark'] .contribution-section h6 {
+  color: #ffffff;
+}

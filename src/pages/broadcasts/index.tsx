@@ -155,7 +155,7 @@ const VideoCard: React.FC<{
     >
       <div className="video-content">
         <div className="video-info">
-          <div className="video-title">{title}</div>
+          <div className="video-title"style={{ color: '#333', fontWeight: '600' }}>{title}</div>
           <div className="video-type">
             
           </div>
@@ -167,6 +167,7 @@ const VideoCard: React.FC<{
                 src={thumbnailUrl}
                 alt={title}
                 className="thumbnail-img"
+                style={{ objectFit: 'cover' }}
                 loading="lazy"
                 onError={(e) => {
                   const img = e.target as HTMLImageElement;
