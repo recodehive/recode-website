@@ -67,6 +67,7 @@ const GITHUB_ORG = "recodehive";
 const POINTS_PER_PR = 10;
 const MAX_CONCURRENT_REQUESTS = 8; // Increased for better performance
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache
+const MAX_PAGES_PER_REPO = 20; // Limit pages to prevent infinite loops on huge repos
 
 export function CommunityStatsProvider({ children }: CommunityStatsProviderProps) {
   const {
