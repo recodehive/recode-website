@@ -14,24 +14,24 @@ import Autoplay from "embla-carousel-autoplay";
 // Sample testimonial data
 const testimonials = [
   {
-    name: "Shaanif ahmed",
-    username: "Shaanifahmed",
-    content: "The resources for learning statistics were really useful . Also I liked the summary of each field given out there .! #LearnToCode #FreeEducation",
-    date: "May 21, 2023",
+    name: "Rashi Chouhan",
+    username: "RashiChouhan",
+    content: "Valuable insights shared, productive discussions, and actionable outcomes. Looking forward to implementing the strategies discussed.! #TechCommunity #WomenInTech",
+    date: "May 18, 2024",
     avatar: "/icons/adobe.png"
   },
   {
     name: "Namith",
     username: "namith",
-    content: "Gave remarkable insights on parts i have to improve and gave me new opportunities . cheers~! #TechCommunity #WomenInTech",
+    content: "Gave remarkable insights on parts i have to improve and gave me new opportunities . cheers~! #TechCommunity #Grateful",
     date: "April 21, 2023",
     avatar: "/icons/google.png"
   },
   {
-    name: "Prithwi Gajanan",
-    username: "PrithwiGajanan",
-    content: "Got quick response 🎉 during my internship apply period. Sir is really very kind☺️ and a Gem 💎 for the community. And inspiration for me. ✨ #Topmate #mentorship",
-    date: "Sep 28, 2024",
+    name: "Rajdeep Chakraborty",
+    username: "RajdeepChakraborty",
+    content: "I appreciate Sanjay sir's insights on open source and his suggestions for improving my GitHub profile. I'm excited to hear more and discuss open source further.! #OpenSource #TechCommunity",
+    date: "Oct 18, 2024",
     avatar: "/icons/amazon.png"
   }
 ];
