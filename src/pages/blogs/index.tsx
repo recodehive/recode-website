@@ -14,7 +14,9 @@ const authorMapping = {
   "ux-designers-ai": ["Sowmiya Venketashan", "Sanjay Viswanthan"],
   "google-deepmind": ["Sowmiya Venketashan", "Sanjay Viswanthan"],
   "google-backlinks": ["Sanjay Viswanthan"],
-  "git-coding-agent": ["Sanjay Viswanthan"]
+  "git-coding-agent": ["Sanjay Viswanthan"],
+  "spark-architecture": ["Aditya Singh Rathore", "Sanjay Viswanthan"],
+  "n8n-workflow-automation": ["Aditya Singh Rathore"],
 };
 
 

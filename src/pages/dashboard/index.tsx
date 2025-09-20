@@ -508,15 +508,6 @@ const DashboardContent: React.FC = () => {
                   description="Amazing community members"
                 />
                 <StatCard
-                  icon={<BarChart3 size={24} />}
-                  title="Repositories"
-                  value={dashboardStats.totalRepositories}
-                  valueText={
-                    useCommunityStatsContext().githubReposCountText || "10"
-                  }
-                  description="Open source projects"
-                />
-                <StatCard
                   icon={<GitFork size={24} />}
                   title="Forks"
                   value={dashboardStats.totalForks}

@@ -17,9 +17,9 @@ export const Users: User[] = [
   //  Opesource project
 
   {
-    title: "Opesource project",
+    title: "Opesource Practice",
     description:
-      "OpenSource Project is a platform that provides templates and resources for developers to create and contribute to open-source projects.",
+      "A beginner-friendly repository designed for newcomers to  learn , collaborate and practice open-source contributions.",
     preview: require("./showcase/opesource-project.png"),
     website: "https://github.com/recodehive/Opensource-practice",
     source: "https://github.com/recodehive/Opensource-practice",
