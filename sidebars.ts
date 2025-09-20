@@ -16,6 +16,13 @@ const sidebars: SidebarsConfig = {
   // Custom manual sidebar configuration for complete control
   tutorialSidebar: [
     {
+      type: 'doc',
+      id: 'docs', // document ID
+      label: '🏠 Home', // sidebar label
+      className: 'custom-sidebar-home',
+
+    },
+    {
       type: 'category',
       label: '🐙 GitHub',
       className: 'custom-sidebar-github',
