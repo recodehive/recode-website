@@ -18,21 +18,24 @@ const testimonials = [
     username: "RashiChouhan",
     content: "Valuable insights shared, productive discussions, and actionable outcomes. Looking forward to implementing the strategies discussed.! #TechCommunity #WomenInTech",
     date: "May 18, 2024",
-    avatar: "/icons/adobe.png"
+    avatar: "/icons/adobe.png",
+    link: "https://topmate.io/sanjaykv"
   },
   {
     name: "Namith",
     username: "namith",
     content: "Gave remarkable insights on parts i have to improve and gave me new opportunities . cheers~! #TechCommunity #Grateful",
     date: "April 21, 2023",
-    avatar: "/icons/google.png"
+    avatar: "/icons/google.png",
+    link: "https://topmate.io/sanjaykv"
   },
   {
     name: "Rajdeep Chakraborty",
     username: "RajdeepChakraborty",
     content: "I appreciate Sanjay sir's insights on open source and his suggestions for improving my GitHub profile. I'm excited to hear more and discuss open source further.! #OpenSource #TechCommunity",
     date: "Oct 18, 2024",
-    avatar: "/icons/amazon.png"
+    avatar: "/icons/amazon.png",
+    link: "https://topmate.io/sanjaykv"
   }
 ];
 
