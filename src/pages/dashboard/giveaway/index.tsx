@@ -548,8 +548,8 @@ const GiveawayPage: React.FC = () => {
       // Navigate to main dashboard page with discuss hash
       history.push("/dashboard#discuss");
     } else if (tab === "contributors") {
-      // Navigate to main dashboard page with contributors hash
-      history.push("/dashboard#contributors");
+      // Navigate to main dashboard page with leaderboard hash
+      history.push("/dashboard#leaderboard");
     } else if (tab === "home") {
       // Navigate to main dashboard page
       history.push("/dashboard");
