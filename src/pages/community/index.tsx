@@ -33,22 +33,6 @@ const contributionSections: ContributionSection[] = [
     color: '#8b5cf6'
   },
   {
-    id: 'design',
-    title: 'Design',
-    icon: '🎨',
-    description: "If you're a designer, you can:",
-    items: [
-      'Create new UI/UX designs',
-      'Improve existing visuals',
-      'Share design feedback'
-    ],
-    links: [
-      { text: 'Figma', url: 'https://www.figma.com/' },
-      { text: 'Adobe XD', url: 'https://helpx.adobe.com/support/xd.html' }
-    ],
-    color: '#ec4899'
-  },
-  {
     id: 'documentation',
     title: 'Documentation',
     icon: '📚',
@@ -101,7 +85,6 @@ const contributionSections: ContributionSection[] = [
 const tableOfContents = [
   { id: 'how-you-can-contribute', title: 'How You Can Contribute', icon: '⚡' },
   { id: 'code', title: 'Code', icon: '💻' },
-  { id: 'design', title: 'Design', icon: '🎨' },
   { id: 'documentation', title: 'Documentation', icon: '📚' },
   { id: 'community', title: 'Community', icon: '🤝' },
   { id: 'get-started', title: 'Get Started', icon: '🚀' },
@@ -284,7 +267,7 @@ export default function CommunityPage(): React.ReactElement {
                         <div className="section-links">
                           <div className="links-header">
                             <span className="links-icon">🔗</span>
-                            <span>Find our {section.id === 'code' ? 'codebase' : section.id === 'design' ? 'design resources' : section.id === 'documentation' ? 'documentation' : section.id === 'community' ? 'conversation' : 'resources'} on:</span>
+                            <span>Find our {section.id === 'code' ? 'codebase' : section.id === 'documentation' ? 'documentation' : section.id === 'community' ? 'conversation' : 'resources'} on:</span>
                           </div>
                           <div className="links-container">
                             {section.links.map((link, linkIndex) => (
