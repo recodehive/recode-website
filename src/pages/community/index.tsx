@@ -320,18 +320,24 @@ export default function CommunityPage(): React.ReactElement {
                           <span className="highlight grow">grow</span> — together. 🌱
                         </p>
 
-                        <div className="thank-you-features">
+                        <div className="thank-you-features">  
                           <div className="feature-item">
                             <span className="feature-icon">🚀</span>
-                            <span>Build Amazing Projects</span>
+                            <a href="https://github.com/recodehive/recode-website" target="_blank" rel="noopener noreferrer" style={{color: 'inherit'}}>
+                              <span>Build Amazing Projects</span>
+                            </a>
                           </div>
                           <div className="feature-item">
                             <span className="feature-icon">🤝</span>
-                            <span>Connect with Developers</span>
+                            <a href="https://github.com/orgs/recodehive/people" target="_blank" rel="noopener noreferrer" style={{color: 'inherit'}}>
+                              <span>Connect with Developers</span>
+                            </a>
                           </div>
                           <div className="feature-item">
                             <span className="feature-icon">📚</span>
-                            <span>Learn & Share Knowledge</span>
+                            <a href="https://www.recodehive.com/docs" target="_blank" rel="noopener noreferrer" style={{color: 'inherit'}}>
+                              <span>Learn & Share Knowledge</span>
+                            </a>
                           </div>
                         </div>
 
@@ -342,9 +348,11 @@ export default function CommunityPage(): React.ReactElement {
 
                         <div className="support-section">
                           <div className="support-icon">💬</div>
-                          <p className="support-text">
-                            We're here to help and support you throughout your journey — don't hesitate to reach out.
-                          </p>
+                          <a href="https://github.com/recodehive/recode-website/discussions" target="_blank" rel="noopener noreferrer" style={{color: 'inherit'}}>
+                            <p className="support-text">
+                              We're here to help and support you throughout your journey — don't hesitate to reach out.
+                            </p>
+                          </a>
                         </div>
                       </div>
                     </div>
