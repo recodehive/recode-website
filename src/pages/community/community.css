@@ -437,10 +437,11 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 10px 0;
+  padding: 12px 0 10px;
   font-size: 0.95rem;
   color: #374151;
   border-bottom: 1px solid #f1f5f9;
+  font-weight: 600;
 }
 
 [data-theme='dark'] .section-item {
@@ -923,4 +924,41 @@
 [data-theme='dark'] .contribution-section h5,
 [data-theme='dark'] .contribution-section h6 {
   color: #ffffff;
+}
+
+/* Dropdown Details Styling */
+.section-item-details {
+  margin: 5px 0 10px 25px;
+  padding: 12px 15px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 3px solid #8b5cf6;
+  overflow: hidden;
+}
+
+[data-theme='dark'] .section-item-details {
+  background: #2d2d2d;
+  border-left: 3px solid #8b5cf6;
+}
+
+.section-item-details p {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+[data-theme='dark'] .section-item-details p {
+  color: #e2e8f0;
+}
+
+.item-arrow {
+  color: #8b5cf6;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.item-arrow.rotate {
+  transform: rotate(90deg);
 }
