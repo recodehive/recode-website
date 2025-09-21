@@ -43,7 +43,7 @@ const contributionSections: ContributionSection[] = [
       'Translate content 🌍'
     ],
     links: [
-      { text: 'GitHub Docs', url: 'https://recodehive.com/docs' }
+      { text: 'GitHub Docs', url: 'https://www.recodehive.com/docs' }
     ],
     color: '#f59e0b'
   },
