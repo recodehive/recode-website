@@ -944,28 +944,28 @@ function GetStartedContent() {
                 viewport={{ once: true, margin: "-50px 0px -50px 0px" }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-                <Link
-                  to="/courses"
-                  className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-200 to-blue-300 text-gray-900 font-semibold text-lg rounded-xl hover:from-blue-300 hover:to-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
-                  style={{
-                    textShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-                  }}
-                >
-                  <span className="relative z-10">Explore All Paths</span>
-                  <svg
-                    className="w-6 h-6 ml-3 transform group-hover:translate-x-1 transition-transform duration-300"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth={2.5}
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14 5l7 7m0 0l-7 7m7-7H3"
-                    />
-                  </svg>
-                </Link>
+               <Link
+  to="/courses"
+  className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-200 to-blue-300 font-semibold text-lg rounded-xl hover:from-blue-300 hover:to-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:no-underline"
+  style={{
+    textShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+  }}
+>
+  <span className="relative z-10 text-gray-900 group-hover:text-gray-900">Explore All Paths</span>
+  <svg
+    className="w-6 h-6 ml-3 transform text-gray-900 group-hover:translate-x-1 group-hover:text-gray-900 transition-transform duration-300"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2.5}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M14 5l7 7m0 0l-7 7m7-7H3"
+    />
+  </svg>
+</Link>
               </motion.div>
             </div>
           </section>
