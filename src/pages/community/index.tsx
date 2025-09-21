@@ -58,8 +58,8 @@ const contributionSections: ContributionSection[] = [
       'Share knowledge and insights'
     ],
     links: [
-  { text: 'Discord', url: 'https://discord.gg/Yxv9RA3r' },
-  { text: 'Slack', url: 'https://slack.com' }
+  { text: 'Discord', url: 'https://discord.com/invite/w2V2aH6U' },
+  { text: 'Whatsapp', url: 'https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t' }
     ],
     color: '#10b981'
   },
@@ -74,8 +74,8 @@ const contributionSections: ContributionSection[] = [
       'Pick a task or area you\'re excited about!'
     ],
     links: [
-  { text: 'Discord', url: 'https://discord.gg/Yxv9RA3r' },
-  { text: 'Slack', url: 'https://slack.com' },
+  { text: 'Discord', url: 'https://discord.com/invite/w2V2aH6U' },
+  { text: 'Whatsapp', url: 'https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t' },
       { text: 'GitHub', url: 'https://github.com/recodehive' }
     ],
     color: '#6366f1'
