@@ -11,6 +11,7 @@ interface ContributionSection {
   icon: string;
   description: string;
   items: string[];
+  details?: string[];
   links: { text: string; url: string; }[];
   color: string;
 }
@@ -22,13 +23,18 @@ const contributionSections: ContributionSection[] = [
     icon: '💻',
     description: "If you're a developer, you can:",
     items: [
-      'Write code 🧑‍💻',
-      'Fix bugs 🐞',
-      'Add new features 🚀'
+      'Access coding standards 🧑‍💻',
+      'Find debugging tips 🐞',
+      'Propose new features 🚀'
+    ],
+    details: [
+      'Access coding standards and setup instructions to streamline your work with the team\'s codebase.',
+      'Find tips for debugging, troubleshooting common errors, and submitting clear bug reports.',
+      'Read about how to propose new features, collaborate on pull requests, and review peer code.'
     ],
     links: [
       { text: 'GitHub', url: 'https://github.com/recodehive' },
-  { text: 'GitLab', url: 'https://gitlab.com' }
+      { text: 'GitLab', url: 'https://gitlab.com' }
     ],
     color: '#8b5cf6'
   },
@@ -39,8 +45,13 @@ const contributionSections: ContributionSection[] = [
     description: "If you're a writer or educator, you can:",
     items: [
       'Improve documentation 🖋️',
-      'Write tutorials 📚',
+      'Structure tutorials 📚',
       'Translate content 🌍'
+    ],
+    details: [
+      'Explore detailed guides for improving existing documentation, including style and terminology tips.',
+      'Learn how to structure tutorials, add examples, and make learning resources more accessible.',
+      'See guidelines for translating technical content into different languages or for various backgrounds.'
     ],
     links: [
       { text: 'GitHub Docs', url: 'https://www.recodehive.com/docs' }
@@ -53,13 +64,18 @@ const contributionSections: ContributionSection[] = [
     icon: '🤝',
     description: "If you're a community-minded person, you can:",
     items: [
-      'Help answer questions',
-      'Support new members 💬',
-      'Share knowledge and insights'
+      'Connect with members 👥',
+      'Support newcomers 💬',
+      'Share resources 📝'
+    ],
+    details: [
+      'Connect with fellow members by joining active discussions in forums and chats.',
+      'Offer support to newcomers by guiding them through onboarding and answering beginner questions.',
+      'Share resources, tutorials, and best practices to help others grow.'
     ],
     links: [
-  { text: 'Discord', url: 'https://discord.com/invite/w2V2aH6U' },
-  { text: 'Whatsapp', url: 'https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t' }
+      { text: 'Discord', url: 'https://discord.com/invite/w2V2aH6U' },
+      { text: 'Whatsapp', url: 'https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t' }
     ],
     color: '#10b981'
   },
@@ -69,13 +85,18 @@ const contributionSections: ContributionSection[] = [
     icon: '🚀',
     description: 'To begin your journey with RecodeHive:',
     items: [
-      'Join our community on Discord or Slack',
-      'Explore our repositories on GitHub',
-      'Pick a task or area you\'re excited about!'
+      'Sign up and introduce yourself 👋',
+      'Discover key repositories 🔍',
+      'Browse beginner tasks 📋'
+    ],
+    details: [
+      'Learn how to sign up and introduce yourself in the welcome channels on Discord or Slack.',
+      'Discover key open source repositories and find out how you can contribute, regardless of experience level.',
+      'Browse a list of beginner-friendly tasks and guides to help select your first area of involvement.'
     ],
     links: [
-  { text: 'Discord', url: 'https://discord.com/invite/w2V2aH6U' },
-  { text: 'Whatsapp', url: 'https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t' },
+      { text: 'Discord', url: 'https://discord.com/invite/w2V2aH6U' },
+      { text: 'Whatsapp', url: 'https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t' },
       { text: 'GitHub', url: 'https://github.com/recodehive' }
     ],
     color: '#6366f1'
@@ -94,6 +115,7 @@ const tableOfContents = [
 export default function CommunityPage(): React.ReactElement {
   const [activeSections, setActiveSections] = useState<string[]>(['how-you-can-contribute']);
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
+  const [openDropdowns, setOpenDropdowns] = useState<string[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -147,6 +169,14 @@ export default function CommunityPage(): React.ReactElement {
       window.scrollTo({ top, behavior: "smooth" });
       setSelectedSection(sectionId);
     }
+  };
+  
+  const toggleDropdown = (itemId: string) => {
+    setOpenDropdowns(prev => 
+      prev.includes(itemId) 
+        ? prev.filter(id => id !== itemId) 
+        : [...prev, itemId]
+    );
   };
 
   const [isMobile, setIsMobile] = useState(false);
@@ -250,16 +280,32 @@ export default function CommunityPage(): React.ReactElement {
 
                       <ul className="section-items">
                         {section.items.map((item, itemIndex) => (
-                          <motion.li
-                            key={itemIndex}
-                            className="section-item"
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3, delay: (0.1 * index) + (0.05 * itemIndex) }}
-                          >
-                            <span className="item-arrow">▶</span>
-                            {item}
-                          </motion.li>
+                          <React.Fragment key={itemIndex}>
+                            <motion.li
+                              className="section-item"
+                              initial={{ opacity: 0, x: -20 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.3, delay: (0.1 * index) + (0.05 * itemIndex) }}
+                              onClick={() => toggleDropdown(`${section.id}-${itemIndex}`)}
+                              style={{ cursor: 'pointer' }}
+                            >
+                              <span className={`item-arrow ${openDropdowns.includes(`${section.id}-${itemIndex}`) ? 'rotate' : ''}`}>
+                                ▶
+                              </span>
+                              {item}
+                            </motion.li>
+                            
+                            {section.details && openDropdowns.includes(`${section.id}-${itemIndex}`) && (
+                              <motion.div
+                                className="section-item-details"
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: 'auto' }}
+                                transition={{ duration: 0.3 }}
+                              >
+                                <p>{section.details[itemIndex]}</p>
+                              </motion.div>
+                            )}
+                          </React.Fragment>
                         ))}
                       </ul>
 
