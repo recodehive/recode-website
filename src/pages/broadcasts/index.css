@@ -533,21 +533,27 @@ h1 {
 .pagination {
   margin-top: 20px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .pagination button {
   padding: 8px 16px;
   margin: 0 8px;
   background-color: #007bff;
-  color: white;
-  border: none;
+  color: white !important; /* Ensure text is visible in all themes */
+  border: 1px solid #0056b3;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .pagination button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
+  color: #666 !important;
 }
 
 .pagination span {
