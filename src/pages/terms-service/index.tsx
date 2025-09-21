@@ -13,8 +13,8 @@ const TermsOfService: React.FC = () => {
         </h2>
         <p className="mb-6">
           These Terms of Service govern your use of{" "}
-          <b className="bg-yellow-100">recodehive</b>, provided by{" "}
-          <strong className="bg-yellow-100">Sanjay Viswanathan</strong>. Below are the Terms and Conditions for the use of www.recodehive.com. 
+          <b className="bg-yellow-100 dark:bg-yellow-600 dark:text-gray-900">recodehive</b>, provided by{" "}
+          <strong className="bg-yellow-100 dark:bg-yellow-600 dark:text-gray-900">Sanjay Viswanathan</strong>. Below are the Terms and Conditions for the use of www.recodehive.com. 
           Please read these carefully. If you need to contact us regarding any aspect of the following terms of use of our website, 
           please reach out us at the following email address – sanjay@recodehive.com.
         </p>
@@ -56,7 +56,7 @@ const TermsOfService: React.FC = () => {
             <strong>Intellectual Property:</strong> All content, trademarks,
             service marks, logos, and other intellectual property displayed on
             or related to the Service are the property of{" "}
-            <strong className="bg-yellow-100">Sanjay Viswanathan</strong> or its
+            <strong className="bg-yellow-100 dark:bg-yellow-600 dark:text-gray-900">Sanjay Viswanathan</strong> or its
             licensors. You may not use or display any of these without our prior
             written consent.
           </li>
