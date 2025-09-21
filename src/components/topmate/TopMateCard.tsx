@@ -1,7 +1,7 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Clock } from 'lucide-react';
-import { useColorMode } from '@docusaurus/theme-common';
+import React from "react";
+import { motion } from "framer-motion";
+import { ArrowUpRight, Clock } from "lucide-react";
+import { useColorMode } from "@docusaurus/theme-common";
 
 interface TopMateCardProps {
   title: string;
@@ -9,6 +9,7 @@ interface TopMateCardProps {
   duration: string;
   profileImage: string;
   username: string;
+  setShowTopmate: (value: boolean) => void;
 }
 
 const TopMateCard: React.FC<TopMateCardProps> = ({
@@ -17,9 +18,10 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
   duration,
   profileImage,
   username,
+  setShowTopmate,
 }) => {
   const { colorMode } = useColorMode();
-  const isDark = colorMode === 'dark';
+  const isDark = colorMode === "dark";
 
   return (
     <motion.div
@@ -27,7 +29,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       className={`relative w-full max-w-md mx-auto rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1 ${
-        isDark ? 'bg-[#1a1a1a] text-white' : 'bg-white text-black'
+        isDark ? "bg-[#1a1a1a] text-white" : "bg-white text-black"
       }`}
     >
       {/* Decorative Arrows */}
@@ -50,28 +52,47 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <span className={`text-sm font-medium ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+            <span
+              className={`text-sm font-medium ${
+                isDark ? "text-gray-300" : "text-gray-600"
+              }`}
+            >
               1:1 CALL
             </span>
-            <div className={`flex items-center gap-1 ${isDark ? 'text-gray-400' : 'text-gray-500'}`}>
+            <div
+              className={`flex items-center gap-1 ${
+                isDark ? "text-gray-400" : "text-gray-500"
+              }`}
+            >
               <Clock size={16} />
               <span className="text-sm">{duration}</span>
             </div>
           </div>
           <button
-            className={`text-xl font-semibold ${isDark ? 'text-gray-500 hover:text-gray-300' : 'text-gray-400 hover:text-gray-600'}`}
+            className={`text-xl font-semibold ${
+              isDark
+                ? "text-gray-500 hover:text-gray-300"
+                : "text-gray-400 hover:text-gray-600"
+            }`}
+            onClick={() => setShowTopmate(false)}
           >
             <span className="sr-only">Close</span>×
           </button>
         </div>
 
         {/* Title */}
-        <h2 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+        <h2
+          className={`text-2xl font-bold mb-4 ${
+            isDark ? "text-white" : "text-gray-900"
+          }`}
+        >
           {title}
         </h2>
 
         {/* Description */}
-        <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'} mb-6`}>{description}</p>
+        <p className={`${isDark ? "text-gray-300" : "text-gray-600"} mb-6`}>
+          {description}
+        </p>
 
         {/* Profile Section */}
         <div className="flex items-center justify-between flex-wrap md:flex-nowrap gap-y-3">
@@ -82,7 +103,11 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
               className="w-12 h-12 rounded-full object-cover border-2 border-purple-200"
             />
             <div className="flex flex-col">
-              <span className={`text-sm ${isDark ? 'text-gray-300' : 'text-gray-600'}`}>
+              <span
+                className={`text-sm ${
+                  isDark ? "text-gray-300" : "text-gray-600"
+                }`}
+              >
                 Book a slot at
               </span>
               <a
@@ -106,7 +131,13 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
               />
             </div>
             {/* Theme-aware text to ensure readability on dark backgrounds */}
-            <span className={`text-sm font-semibold shrink-0 ${isDark ? 'text-gray-200' : 'text-gray-700'}`}>topmate</span>
+            <span
+              className={`text-sm font-semibold shrink-0 ${
+                isDark ? "text-gray-200" : "text-gray-700"
+              }`}
+            >
+              topmate
+            </span>
           </div>
         </div>
       </div>
