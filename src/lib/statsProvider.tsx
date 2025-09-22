@@ -34,12 +34,21 @@ interface ICommunityStatsContext {
 }
 
 // Define types for leaderboard data
+interface PRDetails {
+  title: string;
+  url: string;
+  mergedAt: string;
+  repoName: string;
+  number: number;
+}
+
 interface Contributor {
   username: string;
   avatar: string;
   profile: string;
   points: number;
   prs: number;
+  prDetails?: PRDetails[];
 }
 
 interface Stats {
@@ -55,6 +64,9 @@ interface PullRequestItem {
     html_url: string;
   };
   merged_at?: string | null;
+  title?: string;
+  html_url?: string;
+  number?: number;
 }
 
 export const CommunityStatsContext = createContext<ICommunityStatsContext | undefined>(undefined);
@@ -196,7 +208,7 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
       const results = await Promise.all(promises);
       
       // Process results from this batch
-      results.forEach(({ mergedPRs }) => {
+      results.forEach(({ mergedPRs, repoName }) => {
         totalMergedPRs += mergedPRs.length;
         
         mergedPRs.forEach((pr) => {
@@ -208,11 +220,24 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
               profile: pr.user.html_url,
               points: 0,
               prs: 0,
+              prDetails: [],
             });
           }
           const contributor = contributorMap.get(username)!;
           contributor.prs++;
           contributor.points += POINTS_PER_PR;
+          
+          // Add detailed PR information
+          if (pr.title && pr.html_url && pr.merged_at && pr.number) {
+            contributor.prDetails = contributor.prDetails || [];
+            contributor.prDetails.push({
+              title: pr.title,
+              url: pr.html_url,
+              mergedAt: pr.merged_at,
+              repoName,
+              number: pr.number,
+            });
+          }
         });
       });
     }
