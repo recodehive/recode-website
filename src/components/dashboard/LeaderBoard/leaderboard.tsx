@@ -451,16 +451,20 @@ export default function LeaderBoard(): JSX.Element {
                   onClick={() => paginate(currentPage - 1)}
                   disabled={currentPage === 1}
                   className={`pagination-btn ${currentPage === 1 ? "disabled" : ""}`}
+                  aria-label="Previous page"
+                  title="Previous page"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={20} />
                 </button>
                 <div className="page-numbers">{renderPaginationButtons()}</div>
                 <button
                   onClick={() => paginate(currentPage + 1)}
                   disabled={currentPage === totalPages}
                   className={`pagination-btn ${currentPage === totalPages ? "disabled" : ""}`}
+                  aria-label="Next page"
+                  title="Next page"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={20} />
                 </button>
               </div>
             )}
