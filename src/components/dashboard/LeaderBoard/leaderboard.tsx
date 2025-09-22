@@ -13,6 +13,7 @@ import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { useCommunityStatsContext } from "@site/src/lib/statsProvider";
 import PRListModal from "./PRListModal";
+import { mockContributors } from "./mockData";
 import "./leaderboard.css";
 
 const GITHUB_ORG = "recodehive"; 
@@ -150,8 +151,11 @@ export default function LeaderBoard(): JSX.Element {
     setSelectedContributor(null);
   };
 
+  // Use mock data when there's an error or no contributors
+  const displayContributors = error || contributors.length === 0 ? mockContributors : contributors;
+
   // Filter out excluded users and then apply search filter
-  const filteredContributors = contributors
+  const filteredContributors = displayContributors
     .filter((contributor) => 
       !EXCLUDED_USERS.some(excludedUser => 
         contributor.username.toLowerCase() === excludedUser.toLowerCase()
@@ -282,7 +286,7 @@ export default function LeaderBoard(): JSX.Element {
         </motion.div>
 
         {/* Top 3 Performers Section */}
-        {!loading && !error && filteredContributors.length > 2 && (
+        {!loading && filteredContributors.length > 2 && (
           <div className="top-performers-container">
             <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>RecodeHive Top Performers</h2>
             <div className="top-performers-grid">
@@ -372,20 +376,33 @@ export default function LeaderBoard(): JSX.Element {
           </div>
         )}
 
-        {error && (
+        {error && displayContributors.length === 0 && (
           <div className="no-contributors">
             <p>Error: {error}</p>
           </div>
         )}
 
-        {!loading && !error && filteredContributors.length === 0 && (
+        {!loading && filteredContributors.length === 0 && (
           <div className="no-contributors">
             <p>No contributors found.</p>
           </div>
         )}
 
-        {!loading && !error && filteredContributors.length > 0 && (
+        {!loading && filteredContributors.length > 0 && (
           <div className={`contributors-container ${isDark ? "dark" : "light"}`}>
+            {error && (
+              <div className="error-banner" style={{ 
+                padding: '12px', 
+                backgroundColor: isDark ? '#fee8e7' : '#fee8e7', 
+                color: '#dc2626', 
+                borderRadius: '8px', 
+                marginBottom: '16px',
+                fontSize: '14px',
+                textAlign: 'center'
+              }}>
+                Demo Mode: Showing sample data due to API configuration issue
+              </div>
+            )}
             <div className="contributors-header">
                 <div className="contributor-cell rank">Rank</div>
                 <div className="contributor-cell avatar-cell">Avatar</div>
