@@ -253,10 +253,12 @@
   color: #aaa;
 }
 
-/* Search */
+/* Search and Filter */
 .search-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-bottom: 40px;
 }
 
@@ -264,6 +266,11 @@
   position: relative;
   width: 100%;
   max-width: 500px;
+}
+
+.time-filter-wrapper {
+  position: relative;
+  min-width: 150px;
 }
 
 .search-icon {
@@ -297,6 +304,30 @@
 
 .dark .search-input {
   background: #2b303b;
+  border: 1px solid #444;
+}
+
+.time-filter-select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px;
+  cursor: pointer;
+}
+
+.light .time-filter-select {
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  color: #333;
+}
+
+.dark .time-filter-select {
+  background-color: #2b303b;
   border: 1px solid #444;
   color: #f1f1f1;
 }
