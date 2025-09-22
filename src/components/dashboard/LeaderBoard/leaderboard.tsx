@@ -12,6 +12,8 @@ import {
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { useCommunityStatsContext } from "@site/src/lib/statsProvider";
+import PRListModal from "./PRListModal";
+import { mockContributors } from "./mockData";
 import "./leaderboard.css";
 
 const GITHUB_ORG = "recodehive"; 
@@ -19,12 +21,21 @@ const GITHUB_ORG = "recodehive";
 // Users to exclude from the leaderboard
 const EXCLUDED_USERS = ["sanjay-kv", "allcontributors", "allcontributors[bot]"];
 
+interface PRDetails {
+  title: string;
+  url: string;
+  mergedAt: string;
+  repoName: string;
+  number: number;
+}
+
 interface Contributor {
   username: string;
   avatar: string;
   profile: string;
   points: number;
   prs: number;
+  prDetails?: PRDetails[];
 }
 
 interface Stats {
@@ -33,15 +44,62 @@ interface Stats {
   flooredTotalPoints: number;
 }
 
-function Badge({ count, label, color }: { count: number; label: string; color: { background: string; color: string } }) {
+function Badge({ 
+  count, 
+  label, 
+  color, 
+  onClick,
+  clickable = false 
+}: { 
+  count: number; 
+  label: string; 
+  color: { background: string; color: string };
+  onClick?: () => void;
+  clickable?: boolean;
+}) {
+  const badgeStyle = {
+    ...color,
+    cursor: clickable ? 'pointer' : 'default',
+    transition: clickable ? 'all 0.2s ease' : 'none',
+  };
+
+  const handleClick = () => {
+    if (clickable && onClick) {
+      onClick();
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (clickable && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      if (onClick) onClick();
+    }
+  };
+
   return (
-    <span className="badge" style={{ ...color }}>
+    <span 
+      className={`badge ${clickable ? 'clickable' : ''}`}
+      style={badgeStyle}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={clickable ? 0 : -1}
+      role={clickable ? 'button' : undefined}
+      aria-label={clickable ? `View ${label.toLowerCase()} details` : undefined}
+    >
       {count} {label}
     </span>
   );
 }
 
-function TopPerformerCard({ contributor, rank }: { contributor: Contributor; rank: number }) {
+function TopPerformerCard({ 
+  contributor, 
+  rank, 
+  onPRClick 
+}: { 
+  contributor: Contributor; 
+  rank: number;
+  onPRClick: (contributor: Contributor) => void;
+}) {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const rankClass = rank === 1 ? "top-1" : rank === 2 ? "top-2" : "top-3";
@@ -57,7 +115,13 @@ function TopPerformerCard({ contributor, rank }: { contributor: Contributor; ran
           {contributor.username}
         </a>
         <div className="badges-container">
-          <Badge count={contributor.prs} label="PRs" color={{ background: "#dbeafe", color: "#2563eb" }} />
+          <Badge 
+            count={contributor.prs} 
+            label="PRs" 
+            color={{ background: "#dbeafe", color: "#2563eb" }}
+            onClick={() => onPRClick(contributor)}
+            clickable={true}
+          />
           <Badge count={contributor.points} label="Points" color={{ background: "#ede9fe", color: "#7c3aed" }} />
         </div>
       </div>
@@ -72,10 +136,26 @@ export default function LeaderBoard(): JSX.Element {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedContributor, setSelectedContributor] = useState<Contributor | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const itemsPerPage = 10;
 
+  // Modal handlers
+  const handlePRClick = (contributor: Contributor) => {
+    setSelectedContributor(contributor);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedContributor(null);
+  };
+
+  // Use mock data when there's an error or no contributors
+  const displayContributors = error || contributors.length === 0 ? mockContributors : contributors;
+
   // Filter out excluded users and then apply search filter
-  const filteredContributors = contributors
+  const filteredContributors = displayContributors
     .filter((contributor) => 
       !EXCLUDED_USERS.some(excludedUser => 
         contributor.username.toLowerCase() === excludedUser.toLowerCase()
@@ -206,13 +286,13 @@ export default function LeaderBoard(): JSX.Element {
         </motion.div>
 
         {/* Top 3 Performers Section */}
-        {!loading && !error && filteredContributors.length > 2 && (
+        {!loading && filteredContributors.length > 2 && (
           <div className="top-performers-container">
             <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>RecodeHive Top Performers</h2>
             <div className="top-performers-grid">
-              <TopPerformerCard contributor={filteredContributors[1]} rank={2} />
-              <TopPerformerCard contributor={filteredContributors[0]} rank={1} />
-              <TopPerformerCard contributor={filteredContributors[2]} rank={3} />
+              <TopPerformerCard contributor={filteredContributors[1]} rank={2} onPRClick={handlePRClick} />
+              <TopPerformerCard contributor={filteredContributors[0]} rank={1} onPRClick={handlePRClick} />
+              <TopPerformerCard contributor={filteredContributors[2]} rank={3} onPRClick={handlePRClick} />
             </div>
           </div>
         )}
@@ -296,20 +376,33 @@ export default function LeaderBoard(): JSX.Element {
           </div>
         )}
 
-        {error && (
+        {error && displayContributors.length === 0 && (
           <div className="no-contributors">
             <p>Error: {error}</p>
           </div>
         )}
 
-        {!loading && !error && filteredContributors.length === 0 && (
+        {!loading && filteredContributors.length === 0 && (
           <div className="no-contributors">
             <p>No contributors found.</p>
           </div>
         )}
 
-        {!loading && !error && filteredContributors.length > 0 && (
+        {!loading && filteredContributors.length > 0 && (
           <div className={`contributors-container ${isDark ? "dark" : "light"}`}>
+            {error && (
+              <div className="error-banner" style={{ 
+                padding: '12px', 
+                backgroundColor: isDark ? '#fee8e7' : '#fee8e7', 
+                color: '#dc2626', 
+                borderRadius: '8px', 
+                marginBottom: '16px',
+                fontSize: '14px',
+                textAlign: 'center'
+              }}>
+                Demo Mode: Showing sample data due to API configuration issue
+              </div>
+            )}
             <div className="contributors-header">
                 <div className="contributor-cell rank">Rank</div>
                 <div className="contributor-cell avatar-cell">Avatar</div>
@@ -343,7 +436,13 @@ export default function LeaderBoard(): JSX.Element {
                     </a>
                 </div>
                 <div className="contributor-cell prs-cell">
-                  <Badge count={contributor.prs} label="PRs" color={{ background: "#dbeafe", color: "#2563eb" }} />
+                  <Badge 
+                    count={contributor.prs} 
+                    label="PRs" 
+                    color={{ background: "#dbeafe", color: "#2563eb" }}
+                    onClick={() => handlePRClick(contributor)}
+                    clickable={true}
+                  />
                 </div>
                 <div className="contributor-cell points-cell">
                   <Badge count={contributor.points} label="Points" color={{ background: "#ede9fe", color: "#7c3aed" }} />
@@ -388,6 +487,13 @@ export default function LeaderBoard(): JSX.Element {
           </div>
         )}
       </div>
+
+      {/* PR List Modal */}
+      <PRListModal
+        contributor={selectedContributor}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }
