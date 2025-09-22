@@ -76,6 +76,7 @@ export default function LeaderBoard(): JSX.Element {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [timePeriod, setTimePeriod] = useState<TimePeriod>("all");
+  const [isSelectChanged, setIsSelectChanged] = useState(false);
   const itemsPerPage = 10;
 
   // Get contributions within the selected time period
@@ -135,7 +136,20 @@ export default function LeaderBoard(): JSX.Element {
     )
     .filter((contributor) =>
       contributor.username.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    )
+    // Re-sort contributors after filtering to ensure proper ranking
+    .sort((a, b) => {
+      // First sort by points (descending)
+      if (b.points !== a.points) {
+        return b.points - a.points;
+      }
+      // If points are equal, sort by PRs (descending)
+      if (b.prs !== a.prs) {
+        return b.prs - a.prs;
+      }
+      // If both points and PRs are equal, sort alphabetically by username (ascending)
+      return a.username.localeCompare(b.username);
+    });
 
   const totalPages = Math.ceil(filteredContributors.length / itemsPerPage);
   const indexOfLast = currentPage * itemsPerPage;
@@ -260,11 +274,38 @@ export default function LeaderBoard(): JSX.Element {
         {/* Top 3 Performers Section */}
         {!loading && !error && filteredContributors.length > 2 && (
           <div className="top-performers-container">
-            <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>RecodeHive Top Performers</h2>
+            <div className="title-filter-container">
+              <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>RecodeHive Top Performers</h2>
+              <div className="time-filter-wrapper top-title-filter">
+                <label htmlFor="time-period-filter" className="filter-label">Time Period:</label>
+                <select
+                  id="time-period-filter"
+                  value={timePeriod}
+                  onChange={(e) => {
+                    setTimePeriod(e.target.value as TimePeriod);
+                    setCurrentPage(1);
+                    setIsSelectChanged(true);
+                    setTimeout(() => setIsSelectChanged(false), 1200);
+                  }}
+                  className={`time-filter-select ${isDark ? "dark" : "light"} ${isSelectChanged ? 'highlight-change' : ''}`}
+                >
+                  <option value="all">🏆 All Time</option>
+                  <option value="yearly">📅 Past Year</option>
+                  <option value="monthly">📆 Past Month</option>
+                  <option value="weekly">📊 Past Week</option>
+                </select>
+              </div>
+            </div>
             <div className="top-performers-grid">
-              <TopPerformerCard contributor={filteredContributors[1]} rank={2} />
-              <TopPerformerCard contributor={filteredContributors[0]} rank={1} />
-              <TopPerformerCard contributor={filteredContributors[2]} rank={3} />
+              {filteredContributors.length >= 2 && (
+                <TopPerformerCard contributor={filteredContributors[1]} rank={2} />
+              )}
+              {filteredContributors.length >= 1 && (
+                <TopPerformerCard contributor={filteredContributors[0]} rank={1} />
+              )}
+              {filteredContributors.length >= 3 && (
+                <TopPerformerCard contributor={filteredContributors[2]} rank={3} />
+              )}
             </div>
           </div>
         )}
@@ -308,7 +349,7 @@ export default function LeaderBoard(): JSX.Element {
           </div>
         )}
 
-        {/* Search and Filter */}
+        {/* Search */}
         <div className="search-container">
           <div className="search-wrapper">
             <FaSearch className={`search-icon ${isDark ? "dark" : "light"}`} />
@@ -322,21 +363,6 @@ export default function LeaderBoard(): JSX.Element {
               }}
               className={`search-input ${isDark ? "dark" : "light"}`}
             />
-          </div>
-          <div className="time-filter-wrapper">
-            <select
-              value={timePeriod}
-              onChange={(e) => {
-                setTimePeriod(e.target.value as TimePeriod);
-                setCurrentPage(1);
-              }}
-              className={`time-filter-select ${isDark ? "dark" : "light"}`}
-            >
-              <option value="all">All Time</option>
-              <option value="yearly">Past Year</option>
-              <option value="monthly">Past Month</option>
-              <option value="weekly">Past Week</option>
-            </select>
           </div>
         </div>
 
@@ -393,8 +419,8 @@ export default function LeaderBoard(): JSX.Element {
                 className={`contributor-row ${isDark ? (index % 2 === 0 ? "even" : "odd") : (index % 2 === 0 ? "even" : "odd")}`}
               >
                 <div className={`contributor-cell rank-cell`}>
-                  <div className={`rank-badge ${getRankClass(indexOfFirst + index)}`}>
-                    {indexOfFirst + index + 1}
+                  <div className={`rank-badge ${getRankClass(filteredContributors.indexOf(contributor))}`}>
+                    {filteredContributors.indexOf(contributor) + 1}
                   </div>
                 </div>
                 <div className="contributor-cell avatar-cell">
