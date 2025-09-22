@@ -151,8 +151,13 @@ export default function LeaderBoard(): JSX.Element {
     setSelectedContributor(null);
   };
 
-  // Use mock data when there's an error or no contributors
-  const displayContributors = error || contributors.length === 0 ? mockContributors : contributors;
+  // Use mock data only in development mode when there's an error or no contributors
+  const displayContributors =
+    (error || contributors.length === 0)
+      ? (typeof process !== "undefined" && process.env.NODE_ENV === "development"
+          ? mockContributors
+          : [])
+      : contributors;
 
   // Filter out excluded users and then apply search filter
   const filteredContributors = displayContributors
