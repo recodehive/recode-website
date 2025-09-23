@@ -211,7 +211,7 @@ function CareersContent() {
                 View Open Positions
               </Link>
               <Link
-                to="#"
+                href="#our-culture"
                 className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Learn About Our Culture
@@ -235,7 +235,7 @@ function CareersContent() {
           <div className="max-w-6xl mx-auto">
             <motion.div className="text-center mb-16" variants={fadeIn}>
               <h2 
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="text-4xl md:text-5xl font-bold mb-6" id="our-culture"
                 style={{
                   color: isDark ? '#ffffff' : '#111827'
                 }}
