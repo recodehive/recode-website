@@ -163,10 +163,10 @@ export default function LeaderBoard(): JSX.Element {
       : contributors;
 
   // Filter out excluded users and then apply search filter
-  const filteredContributors = displayContributors
+  
   const [timePeriod, setTimePeriod] = useState<TimePeriod>("all");
   const [isSelectChanged, setIsSelectChanged] = useState(false);
-  const itemsPerPage = 10;
+ 
 
   // Get contributions within the selected time period
   const getContributionsWithinTimePeriod = (contributors: Contributor[]) => {
@@ -390,15 +390,6 @@ export default function LeaderBoard(): JSX.Element {
               <TopPerformerCard contributor={filteredContributors[1]} rank={2} onPRClick={handlePRClick} />
               <TopPerformerCard contributor={filteredContributors[0]} rank={1} onPRClick={handlePRClick} />
               <TopPerformerCard contributor={filteredContributors[2]} rank={3} onPRClick={handlePRClick} />
-              {filteredContributors.length >= 2 && (
-                <TopPerformerCard contributor={filteredContributors[1]} rank={2} />
-              )}
-              {filteredContributors.length >= 1 && (
-                <TopPerformerCard contributor={filteredContributors[0]} rank={1} />
-              )}
-              {filteredContributors.length >= 3 && (
-                <TopPerformerCard contributor={filteredContributors[2]} rank={3} />
-              )}
             </div>
           </div>
         )}
