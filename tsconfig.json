@@ -1,13 +1,22 @@
 {
-  // This file is not used in compilation. It is here just for a nice editor experience.
+  "//": "Editor-only tsconfig for Docusaurus + TypeScript",
   "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
-    "jsx": "react",
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true
-    
+    "resolveJsonModule": true,
+    "types": ["@docusaurus/module-type-aliases", "node"]
   },
-  "exclude": [".docusaurus", "build"]
+  "include": [
+    "src",
+    "docusaurus.config.ts",
+    "docusaurus.config.js",
+    "sidebars.ts",
+    "sidebars.js",
+    "plugins",
+    "docs"
+  ],
+  "exclude": [".docusaurus", "build", "node_modules"]
 }
