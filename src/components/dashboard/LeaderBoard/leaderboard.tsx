@@ -162,7 +162,6 @@ export default function LeaderBoard(): JSX.Element {
           : [])
       : contributors;
 
-  // Filter out excluded users and then apply search filter
   
   const [timePeriod, setTimePeriod] = useState<TimePeriod>("all");
   const [isSelectChanged, setIsSelectChanged] = useState(false);
