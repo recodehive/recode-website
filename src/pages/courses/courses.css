@@ -50,17 +50,25 @@
 
 /* Dark Theme Colors */
 [data-theme='dark'] {
-  --courses-bg-primary: var(--dark-bg-primary);
-  --courses-bg-secondary: var(--dark-bg-secondary);
-  --courses-bg-tertiary: var(--dark-bg-tertiary);
-  --courses-text-primary: var(--dark-text-primary);
-  --courses-text-secondary: var(--dark-text-secondary);
-  --courses-text-muted: var(--dark-text-muted);
-  --courses-border: var(--dark-border);
-  --courses-shadow: var(--dark-shadow);
-  --courses-shadow-lg: var(--dark-shadow-lg);
-  --courses-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  /* backgrounds */
+  --courses-bg-primary: #0b1220;   /* page & cards base */
+  --courses-bg-secondary: #0f172a; /* alt sections */
+  --courses-bg-tertiary: #111827;  /* subtle panels */
+
+  /* text */
+  --courses-text-primary: #e5e7eb;   /* main text */
+  --courses-text-secondary: #cbd5e1; /* secondary text */
+  --courses-text-muted: #94a3b8;     /* muted/help text */
+
+  /* borders & effects */
+  --courses-border: #1f2937;
+
+  /* shadows tuned for dark UI */
+  --courses-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.6), 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --courses-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.55), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+  --courses-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
 }
+
 
 /* Main page container */
 .courses-page {
