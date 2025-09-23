@@ -120,6 +120,22 @@ export default function Podcasts(): ReactElement {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleShare = async (podcast: PodcastData) => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `Check out this ${podcast.type}`,
+          url: podcast.spotifyUrl,
+        });
+      } catch (err) {
+        // Fallback to clipboard
+        navigator.clipboard.writeText(podcast.spotifyUrl);
+      }
+    } else {
+      navigator.clipboard.writeText(podcast.spotifyUrl);
+    }
+  };
+
   const handlePodcastClick = (podcast: PodcastData, event: React.MouseEvent | React.KeyboardEvent) => {
     const target = event.target as HTMLElement;
     if (target.tagName === 'IFRAME' || target.closest('.podcast-embed')) {
@@ -236,7 +252,10 @@ export default function Podcasts(): ReactElement {
                         <button className="action-btn favorite" title="Add to favorites">
                           ❤️
                         </button>
-                        <button className="action-btn share" title="Share podcast">
+                      <button className="action-btn share" title="Share podcast" onClick={(e) => { 
+                        e.stopPropagation();
+                        handleShare(podcast);
+                      }}>
                           🔗
                         </button>
                       </div>
