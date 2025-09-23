@@ -65,7 +65,7 @@ const config: Config = {
           editUrl: "https://github.com/recodehive/recode-website/tree/main",
           onInlineTags: "warn",
           onInlineAuthors: "warn",
-          onUntruncatedBlogPosts: "warn",
+          onUntruncatedBlogPosts: "ignore",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
