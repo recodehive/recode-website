@@ -13,6 +13,8 @@ interface FooterStats {
   supportHours: string;
 }
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function FooterLayout({
   style,
   links,
@@ -53,13 +55,12 @@ export default function FooterLayout({
 
     fetchStats();
     const interval = setInterval(fetchStats, 30000); // Update every 30 seconds
-
+    
     return () => clearInterval(interval);
   }, []);
-
+  
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!email) {
       setError("Email is required");
@@ -354,7 +355,10 @@ export default function FooterLayout({
                   placeholder="your@email.com"
                   className="newsletter-input"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError("");
+                  }}
                   required
                 />
                 <button
