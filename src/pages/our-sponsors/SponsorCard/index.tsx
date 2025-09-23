@@ -22,8 +22,7 @@ const SponsorCard: React.FC<Sponsor> = ({
       <div className="social-links">
         {github && <a href={github} target="_blank" rel="noopener noreferrer" className="github"><FaGithub /></a>}
         {linkedin && <a href={linkedin} target="_blank" rel="noopener noreferrer" className="linkedin"><FaLinkedin /></a>}
-        {twitter && <a href={twitter} target="_blank" rel="noopener noreferrer" className="twitter"><FaXTwitter />
-</a>}
+        {twitter && <a href={twitter} target="_blank" rel="noopener noreferrer" className="twitter"><FaXTwitter /></a>}
         {instagram && <a href={instagram} target="_blank" rel="noopener noreferrer" className="instagram"><FaInstagram /></a>}
       </div>
     </div>
