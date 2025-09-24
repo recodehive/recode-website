@@ -3,30 +3,40 @@ import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
 import Link from "@docusaurus/Link";
-import { useColorMode } from '@docusaurus/theme-common';
+// removed useColorMode import to avoid provider + SSR issues
 import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 // Safe hook for color mode that handles SSR
 function useSafeColorMode() {
   const [mounted, setMounted] = useState(false);
+  const [colorMode, setColorMode] = useState<'light' | 'dark'>('light');
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    if (!ExecutionEnvironment.canUseDOM) return;
+
+    const getThemeFromDOM = () =>
+      (document.documentElement.getAttribute('data-theme') as 'light' | 'dark') || 'light';
+
+    const applyTheme = () => {
+      const mode = getThemeFromDOM();
+      setColorMode(mode);
+      setIsDark(mode === 'dark');
+    };
+
+    // set immediately on mount
+    applyTheme();
+
+    // watch for changes when navbar toggle is clicked
+    const observer = new MutationObserver(applyTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
   }, []);
-
-  let colorMode = 'light';
-  let isDark = false;
-
-  if (mounted && ExecutionEnvironment.canUseDOM) {
-    try {
-      const { useColorMode: useColorModeHook } = require('@docusaurus/theme-common');
-      const colorModeResult = useColorModeHook();
-      colorMode = colorModeResult.colorMode;
-      isDark = colorMode === 'dark';
-    } catch (error) {
-      console.warn('Failed to get color mode:', error);
-    }
-  }
 
   return { colorMode, isDark, mounted };
 }
@@ -515,7 +525,7 @@ function CareersContent() {
               variants={fadeIn}
             >
               <div className="testimonial-content text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto mb-6 flex items                                       center justify-center">
                   <span className="text-2xl">👤</span>
                 </div>
                 <blockquote 
