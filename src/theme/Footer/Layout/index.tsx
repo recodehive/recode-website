@@ -1,10 +1,9 @@
-import React, {type ReactNode, useState, useEffect} from 'react';
+import React, { type ReactNode, useState, useEffect } from "react";
 import Link from "@docusaurus/Link";
-import type {Props} from '@theme/Footer/Layout';
-import './enhanced-footer.css';
-import Counter from './Counter';
+import type { Props } from "@theme/Footer/Layout";
+import "./enhanced-footer.css";
+import Counter from "./Counter";
 import { createPortal } from "react-dom";
-
 
 // Dynamic stats interface
 interface FooterStats {
@@ -14,6 +13,8 @@ interface FooterStats {
   supportHours: string;
 }
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default function FooterLayout({
   style,
   links,
@@ -22,14 +23,15 @@ export default function FooterLayout({
 }: Props): ReactNode {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [stats, setStats] = useState<FooterStats>({
-    activeUsers: '50K+',
-    tutorials: '200+',
-    successRate: '95%',
-    supportHours: '24/7'
+    activeUsers: "50K+",
+    tutorials: "200+",
+    successRate: "95%",
+    supportHours: "24/7",
   });
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [showToast, setShowToast] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     // Simulate real-time stats updates
@@ -44,36 +46,46 @@ export default function FooterLayout({
           activeUsers: `${Math.floor((baseUsers + randomGrowth) / 1000)}K+`,
           tutorials: `${baseTutorials + Math.floor(randomGrowth / 10)}+`,
           successRate: `${95 + Math.floor(Math.random() * 3)}%`,
-          supportHours: '24/7'
+          supportHours: "24/7",
         });
       } catch (error) {
-        console.log('Using fallback stats');
+        console.log("Using fallback stats");
       }
     };
 
     fetchStats();
     const interval = setInterval(fetchStats, 30000); // Update every 30 seconds
-
+    
     return () => clearInterval(interval);
   }, []);
-
+  
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setIsSubscribed(true);
-      setShowToast(true);
-      
-      // Hide toast after 3 seconds
-      setTimeout(() => {
-        setShowToast(false);
-      }, 3000);
-      
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setIsSubscribed(false);
-        setEmail('');
-      }, 3000);
+
+    if (!email) {
+      setError("Email is required");
+      return;
     }
+
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+
+    setError("");
+    setIsSubscribed(true);
+    setShowToast(true);
+
+    // Hide toast after 3 seconds
+    setTimeout(() => {
+      setShowToast(false);
+    }, 3000);
+
+    // Reset form after 3 seconds
+    setTimeout(() => {
+      setIsSubscribed(false);
+      setEmail("");
+    }, 3000);
   };
 
   return (
@@ -343,7 +355,10 @@ export default function FooterLayout({
                   placeholder="your@email.com"
                   className="newsletter-input"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    setError("");
+                  }}
                   required
                 />
                 <button
@@ -355,6 +370,7 @@ export default function FooterLayout({
                 >
                   {isSubscribed ? "✓ Subscribed!" : "Subscribe Now →"}
                 </button>
+                {error && <p className="error-text">{error}</p>}
               </form>
               <div className="newsletter-stats">
                 <span className="newsletter-stat">
