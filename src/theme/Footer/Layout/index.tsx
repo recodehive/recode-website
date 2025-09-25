@@ -28,6 +28,8 @@ export default function FooterLayout({
   });
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
+  const [emailError, setEmailError] = useState<string | null>(null);
+  const [isValidating, setIsValidating] = useState(false);
 
   useEffect(() => {
     // Simulate real-time stats updates
@@ -55,15 +57,99 @@ export default function FooterLayout({
     return () => clearInterval(interval);
   }, []);
 
+  // Advanced email validation function
+  const validateEmail = (email: string): string | null => {
+    // Check basic format
+    const basicRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!basicRegex.test(email)) {
+      return 'Please enter a valid email address.';
+    }
+
+    // Check for common disposable email patterns
+    const disposableDomains = [
+      '10minutemail.com', 'tempmail.org', 'guerrillamail.com', 
+      'mailinator.com', 'throwaway.email', 'disposablemail.com',
+      'sharklasers.com', 'trashmail.com', 'yopmail.com'
+    ];
+    
+    const domain = email.split('@')[1].toLowerCase();
+    if (disposableDomains.includes(domain)) {
+      return 'Disposable email addresses are not allowed.';
+    }
+
+    // Check for common free email domains with additional validation
+    const freeEmailDomains = [
+      'gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 
+      'protonmail.com', 'icloud.com', 'aol.com', 'live.com'
+    ];
+    
+    if (!freeEmailDomains.includes(domain) && domain.length < 3) {
+      return 'Email domain appears to be invalid.';
+    }
+
+    // Check for common patterns that indicate invalid emails
+    if (email.length > 254) {
+      return 'Email address is too long.';
+    }
+
+    if (email.startsWith('.') || email.endsWith('.')) {
+      return 'Email address cannot start or end with a dot.';
+    }
+
+    if (email.includes('..')) {
+      return 'Email address cannot contain consecutive dots.';
+    }
+
+    // Check for valid characters in local part
+    const localPart = email.split('@')[0];
+    if (localPart.length > 64) {
+      return 'Email local part is too long.';
+    }
+    
+    const validLocalRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+$/;
+    if (!validLocalRegex.test(localPart)) {
+      return 'Email contains invalid characters.';
+    }
+
+    return null; // Valid email
+  };
+
+  // Handle real-time validation
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setEmail(value);
+    
+    // Clear error if field is empty
+    if (value === '') {
+      setEmailError(null);
+      return;
+    }
+    
+    // Perform validation with a slight delay to avoid excessive checks
+    setIsValidating(true);
+    setTimeout(() => {
+      const error = validateEmail(value);
+      setEmailError(error);
+      setIsValidating(false);
+    }, 300);
+  };
+
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      setIsSubscribed(true);
-      setTimeout(() => {
-        setIsSubscribed(false);
-        setEmail('');
-      }, 3000);
+    
+    // Final validation before submission
+    const error = validateEmail(email);
+    if (error) {
+      setEmailError(error);
+      return;
     }
+    
+    setIsSubscribed(true);
+    setTimeout(() => {
+      setIsSubscribed(false);
+      setEmail('');
+      setEmailError(null); // Clear error on successful subscription
+    }, 3000);
   };
   return (
     <footer className="enhanced-footer">
@@ -284,18 +370,30 @@ export default function FooterLayout({
                 Join {stats.activeUsers} developers getting weekly insights, tutorials, and exclusive content.
               </p>
               <form className="newsletter-form" onSubmit={handleSubscribe}>
-                <input
-                  type="email"
-                  placeholder="your@email.com"
-                  className="newsletter-input"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+                <div className="newsletter-input-wrapper">
+                  <input
+                    type="email"
+                    placeholder="your@email.com"
+                    className={`newsletter-input ${emailError ? 'error' : ''} ${isValidating ? 'validating' : ''}`}
+                    value={email}
+                    onChange={handleEmailChange}
+                    required
+                  />
+                  {isValidating && (
+                    <div className="validation-spinner">
+                      <div className="spinner"></div>
+                    </div>
+                  )}
+                </div>
+                {emailError && (
+                  <div className="error-message">
+                    {emailError}
+                  </div>
+                )}
                 <button
                   type="submit"
                   className={`newsletter-button ${isSubscribed ? 'subscribed' : ''}`}
-                  disabled={isSubscribed}
+                  disabled={isSubscribed || !!emailError || email === ''}
                 >
                   {isSubscribed ? '✓ Subscribed!' : 'Subscribe Now →'}
                 </button>

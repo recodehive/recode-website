@@ -964,6 +964,12 @@ html[data-theme='light'] .enhanced-footer {
   margin-bottom: 16px;
 }
 
+.newsletter-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .newsletter-input {
   padding: 12px 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -974,6 +980,29 @@ html[data-theme='light'] .enhanced-footer {
   font-weight: 400;
   backdrop-filter: blur(20px);
   transition: all 0.3s ease;
+  width: 100%;
+}
+
+/* Enhanced specificity for input error state */
+.enhanced-footer .newsletter-input.error,
+[data-theme='dark'] .enhanced-footer .newsletter-input.error,
+[data-theme='light'] .enhanced-footer .newsletter-input.error {
+  border-color: #ef4444 !important;
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.3) !important;
+}
+
+.enhanced-footer .newsletter-input.error::placeholder,
+[data-theme='dark'] .enhanced-footer .newsletter-input.error::placeholder,
+[data-theme='light'] .enhanced-footer .newsletter-input.error::placeholder {
+  color: #fca5a5 !important;
+  opacity: 0.8;
+}
+
+.newsletter-input.validating {
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.3) !important;
 }
 
 .newsletter-input:focus {
@@ -985,6 +1014,82 @@ html[data-theme='light'] .enhanced-footer {
 
 .newsletter-input::placeholder {
   color: #94a3b8;
+}
+
+.validation-spinner {
+  position: absolute;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-top: 2px solid #6366f1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Enhanced specificity for error message to override footer protection */
+.enhanced-footer .error-message,
+[data-theme='dark'] .enhanced-footer .error-message,
+[data-theme='light'] .enhanced-footer .error-message {
+  color: #ef4444 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-top: 4px !important;
+  padding: 8px 12px !important;
+  background: rgba(239, 68, 68, 0.2) !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(239, 68, 68, 0.5) !important;
+  animation: fadeIn 0.3s ease !important;
+  box-shadow: 0 4px 6px rgba(239, 68, 68, 0.1) !important;
+  text-align: left !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.newsletter-button {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 8px 24px rgba(102, 126, 234, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.newsletter-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+  box-shadow:
+    0 4px 12px rgba(102, 126, 234, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 .newsletter-button {
