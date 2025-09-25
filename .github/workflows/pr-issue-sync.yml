@@ -9,9 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     permissions:
-      pull-requests: write
-      issues: read
-      contents: read
+      issues: write
 
     steps:
       - name: Extract Linked Issues
@@ -26,17 +24,16 @@ jobs:
             while ((m = issuePattern.exec(body)) !== null) {
               matches.push(parseInt(m[1]));
             }
-            // Ensure output is always a valid JSON array
             core.setOutput("issues", JSON.stringify(matches));
 
-      - name: Sync Metadata into PR Body
+      - name: Post or Update data Comment
         if: steps.extract.outputs.issues && steps.extract.outputs.issues != '[]'
         uses: actions/github-script@v7
         with:
           script: |
             const issuesInput = core.getInput("issues") || "[]";
             const issues = JSON.parse(issuesInput);
-            const pr = context.payload.pull_request;
+            const prNumber = context.payload.pull_request.number;
 
             let combinedLabels = [];
             let combinedAssignees = [];
@@ -49,16 +46,12 @@ jobs:
                   issue_number: number
                 });
 
-                const labels = issue.data.labels.map(l => l.name);
-                const assignees = issue.data.assignees.map(a => a.login);
-                const milestone = issue.data.milestone ? issue.data.milestone.title : null;
-
-                combinedLabels.push(...labels);
-                combinedAssignees.push(...assignees);
-                if (milestone) combinedMilestones.push(milestone);
+                combinedLabels.push(...issue.data.labels.map(l => l.name));
+                combinedAssignees.push(...issue.data.assignees.map(a => a.login));
+                if (issue.data.milestone) combinedMilestones.push(issue.data.milestone.title);
 
               } catch (err) {
-                console.log(`Could not sync from issue #${number}:`, err.message);
+                console.log(`Could not fetch issue #${number}: ${err.message}`);
               }
             }
 
@@ -67,23 +60,33 @@ jobs:
             combinedAssignees = [...new Set(combinedAssignees)];
             combinedMilestones = [...new Set(combinedMilestones)];
 
-            const metadataBlock =
-              `\n---\n` +
-              `###  Synced data from Linked Issues\n\n` +
+            const commentBody =
+              `### Synced data from Linked Issues\n\n` +
               `**Labels:**\n${combinedLabels.length ? combinedLabels.map(l => `- ${l}`).join("\n") : "- None"}\n\n` +
               `**Assignees:**\n${combinedAssignees.length ? combinedAssignees.map(a => `- ${a}`).join("\n") : "- None"}\n\n` +
               `**Milestones:**\n${combinedMilestones.length ? combinedMilestones.map(m => `- ${m}`).join("\n") : "- None"}\n`;
 
-            let newBody = pr.body || "";
-
-            // Remove old metadata block if exists
-            newBody = newBody.replace(/---\n###  Synced data[\s\S]*$/, "");
-
-            // Append fresh metadata block
-            newBody += metadataBlock;
-
-            await github.rest.pulls.update({
+            // Get existing comments
+            const comments = await github.rest.issues.listComments({
               ...context.repo,
-              pull_number: pr.number,
-              body: newBody
+              issue_number: prNumber
             });
+
+            // Find existing workflow comment
+            const existingComment = comments.data.find(c => c.body.includes("### Synced data from Linked Issues"));
+
+            if (existingComment) {
+              // Update existing comment
+              await github.rest.issues.updateComment({
+                ...context.repo,
+                comment_id: existingComment.id,
+                body: commentBody
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: prNumber,
+                body: commentBody
+              });
+            }
