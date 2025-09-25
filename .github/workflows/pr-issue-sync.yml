@@ -1,0 +1,84 @@
+name: Sync PR Metadata from Linked Issues
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  sync-metadata:
+    runs-on: ubuntu-latest
+
+    permissions:
+      pull-requests: write
+      issues: read
+      contents: read
+
+    steps:
+      - name: Extract Linked Issues
+        id: extract
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = context.payload.pull_request.body || "";
+            const issuePattern = /#(\d+)/g;
+            const matches = [...body.matchAll(issuePattern)];
+            const issueNumbers = matches.map(m => parseInt(m[1]));
+            core.setOutput("issues", JSON.stringify(issueNumbers));
+
+      - name: Sync Metadata into PR Body
+        if: steps.extract.outputs.issues != '[]'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issues = JSON.parse(core.getInput("issues"));
+            const pr = context.payload.pull_request;
+
+            let combinedLabels = [];
+            let combinedAssignees = [];
+            let combinedMilestones = [];
+
+            for (const number of issues) {
+              try {
+                const issue = await github.rest.issues.get({
+                  ...context.repo,
+                  issue_number: number
+                });
+
+                const labels = issue.data.labels.map(l => l.name);
+                const assignees = issue.data.assignees.map(a => a.login);
+                const milestone = issue.data.milestone ? issue.data.milestone.title : null;
+
+                combinedLabels.push(...labels);
+                combinedAssignees.push(...assignees);
+                if (milestone) combinedMilestones.push(milestone);
+
+              } catch (err) {
+                console.log(`Could not sync from issue #${number}:`, err.message);
+              }
+            }
+
+            // Deduplicate
+            combinedLabels = [...new Set(combinedLabels)];
+            combinedAssignees = [...new Set(combinedAssignees)];
+            combinedMilestones = [...new Set(combinedMilestones)];
+
+            const metadataBlock =
+              `\n---\n` +
+              `###  Synced data from Linked Issues\n\n` +
+              `**Labels:**\n${combinedLabels.length ? combinedLabels.map(l => `- ${l}`).join("\n") : "- None"}\n\n` +
+              `**Assignees:**\n${combinedAssignees.length ? combinedAssignees.map(a => `- ${a}`).join("\n") : "- None"}\n\n` +
+              `**Milestones:**\n${combinedMilestones.length ? combinedMilestones.map(m => `- ${m}`).join("\n") : "- None"}\n`;
+
+            let newBody = pr.body || "";
+
+            // Remove old metadata block if exists
+            newBody = newBody.replace(/---\n###  Synced Metadata[\s\S]*$/, "");
+
+            // Append fresh metadata block
+            newBody += metadataBlock;
+
+            await github.rest.pulls.update({
+              ...context.repo,
+              pull_number: pr.number,
+              body: newBody
+            });
