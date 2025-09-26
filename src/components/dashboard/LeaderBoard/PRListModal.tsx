@@ -3,6 +3,7 @@ import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import { useColorMode } from "@docusaurus/theme-common";
+import { useCommunityStatsContext } from "../../../lib/statsProvider";
 
 interface PRDetails {
   title: string;
@@ -30,8 +31,14 @@ interface PRListModalProps {
 export default function PRListModal({ contributor, isOpen, onClose }: PRListModalProps): JSX.Element | null {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
+  
+  // Get filtered PRs from context
+  const { getFilteredPRsForContributor, currentTimeFilter } = useCommunityStatsContext();
 
   if (!contributor) return null;
+
+  // Get filtered PRs instead of using contributor.prDetails
+  const filteredPRs = getFilteredPRsForContributor(contributor.username);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -51,6 +58,17 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       onClose();
+    }
+  };
+
+  // Helper function to get filter display text
+  const getFilterDisplayText = (filter: string) => {
+    switch (filter) {
+      case 'week': return 'This Week';
+      case 'month': return 'This Month';
+      case 'year': return 'This Year';
+      case 'all': return 'All Time';
+      default: return 'All Time';
     }
   };
 
@@ -89,7 +107,13 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
                     {contributor.username}'s Pull Requests
                   </h2>
                   <p className={`pr-modal-subtitle ${isDark ? "dark" : "light"}`}>
-                    {contributor.prs} merged PR{contributor.prs !== 1 ? 's' : ''} • {contributor.points} points
+                    {/*Show filtered count and add filter info */}
+                    {filteredPRs.length} merged PR{filteredPRs.length !== 1 ? 's' : ''} • {filteredPRs.length * 10} points
+                    {currentTimeFilter !== 'all' && (
+                      <span style={{ marginLeft: '8px', opacity: 0.7 }}>
+                        ({getFilterDisplayText(currentTimeFilter)})
+                      </span>
+                    )}
                   </p>
                 </div>
               </div>
@@ -104,9 +128,10 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
 
             {/* Modal Body */}
             <div className={`pr-modal-body ${isDark ? "dark" : "light"}`}>
-              {contributor.prDetails && contributor.prDetails.length > 0 ? (
+              {/*Use filteredPRs instead of contributor.prDetails */}
+              {filteredPRs && filteredPRs.length > 0 ? (
                 <div className="pr-list">
-                  {contributor.prDetails.map((pr, index) => (
+                  {filteredPRs.map((pr, index) => (
                     <motion.div
                       key={`${pr.repoName}-${pr.number}`}
                       className={`pr-item ${isDark ? "dark" : "light"}`}
@@ -148,9 +173,17 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
               ) : (
                 <div className={`pr-empty-state ${isDark ? "dark" : "light"}`}>
                   <FaGithub className="pr-empty-icon" />
-                  <p>No pull request details available</p>
+                  <p>
+                    {currentTimeFilter === 'all' 
+                      ? 'No pull request details available' 
+                      : `No PRs found for ${getFilterDisplayText(currentTimeFilter).toLowerCase()}`
+                    }
+                  </p>
                   <p className="pr-empty-subtitle">
-                    PR details might not be loaded yet or this contributor has no merged PRs.
+                    {currentTimeFilter === 'all'
+                      ? 'PR details might not be loaded yet or this contributor has no merged PRs.'
+                      : `Try selecting a different time period or check "All Time" to see all PRs.`
+                    }
                   </p>
                 </div>
               )}

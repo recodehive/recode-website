@@ -1,4 +1,4 @@
-// src/pages/dashboard/LeaderBoard/leaderboard.tsx
+// src/components/dashboard/LeaderBoard/leaderboard.tsx
 import React, { JSX, useState } from "react";
 import { motion } from "framer-motion";
 import {
@@ -129,11 +129,17 @@ function TopPerformerCard({
   );
 }
 
-// Define the time period type
-type TimePeriod = "all" | "weekly" | "monthly" | "yearly";
-
 export default function LeaderBoard(): JSX.Element {
-  const { contributors, stats, loading, error } = useCommunityStatsContext();
+  // Get time filter functions from context
+  const { 
+    contributors, 
+    stats, 
+    loading, 
+    error, 
+    currentTimeFilter, 
+    setTimeFilter 
+  } = useCommunityStatsContext();
+  
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
 
@@ -141,6 +147,7 @@ export default function LeaderBoard(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedContributor, setSelectedContributor] = useState<Contributor | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSelectChanged, setIsSelectChanged] = useState(false);
   const itemsPerPage = 10;
 
   // Modal handlers
@@ -162,61 +169,9 @@ export default function LeaderBoard(): JSX.Element {
           : [])
       : contributors;
 
-  
-  const [timePeriod, setTimePeriod] = useState<TimePeriod>("all");
-  const [isSelectChanged, setIsSelectChanged] = useState(false);
- 
 
-  // Get contributions within the selected time period
-  const getContributionsWithinTimePeriod = (contributors: Contributor[]) => {
-    if (timePeriod === "all") return contributors;
-    
-    // Get date threshold based on selected time period
-    const now = new Date();
-    let threshold = new Date();
-    
-    switch (timePeriod) {
-      case "weekly":
-        threshold.setDate(now.getDate() - 7); // Past 7 days
-        break;
-      case "monthly":
-        threshold.setMonth(now.getMonth() - 1); // Past month
-        break;
-      case "yearly":
-        threshold.setFullYear(now.getFullYear() - 1); // Past year
-        break;
-    }
-    
-    // Since we don't have the actual PR dates in the component,
-    // we'll simulate filtering by reducing the PR counts by a factor
-    // In a real implementation, you would filter based on actual PR dates
-    return contributors.map(contributor => {
-      // Apply a random factor based on time period to simulate date filtering
-      // This is just for demonstration - in a real app you'd use actual date data
-      let factor = 1;
-      switch (timePeriod) {
-        case "weekly":
-          factor = 0.1 + Math.random() * 0.1; // Keep 10-20% for weekly
-          break;
-        case "monthly":
-          factor = 0.3 + Math.random() * 0.2; // Keep 30-50% for monthly
-          break;
-        case "yearly":
-          factor = 0.7 + Math.random() * 0.2; // Keep 70-90% for yearly
-          break;
-      }
-      
-      const filteredPrs = Math.floor(contributor.prs * factor);
-      return {
-        ...contributor,
-        prs: filteredPrs,
-        points: filteredPrs * 10, // Assuming each PR is worth 10 points
-      };
-    }).filter(contributor => contributor.prs > 0); // Remove contributors with 0 PRs
-  };
-  
-  // Filter out excluded users, apply time period filter, and then apply search filter
-  const filteredContributors = getContributionsWithinTimePeriod(contributors)
+  // Filter out excluded users and apply search filter
+  const filteredContributors = contributors
     .filter((contributor) => 
       !EXCLUDED_USERS.some(excludedUser => 
         contributor.username.toLowerCase() === excludedUser.toLowerCase()
@@ -224,20 +179,7 @@ export default function LeaderBoard(): JSX.Element {
     )
     .filter((contributor) =>
       contributor.username.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-    // Re-sort contributors after filtering to ensure proper ranking
-    .sort((a, b) => {
-      // First sort by points (descending)
-      if (b.points !== a.points) {
-        return b.points - a.points;
-      }
-      // If points are equal, sort by PRs (descending)
-      if (b.prs !== a.prs) {
-        return b.prs - a.prs;
-      }
-      // If both points and PRs are equal, sort alphabetically by username (ascending)
-      return a.username.localeCompare(b.username);
-    });
+    );
 
   const totalPages = Math.ceil(filteredContributors.length / itemsPerPage);
   const indexOfLast = currentPage * itemsPerPage;
@@ -343,6 +285,17 @@ export default function LeaderBoard(): JSX.Element {
     return "regular";
   };
 
+  // Helper function for time filter display
+  const getTimeFilterLabel = (filter: string) => {
+    switch (filter) {
+      case 'week': return '📊 This Week';
+      case 'month': return '📆 This Month'; 
+      case 'year': return '📅 This Year';
+      case 'all': return '🏆 All Time';
+      default: return '🏆 All Time';
+    }
+  };
+
   return (
     <div className={`leaderboard-container ${isDark ? "dark" : "light"}`}>
       <div className="leaderboard-content">
@@ -368,9 +321,10 @@ export default function LeaderBoard(): JSX.Element {
                 <label htmlFor="time-period-filter" className="filter-label">Time Period:</label>
                 <select
                   id="time-period-filter"
-                  value={timePeriod}
+                  value={currentTimeFilter}
                   onChange={(e) => {
-                    setTimePeriod(e.target.value as TimePeriod);
+                    // Use setTimeFilter from context
+                    setTimeFilter(e.target.value as any);
                     setCurrentPage(1);
                     setIsSelectChanged(true);
                     setTimeout(() => setIsSelectChanged(false), 1200);
@@ -378,14 +332,13 @@ export default function LeaderBoard(): JSX.Element {
                   className={`time-filter-select ${isDark ? "dark" : "light"} ${isSelectChanged ? 'highlight-change' : ''}`}
                 >
                   <option value="all">🏆 All Time</option>
-                  <option value="yearly">📅 Past Year</option>
-                  <option value="monthly">📆 Past Month</option>
-                  <option value="weekly">📊 Past Week</option>
+                  <option value="year">📅 This Year</option>
+                  <option value="month">📆 This Month</option>
+                  <option value="week">📊 This Week</option>
                 </select>
               </div>
             </div>
             <div className="top-performers-grid">
-
               <TopPerformerCard contributor={filteredContributors[1]} rank={2} onPRClick={handlePRClick} />
               <TopPerformerCard contributor={filteredContributors[0]} rank={1} onPRClick={handlePRClick} />
               <TopPerformerCard contributor={filteredContributors[2]} rank={3} onPRClick={handlePRClick} />
