@@ -102,8 +102,11 @@ const getTimeFilterDate = (filter: TimeFilter): Date | null => {
   switch (filter) {
     case 'week':
       return new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-    case 'month':
-      return new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+    case 'month': {
+      const lastMonth = new Date(now);
+      lastMonth.setMonth(now.getMonth() - 1);
+      return lastMonth;
+    }
     case 'year':
       return new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
     case 'all':
