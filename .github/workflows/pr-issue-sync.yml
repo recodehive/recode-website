@@ -1,7 +1,7 @@
 name: Sync PR data from Linked Issues
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, edited, synchronize]
 
 jobs:
@@ -17,6 +17,7 @@ jobs:
         id: extract
         uses: actions/github-script@v7
         with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const body = context.payload.pull_request.body || "";
             const issuePattern = /#(\d+)/g;
@@ -32,8 +33,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const issuesInput = core.getInput("issues") || "[]";
-            const issues = JSON.parse(issuesInput);
+            const issues = JSON.parse(`${{ steps.extract.outputs.issues }}`);
             const prNumber = context.payload.pull_request.number;
 
             let combinedLabels = [];
