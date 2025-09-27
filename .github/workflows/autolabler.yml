@@ -1,10 +1,13 @@
-name: Auto Label Pull Requests
+name: Auto Label Issues and PRs
 
 on:
   pull_request_target:
     types: [opened]
+  issues:
+    types: [opened]
 
 permissions:
+  issues: write
   pull-requests: write
 
 jobs:
@@ -12,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Add labels to PR
+        if: github.event_name == 'pull_request_target'
         uses: actions/github-script@v7
         with:
           script: |
@@ -24,3 +28,18 @@ jobs:
             });
 
             console.log(`Added labels [recode, level 1] to PR #${prNumber}`);
+
+      - name: Add labels to Issue
+        if: github.event_name == 'issues'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.payload.issue.number;
+
+            await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: issueNumber,
+              labels: ["recode", "level 1"]
+            });
+
+            console.log(`Added labels [recode, level 1] to Issue #${issueNumber}`);
