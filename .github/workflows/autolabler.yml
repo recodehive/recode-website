@@ -1,0 +1,26 @@
+name: Auto Label Pull Requests
+
+on:
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  add-labels:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add labels to PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+
+            await github.rest.issues.addLabels({
+              ...context.repo,
+              issue_number: prNumber,
+              labels: ["recode", "level 1"]
+            });
+
+            console.log(`Added labels [recode, level 1] to PR #${prNumber}`);
