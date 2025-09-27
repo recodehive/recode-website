@@ -31,7 +31,7 @@ canonical_url:
 #     content: "assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
 
 ---
-
+ <!-- truncate -->
 
 ### 🚀 **What Is GitHub Coding Agent**  
 The GitHub Copilot Coding Agent is an asynchronous software engineering agent that:

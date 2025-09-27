@@ -1,6 +1,7 @@
 ---
 title: "What is Google DeepMind AI?"
 authors: [dharshibalasubramaniyam, sanjay-kv]
+sidebar_label: "Google Deepmind"
 tags:
   - Google Deepmind
   - Opensource
@@ -32,7 +33,7 @@ canonical_url:
 #     content: "assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
 
 ---
-
+ <!-- truncate -->
 **DeepMind** is a leading Artificial Intelligence organization made up of researchers, engineers, and specialists focused on solving some of the world’s toughest problems through cutting-edge AI technologies. Acquired by Google in **2014 for over £400 million**, DeepMind is most famous for creating **AlphaGo**, the first program to defeat a world champion in the game Go.
 
 ---

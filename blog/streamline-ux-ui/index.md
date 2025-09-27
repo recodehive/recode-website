@@ -6,7 +6,7 @@ tags: [ui, ux, design]
 date: 2025-06-05
 hide_table_of_contents: true
 ---
-
+ <!-- truncate -->
 User experience design can be overwhelming because of the number of factors that influence what a product should look like and how it should function.
 
 But you don’t need to know everything about a user before you start designing — the UX process is designed to solve problems and make a customer’s life easier. You can start by breaking down the development of a product into seven steps:

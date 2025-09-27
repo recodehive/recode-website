@@ -32,10 +32,10 @@ canonical_url:
 #     content: "assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
 
 ---
-
+ <!-- truncate -->
 # Understanding Apache Spark Architecture: A Deep Dive into Distributed Computing
 
-Hey there, fellow data enthusiasts! 👋 
+Hey there, fellow data enthusiasts! dsd👋 
 
 I remember the first time I encountered a Spark architecture diagram. It looked like a complex web of boxes and arrows that seemed to communicate in some secret distributed computing language. But once I understood what each component actually does and how they work together, everything clicked into place.
 

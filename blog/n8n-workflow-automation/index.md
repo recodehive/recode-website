@@ -34,7 +34,7 @@ canonical_url:
 ---
 
 # Building Intelligent Automation: N8N AI Workflows Explained
-
+ <!-- truncate -->
 Hey automation enthusiasts! 🤖
 
 I still remember the moment when I first connected OpenAI's GPT to a Google Sheets workflow in N8N. What started as a simple data processing task suddenly became an intelligent system that could analyze customer feedback, categorize it by sentiment, and automatically generate personalized responses. It was like watching automation evolve from basic "if-this-then-that" logic to something that could actually think.
