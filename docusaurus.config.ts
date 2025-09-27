@@ -163,7 +163,7 @@ const config: Config = {
           items: [
             {
               label: "💻GitHub Profiles",
-              to: "https://dev.recodehive.com/devfolio",
+              to: "/devfolio",
             },
             {
               label: "🎖️ GitHub Badges",
@@ -212,6 +212,44 @@ const config: Config = {
           position: "right",
           value: '<div id="firebase-auth-github-navbar"></div>',
         },
+
+        // {
+        //   type: "dropdown",
+        //   html: '<span class="nav-emoji">🏷️</span> Tags',
+        //   position: "left",
+        //   items: [
+        //     {
+        //       label: "🏷️ Tutorial Tags 📚",
+        //       to: "/docs/tags/",
+        //       activeBaseRegex: "/docs/tags/",
+        //     },
+        //     {
+        //       label: "🏷️ Courses Tags 🎓",
+        //       to: "/courses/tags/",
+        //       activeBaseRegex: "/courses/tags/",
+        //     },
+        //     {
+        //       label: "🏷️ DSA Tags 🧠",
+        //       to: "/dsa/tags/",
+        //       activeBaseRegex: "/dsa/tags/",
+        //     },
+        //   ],
+        // },
+
+        // {
+        //   href: "https://github.com/codeharborhub/codeharborhub",
+        //   position: "right",
+        //   className: "header-github-link",
+        //   "aria-label": "GitHub repository",
+        // },
+        // {
+        //   href: "https://www.codeharborhub.live/register",
+        //   position: "right",
+        //   className: "header-signup-link",
+        //   "aria-label": "Auth",
+        //   label: "Auth",
+        // },
+
       ],
     },
     footer: {
