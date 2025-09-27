@@ -32,6 +32,8 @@
   flex-direction: column;
   margin-right: 2rem;
 }
+
+/* Updated heading styles to center the text and add spacing */
 [data-theme='light'] .chh__header-content h1 {
   font-weight: 700;
   font-size: 56px;
@@ -48,6 +50,9 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: background 0.3s ease-in-out;
+  text-align: center; /* Center the heading text */
+  width: 100%; /* Ensure it takes full width for proper centering */
+  margin-top: 2rem; /* Push heading down for better spacing */
 }
 
 [data-theme='dark'] .chh__header-content h1 {
@@ -66,9 +71,10 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: background 0.3s ease-in-out;
+  text-align: center; /* Center the heading text */
+  width: 100%; /* Ensure it takes full width for proper centering */
+  margin-top: 2rem; /* Push heading down for better spacing */
 }
-
-
 
 .chh__header-content p {
   font-family: var(--font-family);
@@ -85,7 +91,6 @@
 [data-theme='dark'] .chh__header-content p {
   color: #ccc; /* Softer white for dark mode */
 }
-
 
 html.theme-dark .chh__header-content p {
   color: #ccc;
@@ -205,7 +210,6 @@ html.theme-dark .chh__header-content p {
   padding: 0.3rem;
   border-radius: 10% 40%;
   min-height: 400px;
-  
 }
 
 .chh__header-image img {
