@@ -13,7 +13,7 @@ canonical_url:
  <!-- truncate -->
 
 GitHub Copilot CLI is now in public preview
-GitHub bought power of GitHub Copilot coding agent directly to your terminal, with GitHub Copilot CLI, you can work locally and synchronously with an AI agent that understands your code and GitHub context in depth.
+GitHub bought power of GitHub Copilot coding agent directly to your terminal, with [GitHub Copilot CLI](https://github.com/features/copilot/cli?utm_source=changelog-amp-linkedin&utm_campaign=agentic-copilot-cli-launch-2025), you can work locally and synchronously with an AI agent that understands your code and GitHub context in depth.
 
 ---
 
@@ -33,6 +33,8 @@ GitHub Copilot CLI is now in `public preview`, and it’s designed to bring AI-p
 - ✅**Full control** – Every action requires your explicit approval.
 
 Plus, extend Copilot CLI's capabilities and context through **custom MCP servers**.
+Agent-powered, GitHub-native
+Execute coding tasks with an agent that knows your repositories, issues, and pull requests — all natively in your terminal.
 
 
 ---
@@ -86,12 +88,18 @@ copilot --banner
 ```
 
 Authenticate with your GitHub account:
-
+If you're not currently logged in to GitHub, you'll be prompted to use the `/login` slash command. Enter this command and follow the on-screen instructions to authenticate.
 ```bash
 /login
 ```
 
 Or authenticate using a **Personal Access Token (PAT):**
+
+You can also authenticate using a fine-graned PAT with the "Copilot Rrequests" permission enabled.
+Visit `https://github.com/settings/personal-access-tokens/new`
+Under `Permissions`," click add `permissions` and select `Copilot Requests`
+Generate your token
+Add the token to your environment via the environment variable GH_TOKEN or GITHUB_TOKEN.👇🏻
 
 ```bash
 # Linux/macOS
@@ -105,6 +113,11 @@ setx GH_TOKEN your_token_here
 
 ## 🖥️ Usage
 Once you installed run copilot on your terminal, Image of the splash screen for the Copilot CLI. The usage is pretty straight forward you can use the arrow keys to navigate to proceed cancel instruction etc.
+
+Each time you submit a prompt to GitHub Copilot CLI, your monthly quota of premium requests is reduced by one. For information about premium requests,
+`https://docs.github.com/en/copilot/concepts/billing/copilot-requests`
+
+
 
 ![Command to start](./images/02-starting-copilot.png)
 
@@ -139,20 +152,50 @@ Ctrl + C (twice)
 
 Now lets get start with development, here fork this repo and activate GitHub CLI and enter the below bash commands. [Website](https://github.com/recodehive/recode-website)
 
-### Development
+### List of all commands in CLI
+I have linked the offical website repo to log any bugs or do direct PR. [GitHub CLI repo](https://github.com/github/copilot-cli?utm_source=changelog-amp-linkedin&utm_campaign=agentic-copilot-cli-launch-2025) and [Official Documentation](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli?utm_campaign=agentic-copilot-cli-launch-2025&utm_source=changelog-amp-linkedin)
 
-```bash
-gh copilot suggest "start development server for docusaurus"
-gh copilot suggest "build docusaurus site for production"
-gh copilot suggest "deploy docusaurus site"
-```
+  `alias`
+  `api`
+  `attestation`
+  `auth`
+  `browse`
+  `cache`
+  `co`
+  `codespace`
+  `completion`
+  `config`
+  `extension`
+  `gist`
+  `gpg-key`
+  `issue`
+  `label`
+  `org`
+  `pr`
+  `preview`
+  `project`
+  `release`
+  `repo`
+ ` ruleset`
+  `run`
+  `search`
+  `secret`
+  `ssh-key`
+  `status`
+  `variable`
+  `workflow`
+
+For preview to run enter the following command. 👇🏻
+
 ![Command to start](./images/03-try-out-the-usage-of-CLI.png)
 
-### Package Management
+
+### Documentation
 
 ```bash
-gh copilot suggest "install new dependencies for react project"
-gh copilot suggest "update docusaurus to latest version"
+gh copilot suggest "create new documentation page in docusaurus"
+gh copilot suggest "organize documentation with sidebars"
+gh copilot suggest "create code of conduct for repository"
 ```
 
 ### Git Workflow
@@ -170,13 +213,6 @@ gh copilot suggest "check repository status and pending changes"
 gh copilot suggest "merge feature branch after review"
 ```
 
-### Documentation
-
-```bash
-gh copilot suggest "create new documentation page in docusaurus"
-gh copilot suggest "organize documentation with sidebars"
-gh copilot suggest "create code of conduct for repository"
-```
 
 ### Testing & Quality
 
@@ -185,7 +221,26 @@ gh copilot suggest "run linting checks on typescript files"
 gh copilot suggest "fix build errors in docusaurus"
 ```
 
+### Package Management
+
+```bash
+gh copilot suggest "update docusaurus to latest version"
+```
 ---
+
+### Development
+
+```bash
+gh copilot suggest "start development server for docusaurus"
+gh copilot suggest "build docusaurus site for production"
+gh copilot suggest "deploy docusaurus site"
+```
+
+# SEO and metadata
+```bash
+gh copilot suggest "optimize SEO for docusaurus website"
+gh copilot suggest "add metadata to blog posts"
+```
 
 ## 🔗 Resources
 
