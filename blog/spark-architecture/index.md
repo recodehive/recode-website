@@ -35,7 +35,7 @@ canonical_url:
  <!-- truncate -->
 # Understanding Apache Spark Architecture: A Deep Dive into Distributed Computing
 
-Hey there, fellow data enthusiasts! dsd👋 
+Hey there, fellow data enthusiasts! 👋
 
 I remember the first time I encountered a Spark architecture diagram. It looked like a complex web of boxes and arrows that seemed to communicate in some secret distributed computing language. But once I understood what each component actually does and how they work together, everything clicked into place.
 
