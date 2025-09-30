@@ -7,5 +7,3 @@ sidebar_position: 2
 
 ---
 The page is under construction will update the content soon.
----
-
