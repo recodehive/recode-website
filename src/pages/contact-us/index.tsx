@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "@theme/Layout";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { Mail, MapPin, Clock } from "lucide-react";
 import "./index.css";
 
 const ContactUs: React.FC = () => {
