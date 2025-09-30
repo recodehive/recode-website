@@ -111,7 +111,7 @@ const calculatePointsForPR = (labels?: Array<{ name: string }>): number => {
     return 0; // No points if "recode" label is missing
   }
   
-  // Check for level labels and assign points accordingly
+  // Check for level labels and assign points accordingly wiht new point system
   if (labelNames.includes('level 1')) {
     return 10;
   } else if (labelNames.includes('level 2')) {
