@@ -48,6 +48,7 @@ interface PRDetails {
   mergedAt: string;
   repoName: string;
   number: number;
+  points: number;
 }
 
 interface Contributor {
@@ -75,6 +76,7 @@ interface PullRequestItem {
   title?: string;
   html_url?: string;
   number?: number;
+  labels?: Array<{ name: string }>;
 }
 
 // Enhanced contributor type for internal processing (stores all PRs)
@@ -95,6 +97,31 @@ const POINTS_PER_PR = 10;
 const MAX_CONCURRENT_REQUESTS = 8;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache
 const MAX_PAGES_PER_REPO = 20;
+
+// Function to calculate points based on PR labels
+const calculatePointsForPR = (labels?: Array<{ name: string }>): number => {
+  if (!labels || labels.length === 0) {
+    return 0; // No points if no labels
+  }
+  
+  const labelNames = labels.map(label => label.name.toLowerCase());
+  
+  // Check if PR has the "recode" label
+  if (!labelNames.includes('recode')) {
+    return 0; // No points if "recode" label is missing
+  }
+  
+  // Check for level labels and assign points accordingly
+  if (labelNames.includes('level 1')) {
+    return 10;
+  } else if (labelNames.includes('level 2')) {
+    return 30;
+  } else if (labelNames.includes('level 3')) {
+    return 50;
+  }
+  
+  return 0; // No points if no level label
+};
 
 // Time filter utility functions
 const getTimeFilterDate = (filter: TimeFilter): Date | null => {
@@ -163,11 +190,14 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
           isPRInTimeRange(pr.mergedAt, currentTimeFilter)
         );
         
+        // Calculate total points from all filtered PRs
+        const totalPoints = filteredPRs.reduce((sum, pr) => sum + pr.points, 0);
+        
         return {
           username: contributor.username,
           avatar: contributor.avatar,
           profile: contributor.profile,
-          points: filteredPRs.length * POINTS_PER_PR,
+          points: totalPoints,
           prs: filteredPRs.length,
           prDetails: filteredPRs, // For backward compatibility, though we'll use the new function
         };
@@ -319,6 +349,9 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
           }
           const contributor = contributorMap.get(username)!;
           
+          // Calculate points for this PR based on labels
+          const prPoints = calculatePointsForPR(pr.labels);
+          
           // Add detailed PR information to the full list
           if (pr.title && pr.html_url && pr.merged_at && pr.number) {
             contributor.allPRDetails.push({
@@ -327,6 +360,7 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
               mergedAt: pr.merged_at,
               repoName,
               number: pr.number,
+              points: prPoints,
             });
           }
         });
