@@ -23,6 +23,12 @@ const sidebars: SidebarsConfig = {
 
     },
     {
+      type: 'doc',
+      id: 'Getting-Started',
+      label: '🚀 Getting Started',
+      className: 'custom-sidebar-contributing',
+    },
+    {
       type: 'category',
       label: '🐙 GitHub',
       className: 'custom-sidebar-github',
