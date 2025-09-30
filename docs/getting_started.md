@@ -6,4 +6,4 @@ sidebar_position: 2
 
 
 ---
-The page is under construction will update the content soon.
+The page is under construction and will be updated soon.
