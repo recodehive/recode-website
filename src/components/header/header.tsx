@@ -41,7 +41,7 @@ const HeaderContent = () => {
       </motion.p>
 
       <div className="chh__header-content__input">
-        <motion.button
+        <motion.div
           initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -51,14 +51,14 @@ const HeaderContent = () => {
             stiffness: 100,
             delay: 0.3,
           }}
-          type="button"
+          style={{ flex: 1 }}
         >
-          <Link to="/get-started/" className="chh__header-content__input--link">
+          <Link to="/get-started/" className="chh__header-content__input--button">
             Get Started
           </Link>
-        </motion.button>
+        </motion.div>
 
-        <motion.button
+        <motion.div
           initial={{ opacity: 0, x: 10 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -68,12 +68,12 @@ const HeaderContent = () => {
             stiffness: 100,
             delay: 0.2,
           }}
-          type="button"
+          style={{ flex: 1 }}
         >
-          <Link to="/courses" className="chh__header-content__input--link">
+          <Link to="/courses" className="chh__header-content__input--button">
             Courses
           </Link>
-        </motion.button>
+        </motion.div>
       </div>
     </div>
   );
