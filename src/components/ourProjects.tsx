@@ -343,7 +343,7 @@ const SelectComponent = ({
                   >
                     <motion.iframe
                       key={activeItem}
-                      src={PROJECT_URLS[items[activeItem].title] || "about:blank"}
+                      src={getWebsiteUrl(items[activeItem].title)}
           className="w-full h-[220%] sm:h-[200%] border-0 origin-top pointer-events-none ourprojects-iframe"
                       initial={{ opacity: 0, y: 0 }}
                       animate={{ 
