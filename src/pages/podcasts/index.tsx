@@ -10,19 +10,16 @@ interface PodcastData {
   type: 'episode' | 'show' | 'playlist';
 }
 
-// Function to extract Spotify ID from URL
 const getSpotifyEmbedId = (url: string): string => {
   const match = url.match(/(?:spotify\.com|open\.spotify\.com)\/(episode|show|playlist)\/([a-zA-Z0-9]+)/);
   return match ? match[2] : url;
 };
 
-// Function to determine content type from URL
 const getSpotifyContentType = (url: string): 'episode' | 'show' | 'playlist' => {
   const match = url.match(/(?:spotify\.com|open\.spotify\.com)\/(episode|show|playlist)/);
   return (match?.[1] as 'episode' | 'show' | 'playlist') || 'show';
 };
 
-// Add your podcasts here
 const podcastUrls: string[] = [
   "https://open.spotify.com/show/6oPJ7ZBlN7y34yiSMguIda?si=729edf3b64a246d7",
   "https://open.spotify.com/episode/1zbmUPmGRjC8o8YIMMx2Z6?si=Q4QAS3IJQVGaQYhYApckdA",
@@ -42,13 +39,7 @@ const podcastData: PodcastData[] = podcastUrls.map((url, index) => ({
   type: getSpotifyContentType(url)
 }));
 
-interface SpotifyTitleProps {
-  spotifyUrl: string;
-  type: 'episode' | 'show' | 'playlist';
-}
-
-// Fetches the podcast/show/episode title from Spotify oEmbed API
-const SpotifyTitle: React.FC<SpotifyTitleProps> = ({ spotifyUrl, type }) => {
+const SpotifyTitle: React.FC<{spotifyUrl: string; type: 'episode' | 'show' | 'playlist'}> = ({ spotifyUrl, type }) => {
   const [title, setTitle] = React.useState<string>('');
   const [loading, setLoading] = React.useState(true);
 
@@ -82,14 +73,10 @@ const SpotifyTitle: React.FC<SpotifyTitleProps> = ({ spotifyUrl, type }) => {
       ) : (
         <>
           <div className="podcast-type-badge">
-            <span className="type-icon">
-              {type === 'episode' ? '🎙️' : type === 'show' ? '📻' : '🎵'}
-            </span>
+            <span className="type-icon">{type === 'episode' ? '🎙️' : type === 'show' ? '📻' : '🎵'}</span>
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </div>
-          <h3 className="podcast-title-text">
-            {title || `${type.charAt(0).toUpperCase() + type.slice(1)} #${Math.floor(Math.random() * 100) + 1}`}
-          </h3>
+          <h3 className="podcast-title-text">{title || `${type.charAt(0).toUpperCase() + type.slice(1)} #${Math.floor(Math.random() * 100) + 1}`}</h3>
         </>
       )}
     </div>
@@ -99,46 +86,41 @@ const SpotifyTitle: React.FC<SpotifyTitleProps> = ({ spotifyUrl, type }) => {
 export default function Podcasts(): ReactElement {
   const history = useHistory();
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState<
-    "all" | "episode" | "show" | "playlist"
-  >("all");
-  const [favorites, setFavorites] = useState<string[]>(() => {
-    // Load favorites from localStorage on component mount
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("podcast-favorites");
-      return saved ? JSON.parse(saved) : [];
-    }
-    return [];
-  });
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedFilter, setSelectedFilter] = useState<'all' | 'episode' | 'show' | 'playlist'>('all');
   const podcastsPerPage = 9;
 
-  // Filter podcasts based on search and filter
-  const filteredPodcasts = podcastData.filter(podcast => {
-    const matchesFilter = selectedFilter === 'all' || podcast.type === selectedFilter;
-    return matchesFilter;
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    const saved = localStorage.getItem('favoritePodcasts');
+    return saved ? JSON.parse(saved) : [];
   });
 
-  // Calculate podcasts for current page
+  const toggleFavorite = (podcastId: string) => {
+    setFavorites(prev => {
+      const updated = prev.includes(podcastId)
+        ? prev.filter(id => id !== podcastId)
+        : [...prev, podcastId];
+      localStorage.setItem('favoritePodcasts', JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  const filteredPodcasts = podcastData.filter(podcast => selectedFilter === 'all' || podcast.type === selectedFilter);
   const indexOfLastPodcast = currentPage * podcastsPerPage;
   const indexOfFirstPodcast = indexOfLastPodcast - podcastsPerPage;
   const currentPodcasts = filteredPodcasts.slice(indexOfFirstPodcast, indexOfLastPodcast);
   const totalPages = Math.ceil(filteredPodcasts.length / podcastsPerPage);
 
-  const handlePageChange = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({top: 0, behavior: 'smooth'});
   };
 
   const handleShare = async (podcast: PodcastData) => {
     if (navigator.share) {
       try {
-        await navigator.share({
-          title: `Check out this ${podcast.type}`,
-          url: podcast.spotifyUrl,
-        });
-      } catch (err) {
-        // Fallback to clipboard
+        await navigator.share({title: `Check out this ${podcast.type}`, url: podcast.spotifyUrl});
+      } catch {
         navigator.clipboard.writeText(podcast.spotifyUrl);
       }
     } else {
@@ -146,65 +128,29 @@ export default function Podcasts(): ReactElement {
     }
   };
 
-  const handleFavorite = (podcast: PodcastData, event: React.MouseEvent) => {
-    // Prevent card click when clicking favorite button
-    event.stopPropagation();
-
-    setFavorites((prev) => {
-      const isFavorited = prev.includes(podcast.id);
-      const newFavorites = isFavorited
-        ? prev.filter((id) => id !== podcast.id) // Remove from favorites
-        : [...prev, podcast.id]; // Add to favorites
-
-      // Save to localStorage for persistence
-      if (typeof window !== "undefined") {
-        localStorage.setItem("podcast-favorites", JSON.stringify(newFavorites));
-      }
-
-      return newFavorites;
-    });
-  };
-
-  const handlePodcastClick = (
-    podcast: PodcastData,
-    event: React.MouseEvent | React.KeyboardEvent
-  ) => {
+  const handlePodcastClick = (podcast: PodcastData, event: React.MouseEvent | React.KeyboardEvent) => {
     const target = event.target as HTMLElement;
-
-    // Prevent navigation if clicking on buttons or action area
-    if (
-      target.tagName === "IFRAME" ||
-      target.closest(".podcast-embed") ||
-      target.closest(".action-btn") || // Don't navigate if clicking buttons
-      target.closest(".card-actions") || // Don't navigate if clicking action area
-      target.classList.contains("action-btn") ||
-      target.classList.contains("favorite") ||
-      target.classList.contains("share")
-    ) {
+    if (target.tagName === 'IFRAME' || target.closest('.podcast-embed') || target.closest('.action-btn')) {
       return;
     }
-
-    history.push("/podcasts/details", { podcast });
+    history.push('/podcasts/details', {podcast});
   };
+
+  React.useEffect(() => setCurrentPage(1), [searchTerm, selectedFilter]);
 
   return (
     <Layout>
       <div className="enhanced-podcast-container">
-        {/* Hero Section */}
         <div className="podcast-hero">
           <div className="podcast-hero-content">
             <div className="hero-badge">
               <span className="badge-icon">🎙️</span>
               <span className="badge-text">Premium Audio Content</span>
             </div>
-            <h1 className="podcast-hero-title">
-              Discover Top Podcasts
-            </h1>
+            <h1 className="podcast-hero-title">Discover Top Podcasts</h1>
             <p className="podcast-hero-description">
               Stream the best podcasts from your favorite stations. Dive into episodes that inspire, educate, and entertain from leading voices in tech, business, and beyond.
             </p>
-
-            {/* Stats */}
             <div className="podcast-stats">
               <div className="stat-item">
                 <div className="stat-number">{podcastData.length}+</div>
@@ -222,112 +168,70 @@ export default function Podcasts(): ReactElement {
           </div>
         </div>
 
-        {/* Filter Section */}
         <div className="podcast-filters">
           <div className="filter-search">
             <div className="search-icon"></div>
-            <input
-              type="text"
-              placeholder="Search podcasts..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="search-input"
-            />
+            <input type="text" placeholder="Search podcasts..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />
           </div>
           <div className="filter-tabs">
-            <button
-              className={`filter-tab ${selectedFilter === 'all' ? 'active' : ''}`}
-              onClick={() => setSelectedFilter('all')}
-            >
-              <span className="tab-icon">📊</span>
-              All ({podcastData.length})
+            <button className={`filter-tab ${selectedFilter === 'all' ? 'active' : ''}`} onClick={() => setSelectedFilter('all')}>
+              <span className="tab-icon">📊</span>All ({podcastData.length})
             </button>
-            <button
-              className={`filter-tab ${selectedFilter === 'episode' ? 'active' : ''}`}
-              onClick={() => setSelectedFilter('episode')}
-            >
-              <span className="tab-icon">🎙️</span>
-              Episodes ({podcastData.filter(p => p.type === 'episode').length})
+            <button className={`filter-tab ${selectedFilter === 'episode' ? 'active' : ''}`} onClick={() => setSelectedFilter('episode')}>
+              <span className="tab-icon">🎙️</span>Episodes ({podcastData.filter(p => p.type === 'episode').length})
             </button>
-            <button
-              className={`filter-tab ${selectedFilter === 'show' ? 'active' : ''}`}
-              onClick={() => setSelectedFilter('show')}
-            >
-              <span className="tab-icon">📻</span>
-              Shows ({podcastData.filter(p => p.type === 'show').length})
+            <button className={`filter-tab ${selectedFilter === 'show' ? 'active' : ''}`} onClick={() => setSelectedFilter('show')}>
+              <span className="tab-icon">📻</span>Shows ({podcastData.filter(p => p.type === 'show').length})
             </button>
-            <button
-              className={`filter-tab ${selectedFilter === 'playlist' ? 'active' : ''}`}
-              onClick={() => setSelectedFilter('playlist')}
-            >
-              <span className="tab-icon">🎵</span>
-              Playlists ({podcastData.filter(p => p.type === 'playlist').length})
+            <button className={`filter-tab ${selectedFilter === 'playlist' ? 'active' : ''}`} onClick={() => setSelectedFilter('playlist')}>
+              <span className="tab-icon">🎵</span>Playlists ({podcastData.filter(p => p.type === 'playlist').length})
             </button>
           </div>
         </div>
 
-        {/* Content Grid */}
         <div className="podcast-content-section">
           {currentPodcasts.length > 0 ? (
             <>
               <div className="podcast-grid">
-                {currentPodcasts.map((podcast, index) => (
+                {currentPodcasts.map((podcast, idx) => (
                   <div
                     key={podcast.id}
                     className="enhanced-podcast-card"
-                    onClick={(e) => handlePodcastClick(podcast, e)}
+                    onClick={e => handlePodcastClick(podcast, e)}
                     role="button"
                     tabIndex={0}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        handlePodcastClick(podcast, e);
-                      }
+                    onKeyDown={e => {
+                      if (e.key === 'Enter' || e.key === ' ') handlePodcastClick(podcast, e);
                     }}
-                    style={{ animationDelay: `${index * 0.1}s` }}
+                    style={{ animationDelay: `${idx * 0.1}s` }}
                   >
                     <div className="podcast-card-header">
-                      <SpotifyTitle
-                        spotifyUrl={podcast.spotifyUrl}
-                        type={podcast.type}
-                      />
-                      <div
-                        className="card-actions"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          e.preventDefault();
-                        }}
-                        onMouseDown={(e) => {
-                          e.stopPropagation();
-                        }}
-                      >
+                      <SpotifyTitle spotifyUrl={podcast.spotifyUrl} type={podcast.type} />
+                      <div className="card-actions">
                         <button
-                          className={`action-btn favorite unfavorited ${
-                            favorites.includes(podcast.id) ? "favorited" : ""
-                          }`}
-                          title={
-                            favorites.includes(podcast.id)
-                              ? "Remove from favorites"
-                              : "Add to favorites"
-                          }
-                          onClick={(e) => {
-                            e.preventDefault();
+                          className={`action-btn favorite${favorites.includes(podcast.id) ? ' favorited' : ''}`}
+                          title="Add to favorites"
+                          onClick={e => {
                             e.stopPropagation();
-                            e.nativeEvent.stopImmediatePropagation();
-                            handleFavorite(podcast, e);
+                            toggleFavorite(podcast.id);
                           }}
                         >
-                            {favorites.includes(podcast.id) ? '❤️' : '🤍'}
+                          {favorites.includes(podcast.id) ? '❤️' : '🤍'}
                         </button>
-                      <button className="action-btn share" title="Share podcast" onClick={(e) => { 
+                        <button
+                          className="action-btn share"
+                          title="Share podcast"
+                          onClick={e => {
                             e.stopPropagation();
                             handleShare(podcast);
-                      }}>
+                          }}
+                        >
                           🔗
                         </button>
                       </div>
                     </div>
 
-                    <div className="podcast-embed" onClick={(e) => e.stopPropagation()}>
+                    <div className="podcast-embed" onClick={e => e.stopPropagation()}>
                       <iframe
                         src={`https://open.spotify.com/embed/${podcast.type}/${getSpotifyEmbedId(podcast.spotifyUrl)}`}
                         width="100%"
@@ -342,42 +246,28 @@ export default function Podcasts(): ReactElement {
 
                     <div className="podcast-card-footer">
                       <button className="listen-button">
-                        <span className="listen-icon">▶️</span>
-                        Listen Now
+                        <span className="listen-icon">▶️</span>Listen Now
                       </button>
                     </div>
                   </div>
                 ))}
               </div>
 
-              {/* Enhanced Pagination */}
               {totalPages > 1 && (
                 <div className="enhanced-pagination">
-                  <button
-                    className="pagination-nav"
-                    onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
-                    disabled={currentPage === 1}
-                  >
+                  <button className="pagination-nav" onClick={() => handlePageChange(Math.max(1, currentPage - 1))} disabled={currentPage === 1}>
                     ← Previous
                   </button>
 
                   <div className="pagination-numbers">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
-                        <button
-                          key={number}
-                        className={`pagination-number ${currentPage === number ? 'active' : ''}`}
-                          onClick={() => handlePageChange(number)}
-                        >
-                          {number}
-                        </button>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
+                      <button key={number} className={`pagination-number ${currentPage === number ? 'active' : ''}`} onClick={() => handlePageChange(number)}>
+                        {number}
+                      </button>
                     ))}
                   </div>
 
-                  <button
-                    className="pagination-nav"
-                    onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
-                    disabled={currentPage === totalPages}
-                  >
+                  <button className="pagination-nav" onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))} disabled={currentPage === totalPages}>
                     Next →
                   </button>
                 </div>
