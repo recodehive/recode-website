@@ -1,0 +1,58 @@
+1. Simple Note (Minimal)
+
+## Community
+
+⚠️ Discord link currently not working (#644). We're working on fixing it.
+
+Pros: Short, unobtrusive.
+Cons: Users may not know what to do in the meantime.
+
+
+---
+
+2. Suggest Alternatives
+
+## Community / Support
+
+Join our community on Discord for discussions and support.
+
+⚠️ **Note:** The Discord invite link is currently broken (#644).  
+**Alternatives while we fix it:**  
+- Open an issue here on GitHub  
+- Join discussions via [GitHub Discussions](#)  
+- Contact the maintainers directly
+
+Pros: Gives users immediate options.
+Cons: Slightly longer.
+
+
+---
+
+3. Prominent Warning Box
+
+## Community / Support
+
+🚨 **Important:** The Discord invite link is currently not working (issue #644).  
+
+While we resolve this, you can:  
+- Open issues for questions  
+- Use GitHub Discussions (if enabled)  
+- Contact maintainers directly
+
+We will update the README with a working link as soon as possible.
+
+Pros: Very clear, hard to miss.
+
+
+---
+
+4. Temporary Placeholder Link
+
+## Community / Support
+
+Join our Discord community: [Discord Invite - Temporarily Unavailable](#)  
+
+⚠️ This link is currently not working (#644). A new invite link will be provided soon.
+
+Pros: Keeps the section structured like a regular link, so users notice it.
+
