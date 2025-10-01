@@ -1,27 +1,40 @@
 {
   "//": "Editor-only tsconfig for Docusaurus + TypeScript",
-  "extends": "@docusaurus/tsconfig",
   "compilerOptions": {
     "jsx": "react-jsx",
     "baseUrl": ".",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "ignoreDeprecations": "6.0",
     "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
     "strict": false,
-    "types": ["@docusaurus/module-type-aliases", "node"]
+    "allowJs": true,
+    "target": "es2020",
+    "lib": ["dom", "dom.iterable", "es6"],
+    "module": "esnext",
+    "declaration": false,
+    "declarationMap": false,
+    "incremental": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
-    "src",
+    "src/**/*",
     "src/types/global.d.ts",
     "docusaurus.config.ts",
     "docusaurus.config.js",
     "sidebars.ts",
     "sidebars.js",
-    "plugins",
-    "docs"
+    "plugins/**/*",
+    "docs/**/*"
   ],
-  "exclude": [".docusaurus", "build", "node_modules"]
+  "exclude": [
+    ".docusaurus",
+    "build",
+    "node_modules",
+    "dist"
+  ]
 }
