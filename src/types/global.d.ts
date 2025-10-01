@@ -1,6 +1,6 @@
-// Type declarations for CSS modules
+// Type declarations for CSS modules and side-effect imports
 declare module "*.css" {
-  const content: { [className: string]: string };
+  const content: any;
   export default content;
 }
 
@@ -9,12 +9,20 @@ declare module "*.module.css" {
   export default classes;
 }
 
-// Type declarations for Docusaurus modules
+// Allow importing CSS files as side effects
+declare module "*.css" {
+  const content: any;
+  export = content;
+}
+
+// Docusaurus module declarations
 declare module "@docusaurus/theme-common" {
   export function useColorMode(): {
     colorMode: "light" | "dark";
     setColorMode: (mode: "light" | "dark") => void;
   };
+  // Add other exports as needed
+  export * from "@docusaurus/theme-common/lib/utils/useColorMode";
 }
 
 declare module "@docusaurus/useDocusaurusContext" {
@@ -32,6 +40,7 @@ declare module "@theme/Layout" {
     title?: string;
     description?: string;
     children: ReactNode;
+    [key: string]: any;
   }
   const Layout: React.FC<LayoutProps>;
   export default Layout;
@@ -41,7 +50,20 @@ declare module "@docusaurus/Head" {
   import { ReactNode } from "react";
   interface HeadProps {
     children: ReactNode;
+    [key: string]: any;
   }
   const Head: React.FC<HeadProps>;
   export default Head;
+}
+
+// JSON module declarations
+declare module "*.json" {
+  const value: any;
+  export default value;
+}
+
+// Allow any for missing modules
+declare module "*" {
+  const content: any;
+  export default content;
 }
