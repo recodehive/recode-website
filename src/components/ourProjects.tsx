@@ -7,7 +7,14 @@ import React from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 // Mobile-specific overrides for very small screens (<768px and <320px)
 import "./ourProjects.mobile.css";
+// Import projects data and types
+import projectsData from "../data/projects.json";
+import type { ProjectsData, ProjectItem } from "../data/types";
 
+/**
+ * Legacy interface for backward compatibility
+ * @deprecated Use ProjectsData from types.ts instead
+ */
 export interface OurProjectsData {
   tag: string;
   title: string;
@@ -18,14 +25,35 @@ export interface OurProjectsData {
   }[];
 }
 
+/**
+ * Legacy props interface for backward compatibility
+ * @deprecated Component now imports data directly
+ */
 export interface OurProjectsProps {
-  OurProjectsData: OurProjectsData;
+  OurProjectsData?: OurProjectsData;
 }
 
-const OurProjects: React.FC<OurProjectsProps> = ({ OurProjectsData }) => {
+/**
+ * OurProjects Component
+ * 
+ * Displays a showcase of RecodeHive projects with interactive previews.
+ * Now uses data-driven approach with JSON configuration for better maintainability.
+ * 
+ * Features:
+ * - Dynamic project loading from JSON
+ * - Live website previews for supported projects
+ * - Responsive design with mobile optimizations
+ * - Dark/light theme support
+ * - Interactive hover effects and animations
+ * 
+ * @param props - Optional props for backward compatibility
+ */
+const OurProjects: React.FC<OurProjectsProps> = ({ OurProjectsData: legacyData }) => {
   const { colorMode } = useColorMode(); // light or dark
-
   const isDark = colorMode === "dark";
+
+  // Use JSON data by default, fallback to legacy props for backward compatibility
+  const data: ProjectsData = legacyData || (projectsData as ProjectsData);
 
   return (
     <div
@@ -34,12 +62,12 @@ const OurProjects: React.FC<OurProjectsProps> = ({ OurProjectsData }) => {
       }`}
     >
       <HeadingComponent
-        tag={OurProjectsData.tag}
-        title={OurProjectsData.title}
-        description={OurProjectsData.description}
+        tag={data.tag}
+        title={data.title}
+        description={data.description}
         isDark={isDark}
       />
-      <SelectComponent items={OurProjectsData.items} isDark={isDark} />
+      <SelectComponent items={data.items} isDark={isDark} />
     </div>
   );
 };
