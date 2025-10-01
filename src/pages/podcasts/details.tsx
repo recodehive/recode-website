@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import type { ReactElement } from 'react';
 import { useLocation, useHistory } from '@docusaurus/router';
@@ -85,7 +85,26 @@ export default function PodcastDetails(): ReactElement {
   const history = useHistory();
   const state = location.state as LocationState;
   const podcast = state?.podcast;
-
+  
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("podcast-favorites");
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
+  const isFavorited = podcast ? favorites.includes(podcast.id) : false;
+  const toggleFavorite = () => {
+    if (!podcast) return;
+    setFavorites(prev => {
+      const updated = prev.includes(podcast.id)
+        ? prev.filter(id => id !== podcast.id)
+        : [...prev, podcast.id];
+      localStorage.setItem("podcast-favorites", JSON.stringify(updated));
+      return updated;
+    });
+  };
+  
   // Enhanced descriptions with categories
   const descriptions = {
     episode: [
@@ -174,13 +193,26 @@ export default function PodcastDetails(): ReactElement {
             <span className="nav-text">Back to Podcasts</span>
           </button>
           <div className="nav-actions">
-            <button className="nav-action-button" onClick={handleShare} title="Share">
-              <span className="action-icon">🔗</span>
-            </button>
-            <button className="nav-action-button" title="Add to favorites">
-              <span className="action-icon">❤️</span>
-            </button>
-          </div>
+  <button
+    className="nav-action-button"
+    onClick={handleShare}
+    title="Share"
+  >
+    <span className="action-icon">🔗</span>
+  </button>
+  <button
+    className={`nav-action-button favorite ${isFavorited ? "favorited" : ""}`}
+    title={isFavorited ? "Remove from favorites" : "Add to favorites"}
+    onClick={e => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleFavorite();
+    }}
+  >
+    <span className="action-icon">{isFavorited ? "❤️" : "🤍"}</span>
+  </button>
+</div>
+
         </div>
 
         {/* Main Content */}
