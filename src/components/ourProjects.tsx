@@ -53,7 +53,28 @@ const OurProjects: React.FC<OurProjectsProps> = ({ OurProjectsData: legacyData }
   const isDark = colorMode === "dark";
 
   // Use JSON data by default, fallback to legacy props for backward compatibility
-  const data: ProjectsData = legacyData || (projectsData as ProjectsData);
+  // Convert legacy data to new format if needed
+  let data: ProjectsData;
+  
+  if (legacyData) {
+    // Convert legacy format to new format
+    data = {
+      tag: legacyData.tag,
+      title: legacyData.title,
+      description: legacyData.description,
+      items: legacyData.items.map((item, index) => ({
+        id: index + 1,
+        title: item.title,
+        description: `Learn more about ${item.title}`,
+        image: item.image,
+        projectUrl: getWebsiteUrl(item.title),
+        githubUrl: getWebsiteUrl(item.title),
+        tags: []
+      }))
+    };
+  } else {
+    data = projectsData as ProjectsData;
+  }
 
   return (
     <div
