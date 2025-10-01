@@ -34,7 +34,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issues = JSON.parse(process.env.ISSUES);
+            const issues = JSON.parse(`${{ steps.extract.outputs.issues }}`);
             const prNumber = context.payload.pull_request.number;
 
             let combinedLabels = [];
