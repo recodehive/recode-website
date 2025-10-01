@@ -125,15 +125,17 @@ const HeadingComponent = ({
   );
 };
 
-// Project URLs configuration
-const PROJECT_URLS: Record<string, string> = {
-  "Awesome GitHub Profile": "https://recodehive.github.io/awesome-github-profiles/",
-  "Machine Learning Repository": "https://machine-learning-repos.vercel.app/"
-};
-
-// Helper function to get website URLs
-const getWebsiteUrl = (title: string) => {
-  return PROJECT_URLS[title] || "https://github.com/recodehive";
+/**
+ * Helper function to get website URLs from project data
+ * Uses the enhanced projectUrl from JSON data for better maintainability
+ * 
+ * @param title - Project title to look up
+ * @returns Project URL or fallback to GitHub organization
+ */
+const getWebsiteUrl = (title: string): string => {
+  const typedProjectsData = projectsData as ProjectsData;
+  const project = typedProjectsData.items.find(item => item.title === title);
+  return project?.projectUrl || "https://github.com/recodehive";
 };
 
 // Select Component
