@@ -117,10 +117,9 @@ const calculatePointsForPR = (labels?: Array<{ name: string }>): number => {
     'level 2': 30,
     'level 3': 50,
   };
-  for (const level of Object.keys(levelPointsMap)) {
-    if (labelNames.includes(level)) {
-      return levelPointsMap[level];
-    }
+  const matchedLevel = labelNames.find(label => levelPointsMap.hasOwnProperty(label));
+  if (matchedLevel) {
+    return levelPointsMap[matchedLevel];
   }
   
   return 0; // No points if no level label
