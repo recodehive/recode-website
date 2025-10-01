@@ -99,8 +99,18 @@ const SpotifyTitle: React.FC<SpotifyTitleProps> = ({ spotifyUrl, type }) => {
 export default function Podcasts(): ReactElement {
   const history = useHistory();
   const [currentPage, setCurrentPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedFilter, setSelectedFilter] = useState<'all' | 'episode' | 'show' | 'playlist'>('all');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedFilter, setSelectedFilter] = useState<
+    "all" | "episode" | "show" | "playlist"
+  >("all");
+  const [favorites, setFavorites] = useState<string[]>(() => {
+    // Load favorites from localStorage on component mount
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("podcast-favorites");
+      return saved ? JSON.parse(saved) : [];
+    }
+    return [];
+  });
   const podcastsPerPage = 9;
 
   // Filter podcasts based on search and filter
@@ -136,17 +146,46 @@ export default function Podcasts(): ReactElement {
     }
   };
 
-  const handlePodcastClick = (podcast: PodcastData, event: React.MouseEvent | React.KeyboardEvent) => {
-    const target = event.target as HTMLElement;
-    if (target.tagName === 'IFRAME' || target.closest('.podcast-embed')) {
-      return;
-    }
-    history.push('/podcasts/details', { podcast });
+  const handleFavorite = (podcast: PodcastData, event: React.MouseEvent) => {
+    // Prevent card click when clicking favorite button
+    event.stopPropagation();
+
+    setFavorites((prev) => {
+      const isFavorited = prev.includes(podcast.id);
+      const newFavorites = isFavorited
+        ? prev.filter((id) => id !== podcast.id) // Remove from favorites
+        : [...prev, podcast.id]; // Add to favorites
+
+      // Save to localStorage for persistence
+      if (typeof window !== "undefined") {
+        localStorage.setItem("podcast-favorites", JSON.stringify(newFavorites));
+      }
+
+      return newFavorites;
+    });
   };
 
-  React.useEffect(() => {
-    setCurrentPage(1);
-  }, [searchTerm, selectedFilter]);
+  const handlePodcastClick = (
+    podcast: PodcastData,
+    event: React.MouseEvent | React.KeyboardEvent
+  ) => {
+    const target = event.target as HTMLElement;
+
+    // Prevent navigation if clicking on buttons or action area
+    if (
+      target.tagName === "IFRAME" ||
+      target.closest(".podcast-embed") ||
+      target.closest(".action-btn") || // Don't navigate if clicking buttons
+      target.closest(".card-actions") || // Don't navigate if clicking action area
+      target.classList.contains("action-btn") ||
+      target.classList.contains("favorite") ||
+      target.classList.contains("share")
+    ) {
+      return;
+    }
+
+    history.push("/podcasts/details", { podcast });
+  };
 
   return (
     <Layout>
@@ -164,7 +203,7 @@ export default function Podcasts(): ReactElement {
             <p className="podcast-hero-description">
               Stream the best podcasts from your favorite stations. Dive into episodes that inspire, educate, and entertain from leading voices in tech, business, and beyond.
             </p>
-            
+
             {/* Stats */}
             <div className="podcast-stats">
               <div className="stat-item">
@@ -247,20 +286,47 @@ export default function Podcasts(): ReactElement {
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="podcast-card-header">
-                      <SpotifyTitle spotifyUrl={podcast.spotifyUrl} type={podcast.type} />
-                      <div className="card-actions">
-                        <button className="action-btn favorite" title="Add to favorites">
-                          ❤️
+                      <SpotifyTitle
+                        spotifyUrl={podcast.spotifyUrl}
+                        type={podcast.type}
+                      />
+                      <div
+                        className="card-actions"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          e.preventDefault();
+                        }}
+                        onMouseDown={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        <button
+                          className={`action-btn favorite unfavorited ${
+                            favorites.includes(podcast.id) ? "favorited" : ""
+                          }`}
+                          title={
+                            favorites.includes(podcast.id)
+                              ? "Remove from favorites"
+                              : "Add to favorites"
+                          }
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            e.nativeEvent.stopImmediatePropagation();
+                            handleFavorite(podcast, e);
+                          }}
+                        >
+                            {favorites.includes(podcast.id) ? '❤️' : '🤍'}
                         </button>
                       <button className="action-btn share" title="Share podcast" onClick={(e) => { 
-                        e.stopPropagation();
-                        handleShare(podcast);
+                            e.stopPropagation();
+                            handleShare(podcast);
                       }}>
                           🔗
                         </button>
                       </div>
                     </div>
-                    
+
                     <div className="podcast-embed" onClick={(e) => e.stopPropagation()}>
                       <iframe
                         src={`https://open.spotify.com/embed/${podcast.type}/${getSpotifyEmbedId(podcast.spotifyUrl)}`}
@@ -273,7 +339,7 @@ export default function Podcasts(): ReactElement {
                         title={`Spotify embed ${podcast.id}`}
                       />
                     </div>
-                    
+
                     <div className="podcast-card-footer">
                       <button className="listen-button">
                         <span className="listen-icon">▶️</span>
@@ -294,19 +360,19 @@ export default function Podcasts(): ReactElement {
                   >
                     ← Previous
                   </button>
-                  
+
                   <div className="pagination-numbers">
                     {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
-                      <button
-                        key={number}
+                        <button
+                          key={number}
                         className={`pagination-number ${currentPage === number ? 'active' : ''}`}
-                        onClick={() => handlePageChange(number)}
-                      >
-                        {number}
-                      </button>
+                          onClick={() => handlePageChange(number)}
+                        >
+                          {number}
+                        </button>
                     ))}
                   </div>
-                  
+
                   <button
                     className="pagination-nav"
                     onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
