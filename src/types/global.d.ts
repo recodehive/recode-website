@@ -37,9 +37,6 @@ declare module "@docusaurus/theme-common" {
   export function isMultiColumnFooterLinks(): any;
   export const ThemeClassNames: any;
   export const ErrorCauseBoundary: any;
-  
-  // Export all other members as any
-  export const [key: string]: any;
 }
 
 // Other Docusaurus modules
@@ -86,17 +83,14 @@ declare module "@docusaurus/Head" {
 declare module "@site/src/lib/statsProvider" {
   export function useCommunityStatsContext(): any;
   export const CommunityStatsProvider: any;
-  export const [key: string]: any;
 }
 
 declare module "@site/src/lib/utils" {
   export function cn(...args: any[]): string;
-  export const [key: string]: any;
 }
 
 declare module "@site/src/utils/jsUtils" {
   export function sortBy(array: any[], key: string): any[];
-  export const [key: string]: any;
 }
 
 declare module "@site/src/services/github" {
@@ -104,19 +98,16 @@ declare module "@site/src/services/github" {
   export interface GitHubDiscussion {
     [key: string]: any;
   }
-  export const [key: string]: any;
 }
 
 declare module "@site/src/components/ui/button" {
   export const Button: any;
-  export const [key: string]: any;
 }
 
 declare module "@site/src/database/sponsors" {
   export interface Sponsor {
     [key: string]: any;
   }
-  export const [key: string]: any;
 }
 
 declare module "@site/src/data/users" {
@@ -136,12 +127,10 @@ declare module "@site/src/data/users" {
     [key: string]: any;
   }
   export const sortedUsers: any;
-  export const [key: string]: any;
 }
 
 // Catch-all for any missing modules
 declare module "*" {
   const content: any;
   export default content;
-  export const [key: string]: any;
 }
