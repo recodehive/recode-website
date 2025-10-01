@@ -7,7 +7,6 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
-    "ignoreDeprecations": "6.0",
     "skipLibCheck": true,
     "noEmit": true,
     "strict": false,
