@@ -84,7 +84,7 @@ export default function Home(): ReactNode {
           </div>
 
           <div className="m-4">
-            <OurProjects OurProjectsData={projectsData} />
+            <OurProjects />
           </div>
 
           <div className="m-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
