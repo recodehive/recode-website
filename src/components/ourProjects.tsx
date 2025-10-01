@@ -143,10 +143,7 @@ const SelectComponent = ({
   items,
   isDark,
 }: {
-  items: {
-    title: string;
-    image: string;
-  }[];
+  items: ProjectItem[];
   isDark: boolean;
 }) => {
   const [activeItem, setActiveItem] = useState(0);
@@ -168,7 +165,7 @@ const SelectComponent = ({
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            key={index}
+            key={item.id || index}
             onClick={() => setActiveItem(index)}
             className={`cursor-pointer transition-all duration-300 ease-in-out p-2 md:p-6 rounded-2xl md:rounded-r-full w-40 md:w-4/5 relative ${
               activeItem === index
