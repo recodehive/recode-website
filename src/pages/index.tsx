@@ -8,7 +8,6 @@ import Header from "../components/header/header";
 import ScrollBottomToTop from "../components/scroll/bottom-to-top";
 import ScrollTopToBottom from "../components/scroll/top-to-bottom";
 import { BlogCarousel } from "../components/blogCarousel/blogCarousel";
-import projectsData from "../database/projects/projects";
 import OurProjects from "../components/ourProjects";
 import TopMateSection from "../components/topmate/TopMateSection";
 import { TestimonialCarousel } from "../components/testimonials/TestimonialCarousel";
