@@ -112,12 +112,15 @@ const calculatePointsForPR = (labels?: Array<{ name: string }>): number => {
   }
   
   // Check for level labels and assign points accordingly with new point system
-  if (labelNames.includes('level 1')) {
-    return 10;
-  } else if (labelNames.includes('level 2')) {
-    return 30;
-  } else if (labelNames.includes('level 3')) {
-    return 50;
+  const levelPointsMap: { [key: string]: number } = {
+    'level 1': 10,
+    'level 2': 30,
+    'level 3': 50,
+  };
+  for (const level of Object.keys(levelPointsMap)) {
+    if (labelNames.includes(level)) {
+      return levelPointsMap[level];
+    }
   }
   
   return 0; // No points if no level label
