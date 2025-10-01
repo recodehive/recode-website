@@ -103,7 +103,6 @@ export default function Podcasts(): ReactElement {
   const [selectedFilter, setSelectedFilter] = useState<
     "all" | "episode" | "show" | "playlist"
   >("all");
-  // ADD THIS NEW STATE FOR FAVORITES
   const [favorites, setFavorites] = useState<string[]>(() => {
     // Load favorites from localStorage on component mount
     if (typeof window !== "undefined") {
@@ -147,7 +146,6 @@ export default function Podcasts(): ReactElement {
     }
   };
 
-  // ADD THIS NEW FUNCTION FOR FAVORITES
   const handleFavorite = (podcast: PodcastData, event: React.MouseEvent) => {
     // Prevent card click when clicking favorite button
     event.stopPropagation();
@@ -319,7 +317,6 @@ export default function Podcasts(): ReactElement {
                           }}
                         >
                             {favorites.includes(podcast.id) ? '❤️' : '🤍'}
-
                         </button>
                       <button className="action-btn share" title="Share podcast" onClick={(e) => { 
                             e.stopPropagation();

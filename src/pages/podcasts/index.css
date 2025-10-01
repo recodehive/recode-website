@@ -364,7 +364,6 @@ html[data-theme='light'] {
   animation: fadeInUp 0.6s ease-out both;
 }
 
-
 .enhanced-podcast-card::before {
   content: '';
   position: absolute;
@@ -411,7 +410,6 @@ html[data-theme='light'] {
   pointer-events: auto;
 }
 
-
 .enhanced-podcast-card:hover .card-actions {
   opacity: 1;
 }
@@ -441,7 +439,6 @@ html[data-theme='light'] {
   transform: scale(0.95);
 }
 
-
 .action-btn {
   width: 36px;
   height: 36px;
@@ -456,7 +453,6 @@ html[data-theme='light'] {
   pointer-events: auto !important;
   user-select: none;
 }
-
 
 .action-btn:hover {
   background: var(--podcast-bg-card-hover);

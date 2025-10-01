@@ -212,7 +212,6 @@ export default function PodcastDetails(): ReactElement {
     <span className="action-icon">{isFavorited ? "❤️" : "🤍"}</span>
   </button>
 </div>
-
         </div>
 
         {/* Main Content */}

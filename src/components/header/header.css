@@ -133,6 +133,11 @@ html.theme-dark .chh__header-content p {
   z-index: 1;
 }
 
+.chh__header-content__input button > .chh__header-content__input--link {
+  display: flex;          
+  justify-content: center;
+}
+
 .chh__header-content__input button::after {
   content: "";
   position: absolute;
