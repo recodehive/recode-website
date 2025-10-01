@@ -5,12 +5,17 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "ignoreDeprecations": "6.0",
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": false,
     "types": ["@docusaurus/module-type-aliases", "node"]
   },
   "include": [
     "src",
+    "src/types/global.d.ts",
     "docusaurus.config.ts",
     "docusaurus.config.js",
     "sidebars.ts",
