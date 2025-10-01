@@ -432,7 +432,7 @@ const SelectComponent = ({
             
             return (
               <motion.div
-                key={index}
+                key={item.id || index}
                 initial={{ opacity: 0, scale: 0, rotateY: -90 }}
                 animate={{ 
                   opacity: 0.3, 
