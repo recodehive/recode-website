@@ -147,7 +147,7 @@ export default function PodcastDetails(): ReactElement {
     history.goBack();
   };
 
-  const handleShare = async () => {
+  const handleShare = async (podcast?: PodcastData) => {
     if (navigator.share) {
       try {
         await navigator.share({
@@ -195,7 +195,7 @@ export default function PodcastDetails(): ReactElement {
           <div className="nav-actions">
   <button
     className="nav-action-button"
-    onClick={handleShare}
+    onClick={() => handleShare(podcast)}
     title="Share"
   >
     <span className="action-icon">🔗</span>
@@ -278,7 +278,7 @@ export default function PodcastDetails(): ReactElement {
                   </span>
                 </div>
                 <div className="embed-actions">
-                  <button className="embed-action" onClick={handleShare}>
+                  <button className="embed-action" onClick={() => handleShare(podcast)}>
                     <span className="action-icon">📤</span>
                     Share
                   </button>
