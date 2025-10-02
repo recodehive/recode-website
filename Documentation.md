@@ -498,11 +498,11 @@ Parameters:
 - *sort (query, optional)*: Sort by created, updated, popularity, long-running
 - *direction (query, optional)*: Sort direction asc or desc
 
-Request Example:
-bashcurl -H "Authorization: token YOUR_TOKEN" \
+#### Request Example:
+```bash
+curl -H "Authorization: token YOUR_TOKEN" \
      -H "Accept: application/vnd.github.v3+json" \
      "https://api.github.com/repos/recodehive/awesome-project/pulls?state=closed&per_page=100&page=1"
-Response Example:
 
 ```json
 [
