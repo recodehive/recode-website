@@ -477,9 +477,10 @@ const sponsors: Sponsor[] = [
   },
   {
     name: "Swarnendu Bhandari",
-    image: "https://media.licdn.com/dms/image/v2/D5603AQExzsjM2S4ojA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1724809628013?e=1753920000&v=beta&t=PRD0i8nyd-EVblyVMHkJWJrCrLxcmsB5bJWsPOa46x8",
+    image: "https://avatars.githubusercontent.com/u/94161758?v=4",
     description: "Student at IIT Kharagpur",
-    github: "https://github.com/Swarnendu0123",
+    github: "https://github.com/swrno",
+    twitter: "https://x.com/Swarnendu___?t=vJBTG6cZUPD0pSjiMQBNiA&s=09",
     linkedin: "https://www.linkedin.com/in/swarnendu-bhandari/",
     isWeSponsor: true,
   },
@@ -510,7 +511,7 @@ const sponsors: Sponsor[] = [
   },
   {
     name: "Dinesh Talwadker",
-    image: "https://media.licdn.com/dms/image/v2/D4D35AQEPaJ17Vq2zMw/profile-framedphoto-shrink_200_200/B4DZgO2PCnHAAc-/0/1752595755484?e=1753635600&v=beta&t=ltSZKvnsXqQavgb4LISSOevZSIU3uhEi--Nx_FtTSQU",
+    image: "https://media.licdn.com/dms/image/v2/D4D35AQEPaJ17Vq2zMw/profile-framedphoto-shrink_400_400/B4DZgO2PCnHAAg-/0/1752595755516?e=1760011200&v=beta&t=kpZQ9KX3shXtE3RKyYCaz1Q4GioffR1nE5nbDxQ16R0",
     description: "Co-Founder at Sanity Esports",
     github: "https://github.com/dinxsh",
     linkedin: "https://www.linkedin.com/in/dineshtalwadker/",

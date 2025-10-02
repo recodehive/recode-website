@@ -74,7 +74,7 @@ const contributionSections: ContributionSection[] = [
       'Share resources, tutorials, and best practices to help others grow.'
     ],
     links: [
-      { text: 'Discord', url: 'https://discord.com/invite/w2V2aH6U' },
+      { text: 'Discord', url: "https://discord.gg/b6ffxhXRNH" },
       { text: 'Whatsapp', url: 'https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t' }
     ],
     color: '#10b981'
