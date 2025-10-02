@@ -574,7 +574,8 @@ Response Example:
 ```
 #### Authentication
 All requests require a GitHub Personal Access Token:
-typescriptconst headers: Record<string, string> = {
+```typescript
+const headers: Record<string, string> = {
   Authorization: `token ${YOUR_GITHUB_TOKEN}`,
   Accept: "application/vnd.github.v3+json",
 };
