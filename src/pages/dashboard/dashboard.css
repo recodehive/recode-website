@@ -128,7 +128,7 @@
 
 .menu-item.active {
   background: var(--ifm-color-primary-lightest);
-  color: var(--ifm-color-primary);
+  color: #fdfffe;
   border-right: 3px solid var(--ifm-color-primary);
 }
 
