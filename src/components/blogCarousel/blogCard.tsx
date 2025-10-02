@@ -36,8 +36,10 @@ const BlogCard = ({
     <motion.div
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut"}}
-      className="blog-card fixed-card-size"
+      transition={{ duration: 0.2, ease: "easeOut" }}
+      whileHover={{ scale: 1.05, y: -5 }} 
+      whileTap={{ scale: 0.98 }} 
+      className="blog-card-scale fixed-card-size cursor-pointer"
     >
       <Link 
         to={`/blog/${id}`}
