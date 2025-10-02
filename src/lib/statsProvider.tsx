@@ -306,7 +306,7 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
     return mergedPRs;
   }, []);
 
-  // Enhanced processing function that stores all PR data without filtering
+  // Enhanced processing function that stores only valid PRs with points
   const processBatch = useCallback(async (
     repos: any[],
     headers: Record<string, string>
@@ -335,35 +335,38 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
       
       // Process results from this batch
       results.forEach(({ mergedPRs, repoName }) => {
-        totalMergedPRs += mergedPRs.length;
-        
         mergedPRs.forEach((pr) => {
-          const username = pr.user.login;
-          if (!contributorMap.has(username)) {
-            contributorMap.set(username, {
-              username,
-              avatar: pr.user.avatar_url,
-              profile: pr.user.html_url,
-              points: 0, // Will be calculated later based on filter
-              prs: 0, // Will be calculated later based on filter
-              allPRDetails: [], // Store all PRs here
-            });
-          }
-          const contributor = contributorMap.get(username)!;
-          
           // Calculate points for this PR based on labels
           const prPoints = calculatePointsForPR(pr.labels);
           
-          // Add detailed PR information to the full list
-          if (pr.title && pr.html_url && pr.merged_at && pr.number) {
-            contributor.allPRDetails.push({
-              title: pr.title,
-              url: pr.html_url,
-              mergedAt: pr.merged_at,
-              repoName,
-              number: pr.number,
-              points: prPoints,
-            });
+          // ONLY store PRs that have points (i.e., have "recode" label and a level label)
+          if (prPoints > 0) {
+            totalMergedPRs++;
+            
+            const username = pr.user.login;
+            if (!contributorMap.has(username)) {
+              contributorMap.set(username, {
+                username,
+                avatar: pr.user.avatar_url,
+                profile: pr.user.html_url,
+                points: 0, // Will be calculated later based on filter
+                prs: 0, // Will be calculated later based on filter
+                allPRDetails: [], // Store only valid PRs here
+              });
+            }
+            const contributor = contributorMap.get(username)!;
+            
+            // Add detailed PR information only if it has all required fields
+            if (pr.title && pr.html_url && pr.merged_at && pr.number) {
+              contributor.allPRDetails.push({
+                title: pr.title,
+                url: pr.html_url,
+                mergedAt: pr.merged_at,
+                repoName,
+                number: pr.number,
+                points: prPoints,
+              });
+            }
           }
         });
       });

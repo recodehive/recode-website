@@ -11,6 +11,7 @@ interface PRDetails {
   mergedAt: string;
   repoName: string;
   number: number;
+  points: number; // Now includes the points field
 }
 
 interface Contributor {
@@ -39,6 +40,9 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
 
   // Get filtered PRs instead of using contributor.prDetails
   const filteredPRs = getFilteredPRsForContributor(contributor.username);
+
+  // Calculate total points from filtered PRs
+  const totalPoints = filteredPRs.reduce((sum, pr) => sum + pr.points, 0);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -70,6 +74,14 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
       case 'all': return 'All Time';
       default: return 'All Time';
     }
+  };
+
+  // Helper function to get badge color based on points
+  const getPointsBadgeColor = (points: number) => {
+    if (points >= 50) return '#10b981'; // Green for Level 3
+    if (points >= 30) return '#f59e0b'; // Orange for Level 2
+    if (points >= 10) return '#3b82f6'; // Blue for Level 1
+    return '#6b7280'; // Gray for no points
   };
 
   return (
@@ -107,8 +119,8 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
                     {contributor.username}'s Pull Requests
                   </h2>
                   <p className={`pr-modal-subtitle ${isDark ? "dark" : "light"}`}>
-                    {/*Show filtered count and add filter info */}
-                    {filteredPRs.length} merged PR{filteredPRs.length !== 1 ? 's' : ''} • {filteredPRs.length * 10} points
+                    {/* Show filtered count with actual total points */}
+                    {filteredPRs.length} merged PR{filteredPRs.length !== 1 ? 's' : ''} • {totalPoints} point{totalPoints !== 1 ? 's' : ''}
                     {currentTimeFilter !== 'all' && (
                       <span style={{ marginLeft: '8px', opacity: 0.7 }}>
                         ({getFilterDisplayText(currentTimeFilter)})
@@ -128,7 +140,7 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
 
             {/* Modal Body */}
             <div className={`pr-modal-body ${isDark ? "dark" : "light"}`}>
-              {/*Use filteredPRs instead of contributor.prDetails */}
+              {/* Use filteredPRs instead of contributor.prDetails */}
               {filteredPRs && filteredPRs.length > 0 ? (
                 <div className="pr-list">
                   {filteredPRs.map((pr, index) => (
@@ -144,6 +156,23 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
                           {pr.title}
                         </h3>
                         <div className="pr-item-actions">
+                          {/* Points badge */}
+                          {pr.points > 0 && (
+                            <span 
+                              className="pr-points-badge"
+                              style={{
+                                backgroundColor: getPointsBadgeColor(pr.points),
+                                color: 'white',
+                                padding: '4px 8px',
+                                borderRadius: '12px',
+                                fontSize: '12px',
+                                fontWeight: '600',
+                                marginRight: '8px',
+                              }}
+                            >
+                              +{pr.points} pts
+                            </span>
+                          )}
                           <a 
                             href={pr.url} 
                             target="_blank" 
