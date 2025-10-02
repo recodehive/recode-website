@@ -53,7 +53,7 @@ flowchart LR
 
 1. **Clone the repository:** 
    ```bash
-   git clone https://github.com/your-username/recodehive-website.git
+   git clone https://github.com/your-username/recode-website.git
    ```
 
 2. **Navigate to the project directory:**
@@ -112,7 +112,7 @@ recode-website/
 |    ├── Google-Student-Ambassador/
 |    ├── ...
 ├── src/                                  🔹Source Code  
-|    └── compenents/
+|    └── components/
 |    ├── css/
 |        └── custom.css
 |    ├── data/
