@@ -36,15 +36,8 @@ const BlogCard = ({
     <motion.div
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      whileHover={{ 
-        y: -8, 
-        scale: 1.02,
-        transition: { duration: 0.4, ease: "easeOut" }
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="relative overflow-hidden h-full transition-all duration-300"
+      transition={{ duration: 0.6, ease: "easeOut"}}
+      className="blog-card fixed-card-size"
     >
       <Link 
         to={`/blog/${id}`}
