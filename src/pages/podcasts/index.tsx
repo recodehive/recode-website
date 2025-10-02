@@ -316,7 +316,7 @@ export default function Podcasts(): ReactElement {
                             handleFavorite(podcast, e);
                           }}
                         >
-                            {favorites.includes(podcast.id) ? '❤️' : '🤍'}
+                            {favorites.includes(podcast.id) ? '🤍' : '❤️'}
                         </button>
                       <button className="action-btn share" title="Share podcast" onClick={(e) => { 
                             e.stopPropagation();
