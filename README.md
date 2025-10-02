@@ -58,7 +58,7 @@ flowchart LR
 
 2. **Navigate to the project directory:**
    ```bash
-   cd recodehive-website
+   cd recode-website
    ```
 
 3. **Prerequesites**
