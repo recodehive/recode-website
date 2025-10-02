@@ -6,10 +6,10 @@ import {
 } from '@docusaurus/theme-common/internal';
 import NavbarItem, {type Props as NavbarItemConfig} from '@theme/NavbarItem';
 import NavbarColorModeToggle from '@theme/Navbar/ColorModeToggle';
-import SearchBar from '@theme/SearchBar';
+// import SearchBar from '@theme/SearchBar';
 import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
 import NavbarLogo from '@theme/Navbar/Logo';
-import NavbarSearch from '@theme/Navbar/Search';
+// import NavbarSearch from '@theme/Navbar/Search';
 
 
 
@@ -79,11 +79,12 @@ export default function NavbarContent(): ReactNode {
         <>
           <NavbarItems items={rightItems} />
           <NavbarColorModeToggle />
-          {!searchBarItem && (
+          {/* Search component disabled */}
+          {/* {!searchBarItem && (
             <NavbarSearch>
               <SearchBar />
             </NavbarSearch>
-          )}
+          )} */}
         </>
       }
     />

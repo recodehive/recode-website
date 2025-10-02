@@ -1,20 +1,14 @@
-FROM node:18-alpine AS builder
+FROM node:20-alpine
 
-# Set working directory inside the container
 WORKDIR /app
 
 COPY package*.json ./
 
-# Install dependencies with legacy peer deps fix
 RUN npm install --legacy-peer-deps
 
 COPY . .
-RUN npm run build
 
-# Production Image
-FROM node:18-alpine
-WORKDIR /app
-COPY --from=builder /app /app
+# No need to run 'npm run build' for development-mode Docker
 EXPOSE 3000
 
-CMD ["npm", "run","serve"]
+CMD [ "npm", "run", "dev" ]
