@@ -214,7 +214,6 @@ export default function PodcastDetails(): ReactElement {
 </div>
         </div>
 
-        {/* Main Content */}
         <div className="details-content">
           {/* Hero Section */}
           <div className="details-hero">
