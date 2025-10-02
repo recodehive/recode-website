@@ -464,7 +464,8 @@ Parameters:
 - *page (query)*: Page number for pagination
 
 #### Request Example:
-bashcurl -H "Authorization: token YOUR_TOKEN" \
+```bash
+curl -H "Authorization: token YOUR_TOKEN" \
      -H "Accept: application/vnd.github.v3+json" \
      "https://api.github.com/orgs/recodehive/repos?type=public&per_page=100&page=1"
 Response Example:
