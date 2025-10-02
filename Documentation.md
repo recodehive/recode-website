@@ -543,8 +543,9 @@ Rate Limit: Same as above
 
 3. Get Organization Stats
 GET https://api.github.com/orgs/{org}
-Request Example:
-bashcurl -H "Authorization: token YOUR_TOKEN" \
+#### Request Example:
+```bash
+curl -H "Authorization: token YOUR_TOKEN" \
      -H "Accept: application/vnd.github.v3+json" \
      "https://api.github.com/orgs/recodehive"
 Response Example:
