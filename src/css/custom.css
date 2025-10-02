@@ -1449,3 +1449,586 @@ a {
   }
 }
 
+/* ================= DOCUSAURUS BLOG AUTHOR STYLING FIXES ================= */
+/* 🎨 Professional Author Styling Enhancement for Dark Mode */
+/* Created for Hacktoberfest 2025 - Enhanced UX/UI Design */
+
+/* ✨ Enhanced Avatar Container with Modern Design */
+[data-theme='dark'] .avatar {
+  position: relative;
+  border: 3px solid transparent;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+  backdrop-filter: blur(12px);
+  box-shadow: 
+    0 8px 32px rgba(79, 70, 229, 0.15),
+    0 4px 16px rgba(124, 58, 237, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 16px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+}
+
+/* 🌈 Animated Border Gradient Effect */
+[data-theme='dark'] .avatar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  padding: 3px;
+  background: linear-gradient(45deg, 
+    #6366f1 0%, 
+    #8b5cf6 25%, 
+    #ec4899 50%, 
+    #f59e0b 75%, 
+    #6366f1 100%);
+  background-size: 300% 300%;
+  animation: gradientRotate 4s ease infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  z-index: -1;
+}
+
+/* 🎭 Profile Photo Enhancement */
+[data-theme='dark'] .avatar .avatar__photo,
+[data-theme='dark'] .avatar .avatar__photo--xl {
+  border-radius: 50% !important;
+  border: 4px solid transparent;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #ec4899 100%);
+  box-shadow: 
+    0 8px 25px rgba(79, 70, 229, 0.3),
+    0 4px 12px rgba(124, 58, 237, 0.2),
+    inset 0 2px 4px rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ Photo Glow Effect on Hover */
+[data-theme='dark'] .avatar .avatar__photo::after,
+[data-theme='dark'] .avatar .avatar__photo--xl::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+  transform: rotate(45deg);
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+
+[data-theme='dark'] .avatar:hover .avatar__photo::after,
+[data-theme='dark'] .avatar:hover .avatar__photo--xl::after {
+  opacity: 1;
+  animation: shimmer 1.5s ease-in-out;
+}
+
+/* ================= SIMPLE CIRCULAR AUTHOR DESIGN ================= */
+/* � Clean & Perfect Circular Author Layout */
+
+/* ✨ Main Avatar Container - Circular Layout */
+.avatar {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 140px !important;
+  height: 140px !important;
+  border-radius: 50% !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+  border: 3px solid #6366f1 !important;
+  padding: 16px !important;
+  box-shadow: 
+    0 6px 20px rgba(99, 102, 241, 0.25),
+    0 3px 10px rgba(139, 92, 246, 0.15) !important;
+  transition: all 0.3s ease !important;
+  text-align: center !important;
+  position: relative !important;
+}
+
+[data-theme='dark'] .avatar {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+  border-color: #8b5cf6 !important;
+  box-shadow: 
+    0 6px 20px rgba(139, 92, 246, 0.3),
+    0 3px 10px rgba(124, 58, 237, 0.2) !important;
+}
+
+/* ✨ Avatar Photo - Smaller and Centered */
+.avatar .avatar__photo,
+.avatar .avatar__photo--xl {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  border: 2px solid #ffffff !important;
+  margin: 0 !important;
+  object-fit: cover !important;
+}
+
+[data-theme='dark'] .avatar .avatar__photo,
+[data-theme='dark'] .avatar .avatar__photo--xl {
+  border-color: #e2e8f0 !important;
+}
+
+/* 🎯 Author Name - Below Avatar */
+.avatar .avatar__name,
+.authorName_yefp,
+.authorCol_Hf19 .avatar__name {
+  background: none !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  text-align: center !important;
+  margin-top: 8px !important;
+  margin-bottom: 0 !important;
+  line-height: 1.2 !important;
+  word-wrap: break-word !important;
+  max-width: 90px !important;
+  letter-spacing: 0.3px !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+  -webkit-text-fill-color: #1e293b !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+[data-theme='dark'] .avatar .avatar__name,
+[data-theme='dark'] .authorName_yefp,
+[data-theme='dark'] .authorCol_Hf19 .avatar__name {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 💫 Beautiful Hover Effects */
+[data-theme='dark'] .avatar .avatar__name:hover,
+[data-theme='dark'] .authorName_yefp:hover {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 6px 18px rgba(99, 102, 241, 0.4),
+    0 0 0 2px rgba(139, 92, 246, 0.6) !important;
+  border-color: #a78bfa !important;
+}
+
+.avatar .avatar__name:hover,
+.authorName_yefp:hover {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 
+    0 6px 18px rgba(99, 102, 241, 0.4),
+    0 0 0 2px rgba(139, 92, 246, 0.6) !important;
+  border-color: #a78bfa !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 🏗️ Beautiful Author Containers */
+[data-theme='dark'] .authorCol_Hf19,
+[data-theme='dark'] .col--6.authorCol_Hf19 {
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.9) 0%, 
+    rgba(30, 41, 59, 0.8) 100%);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  margin-bottom: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 4px 16px rgba(99, 102, 241, 0.1);
+  text-align: center;
+}
+
+.authorCol_Hf19,
+.col--6.authorCol_Hf19 {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(248, 250, 252, 0.9) 100%);
+  border-radius: 20px;
+  padding: 24px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  margin-bottom: 20px;
+  box-shadow: 
+    0 8px 32px rgba(99, 102, 241, 0.1),
+    0 4px 16px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+/* 🎪 Perfect Avatar Layout */
+.avatar,
+[data-theme='dark'] .avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.avatar .avatar__intro {
+  margin-left: 0 !important;
+  margin-top: 8px;
+  text-align: center;
+  width: 100%;
+}
+
+/* 🚀 Hover Animations for Avatar Photos */
+.avatar:hover .avatar__photo,
+.avatar:hover .avatar__photo--xl,
+[data-theme='dark'] .avatar:hover .avatar__photo,
+[data-theme='dark'] .avatar:hover .avatar__photo--xl {
+  transform: scale(1.1);
+  box-shadow: 
+    0 6px 20px rgba(99, 102, 241, 0.4),
+    0 3px 12px rgba(139, 92, 246, 0.3);
+}
+
+/* 🎯 ULTRA VISIBLE Author Name Styling - Simplified for Maximum Visibility */
+[data-theme='dark'] .avatar .avatar__name,
+[data-theme='dark'] .authorName_yefp,
+[data-theme='dark'] .authorCol_Hf19 .avatar__name {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  font-size: 1.2em !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+
+/* Light mode author name styling - High contrast */
+.avatar .avatar__name,
+.authorName_yefp,
+.authorCol_Hf19 .avatar__name {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  font-size: 1.2em !important;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8) !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  letter-spacing: 0.5px;
+  line-height: 1.3;
+}
+
+/* 💫 Simple hover effects */
+[data-theme='dark'] .avatar .avatar__name:hover,
+[data-theme='dark'] .authorName_yefp:hover {
+  color: #60a5fa !important;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9) !important;
+  transform: translateY(-1px);
+}
+
+.avatar .avatar__name:hover,
+.authorName_yefp:hover {
+  color: #1d4ed8 !important;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.9) !important;
+  transform: translateY(-1px);
+}
+
+/* 🏗️ Enhanced Author Container */
+[data-theme='dark'] .authorCol_Hf19,
+[data-theme='dark'] .col--6.authorCol_Hf19 {
+  background: linear-gradient(135deg, 
+    rgba(15, 23, 42, 0.8) 0%, 
+    rgba(30, 41, 59, 0.6) 100%);
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  box-shadow: 
+    0 10px 40px rgba(15, 23, 42, 0.4),
+    0 4px 16px rgba(79, 70, 229, 0.1);
+}
+
+/* 🌟 Container Glow Effect */
+[data-theme='dark'] .authorCol_Hf19::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 20px;
+  background: linear-gradient(45deg, 
+    rgba(99, 102, 241, 0.1) 0%, 
+    rgba(139, 92, 246, 0.05) 50%, 
+    rgba(236, 72, 153, 0.1) 100%);
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+[data-theme='dark'] .authorCol_Hf19:hover::before {
+  opacity: 1;
+}
+
+/* 🎪 Professional Avatar Layout */
+[data-theme='dark'] .avatar .avatar__intro {
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 🚀 Smooth Hover Animations */
+[data-theme='dark'] .avatar:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 
+    0 12px 48px rgba(79, 70, 229, 0.25),
+    0 8px 24px rgba(124, 58, 237, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+[data-theme='dark'] .avatar:hover .avatar__photo,
+[data-theme='dark'] .avatar:hover .avatar__photo--xl {
+  transform: scale(1.05);
+  box-shadow: 
+    0 12px 35px rgba(79, 70, 229, 0.4),
+    0 6px 18px rgba(124, 58, 237, 0.3);
+}
+
+/* 📱 Responsive Design for Mobile */
+@media (max-width: 768px) {
+  [data-theme='dark'] .avatar {
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  [data-theme='dark'] .authorCol_Hf19 {
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+  }
+  
+  [data-theme='dark'] .avatar .avatar__name,
+  [data-theme='dark'] .authorName_yefp {
+    font-size: 1em !important;
+  }
+}
+
+/* 🎨 Professional Animations */
+@keyframes gradientRotate {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* 🎯 Focus States for Accessibility */
+[data-theme='dark'] .avatar:focus-within {
+  outline: 3px solid rgba(99, 102, 241, 0.5);
+  outline-offset: 2px;
+}
+
+/* 🌈 Special Effects for Premium Look */
+[data-theme='dark'] .avatar .avatar__photo:hover,
+[data-theme='dark'] .avatar .avatar__photo--xl:hover {
+  animation: pulse 2s infinite;
+}
+
+/* ================= PROFESSIONAL HORIZONTAL AUTHOR LAYOUT ================= */
+/* 🎯 Modern Card-Style Author Design with Perfect Alignment */
+/* Overrides previous styles for better user experience */
+
+/* ✨ Main Avatar Container - Horizontal Layout */
+.avatar {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 16px !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+  border: 2px solid #e2e8f0 !important;
+  padding: 20px !important;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04) !important;
+  transition: all 0.3s ease !important;
+  text-align: left !important;
+  position: relative !important;
+  max-width: 320px !important;
+  min-height: 120px !important;
+}
+
+[data-theme='dark'] .avatar {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%) !important;
+  border-color: #374151 !important;
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ✨ Avatar Photo - Perfect Circle on Left */
+.avatar .avatar__photo,
+.avatar .avatar__photo--xl {
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+  border: 3px solid #6366f1 !important;
+  margin: 0 16px 0 0 !important;
+  object-fit: cover !important;
+  flex-shrink: 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+[data-theme='dark'] .avatar .avatar__photo,
+[data-theme='dark'] .avatar .avatar__photo--xl {
+  border-color: #8b5cf6 !important;
+}
+
+/* 🎯 Author Content Area - Name and Social Links */
+.avatar .avatar__intro {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+  gap: 12px !important;
+  min-width: 0 !important;
+}
+
+/* 🎯 Author Name - Beside Avatar */
+.avatar .avatar__name,
+.authorName_yefp,
+.authorCol_Hf19 .avatar__name {
+  background: none !important;
+  color: #1e293b !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  text-align: left !important;
+  margin: 0 0 8px 0 !important;
+  line-height: 1.3 !important;
+  word-wrap: break-word !important;
+  max-width: none !important;
+  letter-spacing: 0.3px !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8) !important;
+  -webkit-text-fill-color: #1e293b !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
+}
+
+[data-theme='dark'] .avatar .avatar__name,
+[data-theme='dark'] .authorName_yefp,
+[data-theme='dark'] .authorCol_Hf19 .avatar__name {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7) !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* 🔗 Social Links Row - Below Name */
+.avatar .avatar__social,
+.avatar .social-links {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 8px !important;
+  align-items: center !important;
+  margin-top: 4px !important;
+}
+
+.avatar .avatar__social a,
+.avatar .social-links a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  background: #6366f1 !important;
+  color: white !important;
+  text-decoration: none !important;
+  font-size: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+[data-theme='dark'] .avatar .avatar__social a,
+[data-theme='dark'] .avatar .social-links a {
+  background: #8b5cf6 !important;
+}
+
+.avatar .avatar__social a:hover,
+.avatar .social-links a:hover {
+  transform: scale(1.1) translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3) !important;
+}
+
+[data-theme='dark'] .avatar .avatar__social a:hover,
+[data-theme='dark'] .avatar .social-links a:hover {
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4) !important;
+}
+
+/* ✨ Delightful Hover Effects for the Entire Card */
+.avatar:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.12),
+    0 4px 15px rgba(0, 0, 0, 0.08) !important;
+}
+
+[data-theme='dark'] .avatar:hover {
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.4),
+    0 4px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+.avatar:hover .avatar__photo,
+.avatar:hover .avatar__photo--xl {
+  transform: scale(1.05) !important;
+  border-width: 4px !important;
+}
+
+/* 📱 Responsive Design for Mobile */
+@media (max-width: 768px) {
+  .avatar {
+    max-width: 280px !important;
+    padding: 16px !important;
+  }
+  
+  .avatar .avatar__photo,
+  .avatar .avatar__photo--xl {
+    width: 50px !important;
+    height: 50px !important;
+    margin: 0 12px 0 0 !important;
+  }
+  
+  .avatar .avatar__name,
+  .authorName_yefp,
+  .authorCol_Hf19 .avatar__name {
+    font-size: 14px !important;
+  }
+}
