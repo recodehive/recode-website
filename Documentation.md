@@ -288,9 +288,10 @@ export const useCommunityStatsContext = (): ICommunityStatsContext => {
 Any component can now access the leaderboard data:
 ```typescript
 const { contributors, currentTimeFilter, setTimeFilter } = useCommunityStatsContext();
-Caching Strategy
+### Caching Strategy
 GitHub API has rate limits. We cache everything for 5 minutes:
-typescriptconst CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
+```typescript
+const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
 const [cache, setCache] = useState<{
   data: { contributors: FullContributor[]; rawStats: { totalPRs: number } } | null;
