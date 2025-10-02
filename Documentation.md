@@ -340,7 +340,7 @@ export default function LeaderBoard(): JSX.Element {
   // Render...
 }
 ```
-- **Time Filter Dropdown**
+#### Time Filter Dropdown
 ```tsx
 <select
   value={currentTimeFilter}
