@@ -705,7 +705,7 @@ In production, this gets baked into the static build. The token never appears in
 For more sensitive applications, proxy GitHub API calls through your backend:
 Client → Your API → GitHub API
 This way, tokens stay on the server.
-Token Scopes
+#### Token Scopes
 #### Use the minimum required scopes:
 - public_repo (read access to public repos)
 - read:org (read org data)
