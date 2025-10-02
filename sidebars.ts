@@ -90,6 +90,7 @@ const sidebars: SidebarsConfig = {
         'python/python-array',
         'python/python-conditional-statements',
         'python/python-loops',
+        'python/python-functions',
       ],
     },
     {

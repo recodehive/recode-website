@@ -215,13 +215,11 @@ function CareersContent() {
               variants={fadeIn}
             >
               <Link
-                href="#open-positions"
                 className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 View Open Positions
               </Link>
               <Link
-                href="#our-culture"
                 className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Learn About Our Culture
