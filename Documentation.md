@@ -179,7 +179,7 @@ const processBatch = async (
 Why batches of 8? Trial and error. Too many concurrent requests = rate limits. Too few = slow load times. Eight was the sweet spot.
 ### Phase 2: State Management & Filtering
 Once we have all the data, we store it in a way that makes filtering fast. This is the secret sauce.
-Data Structure
+#### Data Structure
 ```typescript
 interface FullContributor {
   username: string;
