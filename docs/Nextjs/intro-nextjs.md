@@ -1,17 +1,15 @@
 ---
 id: intro-nextjs
 title: Introduction to Next.js
-sidebar_label: Introduction to Next.js #displays in sidebar
+sidebar_label: Introduction to Next.js
 sidebar_position: 1
 tags:
-  [
-    Next.js,
-    Introduction to Next.js,
-    What is Next.js,
-    Why learn Next.js,
-    How to use Next.js,
-  ]
-description: In this tutorial, you will learn about Next.js, its importance, what is Next.js from Scratch, how to use Next.js, steps to start using Next.js, and more.
+  - Next.js
+  - Introduction to Next.js
+  - What is Next.js
+  - Why learn Next.js
+  - How to use Next.js
+description: Learn about Next.js, the powerful React framework for building production-ready web applications. Discover its features, benefits, rendering strategies, and how to get started with your first project.
 ---
 
 **Next.js** is a production-ready React framework that revolutionizes how we build modern web applications. Created and maintained by [Vercel](https://vercel.com), Next.js extends React's capabilities by providing a robust, opinionated structure that handles the complexities of production deployment, performance optimization, and developer experience out of the box.
