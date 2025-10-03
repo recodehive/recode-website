@@ -7,9 +7,8 @@
 
 </div>
 
-<div align="center">
-
 ## 📚 Table of Contents
+<div align="center">
 
 | Section | Topics Covered |
 |---------|----------------|
