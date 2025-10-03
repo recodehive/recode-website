@@ -1017,7 +1017,7 @@
 /*--------fix card sizing----------- */
 
 .fixed-card-size {
-  width: 350px;
+  width: auto;
   height: 500px;          
   display: flex;
   flex-direction: column;
