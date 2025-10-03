@@ -1,17 +1,3 @@
----
-id: intro-nextjs
-title: Introduction to Next.js
-sidebar_label: Introduction to Next.js
-sidebar_position: 1
-tags:
-  - Next.js
-  - Introduction to Next.js
-  - What is Next.js
-  - Why learn Next.js
-  - How to use Next.js
-description: Learn about Next.js, the powerful React framework for building production-ready web applications. Discover its features, benefits, rendering strategies, and how to get started with your first project.
----
-
 **Next.js** is a production-ready React framework that revolutionizes how we build modern web applications. Created and maintained by [Vercel](https://vercel.com), Next.js extends React's capabilities by providing a robust, opinionated structure that handles the complexities of production deployment, performance optimization, and developer experience out of the box.
 
 ## What Makes Next.js Special?
@@ -27,7 +13,7 @@ Unlike vanilla React applications that require extensive configuration and addit
 - 🛠️ **Full-Stack Capabilities** - Build APIs alongside your frontend using API Routes or Server Actions
 - 📦 **Production-Ready** - Optimized builds and seamless deployment with Vercel or any Node.js hosting
 
-Next.js offers both <a href="https://nextjs.org/docs/getting-started">free</a> and commercial hosting solutions through Vercel, with features like automatic deployments, edge functions, real-time analytics, and global CDN distribution.
+Next.js offers both <a href="https://nextjs.org/docs">free</a> and commercial hosting solutions through Vercel, with features like automatic deployments, edge functions, real-time analytics, and global CDN distribution.
 
 :::
 
@@ -55,7 +41,6 @@ While alternatives like Gatsby (static sites), Remix (web standards focus), and 
 
 One of Next.js's most powerful features is its **flexible rendering approach**. Let's understand this with a real-world example:
 
-:::info
 **E-commerce Application Example:**
 
 Imagine you're building an online store. Different pages have different requirements:
@@ -80,11 +65,14 @@ Imagine you're building an online store. Different pages have different requirem
   - Leverages browser capabilities
 
 Next.js empowers you to **mix and match** these strategies within the same application, choosing the optimal approach for each page. This flexibility is what makes Next.js stand out from other frameworks.
-:::
 
+<!--
 <BrowserWindow url="https://nextjs.org/" bodyStyle={{padding: 0}}>
   [![Next.js Framework](./assets/nextjs-logo.png)](https://nextjs.org/)
-</BrowserWindow>
+</BrowserWindow> -->
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" width="18"><mask height="180" id=":r8:mask0_408_134" maskUnits="userSpaceOnUse"       width="180" x="0" y="0" style="mask-type: alpha;"><circle cx="90" cy="90" fill="black" r="90"></circle></mask><g mask="url(#:r8:mask0_408_134)"><circle cx="90" cy="90" data-circle="true" fill="black" r="90"></circle><path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#:r8:paint0_linear_408_134)"></path><rect fill="url(#:r8:paint1_linear_408_134)" height="72" width="12" x="115" y="54"></rect></g><defs><linearGradient gradientUnits="userSpaceOnUse" id=":r8:paint0_linear_408_134" x1="109" x2="144.5" y1="116.5" y2="160.5"><stop stop-color="white"></stop><stop offset="1" stop-color="white" stop-opacity="0"></stop></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id=":r8:paint1_linear_408_134" x1="121" x2="120.799" y1="54" y2="106.875"><stop stop-color="white"></stop><stop offset="1" stop-color="white" stop-opacity="0"></stop></linearGradient></defs>
+</svg>
 
 ## Understanding React and React Frameworks
 
@@ -102,7 +90,6 @@ However, React alone doesn't provide:
 
 This is where **React frameworks** like Next.js come into play.
 
-:::info
 **Understanding React Frameworks:**
 
 Think of React as the **engine** of a car - powerful and essential, but not sufficient on its own. To build a complete, roadworthy vehicle, you need wheels, steering, transmission, suspension, and countless other components.
@@ -176,7 +163,6 @@ You can build **any type** of web application with Next.js:
 
 Let's explore what makes Next.js a comprehensive framework:
 
-:::info
 **Feature Categories:**
 
 **1. Routing System**
@@ -214,8 +200,6 @@ Let's explore what makes Next.js a comprehensive framework:
 
 Next.js **automates the hard parts** of web development, allowing you to focus on creating amazing user experiences rather than wrestling with configuration and optimization.
 
-:::
-
 ## Getting Started: Your First Next.js Project
 
 ### Prerequisites
@@ -225,9 +209,13 @@ Before creating a Next.js application, ensure you have:
 - A code editor (VS Code recommended)
 - Basic knowledge of React, JavaScript/TypeScript, and HTML/CSS
 
+**New to React?** Don't worry! While Next.js is built on React, you can learn both simultaneously. Start with basic React concepts like components, props, and state, then gradually explore Next.js features. The [React documentation](https://react.dev/learn) is an excellent resource to get started.
+
 ### Installation and Setup
 
 Creating a new Next.js project is straightforward with the official `create-next-app` tool:
+
+**What is npx?** It's a package runner tool that comes with npm (Node Package Manager). It allows you to run packages without installing them globally. Think of it as a way to execute commands directly from the npm registry.
 
 ```bash
 # Create a new Next.js app with the latest version
@@ -250,14 +238,14 @@ npm run dev
 
 Your Next.js application will be running at `http://localhost:3000` with hot reloading enabled.
 
-:::tip
+**What is localhost:3000?** This is your local development server. `localhost` refers to your own computer, and `3000` is the port number. Open your web browser and type this address to see your application. Hot reloading means changes you make to your code will automatically appear in the browser without manual refresh!
+
 **Quick Start Recommendations:**
 - ✅ Use **TypeScript** for better type safety and developer experience
 - ✅ Use **ESLint** to catch errors early
 - ✅ Use **Tailwind CSS** for rapid UI development
 - ✅ Use **App Router** (Next.js 13+) for the latest features
 - ✅ Enable **`src/` directory** for cleaner project organization
-:::
 
 ### Understanding the Project Structure
 
@@ -285,10 +273,12 @@ my-next-app/
   - `layout.tsx`: Shared UI between routes (navbar, footer)
   - `page.tsx`: Unique page content
   - Add folders to create nested routes
+  - **Beginner Tip**: Think of `layout.tsx` as a wrapper that appears on multiple pages (like a template), while `page.tsx` is the unique content for each page
 
 - **`public/`**: Store static files like images, fonts, or robots.txt
   - Files are served from the root URL
   - Example: `public/logo.png` → `yoursite.com/logo.png`
+  - **Beginner Tip**: Drop any image here and you can access it directly in your code like `<img src="/logo.png" />` - no import needed!
 
 - **`next.config.js`**: Configure Next.js behavior
   - Add redirects, rewrites, environment variables
@@ -297,11 +287,13 @@ my-next-app/
 ### Essential npm Scripts
 
 ```bash
-npm run dev          # Start development server (port 3000)
-npm run build        # Create optimized production build
-npm run start        # Start production server
-npm run lint         # Run ESLint to check code quality
+npm run dev          # Start development server (port 3000) - Use this while coding
+npm run build        # Create optimized production build - Run before deploying
+npm run start        # Start production server - Test your production build locally
+npm run lint         # Run ESLint to check code quality - Find code issues
 ```
+
+**For Beginners**: During development, you'll mainly use `npm run dev`. This starts a local server with helpful error messages and hot reloading. Only use `npm run build` and `npm run start` when you want to test how your app will perform in production or before deploying.
 
 ## Learning Path & Next Steps
 
@@ -367,7 +359,5 @@ Whether you're a beginner learning web development or an experienced developer l
 
 In the next tutorial, we'll dive deeper into creating your first Next.js application, exploring the file-based routing system, and building your first pages. Get ready to experience the power and simplicity of Next.js!
 
-:::tip
 **Ready to Start Building?**
 Run `npx create-next-app@latest` right now and follow along with the upcoming tutorials. The best way to learn is by doing! 🚀
-:::
