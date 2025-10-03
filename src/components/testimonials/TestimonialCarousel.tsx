@@ -58,15 +58,15 @@ export function TestimonialCarousel() {
   }, [api]);
 
   return (
-    <div className="w-full">
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold mb-2">Loved by Many Users</h2>
-        <div className="w-32 h-1 bg-blue-500 mx-auto rounded-full"></div>
+    <div className="w-full px-4 py-8 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto text-center mb-12">
+        <h2 className="text-3xl sm:text-5xl md:text-5xl font-bold mb-4">Loved by Many Users</h2>
+        <div className="w-24 sm:w-32 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto rounded-full"></div>
       </div>
 
       <Carousel
         setApi={setApi}
-        className="w-full"
+        className="w-full max-w-7xl mx-auto"
         opts={{
           align: "start",
           loop: true,
@@ -77,30 +77,35 @@ export function TestimonialCarousel() {
           }),
         ]}
       >
-        <CarouselContent className="-ml-2 md:-ml-4 my-16">
+        <CarouselContent className="-ml-2 md:-ml-4 my-6 sm:my-12">
           {testimonials.map((testimonial, index) => (
-            <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 h-full">
-              <TestimonialCard {...testimonial} />
+            <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2">
+              <div className="h-full">
+                <TestimonialCard {...testimonial} />
+              </div>
             </CarouselItem>
           ))}
         </CarouselContent>
 
-        <div className="flex items-center justify-center gap-2 mt-8">
-          <CarouselPrevious className="static translate-y-0" />
-          <div className="flex gap-2">
+        <div className="flex items-center justify-center gap-4 mt-8">
+          <CarouselPrevious className="static translate-y-0 cursor-pointer" />
+          <div className="flex gap-2 items-center">
             {Array.from({ length: count }).map((_, index) => (
-              <Button
+              <button
                 key={index}
-                variant={current === index + 1 ? "default" : "outline"}
-                size="icon"
-                className="h-2 w-2 p-0 rounded-full"
                 onClick={() => api?.scrollTo(index)}
+                className={`rounded-full transition-all duration-300 cursor-pointer hover:scale-110 ${
+                  current === index + 1
+                    ? "w-3 h-3 bg-gradient-to-r from-purple-500 to-pink-500"
+                    : "w-2 h-2 bg-gray-400 hover:bg-gray-600"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
               />
             ))}
           </div>
-          <CarouselNext className="static translate-y-0" />
+          <CarouselNext className="static translate-y-0 cursor-pointer" />
         </div>
       </Carousel>
     </div>
   );
-} 
+}
