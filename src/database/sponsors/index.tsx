@@ -480,7 +480,7 @@ const sponsors: Sponsor[] = [
     image: "https://media.licdn.com/dms/image/v2/D5603AQExzsjM2S4ojA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724809628060?e=1762387200&v=beta&t=Q96VKNyWLZHrS65vuF3QtDEAXaZDFL4AmArlYMoRngM",
     description: "Student at IIT Kharagpur",
     github: "https://github.com/swrno",
-    twitter: "https://x.com/Swarnendu___?t=vJBTG6cZUPD0pSjiMQBNiA&s=09",
+    twitter: "https://x.com/Swarnendu___",
     linkedin: "https://www.linkedin.com/in/swarnendu-bhandari/",
     isWeSponsor: true,
   },
