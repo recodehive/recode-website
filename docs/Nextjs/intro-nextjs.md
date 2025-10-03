@@ -1,16 +1,11 @@
----
-id: intro-nextjs
-title: Introduction to Next.js
-sidebar_label: Introduction to Next.js
-sidebar_position: 1
-tags:
-  - Next.js
-  - Introduction to Next.js
-  - What is Next.js
-  - Why learn Next.js
-  - How to use Next.js
-description: Learn about Next.js, the powerful React framework for building production-ready web applications. Discover its features, benefits, rendering strategies, and how to get started with your first project.
----
+
+<div align="center">
+
+# 🚀 Introduction to Next.js
+
+*Your Complete Guide to Building Modern Web Applications*
+
+</div>
 
 ## 📚 Table of Contents
 
