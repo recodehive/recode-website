@@ -20,6 +20,15 @@ const config: Config = {
   projectName: "recode-website",
 
   onBrokenLinks: "throw",
+  
+  // Remove the deprecated option
+  // onBrokenMarkdownLinks: "warn",
+  
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
+  },
 
   // Google Analytics and Theme Scripts
   scripts: [
@@ -242,6 +251,9 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
   },
   
   // Keep legacy setting until fully migrated to v4
