@@ -1,3 +1,34 @@
+---
+id: intro-nextjs
+title: Introduction to Next.js
+sidebar_label: Introduction to Next.js
+sidebar_position: 1
+tags:
+  - Next.js
+  - Introduction to Next.js
+  - What is Next.js
+  - Why learn Next.js
+  - How to use Next.js
+description: Learn about Next.js, the powerful React framework for building production-ready web applications. Discover its features, benefits, rendering strategies, and how to get started with your first project.
+---
+
+## 📚 Table of Contents
+
+| Section | Topics Covered |
+|---------|----------------|
+| **[What Makes Next.js Special?](#what-makes-nextjs-special)** | Zero-config approach, full-stack capabilities, key benefits |
+| **[Why Choose Next.js?](#why-choose-nextjs)** | Modern web development challenges, framework comparison |
+| **[Understanding Rendering Strategies](#understanding-rendering-strategies)** | SSG, SSR, ISR, CSR with real-world examples |
+| **[Understanding React and React Frameworks](#understanding-react-and-react-frameworks)** | React fundamentals, framework concepts, terminology |
+| **[Why Learn Next.js in 2025?](#why-learn-nextjs-in-2025-and-beyond)** | Career opportunities, technical advantages, practical benefits |
+| **[Core Features Deep Dive](#core-features-deep-dive)** | Routing, data fetching, optimizations, developer experience |
+| **[Getting Started](#getting-started-your-first-nextjs-project)** | Prerequisites, installation, project structure, npm scripts |
+| **[Learning Path & Next Steps](#learning-path--next-steps)** | 4-phase roadmap from foundations to production |
+| **[Helpful Resources](#helpful-resources)** | Official docs, tutorials, community, video resources |
+| **[Conclusion](#conclusion)** | Key takeaways and next steps |
+
+---
+
 **Next.js** is a production-ready React framework that revolutionizes how we build modern web applications. Created and maintained by [Vercel](https://vercel.com), Next.js extends React's capabilities by providing a robust, opinionated structure that handles the complexities of production deployment, performance optimization, and developer experience out of the box.
 
 ## What Makes Next.js Special?
