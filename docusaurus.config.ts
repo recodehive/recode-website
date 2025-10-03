@@ -20,7 +20,7 @@ const config: Config = {
   projectName: "recode-website",
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+  // onBrokenMarkdownLinks moved to markdown.hooks
 
   // Google Analytics and Theme Scripts
   scripts: [
@@ -241,6 +241,9 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
   },
 
   themes: ["@docusaurus/theme-mermaid"],
