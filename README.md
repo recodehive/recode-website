@@ -88,7 +88,7 @@ This lets you see code changes instantly at [http://localhost:3000](http://local
 ### 🏃 Quick Start
 
 ```bash
-git clone https://github.com/your-username/recodehive-website.git
+git clone https://github.com/your-username/recode-website.git
 cd recodehive-website
 docker-compose up
 ```
