@@ -145,7 +145,8 @@ recode-website/
 |    ├── theme/
 |    └── utils/
 ├── static/                              🔹 Public Assets
-|    ├── icons, img
+|    ├── icons
+|    ├── img
 |    ├── .nojekyll
 |    └── *.png
 ├── .gitignore
