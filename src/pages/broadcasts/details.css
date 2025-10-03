@@ -1,0 +1,32 @@
+/* Add custom styles for the details page pagination */
+.video-container .pagination {
+  margin-top: 30px;
+}
+
+.video-container .pagination button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  background: linear-gradient(to right, #007bff, #0056b3);
+  color: white !important;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.video-container .pagination button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(to right, #0056b3, #003d80);
+}
+
+[data-theme='dark'] .video-container .pagination button {
+  background: linear-gradient(to right, #3b82f6, #2563eb);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme='dark'] .video-container .pagination button:hover {
+  background: linear-gradient(to right, #2563eb, #1d4ed8);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+}

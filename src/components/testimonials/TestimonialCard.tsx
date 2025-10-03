@@ -9,6 +9,7 @@ interface TestimonialCardProps {
   content: string;
   date: string;
   avatar: string;
+  link: string;
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
@@ -17,9 +18,21 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   content,
   date,
   avatar,
+  link,
 }) => {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
+
+  // Function to format the link display
+  const formatLinkDisplay = (url: string) => {
+    try {
+      const urlObj = new URL(url);
+      return urlObj.hostname + urlObj.pathname;
+    } catch {
+      // If URL parsing fails, return the original link
+      return url;
+    }
+  };
 
   return (
     <motion.div
@@ -53,10 +66,11 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
       {/* Footer with Hashtags and Date */}
       <div
-        className={`flex items-center justify-between text-sm pt-2 border-t ${
+        className={`flex flex-col gap-2 text-sm pt-2 border-t ${
           isDark ? "border-gray-700" : "border-gray-100"
         }`}
       >
+        {/* Hashtags */}
         <div className="flex gap-2 flex-wrap">
           {content.match(/#\w+/g)?.map((hashtag, index) => (
             <span
@@ -67,7 +81,21 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             </span>
           ))}
         </div>
-        <span className={isDark ? "text-gray-500" : "text-gray-400"}>{date}</span>
+
+        {/* Link and Date Row */}
+        <div className="flex items-center justify-between">
+          <a 
+            href={link} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={`hover:underline cursor-pointer ${
+              isDark ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-700"
+            }`}
+          >
+            {formatLinkDisplay(link)}
+          </a>
+          <span className={isDark ? "text-gray-500" : "text-gray-400"}>{date}</span>
+        </div>
       </div>
     </motion.div>
   );

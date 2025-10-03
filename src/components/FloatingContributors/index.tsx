@@ -5,25 +5,25 @@ import './FloatingContributors.css';
 // Format relative time (e.g., "2 hours ago")
 const formatTimeAgo = (date: Date): string => {
   const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
-  
+
   let interval = Math.floor(seconds / 31536000);
   if (interval > 1) return `${interval} years ago`;
-  
+
   interval = Math.floor(seconds / 2592000);
   if (interval > 1) return `${interval} months ago`;
-  
+
   interval = Math.floor(seconds / 86400);
   if (interval > 1) return `${interval} days ago`;
   if (interval === 1) return `1 day ago`;
-  
+
   interval = Math.floor(seconds / 3600);
   if (interval > 1) return `${interval} hours ago`;
   if (interval === 1) return `1 hour ago`;
-  
+
   interval = Math.floor(seconds / 60);
   if (interval > 1) return `${interval} minutes ago`;
   if (interval === 1) return `1 minute ago`;
-  
+
   return `just now`;
 };
 
@@ -115,7 +115,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
       },
       {
         login: 'recodehive-team',
-        avatar_url: 'https://avatars.githubusercontent.com/u/150000000?v=4', 
+        avatar_url: 'https://avatars.githubusercontent.com/u/150000000?v=4',
         html_url: 'https://github.com/recodehive',
       },
       {
@@ -130,11 +130,11 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
       },
       {
         login: 'coder',
-        avatar_url: 'https://avatars.githubusercontent.com/u/6154722?v=4', 
+        avatar_url: 'https://avatars.githubusercontent.com/u/6154722?v=4',
         html_url: 'https://github.com/coder',
       },
     ];
-    
+
     const actions: ContributorActivity['action'][] = ['pushed', 'created', 'merged', 'opened', 'commented'];
     const timeOffsets = [5, 10, 30, 60, 120, 240, 480]; // minutes
     const messages = [
@@ -146,11 +146,11 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
       'Updated dependencies',
       'Fixed typo in README'
     ];
-    
+
     return fallbackContributors.map((contributor, index) => {
       const now = new Date();
       const timestamp = new Date(now.getTime() - (timeOffsets[index % timeOffsets.length] * 60 * 1000));
-      
+
       return {
         id: `fallback-${index}`,
         contributor: {
@@ -165,21 +165,21 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
       };
     });
   }, []);
-  
+
   // Fetch live data from GitHub
   const fetchLiveData = useCallback(async () => {
     try {
       // Use specific cache key for this repository's events
       const CACHE_KEY = 'recodehive_website_events';
       const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes - short for "live" data
-      
+
       // Check if we have recent data already
       const now = Date.now();
       if (lastFetched && now - lastFetched < 30000) {
         // Don't fetch more than once every 30 seconds
         return;
       }
-      
+
       // Check for cached events
       let events: GitHubEvent[] = [];
       if (typeof window !== 'undefined') {
@@ -195,20 +195,20 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
           console.warn('Error retrieving cached events', e);
         }
       }
-      
+
       // If no valid cache, fetch fresh data
       if (events.length === 0) {
         setLoading(true);
-        
+
         // Fetch repository events from GitHub API
         const eventsResponse = await fetch('https://api.github.com/repos/recodehive/recode-website/events?per_page=30');
-        
+
         if (!eventsResponse.ok) {
           throw new Error(`GitHub API error: ${eventsResponse.status}`);
         }
-        
+
         events = await eventsResponse.json();
-        
+
         // Save to cache
         if (typeof window !== 'undefined' && Array.isArray(events)) {
           try {
@@ -221,7 +221,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
           }
         }
       }
-      
+
       // Process events into activities
       if (Array.isArray(events) && events.length > 0) {
         // Convert GitHub events to our activity format
@@ -229,7 +229,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
           // Map GitHub event types to our action types
           let action: ContributorActivity['action'] = 'other';
           let message: string | undefined;
-          
+
           switch (event.type) {
             case 'PushEvent':
               action = 'pushed';
@@ -252,9 +252,9 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
             default:
               action = 'other';
           }
-          
+
           const timestamp = new Date(event.created_at);
-          
+
           return {
             id: event.id,
             contributor: {
@@ -268,21 +268,21 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
             timeAgo: formatTimeAgo(timestamp),
           };
         });
-        
+
         // Update only if we have events
         if (newActivities.length > 0) {
           setActivities(newActivities);
-          
+
           // Extract contributors from these events
           const contributorsMap = new Map<string, Contributor>();
-          
+
           // Also fetch contributors directly for contribution counts
           try {
             const contributorsResponse = await fetch('https://api.github.com/repos/recodehive/recode-website/contributors?per_page=100');
-            
+
             if (contributorsResponse.ok) {
               const contributorsData = await contributorsResponse.json();
-              
+
               if (Array.isArray(contributorsData)) {
                 contributorsData.forEach(contributor => {
                   if (contributor.login && contributor.type === 'User') {
@@ -299,7 +299,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
             }
           } catch (error) {
             console.warn('Error fetching contributors:', error);
-            
+
             // If we couldn't get contributors data, at least use actors from events
             events.forEach(event => {
               const login = event.actor.login;
@@ -314,17 +314,17 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
               }
             });
           }
-          
+
           // Update contributors if we found any
           if (contributorsMap.size > 0) {
             setContributors(Array.from(contributorsMap.values()));
           }
         }
       }
-      
+
       setLastFetched(now);
       setLoading(false);
-      
+
       // Set up next refresh
       if (refreshTimerRef.current) {
         clearTimeout(refreshTimerRef.current);
@@ -332,15 +332,15 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
       refreshTimerRef.current = setTimeout(() => {
         fetchLiveData();
       }, 60000); // Refresh every minute
-      
+
     } catch (error) {
       console.warn('Error fetching GitHub events:', error);
-      
+
       // Use fallback data if we have no activities yet
       if (activities.length === 0) {
         const fallbackActivities = createFallbackActivities();
         setActivities(fallbackActivities);
-        
+
         // Create fallback contributors
         const contributorsMap = new Map<string, Contributor>();
         fallbackActivities.forEach(activity => {
@@ -355,22 +355,22 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
             });
           }
         });
-        
+
         setContributors(Array.from(contributorsMap.values()));
       }
-      
+
       setLoading(false);
     }
   }, [activities.length, createFallbackActivities, lastFetched]);
-  
+
   // Initialize component and start data fetching
   useEffect(() => {
     // Set loading state
     setLoading(true);
-    
+
     // Fetch data immediately
     fetchLiveData();
-    
+
     // Clean up on unmount
     return () => {
       if (refreshTimerRef.current) {
@@ -378,22 +378,22 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
       }
     };
   }, [fetchLiveData]);
-  
+
   // Cycle through activities
   useEffect(() => {
     if (activities.length <= 1) return;
-    
+
     const interval = setInterval(() => {
       setCurrentActivityIndex((prev) => (prev + 1) % activities.length);
     }, 4000);
-    
+
     return () => clearInterval(interval);
   }, [activities.length]);
-  
+
   // Get GitHub URL for event
   const getGitHubEventUrl = (activity: ContributorActivity): string => {
     const repoUrl = 'https://github.com/recodehive/recode-website';
-    
+
     switch (activity.action) {
       case 'pushed':
         return `${repoUrl}/commits`;
@@ -409,7 +409,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
         return repoUrl;
     }
   };
-  
+
   // Get icon for action type
   const getActionIcon = (action: ContributorActivity['action']): string => {
     switch (action) {
@@ -422,7 +422,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
       default: return '💻';
     }
   };
-  
+
   // Get text for action type
   const getActionText = (action: ContributorActivity['action']): string => {
     switch (action) {
@@ -435,15 +435,15 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
       default: return 'ACTIVE';
     }
   };
-  
+
   // Don't render anything while initial loading
   if (loading && activities.length === 0) {
     return null;
   }
-  
+
   // Get current activity to display
   const currentActivity = activities[currentActivityIndex];
-  
+
   return (
     <AnimatePresence>
       {isVisible && (
@@ -519,7 +519,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                     <span className="status-dot"></span>
                   </div>
                 </div>
-                
+
                 <div className="activity-details">
                   <div className="activity-user">
                     <span className="activity-username" title={`@${currentActivity.contributor.login}`}>@{currentActivity.contributor.login}</span>
@@ -543,7 +543,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                 <span>Recent Contributors</span>
                 <span className="contributors-count">{contributors.length}</span>
               </div>
-              
+
               <div className="contributors-avatars">
                 {contributors
                   .sort((a, b) => b.contributions - a.contributions) // Sort contributors by contributions in descending order
@@ -554,7 +554,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                       className="contributor-avatar-wrapper"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ 
+                      transition={{
                         delay: index * 0.05,
                         type: "spring",
                         stiffness: 300,
@@ -562,9 +562,9 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                       }}
                       whileHover={{ scale: 1.1, zIndex: 5 }}
                     >
-                      <a 
-                        href={contributor.html_url} 
-                        target="_blank" 
+                      <a
+                        href={contributor.html_url}
+                        target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`View ${contributor.login}'s GitHub profile`}
                         className="contributor-link"
@@ -581,10 +581,10 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                       </a>
                     </motion.div>
                   ))}
-                
-                {contributors.length > 12 && (
+
+                {contributors.length > 5 && (
                   <div className="contributors-more">
-                    <span>+{contributors.length - 12} more</span>
+                    <span>+{contributors.length - 5}</span>
                   </div>
                 )}
               </div>

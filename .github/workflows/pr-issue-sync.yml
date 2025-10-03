@@ -1,0 +1,93 @@
+name: Sync PR data from Linked Issues
+
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize]
+
+jobs:
+  sync-metadata:
+    runs-on: ubuntu-latest
+
+    permissions:
+      issues: write
+      pull-requests: write
+
+    steps:
+      - name: Extract Linked Issues
+        id: extract
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const body = context.payload.pull_request.body || "";
+            const issuePattern = /#(\d+)/g;
+            let matches = [];
+            let m;
+            while ((m = issuePattern.exec(body)) !== null) {
+              matches.push(parseInt(m[1]));
+            }
+            core.setOutput("issues", JSON.stringify(matches));
+
+      - name: Post or Update data Comment
+        if: steps.extract.outputs.issues && steps.extract.outputs.issues != '[]'
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const issues = JSON.parse(`${{ steps.extract.outputs.issues }}`);
+            const prNumber = context.payload.pull_request.number;
+
+            let combinedLabels = [];
+            let combinedAssignees = [];
+            let combinedMilestones = [];
+
+            for (const number of issues) {
+              try {
+                const issue = await github.rest.issues.get({
+                  ...context.repo,
+                  issue_number: number
+                });
+
+                combinedLabels.push(...issue.data.labels.map(l => l.name));
+                combinedAssignees.push(...issue.data.assignees.map(a => a.login));
+                if (issue.data.milestone) combinedMilestones.push(issue.data.milestone.title);
+
+              } catch (err) {
+                console.log(`Could not fetch issue #${number}: ${err.message}`);
+              }
+            }
+
+            // Deduplicate
+            combinedLabels = [...new Set(combinedLabels)];
+            combinedAssignees = [...new Set(combinedAssignees)];
+            combinedMilestones = [...new Set(combinedMilestones)];
+
+            const commentBody =
+              `### Synced data from Linked Issues\n\n` +
+              `**Labels:**\n${combinedLabels.length ? combinedLabels.map(l => `- ${l}`).join("\n") : "- None"}\n\n` +
+              `**Assignees:**\n${combinedAssignees.length ? combinedAssignees.map(a => `- ${a}`).join("\n") : "- None"}\n\n` +
+              `**Milestones:**\n${combinedMilestones.length ? combinedMilestones.map(m => `- ${m}`).join("\n") : "- None"}\n`;
+
+            // Get existing comments
+            const comments = await github.rest.issues.listComments({
+              ...context.repo,
+              issue_number: prNumber
+            });
+
+            // Find existing workflow comment
+            const existingComment = comments.data.find(c => c.body.includes("### Synced data from Linked Issues"));
+
+            if (existingComment) {
+              await github.rest.issues.updateComment({
+                ...context.repo,
+                comment_id: existingComment.id,
+                body: commentBody
+              });
+            } else {
+              // Create new comment
+              await github.rest.issues.createComment({
+                ...context.repo,
+                issue_number: prNumber,
+                body: commentBody
+              });
+            }

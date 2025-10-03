@@ -1,6 +1,7 @@
 ---
 title: "UX Designers Future with AI"
 authors: [dharshibalasubramaniyam, sanjay-kv]
+sidebar_label: "UX designer and AI"
 tags:
   - UX Designer
   - Desgin
@@ -10,6 +11,7 @@ date: 2025-06-05 09:32:00
 description: DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI.
 draft: false
 canonical_url: 
+
 # meta:
 #   - name: "robots"
 #     content: "index, follow"
@@ -33,7 +35,7 @@ canonical_url:
 #     content: "assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
 
 ---
-
+ <!-- truncate -->
 # 🤖 Will Technology Replace UX Designers in the Near Future?
 
 Technology has always been an essential part of UX design. From the beginning, UX designers have used technology to create prototypes, communicate with stakeholders, and test their designs. Today, technology is playing an even bigger role in UX design. Automation and artificial intelligence are being used to help UX designers create better user experiences. Machine learning algorithms can help determine user preferences, allowing UX designers to create more tailored experiences.

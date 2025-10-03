@@ -16,6 +16,19 @@ const sidebars: SidebarsConfig = {
   // Custom manual sidebar configuration for complete control
   tutorialSidebar: [
     {
+      type: 'doc',
+      id: 'docs', // document ID
+      label: '🏠 Home', // sidebar label
+      className: 'custom-sidebar-home',
+
+    },
+    {
+      type: 'doc',
+      id: 'Getting-Started',
+      label: '🚀 Getting Started',
+      className: 'custom-sidebar-contributing',
+    },
+    {
       type: 'category',
       label: '🐙 GitHub',
       className: 'custom-sidebar-github',
@@ -77,6 +90,8 @@ const sidebars: SidebarsConfig = {
         'python/python-array',
         'python/python-conditional-statements',
         'python/python-loops',
+        'python/python-functions',
+        'python/python-errors-and-exceptions',
       ],
     },
     {

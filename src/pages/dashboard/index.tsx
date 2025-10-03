@@ -104,7 +104,7 @@ const DashboardContent: React.FC = () => {
     // Set active tab based on URL hash
     if (location.hash === "#discuss") {
       setActiveTab("discuss");
-    } else if (location.hash === "#contributors") {
+    } else if (location.hash === "#leaderboard") {
       setActiveTab("contributors");
     } else if (location.hash === "#giveaway") {
       setActiveTab("giveaway");
@@ -285,7 +285,7 @@ const DashboardContent: React.FC = () => {
     } else if (tab === "giveaway") {
       history.push("/dashboard/giveaway");
     } else if (tab === "contributors") {
-      history.push("#contributors");
+      history.push("#leaderboard");
       window.scrollTo(0, 0);
     } else {
       history.push("#");
@@ -506,15 +506,6 @@ const DashboardContent: React.FC = () => {
                     useCommunityStatsContext().githubContributorsCountText || "444"
                   }
                   description="Amazing community members"
-                />
-                <StatCard
-                  icon={<BarChart3 size={24} />}
-                  title="Repositories"
-                  value={dashboardStats.totalRepositories}
-                  valueText={
-                    useCommunityStatsContext().githubReposCountText || "10"
-                  }
-                  description="Open source projects"
                 />
                 <StatCard
                   icon={<GitFork size={24} />}

@@ -1,8 +1,8 @@
-import React from 'react';
-import TopMateCard from './TopMateCard';
-import { useColorMode } from '@docusaurus/theme-common';
+import React from "react";
+import TopMateCard from "./TopMateCard";
+import { useColorMode } from "@docusaurus/theme-common";
 
-const TopMateSection = () => {
+const TopMateSection = ({ setShowTopmate }) => {
   const { colorMode } = useColorMode(); // Get current theme: 'light' or 'dark'
 
   const profileData = {
@@ -10,7 +10,7 @@ const TopMateSection = () => {
     description: "Book a slot, Free for Hive Community Members",
     duration: "30 mins",
     profileImage: "/sanjay.png",
-    username: "sanjaykv"
+    username: "sanjaykv",
   };
 
   return (
@@ -19,14 +19,14 @@ const TopMateSection = () => {
         <div className="mx-auto text-center mb-16">
           <h1
             className={`text-4xl font-bold mb-4 ${
-              colorMode === 'dark' ? 'text-white' : 'text-gray-900'
+              colorMode === "dark" ? "text-white" : "text-gray-900"
             }`}
           >
             Book a Session
           </h1>
           <p
             className={`text-lg ${
-              colorMode === 'dark' ? 'text-gray-300' : 'text-gray-600'
+              colorMode === "dark" ? "text-gray-300" : "text-gray-600"
             }`}
           >
             Get personalized guidance and feedback through one-on-one sessions
@@ -34,7 +34,7 @@ const TopMateSection = () => {
         </div>
 
         <div>
-          <TopMateCard {...profileData} />
+          <TopMateCard {...profileData} setShowTopmate={setShowTopmate} />
         </div>
       </div>
     </div>

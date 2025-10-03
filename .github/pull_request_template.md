@@ -1,8 +1,9 @@
 ## Description
 
+<!-- 
 Provide a brief summary of the changes made to the website and the motivation behind them. Include any relevant issues or tickets.
 This helps fast tracking your PR and merge it, Check the respective box below.
-
+-->
 Fixes # (issue)
 
 ## Type of Change
@@ -16,7 +17,9 @@ Fixes # (issue)
 
 ## Changes Made
 
-- Describe the key changes (e.g., new sections, updated components, responsive fixes).
+<!--
+Describe the key changes (e.g., new sections, updated components, responsive fixes).
+-->
 
 ## Dependencies
 
@@ -26,6 +29,7 @@ Fixes # (issue)
 ## Checklist
 
 - [ ] My code follows the style guidelines of this project.
-- [ ] I have tested my changes across major browsers/devices
-- [ ] My changes do not generate new console warnings or errors , I ran `npm run build` and attached scrrenshot in this PR.
+- [ ] I have tested my changes across major browsers and devices
+- [ ] My changes do not generate new console warnings or errors .
+- [ ] I ran `npm run build` and attached screenshot(s) in this PR.
 - [ ] This is already assigned Issue to me, not an unassigned issue.

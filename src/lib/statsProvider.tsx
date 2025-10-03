@@ -1,4 +1,3 @@
-
 /** @jsxImportSource react */
 import React, {
   createContext,
@@ -11,6 +10,9 @@ import React, {
 } from "react";
 import { githubService, type GitHubOrgStats } from "../services/githubService";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+
+// Time filter types
+export type TimeFilter = 'week' | 'month' | 'year' | 'all';
 
 interface ICommunityStatsContext {
   githubStarCount: number;
@@ -28,18 +30,34 @@ interface ICommunityStatsContext {
   lastUpdated: Date | null;
   refetch: (signal: AbortSignal) => Promise<void>;
   clearCache: () => void;
-  // New properties for leaderboard
+  
+  // Leaderboard properties
   contributors: Contributor[];
   stats: Stats | null;
+  
+  // New time filter properties
+  currentTimeFilter: TimeFilter;
+  setTimeFilter: (filter: TimeFilter) => void;
+  getFilteredPRsForContributor: (username: string) => PRDetails[];
 }
 
 // Define types for leaderboard data
+interface PRDetails {
+  title: string;
+  url: string;
+  mergedAt: string;
+  repoName: string;
+  number: number;
+  points: number;
+}
+
 interface Contributor {
   username: string;
   avatar: string;
   profile: string;
   points: number;
   prs: number;
+  prDetails?: PRDetails[];
 }
 
 interface Stats {
@@ -55,6 +73,17 @@ interface PullRequestItem {
     html_url: string;
   };
   merged_at?: string | null;
+  title?: string;
+  html_url?: string;
+  number?: number;
+  labels?: Array<{ name: string }>;
+}
+
+// Enhanced contributor type for internal processing (stores all PRs)
+interface FullContributor extends Omit<Contributor, 'points' | 'prs'> {
+  allPRDetails: PRDetails[]; // All PRs regardless of filter
+  points: number; // Filtered points
+  prs: number; // Filtered PR count
 }
 
 export const CommunityStatsContext = createContext<ICommunityStatsContext | undefined>(undefined);
@@ -65,9 +94,65 @@ interface CommunityStatsProviderProps {
 
 const GITHUB_ORG = "recodehive";
 const POINTS_PER_PR = 10;
-const MAX_CONCURRENT_REQUESTS = 8; // Increased for better performance
+const MAX_CONCURRENT_REQUESTS = 8;
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes cache
-const MAX_PAGES_PER_REPO = 20; // Limit pages to prevent infinite loops on huge repos
+const MAX_PAGES_PER_REPO = 20;
+
+// Function to calculate points based on PR labels
+const calculatePointsForPR = (labels?: Array<{ name: string }>): number => {
+  if (!labels || labels.length === 0) {
+    return 0; // No points if no labels
+  }
+  
+  const labelNames = labels.map(label => label.name.toLowerCase());
+  
+  // Check if PR has the "recode" label
+  if (!labelNames.includes('recode')) {
+    return 0; // No points if "recode" label is missing
+  }
+  
+  // Check for level labels and assign points accordingly with new point system
+  const levelPointsMap: { [key: string]: number } = {
+    'level 1': 10,
+    'level 2': 30,
+    'level 3': 50,
+  };
+  const matchedLevel = labelNames.find(label => levelPointsMap.hasOwnProperty(label));
+  if (matchedLevel) {
+    return levelPointsMap[matchedLevel];
+  }
+  
+  return 0; // No points if no level label
+};
+
+// Time filter utility functions
+const getTimeFilterDate = (filter: TimeFilter): Date | null => {
+  const now = new Date();
+  switch (filter) {
+    case 'week':
+      return new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+    case 'month': {
+      const lastMonth = new Date(now);
+      lastMonth.setMonth(now.getMonth() - 1);
+      return lastMonth;
+    }
+    case 'year':
+      return new Date(now.getTime() - 365 * 24 * 60 * 60 * 1000);
+    case 'all':
+    default:
+      return null; // No filter
+  }
+};
+
+const isPRInTimeRange = (mergedAt: string, filter: TimeFilter): boolean => {
+  if (filter === 'all') return true;
+  
+  const filterDate = getTimeFilterDate(filter);
+  if (!filterDate) return true;
+  
+  const prDate = new Date(mergedAt);
+  return prDate >= filterDate;
+};
 
 export function CommunityStatsProvider({ children }: CommunityStatsProviderProps) {
   const {
@@ -84,15 +169,72 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
   const [githubDiscussionsCount, setGithubDiscussionsCount] = useState(0);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   
-  // New state for leaderboard data
-  const [contributors, setContributors] = useState<Contributor[]>([]);
+  // Time filter state
+  const [currentTimeFilter, setCurrentTimeFilter] = useState<TimeFilter>('all');
+  
+  // Enhanced state for leaderboard data (stores all contributors with full PR history)
+  const [allContributors, setAllContributors] = useState<FullContributor[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
   
-  // Cache state
+  // Cache state (stores raw data without filters)
   const [cache, setCache] = useState<{
-    data: { contributors: Contributor[]; stats: Stats } | null;
+    data: { contributors: FullContributor[]; rawStats: { totalPRs: number } } | null;
     timestamp: number;
   }>({ data: null, timestamp: 0 });
+
+  // Computed filtered contributors based on current time filter
+  const contributors = useMemo(() => {
+    if (!allContributors.length) return [];
+    
+    const filteredContributors = allContributors
+      .map(contributor => {
+        const filteredPRs = contributor.allPRDetails.filter(pr => 
+          isPRInTimeRange(pr.mergedAt, currentTimeFilter)
+        );
+        
+        // Calculate total points from all filtered PRs
+        const totalPoints = filteredPRs.reduce((sum, pr) => sum + pr.points, 0);
+        
+        return {
+          username: contributor.username,
+          avatar: contributor.avatar,
+          profile: contributor.profile,
+          points: totalPoints,
+          prs: filteredPRs.length,
+          prDetails: filteredPRs, // For backward compatibility, though we'll use the new function
+        };
+      })
+      .filter(contributor => contributor.prs > 0) // Only show contributors with PRs in the time range
+      .sort((a, b) => b.points - a.points || b.prs - a.prs);
+
+    return filteredContributors;
+  }, [allContributors, currentTimeFilter]);
+
+  // Update stats when contributors change
+  useEffect(() => {
+    if (contributors.length > 0) {
+      setStats({
+        flooredTotalPRs: contributors.reduce((sum, c) => sum + c.prs, 0),
+        totalContributors: contributors.length,
+        flooredTotalPoints: contributors.reduce((sum, c) => sum + c.points, 0),
+      });
+    }
+  }, [contributors]);
+
+  // Function to get filtered PRs for a specific contributor (for PR view modal)
+  const getFilteredPRsForContributor = useCallback((username: string): PRDetails[] => {
+    const contributor = allContributors.find(c => c.username === username);
+    if (!contributor) return [];
+    
+    return contributor.allPRDetails
+      .filter(pr => isPRInTimeRange(pr.mergedAt, currentTimeFilter))
+      .sort((a, b) => new Date(b.mergedAt).getTime() - new Date(a.mergedAt).getTime()); // Sort by newest first
+  }, [allContributors, currentTimeFilter]);
+
+  // Time filter setter function
+  const setTimeFilter = useCallback((filter: TimeFilter) => {
+    setCurrentTimeFilter(filter);
+  }, []);
 
   const fetchAllOrgRepos = useCallback(async (headers: Record<string, string>) => {
     const repos: any[] = [];
@@ -114,10 +256,6 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
 
   const fetchMergedPRsForRepo = useCallback(async (repoName: string, headers: Record<string, string>) => {
     const mergedPRs: PullRequestItem[] = [];
-    let page = 1;
-    
-    // Create promises for parallel pagination
-    const pagePromises: Promise<PullRequestItem[]>[] = [];
     
     // First, get the first page to estimate total pages
     const firstResp = await fetch(
@@ -139,10 +277,10 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
     // If we got less than 100, that's all there is
     if (firstPRs.length < 100) return mergedPRs;
     
-    // Estimate remaining pages (with a reasonable limit)
-    const maxPages = Math.min(MAX_PAGES_PER_REPO, 10); // Conservative estimate
-    
     // Create parallel requests for remaining pages
+    const pagePromises: Promise<PullRequestItem[]>[] = [];
+    const maxPages = Math.min(MAX_PAGES_PER_REPO, 10);
+    
     for (let i = 2; i <= maxPages; i++) {
       pagePromises.push(
         fetch(
@@ -168,12 +306,12 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
     return mergedPRs;
   }, []);
 
-  // Concurrent processing function with controlled concurrency
+  // Enhanced processing function that stores only valid PRs with points
   const processBatch = useCallback(async (
     repos: any[],
     headers: Record<string, string>
-  ): Promise<{ contributorMap: Map<string, Contributor>; totalMergedPRs: number }> => {
-    const contributorMap = new Map<string, Contributor>();
+  ): Promise<{ contributorMap: Map<string, FullContributor>; totalMergedPRs: number }> => {
+    const contributorMap = new Map<string, FullContributor>();
     let totalMergedPRs = 0;
 
     // Process repos in batches to control concurrency
@@ -196,23 +334,40 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
       const results = await Promise.all(promises);
       
       // Process results from this batch
-      results.forEach(({ mergedPRs }) => {
-        totalMergedPRs += mergedPRs.length;
-        
+      results.forEach(({ mergedPRs, repoName }) => {
         mergedPRs.forEach((pr) => {
-          const username = pr.user.login;
-          if (!contributorMap.has(username)) {
-            contributorMap.set(username, {
-              username,
-              avatar: pr.user.avatar_url,
-              profile: pr.user.html_url,
-              points: 0,
-              prs: 0,
-            });
+          // Calculate points for this PR based on labels
+          const prPoints = calculatePointsForPR(pr.labels);
+          
+          // ONLY store PRs that have points (i.e., have "recode" label and a level label)
+          if (prPoints > 0) {
+            totalMergedPRs++;
+            
+            const username = pr.user.login;
+            if (!contributorMap.has(username)) {
+              contributorMap.set(username, {
+                username,
+                avatar: pr.user.avatar_url,
+                profile: pr.user.html_url,
+                points: 0, // Will be calculated later based on filter
+                prs: 0, // Will be calculated later based on filter
+                allPRDetails: [], // Store only valid PRs here
+              });
+            }
+            const contributor = contributorMap.get(username)!;
+            
+            // Add detailed PR information only if it has all required fields
+            if (pr.title && pr.html_url && pr.merged_at && pr.number) {
+              contributor.allPRDetails.push({
+                title: pr.title,
+                url: pr.html_url,
+                mergedAt: pr.merged_at,
+                repoName,
+                number: pr.number,
+                points: prPoints,
+              });
+            }
           }
-          const contributor = contributorMap.get(username)!;
-          contributor.prs++;
-          contributor.points += POINTS_PER_PR;
         });
       });
     }
@@ -227,9 +382,7 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
     // Check cache first
     const now = Date.now();
     if (cache.data && (now - cache.timestamp) < CACHE_DURATION) {
-      // console.log('Using cached leaderboard data');
-      setContributors(cache.data.contributors);
-      setStats(cache.data.stats);
+      setAllContributors(cache.data.contributors);
       setLoading(false);
       return;
     }
@@ -263,22 +416,16 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
         // Process leaderboard data with concurrent processing
         const { contributorMap, totalMergedPRs } = await processBatch(repos, headers);
 
-        const sortedContributors = Array.from(contributorMap.values()).sort(
-          (a, b) => b.points - a.points || b.prs - a.prs
-        );
+        const contributorsArray = Array.from(contributorMap.values());
         
-        const statsData = {
-          flooredTotalPRs: totalMergedPRs,
-          totalContributors: sortedContributors.length,
-          flooredTotalPoints: sortedContributors.reduce((sum, c) => sum + c.points, 0),
-        };
+        setAllContributors(contributorsArray);
         
-        setContributors(sortedContributors);
-        setStats(statsData);
-        
-        // Cache the results
+        // Cache the results (raw data without filtering)
         setCache({
-          data: { contributors: sortedContributors, stats: statsData },
+          data: { 
+            contributors: contributorsArray, 
+            rawStats: { totalPRs: totalMergedPRs }
+          },
           timestamp: now
         });
 
@@ -301,9 +448,9 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
 
   const clearCache = useCallback(() => {
     githubService.clearCache();
-    setCache({ data: null, timestamp: 0 }); // Clear local cache too
+    setCache({ data: null, timestamp: 0 });
     const abortController = new AbortController();
-    fetchAllStats(abortController.signal);// Refetch data after clearing cache
+    fetchAllStats(abortController.signal);
   }, [fetchAllStats]);
 
   useEffect(() => {
@@ -339,6 +486,9 @@ export function CommunityStatsProvider({ children }: CommunityStatsProviderProps
     clearCache,
     contributors,
     stats,
+    currentTimeFilter,
+    setTimeFilter,
+    getFilteredPRsForContributor,
   };
 
   return (
@@ -361,13 +511,13 @@ export const convertStatToText = (num: number): string => {
     typeof Intl === "object" && Intl && typeof Intl.NumberFormat === "function"; 
 
   if (!hasIntlSupport) {
-    return `${(num / 1000).toFixed(1)}k`; // Fallback for environments without Intl support
+    return `${(num / 1000).toFixed(1)}k`;
   }
 
   const formatter = new Intl.NumberFormat("en-US", {
     notation: "compact", 
     compactDisplay: "short",
-    maximumSignificantDigits: 3, // More precise formatting
+    maximumSignificantDigits: 3,
   });
   return formatter.format(num);
 };

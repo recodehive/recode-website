@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import type { ReactElement } from 'react';
-import { useLocation } from '@docusaurus/router';
+import { useLocation, useHistory } from '@docusaurus/router';
+import './video.css';
 import './index.css';
+import './details.css';
 
 interface VideoData {
   id: string;
@@ -30,6 +32,7 @@ const getYoutubeVideoId = (url: string): string => {
 
 export default function VideoDetails(): ReactElement {
   const location = useLocation();
+  const history = useHistory();
   const state = location.state as LocationState;
   const video = state?.video;
   const [title, setTitle] = useState<string>('Loading...');
@@ -106,6 +109,24 @@ export default function VideoDetails(): ReactElement {
             </div>
             <div className="video-meta">
               <p>Watch in full screen for the best viewing experience</p>
+            </div>
+            <div className="pagination" style={{marginTop: '30px'}}>
+              <button 
+                onClick={() => history.push('/broadcasts')}
+                style={{
+                  display: 'inline-block',
+                  padding: '12px 24px',
+                  backgroundColor: '#007bff',
+                  color: 'white',
+                  borderRadius: '8px',
+                  fontWeight: 'bold',
+                  textDecoration: 'none',
+                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+                  border: 'none'
+                }}
+              >
+                ← Back to Videos
+              </button>
             </div>
           </div>
         </div>

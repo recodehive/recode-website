@@ -80,6 +80,25 @@ docker run -p 3000:3000 recodehive-app
 
     This command will start a development server and open the application in your default web browser.
 
+## ⚡ Local Development with Docker Compose & Hot Reload
+
+For an even smoother experience, contributors can leverage **Docker Compose with hot reloading**.  
+This lets you see code changes instantly at [http://localhost:3000](http://localhost:3000) without rebuilding or restarting containers.
+
+### 🏃 Quick Start
+
+```bash
+git clone https://github.com/your-username/recodehive-website.git
+cd recodehive-website
+docker-compose up
+```
+
+### 🚢 Production Deployment
+```bash
+npm run build
+npm run serve
+```
+
 **If you'd like to contribute to CodeHarborHub, please follow these guidelines:**
 
 - **Fork** the repository and clone it locally.

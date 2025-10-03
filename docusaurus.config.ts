@@ -20,7 +20,15 @@ const config: Config = {
   projectName: "recode-website",
 
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "warn",
+  
+  // Remove the deprecated option
+  // onBrokenMarkdownLinks: "warn",
+  
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
+  },
 
   // Google Analytics and Theme Scripts
   scripts: [
@@ -106,6 +114,7 @@ const config: Config = {
                    <a href="/docs/python/intro-python" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
                    <a href="/docs/GitHub/intro-github" class="nav__icons" > <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
                    <a href="/docs/Nextjs/intro-nextjs" class="nav__icons" > <img src="/icons/nextjs.svg" title="Nextjs" alt="Nextjs" /> </a>
+                   <a href="/docs" class="nav__icons"> <img src="/icons/Logo-512X512.png" title="Docs" alt="Docs" /> </a>
                  </div>
                </div>`,
             },
@@ -202,10 +211,11 @@ const config: Config = {
             },
           ],
         },
-        {
-          type: "search",
-          position: "right",
-        },
+        // Search disabled until Algolia is properly configured
+        // {
+        //   type: "search",
+        //   position: "right",
+        // },
         {
           type: "html",
           position: "right",
@@ -222,25 +232,32 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
-    algolia: {
-      appId: "YOUR_APP_ID",
-      apiKey: "YOUR_SEARCH_API_KEY",
-      indexName: "YOUR_INDEX_NAME",
-      contextualSearch: true,
-      externalUrlRegex: "external\\.com|domain\\.com",
-      replaceSearchResultPathname: {
-        from: "/docs/",
-        to: "/",
-      },
-      searchParameters: {},
-      searchPagePath: "search",
-      insights: false,
-    },
+    // Disable Algolia search until properly configured
+    // algolia: {
+    //   appId: "YOUR_APP_ID",
+    //   apiKey: "YOUR_SEARCH_API_KEY", 
+    //   indexName: "YOUR_INDEX_NAME",
+    //   contextualSearch: true,
+    //   externalUrlRegex: "external\\.com|domain\\.com",
+    //   replaceSearchResultPathname: {
+    //     from: "/docs/",
+    //     to: "/",
+    //   },
+    //   searchParameters: {},
+    //   searchPagePath: "search",
+    //   insights: false,
+    // },
   } satisfies Preset.ThemeConfig,
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
   },
+  
+  // Keep legacy setting until fully migrated to v4
+  onBrokenMarkdownLinks: "warn",
 
   themes: ["@docusaurus/theme-mermaid"],
 

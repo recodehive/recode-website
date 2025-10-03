@@ -5,11 +5,18 @@ import { motion } from "framer-motion";
 import SlotCounter from "react-slot-counter";
 import NavbarIcon from "../../../components/navbar/NavbarIcon";
 import { useHistory } from "@docusaurus/router";
-import { Home, MessageCircle, Gift, Trophy, Crown, Star, Award, Clock, Users, TrendingUp, Medal } from "lucide-react";
+import { Home, MessageCircle, Gift, Trophy, Crown, Star, Award, Clock, Users, TrendingUp, Medal, ArrowLeft } from "lucide-react";
 import "../dashboard.css";
 
 // Giveaway-specific styles
 const giveawayStyles = `
+.dashboard-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
 .giveaway-stats-banner {
   display: flex;
   justify-content: space-between;
@@ -370,6 +377,48 @@ const giveawayStyles = `
     font-size: 2rem;
   }
 }
+
+/* Dashboard styles for consistency */
+.dashboard-stats-section {
+  margin-bottom: 60px;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  color: var(--ifm-color-content);
+}
+
+.dashboard-stat-card {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-stat-value {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: var(--ifm-color-primary);
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 996px) {
+  .dashboard-main-content {
+    padding: 80px 20px 40px;
+  }
+}
 `;
 
 // Inject styles
@@ -395,10 +444,38 @@ interface GiveawayEntry {
 
 const GiveawayPage: React.FC = () => {
   const history = useHistory();
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
+  const [showDashboardMenu, setShowDashboardMenu] = useState(false);
   const [leaderboard, setLeaderboard] = useState<GiveawayEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<"home" | "discuss" | "contributors" | "giveaway">("giveaway");
+
+  // Close dashboard menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Element;
+      // Close menu when clicking on overlay or anywhere outside the menu
+      if (showDashboardMenu && 
+          (!target.closest('.dashboard-mobile-menu > div:last-child') && 
+           !target.closest('.dashboard-menu-btn') ||
+           target.closest('.dashboard-menu-overlay'))) {
+        setShowDashboardMenu(false);
+      }
+    };
+
+    if (showDashboardMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showDashboardMenu]);
+  
+  // Ensure active tab is set correctly when page loads
+  useEffect(() => {
+    // We're on the giveaway page, so the active tab should be "giveaway"
+    setActiveTab("giveaway");
+  }, []);
 
   useEffect(() => {
     // Simulate fetching leaderboard data
@@ -463,13 +540,22 @@ const GiveawayPage: React.FC = () => {
   const handleTabChange = (
     tab: "home" | "discuss" | "contributors" | "giveaway"
   ) => {
-    setIsMobileSidebarOpen(false);
+    setActiveTab(tab);
+    setShowDashboardMenu(false);
+    // When navigating from giveaway page to other tabs, we need to 
+    // ensure we're using consistent paths with the dashboard page
     if (tab === "discuss") {
+      // Navigate to main dashboard page with discuss hash
       history.push("/dashboard#discuss");
     } else if (tab === "contributors") {
-      history.push("/dashboard#contributors");
+      // Navigate to main dashboard page with leaderboard hash
+      history.push("/dashboard#leaderboard");
     } else if (tab === "home") {
+      // Navigate to main dashboard page
       history.push("/dashboard");
+    } else if (tab === "giveaway") {
+      // Already on giveaway page, just scroll to top
+      window.scrollTo(0, 0);
     }
   };
 
@@ -508,85 +594,123 @@ const GiveawayPage: React.FC = () => {
       <Head>
         <title>🎁 RecodeHive Giveaway</title>
       </Head>
-      <div
-        className={`dashboard-layout ${
-          isMobileSidebarOpen ? "sidebar-open" : ""
-        }`}
-      >
-        {/* Mobile Menu Button */}
+      <div className="dashboard-layout">
+        {/* Dashboard Menu Button - Only visible on mobile */}
         <button
-          className={`mobile-menu-btn ${isMobileSidebarOpen ? "open" : ""}`}
-          onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
-          aria-label="Toggle mobile menu"
-        />
-
-        {/* Sidebar Navigation */}
-        <nav
-          className={`dashboard-sidebar ${
-            isSidebarCollapsed ? "collapsed" : ""
-          } ${isMobileSidebarOpen ? "show" : ""}`}
+          className={`dashboard-menu-btn ${showDashboardMenu ? "open" : ""}`}
+          onClick={() => setShowDashboardMenu(!showDashboardMenu)}
+          aria-label="Toggle dashboard menu"
         >
-          <div className="sidebar-header">
-            <div className="sidebar-logo">
-              <h2>RecodeHive</h2>
+          {showDashboardMenu ? <span aria-hidden="true">✕</span> : <span aria-hidden="true">☰</span>}
+        </button>
+        
+        {/* Dashboard Mobile Menu */}
+        <div className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}>
+          {/* Overlay - always present but opacity controlled by CSS */}
+          <div 
+            className="dashboard-menu-overlay"
+            onClick={() => setShowDashboardMenu(false)}
+          />
+          <div>
+            <div className="dashboard-menu-header">
+              <h3>Dashboard Menu</h3>
+              <button
+                className="close-menu-btn"
+                onClick={() => setShowDashboardMenu(false)}
+                aria-label="Close menu"
+              >
+                ✕
+              </button>
             </div>
-            <button
-              className="sidebar-toggle"
-              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-              aria-label={
-                isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
-              }
-            >
-              {isSidebarCollapsed ? "→" : "←"}
-            </button>
+            
+            {/* Dashboard navigation items */}
+            <div className="dashboard-menu-items">
+              <div
+                className={`menu-item ${activeTab === "home" ? "active" : ""}`}
+                onClick={() => {
+                  handleTabChange("home");
+                  setShowDashboardMenu(false);
+                }}
+              >
+                <span className="menu-icon"><Home size={18} /></span> Home
+              </div>
+              <div
+                className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
+                onClick={() => {
+                  handleTabChange("discuss");
+                  setShowDashboardMenu(false);
+                }}
+              >
+                <span className="menu-icon"><MessageCircle size={18} /></span> Discussions
+              </div>
+              <div
+                className={`menu-item ${activeTab === "contributors" ? "active" : ""}`}
+                onClick={() => {
+                  handleTabChange("contributors");
+                  setShowDashboardMenu(false);
+                }}
+              >
+                <span className="menu-icon"><Trophy size={18} /></span> LeaderBoard
+              </div>
+              <div
+                className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
+                onClick={() => {
+                  handleTabChange("giveaway");
+                  setShowDashboardMenu(false);
+                }}
+              >
+                <span className="menu-icon"><Gift size={18} /></span> Giveaways
+              </div>
+            </div>
           </div>
-          <ul className="sidebar-nav">
-            <li className="nav-item" onClick={() => handleTabChange("home")}>
-              <span className="nav-icon">
-                <Home size={18} />
-              </span>
-              <span className="nav-text">Home</span>
-            </li>
-            <li className="nav-item" onClick={() => handleTabChange("discuss")}>
-              <span className="nav-icon">
-                <MessageCircle size={18} />
-              </span>
-              <span className="nav-text">Discuss</span>
-            </li>
-            <li className="nav-item active">
-              <span className="nav-icon">
-                <Gift size={18} />
-              </span>
-              <span className="nav-text">Giveaway</span>
-            </li>
-            <li
-              className="nav-item"
-              onClick={() => handleTabChange("contributors")}
-            >
-              <span className="nav-icon">
-                <Trophy size={18} />
-              </span>
-              <span className="nav-text">Contributors</span>
-            </li>
-          </ul>
-          <div className="sidebar-footer">
-            <button
-              className="sidebar-toggle bottom-toggle"
-              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-              aria-label={
-                isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
-              }
-            >
-              {isSidebarCollapsed ? "→" : "←"}
-            </button>
-          </div>
-        </nav>
+        </div>
 
-        <main
-          className={`dashboard-main ${
-            isSidebarCollapsed ? "sidebar-collapsed" : ""
-          }`}
-        >
+        <div className="dashboard-sidebar">
+          <div className="sidebar-header">
+            <button
+              className="back-button"
+              onClick={() => {
+                // If we came from the dashboard, go back, otherwise go to dashboard
+                if (history.length > 2) {
+                  history.goBack();
+                } else {
+                  history.push('/dashboard');
+                }
+              }}
+              aria-label="Go back to dashboard"
+            >
+              <ArrowLeft size={20} />
+            </button>
+          </div>
+          <div className="sidebar-nav">
+            <NavbarIcon
+              icon={<Home size={20} />}
+              text="Home"
+              active={activeTab === "home"}
+              onClick={() => handleTabChange("home")}
+            />
+            <NavbarIcon
+              icon={<MessageCircle size={20} />}
+              text="Discussions"
+              active={activeTab === "discuss"}
+              onClick={() => handleTabChange("discuss")}
+            />
+            <NavbarIcon
+              icon={<Trophy size={20} />}
+              text="LeaderBoard"
+              active={activeTab === "contributors"}
+              onClick={() => handleTabChange("contributors")}
+            />
+            <NavbarIcon
+              icon={<Gift size={20} />}
+              text="Giveaways"
+              active={activeTab === "giveaway"}
+              onClick={() => handleTabChange("giveaway")}
+            />
+          </div>
+        </div>
+
+        <div className="dashboard-main-content">
           <motion.section
             className="dashboard-hero"
             initial={{ opacity: 0, y: 10 }}
@@ -720,7 +844,7 @@ const GiveawayPage: React.FC = () => {
               </div>
             )}
           </motion.section>
-        </main>
+        </div>
       </div>
     </Layout>
   );
