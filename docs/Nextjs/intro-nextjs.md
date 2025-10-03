@@ -366,7 +366,9 @@ Now that you understand what Next.js is and why it's valuable, here's your learn
 
 ### Video Tutorial
 
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/wm5gMKuwSYk" title="Next.js Crash Course" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[![Next.js 14 Full Course - Build and Deploy a Full Stack App](https://img.youtube.com/vi/wm5gMKuwSYk/0.jpg)](https://www.youtube.com/watch?v=wm5gMKuwSYk)
+
+*Click the thumbnail above to watch the complete Next.js tutorial on YouTube*
 
 ## Conclusion
 
