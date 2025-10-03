@@ -143,31 +143,31 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                 </span>
                                 Comprehensive Coverage
                             </h3>
-                            <ul className="space-y-3 text-gray-600 dark:text-gray-300">
+                            <ul className="space-y-3">
                                 <li className="flex items-start">
                                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                                    <span>
+                                    <span className="">
                                         <strong>Technical Mastery:</strong> 500+ coding problems, algorithms, data structures, and
                                         system design challenges
                                     </span>
                                 </li>
                                 <li className="flex items-start">
                                     <span className="w-2 h-2 bg-green-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                                    <span>
+                                    <span className="text-gray-700 dark:text-gray-300">
                                         <strong>Behavioral Excellence:</strong> STAR method framework, leadership scenarios, and
                                         communication skills
                                     </span>
                                 </li>
                                 <li className="flex items-start">
                                     <span className="w-2 h-2 bg-purple-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                                    <span>
+                                    <span className="text-gray-700 dark:text-gray-300">
                                         <strong>Company Intelligence:</strong> FAANG-specific strategies, culture insights, and
                                         insider tips
                                     </span>
                                 </li>
                                 <li className="flex items-start">
                                     <span className="w-2 h-2 bg-orange-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                                    <span>
+                                    <span className="text-gray-700 dark:text-gray-300">
                                         <strong>Mock Practice:</strong> Real-time simulations with feedback and performance tracking
                                     </span>
                                 </li>
@@ -290,7 +290,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                                     animate={{ scale: [1, 1.2, 1] }}
                                                     transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                                                 />
-                                                <span className="relative z-10">{stage.step}</span>
+                                                <span className="relative z-10 text-inherit">{stage.step}</span>
                                             </div>
                                             <motion.div
                                                 className="absolute -top-2 -right-2 w-8 h-8 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center shadow-md"
@@ -401,7 +401,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                                                             transition={{ duration: 0.4, delay: tipIndex * 0.1 }}
                                                                         >
                                                                             <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
-                                                                            <span className="leading-relaxed">{tip}</span>
+                                                                            <span className="leading-relaxed text-gray-700 dark:text-gray-300">{tip}</span>
                                                                         </motion.li>
                                                                     ))}
                                                                 </ul>
