@@ -1149,7 +1149,7 @@ html {
 [data-theme="light"] .interview-prep-page h5,
 [data-theme="light"] .interview-prep-page h6 {
   /* Use a dark heading color in light mode for readability */
-  color: #111827 !important; /* tailwind gray-900 */
+  color: #111827 !important; /* Tailwind gray-900 */
 }
 
 .watch-video-btn {
@@ -1365,6 +1365,7 @@ html {
   color: #fdba74; /* orange-300 in dark */
 }
 .company-tab-community-link:hover {
+  color: #fdba74;
   text-decoration: none;
 }
 /* Move navbar right items to absolute right corner */

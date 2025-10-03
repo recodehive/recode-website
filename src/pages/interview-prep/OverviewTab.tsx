@@ -146,7 +146,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                             <ul className="space-y-3">
                                 <li className="flex items-start">
                                     <span className="w-2 h-2 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                                    <span className="">
+                                    <span>
                                         <strong>Technical Mastery:</strong> 500+ coding problems, algorithms, data structures, and
                                         system design challenges
                                     </span>
