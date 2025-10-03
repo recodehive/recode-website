@@ -7,6 +7,8 @@
 
 </div>
 
+<div align="center">
+
 ## 📚 Table of Contents
 
 | Section | Topics Covered |
@@ -21,6 +23,8 @@
 | **[Learning Path & Next Steps](#learning-path--next-steps)** | 4-phase roadmap from foundations to production |
 | **[Helpful Resources](#helpful-resources)** | Official docs, tutorials, community, video resources |
 | **[Conclusion](#conclusion)** | Key takeaways and next steps |
+
+</div>
 
 ---
 
