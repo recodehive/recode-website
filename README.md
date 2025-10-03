@@ -58,7 +58,7 @@ flowchart LR
 
 2. **Navigate to the project directory:**
    ```bash
-   cd recodehive-website
+   cd recode-website
    ```
 
 3. **Prerequesites**
@@ -131,7 +131,7 @@ recode-website/
 |    ├── Google-Student-Ambassador/
 |    ├── ...
 ├── src/                                  🔹Source Code  
-|    └── compenents/
+|    └── components/
 |    ├── css/
 |        └── custom.css
 |    ├── data/
