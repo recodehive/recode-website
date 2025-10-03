@@ -38,6 +38,7 @@ Next.js offers both <a href="https://nextjs.org/docs/getting-started">free</a> a
 ### The Modern Web Development Challenge
 
 Building a production-ready React application traditionally requires assembling numerous tools and libraries:
+
 - **Routing**: React Router or similar libraries for navigation
 - **Data Fetching**: Custom solutions or libraries like SWR or React Query
 - **Styling**: CSS-in-JS libraries, CSS Modules configuration
@@ -83,9 +84,9 @@ Imagine you're building an online store. Different pages have different requirem
 Next.js empowers you to **mix and match** these strategies within the same application, choosing the optimal approach for each page. This flexibility is what makes Next.js stand out from other frameworks.
 :::
 
-  <BrowserWindow url="https://nextjs.org/" bodyStyle={{padding: 0}}>
-     [![Next.js Framework](./assets/nextjs-logo.png)](https://nextjs.org/)
-    </BrowserWindow>
+<BrowserWindow url="https://nextjs.org/" bodyStyle={{padding: 0}}>
+  [![Next.js Framework](./assets/nextjs-logo.png)](https://nextjs.org/)
+</BrowserWindow>
 
 ## Understanding React and React Frameworks
 
@@ -144,17 +145,19 @@ Similarly, React provides the core functionality for building UIs, but a complet
 
 :::
 
-## Why Learn Next.js in 2024 and Beyond?
+## Why Learn Next.js in 2025 and Beyond?
 
 Next.js has become the **industry standard** for building React applications, and for good reason. Learning Next.js opens doors to:
 
 ### Career Opportunities
+
 - **High Demand**: Companies worldwide are actively hiring Next.js developers
 - **Competitive Salaries**: Next.js expertise commands premium compensation
 - **Startup Favorite**: The go-to choice for startups building MVPs quickly
 - **Enterprise Adoption**: Used by Fortune 500 companies for mission-critical applications
 
 ### Technical Advantages
+
 - **Unified Stack**: Build frontend and backend in one codebase using JavaScript/TypeScript
 - **Future-Proof**: Regular updates and backing from Vercel ensures long-term support
 - **Performance by Default**: Automatic optimizations that would take months to implement manually
@@ -162,6 +165,7 @@ Next.js has become the **industry standard** for building React applications, an
 - **Developer Experience**: Exceptional DX with features like Fast Refresh, detailed error messages, and TypeScript support
 
 ### Practical Benefits
+
 You can build **any type** of web application with Next.js:
 - 📱 **Landing Pages & Marketing Sites** - Fast, SEO-optimized, and beautiful
 - 🛒 **E-commerce Platforms** - Dynamic product pages with excellent performance
@@ -305,28 +309,32 @@ npm run lint         # Run ESLint to check code quality
 
 Now that you understand what Next.js is and why it's valuable, here's your learning roadmap:
 
-**Phase 1: Foundations (Week 1-2)**
+### Phase 1: Foundations (Week 1-2)
+
 1. ✅ Complete this introduction (You are here!)
 2. Create your first Next.js project
 3. Understand the file-based routing system
 4. Learn about pages and layouts
 5. Practice with basic components
 
-**Phase 2: Core Features (Week 3-4)**
+### Phase 2: Core Features (Week 3-4)
+
 1. Master data fetching patterns (SSG, SSR, ISR)
 2. Work with the Image and Link components
 3. Implement dynamic routes
 4. Add API routes or Server Actions
 5. Deploy your first app to Vercel
 
-**Phase 3: Advanced Concepts (Week 5-8)**
+### Phase 3: Advanced Concepts (Week 5-8)
+
 1. Implement authentication
 2. Work with databases (Prisma, MongoDB, etc.)
 3. State management (Context API, Zustand, Redux)
 4. Middleware and authentication flows
 5. Performance optimization techniques
 
-**Phase 4: Production Ready (Week 9+)**
+### Phase 4: Production Ready (Week 9+)
+
 1. Testing (Jest, React Testing Library, Playwright)
 2. CI/CD pipelines
 3. Monitoring and analytics
@@ -336,12 +344,13 @@ Now that you understand what Next.js is and why it's valuable, here's your learn
 ### Helpful Resources
 
 - 📖 **Official Documentation**: [nextjs.org/docs](https://nextjs.org/docs) - Comprehensive and well-maintained
-- 🎓 **Next.js Learn**: [nextjs.org/learn](https://nextjs.org/learn) - Interactive tutorials
+- 🎓 **Next.js Learn**: [nextjs.org/learn](https://nextjs.org/learn) - Interactive tutorials from the official team
 - 💬 **Community**: Join the [Next.js Discord](https://nextjs.org/discord) for help and discussions
 - 📺 **YouTube**: Countless tutorials from Vercel and the community
-- 📝 **Blog**: [vercel.com/blog](https://vercel.com/blog) - Latest updates and best practices
+- 📝 **Vercel Blog**: [vercel.com/blog](https://vercel.com/blog) - Latest updates and best practices
 
-### Watch the Video Tutorial
+### Video Tutorial
+
 <iframe width="880" height="480" src="https://www.youtube.com/embed/wm5gMKuwSYk" title="Next.js 14 Full Course 2024 | Build and Deploy a Full Stack App Using the Official React Framework" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Conclusion
