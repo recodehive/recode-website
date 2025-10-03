@@ -92,6 +92,7 @@ const sidebars: SidebarsConfig = {
         'python/python-loops',
         'python/python-functions',
         'python/python-errors-and-exceptions',
+        'python/python-oops',
       ],
     },
     {
