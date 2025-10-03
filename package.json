@@ -58,9 +58,9 @@
     "vanilla-tilt": "^1.8.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "3.9.1",
+    "@docusaurus/module-type-aliases": "^3.9.1",
     "@docusaurus/tsconfig": "^3.9.1",
-    "@docusaurus/types": "3.9.1",
+    "@docusaurus/types": "^3.9.1",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/canvas-confetti": "^1.9.0",
     "@types/react": "^19.1.9",

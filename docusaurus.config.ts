@@ -20,15 +20,7 @@ const config: Config = {
   projectName: "recode-website",
 
   onBrokenLinks: "throw",
-  
-  // Remove the deprecated option
-  // onBrokenMarkdownLinks: "warn",
-  
-  markdown: {
-    hooks: {
-      onBrokenMarkdownLinks: "warn",
-    },
-  },
+  // onBrokenMarkdownLinks moved to markdown.hooks
 
   // Google Analytics and Theme Scripts
   scripts: [
