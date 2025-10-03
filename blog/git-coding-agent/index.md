@@ -31,7 +31,7 @@ canonical_url:
 #     content: "assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
 
 ---
-
+ <!-- truncate -->
 
 ### 🚀 **What Is GitHub Coding Agent**  
 The GitHub Copilot Coding Agent is an asynchronous software engineering agent that:
@@ -69,20 +69,20 @@ When creating an issue for the GitHub Copilot Coding Agent, clarity and structur
 ### **Example Issue Template:**
 
 ```markdown
-### Summary
+Summary
 Briefly describe the task or bug.
 
-### Context
+Context
 Explain why this change is needed. Link to related issues or documentation.
 
-### Acceptance Criteria
+Acceptance Criteria
 - [ ] List specific outcomes or deliverables
 - [ ] Include test coverage or documentation updates if needed
 
-### Technical Notes
+Technical Notes
 Mention files, functions, or dependencies involved.
 
-### Additional Info
+Additional Info
 Add screenshots, logs, or references as needed.
 ```
 

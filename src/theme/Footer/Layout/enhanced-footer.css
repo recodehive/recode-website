@@ -1384,6 +1384,17 @@ html[data-theme='light'] .enhanced-footer {
   font-weight: 500;
 }
 
+.newsletter-input.input-error {
+  border-color: #e53e3e;
+}
+
+.error-text {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #e53e3e;
+}
+
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .footer-links-grid {

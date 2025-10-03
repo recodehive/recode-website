@@ -1,165 +1,81 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "@theme/Layout";
 import { Mail, MapPin, Clock } from "lucide-react";
+import "./index.css";
 
 const ContactUs: React.FC = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const [errors, setErrors] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  const validate = () => {
-    const newErrors = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      subject: "",
-      message: "",
-    };
-
-    if (!formData.firstName) {
-      newErrors.firstName = "First Name is required.";
-    }
-
-    if (!formData.lastName) {
-      newErrors.lastName = "Last Name is required.";
-    }
-
-    if (!formData.email) {
-      newErrors.email = "Email is required.";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid.";
-    }
-
-    if (!formData.subject) {
-      newErrors.subject = "Subject is required.";
-    }
-
-    if (!formData.message) {
-      newErrors.message = "Message is required.";
-    }
-
-    return newErrors;
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const newErrors = validate();
-    if (Object.values(newErrors).some((error) => error)) {
-      setErrors(newErrors);
-    } else {
-      // Form is valid, you can submit it here
-      console.log("Form submitted successfully:", formData);
-      setErrors({
-        firstName: "",
-        lastName: "",
-        email: "",
-        subject: "",
-        message: "",
-      });
-      // You can reset the form here if needed
-      // setFormData({
-      //   firstName: "",
-      //   lastName: "",
-      //   email: "",
-      //   subject: "",
-      //   message: "",
-      // });
-    }
-  };
-
   return (
     <Layout
       title="Contact Us"
       description="Get in touch with the RecodeHive team. We're here to help with your questions, feedback, and collaboration opportunities."
     >
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
-        <div className="max-w-6xl mx-auto px-6 py-16">
+      <div className="enhanced-contact-container">
+        <div className="contact-content-wrapper">
           {/* Header Section */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
+          <div className="contact-header">
+            <h1 className="contact-title">
               Get In Touch
             </h1>
-            <p className="text-lg max-w-2xl mx-auto" style={{color: 'white'}}>
+            <p className="contact-description">
               Have questions, feedback, or want to collaborate? We'd love to hear from you. 
               Reach out to us and we'll get back to you as soon as possible.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="contact-grid">
             {/* Contact Information */}
-            <div className="space-y-8">
+            <div className="contact-info-section">
               <div>
-                <h2 className="text-2xl font-bold mb-6" style={{color: 'white'}}>
+                <h2 className="contact-info-title">
                   Contact Information
                 </h2>
                 
-                <div className="space-y-6">
+                <div className="contact-info-items">
                   {/* Email */}
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-lg">
-                      <Mail className="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                  <div className="contact-info-item">
+                    <div className="contact-icon-wrapper">
+                      <Mail className="w-6 h-6" style={{ color: 'var(--contact-accent-primary)' }} />
                     </div>
-                    <div>
-                      <h3 className="font-semibold" style={{color: 'white'}}>Email</h3>
+                    <div className="contact-info-details">
+                      <h3>Email</h3>
                       <a 
                         href="mailto:sanjay@recodehive.com"
-                        className="text-blue-400 hover:underline"
                       >
                         sanjay@recodehive.com
                       </a>
-                      <p className="text-sm mt-1" style={{color: 'white'}}>
+                      <p>
                         General inquiries and support
                       </p>
                     </div>
                   </div>
 
                   {/* Response Time */}
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-green-100 dark:bg-green-900/30 p-3 rounded-lg">
-                      <Clock className="w-6 h-6 text-green-600 dark:text-green-400" />
+                  <div className="contact-info-item">
+                    <div className="contact-icon-wrapper">
+                      <Clock className="w-6 h-6" style={{ color: 'var(--contact-accent-primary)' }} />
                     </div>
-                    <div>
-                      <h3 className="font-semibold" style={{color: 'white'}}>Response Time</h3>
-                      <p style={{color: 'white'}}>
+                    <div className="contact-info-details">
+                      <h3>Response Time</h3>
+                      <p style={{ marginTop: 0, color: 'var(--contact-text-secondary)' }}>
                         Within 24-48 hours
                       </p>
-                      <p className="text-sm mt-1" style={{color: 'white'}}>
+                      <p>
                         We'll get back to you promptly
                       </p>
                     </div>
                   </div>
 
                   {/* Location */}
-                  <div className="flex items-start space-x-4">
-                    <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-lg">
-                      <MapPin className="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                  <div className="contact-info-item">
+                    <div className="contact-icon-wrapper">
+                      <MapPin className="w-6 h-6" style={{ color: 'var(--contact-accent-primary)' }} />
                     </div>
-                    <div>
-                      <h3 className="font-semibold" style={{color: 'white'}}>Location</h3>
-                      <p style={{color: 'white'}}>
+                    <div className="contact-info-details">
+                      <h3>Location</h3>
+                      <p style={{ marginTop: 0, color: 'var(--contact-text-secondary)' }}>
                         Online & Global
                       </p>
-                      <p className="text-sm mt-1" style={{color: 'white'}}>
+                      <p>
                         Serving developers worldwide
                       </p>
                     </div>
@@ -168,29 +84,29 @@ const ContactUs: React.FC = () => {
               </div>
 
               {/* Additional Information */}
-              <div className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950/50 dark:to-purple-950/50 border border-gray-200 dark:border-gray-700 p-6 rounded-xl">
-                <h3 className="font-bold mb-3" style={{color: 'white'}}>
+              <div className="contact-info-box">
+                <h3>
                   What we can help you with:
                 </h3>
-                <ul className="space-y-2" style={{color: 'white'}}>
-                  <li className="flex items-center space-x-2">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                <ul>
+                  <li>
+                    <span className="bullet"></span>
                     <span>Learning resources and tutorials</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  <li>
+                    <span className="bullet"></span>
                     <span>Technical support and guidance</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  <li>
+                    <span className="bullet"></span>
                     <span>Collaboration opportunities</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  <li>
+                    <span className="bullet"></span>
                     <span>Partnership inquiries</span>
                   </li>
-                  <li className="flex items-center space-x-2">
-                    <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  <li>
+                    <span className="bullet"></span>
                     <span>Content suggestions and feedback</span>
                   </li>
                 </ul>
@@ -198,78 +114,66 @@ const ContactUs: React.FC = () => {
             </div>
 
             {/* Contact Form */}
-            <div className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-2xl shadow-xl p-8">
-              <h2 className="text-2xl font-bold mb-6" style={{color: 'white'}}>
+            <div className="contact-form-section">
+              <h2 className="contact-form-title">
                 Send us a message
               </h2>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium mb-2" style={{color: 'white'}}>
+              <form className="contact-form">
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="firstName" className="form-label">
                       First Name
                     </label>
                     <input
                       type="text"
                       id="firstName"
                       name="firstName"
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors"
-                      value={formData.firstName}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="form-input"
                       placeholder="Your first name"
+                      required
                     />
-                    {errors.firstName && <p className="text-red-500 text-xs mt-1">{errors.firstName}</p>}
                   </div>
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium mb-2" style={{color: 'white'}}>
+                  <div className="form-group">
+                    <label htmlFor="lastName" className="form-label">
                       Last Name
                     </label>
                     <input
                       type="text"
                       id="lastName"
                       name="lastName"
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors"
-                      value={formData.lastName}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                      className="form-input"
                       placeholder="Your last name"
+                      required
                     />
-                    {errors.lastName && <p className="text-red-500 text-xs mt-1">{errors.lastName}</p>}
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2" style={{color: 'white'}}>
+                <div className="form-group">
+                  <label htmlFor="email" className="form-label">
                     Email Address
                   </label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-colors"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    className="form-input"
                     placeholder="your.email@example.com"
+                    required
                   />
-                  {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
                 </div>
 
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2" style={{color: 'white'}}>
+                <div className="form-group">
+                  <label htmlFor="subject" className="form-label">
                     Subject
                   </label>
                   <select
                     id="subject"
                     name="subject"
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white transition-colors"
+                    className="form-select"
                     required
-                    value={formData.subject}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
                   >
-                    <option value="" className="text-gray-500 dark:text-gray-400">Select a subject</option>
+                    <option value="">Select a subject</option>
                     <option value="general">General Inquiry</option>
                     <option value="support">Technical Support</option>
                     <option value="collaboration">Collaboration</option>
@@ -277,30 +181,25 @@ const ContactUs: React.FC = () => {
                     <option value="feedback">Feedback</option>
                     <option value="other">Other</option>
                   </select>
-                  {errors.subject && <p className="text-red-500 text-xs mt-1">{errors.subject}</p>}
                 </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2" style={{color: 'white'}}>
+                <div className="form-group">
+                  <label htmlFor="message" className="form-label">
                     Message
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 resize-none transition-colors"
-
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-700 dark:text-white resize-none"
+                    className="form-textarea"
                     placeholder="Tell us more about your inquiry..."
+                    required
                   ></textarea>
-                  {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-xl"
+                  className="submit-button"
                 >
                   Send Message
                 </button>
@@ -309,40 +208,40 @@ const ContactUs: React.FC = () => {
           </div>
 
           {/* Additional Resources */}
-          <div className="mt-16 text-center">
-            <h2 className="text-2xl font-bold mb-8" style={{color: 'white'}}>
+          <div className="contact-resources">
+            <h2 className="resources-title">
               Other Ways to Connect
             </h2>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="resources-grid">
               <a
                 href="/community"
-                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group"
+                className="resource-card"
               >
-                <div className="text-blue-600 dark:text-blue-400 text-2xl mb-3 group-hover:scale-110 transition-transform">📚</div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Community</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                <div className="resource-icon">📚</div>
+                <h3>Community</h3>
+                <p>
                   Join our community and connect with fellow developers
                 </p>
               </a>
               
               <a
                 href="/docs"
-                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group"
+                className="resource-card"
               >
-                <div className="text-green-600 dark:text-green-400 text-2xl mb-3 group-hover:scale-110 transition-transform">📖</div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Documentation</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                <div className="resource-icon">📖</div>
+                <h3>Documentation</h3>
+                <p>
                   Explore our comprehensive learning resources
                 </p>
               </a>
               
               <a
                 href="/blogs"
-                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group"
+                className="resource-card"
               >
-                <div className="text-purple-600 dark:text-purple-400 text-2xl mb-3 group-hover:scale-110 transition-transform">✍️</div>
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-2">Blog</h3>
-                <p className="text-gray-600 dark:text-gray-400 text-sm">
+                <div className="resource-icon">✍️</div>
+                <h3>Blog</h3>
+                <p>
                   Read our latest articles and tutorials
                 </p>
               </a>

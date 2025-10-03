@@ -34,7 +34,7 @@ canonical_url:
 
 ---
 
-
+ <!-- truncate -->
 ### 🔍 Research the Industry and Find Your Niche
 
 UI/UX design is one of the most exciting and innovative fields in the tech industry. It is a rapidly growing field with plenty of opportunities for those who are willing to learn and work hard. In this blog post, I’ll be giving you 10 steps for anyone looking to land a job in UI/UX design as a newbie. These steps will help you on a path to land a job in UI/UX design, as well as give you an insight into the industry and what it takes to be a successful designer.

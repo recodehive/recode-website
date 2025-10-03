@@ -206,6 +206,15 @@ html[data-theme='light'] {
   justify-content: center;
 }
 
+.nav-action-button:active {
+  box-shadow: 0 1px 8px rgba(40,50,70,0.06);
+}
+
+.nav-action-button.favorite.favorited {
+  color: #ff4d4d;      /* red heart */
+  background: #fff0f0; /* soft pink background when liked */
+}
+
 .nav-action-button:hover {
   background: var(--details-bg-card-hover);
   color: var(--details-text-primary);

@@ -23,6 +23,12 @@ const sidebars: SidebarsConfig = {
 
     },
     {
+      type: 'doc',
+      id: 'Getting-Started',
+      label: '🚀 Getting Started',
+      className: 'custom-sidebar-contributing',
+    },
+    {
       type: 'category',
       label: '🐙 GitHub',
       className: 'custom-sidebar-github',
@@ -84,6 +90,8 @@ const sidebars: SidebarsConfig = {
         'python/python-array',
         'python/python-conditional-statements',
         'python/python-loops',
+        'python/python-functions',
+        'python/python-errors-and-exceptions',
       ],
     },
     {
