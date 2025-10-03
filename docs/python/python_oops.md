@@ -1,21 +1,18 @@
-#author: seema kumari patel
-#OOPs concept - Python
-
 ---
 id: python-OOPs
 title: Python OOPs concept
 sidebar_label: Python OOPs concept #displays in sidebar
 sidebar_position: 19
+author: Seema Kumari Patel
+description: OOPs concept in Python
 tags:
   [
     Python,
     Introduction of python,
     Python Syntax,
     Python Variables,
-     Python Operators,
-
+    Python Operators,
   ]
-
 ---
 
 
@@ -31,6 +28,7 @@ Python supports the core principles of object-oriented programming, which are th
 
 📌 **Use Case**: create a class - car
 
+```python
 class Car:
     def __init__(self, brand, model):
         self.brand = brand
@@ -38,19 +36,23 @@ class Car:
 
     def start(self):
         print(f"{self.brand} {self.model} is starting...")
+```
 
 2. Object - An instance of a class.
 
 📌 **Use Case**: instantiate the variables
 
+```python
 my_car = Car("Tesla", "Model S")
 my_car.start()  # Tesla Model S is starting...
+```
 
 
 3. Encapsulation - Hiding the internal details and only exposing necessary parts.
 
 📌 **Use Case**: Not letting data to be accessed by other class
 
+```python
 class BankAccount:
     def __init__(self, balance):
         self.__balance = balance  # private variable
@@ -60,12 +62,14 @@ class BankAccount:
 
     def get_balance(self):
         return self.__balance
+```
 
 
 4. Inheritance - One class can inherit from another.
 
 📌 **Use Case**: car (parent) class is getting inherited by (child) ElectricCar
 
+```python
 class ElectricCar(Car):
     def __init__(self, brand, model, battery):
         super().__init__(brand, model)
@@ -77,12 +81,14 @@ class ElectricCar(Car):
 tesla = ElectricCar("Tesla", "Model X", 100)
 tesla.start()
 tesla.battery_info()
+```
 
 
 5. Polymorphism - Same function name, but different behavior depending on the object.
 
 📌 **Use Case**: Different classes using single method for different purposes.
 
+```python
 class Dog:
     def speak(self):
         return "Woof!"
@@ -94,12 +100,14 @@ class Cat:
 pets = [Dog(), Cat()]
 for pet in pets:
     print(pet.speak())  # Woof! / Meow!
+```
 
 
 6. Abstraction - Hiding implementation details, showing only essential features (using abc module).
 
 📌 **Use Case**: Hiding low level details
 
+```python
 from abc import ABC, abstractmethod
 
 class Shape(ABC):
@@ -116,5 +124,6 @@ class Circle(Shape):
 
 c = Circle(5)
 print(c.area())  # 78.5
+```
 
 

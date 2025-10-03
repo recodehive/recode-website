@@ -242,10 +242,12 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    },
   },
   
-  // Keep legacy setting until fully migrated to v4
-  onBrokenMarkdownLinks: "warn",
+  // Migrated legacy setting to markdown.hooks.onBrokenMarkdownLinks
 
   themes: ["@docusaurus/theme-mermaid"],
 
