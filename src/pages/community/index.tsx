@@ -33,8 +33,8 @@ const contributionSections: ContributionSection[] = [
       'Read about how to propose new features, collaborate on pull requests, and review peer code.'
     ],
     links: [
-      { text: 'GitHub', url: 'https://github.com/recodehive' },
-      { text: 'GitLab', url: 'https://gitlab.com' }
+      { text: 'GitHub', url: 'https://github.com/recodehive?view_as=public' },
+      { text: 'Join our organization', url: 'https://github.com/recodehive/Support/issues/new?assignees=&labels=invite+me+to+the+community&projects=&template=invitation.yml&title=Please+invite+me+to+the+Recode-Hive+GitHub+Community+Organization' }
     ],
     color: '#8b5cf6'
   },

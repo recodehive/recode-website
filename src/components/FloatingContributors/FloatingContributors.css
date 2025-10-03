@@ -30,7 +30,7 @@
   -webkit-backdrop-filter: blur(20px);
   border: none;
   border-radius: 20px;
-  padding: 18px;
+  padding: 20px;
   box-shadow:
     0 15px 35px rgba(108, 74, 232, 0.15),
     0 5px 15px rgba(0, 0, 0, 0.05);
@@ -40,12 +40,12 @@
   color: #1a202c;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-width: 330px;
-  width: 330px; /* Set fixed width */
-  height: 290px; /* Reduced fixed height */
+  width: 330px;
+  min-height: 290px; /* Increased min-height for better content fit */
   transition: all 0.4s ease;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Distribute space evenly */
+  gap: 12px;
 }
 
 /* New activity feed styles */
@@ -210,13 +210,14 @@
 /* Header embedded version - larger size */
 .floating-contributors-container.header-embedded .floating-contributors-card {
   min-width: 450px;
-  width: 450px; /* Set fixed width */
-  height: 370px; /* Updated height as requested */
-  padding: 28px;
+  width: 450px;
+  min-height: 370px; /* content fit */
+  padding: 24px;
   border-radius: 24px;
   box-shadow:
     0 15px 35px rgba(108, 74, 232, 0.12),
     0 5px 15px rgba(0, 0, 0, 0.03);
+  gap: 16px;
 }
 
 
@@ -378,11 +379,10 @@
 
 /* Header */
 .floating-contributors-header {
-  margin-bottom: 10px;
   padding-right: 30px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .floating-contributors-title {
@@ -424,18 +424,17 @@
 .floating-contributors-activity {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
+  gap: 12px;
+  padding: 12px 16px;
   background: rgba(255, 255, 255, 0.4);
   border-radius: 14px;
-  margin-bottom: 10px;
   border: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  height: 60px; /* Slightly reduced height */
-  box-sizing: border-box; /* Include padding in height calculation */
+  min-height: 64px;
+  box-sizing: border-box;
   box-shadow: 0 2px 8px rgba(108, 74, 232, 0.08);
 }
 
@@ -540,17 +539,18 @@
 .activity-details {
   flex: 1;
   min-width: 0;
-  overflow: hidden; /* Hide overflow */
-  max-width: calc(100% - 60px); /* Account for avatar + padding */
+  overflow: hidden;
+  max-width: calc(100% - 60px);
   display: flex;
   flex-direction: column;
+  gap: 2px;
 }
 
 .activity-user {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 3px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .activity-username {
@@ -605,13 +605,12 @@
 
 .activity-message {
   font-size: 13px;
-  margin: 2px 0;
   color: rgba(60, 60, 60, 0.8);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 
 [data-theme='light'] .activity-message {
@@ -620,22 +619,21 @@
 
 /* Contributors grid */
 .floating-contributors-grid {
-  margin-bottom: 0px;
-  flex: 0 0 auto; /* Don't grow, don't shrink, use auto height */
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Hide overflow */
+  overflow: visible;
+  gap: 8px;
 }
 
 .contributors-grid-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
   font-size: 13px;
   font-weight: 600;
   color: #333;
-  padding: 3%;
+  padding: 8px 12px;
   background: rgba(205, 205, 205, 0.562);
   border-radius: 12px;
   box-shadow: none;
@@ -663,19 +661,23 @@
 .contributors-avatars {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   align-items: center;
-  max-height: 50px; /* Set fixed height */
-  padding: 10px; /* Add padding around all avatars */
+  padding: 12px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 12px;
-  margin-top: 8px;
   box-shadow: inset 0 2px 6px rgba(108, 74, 232, 0.05);
+  overflow: visible;
 }
 
 .contributor-avatar-wrapper {
   position: relative;
   cursor: pointer;
+  z-index: 1;
+}
+
+.contributor-avatar-wrapper:hover {
+  z-index: 10;
 }
 
 .contributor-avatar {
@@ -730,22 +732,22 @@
 
 .contributor-tooltip {
   position: absolute;
-  bottom: 100%;
+  bottom: calc(100% + 8px);
   left: 50%;
-  transform: translateX(-50%) translateY(4px);
-  background: rgba(0, 0, 0, 0.9);
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.92);
   color: white;
-  padding: 8px 12px;
-  border-radius: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
   font-size: 11px;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  margin-bottom: 8px;
-  z-index: 20;
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  z-index: 100;
   pointer-events: none;
   backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .contributor-tooltip::after {
@@ -754,14 +756,14 @@
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  border: 4px solid transparent;
-  border-top-color: rgba(0, 0, 0, 0.9);
+  border: 5px solid transparent;
+  border-top-color: rgba(0, 0, 0, 0.92);
 }
 
 .contributor-avatar-wrapper:hover .contributor-tooltip {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(-8px);
+  transform: translateX(-50%) translateY(-4px);
 }
 
 .tooltip-name,
@@ -784,11 +786,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 8px;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.7);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+}
+
+.contributors-more span {
+  font-size: 8px;
+  line-height: 1;
+  display: inline-block;
+  text-align: center;
 }
 
 .contributors-more:hover {
@@ -812,9 +821,7 @@
 
 /* Footer */
 .floating-contributors-footer {
-  padding-top: 8px;
-  margin-top: auto; /* Push to bottom of flex container */
-  margin-bottom: 0; /* Remove bottom spacing */
+  margin-top: auto;
 }
 
 [data-theme='light'] .floating-contributors-footer {
@@ -827,7 +834,7 @@
   justify-content: center;
   gap: 8px;
   width: 100%;
-  padding: 10px 0;
+  padding: 12px 16px;
   background: linear-gradient(90deg, #4f46e5 0%, #6366f1 100%);
   color: white;
   text-decoration: none;
@@ -838,7 +845,7 @@
   position: relative;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-  height: 42px; /* Fixed height */
+  min-height: 44px;
   border: none;
 }
 
@@ -954,8 +961,9 @@
   }
 
   .floating-contributors-card {
-    padding: 16px;
+    padding: 18px;
     border-radius: 16px;
+    gap: 10px;
   }
 
   .floating-contributors-title {
@@ -986,6 +994,13 @@
     font-size: 10px;
   }
 
+.contributors-more span {
+  font-size: 6.5px;
+  line-height: 1;
+  display: inline-block;
+  text-align: center;
+}
+
   .contributors-cta {
     padding: 10px 14px;
     font-size: 13px;
@@ -1012,12 +1027,14 @@
   }
 
   .floating-contributors-card {
-    padding: 14px;
+    padding: 16px;
     border-radius: 14px;
+    gap: 8px;
   }
 
   .floating-contributors-activity {
-    padding: 25px;
+    padding: 10px 12px;
+    min-height: 56px;
   }
 
   .activity-details {
@@ -1041,6 +1058,13 @@
     width: 24px;
     height: 24px;
     font-size: 9px;
+  }
+
+  .contributors-more span {
+    font-size: 6.5px;
+    line-height: 1;
+    display: inline-block;
+    text-align: center;
   }
 }
 
@@ -1095,7 +1119,7 @@
   .status-dot {
     animation: none !important;
   }
-  
+
   .floating-contributors-card {
     transform: none !important;
   }
@@ -1107,11 +1131,11 @@
     border-width: 2px;
     border-color: rgba(255, 255, 255, 0.8);
   }
-  
+
   .activity-avatar {
     border-width: 3px;
   }
-  
+
   .contributor-avatar {
     border-width: 3px;
   }
