@@ -30,7 +30,7 @@
 
 Unlike vanilla React applications that require extensive configuration and additional libraries for routing, data fetching, and optimization, Next.js offers a **zero-config** approach with intelligent defaults. It bridges the gap between frontend and backend development, enabling you to build full-stack applications within a single codebase.
 
-:::note
+
 **Key Benefits at a Glance:**
 - 🚀 **Automatic Performance Optimization** - Code splitting, image optimization, and font optimization built-in
 - 🔍 **SEO-Friendly** - Server-side rendering and static generation for better search engine visibility
@@ -41,7 +41,6 @@ Unlike vanilla React applications that require extensive configuration and addit
 
 Next.js offers both <a href="https://nextjs.org/docs">free</a> and commercial hosting solutions through Vercel, with features like automatic deployments, edge functions, real-time analytics, and global CDN distribution.
 
-:::
 
 ## Why Choose Next.js?
 
@@ -154,7 +153,7 @@ Similarly, React provides the core functionality for building UIs, but a complet
 | **Code Splitting** | Automatic bundle splitting per route | Faster initial page loads |
 | **Tree Shaking** | Removes unused code from bundles | Smaller bundle sizes |
 
-:::
+
 
 ## Why Learn Next.js in 2025 and Beyond?
 
@@ -367,7 +366,7 @@ Now that you understand what Next.js is and why it's valuable, here's your learn
 
 ### Video Tutorial
 
-<iframe width="880" height="480" src="https://www.youtube.com/embed/wm5gMKuwSYk" title="Next.js 14 Full Course 2024 | Build and Deploy a Full Stack App Using the Official React Framework" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/wm5gMKuwSYk" title="Next.js Crash Course" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Conclusion
 
