@@ -58,7 +58,7 @@ flowchart LR
 
 2. **Navigate to the project directory:**
    ```bash
-   cd recodehive-website
+   cd recode-website
    ```
 
 3. **Prerequesites**
@@ -88,7 +88,7 @@ This lets you see code changes instantly at [http://localhost:3000](http://local
 ### 🏃 Quick Start
 
 ```bash
-git clone https://github.com/your-username/recodehive-website.git
+git clone https://github.com/your-username/recode-website.git
 cd recodehive-website
 docker-compose up
 ```
@@ -131,7 +131,7 @@ recode-website/
 |    ├── Google-Student-Ambassador/
 |    ├── ...
 ├── src/                                  🔹Source Code  
-|    └── compenents/
+|    └── components/
 |    ├── css/
 |        └── custom.css
 |    ├── data/
