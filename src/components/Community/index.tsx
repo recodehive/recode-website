@@ -33,7 +33,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
     {
       stat: githubReposCount,
       statText: githubReposCountText,
-      description: "Live public projects on RecodHive, demonstrating the power of open-source collaboration.",
+      description: "Live public projects on Recode Hive, demonstrating the power of open-source collaboration.",
       href: "https://github.com/orgs/recodehive/repositories?q=visibility%3Apublic+archived%3Afalse",
       label: "Public Repositories"
     },
@@ -129,7 +129,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
               handleCardClick("https://github.com/recodehive");
             }
           }}
-          title="Click to visit RecodHive GitHub Organization"
+          title="Click to visit Recode Hive GitHub Organization"
         >
           <img
             className="landing-community__image"
@@ -138,7 +138,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
             loading="lazy"
           />
           <div className="landing-community__info-text">
-            Our developers are the core of RecodHive community. We take pride in
+            Our developers are the core of Recode Hive community. We take pride in
             our{" "}
             <span className="landing-community__link">
               GitHub organization
@@ -147,7 +147,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
             <span className="landing-community__link">
               contributors and maintainers
             </span>{" "}
-            powering RecodHive's growth.
+            powering Recode Hive's growth.
             <div className="external-link-indicator">
               <span className="external-link-icon">↗</span>
               <small>Click to explore our GitHub</small>

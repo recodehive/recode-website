@@ -25,7 +25,7 @@ This is the all in one place for documentation help regarding How to contribute.
 
 Now, resolve your all doubts and communicate with our all contributors.
 
-[![](https://img.shields.io/badge/Discord-5865F2.svg?style=for-the-badge&logo=Discord&logoColor=white)](https://discord.gg/Yxv9RA3r) [![Follow on LinkedIn](https://img.shields.io/badge/Follow%20on-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sanjay-k-v/)
+[![](https://img.shields.io/badge/Discord-5865F2.svg?style=for-the-badge&logo=Discord&logoColor=white)](https://discord.gg/Yxv9RA3r) [![Follow Us On LinkedIn](https://img.shields.io/badge/Follow%20on-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sanjay-k-v/)
 
 
 ## Getting Started
@@ -58,7 +58,7 @@ flowchart LR
 
 2. **Navigate to the project directory:**
    ```bash
-   cd recodehive-website
+   cd recode-website
    ```
 
 3. **Prerequesites**
@@ -88,7 +88,7 @@ This lets you see code changes instantly at [http://localhost:3000](http://local
 ### 🏃 Quick Start
 
 ```bash
-git clone https://github.com/your-username/recodehive-website.git
+git clone https://github.com/your-username/recode-website.git
 cd recodehive-website
 docker-compose up
 ```
@@ -131,7 +131,7 @@ recode-website/
 |    ├── Google-Student-Ambassador/
 |    ├── ...
 ├── src/                                  🔹Source Code  
-|    └── compenents/
+|    └── components/
 |    ├── css/
 |        └── custom.css
 |    ├── data/

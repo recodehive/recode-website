@@ -20,6 +20,7 @@ const config: Config = {
   projectName: "recode-website",
 
   onBrokenLinks: "throw",
+  // onBrokenMarkdownLinks moved to markdown.hooks
 
   // Google Analytics and Theme Scripts
   scripts: [
@@ -242,10 +243,10 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
+  
   },
   
-  // Keep legacy setting until fully migrated to v4
-  onBrokenMarkdownLinks: "warn",
+  // Migrated legacy setting to markdown.hooks.onBrokenMarkdownLinks
 
   themes: ["@docusaurus/theme-mermaid"],
 
@@ -265,6 +266,9 @@ const config: Config = {
   // ✅ Add this customFields object to expose the token to the client-side
   customFields: {
     gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    }
   },
 };
 
