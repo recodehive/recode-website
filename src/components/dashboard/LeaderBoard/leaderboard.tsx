@@ -306,7 +306,7 @@ export default function LeaderBoard(): JSX.Element {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="title">Recode Hive Leaderboard</h1>
+          <h1 className="title">recode hive Leaderboard</h1>
           <p className={`subtitle ${isDark ? "dark" : "light"}`}>
             Top contributors across the <strong>{GITHUB_ORG}</strong> organization
           </p>
@@ -316,7 +316,7 @@ export default function LeaderBoard(): JSX.Element {
         {!loading && filteredContributors.length > 2 && (
           <div className="top-performers-container">
             <div className="title-filter-container">
-              <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>RecodeHive Top Performers</h2>
+              <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>recode hive Top Performers</h2>
               <div className="time-filter-wrapper top-title-filter">
                 <label htmlFor="time-period-filter" className="filter-label">Time Period:</label>
                 <select

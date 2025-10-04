@@ -574,9 +574,9 @@ const GiveawayPage: React.FC = () => {
   );
 
   return (
-    <Layout title="Giveaway" description="RecodeHive Giveaway" noFooter>
+    <Layout title="Giveaway" description="recode hive Giveaway" noFooter>
       <Head>
-        <title>🎁 RecodeHive Giveaway</title>
+        <title>🎁 recode hive Giveaway</title>
       </Head>
       <div className="dashboard-layout">
         {/* Dashboard Menu Button - Only visible on mobile */}

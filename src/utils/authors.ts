@@ -18,5 +18,5 @@ export const getAuthorNames = (authorIds: string[]): string => {
     const fullName = authorsMap[id] || id;
     return fullName.split(' ')[0];
   }).slice(0, 2);
-  return firstNames.length > 1 ? firstNames.join(" & ") : firstNames[0] || "RecodeHive";
+  return firstNames.length > 1 ? firstNames.join(" & ") : firstNames[0] || "recode hive";
 };

@@ -1006,7 +1006,7 @@ const InterviewPrepPage: React.FC = () => {
 
   return (
     <Layout
-      title="Interview Preparation - RecodeHive"
+      title="Interview Preparation - recode hive"
       description="Comprehensive interview preparation resources for technical and behavioral interviews at top tech companies"
     >
       <InterviewPrepContent 
@@ -1063,7 +1063,7 @@ function InterviewPrepContent({
   return (
     <>
       <Head>
-        <title>Interview Preparation - RecodeHive</title>
+        <title>Interview Preparation - recode hive</title>
         <meta
           name="description"
           content="Master technical and behavioral interviews with our comprehensive preparation resources, practice questions, and company-specific guides."
@@ -1200,7 +1200,7 @@ function InterviewPrepContent({
               Ready to Land Your Dream Job?
             </motion.h2>
             <motion.p className="text-xl mb-8 text-blue-100" variants={fadeIn}>
-              Join thousands of developers who have successfully prepared for interviews with RecodeHive
+              Join thousands of developers who have successfully prepared for interviews with recode hive
             </motion.p>
             <motion.div className="flex flex-col sm:flex-row gap-4 justify-center" variants={fadeIn}>
               <Link

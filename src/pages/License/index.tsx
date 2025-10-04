@@ -40,17 +40,17 @@ const Licensing: React.FC = () => {
   return (
     <Layout
       title={"Licensing"}
-      description="Licensing information for RecodeHive"
+      description="Licensing information for recode hive"
     >
       <LicensingContainer>
         <Title>Licensing</Title>
         <Content>
-          Welcome to RecodeHive. This project is licensed under the MIT License. This page outlines the terms of the license and provides details on how you can use, modify, and distribute our project.
+          Welcome to recode hive. This project is licensed under the MIT License. This page outlines the terms of the license and provides details on how you can use, modify, and distribute our project.
         </Content>
         <Content>
           <SubTitle>MIT License</SubTitle>
           <Content>
-            <strong>Copyright (c) 2025 recodehive</strong>
+            <strong>Copyright (c) 2025 recode hive</strong>
             <br /><br />
             Permission is hereby granted, free of charge, to any person obtaining a copy
             of this software and associated documentation files (the "Software"), to deal

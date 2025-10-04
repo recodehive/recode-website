@@ -458,7 +458,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
             Join Our Community & Contribute
           </h3>
           <p className="text-gray-600 dark:text-gray-300 mt-2">
-            Help make this resource better for everyone in the RecodeHive community
+            Help make this resource better for everyone in the recode hive community
           </p>
         </div>
 

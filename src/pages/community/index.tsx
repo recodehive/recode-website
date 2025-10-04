@@ -83,7 +83,7 @@ const contributionSections: ContributionSection[] = [
     id: 'get-started',
     title: 'Get Started',
     icon: '🚀',
-    description: 'To begin your journey with RecodeHive:',
+    description: 'To begin your journey with recode hive:',
     items: [
       'Sign up and introduce yourself 👋',
       'Discover key repositories 🔍',
@@ -192,11 +192,11 @@ export default function CommunityPage(): React.ReactElement {
   return (
     <Layout
       title="Hive Community"
-      description="Welcome to RecodeHive — a community built for everyone to learn, share, and grow."
+      description="Welcome to recode hive — a community built for everyone to learn, share, and grow."
     >
       <div className="community-page">
         <Head>
-          <meta property="og:title" content="Hive Community - RecodeHive" />
+          <meta property="og:title" content="Hive Community - recode hive" />
           <meta property="og:description" content="Join our thriving community of developers, designers, and creators." />
         </Head>
 
@@ -220,7 +220,7 @@ export default function CommunityPage(): React.ReactElement {
                   Welcome to Hive Community
                 </h1>
                 <p className="community-hero-description">
-                  Welcome to <strong>RecodeHive</strong> — a community built for everyone to{' '}
+                  Welcome to <strong>recode hive</strong> — a community built for everyone to{' '}
                   <span className="highlight">learn</span>, <span className="highlight">share</span>, and{' '}
                   <span className="highlight">grow</span>. Whether you're a{' '}
                   <span className="highlight">developer 👨‍💻</span>, <span className="highlight">designer 🎨</span>, or just someone interested in
@@ -242,7 +242,7 @@ export default function CommunityPage(): React.ReactElement {
                 <div className="contribution-icon">⚡</div>
                 <h2 className="contribution-title">How You Can Contribute</h2>
                 <p className="contribution-description">
-                  There are many ways to get involved in RecodeHive. Here's how you can contribute:
+                  There are many ways to get involved in recode hive. Here's how you can contribute:
                 </p>
               </motion.div>
             </div>
@@ -357,7 +357,7 @@ export default function CommunityPage(): React.ReactElement {
 
                       <div className="thank-you-content">
                         <p className="thank-you-main">
-                          Thank you for your interest in <strong>RecodeHive</strong>!
+                          Thank you for your interest in <strong>recode hive</strong>!
                         </p>
                         <p className="thank-you-description">
                           We're thrilled to have you here and can't wait to{' '}

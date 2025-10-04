@@ -69,7 +69,7 @@ const GithubBadgesContent = (): React.ReactElement => {
 
   return (
     <Layout
-      title="GitHub Achievements - RecodeHive"
+      title="GitHub Achievements - recode hive"
       description="Explore GitHub achievements and badges"
     >
       <div className={`${styles["github-badges-page"]} transition-colors duration-300 ${
@@ -77,7 +77,7 @@ const GithubBadgesContent = (): React.ReactElement => {
       }`}>
       {/* Hero section */}
       <Head>
-        <title>GitHub Achievements - RecodeHive</title>
+        <title>GitHub Achievements - recode hive</title>
         <meta name="description" content="Explore GitHub achievements and badges" />
         <link 
           rel="stylesheet" 
