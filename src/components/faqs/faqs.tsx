@@ -90,18 +90,20 @@ const FAQs: React.FC = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <button
-                    className={`accordion-toggle group flex justify-between items-center text-lg font-medium w-full transition-all duration-300 
+                    className={`accordion-toggle group flex justify-between items-center text-lg font-semibold w-full transition-all duration-300 
                       ${
                         isDark
-                          ? "text-gray-200 bg-gray-800 hover:text-indigo-400"
-                          : "text-gray-700 bg-gray-100 hover:text-indigo-600"
+                          ? "text-gray-100 bg-gray-800 hover:bg-gray-700 hover:text-white border border-gray-700 hover:border-gray-600"
+                          : "text-gray-900 bg-white hover:bg-gray-50 hover:text-gray-900 border border-gray-200 hover:border-gray-300 shadow-sm"
                       } 
-                      p-4 rounded-lg focus:outline-none`}
+                      p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
                     onClick={() => toggleAccordion(index)}
                   >
-                    {faq.question}
+                    <span className="text-left pr-4">{faq.question}</span>
                     <motion.span
-                      className="transform transition-transform duration-300"
+                      className={`transform transition-transform duration-300 flex-shrink-0 ${
+                        isDark ? "text-gray-300" : "text-gray-600"
+                      }`}
                       animate={{ rotate: activeIndex === index ? 180 : 0 }}
                     >
                       <FiChevronDown size={22} />
@@ -117,19 +119,21 @@ const FAQs: React.FC = () => {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
                     <div
-                      className={`mt-2 text-base transition-colors duration-200 ${
-                        isDark ? "text-gray-300" : "text-gray-900"
+                      className={`mt-3 p-5 text-base leading-relaxed transition-colors duration-200 rounded-lg border-l-4 ${
+                        isDark 
+                          ? "text-gray-100 bg-gradient-to-r from-gray-800/80 to-gray-900/60 border-l-indigo-400 shadow-lg" 
+                          : "text-gray-900 bg-gradient-to-r from-white to-gray-50 border-l-indigo-500 shadow-md"
                       }`}
-                      style={{
-                        color: isDark ? '#d1d5db' : '#111827'
-                      }}
                       dangerouslySetInnerHTML={{ 
                         __html: faq.answer.replace(
                           /<strong>/g, 
-                          `<strong style="color: ${isDark ? '#f3f4f6' : '#000000'}; font-weight: 600;">`
+                          `<strong style="color: ${isDark ? '#ffffff' : '#000000'}; font-weight: 700; background: ${isDark ? 'rgba(99, 102, 241, 0.2)' : 'rgba(199, 210, 254, 0.4)'}; padding: 2px 6px; border-radius: 4px;">`
                         ).replace(
                           /<a /g,
-                          `<a style="color: ${isDark ? '#818cf8' : '#4f46e5'};" `
+                          `<a style="color: ${isDark ? '#c4b5fd' : '#3730a3'}; text-decoration: underline; font-weight: 600; transition: all 0.2s ease;" `
+                        ).replace(
+                          /• /g,
+                          `<span style="color: ${isDark ? '#818cf8' : '#4f46e5'}; font-weight: bold;">•</span> `
                         )
                       }}
                     />
