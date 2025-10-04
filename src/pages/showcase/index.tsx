@@ -27,7 +27,7 @@ import FavoriteIcon from '@site/src/components/svgIcons/FavoriteIcon';
 import { useColorMode } from '@docusaurus/theme-common';
 
 const TITLE =
-  'Recode Hive: Framing all the opensource projects built by our community members';
+  'recode hive: Framing all the opensource projects built by our community members';
 const DESCRIPTION =
   'All the opensource projects listed below are available for you to explore, learn, and contribute.';
 const EDIT_URL =
