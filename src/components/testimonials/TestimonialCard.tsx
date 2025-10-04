@@ -38,7 +38,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -12 }}
       transition={{ duration: 0.3 }}
-      className={`rounded-2xl max-h-[400px] h-[350px] p-5 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between ${
+      className={`rounded-2xl max-h-[250px] h-[246px] p-5 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between ${
         isDark ? "bg-[#18181b] text-white" : "bg-white text-gray-900"
       }`}
     >
