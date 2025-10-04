@@ -75,6 +75,47 @@ except ExceptionType:
 
 ---
 
+### Quiz 1: Exception Handling Basics
+
+**Question 1:** What happens if an exception is not caught in a try-except block?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** The program crashes and displays an error traceback
+
+**Explanation:** Without a try-except block, Python will terminate the program and print a traceback showing where the error occurred. Exception handling prevents this crash and allows the program to continue running.
+</details>
+
+**Question 2:** What will this code output?
+```python
+try:
+    x = 10 / 2
+    print(x)
+except ZeroDivisionError:
+    print("Error!")
+```
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `5.0`
+
+**Explanation:** Since no exception occurs (10/2 is valid), the try block executes normally and prints 5.0. The except block is never executed.
+</details>
+
+**Question 3:** Why should you catch specific exceptions rather than using a bare `except:`?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** To avoid accidentally catching and hiding unexpected errors
+
+**Explanation:** Catching specific exceptions (like `ValueError` or `ZeroDivisionError`) helps you handle known issues while allowing unexpected errors to surface. A bare `except:` catches everything, including system exits and keyboard interrupts, which can mask serious bugs.
+</details>
+
+---
+
 ## Catching Specific Exceptions
 
 ### Single Exception
@@ -134,6 +175,54 @@ except TypeError:
 
 ---
 
+### Quiz 2: Specific Exceptions
+
+**Question 1:** Which exception is raised by this code?
+```python
+my_list = [1, 2, 3]
+print(my_list[5])
+```
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `IndexError`
+
+**Explanation:** Trying to access an index that doesn't exist in a list raises an `IndexError`. The list has indices 0, 1, and 2, but we're trying to access index 5.
+</details>
+
+**Question 2:** What exception occurs here?
+```python
+person = {"name": "Bob"}
+print(person["email"])
+```
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `KeyError`
+
+**Explanation:** Accessing a dictionary key that doesn't exist raises a `KeyError`. The dictionary only has a "name" key, not an "email" key. Use `.get()` to avoid this error.
+</details>
+
+**Question 3:** Match the error to the code:
+- A) `int("3.14")`
+- B) `10 / 0`
+- C) `"text" * "2"`
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:**
+- A) `ValueError` - can't convert "3.14" directly to int
+- B) `ZeroDivisionError` - division by zero
+- C) `TypeError` - can't multiply two strings
+
+**Explanation:** Each operation fails for a different reason, resulting in a specific exception type that describes the problem.
+</details>
+
+---
+
 ## Multiple Exception Handlers
 
 Handle different exceptions separately:
@@ -173,6 +262,77 @@ try:
 except (ValueError, ZeroDivisionError) as e:
     print(f"Error occurred: {e}")
 ```
+
+---
+
+### Quiz 3: Multiple Exception Handling
+
+**Question 1:** What's the advantage of handling exceptions separately vs. together?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Separate handlers allow you to provide specific error messages and take different actions for each error type
+
+**Explanation:**
+```python
+# Separate - more specific feedback
+except ValueError:
+    print("Please enter a valid number")
+except ZeroDivisionError:
+    print("Cannot divide by zero")
+
+# Together - same handling for both
+except (ValueError, ZeroDivisionError):
+    print("Invalid input")
+```
+Use separate handlers when you need different responses for different errors.
+</details>
+
+**Question 2:** What's the purpose of the `as` keyword in exception handling?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** It captures the exception object so you can access its details and message
+
+**Explanation:**
+```python
+try:
+    x = int("abc")
+except ValueError as e:
+    print(f"Error details: {e}")
+    # Can now access the exception message and other attributes
+```
+This is useful for logging errors or providing detailed feedback to users.
+</details>
+
+**Question 3:** In what order should exception handlers be placed?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Most specific exceptions first, then more general ones
+
+**Explanation:**
+```python
+# Correct order
+try:
+    risky_operation()
+except ValueError:      # Specific
+    handle_value_error()
+except Exception:       # General
+    handle_other_errors()
+
+# Wrong - Exception catches everything, ValueError never reached
+try:
+    risky_operation()
+except Exception:
+    handle_other_errors()
+except ValueError:      # This will never execute!
+    handle_value_error()
+```
+</details>
 
 ---
 
@@ -248,6 +408,92 @@ def process_file(filename):
 
 process_file("numbers.txt")
 ```
+
+---
+
+### Quiz 4: else and finally Clauses
+
+**Question 1:** When does the `else` block execute?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Only when no exception occurs in the try block
+
+**Explanation:**
+```python
+try:
+    x = 10 / 2
+except ZeroDivisionError:
+    print("Error")
+else:
+    print("Success!")  # This runs because no error occurred
+```
+The `else` block is for code that should only run when everything succeeds.
+</details>
+
+**Question 2:** What's the key difference between `else` and `finally`?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `else` runs only if no exception occurred; `finally` always runs regardless of exceptions
+
+**Explanation:**
+- `else`: Executes only on success (no exceptions)
+- `finally`: Always executes (success or failure)
+
+`finally` is perfect for cleanup operations like closing files or database connections that must happen regardless of errors.
+</details>
+
+**Question 3:** What will this code output?
+```python
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Error caught")
+else:
+    print("No error")
+finally:
+    print("Cleanup")
+```
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:**
+```
+Error caught
+Cleanup
+```
+
+**Explanation:** 
+1. An error occurs, so the except block prints "Error caught"
+2. The else block is skipped (only runs if no error)
+3. The finally block always runs, printing "Cleanup"
+</details>
+
+**Question 4:** Why is `finally` useful for resource management?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** It guarantees cleanup code runs even if an exception occurs or the function returns early
+
+**Explanation:**
+```python
+file = None
+try:
+    file = open("data.txt")
+    # If error occurs here, file still gets closed
+    process(file)
+    return result  # Even with early return
+finally:
+    if file:
+        file.close()  # This always runs
+```
+This prevents resource leaks from unclosed files, connections, etc.
+</details>
 
 ---
 
@@ -365,6 +611,61 @@ except ValueError as e:
 
 ---
 
+### Quiz 5: Raising Exceptions
+
+**Question 1:** When should you raise an exception in your code?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** When invalid input or an abnormal condition is detected that the function cannot handle properly
+
+**Explanation:** Raising exceptions is appropriate for signaling errors like:
+- Invalid function arguments (negative age, empty required fields)
+- Failed business logic rules (insufficient funds, duplicate entries)
+- Precondition violations
+
+Don't use exceptions for normal program flow (like reaching the end of a loop).
+</details>
+
+**Question 2:** What does the bare `raise` keyword do (without specifying an exception)?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** It re-raises the current exception that was just caught
+
+**Explanation:**
+```python
+try:
+    int("abc")
+except ValueError:
+    print("Logging the error...")
+    raise  # Re-raises the ValueError
+```
+This is useful when you want to log an error but still let it propagate up to be handled elsewhere.
+</details>
+
+**Question 3:** What will happen?
+```python
+def validate_score(score):
+    if score < 0 or score > 100:
+        raise ValueError("Score must be between 0 and 100")
+    return score
+
+result = validate_score(150)
+```
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** The program will crash with a `ValueError` (unless caught)
+
+**Explanation:** Since the score 150 is invalid, the function raises a `ValueError`. Without a try-except block to catch it, this will terminate the program and display an error traceback.
+</details>
+
+---
+
 ## Custom Exceptions
 
 Create your own exception classes:
@@ -412,6 +713,71 @@ except AgeRestrictionError as e:
 
 ---
 
+### Quiz 6: Custom Exceptions
+
+**Question 1:** Why create custom exception classes?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** To create more meaningful, domain-specific errors that are easier to catch and handle appropriately
+
+**Explanation:** Custom exceptions like `InsufficientFundsError` or `InvalidEmailError` are more descriptive than generic `ValueError`. They allow you to:
+- Catch specific business logic errors
+- Add custom attributes (like `minimum_balance`)
+- Provide clearer error messages
+- Organize exception handling by problem domain
+</details>
+
+**Question 2:** What must custom exception classes inherit from?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** The `Exception` class (or another exception class)
+
+**Explanation:**
+```python
+# Correct
+class MyError(Exception):
+    pass
+
+# Also correct - inherit from more specific exception
+class MyValueError(ValueError):
+    pass
+
+# Wrong - doesn't inherit from Exception
+class MyError:
+    pass
+```
+All exceptions must be part of the exception hierarchy.
+</details>
+
+**Question 3:** How do you add custom attributes to an exception?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Define an `__init__` method that stores the attributes and calls `super().__init__()`
+
+**Explanation:**
+```python
+class PaymentError(Exception):
+    def __init__(self, amount, balance):
+        self.amount = amount
+        self.balance = balance
+        self.shortage = amount - balance
+        super().__init__(f"Insufficient funds: need ${self.shortage} more")
+
+try:
+    raise PaymentError(100, 75)
+except PaymentError as e:
+    print(e.shortage)  # Access custom attribute: 25
+```
+</details>
+
+---
+
 ## Exception Hierarchy
 
 Python exceptions follow a hierarchy. Catching a parent exception catches all child exceptions:
@@ -454,6 +820,91 @@ except LookupError as e:  # Parent of IndexError
     print(f"Lookup error occurred: {e}")
 # Output: Lookup error occurred: list index out of range
 ```
+
+---
+
+### Quiz 7: Exception Hierarchy and Best Practices
+
+**Question 1:** Why is catching `Exception` generally discouraged?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** It catches too many different types of errors, making it hard to handle each appropriately
+
+**Explanation:** `except Exception:` catches almost all exceptions, including ones you might not expect. This can hide bugs and make debugging difficult. Better to catch specific exceptions you know how to handle.
+</details>
+
+**Question 2:** What's the difference between `BaseException` and `Exception`?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `BaseException` includes system-level exceptions like `KeyboardInterrupt` and `SystemExit`, while `Exception` is for catchable program errors
+
+**Explanation:**
+- Catch `Exception`: Normal error handling
+- Avoid catching `BaseException`: Includes system exits and Ctrl+C interrupts that shouldn't be caught
+
+```python
+# Bad - prevents Ctrl+C from working
+try:
+    long_running_task()
+except BaseException:  # Don't do this!
+    pass
+```
+</details>
+
+**Question 3:** What happens if you catch a parent exception before a child exception?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** The child exception handler becomes unreachable and will never execute
+
+**Explanation:**
+```python
+# Wrong order
+try:
+    code()
+except Exception:      # Catches everything
+    print("General error")
+except ValueError:     # Never reached!
+    print("Value error")
+
+# Correct order
+try:
+    code()
+except ValueError:     # Specific first
+    print("Value error")
+except Exception:      # General last
+    print("General error")
+```
+</details>
+
+**Question 4:** Which best practice is demonstrated here?
+```python
+try:
+    process_payment(amount)
+except InsufficientFundsError as e:
+    notify_user(f"Payment failed: {e}")
+    log_error(e)
+except PaymentGatewayError as e:
+    notify_user("Payment system unavailable")
+    retry_payment(amount)
+```
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Catching specific exceptions and handling each differently based on the type of error
+
+**Explanation:** This code demonstrates good exception handling by:
+- Using specific, meaningful exception types
+- Providing different handling for different errors
+- Taking appropriate action for each case (notify vs. retry)
+- Maintaining good user experience during errors
+</details>
 
 ---
 
