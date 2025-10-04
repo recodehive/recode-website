@@ -34,6 +34,7 @@ const sidebars: SidebarsConfig = {
       className: 'custom-sidebar-github',
       items: [
         'GitHub/intro-github',
+        'GitHub/intro-gitlab',
         {
           type: 'category',
           label: '⚙️ Setup Environment',
