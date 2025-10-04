@@ -616,8 +616,8 @@ const DashboardContent: React.FC = () => {
                   )}
                 {!discussionsLoading &&
                   !discussionsError &&
-                  filteredDiscussions.map((discussion) => (
-                    <DiscussionCard key={discussion.id} discussion={discussion} />
+                  filteredDiscussions.map((discussion, i) => (
+                    <DiscussionCard index={i} key={discussion.id} discussion={discussion} />
                   ))}
               </div>
             </div>

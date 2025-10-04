@@ -243,7 +243,6 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
-  
   },
   
   // Migrated legacy setting to markdown.hooks.onBrokenMarkdownLinks
