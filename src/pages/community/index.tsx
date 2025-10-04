@@ -33,8 +33,8 @@ const contributionSections: ContributionSection[] = [
       'Read about how to propose new features, collaborate on pull requests, and review peer code.'
     ],
     links: [
-      { text: 'GitHub', url: 'https://github.com/recodehive' },
-      { text: 'GitLab', url: 'https://gitlab.com' }
+      { text: 'GitHub', url: 'https://github.com/recodehive?view_as=public' },
+      { text: 'Join our organization', url: 'https://github.com/recodehive/Support/issues/new?assignees=&labels=invite+me+to+the+community&projects=&template=invitation.yml&title=Please+invite+me+to+the+Recode-Hive+GitHub+Community+Organization' }
     ],
     color: '#8b5cf6'
   },
@@ -74,7 +74,7 @@ const contributionSections: ContributionSection[] = [
       'Share resources, tutorials, and best practices to help others grow.'
     ],
     links: [
-      { text: 'Discord', url: 'https://discord.com/invite/w2V2aH6U' },
+      { text: 'Discord', url: "https://discord.gg/b6ffxhXRNH" },
       { text: 'Whatsapp', url: 'https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t' }
     ],
     color: '#10b981'
@@ -95,7 +95,7 @@ const contributionSections: ContributionSection[] = [
       'Browse a list of beginner-friendly tasks and guides to help select your first area of involvement.'
     ],
     links: [
-      { text: 'Discord', url: 'https://discord.com/invite/w2V2aH6U' },
+      { text: 'Discord', url: 'https://discord.gg/b6ffxhXRNH' },
       { text: 'Whatsapp', url: 'https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t' },
       { text: 'GitHub', url: 'https://github.com/recodehive' }
     ],

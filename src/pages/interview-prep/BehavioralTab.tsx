@@ -23,7 +23,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
     <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
       {/* Introduction Section */}
       <motion.div className="text-center mb-12" variants={fadeIn}>
-        <h2 className="text-4xl font-bold mb-4 text-white">Behavioral Interview Preparation</h2>
+        <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Behavioral Interview Preparation</h2>
         <p className="text-xl text-center ml-3 text-gray-600 dark:text-gray-300 ">
           Master the art of storytelling and showcase your soft skills with confidence
         </p>
@@ -35,7 +35,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
         variants={fadeIn}
       >
         <div className="max-w-4xl mx-auto">
-          <h3 className="text-2xl font-bold mb-6 text-white flex items-center">
+          <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white flex items-center">
             <span className="text-3xl mr-3">🤝</span>
             What are Behavioral Interviews?
           </h3>
@@ -411,11 +411,11 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
                 <h4 className="font-bold text-gray-900 dark:text-white mb-2">{video.title}</h4>
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{video.description}</p>
                 <div className="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
-                  <span>{video.channel}</span>
-                  <span>{video.duration}</span>
+                  <span className="text-gray-500 dark:text-gray-400">{video.channel}</span>
+                  <span className="text-gray-500 dark:text-gray-400">{video.duration}</span>
                 </div>
                 <a href={video.url} target="_blank" rel="noopener noreferrer" className="watch-video-btn">
-                  <span className="mr-2">▶️</span>
+                  <span className="mr-2 text-inherit">▶️</span>
                   Watch Video
                 </a>
               </div>

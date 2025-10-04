@@ -164,7 +164,7 @@ const SelectComponent = ({
 
   <div className={`col-span-1 md:col-span-8 p-4 md:p-8 relative overflow-hidden min-h-[80vh] md:min-h-[70vh] ourprojects-embed-container`}>
         {/* Animated Mesh Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-blue-600/30 via-cyan-500/30 to-emerald-500/30 rounded-3xl">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-blue-600/30 via-cyan-500/30 to-emerald-500/30">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)] animate-pulse"></div>
           <div className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(147,51,234,0.1)_60deg,transparent_120deg)] animate-spin" style={{animationDuration: '20s'}}></div>
         </div>

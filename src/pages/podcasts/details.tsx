@@ -209,7 +209,7 @@ export default function PodcastDetails(): ReactElement {
       toggleFavorite();
     }}
   >
-    <span className="action-icon">{isFavorited ? "❤️" : "🤍"}</span>
+    <span className="action-icon">{isFavorited ? "🤍" : "❤️"}</span>
   </button>
 </div>
         </div>

@@ -511,22 +511,6 @@ const GiveawayPage: React.FC = () => {
           contributions: 32,
           github_url: "https://github.com/Hemu21",
           badge: "🥉 Third Place"
-        },
-        {
-          rank: 4,
-          name: "contributor4",
-          avatar: "https://avatars.githubusercontent.com/u/1?v=4",
-          points: 1600,
-          contributions: 28,
-          github_url: "https://github.com/contributor4"
-        },
-        {
-          rank: 5,
-          name: "contributor5",
-          avatar: "https://avatars.githubusercontent.com/u/2?v=4",
-          points: 1400,
-          contributions: 24,
-          github_url: "https://github.com/contributor5"
         }
       ];
       
