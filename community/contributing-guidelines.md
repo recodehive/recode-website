@@ -41,9 +41,6 @@ flowchart LR
 
     Once you have installed the dependencies, you can run the application locally using:
     ```bash
-    npm i
-    ```
-    ```bash
     npm start
     ```
 

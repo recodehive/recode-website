@@ -2,7 +2,7 @@
 id: setup-environment
 title: Setting up your development environment
 sidebar_label: Setting up environment
-sidebar_position: 13
+sidebar_position: 14
 tags:
   [
     html,
@@ -26,7 +26,7 @@ Install Python
   1. Go to the [Git Website](https://git-scm.com/) and click on download for windows button.
   
       <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![GitHub](./assets/image-1.png)](https://git-scm.com/)
+       [![GitHub](./assets/setupimg1.png)](https://git-scm.com/)
       </BrowserWindow>
   
   
@@ -38,7 +38,7 @@ Install Python
   
        - **Installer:** Get the Installer
       <BrowserWindow url="https://git-scm.com/downloads/win" bodyStyle={{padding: 0}}>    
-       [![GitHub](./assets/image-1.png)](https://git-scm.com/downloads/win)
+       [![GitHub](./assets/setupimg2.png)](https://git-scm.com/downloads/win)
       </BrowserWindow>
           
   
@@ -46,7 +46,7 @@ Install Python
             
      
       <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![GitHub](./assets/image-1.png)](https://git-scm.com/)
+       [![GitHub](./assets/setupimg3.png)](https://git-scm.com/)
       </BrowserWindow>
   
      - 1. The next screen click next on Public Licence.
@@ -61,10 +61,10 @@ Install Python
      - 1. The next screen click next , make sure the start folder name is Git.
      - 2. Next option is to choose the default editor  you can use your editor, im using visual studio code. or keep Vim as the default editor
   
-  
+       
       <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![Github](./assets/image-1.png)](https://github.com/sanjay-kv)
-      </BrowserWindow>
+       [![GitHub](./assets/setupimg4.png)](https://git-scm.com/)
+      </BrowserWindow>      
   
      
   ### Step 5:  Adjusting name of the repo setting in Git
@@ -72,8 +72,8 @@ Install Python
   This stage it will ask you to Choose a initial branch in new repository, it would be ideal approach to give the second option, as we move further it gives us flexibility to change the intial branch name , like main master, trunk. 
   
   
-       <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![Github](./assets/image-1.png)](https://github.com/sanjay-kv)
+      <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
+       [![Github](./assets/setupimg5.png)](https://github.com/sanjay-kv)
       </BrowserWindow>
   
      
@@ -82,7 +82,7 @@ Install Python
   This is where we specify the path enviornment of git, just go with the recommened option which is 2.
   
        <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![Github](./assets/image-1.png)](https://github.com/sanjay-kv)
+       [![Github](./assets/setupimg6.png)](https://github.com/sanjay-kv)
       </BrowserWindow>
   
   
@@ -95,7 +95,7 @@ Install Python
   7.  ``7`` In the Next step Screen it will ask you to enable the expiremental support , choose the both the option and click on Install. 
   
        <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![Github](./assets/image-1.png)](https://github.com/sanjay-kv)
+       [![Github](./assets/setupimg8.png)](https://github.com/sanjay-kv)
       </BrowserWindow>
   
   Congratulations! The Git Setup has been finished and now you can launch the GitHub.

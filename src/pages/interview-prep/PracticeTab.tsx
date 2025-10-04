@@ -597,7 +597,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
                                         >
                                             {showHints.has(question.id) ? "🔽" : "▶️"}
                                         </motion.span>
-                                        <span className="font-bold">{showHints.has(question.id) ? "Hide Hints" : "Show Hints"}</span>
+                                        <span className="font-bold text-gray-900 dark:text-white">{showHints.has(question.id) ? "Hide Hints" : "Show Hints"}</span>
                                     </div>
                                     <motion.span
                                         className="text-xs bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-900/40 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full font-bold border border-blue-200 dark:border-blue-700"
@@ -623,7 +623,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
                                                 >
                                                     💡
                                                 </motion.span>
-                                                <span>Helpful Hints:</span>
+                                                <span className="text-gray-900 dark:text-white">Helpful Hints:</span>
                                             </h4>
                                             <ul className="space-y-4">
                                                 {question.hints.map((hint, i) => (
@@ -641,7 +641,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
                                                         >
                                                             {i + 1}
                                                         </motion.span>
-                                                        <span className="leading-relaxed font-medium">{hint}</span>
+                                                        <span className="leading-relaxed font-medium text-gray-700 dark:text-gray-300">{hint}</span>
                                                     </motion.li>
                                                 ))}
                                             </ul>
@@ -665,7 +665,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
                                                 >
                                                     {showResources.has(question.id) ? "🔽" : "▶️"}
                                                 </motion.span>
-                                                <span className="font-bold">
+                                                <span className="font-bold text-gray-900 dark:text-white">
                                                     {showResources.has(question.id) ? "Hide Resources" : "Show Resources"}
                                                 </span>
                                             </div>
@@ -693,7 +693,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
                                                         >
                                                             🔗
                                                         </motion.span>
-                                                        <span>Helpful Resources:</span>
+                                                        <span className="text-gray-900 dark:text-white">Helpful Resources:</span>
                                                     </h4>
                                                     <div className="grid gap-3">
                                                         {question.links.map((link, i) => {
@@ -795,7 +795,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
                                                         >
                                                             🎯
                                                         </motion.span>
-                                                        <span>Session Active</span>
+                                                        <span className="text-gray-900 dark:text-white">Session Active</span>
                                                     </span>
                                                     <motion.span
                                                         className="text-2xl font-black text-blue-600 dark:text-blue-400"
@@ -818,7 +818,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
                                                 >
                                                     ✓
                                                 </motion.span>
-                                                <span>Complete Practice</span>
+                                                <span className="text-gray-900 dark:text-white">Complete Practice</span>
                                             </motion.button>
                                         </motion.div>
                                     ) : (
@@ -845,7 +845,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
                                                     >
                                                         ✓
                                                     </motion.span>
-                                                    <span>Completed</span>
+                                                    <span className="text-gray-900 dark:text-white">Completed</span>
                                                 </>
                                             ) : (
                                                 <>
@@ -855,7 +855,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
                                                     >
                                                         🚀
                                                     </motion.span>
-                                                    <span>Start Practice</span>
+                                                    <span className="text-gray-900 dark:text-white">Start Practice</span>
                                                 </>
                                             )}
                                         </motion.button>
