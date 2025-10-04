@@ -1306,6 +1306,7 @@ html {
 }
 .company-border {
   border-color: #6b7280;
+  margin-bottom: 35px;
 }
 [data-theme="dark"] .company-border {
   color: #ffffff;
