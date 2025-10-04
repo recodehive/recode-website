@@ -60,10 +60,10 @@ export default function FooterLayout({
 
     fetchStats();
     const interval = setInterval(fetchStats, 30000); // Update every 30 seconds
-    
+
     return () => clearInterval(interval);
   }, []);
-  
+
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -473,13 +473,20 @@ export default function FooterLayout({
               </div>
             </div>
 
-            <div className="footer-bottom-right">
+            {/* <div className="footer-bottom-right">
               <div className="footer-copyright">
                 <span>
                   © {currentYear} recodehive. Made with ❤️ by the Community.
                 </span>
               </div>
-            </div>
+            </div> */}
+          </div>
+        </div>
+        <div className="footer">
+          <div className="footer-content">
+            <span>
+              © {currentYear} recodehive. Made with ❤️ by the Community.
+            </span>
           </div>
         </div>
       </div>

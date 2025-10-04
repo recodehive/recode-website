@@ -1,6 +1,13 @@
 :root {
   /* Dark Theme Variables (Default) */
-  --contact-bg-primary: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+  --contact-bg-primary: linear-gradient(
+    135deg,
+    #0f0f23 0%,
+    #1a1a2e 25%,
+    #16213e 50%,
+    #0f3460 75%,
+    #533483 100%
+  );
   --contact-bg-card: rgba(255, 255, 255, 0.03);
   --contact-bg-card-hover: rgba(255, 255, 255, 0.08);
   --contact-bg-secondary: rgba(255, 255, 255, 0.05);
@@ -19,8 +26,15 @@
 }
 
 /* Light Theme Variables */
-[data-theme='light'] {
-  --contact-bg-primary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%);
+[data-theme="light"] {
+  --contact-bg-primary: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #e2e8f0 25%,
+    #cbd5e1 50%,
+    #94a3b8 75%,
+    #64748b 100%
+  );
   --contact-bg-card: rgba(255, 255, 255, 0.9);
   --contact-bg-card-hover: rgba(255, 255, 255, 0.95);
   --contact-bg-secondary: rgba(255, 255, 255, 0.8);
@@ -39,8 +53,15 @@
 }
 
 /* Force theme variables on specific elements */
-html[data-theme='light'] {
-  --contact-bg-primary: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%);
+html[data-theme="light"] {
+  --contact-bg-primary: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #e2e8f0 25%,
+    #cbd5e1 50%,
+    #94a3b8 75%,
+    #64748b 100%
+  );
   --contact-bg-card: rgba(255, 255, 255, 0.9);
   --contact-bg-card-hover: rgba(255, 255, 255, 0.95);
   --contact-bg-secondary: rgba(255, 255, 255, 0.8);
@@ -69,15 +90,25 @@ html[data-theme='light'] {
 }
 
 @keyframes backgroundShift {
-  0%, 100% { transform: translateX(0px) translateY(0px) scale(1); }
-  25% { transform: translateX(30px) translateY(-20px) scale(1.02); }
-  50% { transform: translateX(-10px) translateY(30px) scale(0.98); }
-  75% { transform: translateX(-25px) translateY(-15px) scale(1.01); }
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px) scale(1);
+  }
+  25% {
+    transform: translateX(30px) translateY(-20px) scale(1.02);
+  }
+  50% {
+    transform: translateX(-10px) translateY(30px) scale(0.98);
+  }
+  75% {
+    transform: translateX(-25px) translateY(-15px) scale(1.01);
+  }
 }
 
 /* Main Container */
 .enhanced-contact-container {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
   background: var(--contact-bg-primary);
   color: var(--contact-text-secondary);
   min-height: 100vh;
@@ -88,26 +119,48 @@ html[data-theme='light'] {
 
 /* Background Effects */
 .enhanced-contact-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.08) 0%, transparent 60%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.06) 0%, transparent 60%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.04) 0%, transparent 60%);
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(120, 119, 198, 0.08) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 119, 198, 0.06) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(120, 219, 255, 0.04) 0%,
+      transparent 60%
+    );
   animation: backgroundShift 25s ease-in-out infinite;
   pointer-events: none;
 }
 
 /* Light theme background effects */
-[data-theme='light'] .enhanced-contact-container::before {
-  background:
-    radial-gradient(circle at 20% 80%, rgba(79, 70, 229, 0.05) 0%, transparent 60%),
-    radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.04) 0%, transparent 60%),
-    radial-gradient(circle at 40% 40%, rgba(236, 72, 153, 0.03) 0%, transparent 60%);
+[data-theme="light"] .enhanced-contact-container::before {
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(79, 70, 229, 0.05) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(124, 58, 237, 0.04) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(236, 72, 153, 0.03) 0%,
+      transparent 60%
+    );
 }
 
 /* Content Wrapper */
@@ -129,7 +182,13 @@ html[data-theme='light'] {
 .contact-title {
   font-size: 3rem;
   font-weight: 900;
-  background: linear-gradient(135deg, var(--contact-text-primary) 0%, var(--contact-text-secondary) 30%, var(--contact-text-muted) 60%, var(--contact-text-dim) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--contact-text-primary) 0%,
+    var(--contact-text-secondary) 30%,
+    var(--contact-text-muted) 60%,
+    var(--contact-text-dim) 100%
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -374,19 +433,27 @@ html[data-theme='light'] {
   padding-right: 2.5rem;
 }
 
-[data-theme='light'] .form-select {
+[data-theme="light"] .form-select {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
 }
 
-.form-select option {
+[data-theme="dark"] .form-select {
+  background: #273254cf;
+}
+
+/* .form-select option {
   background: var(--contact-bg-card);
   color: var(--contact-text-primary);
-}
+} */
 
 .submit-button {
   width: 100%;
   padding: 0.875rem 1.5rem;
-  background: linear-gradient(135deg, var(--contact-accent-primary) 0%, var(--contact-accent-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--contact-accent-primary) 0%,
+    var(--contact-accent-secondary) 100%
+  );
   color: white;
   border: none;
   border-radius: 0.75rem;
