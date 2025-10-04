@@ -114,6 +114,42 @@ print(result)         # Output: None
 
 ---
 
+## 🎯 Quiz 1: Basic Functions & Return Statements
+
+**Question 1:** What keyword is used to define a function in Python?
+<details>
+<summary>Show Answer</summary>
+
+`def` - The `def` keyword is used to define functions in Python.
+</details>
+
+**Question 2:** What will be the output of the following code?
+```python
+def calculate(x, y):
+    return x + y
+    return x * y
+
+result = calculate(3, 4)
+print(result)
+```
+
+<details>
+<summary>Show Answer</summary>
+
+**Output:** `7`
+
+**Explanation:** The function returns `7` (3 + 4) and exits immediately. The second return statement is never executed because the function stops executing after the first `return`.
+</details>
+
+**Question 3:** If a function doesn't have a `return` statement, what does it return?
+<details>
+<summary>Show Answer</summary>
+
+`None` - Functions without a return statement automatically return `None`.
+</details>
+
+---
+
 ## Default Arguments
 
 You can provide default values for parameters:
@@ -156,6 +192,49 @@ book_info(author="Jane Austen", title="Pride and Prejudice", year=1813)
 # Mixed (positional first, then keyword)
 book_info("Hamlet", author="Shakespeare", year=1600)
 ```
+
+---
+
+## 🎯 Quiz 2: Default & Keyword Arguments
+
+**Question 1:** What will be the output?
+```python
+def greet(name, message="Hello"):
+    return f"{message}, {name}!"
+
+print(greet("Alice"))
+print(greet("Bob", "Hi"))
+```
+
+<details>
+<summary>Show Answer</summary>
+
+**Output:**
+```
+Hello, Alice!
+Hi, Bob!
+```
+
+**Explanation:** The first call uses the default value "Hello" for `message`, while the second call overrides it with "Hi".
+</details>
+
+**Question 2:** Is this function call valid?
+```python
+def display(a, b, c):
+    print(a, b, c)
+
+display(c=3, a=1, b=2)
+```
+
+<details>
+<summary>Show Answer</summary>
+
+**Yes, it's valid!** 
+
+**Output:** `1 2 3`
+
+**Explanation:** When using keyword arguments, you can pass them in any order. Python matches them by parameter name.
+</details>
 
 ---
 
@@ -218,6 +297,51 @@ flexible_function(1, 2, 3, name="Alice", age=30)
 # Positional arguments: (1, 2, 3)
 # Keyword arguments: {'name': 'Alice', 'age': 30}
 ```
+
+---
+
+## 🎯 Quiz 3: *args and **kwargs
+
+**Question 1:** What is `*args` used for?
+<details>
+<summary>Show Answer</summary>
+
+`*args` allows a function to accept any number of **positional arguments**. The arguments are collected into a tuple inside the function.
+</details>
+
+**Question 2:** What will be the output?
+```python
+def process(*args, **kwargs):
+    print(type(args))
+    print(type(kwargs))
+
+process(1, 2, 3, name="Test", value=100)
+```
+
+<details>
+<summary>Show Answer</summary>
+
+**Output:**
+```
+<class 'tuple'>
+<class 'dict'>
+```
+
+**Explanation:** `*args` collects positional arguments into a **tuple**, and `**kwargs` collects keyword arguments into a **dictionary**.
+</details>
+
+**Question 3:** Can you use both `*args` and `**kwargs` in the same function?
+<details>
+<summary>Show Answer</summary>
+
+**Yes!** You can use both in the same function. Just remember the correct order: regular parameters, `*args`, then `**kwargs`.
+
+Example:
+```python
+def my_function(a, b, *args, **kwargs):
+    pass
+```
+</details>
 
 ---
 
@@ -342,6 +466,64 @@ print(greet("Alice")) # Output: Hello, Alice!
 
 ---
 
+## 🎯 Quiz 4: Scope & Lambda Functions
+
+**Question 1:** What will happen when you run this code?
+```python
+def test():
+    x = 10
+    print(x)
+
+test()
+print(x)
+```
+
+<details>
+<summary>Show Answer</summary>
+
+**Error!** The second `print(x)` will raise a `NameError` because `x` is a local variable defined inside the `test()` function. It doesn't exist outside the function.
+</details>
+
+**Question 2:** What's the output?
+```python
+count = 5
+
+def update():
+    global count
+    count = 10
+
+update()
+print(count)
+```
+
+<details>
+<summary>Show Answer</summary>
+
+**Output:** `10`
+
+**Explanation:** The `global` keyword allows the function to modify the global variable `count`, changing it from 5 to 10.
+</details>
+
+**Question 3:** What does this lambda function do?
+```python
+multiply = lambda x, y: x * y
+result = multiply(4, 5)
+```
+
+<details>
+<summary>Show Answer</summary>
+
+**Result:** `20`
+
+**Explanation:** This lambda function takes two arguments (`x` and `y`) and returns their product. It's equivalent to:
+```python
+def multiply(x, y):
+    return x * y
+```
+</details>
+
+---
+
 ## Practical Examples
 
 ### Example 1: Temperature Converter
@@ -462,3 +644,119 @@ def greet_user(name: str, times: int = 1) -> None:
 | Docstring    | Function documentation        | `"""Function description"""` |
 
 Functions are fundamental building blocks in Python that make code reusable, organized, and maintainable. Master these concepts to write clean and efficient Python programs!
+
+---
+
+## 🎯 Final Quiz: Comprehensive Review
+
+**Question 1:** What's wrong with this function definition?
+```python
+def my_function(**kwargs, *args):
+    pass
+```
+
+<details>
+<summary>Show Answer</summary>
+
+**Error!** The parameter order is incorrect. `*args` must come before `**kwargs`.
+
+**Correct order:**
+```python
+def my_function(*args, **kwargs):
+    pass
+```
+</details>
+
+**Question 2:** What will this function return?
+```python
+def mystery(a, b=5, *args, **kwargs):
+    return a + b + sum(args) + sum(kwargs.values())
+
+result = mystery(1, 2, 3, 4, x=5, y=6)
+```
+
+<details>
+<summary>Show Answer</summary>
+
+**Result:** `21`
+
+**Breakdown:**
+- `a = 1`
+- `b = 2`
+- `args = (3, 4)`, sum = 7
+- `kwargs = {'x': 5, 'y': 6}`, sum = 11
+- Total: 1 + 2 + 7 + 11 = 21
+</details>
+
+**Question 3:** Which best practice is being followed in this function?
+```python
+def calculate_discount(price: float, discount_rate: float = 0.1) -> float:
+    """
+    Calculate the discounted price.
+    
+    Args:
+        price: Original price
+        discount_rate: Discount percentage (default 10%)
+    
+    Returns:
+        Final price after discount
+    """
+    return price * (1 - discount_rate)
+```
+
+<details>
+<summary>Show Answer</summary>
+
+**All of them!** This function demonstrates:
+1. ✅ Descriptive function name
+2. ✅ Type hints for parameters and return value
+3. ✅ Comprehensive docstring
+4. ✅ Default argument for optional parameter
+5. ✅ Single, focused responsibility
+
+This is an excellent example of Python function best practices!
+</details>
+
+**Question 4:** Create a function that accepts a name and any number of scores, returns the average score.
+
+<details>
+<summary>Show Answer</summary>
+
+```python
+def calculate_average(name, *scores):
+    """Calculate the average of given scores."""
+    if not scores:
+        return 0
+    
+    average = sum(scores) / len(scores)
+    print(f"{name}'s average: {average:.2f}")
+    return average
+
+# Usage:
+calculate_average("Alice", 85, 90, 78, 92)
+# Output: Alice's average: 86.25
+```
+</details>
+
+**Question 5:** What's the difference between parameters and arguments?
+
+<details>
+<summary>Show Answer</summary>
+
+- **Parameters:** Variables listed in the function definition
+  ```python
+  def greet(name):  # 'name' is a parameter
+      print(f"Hello, {name}")
+  ```
+
+- **Arguments:** Actual values passed to the function when calling it
+  ```python
+  greet("Alice")  # "Alice" is an argument
+  ```
+
+**Simple rule:** Parameters are the placeholders, arguments are the actual values!
+</details>
+
+---
+
+🎉 **Congratulations!** You've completed the Python Functions guide with quizzes. Practice writing your own functions to reinforce these concepts!

@@ -63,6 +63,55 @@ Arrays in Python require a **type code** to specify the element type:
 
 ---
 
+### 🧠 Quiz 1: Array Basics
+
+**Question 1:** What is the main difference between Python arrays and lists?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Arrays store elements of the same data type and are more memory-efficient, while lists can store mixed data types
+
+**Explanation:** Arrays are type-restricted (e.g., all integers or all floats), making them faster and more memory-efficient for numerical operations. Lists can contain mixed types like `[1, "hello", 3.14, True]`.
+</details>
+
+**Question 2:** What must you do before using arrays in Python?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Import the `array` module using `import array`
+
+**Explanation:** Unlike lists which are built-in, arrays require importing the array module first: `import array` before you can use `array.array()`.
+</details>
+
+**Question 3:** Which type code would you use to create an array of floating-point numbers?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `'f'` for float or `'d'` for double
+
+**Explanation:** 
+- `'f'` creates a float array (4 bytes): `array.array('f', [1.1, 2.2])`
+- `'d'` creates a double array (8 bytes, more precision): `array.array('d', [1.1, 2.2])`
+</details>
+
+**Question 4:** What will happen if you try to create this array?
+```python
+mixed = array.array('i', [1, 2, 3.5, 4])
+```
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** It will raise a `TypeError`
+
+**Explanation:** The type code `'i'` specifies integers only. Trying to add a float (3.5) to an integer array will cause an error. Arrays enforce type consistency.
+</details>
+
+---
+
 ## Indexing
 
 Just like lists, arrays use **zero-based indexing**.
@@ -103,6 +152,40 @@ Arrays are **mutable**, so you can change elements:
 nums[1] = 99
 print(nums)  # array('i', [10, 99, 30, 40, 50])
 ```
+
+---
+
+### 🧠 Quiz 2: Indexing and Slicing
+
+**Question 1:** Given `arr = array.array('i', [5, 10, 15, 20, 25])`, what is `arr[-2]`?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `20`
+
+**Explanation:** Negative indexing counts from the end. `-1` is the last element (25), `-2` is the second-to-last element (20).
+</details>
+
+**Question 2:** What will `arr[1:4]` return from the array `[5, 10, 15, 20, 25]`?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `array('i', [10, 15, 20])`
+
+**Explanation:** Slicing `[1:4]` takes elements from index 1 up to (but not including) index 4. So it includes indices 1, 2, and 3, which are 10, 15, and 20.
+</details>
+
+**Question 3:** What does `arr[::2]` do?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Returns every second element (elements at even indices)
+
+**Explanation:** The syntax `[start:stop:step]` with step=2 takes every second element. From `[5, 10, 15, 20, 25]`, it returns `[5, 15, 25]`.
+</details>
 
 ---
 
@@ -162,6 +245,60 @@ print(nums)  # array('i', [1, 2, 3, 4, 5])
 nums.pop(2)  # Removes index 2
 print(nums)  # array('i', [1, 2, 4, 5])
 ```
+
+---
+
+### 🧠 Quiz 3: Array Methods
+
+**Question 1:** What's the difference between `append()` and `extend()`?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `append()` adds a single element, `extend()` adds multiple elements from an iterable
+
+**Explanation:**
+```python
+arr = array.array('i', [1, 2])
+arr.append(3)      # [1, 2, 3]
+arr.extend([4, 5]) # [1, 2, 3, 4, 5]
+```
+</details>
+
+**Question 2:** What will be the result?
+```python
+arr = array.array('i', [10, 20, 30, 20, 40])
+arr.remove(20)
+print(arr)
+```
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `array('i', [10, 30, 20, 40])`
+
+**Explanation:** `remove()` only removes the FIRST occurrence of the value. The second 20 remains in the array.
+</details>
+
+**Question 3:** What does `pop()` return when called without an argument?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** It removes and returns the last element of the array
+
+**Explanation:** `pop()` without an index removes and returns the last element. `pop(i)` removes and returns the element at index `i`.
+</details>
+
+**Question 4:** Given `arr = array.array('i', [5, 10, 15, 10, 20])`, what will `arr.count(10)` return?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `2`
+
+**Explanation:** The `count()` method returns how many times the value appears in the array. The number 10 appears twice.
+</details>
 
 ---
 
@@ -227,6 +364,71 @@ print(c)  # array('i', [1, 2, 3, 4, 5])
 
 ---
 
+### 🧠 Quiz 4: Array Operations
+
+**Question 1:** What will be printed?
+```python
+arr = array.array('i', [1, 2, 3])
+arr2 = arr
+arr2.append(4)
+print(arr)
+```
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `array('i', [1, 2, 3, 4])`
+
+**Explanation:** When you do `arr2 = arr`, both variables point to the same array in memory. Modifying `arr2` also modifies `arr`. This is called a shallow copy or reference.
+</details>
+
+**Question 2:** How do you create an independent copy of an array?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Use `array.array(original.typecode, original)`
+
+**Explanation:**
+```python
+original = array.array('i', [1, 2, 3])
+copy = array.array(original.typecode, original)
+```
+This creates a new array with the same type code and values, but in a different memory location.
+</details>
+
+**Question 3:** What will this code output?
+```python
+arr = array.array('i', [10, 20, 30])
+for i, val in enumerate(arr):
+    print(f"Index {i}: {val}")
+```
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:**
+```
+Index 0: 10
+Index 1: 20
+Index 2: 30
+```
+
+**Explanation:** `enumerate()` returns both the index and value during iteration, allowing you to access both at the same time.
+</details>
+
+**Question 4:** What does the membership test `5 in arr` return for `arr = array.array('i', [1, 2, 3, 4])`?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** `False`
+
+**Explanation:** The `in` operator checks if a value exists in the array. Since 5 is not in the array `[1, 2, 3, 4]`, it returns `False`.
+</details>
+
+---
+
 ### **Practice Questions**
 
 1. **Basic Traversal**
@@ -262,6 +464,86 @@ print(c)  # array('i', [1, 2, 3, 4, 5])
 8. **Second Largest Element**
 
     **Q8:** Write a Python program to find the second largest element in an array.
+
+---
+
+### 🧠 Quiz 5: Problem-Solving Challenge
+
+**Question 1:** How would you find the maximum element in an array without using `max()`?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:**
+```python
+arr = array.array('i', [5, 2, 9, 1, 7])
+max_val = arr[0]
+for num in arr:
+    if num > max_val:
+        max_val = num
+print(max_val)  # 9
+```
+
+**Explanation:** Start with the first element as the maximum, then iterate through the array comparing each element. Update max_val whenever you find a larger number.
+</details>
+
+**Question 2:** What's an efficient way to reverse an array in-place?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Use the `reverse()` method: `arr.reverse()`, or swap elements from both ends:
+```python
+left, right = 0, len(arr) - 1
+while left < right:
+    arr[left], arr[right] = arr[right], arr[left]
+    left += 1
+    right -= 1
+```
+
+**Explanation:** The `reverse()` method is simplest. The manual approach swaps elements from opposite ends moving toward the center.
+</details>
+
+**Question 3:** How would you remove all occurrences of a specific value from an array?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:**
+```python
+value_to_remove = 20
+while value_to_remove in arr:
+    arr.remove(value_to_remove)
+```
+
+**Explanation:** Since `remove()` only removes the first occurrence, you need a loop to remove all occurrences. The loop continues as long as the value exists in the array.
+</details>
+
+**Question 4:** What's the time complexity of searching for an element in an unsorted array?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** O(n) - Linear time
+
+**Explanation:** In the worst case, you might need to check every element in the array to find the target or determine it's not there. This requires n comparisons for an array of length n.
+</details>
+
+**Question 5:** Why might you choose an array over a list in Python?
+
+<details>
+<summary>Click to reveal answer</summary>
+
+**Answer:** Arrays are more memory-efficient and faster for large amounts of numeric data of the same type
+
+**Explanation:** Arrays:
+- Store elements more compactly in memory
+- Provide faster operations for numerical computations
+- Are ideal for working with large datasets of homogeneous data
+- Interface well with libraries like NumPy for scientific computing
+
+Lists are better when you need mixed data types or more flexibility.
+</details>
 
 ---
 
