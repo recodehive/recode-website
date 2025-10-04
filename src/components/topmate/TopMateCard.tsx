@@ -28,61 +28,49 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`relative w-full max-w-md mx-auto rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1 ${
+      className={`group relative w-full mx-auto rounded-2xl sm:rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 min-h-[365px] flex flex-col overflow-hidden ${
         isDark ? "bg-[#1a1a1a] text-white" : "bg-white text-black"
       }`}
     >
-      {/* Decorative Arrows */}
-      <div className="absolute -top-4 -left-4 flex gap-2">
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.1 }}
-            className="text-purple-500"
-          >
-            <ArrowUpRight size={24} className="transform rotate-45" />
-          </motion.div>
-        ))}
-      </div>
+      {/* Gradient Overlay - Shows on Hover */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 via-pink-500/0 to-purple-500/0 group-hover:from-purple-500/10 group-hover:via-pink-500/10 group-hover:to-purple-500/10 transition-all duration-500 pointer-events-none hover:cursor-pointer" />
 
       {/* Card Content */}
-      <div className="p-6">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-2">
-            <span
-              className={`text-sm font-medium ${
-                isDark ? "text-gray-300" : "text-gray-600"
-              }`}
-            >
-              1:1 CALL
-            </span>
+      <div className="p-6 sm:p-8 flex flex-col h-full">
+        {/* Header - Badge and Close Button */}
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <div className="flex items-center gap-2 sm:gap-3">
             <div
-              className={`flex items-center gap-1 ${
-                isDark ? "text-gray-400" : "text-gray-500"
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-full ${
+                isDark ? "bg-purple-500/10" : "bg-purple-50"
               }`}
             >
-              <Clock size={16} />
-              <span className="text-sm">{duration}</span>
+              <Clock size={14} className="sm:w-4 sm:h-4" />
+              <span className={`text-xs sm:text-sm font-medium ${
+                isDark ? "text-purple-300" : "text-purple-700"
+              }`}>
+                {duration}
+              </span>
             </div>
           </div>
           <button
-            className={`text-xl font-semibold ${
+            className={`p-1 rounded-full transition-all hover:rotate-90 ${
               isDark
-                ? "text-gray-500 hover:text-gray-300"
-                : "text-gray-400 hover:text-gray-600"
+                ? "text-gray-400 hover:text-white hover:bg-gray-800"
+                : "text-gray-500 hover:text-gray-900 hover:bg-gray-100"
             }`}
             onClick={() => setShowTopmate(false)}
+            aria-label="Close"
           >
-            <span className="sr-only">Close</span>×
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
+            </svg>
           </button>
         </div>
 
         {/* Title */}
         <h2
-          className={`text-2xl font-bold mb-4 ${
+          className={`text-xl sm:text-2xl font-bold mb-3 leading-tight ${
             isDark ? "text-white" : "text-gray-900"
           }`}
         >
@@ -90,60 +78,43 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         </h2>
 
         {/* Description */}
-        <p className={`${isDark ? "text-gray-300" : "text-gray-600"} mb-6`}>
+        <p className={`text-sm sm:text-base leading-relaxed flex-grow ${
+          isDark ? "text-gray-300" : "text-gray-600"
+        }`}>
           {description}
         </p>
 
         {/* Profile Section */}
-        <div className="flex items-center justify-between flex-wrap md:flex-nowrap gap-y-3">
-          <div className="flex items-center gap-3 min-w-0">
+        <div className={`mt-6 pt-4 sm:pt-5 border-t ${
+          isDark ? "border-gray-700" : "border-gray-200"
+        }`}>
+          <div className="flex items-center gap-3 sm:gap-4">
             <img
               src={profileImage}
               alt="Profile"
-              className="w-12 h-12 rounded-full object-cover border-2 border-purple-200"
+              className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover ring-2 ring-purple-500/20 flex-shrink-0"
             />
-            <div className="flex flex-col">
-              <span
-                className={`text-sm ${
-                  isDark ? "text-gray-300" : "text-gray-600"
-                }`}
-              >
-                Book a slot at
-              </span>
+            <div className="flex-1 min-w-0">
+              <p className={`text-xs mb-1 ${
+                isDark ? "text-gray-500" : "text-gray-400"
+              }`}>
+                Book your session
+              </p>
               <a
                 href={`https://topmate.io/${username}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-purple-500 font-semibold hover:text-purple-600 transition-colors flex items-center gap-1 truncate"
+                className={`group inline-flex items-center gap-1.5 font-semibold hover:gap-2 transition-all ${
+                  isDark ? "text-purple-400 hover:text-purple-300" : "text-purple-600 hover:text-purple-700"
+                }`}
               >
-                <span className="truncate">topmate.io/{username}</span>
-                <ArrowUpRight size={16} />
+                <span className="text-sm sm:text-base">topmate.io/{username}</span>
+                <ArrowUpRight size={16} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
             </div>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
-            {/* Show only the circular icon part of the Topmate logo */}
-            <div className="h-4 w-4 overflow-hidden flex-shrink-0 rounded-sm">
-              <img
-                src="/icons/topmate.png"
-                alt="Topmate icon"
-                className="h-4 w-auto object-cover object-left opacity-90"
-              />
-            </div>
-            {/* Theme-aware text to ensure readability on dark backgrounds */}
-            <span
-              className={`text-sm font-semibold shrink-0 ${
-                isDark ? "text-gray-200" : "text-gray-700"
-              }`}
-            >
-              topmate
-            </span>
-          </div>
         </div>
       </div>
-
-      {/* Gradient Border Effect */}
-      <div className="absolute inset-0 border-2 border-transparent rounded-3xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 -z-10" />
     </motion.div>
   );
 };
