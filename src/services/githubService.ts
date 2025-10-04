@@ -457,7 +457,7 @@ class GitHubService {
     return [
       {
         id: '1',
-        title: 'Welcome to RecodeHive Discussions!',
+        title: 'Welcome to recode hive Discussions!',
         body: 'This is where we discuss ideas, share knowledge, and help each other grow. Feel free to ask questions, share your projects, or just say hello!',
         author: {
           login: 'recodehive',

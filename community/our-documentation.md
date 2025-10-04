@@ -3,7 +3,7 @@ id: our-documentation.md
 sidebar_position: 3
 title: How to add Tutorials
 sidebar_label: Documentation Guidelines
-description: "This documentation is intended to help you get started with CodeHarborHub and to provide you with a comprehensive guide to the features and functionality of the platform. This is a place to learn about technology, programming, web development, data science, and more."
+description: "This documentation is intended to help you get started with recode hive and to provide you with a comprehensive guide to the features and functionality of the platform. This is a place to learn about technology, programming, web development, data science, and more."
 tags:
   [
     features,

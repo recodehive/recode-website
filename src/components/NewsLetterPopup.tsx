@@ -34,14 +34,14 @@ const NewsletterPopup = () => {
       <div className="bg-white/80 backdrop-blur-xl max-w-xl w-full rounded-3xl shadow-2xl p-8 text-center relative border border-gray-200 animate-fade-in">
         <img
           src="/img/logo.png"
-          alt="RecodeHive Logo"
+          alt="recode hive Logo"
           className="w-16 h-16 mx-auto mb-4 rounded-full shadow-md"
         />
 
         <h2 className="text-3xl font-extrabold mb-2 text-gray-900">Sanjay’s Substack</h2>
 
         <p className="text-gray-700 text-base leading-relaxed mb-4">
-          Recodehive is an inclusive and welcoming platform where everyone can contribute,
+          recode hive is an inclusive and welcoming platform where everyone can contribute,
           learn, and grow together. ⚡ <br />
           Check my ✨ Website: <a href="https://www.recodehive.com" target="_blank" className="text-blue-600 hover:underline font-medium">https://www.recodehive.com </a><br />
           📮 How to reach me: <a href="https://github.com/sanjay-kv" target="_blank" className="text-blue-600 hover:underline font-medium">github.com/sanjay-kv</a><br />
