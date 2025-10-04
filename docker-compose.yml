@@ -11,3 +11,4 @@ services:
     command: npm run dev -- --host 0.0.0.0 # THIS is the crucial change for hot-reload!
     environment:
       - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
