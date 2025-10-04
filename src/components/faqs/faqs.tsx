@@ -50,6 +50,11 @@ const FAQs: React.FC = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  // Split FAQs into two columns manually to prevent shifting
+  const midPoint = Math.ceil(faqData.length / 2);
+  const leftColumnFAQs = faqData.slice(0, midPoint);
+  const rightColumnFAQs = faqData.slice(midPoint);
+
   return (
     <section
       className={`py-8 transition-colors duration-300 ${
@@ -79,67 +84,136 @@ const FAQs: React.FC = () => {
               </p>
             </div>
 
-    {/* Accordion Masonry Columns to prevent sibling expansion */}
-    <div className="columns-1 md:columns-2 md:gap-x-6">
-              {faqData.map((faq, index) => (
-                <motion.div
-                  key={index}
-      className="accordion h-fit border-gray-200 dark:border-gray-700 pb-4 mb-4 break-inside-avoid"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <button
-                    className={`accordion-toggle group flex justify-between items-center text-lg font-semibold w-full transition-all duration-300 
-                      ${
-                        isDark
-                          ? "text-gray-100 bg-gray-800 hover:bg-gray-700 hover:text-white border border-gray-700 hover:border-gray-600"
-                          : "text-gray-900 bg-white hover:bg-gray-50 hover:text-gray-900 border border-gray-200 hover:border-gray-300 shadow-sm"
-                      } 
-                      p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
-                    onClick={() => toggleAccordion(index)}
-                  >
-                    <span className="text-left pr-4">{faq.question}</span>
-                    <motion.span
-                      className={`transform transition-transform duration-300 flex-shrink-0 ${
-                        isDark ? "text-gray-300" : "text-gray-600"
-                      }`}
-                      animate={{ rotate: activeIndex === index ? 180 : 0 }}
-                    >
-                      <FiChevronDown size={22} />
-                    </motion.span>
-                  </button>
+    {/* FAQ Manual Column Layout - Prevents vertical shifting */}
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Left Column */}
+              <div className="space-y-4">
+                {leftColumnFAQs.map((faq, index) => (
                   <motion.div
-                    className="accordion-content overflow-hidden"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{
-                      height: activeIndex === index ? "auto" : 0,
-                      opacity: activeIndex === index ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    key={index}
+                    className="accordion border-gray-200 dark:border-gray-700"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <div
-                      className={`mt-3 p-5 text-base leading-relaxed transition-colors duration-200 rounded-lg border-l-4 ${
-                        isDark 
-                          ? "text-gray-100 bg-gradient-to-r from-gray-800/80 to-gray-900/60 border-l-indigo-400 shadow-lg" 
-                          : "text-gray-900 bg-gradient-to-r from-white to-gray-50 border-l-indigo-500 shadow-md"
-                      }`}
-                      dangerouslySetInnerHTML={{ 
-                        __html: faq.answer.replace(
-                          /<strong>/g, 
-                          `<strong style="color: ${isDark ? '#ffffff' : '#000000'}; font-weight: 700; background: ${isDark ? 'rgba(99, 102, 241, 0.2)' : 'rgba(199, 210, 254, 0.4)'}; padding: 2px 6px; border-radius: 4px;">`
-                        ).replace(
-                          /<a /g,
-                          `<a style="color: ${isDark ? '#c4b5fd' : '#3730a3'}; text-decoration: underline; font-weight: 600; transition: all 0.2s ease;" `
-                        ).replace(
-                          /• /g,
-                          `<span style="color: ${isDark ? '#818cf8' : '#4f46e5'}; font-weight: bold;">•</span> `
-                        )
+                    <button
+                      className={`accordion-toggle group flex justify-between items-center text-lg font-semibold w-full transition-all duration-300 
+                        ${
+                          isDark
+                            ? "text-gray-100 bg-gray-800 hover:bg-gray-700 hover:text-white border border-gray-700 hover:border-gray-600"
+                            : "text-gray-900 bg-white hover:bg-gray-50 hover:text-gray-900 border border-gray-200 hover:border-gray-300 shadow-sm"
+                        } 
+                        p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+                      onClick={() => toggleAccordion(index)}
+                    >
+                      <span className="text-left pr-4">{faq.question}</span>
+                      <motion.span
+                        className={`transform transition-transform duration-300 flex-shrink-0 ${
+                          isDark ? "text-gray-300" : "text-gray-600"
+                        }`}
+                        animate={{ rotate: activeIndex === index ? 180 : 0 }}
+                      >
+                        <FiChevronDown size={22} />
+                      </motion.span>
+                    </button>
+                    <motion.div
+                      className="accordion-content overflow-hidden"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{
+                        height: activeIndex === index ? "auto" : 0,
+                        opacity: activeIndex === index ? 1 : 0,
                       }}
-                    />
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div
+                        className={`mt-3 p-5 text-base leading-relaxed transition-colors duration-200 rounded-lg border-l-4 ${
+                          isDark 
+                            ? "text-gray-100 bg-gradient-to-r from-gray-800/80 to-gray-900/60 border-l-indigo-400 shadow-lg" 
+                            : "text-gray-900 bg-gradient-to-r from-white to-gray-50 border-l-indigo-500 shadow-md"
+                        }`}
+                        dangerouslySetInnerHTML={{ 
+                          __html: faq.answer.replace(
+                            /<strong>/g, 
+                            `<strong style="color: ${isDark ? '#ffffff' : '#000000'}; font-weight: 700; background: ${isDark ? 'rgba(99, 102, 241, 0.2)' : 'rgba(199, 210, 254, 0.4)'}; padding: 2px 6px; border-radius: 4px;">`
+                          ).replace(
+                            /<a /g,
+                            `<a style="color: ${isDark ? '#c4b5fd' : '#3730a3'}; text-decoration: underline; font-weight: 600; transition: all 0.2s ease;" `
+                          ).replace(
+                            /• /g,
+                            `<span style="color: ${isDark ? '#818cf8' : '#4f46e5'}; font-weight: bold;">•</span> `
+                          )
+                        }}
+                      />
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              ))}
+                ))}
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-4">
+                {rightColumnFAQs.map((faq, index) => {
+                  const actualIndex = index + leftColumnFAQs.length;
+                  return (
+                    <motion.div
+                      key={actualIndex}
+                      className="accordion border-gray-200 dark:border-gray-700"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <button
+                        className={`accordion-toggle group flex justify-between items-center text-lg font-semibold w-full transition-all duration-300 
+                          ${
+                            isDark
+                              ? "text-gray-100 bg-gray-800 hover:bg-gray-700 hover:text-white border border-gray-700 hover:border-gray-600"
+                              : "text-gray-900 bg-white hover:bg-gray-50 hover:text-gray-900 border border-gray-200 hover:border-gray-300 shadow-sm"
+                          } 
+                          p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
+                        onClick={() => toggleAccordion(actualIndex)}
+                      >
+                        <span className="text-left pr-4">{faq.question}</span>
+                        <motion.span
+                          className={`transform transition-transform duration-300 flex-shrink-0 ${
+                            isDark ? "text-gray-300" : "text-gray-600"
+                          }`}
+                          animate={{ rotate: activeIndex === actualIndex ? 180 : 0 }}
+                        >
+                          <FiChevronDown size={22} />
+                        </motion.span>
+                      </button>
+                      <motion.div
+                        className="accordion-content overflow-hidden"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{
+                          height: activeIndex === actualIndex ? "auto" : 0,
+                          opacity: activeIndex === actualIndex ? 1 : 0,
+                        }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <div
+                          className={`mt-3 p-5 text-base leading-relaxed transition-colors duration-200 rounded-lg border-l-4 ${
+                            isDark 
+                              ? "text-gray-100 bg-gradient-to-r from-gray-800/80 to-gray-900/60 border-l-indigo-400 shadow-lg" 
+                              : "text-gray-900 bg-gradient-to-r from-white to-gray-50 border-l-indigo-500 shadow-md"
+                          }`}
+                          dangerouslySetInnerHTML={{ 
+                            __html: faq.answer.replace(
+                              /<strong>/g, 
+                              `<strong style="color: ${isDark ? '#ffffff' : '#000000'}; font-weight: 700; background: ${isDark ? 'rgba(99, 102, 241, 0.2)' : 'rgba(199, 210, 254, 0.4)'}; padding: 2px 6px; border-radius: 4px;">`
+                            ).replace(
+                              /<a /g,
+                              `<a style="color: ${isDark ? '#c4b5fd' : '#3730a3'}; text-decoration: underline; font-weight: 600; transition: all 0.2s ease;" `
+                            ).replace(
+                              /• /g,
+                              `<span style="color: ${isDark ? '#818cf8' : '#4f46e5'}; font-weight: bold;">•</span> `
+                            )
+                          }}
+                        />
+                      </motion.div>
+                    </motion.div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
