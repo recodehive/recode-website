@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import type { ReactElement } from 'react';
 import { useHistory } from '@docusaurus/router';
@@ -8,6 +8,7 @@ interface PodcastData {
   id: string;
   spotifyUrl: string;
   type: 'episode' | 'show' | 'playlist';
+  title?: string; // Add optional title here
 }
 
 // Function to extract Spotify ID from URL
@@ -36,90 +37,75 @@ const podcastUrls: string[] = [
   "https://open.spotify.com/episode/21yp6PDe1XN8B1goR5qMI3?si=k6JURkMRTQq2Ltbujq9qLw",
 ];
 
-const podcastData: PodcastData[] = podcastUrls.map((url, index) => ({
+// Initialize podcast data without titles first
+const initialPodcastData: PodcastData[] = podcastUrls.map((url, index) => ({
   id: String(index + 1),
   spotifyUrl: url,
-  type: getSpotifyContentType(url)
+  type: getSpotifyContentType(url),
 }));
 
-interface SpotifyTitleProps {
-  spotifyUrl: string;
-  type: 'episode' | 'show' | 'playlist';
-}
-
-// Fetches the podcast/show/episode title from Spotify oEmbed API
-const SpotifyTitle: React.FC<SpotifyTitleProps> = ({ spotifyUrl, type }) => {
-  const [title, setTitle] = React.useState<string>('');
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    let cancelled = false;
-    setLoading(true);
-    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
-      .then(res => res.json())
-      .then(data => {
-        if (!cancelled) {
-          setTitle(data.title);
-          setLoading(false);
-        }
-      })
-      .catch(() => {
-        if (!cancelled) {
-          setTitle('');
-          setLoading(false);
-        }
-      });
-    return () => { cancelled = true; };
-  }, [spotifyUrl]);
-
-  return (
-    <div className="podcast-title">
-      {loading ? (
-        <div className="title-skeleton">
-          <div className="skeleton-line"></div>
-          <div className="skeleton-line short"></div>
-        </div>
-      ) : (
-        <>
-          <div className="podcast-type-badge">
-            <span className="type-icon">
-              {type === 'episode' ? '🎙️' : type === 'show' ? '📻' : '🎵'}
-            </span>
-            {type.charAt(0).toUpperCase() + type.slice(1)}
-          </div>
-          <h3 className="podcast-title-text">
-            {title || `${type.charAt(0).toUpperCase() + type.slice(1)} #${Math.floor(Math.random() * 100) + 1}`}
-          </h3>
-        </>
-      )}
+// Component to display Spotify title and type badge for each podcast
+const SpotifyTitle: React.FC<{ title?: string; type: 'episode' | 'show' | 'playlist' }> = ({ title, type }) => (
+  <div className="podcast-title">
+    <div className="podcast-type-badge">
+      <span className="type-icon">
+        {type === 'episode' ? '🎙️' : type === 'show' ? '📻' : '🎵'}
+      </span>
+      {type.charAt(0).toUpperCase() + type.slice(1)}
     </div>
-  );
-};
+    <h3 className="podcast-title-text">{title || 'Loading title...'}</h3>
+  </div>
+);
 
 export default function Podcasts(): ReactElement {
   const history = useHistory();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState<
-    "all" | "episode" | "show" | "playlist"
-  >("all");
+  const [selectedFilter, setSelectedFilter] = useState<"all" | "episode" | "show" | "playlist">("all");
   const [favorites, setFavorites] = useState<string[]>(() => {
-    // Load favorites from localStorage on component mount
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("podcast-favorites");
       return saved ? JSON.parse(saved) : [];
     }
     return [];
   });
+  const [podcasts, setPodcasts] = useState<PodcastData[]>(initialPodcastData);
   const podcastsPerPage = 9;
 
-  // Filter podcasts based on search and filter
-  const filteredPodcasts = podcastData.filter(podcast => {
+  // Fetch all podcast titles once on mount
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all(
+      podcasts.map(p =>
+        fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(p.spotifyUrl)}`)
+          .then(res => res.json())
+          .then(data => ({ id: p.id, title: data.title }))
+          .catch(() => ({ id: p.id, title: '' }))
+      )
+    ).then(results => {
+      if (!cancelled) {
+        // Merge fetched titles into podcasts state
+        setPodcasts(prev =>
+          prev.map(p => {
+            const found = results.find(r => r.id === p.id);
+            return found ? { ...p, title: found.title } : p;
+          })
+        );
+      }
+    });
+    return () => { cancelled = true; };
+  }, []);
+
+  // Filter podcasts based on search and filter using title now
+  const filteredPodcasts = podcasts.filter(podcast => {
     const matchesFilter = selectedFilter === 'all' || podcast.type === selectedFilter;
-    return matchesFilter;
+    const matchesSearch =
+      searchTerm === '' ||
+      (podcast.title && podcast.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    return matchesFilter && matchesSearch;
   });
 
-  // Calculate podcasts for current page
+  // Pagination calculations
   const indexOfLastPodcast = currentPage * podcastsPerPage;
   const indexOfFirstPodcast = indexOfLastPodcast - podcastsPerPage;
   const currentPodcasts = filteredPodcasts.slice(indexOfFirstPodcast, indexOfLastPodcast);
@@ -137,8 +123,7 @@ export default function Podcasts(): ReactElement {
           title: `Check out this ${podcast.type}`,
           url: podcast.spotifyUrl,
         });
-      } catch (err) {
-        // Fallback to clipboard
+      } catch {
         navigator.clipboard.writeText(podcast.spotifyUrl);
       }
     } else {
@@ -147,20 +132,14 @@ export default function Podcasts(): ReactElement {
   };
 
   const handleFavorite = (podcast: PodcastData, event: React.MouseEvent) => {
-    // Prevent card click when clicking favorite button
     event.stopPropagation();
 
-    setFavorites((prev) => {
+    setFavorites(prev => {
       const isFavorited = prev.includes(podcast.id);
-      const newFavorites = isFavorited
-        ? prev.filter((id) => id !== podcast.id) // Remove from favorites
-        : [...prev, podcast.id]; // Add to favorites
-
-      // Save to localStorage for persistence
+      const newFavorites = isFavorited ? prev.filter(id => id !== podcast.id) : [...prev, podcast.id];
       if (typeof window !== "undefined") {
         localStorage.setItem("podcast-favorites", JSON.stringify(newFavorites));
       }
-
       return newFavorites;
     });
   };
@@ -171,12 +150,11 @@ export default function Podcasts(): ReactElement {
   ) => {
     const target = event.target as HTMLElement;
 
-    // Prevent navigation if clicking on buttons or action area
     if (
       target.tagName === "IFRAME" ||
       target.closest(".podcast-embed") ||
-      target.closest(".action-btn") || // Don't navigate if clicking buttons
-      target.closest(".card-actions") || // Don't navigate if clicking action area
+      target.closest(".action-btn") ||
+      target.closest(".card-actions") ||
       target.classList.contains("action-btn") ||
       target.classList.contains("favorite") ||
       target.classList.contains("share")
@@ -197,17 +175,13 @@ export default function Podcasts(): ReactElement {
               <span className="badge-icon">🎙️</span>
               <span className="badge-text">Premium Audio Content</span>
             </div>
-            <h1 className="podcast-hero-title">
-              Discover Top Podcasts
-            </h1>
+            <h1 className="podcast-hero-title">Discover Top Podcasts</h1>
             <p className="podcast-hero-description">
               Stream the best podcasts from your favorite stations. Dive into episodes that inspire, educate, and entertain from leading voices in tech, business, and beyond.
             </p>
-
-            {/* Stats */}
             <div className="podcast-stats">
               <div className="stat-item">
-                <div className="stat-number">{podcastData.length}+</div>
+                <div className="stat-number">{podcasts.length}+</div>
                 <div className="stat-label">Episodes</div>
               </div>
               <div className="stat-item">
@@ -230,7 +204,7 @@ export default function Podcasts(): ReactElement {
               type="text"
               placeholder="Search podcasts..."
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={e => setSearchTerm(e.target.value)}
               className="search-input"
             />
           </div>
@@ -240,28 +214,28 @@ export default function Podcasts(): ReactElement {
               onClick={() => setSelectedFilter('all')}
             >
               <span className="tab-icon">📊</span>
-              All ({podcastData.length})
+              All ({podcasts.length})
             </button>
             <button
               className={`filter-tab ${selectedFilter === 'episode' ? 'active' : ''}`}
               onClick={() => setSelectedFilter('episode')}
             >
               <span className="tab-icon">🎙️</span>
-              Episodes ({podcastData.filter(p => p.type === 'episode').length})
+              Episodes ({podcasts.filter(p => p.type === 'episode').length})
             </button>
             <button
               className={`filter-tab ${selectedFilter === 'show' ? 'active' : ''}`}
               onClick={() => setSelectedFilter('show')}
             >
               <span className="tab-icon">📻</span>
-              Shows ({podcastData.filter(p => p.type === 'show').length})
+              Shows ({podcasts.filter(p => p.type === 'show').length})
             </button>
             <button
               className={`filter-tab ${selectedFilter === 'playlist' ? 'active' : ''}`}
               onClick={() => setSelectedFilter('playlist')}
             >
               <span className="tab-icon">🎵</span>
-              Playlists ({podcastData.filter(p => p.type === 'playlist').length})
+              Playlists ({podcasts.filter(p => p.type === 'playlist').length})
             </button>
           </div>
         </div>
@@ -275,10 +249,10 @@ export default function Podcasts(): ReactElement {
                   <div
                     key={podcast.id}
                     className="enhanced-podcast-card"
-                    onClick={(e) => handlePodcastClick(podcast, e)}
+                    onClick={e => handlePodcastClick(podcast, e)}
                     role="button"
                     tabIndex={0}
-                    onKeyDown={(e) => {
+                    onKeyDown={e => {
                       if (e.key === 'Enter' || e.key === ' ') {
                         handlePodcastClick(podcast, e);
                       }
@@ -286,48 +260,49 @@ export default function Podcasts(): ReactElement {
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="podcast-card-header">
-                      <SpotifyTitle
-                        spotifyUrl={podcast.spotifyUrl}
-                        type={podcast.type}
-                      />
+                      <SpotifyTitle title={podcast.title} type={podcast.type} />
                       <div
                         className="card-actions"
-                        onClick={(e) => {
+                        onClick={e => {
                           e.stopPropagation();
                           e.preventDefault();
                         }}
-                        onMouseDown={(e) => {
+                        onMouseDown={e => {
                           e.stopPropagation();
                         }}
                       >
                         <button
                           className={`action-btn favorite unfavorited ${
-                            favorites.includes(podcast.id) ? "favorited" : ""
+                            favorites.includes(podcast.id) ? 'favorited' : ''
                           }`}
                           title={
                             favorites.includes(podcast.id)
-                              ? "Remove from favorites"
-                              : "Add to favorites"
+                              ? 'Remove from favorites'
+                              : 'Add to favorites'
                           }
-                          onClick={(e) => {
+                          onClick={e => {
                             e.preventDefault();
                             e.stopPropagation();
                             e.nativeEvent.stopImmediatePropagation();
                             handleFavorite(podcast, e);
                           }}
                         >
-                            {favorites.includes(podcast.id) ? '🤍' : '❤️'}
+                          {favorites.includes(podcast.id) ? '🤍' : '❤️'}
                         </button>
-                      <button className="action-btn share" title="Share podcast" onClick={(e) => { 
+                        <button
+                          className="action-btn share"
+                          title="Share podcast"
+                          onClick={e => {
                             e.stopPropagation();
                             handleShare(podcast);
-                      }}>
+                          }}
+                        >
                           🔗
                         </button>
                       </div>
                     </div>
 
-                    <div className="podcast-embed" onClick={(e) => e.stopPropagation()}>
+                    <div className="podcast-embed" onClick={e => e.stopPropagation()}>
                       <iframe
                         src={`https://open.spotify.com/embed/${podcast.type}/${getSpotifyEmbedId(podcast.spotifyUrl)}`}
                         width="100%"
@@ -362,14 +337,14 @@ export default function Podcasts(): ReactElement {
                   </button>
 
                   <div className="pagination-numbers">
-                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((number) => (
-                        <button
-                          key={number}
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(number => (
+                      <button
+                        key={number}
                         className={`pagination-number ${currentPage === number ? 'active' : ''}`}
-                          onClick={() => handlePageChange(number)}
-                        >
-                          {number}
-                        </button>
+                        onClick={() => handlePageChange(number)}
+                      >
+                        {number}
+                      </button>
                     ))}
                   </div>
 
