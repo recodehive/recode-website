@@ -88,7 +88,7 @@ export default function Home(): ReactNode {
             <OurProjects OurProjectsData={projectsData} />
           </div>
 
-          <div className="m-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+          <div className="m-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {showTopmate && (
               <div className="col-span-1">
                 <TopMateSection setShowTopmate={setShowTopmate} />
