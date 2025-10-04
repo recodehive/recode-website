@@ -243,9 +243,6 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
-    hooks: {
-      onBrokenMarkdownLinks: "warn",
-    },
   },
   
   // Keep legacy setting until fully migrated to v4
@@ -269,6 +266,9 @@ const config: Config = {
   // ✅ Add this customFields object to expose the token to the client-side
   customFields: {
     gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
+    hooks: {
+      onBrokenMarkdownLinks: "warn",
+    }
   },
 };
 
