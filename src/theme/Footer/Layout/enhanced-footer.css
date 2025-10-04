@@ -1,11 +1,7 @@
 /* Enhanced Footer Styles - COMPLETELY ISOLATED FROM THEME CHANGES */
 
 /* Theme-aware footer styles */
-.enhanced-footer.light-theme {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%) !important;
-  color: #1e293b !important;
-}
-
+.enhanced-footer.light-theme,
 .enhanced-footer.dark-theme {
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%) !important;
   color: #e2e8f0 !important;
@@ -122,14 +118,10 @@ html[data-theme='light'] .enhanced-footer * {
 }
 
 /* Force the main footer background and colors to never change */
-.enhanced-footer.dark-theme {
+.enhanced-footer.dark-theme,
+.enhanced-footer.light-theme {
   background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%) !important;
   color: #e2e8f0 !important;
-}
-
-.enhanced-footer.light-theme {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%) !important;
-  color: #1e293b !important;
 }
 
 /* Absolute protection against any theme changes */
@@ -141,8 +133,8 @@ html[data-theme='dark'] .enhanced-footer.dark-theme {
 
 [data-theme='light'] .enhanced-footer.light-theme,
 html[data-theme='light'] .enhanced-footer.light-theme {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 25%, #cbd5e1 50%, #94a3b8 75%, #64748b 100%) !important;
-  color: #1e293b !important;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%) !important;
+  color: #e2e8f0 !important;
 }
 
 /* Force all text elements to maintain their colors based on theme */
@@ -151,72 +143,52 @@ html[data-theme='light'] .enhanced-footer.light-theme {
 .enhanced-footer.dark-theme h3,
 .enhanced-footer.dark-theme h4,
 .enhanced-footer.dark-theme h5,
-.enhanced-footer.dark-theme h6 {
-  color: #ffffff !important;
-}
-
+.enhanced-footer.dark-theme h6,
 .enhanced-footer.light-theme h1,
 .enhanced-footer.light-theme h2,
 .enhanced-footer.light-theme h3,
 .enhanced-footer.light-theme h4,
 .enhanced-footer.light-theme h5,
 .enhanced-footer.light-theme h6 {
-  color: #1e293b !important;
+  color: #ffffff !important;
 }
 
 .enhanced-footer.dark-theme p,
 .enhanced-footer.dark-theme span,
 .enhanced-footer.dark-theme div,
-.enhanced-footer.dark-theme li {
-  color: #e2e8f0 !important;
-}
+.enhanced-footer.dark-theme li,
 
 .enhanced-footer.light-theme p,
 .enhanced-footer.light-theme span,
 .enhanced-footer.light-theme div,
-.enhanced-footer.light-theme li {
-  color: #475569 !important;
+.enhanced-footer.light-theme li{
+  color: #e2e8f0 !important;
 }
 
-.enhanced-footer.dark-theme a {
+.enhanced-footer.dark-theme a,
+.enhanced-footer.light-theme a {
   color: #cbd5e1 !important;
 }
 
-.enhanced-footer.light-theme a {
-  color: #334155 !important;
-}
-
-.enhanced-footer.dark-theme a:hover {
-  color: #ffffff !important;
-}
-
+.enhanced-footer.dark-theme a:hover,
 .enhanced-footer.light-theme a:hover {
-  color: #1e293b !important;
+  color: #ffffff !important;
 }
 
 /* Specific protection for footer elements */
-.enhanced-footer.dark-theme .footer-brand-title {
-  color: #ffffff !important;
-}
-
+.enhanced-footer.dark-theme .footer-brand-title,
 .enhanced-footer.light-theme .footer-brand-title {
-  color: #1e293b !important;
-}
-
-.enhanced-footer.dark-theme .footer-column-title {
   color: #ffffff !important;
 }
 
+.enhanced-footer.dark-theme .footer-column-title,
 .enhanced-footer.light-theme .footer-column-title {
-  color: #1e293b !important;
+  color: #ffffff !important;
 }
 
-.enhanced-footer.dark-theme .footer-link {
-  color: #cbd5e1 !important;
-}
-
+.enhanced-footer.dark-theme .footer-link,
 .enhanced-footer.light-theme .footer-link {
-  color: #334155 !important;
+  color: #cbd5e1 !important;
 }
 
 [data-theme='dark'] .enhanced-footer .footer-link:hover,
