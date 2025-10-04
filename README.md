@@ -61,7 +61,7 @@ flowchart LR
    cd recode-website
    ```
 
-3. **Prerequesites**
+3. **Prerequisites**
 - [Docker](https://docs.docker.com/engine/install/) installed
 - Docker compose installed (Optional)
 
