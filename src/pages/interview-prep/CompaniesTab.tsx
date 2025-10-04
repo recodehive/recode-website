@@ -178,7 +178,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                                         animate={{ scale: [1, 1.2, 1] }}
                                         transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                                     />
-                                    <span className="relative z-10">{item.icon}</span>
+                                    <span className="relative z-10 text-inherit">{item.icon}</span>
                                 </div>
                                 <h4 className="font-bold text-gray-900 dark:text-white mb-3 text-lg">{item.title}</h4>
                                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">{item.description}</p>
@@ -205,7 +205,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                                 >
                                     <div className={`text-3xl font-bold ${stat.color} mb-2`}>{stat.metric}</div>
                                     <div className="text-sm text-gray-600 dark:text-gray-300 flex items-center justify-center gap-2">
-                                        <span>{stat.icon}</span>
+                                        <span className="text-inherit">{stat.icon}</span>
                                         {stat.label}
                                     </div>
                                 </motion.div>) : null
@@ -225,7 +225,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                             placeholder="Search companies, focus areas, technologies, or interview types..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-12 h-12 custom-input bg-gray-50 dark:bg-gray-700 text-white border-gray-200 dark:border-gray-600 rounded-xl text-lg"
+                            className="pl-12 h-12 custom-input bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white border-gray-200 dark:border-gray-600 rounded-xl text-lg"
                         />
                     </div>
                     <div className="flex gap-3">
@@ -622,7 +622,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                                         animate={{ scale: [1, 1.2, 1] }}
                                         transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
                                     />
-                                    <span className="relative z-10">{item.icon}</span>
+                                    <span className="relative z-10 text-inherit">{item.icon}</span>
                                 </div>
                                 <h4 className="font-bold text-gray-900 dark:text-white mb-3 text-lg">{item.title}</h4>
                                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">{item.description}</p>

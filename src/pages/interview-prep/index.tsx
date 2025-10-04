@@ -4,6 +4,8 @@ import Layout from "@theme/Layout"
 import Head from "@docusaurus/Head"
 import { motion } from "framer-motion"
 import Link from "@docusaurus/Link"
+import { useColorMode } from '@docusaurus/theme-common';
+import clsx from 'clsx'
 import OverviewTab from "./OverviewTab"
 import TechnicalTab from "./TechnicalTab";
 import BehavioralTab from "./BehavioralTab"
@@ -1007,6 +1009,59 @@ const InterviewPrepPage: React.FC = () => {
       title="Interview Preparation - RecodeHive"
       description="Comprehensive interview preparation resources for technical and behavioral interviews at top tech companies"
     >
+      <InterviewPrepContent 
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        expandedCategories={expandedCategories}
+        toggleCategory={toggleCategory}
+        showTips={showTips}
+        toggleTips={toggleTips}
+        showQuestions={showQuestions}
+        toggleQuestions={toggleQuestions}
+        behavioralQuestions={behavioralQuestions}
+        technicalResources={technicalResources}
+        practicePlatforms={practicePlatforms}
+        companyTips={companyTips}
+        mockInterviewQuestions={mockInterviewQuestions}
+      />
+    </Layout>
+  )
+}
+
+function InterviewPrepContent({ 
+  activeTab, 
+  setActiveTab, 
+  expandedCategories, 
+  toggleCategory, 
+  showTips, 
+  toggleTips, 
+  showQuestions, 
+  toggleQuestions,
+  behavioralQuestions,
+  technicalResources,
+  practicePlatforms,
+  companyTips,
+  mockInterviewQuestions
+}: {
+  activeTab: string;
+  setActiveTab: React.Dispatch<React.SetStateAction<"overview" | "technical" | "behavioral" | "companies" | "practice">>;
+  expandedCategories: { [key: string]: boolean };
+  toggleCategory: (categoryIndex: number) => void;
+  showTips: { [key: number]: boolean };
+  toggleTips: (index: number) => void;
+  showQuestions: { [key: number]: boolean };
+  toggleQuestions: (index: number) => void;
+  behavioralQuestions: any[];
+  technicalResources: any[];
+  practicePlatforms: any[];
+  companyTips: any[];
+  mockInterviewQuestions: any[];
+}) {
+  const { colorMode } = useColorMode();
+  const isDark = colorMode === "dark";
+
+  return (
+    <>
       <Head>
         <title>Interview Preparation - RecodeHive</title>
         <meta
@@ -1015,7 +1070,12 @@ const InterviewPrepPage: React.FC = () => {
         />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+      <div className={clsx(
+        "min-h-screen",
+        isDark 
+          ? "bg-gradient-to-b from-gray-900 to-gray-800 text-white" 
+          : "bg-gradient-to-b from-white to-gray-50 text-black"
+      )}>
         {/* Hero Section */}
         <motion.section
           className="hero-section py-20 px-4 text-center bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white relative overflow-hidden"
@@ -1070,8 +1130,8 @@ const InterviewPrepPage: React.FC = () => {
                     : "interview-prep-nav-tab-inactive border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
                     }`}
                 >
-                  <span>{tab.icon}</span>
-                  <span>{tab.label}</span>
+                  <span className="text-inherit">{tab.icon}</span>
+                  <span className="text-inherit">{tab.label}</span>
                 </button>
               ))}
             </nav>
@@ -1079,7 +1139,7 @@ const InterviewPrepPage: React.FC = () => {
         </div>
 
         {/* Tab Content */}
-        <div className="interview-prep-page max-w-6xl mx-auto px-4 py-12">
+  <div className="interview-prep-page max-w-6xl mx-auto px-4 py-12">
           {/* Overview Tab */}
           {activeTab === "overview" && (
             <OverviewTab
@@ -1087,7 +1147,7 @@ const InterviewPrepPage: React.FC = () => {
               toggleQuestions={toggleQuestions}
               showTips={showTips}
               showQuestions={showQuestions}
-              setActiveTab={setActiveTab}  // ✅ pass setter
+              setActiveTab={setActiveTab}
             />
           )}
 
@@ -1159,7 +1219,7 @@ const InterviewPrepPage: React.FC = () => {
           </div>
         </motion.section>
       </div>
-    </Layout>
+    </>
   )
 }
 
