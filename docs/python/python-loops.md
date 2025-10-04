@@ -300,6 +300,134 @@ for num in numbers:
 | Nested loops           | Working with multi-dimensional data         |
 | List comprehensions    | Creating lists with concise syntax          |
 
+
+
+### **Practice Questions:**
+
+#### **1. Print Even Numbers**
+
+Write a Python program to print all **even numbers from 1 to 20** using a `for` loop.
+
+**Expected Output:**
+
+```
+2 4 6 8 10 12 14 16 18 20
+```
+
+---
+
+#### **2. Sum of Natural Numbers**
+
+Write a program to calculate the **sum of the first 10 natural numbers** using a loop.
+
+**Expected Output:**
+
+```
+The sum is: 55
+```
+
+---
+
+#### **3. Loop Through a String**
+
+Given the string:
+
+```python
+word = "Python"
+```
+
+Write a loop to print each **character on a new line**.
+
+---
+
+#### **4. Reverse a List Using Loop**
+
+Without using the built-in `reverse()` or slicing, write a program to **print a list in reverse order** using a loop.
+
+```python
+numbers = [1, 2, 3, 4, 5]
+```
+
+**Expected Output:**
+
+```
+5
+4
+3
+2
+1
+```
+
+---
+
+#### **5. Multiplication Table**
+
+Write a Python program to **print the multiplication table of 7** using a loop.
+
+**Expected Output:**
+
+```
+7 x 1 = 7  
+7 x 2 = 14  
+...  
+7 x 10 = 70
+```
+
+---
+
+#### **6. Using `break` Statement**
+
+Write a loop that prints numbers from 1 to 10.
+
+* If the number is **5**, use `break` to stop the loop.
+
+**Expected Output:**
+
+```
+1  
+2  
+3  
+4
+```
+
+---
+
+#### **7. Using `continue` Statement**
+
+Write a loop that prints numbers from 1 to 10.
+
+* **Skip** printing the number **5** using `continue`.
+
+**Expected Output:**
+
+```
+1  
+2  
+3  
+4  
+6  
+7  
+8  
+9  
+10
+```
+
+---
+
+#### **8. Nested Loop – Pattern Printing**
+
+Write a program using **nested loops** to print the following pattern:
+
+```
+*
+* *
+* * *
+* * * *
+* * * * *
+```
+
+---
+
 ## Conclusion
 
 Loops are fundamental to programming in Python. Whether you're processing data, automating tasks, or building complex algorithms, mastering `for` and `while` loops will make your code more efficient and powerful. Practice with different data types and loop patterns to become proficient in using loops effectively.

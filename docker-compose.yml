@@ -1,14 +1,13 @@
-version: "3.9"
 services:
   recodehive:
-    build: 
+    build:
       context: .
     ports:
       - "3000:3000"
     volumes:
       - .:/app
-      - /app/node_modules   # Prevents node_modules being overwritten by the mount
+      - /app/node_modules # Prevents node_modules being overwritten by the mount
     working_dir: /app
-    command: npm run dev   # THIS is the crucial change for hot-reload!
+    command: npm run dev -- --host 0.0.0.0 # THIS is the crucial change for hot-reload!
     environment:
       - NODE_ENV=development

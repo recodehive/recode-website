@@ -523,7 +523,7 @@ function CareersContent() {
               variants={fadeIn}
             >
               <div className="testimonial-content text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto mb-6 flex items                                       center justify-center">
+                <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto mb-6 flex items-center justify-center">
                   <span className="text-2xl">👤</span>
                 </div>
                 <blockquote 
