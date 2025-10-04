@@ -135,7 +135,7 @@ The `random` module provides functions for generating random numbers, including 
 <summary>Show Answer</summary>
 **Answer: C) Generates a random integer between 1 and 100 (inclusive)**
 
-`randint(a, b)` returns a random integer N such that a <= N <= b, so both endpoints are included.
+`randint(a, b)` returns a random integer N such that `a <= N <= b`, so both endpoints are included.
 </details>
 
 ---
