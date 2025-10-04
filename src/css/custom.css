@@ -1,3 +1,9 @@
+[data-theme="light"] .interview-prep-page p,
+[data-theme="light"] .interview-prep-page li,
+[data-theme="light"] .interview-prep-page span,
+[data-theme="light"] .interview-prep-page div {
+  color: inherit;
+}
 /* You can override the default Infima variables here. */
 @import "tailwindcss";
 
@@ -826,6 +832,25 @@ html.theme-light .text-gray-900 {
   color: #1a1a1a !important;
 }
 
+/* ==== Interview Prep: enforce proper light theme surfaces ==== */
+/* Some Tailwind dark: classes may not be recognized by Docusaurus data-theme in all cases.
+   Ensure that in light mode, all Interview Prep cards use white surfaces and readable text. */
+[data-theme="light"] .interview-prep-page .bg-white,
+[data-theme="light"] .interview-prep-page [class*="bg-white/"],
+[data-theme="light"] .interview-prep-page .question-card,
+[data-theme="light"] .interview-prep-page .technical-inner,
+[data-theme="light"] .interview-prep-page .technical-inner-success,
+[data-theme="light"] .interview-prep-page .interview-prep-sidebar {
+  background-color: #ffffff !important;
+  color: #111827; /* gray-900 */
+}
+
+/* Ensure common dark-surface utilities don't leak into light theme in this area */
+[data-theme="light"] .interview-prep-page [class*="bg-gray-800"],
+[data-theme="light"] .interview-prep-page [class*="bg-gray-900"] {
+  background-color: #ffffff !important;
+}
+
 /*==== SECTION 13 Modern Blog Enhancements ======*/
 .modern-gradient-bg {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -1123,7 +1148,8 @@ html {
 [data-theme="light"] .interview-prep-page h4,
 [data-theme="light"] .interview-prep-page h5,
 [data-theme="light"] .interview-prep-page h6 {
-  color: #ffffff !important;
+  /* Use a dark heading color in light mode for readability */
+  color: #111827 !important; /* Tailwind gray-900 */
 }
 
 .watch-video-btn {
@@ -1249,6 +1275,9 @@ html {
 }
 
 .explore-btn {
+  color: inherit;
+}
+[data-theme="dark"] .explore-btn {
   color: white;
 }
 
@@ -1262,17 +1291,25 @@ html {
   box-sizing: border-box !important;
 }
 
-.explore-btn:hover {
+[data-theme="dark"] .explore-btn:hover {
   color: white;
 }
 
-.custom-input {
-  background-color: #374151;
-  color: white; /* cyan-500 */
+/* Make the custom input theme-aware to avoid white text on light backgrounds */
+[data-theme="dark"] .custom-input {
+  background-color: #374151; /* gray-700 */
+  color: #ffffff;
+}
+[data-theme="light"] .custom-input {
+  background-color: #f9fafb; /* gray-50 */
+  color: #111827; /* gray-900 */
 }
 .company-border {
   border-color: #6b7280;
-  color: white;
+  margin-bottom: 35px;
+}
+[data-theme="dark"] .company-border {
+  color: #ffffff;
 }
 .company-blue-border {
   border-color: #3b82f6;
@@ -1316,14 +1353,17 @@ html {
   border-color: #1f2937; /* border-gray-800 */
   background-color: #1f2937; /* bg-gray-800 */
 }
-.company-tab-link {
+[data-theme="dark"] .company-tab-link {
   color: white;
 }
-.company-tab-link:hover {
+[data-theme="dark"] .company-tab-link:hover {
   color: white;
 }
 .company-tab-community-link {
-  color: #fdba74;
+  color: #9a3412; /* orange-800 for light */
+}
+[data-theme="dark"] .company-tab-community-link {
+  color: #fdba74; /* orange-300 in dark */
 }
 .company-tab-community-link:hover {
   color: #fdba74;
@@ -1365,12 +1405,13 @@ html {
   padding: 0 !important;
 }
 .practice-tab-link:hover{
-  color: white;
   text-decoration: none;
 }
-.practice-tab-link{
+[data-theme="dark"] .practice-tab-link{
   color: white;
-
+}
+[data-theme="light"] .practice-tab-link{
+  color: #1d4ed8; /* blue-700 */
 }
 
 /* ===== SECTION 14: SMOOTH PAGE TRANSITIONS ===== */
@@ -1449,3 +1490,8 @@ a {
   }
 }
 
+/* ================= MISCELLANEOUS ================= */
+/* Fix Home icon alignment with text in breadcrumbs [Docs] */
+.theme-doc-breadcrumbs a.breadcrumbs__link > svg.breadcrumbHomeIcon_YNFT {
+  display: inline-block;
+}

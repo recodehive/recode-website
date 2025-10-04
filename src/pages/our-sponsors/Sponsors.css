@@ -58,6 +58,10 @@
     color: var(--dark-text-secondary);
 }
 
+[data-theme='dark'] .tab-button.active:hover {
+    color: white;
+}
+
 .tab-button.active {
     color: #4f46e5;
 }
