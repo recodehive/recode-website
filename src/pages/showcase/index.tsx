@@ -155,7 +155,7 @@ function ShowcaseHeader() {
           rel="noreferrer"
         >
           <Translate id="showcase.header.button">
-            🌟 Join the Hive Community
+            🌟 Join the recode hive Community
           </Translate>
         </a>
       </motion.div>
@@ -352,7 +352,7 @@ function ShowcaseCards() {
                   }}
                 >
                   <Translate id="showcase.favoritesList.title">
-                    Best of the Hive
+                    Best of the hive
                   </Translate>
                 </motion.h2>
                 <motion.h2
