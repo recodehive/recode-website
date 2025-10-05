@@ -1,6 +1,6 @@
 ---
 title: recode hive community
-sidebar_label: recode hive community
+sidebar_label: Welcome to recode hive community
 sidebar_position: 1
 ---
 
