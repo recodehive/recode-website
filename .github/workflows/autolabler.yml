@@ -1,4 +1,4 @@
-name: Auto Label Issues and PRs
+name: Auto Label & Populate Issue Fields and PRs
 
 on:
   pull_request_target:
@@ -9,37 +9,392 @@ on:
 permissions:
   issues: write
   pull-requests: write
+  repository-projects: write
 
 jobs:
-  add-labels:
+  add-labels-and-populate:
     runs-on: ubuntu-latest
     steps:
-      - name: Add labels to PR
+      - name: Add labels and populate PR fields
         if: github.event_name == 'pull_request_target'
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const prNumber = context.payload.pull_request.number;
+            const prNodeId = context.payload.pull_request.node_id;
+            const prTitle = context.payload.pull_request.title.toLowerCase();
+            const prBody = (context.payload.pull_request.body || '').toLowerCase();
+
+            function detectPRType(title, body) {
+              const bugfixKeywords = ['fix', 'bug', 'hotfix', 'patch', 'resolve', 'correct'];
+              const featureKeywords = ['feat', 'add', 'new', 'implement', 'feature'];
+              const docKeywords = ['doc', 'docs', 'documentation', 'readme'];
+              const refactorKeywords = ['refactor', 'cleanup', 'restructure', 'reorganize'];
+              const styleKeywords = ['style', 'css', 'ui', 'design', 'formatting'];
+              const testKeywords = ['test', 'tests', 'testing', 'spec'];
+              const choreKeywords = ['chore', 'deps', 'dependency', 'update', 'upgrade'];
+
+              const text = `${title} ${body}`;
+              
+              if (bugfixKeywords.some(keyword => text.includes(keyword))) return 'bugfix';
+              if (featureKeywords.some(keyword => text.includes(keyword))) return 'feature';
+              if (docKeywords.some(keyword => text.includes(keyword))) return 'documentation';
+              if (refactorKeywords.some(keyword => text.includes(keyword))) return 'refactor';
+              if (styleKeywords.some(keyword => text.includes(keyword))) return 'ui/ux';
+              if (testKeywords.some(keyword => text.includes(keyword))) return 'testing';
+              if (choreKeywords.some(keyword => text.includes(keyword))) return 'chore';
+              
+              return 'enhancement'; 
+            }
+
+            function detectPRSize(additions, deletions) {
+              const totalChanges = additions + deletions;
+              
+              if (totalChanges < 10) return 'size/XS';
+              if (totalChanges < 30) return 'size/S';
+              if (totalChanges < 100) return 'size/M';
+              if (totalChanges < 500) return 'size/L';
+              return 'size/XL';
+            }
+
+            const prType = detectPRType(prTitle, prBody);
+            const prSize = detectPRSize(
+              context.payload.pull_request.additions || 0,
+              context.payload.pull_request.deletions || 0
+            );
+
+            let labelsToAdd = ["recode", "hacktoberfest-accepted"];
+            
+            labelsToAdd.push(prType);
+            labelsToAdd.push(prSize);
+
+            if (prType === 'documentation' || prType === 'chore') {
+              labelsToAdd.push('level 1');
+            } else if (prType === 'feature' || prType === 'ui/ux') {
+              labelsToAdd.push('level 2');
+            } else if (prType === 'refactor' || prSize === 'size/XL') {
+              labelsToAdd.push('level 3');
+            } else {
+              labelsToAdd.push('level 1');
+            }
+
+            const files = await github.rest.pulls.listFiles({
+              ...context.repo,
+              pull_number: prNumber
+            });
+
+            const changedFiles = files.data.map(file => file.filename);
+            
+            if (changedFiles.some(file => file.includes('.md'))) {
+              labelsToAdd.push('documentation');
+            }
+            if (changedFiles.some(file => file.includes('.css') || file.includes('.scss'))) {
+              labelsToAdd.push('ui/ux');
+            }
+            if (changedFiles.some(file => file.includes('test') || file.includes('.test.'))) {
+              labelsToAdd.push('testing');
+            }
+            if (changedFiles.some(file => file.includes('package.json'))) {
+              labelsToAdd.push('dependencies');
+            }
+            if (changedFiles.some(file => file.includes('.github'))) {
+              labelsToAdd.push('workflow');
+            }
+
+  
+            labelsToAdd = [...new Set(labelsToAdd)];
 
             await github.rest.issues.addLabels({
               ...context.repo,
               issue_number: prNumber,
-              labels: ["recode", "level 1", "hacktoberfest-accepted"]
+              labels: labelsToAdd
             });
+            console.log(`Added labels to PR #${prNumber}: ${labelsToAdd.join(', ')}`);
 
-            console.log(`Added labels [recode, level 1,hacktoberfest-accepted] to PR #${prNumber}`);
+            try {
+              const projectsQuery = `
+                query($owner: String!, $repo: String!) {
+                  repository(owner: $owner, name: $repo) {
+                    projectsV2(first: 10) {
+                      nodes {
+                        id
+                        title
+                      }
+                    }
+                  }
+                }
+              `;
+              
+              const projectsResult = await github.graphql(projectsQuery, {
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
 
-      - name: Add labels to Issue
+              const project = projectsResult.repository.projectsV2.nodes.find(
+                p => p.title.includes("recode-web") || p.title.includes("recode")
+              );
+
+              if (project) {
+                const addToProjectMutation = `
+                  mutation($projectId: ID!, $contentId: ID!) {
+                    addProjectV2ItemById(input: {
+                      projectId: $projectId
+                      contentId: $contentId
+                    }) {
+                      item {
+                        id
+                      }
+                    }
+                  }
+                `;
+
+                const addResult = await github.graphql(addToProjectMutation, {
+                  projectId: project.id,
+                  contentId: prNodeId
+                });
+
+                console.log(`Added PR #${prNumber} to project: ${project.title}`);
+
+                const itemId = addResult.addProjectV2ItemById.item.id;
+                
+              } else {
+                console.log("No matching project found");
+              }
+            } catch (error) {
+              console.error("Error adding to project:", error);
+            }
+
+      - name: Add labels and populate Issue fields
         if: github.event_name == 'issues'
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const issueNumber = context.payload.issue.number;
+            const issueNodeId = context.payload.issue.node_id;
+            const issueTitle = context.payload.issue.title.toLowerCase();
+            const issueBody = (context.payload.issue.body || '').toLowerCase();
+
+            function detectIssueType(title, body) {
+              const bugKeywords = ['bug', 'error', 'fix', 'broken', 'issue', 'problem', 'crash', 'fail'];
+              const featureKeywords = ['feature', 'add', 'new', 'implement', 'enhancement', 'improve'];
+              const docKeywords = ['doc', 'documentation', 'readme', 'guide', 'tutorial', 'explain'];
+              const uiKeywords = ['ui', 'ux', 'design', 'style', 'css', 'layout', 'responsive'];
+              const performanceKeywords = ['performance', 'speed', 'optimize', 'slow', 'fast', 'memory'];
+              const testKeywords = ['test', 'testing', 'unit test', 'integration', 'e2e'];
+              const securityKeywords = ['security', 'vulnerability', 'auth', 'permission', 'secure'];
+
+              const text = `${title} ${body}`;
+              
+              if (bugKeywords.some(keyword => text.includes(keyword))) return 'bug';
+              if (featureKeywords.some(keyword => text.includes(keyword))) return 'feature';
+              if (docKeywords.some(keyword => text.includes(keyword))) return 'documentation';
+              if (uiKeywords.some(keyword => text.includes(keyword))) return 'ui/ux';
+              if (performanceKeywords.some(keyword => text.includes(keyword))) return 'performance';
+              if (testKeywords.some(keyword => text.includes(keyword))) return 'testing';
+              if (securityKeywords.some(keyword => text.includes(keyword))) return 'security';
+              
+              return 'enhancement';
+            }
+
+            function detectPriority(title, body) {
+              const text = `${title} ${body}`;
+              const criticalKeywords = ['critical', 'urgent', 'severe', 'crash', 'security'];
+              const highKeywords = ['high', 'important', 'major', 'blocking'];
+              const lowKeywords = ['minor', 'low', 'nice to have', 'cosmetic'];
+              
+              if (criticalKeywords.some(keyword => text.includes(keyword))) return 'critical';
+              if (highKeywords.some(keyword => text.includes(keyword))) return 'high priority';
+              if (lowKeywords.some(keyword => text.includes(keyword))) return 'low priority';
+              
+              return 'medium priority';
+            }
+
+            function detectDifficulty(title, body) {
+              const text = `${title} ${body}`;
+              const beginnerKeywords = ['typo', 'readme', 'documentation', 'simple', 'easy'];
+              const intermediateKeywords = ['feature', 'enhancement', 'improvement'];
+              const advancedKeywords = ['refactor', 'architecture', 'performance', 'security', 'complex'];
+              
+              if (beginnerKeywords.some(keyword => text.includes(keyword))) return 'good first issue';
+              if (advancedKeywords.some(keyword => text.includes(keyword))) return 'level 3';
+              if (intermediateKeywords.some(keyword => text.includes(keyword))) return 'level 2';
+              
+              return 'level 1';
+            }
+
+            const issueType = detectIssueType(issueTitle, issueBody);
+            const priority = detectPriority(issueTitle, issueBody);
+            const difficulty = detectDifficulty(issueTitle, issueBody);
+
+            let labelsToAdd = ["recode", "hacktoberfest-accepted"];
+            
+            labelsToAdd.push(issueType);
+            labelsToAdd.push(priority);
+            labelsToAdd.push(difficulty);
+
+            if (issueTitle.includes('mobile') || issueBody.includes('mobile')) {
+              labelsToAdd.push('mobile');
+            }
+            if (issueTitle.includes('desktop') || issueBody.includes('desktop')) {
+              labelsToAdd.push('desktop');
+            }
+            if (issueTitle.includes('api') || issueBody.includes('api')) {
+              labelsToAdd.push('api');
+            }
+            if (issueTitle.includes('database') || issueBody.includes('database')) {
+              labelsToAdd.push('database');
+            }
 
             await github.rest.issues.addLabels({
               ...context.repo,
               issue_number: issueNumber,
-              labels: ["recode", "level 1", "hacktoberfest-accepted"]
+              labels: labelsToAdd
             });
+            console.log(`Added labels to Issue #${issueNumber}: ${labelsToAdd.join(', ')}`);
 
-            console.log(`Added labels [recode, level 1, hacktoberfest-accepted] to Issue #${issueNumber}`);
+            try {
+              const milestones = await github.rest.issues.listMilestones({
+                ...context.repo,
+                state: 'open'
+              });
+
+              const targetMilestone = milestones.data.find(
+                m => m.title.includes("launch 3.0") || m.title.includes("recode:launch")
+              );
+
+              if (targetMilestone) {
+                await github.rest.issues.update({
+                  ...context.repo,
+                  issue_number: issueNumber,
+                  milestone: targetMilestone.number
+                });
+                console.log(`Set milestone to: ${targetMilestone.title}`);
+              }
+            } catch (error) {
+              console.error("Error setting milestone:", error);
+            }
+
+            try {
+              const projectsQuery = `
+                query($owner: String!, $repo: String!) {
+                  repository(owner: $owner, name: $repo) {
+                    projectsV2(first: 10) {
+                      nodes {
+                        id
+                        title
+                        fields(first: 20) {
+                          nodes {
+                            ... on ProjectV2Field {
+                              id
+                              name
+                            }
+                            ... on ProjectV2SingleSelectField {
+                              id
+                              name
+                              options {
+                                id
+                                name
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              `;
+              
+              const projectsResult = await github.graphql(projectsQuery, {
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+
+              const project = projectsResult.repository.projectsV2.nodes.find(
+                p => p.title.includes("recode-web") || p.title.includes("recode")
+              );
+
+              if (project) {
+                const addToProjectMutation = `
+                  mutation($projectId: ID!, $contentId: ID!) {
+                    addProjectV2ItemById(input: {
+                      projectId: $projectId
+                      contentId: $contentId
+                    }) {
+                      item {
+                        id
+                      }
+                    }
+                  }
+                `;
+
+                const addResult = await github.graphql(addToProjectMutation, {
+                  projectId: project.id,
+                  contentId: issueNodeId
+                });
+
+                const itemId = addResult.addProjectV2ItemById.item.id;
+                console.log(`Added Issue #${issueNumber} to project: ${project.title}`);
+
+                const statusField = project.fields.nodes.find(f => f.name === "Status");
+                if (statusField && statusField.options) {
+                  const todoOption = statusField.options.find(o => o.name === "Todo");
+                  
+                  if (todoOption) {
+                    const updateFieldMutation = `
+                      mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: ProjectV2FieldValue!) {
+                        updateProjectV2ItemFieldValue(input: {
+                          projectId: $projectId
+                          itemId: $itemId
+                          fieldId: $fieldId
+                          value: $value
+                        }) {
+                          projectV2Item {
+                            id
+                          }
+                        }
+                      }
+                    `;
+
+                    await github.graphql(updateFieldMutation, {
+                      projectId: project.id,
+                      itemId: itemId,
+                      fieldId: statusField.id,
+                      value: { singleSelectOptionId: todoOption.id }
+                    });
+
+                    console.log(`Set Status to "Todo"`);
+                  }
+                }
+
+                const typeField = project.fields.nodes.find(f => f.name === "Type");
+                if (typeField && typeField.options) {
+                  const typeOption = typeField.options.find(o => labelsToAdd.includes(o.name.toLowerCase()));
+                  if (typeOption) {
+                    await github.graphql(`
+                      mutation($projectId: ID!, $itemId: ID!, $fieldId: ID!, $value: ProjectV2FieldValue!) {
+                        updateProjectV2ItemFieldValue(input: {
+                          projectId: $projectId
+                          itemId: $itemId
+                          fieldId: $fieldId
+                          value: $value
+                        }) {
+                          projectV2Item { id }
+                        }
+                      }
+                    `, {
+                      projectId: project.id,
+                      itemId: itemId,
+                      fieldId: typeField.id,
+                      value: { singleSelectOptionId: typeOption.id }
+                    });
+                    console.log(`Set Type to "${typeOption.name}"`);
+                  }
+                }
+              } else {
+                console.log("No matching project found");
+              }
+            } catch (error) {
+              console.error("Error adding to project:", error);
+            }
