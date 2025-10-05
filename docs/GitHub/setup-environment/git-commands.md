@@ -9,7 +9,7 @@ description: In this tutorial, you will learn about the basic of git and 50 impo
 
 > *This is part of GitHub/Git Tutorials and a continuation of the previous post where we discussed what is gitHub. I hope you have a basic understanding of what is Github in general. Let’s get started with Git Cheat Sheet. Git Cheat Sheet. 50 Git commands | Git Tutorials*
 
-Git commands are handy when comes to fix any problems which you cant fix by the UI, for example consider a scenarion you need to fix the conflict in a page. Git Commands will help you to find the root cause and can explore the entire log history. At Git core it help you to keep a history of every change you made in the project files and help the user with track the changes, revert, helps to identify who made the changes. 
+Git commands are handy when comes to fix any problems which you can't fix by the UI, for example consider a scenario you need to fix the conflict in a page. Git Commands will help you to find the root cause and can explore the entire log history. At Git core it help you to keep a history of every change you made in the project files and help the user with track the changes, revert, helps to identify who made the changes. 
 
 ## Understanding Git: The Building Blocks
 
@@ -40,7 +40,7 @@ When a user requests a web page by entering a URL in the browser's address bar o
   <TabItem value="Git Code" label="Git Code">
   
   ```html title="Commiting the changes"
-  git commit -m "Give some meaningfull comments"
+  git commit -m "Give some meaningful comments"
     ```
 
     </TabItem>
@@ -185,7 +185,7 @@ git commit --amend -m "message" #add additional info to last commit
   ```html title="Checking logs and views"
 git log #view changes
 git log --summary #view changes detailed
-git log --oneline #view changes breifly
+git log --oneline #view changes briefly
 git status git show
     ```
 

@@ -1,5 +1,5 @@
 ---
-id: enable-dicussion
+id: enable-discussion
 title: How to Enable GitHub Discussions
 sidebar_label: How to Enable Discussions
 sidebar_position: 4
@@ -47,7 +47,7 @@ Upon creation you will get a screen like this below, the explanation of each ele
 
 ## Changing Readme and Adding more files.
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file
+I'm going to add my resume and add my name as heading to the ``readme.md`` file
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/milestones/new" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/24-start-github-discussion.png)](https://github.com/recodehive/recode-website/milestones/new)
@@ -93,7 +93,7 @@ When the above HTML code is rendered in a browser, it will display the following
 
 ## Committing the changes.
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file
+I'm going to add my resume and add my name as heading to the ``readme.md`` file
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/milestones?with_issues=no" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/25-start new discussion.png)](https://github.com/recodehive/recode-website/milestones?with_issues=no)
@@ -111,7 +111,7 @@ https://github.com/sanjay-kv/Git-Demo
 
 ### Now let's upload your resume
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file
+I'm going to add my resume and add my name as heading to the ``readme.md`` file
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/issues/21" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/27-announce-github.png)](https://github.com/recodehive/recode-website/issues/21)

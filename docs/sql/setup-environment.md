@@ -17,7 +17,7 @@ tags:
 description: In this tutorial, you will learn how to set up your development environment for HTML development.
 ---
 
-There are different emulators available for SQL Queries, but as a beginner its always good to start with Installing MYSQL Server and Workbench in your system, it helps you to understand the overall process and industry settings. This MYSQL Workbench is called the IDE (Itegrated developement enviornment).
+There are different emulators available for SQL Queries, but as a beginner it's always good to start with Installing MYSQL Server and Workbench in your system, it helps you to understand the overall process and industry settings. This MYSQL Workbench is called the IDE (Integrated development environment).
 We will guide you to setup the IDE in your system, and navigate further executing SQL queries and creating database in the IDE. 
 
 ### **1. Download the Installer:**: To install download the installer.
@@ -53,12 +53,12 @@ This IDE helps you to execute and maintain the workflow of SQL, It acts as  a so
 
 ### Key Features to Look for in an IDE/Text Editor
 
-1. **Syntax :** Highlights the color, make code readbility.
-2. **Accelerate Work stucture:** Help you to sort and visualise the messy database.
+1. **Syntax :** Highlights the color, makes code readable.
+2. **Accelerate Work structure:** Help you to sort and visualise the messy database.
 3. **Helps managing Database:** Allows you to store the data, create workflow and organise it. 
 
 ## Conclusion
 
-I hope you understood the concept here, if not yet, think like its a nice view from your house, it lets you see whats happening outside in your comfort zone, if anything happening to the house, the view remain same, Workbench works the simillar way, it helps you to see the data in the databse, just like your house SQL workbench doesnt have the data, if you remove workbench nothing happens to your databse. 
+I hope you understood the concept here, if not yet, think like it's a nice view from your house, it lets you see what's happening outside in your comfort zone, if anything happening to the house, the view remain same, Workbench works the similar way, it helps you to see the data in the database, just like your house SQL workbench doesn't have the data, if you remove workbench nothing happens to your database. 
 
 <GiscusComments/>

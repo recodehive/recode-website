@@ -26,11 +26,11 @@ GitHub offers <a href="https://github.com/pricing">Premium</a> account for use, 
 
 ## How to start with GitHub?
 
-Whenever you create something exciting or something new on your own, you always want to show it to others. As programmers, we also want to show our projects and codes to others, but how? So GitHub is the solution, it let's people to collaborate and scale the projects all on cloud.  Some other example of simillar platform are , Bitbucket, GitLab, Beanstalk, etc. Many of them give you the facility to work on your code together as a team. Currently, Github is more popular than other above-listed platforms for hosting your code.
+Whenever you create something exciting or something new on your own, you always want to show it to others. As programmers, we also want to show our projects and codes to others, but how? So GitHub is the solution, it lets people to collaborate and scale the projects all on cloud.  Some other example of similar platform are , Bitbucket, GitLab, Beanstalk, etc. Many of them give you the facility to work on your code together as a team. Currently, Github is more popular than other above-listed platforms for hosting your code.
 :::info
-In the picture below you could see Developer 1, Developer 2... are working on the same project , lets say they are trying to build a amazon website, developer 1 handles the Mens shopping section, Developer 2 deals with Womens section, Developer 3 works on the login feature. 
+In the picture below you could see Developer 1, Developer 2... are working on the same project , let's say they are trying to build a amazon website, developer 1 handles the Mens shopping section, Developer 2 deals with Womens section, Developer 3 works on the login feature.
 
-So each indivituals works on different feature from the copy of the central repository, once the development is done they push changes to the **remote repository** (central repo as per picture). Once **code review** happens and good to go, the senior developer will merge the code to the central repository so all the feature will be live on production.
+So each individuals works on different feature from the copy of the central repository, once the development is done they push changes to the **remote repository** (central repo as per picture). Once **code review** happens and good to go, the senior developer will merge the code to the central repository so all the feature will be live on production.
 :::
 
   <BrowserWindow url="https://github.com/" bodyStyle={{padding: 0}}>    
@@ -41,7 +41,7 @@ So each indivituals works on different feature from the copy of the central repo
 
 ## What is Git??
 
-So in the above example all the developer where able to work on different feautre simulatneaulsy because of the git. For uploading your project to your Github account, you need to install Git first. In other words, Git helps to do this version management of the files and coordinating work among the diverse team in the software development phase. Git is an open-source project and developed in 2005 by Linus Torvalds and Junior.
+So in the above example all the developer where able to work on different feature simultaneously because of the git. For uploading your project to your Github account, you need to install Git first. In other words, Git helps to do this version management of the files and coordinating work among the diverse team in the software development phase. Git is an open-source project and developed in 2005 by Linus Torvalds and Junior.
 
 
   
@@ -58,7 +58,7 @@ So in the above example all the developer where able to work on different feautr
         | Repo  | 	Repository | 		Top of working Tree where git keep all records and history. |
         | Bare repo   | 	 | 		Not part of working Tree ends with .git, eg. backup.git |
         | Hash  | 	160 bit long SHA-1 | 		Based on the hash number, the file has been modified or not. |
-        | Object  | 	Git have 4 objects | 		Tree Object(directory, names),  Blob Object(main file), Commit Object(spesfic versions), Tag(name attached to commit) |
+        | Object  | 	Git have 4 objects | 		Tree Object(directory, names),  Blob Object(main file), Commit Object(specific versions), Tag(name attached to commit) |
         | Commit  |  | 		Makes Changes |
         | Branch  | 	a series of Linked commit | 		The recent commit is called Head. |
         | Remote  | 	 | 		reference to other git repo |

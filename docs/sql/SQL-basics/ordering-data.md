@@ -126,7 +126,7 @@ ORDER BY name;
 :::tip
  When requesting data with SQL staments like SELECT, we say that we are making a query.
 From helps in select the name col from
-While not necessary but its a good practice to finish the sql queries with;
+While not necessary but it's a good practice to finish the sql queries with;
 
 
 By following these best practices, ASC is the default sort ordering method followed.
@@ -176,7 +176,7 @@ ORDER BY age ASC;
 ## 🧹 Selecting with `DESC`
 
 For Text value it order by Alphabetically 
-When arranging numerical value the item with smallest value in that coloumn comes first 
+When arranging numerical value the item with smallest value in that column comes first 
 
 ---
 

@@ -142,7 +142,7 @@ FROM friends;
 :::tip
  When requesting data with SQL staments like SELECT, we say that we are making a query.
 From helps in select the name col from
-While not necessary but its a good practice to finish the sql queries with;
+While not necessary but it's a good practice to finish the sql queries with;
 
 
 By following these best practices, 

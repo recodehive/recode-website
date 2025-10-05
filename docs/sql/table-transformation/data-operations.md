@@ -16,7 +16,7 @@ Welcome to the **Data Operations** module! This module we will learn how to add 
 This module we will learn how to add and remove the data from the table. For adding new data we can use INSERT INTO.
 > Insert Into inserts a new row filled with a new data into existing table. 
 
-> Then `values` add spesfic data to the newly added row. It spesfies the value to be inserted into a newly created row.
+> Then `values` add specific data to the newly added row. It specifies the value to be inserted into a newly created row.
 > These columns define the **type of information** stored for each item in the table.
 
 
@@ -157,21 +157,21 @@ No data
 
 ## 🧹 Updating the data
 
-Sometimes you need to update the existing table entries for sample scenario dinner reservation for guest booking in a restaurent
+Sometimes you need to update the existing table entries for sample scenario dinner reservation for guest booking in a restaurant
 This example shows how to update the reservation time for a specific guest in the `Reservations` table without creating duplicate entries.
 
   > Update cannot be used to insert new entries into table it can be only used to change existing entries.
-  > An Update statment always starts with the keyword `UPDATE` Followed by the table name. 
-  > Then the table name is followed by the KEYWORD `SET` and an expression settng the colomn to specified value. 
-  > As you noticed the UPDATE can be used to update a coloumns value for every row, but  often we want to change spesfic row. we can do that by WHERE
-  > A condition `>` can be used to update multiple coloumn
+  > An Update statment always starts with the keyword `UPDATE` Followed by the table name.
+  > Then the table name is followed by the KEYWORD `SET` and an expression setting the column to specified value.
+  > As you noticed the UPDATE can be used to update a column's value for every row, but  often we want to change specific row. we can do that by WHERE
+  > A condition `>` can be used to update multiple column
 ---
 
     :::info
 <Tabs>
   <TabItem value="SQL Table" label="SQL Table">
 ```sql title="Reservations"
-| Id | name    | phonenumtoer   | time  | partysae |
+| Id | name    | phonenumber   | time  | partysize |
 |----|---------|----------------|-------|----------|
 | 1  | Powers  | +16352637463   | 1800  | 4        |
 | 2  | Miranda | +17487652839   | 1900  | 5        |
@@ -189,7 +189,7 @@ SELECT * FROM Reservations;
     </TabItem>
     
     <TabItem value="how-git-works" label="Output">
-| Id | name    | phonenumtoer   | time  | partysae |
+| Id | name    | phonenumber   | time  | partysize |
 |----|---------|----------------|-------|----------|
 | 1  | Powers  | +16352637463   | 1800  | 4        |
 | 2  | Miranda | +17487652839   | 1900  | 5        |

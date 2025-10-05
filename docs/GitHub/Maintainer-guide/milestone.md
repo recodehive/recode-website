@@ -47,7 +47,7 @@ Upon creation you will get a screen like this below, the explanation of each ele
 
 ## Changing Readme and Adding more files. Change
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file.
+I'm going to add my resume and add my name as heading to the ``readme.md`` file.
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/milestones/new" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/09-milestone-final.png)](https://github.com/recodehive/recode-website/milestones/new)
@@ -93,7 +93,7 @@ When the above HTML code is rendered in a browser, it will display the following
 
 ## Committing the changes.
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file
+I'm going to add my resume and add my name as heading to the ``readme.md`` file
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/milestones?with_issues=no" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/10-milestone-final-stage.png)](https://github.com/recodehive/recode-website/milestones?with_issues=no)
@@ -111,7 +111,7 @@ https://github.com/sanjay-kv/Git-Demo
 
 ### Now let's upload your resume
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file.
+I'm going to add my resume and add my name as heading to the ``readme.md`` file.
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/issues/21" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/12-final-release.png)](https://github.com/recodehive/recode-website/issues/21)

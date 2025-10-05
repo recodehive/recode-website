@@ -25,7 +25,7 @@ SQL **Structured Query Language** is a standard programming language used to man
 Key Features of SQL:
 Data Querying: Retrieve data from one or more tables using commands like **SELECT**.
 
-DML (Data Manupulation Language): Add, update, or delete records using **INSERT**, **UPDATE**, and **DELETE**.
+DML (Data Manipulation Language): Add, update, or delete records using **INSERT**, **UPDATE**, and **DELETE**.
 
 DDL (Data Definition Language): Define database structures using **CREATE**, **ALTER**, and **DROP**.
 
@@ -45,7 +45,7 @@ Let's talk about history of Storing Data, It's started with physical files and s
 
 Then company started developing database management system like SQL, Postgres,MySQL.
 
-> Databases are two types, SQL(Relational, Analytical OLAP) and NOSQL(key value, Graph, Document) mainly used for un-structured dataset. This NoSQL provides more flexibility over Relational as it dont have to follow schemas.
+> Databases are two types, SQL(Relational, Analytical OLAP) and NOSQL(key value, Graph, Document) mainly used for un-structured dataset. This NoSQL provides more flexibility over Relational as it doesn't have to follow schemas.
 
 > Schema is named collection of tables, which can contains, views, index, datatypes, operators and functions.
 :::

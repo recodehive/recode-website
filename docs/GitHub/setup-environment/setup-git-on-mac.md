@@ -34,7 +34,7 @@ Here in this post, we will be using homebrew to install, Go to the homebrew webs
     </BrowserWindow>
 
 
-### Step 2: Select your Version you want to insatll.
+### Step 2: Select your Version you want to install.
 
 1. Once Installed use the below command to check version of the brew on terminal brew -v
 
@@ -53,4 +53,4 @@ brew install git-gui
 
 ## Conclusion
 
-In conclusion, I hope you enjoyed reading this article on “Setting up your Git Enviornment?”. In the next post, will be discussing using Git to create a Repository and clone a project Github.  Signing off Sanjay Viswanathan.
+In conclusion, I hope you enjoyed reading this article on "Setting up your Git Environment?". In the next post, will be discussing using Git to create a Repository and clone a project Github.  Signing off Sanjay Viswanathan.

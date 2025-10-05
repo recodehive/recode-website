@@ -47,7 +47,7 @@ Upon creation you will get a screen like this below, the explanation of each ele
 
 ## Changing Readme and Adding more files.
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file
+I'm going to add my resume and add my name as heading to the ``readme.md`` file
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/labels" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/04-label-creation.png)](https://github.com/recodehive/recode-website/labels)
@@ -93,7 +93,7 @@ When the above HTML code is rendered in a browser, it will display the following
 
 ## Committing the changes.
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file
+I'm going to add my resume and add my name as heading to the ``readme.md`` file
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/labels" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/05-label-final.png)](https://github.com/recodehive/recode-website/labels)
@@ -111,7 +111,7 @@ https://github.com/sanjay-kv/Git-Demo
 
 ### Now let's upload your resume
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file
+I'm going to add my resume and add my name as heading to the ``readme.md`` file
 
     <BrowserWindow url="https://github.com/sanjay-kv/Git-Demo/edit/main/README.md" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/06-labels-here.png)](https://github.com/sanjay-kv)
