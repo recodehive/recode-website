@@ -191,12 +191,12 @@ export default function CommunityPage(): React.ReactElement {
 
   return (
     <Layout
-      title="Hive Community"
+      title="recode hive Community"
       description="Welcome to recode hive — a community built for everyone to learn, share, and grow."
     >
       <div className="community-page">
         <Head>
-          <meta property="og:title" content="Hive Community - recode hive" />
+          <meta property="og:title" content="recode hive Community - recode hive" />
           <meta property="og:description" content="Join our thriving community of developers, designers, and creators." />
         </Head>
 
@@ -217,7 +217,7 @@ export default function CommunityPage(): React.ReactElement {
               >
                 <div className="hero-icon">🐝</div>
                 <h1 className="community-hero-title">
-                  Welcome to Hive Community
+                  Welcome to recode hive Community
                 </h1>
                 <p className="community-hero-description">
                   Welcome to <strong>recode hive</strong> — a community built for everyone to{' '}
