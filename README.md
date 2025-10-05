@@ -38,7 +38,8 @@ To get started with contributing to recode hive, please refer to our [Contributi
       <img style="max-width:700px;" src="https://cdn.loom.com/sessions/thumbnails/c8d8d5f0c2534a1f86fc510dcef52ee0-30cac2eeec09a266-full-play.gif">
     </a>
   </div>
-Follow these steps:
+
+### Follow these steps:
 
 ```mermaid
 flowchart LR
@@ -80,12 +81,12 @@ flowchart LR
 
    This command will start a development server and open the application in your default web browser.
 
-## ⚡ Local Development with Docker Compose & Hot Reload
+## Local Development with Docker Compose & Hot Reload
 
 For an even smoother experience, contributors can leverage **Docker Compose with hot-reloading**.  
 This lets you see code changes instantly at [http://localhost:3000](http://localhost:3000) without rebuilding or restarting containers.
 
-### 🏃 Quick Start
+### Quick Start
 
 ```bash
 git clone https://github.com/your-username/recode-website.git
@@ -93,7 +94,7 @@ cd recodehive-website
 docker-compose up
 ```
 
-### 🚢 Production Deployment
+### Production Deployment
 
 ```bash
 npm run build
@@ -108,6 +109,20 @@ npm run serve
 - Commit your changes: `git commit -m "Brief description of your changes"`
 - Push to the branch: `git push origin feature-name`
 - Submit a pull request detailing your changes.
+
+## Tech Stack
+
+### Core
+
+- **Framework & Libraries:** Docusaurus 3 (React + TypeScript)
+- **Language:** TypeScript (Node.js ≥ 18)
+- **Styling:** Tailwind CSS 4
+- **UI Components:** Radix UI, Framer Motion
+
+### Developer Tools
+
+- **Linting & Formatting:** ESLint, Prettier
+- **Type Checking:** TypeScript (`tsc`)
 
 ## Project Structure
 
@@ -158,7 +173,7 @@ recode-website/
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is open source and available under the [MIT License](LICENSE).
 
 ## Badges
 
