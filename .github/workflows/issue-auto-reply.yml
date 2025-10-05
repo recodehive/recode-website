@@ -1,0 +1,28 @@
+name: Auto Reply to New Issues
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post Welcome Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue_number = context.issue.number;
+            const body = `
+            Thank you for raising this issue! Our team will review it soon. 
+
+            For more queries, discussions, or approval of requests, please join our Discord server for further discussion: [Discord Link](https://discord.com/invite/Yn9g6KuWyA)
+            `;
+            await github.rest.issues.createComment({
+              ...context.repo,
+              issue_number,
+              body
+            });
