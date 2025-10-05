@@ -551,6 +551,14 @@ const sponsors: Sponsor[] = [
     linkedin: "#",
     isWeSponsor: true,
   },
+  {
+    name: "Aditya",
+    image: "https://avatars.githubusercontent.com/u/142787780?v=4",
+    description: "Opensouce Contributor",
+    github: "https://github.com/Adez017",
+    linkedin: "https://www.linkedin.com/in/aditya-singh-rathore0017/",
+    isWeSponsor: true,
+  },
 ];
 
 export default sponsors;
