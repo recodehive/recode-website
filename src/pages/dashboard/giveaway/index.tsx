@@ -477,6 +477,23 @@ const GiveawayPage: React.FC = () => {
     setActiveTab("giveaway");
   }, []);
 
+  // Dynamically load Kingsumo embed script for giveaway page
+useEffect(() => {
+  // Create a new script element
+  const script = document.createElement("script");
+  script.src = "https://kingsumo.com/js/embed.js"; // Script URL provided by Kingsumo
+  script.async = true; // Load asynchronously to avoid blocking page render
+
+  // Append the script to the document body
+  document.body.appendChild(script);
+
+  // Cleanup: remove the script when component unmounts to prevent duplicates
+  return () => {
+    document.body.removeChild(script);
+  };
+}, []); // Empty dependency array ensures this runs only once when component mounts
+
+
   useEffect(() => {
     // Simulate fetching leaderboard data
     const fetchLeaderboard = async () => {
@@ -790,6 +807,7 @@ const GiveawayPage: React.FC = () => {
                 <p>Fetching leaderboard data...</p>
               </div>
             ) : (
+              <>
               <div className="giveaway-leaderboard-grid">
                 {leaderboard.map((entry, index) => (
                   <motion.div
@@ -842,6 +860,8 @@ const GiveawayPage: React.FC = () => {
                   </motion.div>
                 ))}
               </div>
+              <div id="kingsumo-embed"></div>
+              </>
             )}
           </motion.section>
         </div>
