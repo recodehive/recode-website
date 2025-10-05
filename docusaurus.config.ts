@@ -157,6 +157,11 @@ const config: Config = {
           position: "left",
         },
         {
+          to: "/merch",
+          html: '<span class="nav-emoji">🛍️</span> Merch',
+          position: "left",
+        },
+        {
           type: "dropdown",
           html: '<span class="nav-emoji">👩🏻‍💻</span> Devfolio',
           position: "left",
