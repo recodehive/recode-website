@@ -4,9 +4,9 @@ title: Understand Checks before PR
 sidebar_label: Understand Checks before PR
 sidebar_position: 3
 ---
-# 🧠 Recode Python Backend Development Guide
+# 🧠 Python Backend Development Guide
 
-Welcome to Recode! To maintain a high standard of code quality, we follow a strict development and pull request process.  
+Welcome to recode hive! To maintain a high standard of code quality, we follow a strict development and pull request process.  
 Before submitting your PR, please **follow the instructions below and attach a screenshot of the checks passed**.
 
 ---

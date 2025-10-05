@@ -7,7 +7,7 @@ const ContactUs: React.FC = () => {
   return (
     <Layout
       title="Contact Us"
-      description="Get in touch with the RecodeHive team. We're here to help with your questions, feedback, and collaboration opportunities."
+      description="Get in touch with the recode hive team. We're here to help with your questions, feedback, and collaboration opportunities."
     >
       <div className="enhanced-contact-container">
         <div className="contact-content-wrapper">

@@ -739,8 +739,8 @@ function GetStartedContent() {
 
   return (
     <Layout
-      title={`Get Started | ${siteConfig?.title || "Recode Hive"}`}
-      description="Start your coding journey with Recode Hive. Learn to code with our interactive platform and structured learning paths."
+      title={`Get Started | ${siteConfig?.title || "recode hive"}`}
+      description="Start your coding journey with recode hive. Learn to code with our interactive platform and structured learning paths."
     >
       <Head>
         <meta name="theme-color" content="#1e40af" />
@@ -768,7 +768,7 @@ function GetStartedContent() {
           <div className="container">
             <AnimatedSection>
               <div className={styles.sectionHeader}>
-                <h2>Why Choose Recode Hive?</h2>
+                <h2>Why Choose recode hive?</h2>
                 <p>
                   Discover the perfect learning experience tailored for your
                   coding journey

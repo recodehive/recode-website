@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://www.recodehive.com">
-  <img src="static/icons/Logo-512X512.png" alt="Recode logo" width="150" />
+  <img src="static/icons/Logo-512X512.png" alt="recode hive logo" width="150" />
   </a>
 </div>
 <h1 align="center">recode hive</h1>
@@ -17,31 +17,28 @@
 <a href="https://github.com/recodehive/recode-website/LICENSE"><img src="https://img.shields.io/github/license/recodehive/recode-website?color=2b9348" alt="License Badge"/></a>
 [![](https://visitcount.itsvg.in/api?id=Opensource-practice&label=Profile%20Views&color=0&icon=5&pretty=true)](https://visitcount.itsvg.in)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-This is the all in one place for documentation help regarding How to contribute.
+This is your all-in-one resource for documentation and guidance on how to contribute.
 </div>
 
+---
 
-##
-
-Now, resolve your all doubts and communicate with our all contributors.
+Have questions or need guidance? Our contributors are happy to help! Join the conversation and get your doubts resolved:
 
 [![](https://img.shields.io/badge/Discord-5865F2.svg?style=for-the-badge&logo=Discord&logoColor=white)](https://discord.gg/Yxv9RA3r) [![Follow Us On LinkedIn](https://img.shields.io/badge/Follow%20on-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sanjay-k-v/)
 
-
 ## Getting Started
 
-To get started with contributing to Recode-Hive, please refer to our [Contributing Guidelines](community/contributing-guidelines.md).
+To get started with contributing to recode hive, please refer to our [Contributing Guidelines](community/contributing-guidelines.md).
 
 <div>
     <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
-      <p>How to Contribute to this repo | How to Setup - Watch Video</p>
+      <p>How to Contribute to this Repo | How to Setup - Watch Video</p>
     </a>
     <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
       <img style="max-width:700px;" src="https://cdn.loom.com/sessions/thumbnails/c8d8d5f0c2534a1f86fc510dcef52ee0-30cac2eeec09a266-full-play.gif">
     </a>
   </div>
 Follow these steps:
-
 
 ```mermaid
 flowchart LR
@@ -51,38 +48,41 @@ flowchart LR
     commit -->|Finally|creatpr((Create a Pull Request))
 ```
 
-1. **Clone the repository:** 
+1. **Clone the repository:**
+
    ```bash
    git clone https://github.com/your-username/recodehive-website.git
    ```
 
 2. **Navigate to the project directory:**
+
    ```bash
    cd recode-website
    ```
 
 3. **Prerequisites**
+
 - [Docker](https://docs.docker.com/engine/install/) installed
 - Docker compose installed (Optional)
 
-
 4. **Build the Docker Image:**
-    Only do this if you are setting up this project locally for the first time. (only build)
+   Only do this if you are setting up this project locally for the first time. (only build)
 
-```bash
-docker build -t recodehive-app .
-```
+   ```bash
+   docker build -t recodehive-app .
+   ```
 
-5. Run the Container
-```bash
-docker run -p 3000:3000 recodehive-app
-```
+5. **Run the Container:**
 
-    This command will start a development server and open the application in your default web browser.
+   ```bash
+   docker run -p 3000:3000 recodehive-app
+   ```
+
+   This command will start a development server and open the application in your default web browser.
 
 ## ⚡ Local Development with Docker Compose & Hot Reload
 
-For an even smoother experience, contributors can leverage **Docker Compose with hot reloading**.  
+For an even smoother experience, contributors can leverage **Docker Compose with hot-reloading**.  
 This lets you see code changes instantly at [http://localhost:3000](http://localhost:3000) without rebuilding or restarting containers.
 
 ### 🏃 Quick Start
@@ -94,12 +94,13 @@ docker-compose up
 ```
 
 ### 🚢 Production Deployment
+
 ```bash
 npm run build
 npm run serve
 ```
 
-**If you'd like to contribute to CodeHarborHub, please follow these guidelines:**
+**If you'd like to contribute to recode hive, please follow these guidelines:**
 
 - **Fork** the repository and clone it locally.
 - Create a new branch for your feature or bug fix: `git checkout -b feature-name`
@@ -112,16 +113,16 @@ npm run serve
 
 ```
 recode-website/
-|  
+|
 ├── .github/                              🔹 GitHub meta files
 |    ├── ISSUE_TEMPLATE/
 |    ├── workflows/
 |    └── pull_request_template.md
-├── blog/                                 🔹Project Blog  
+├── blog/                                 🔹Project Blog
 |    ├── git-coding-agent/
 |    ├── google-backlinks/
 |    ├──...
-├── community/                            🔹 Contributor Docs  
+├── community/                            🔹 Contributor Docs
 |    ├── contributing-guidelines.md
 |    ├── index.md
 |    ├── our-documentation.md
@@ -130,7 +131,7 @@ recode-website/
 |    ├── GitHub/
 |    ├── Google-Student-Ambassador/
 |    ├── ...
-├── src/                                  🔹Source Code  
+├── src/                                  🔹Source Code
 |    └── components/
 |    ├── css/
 |        └── custom.css
@@ -152,7 +153,7 @@ recode-website/
 ├── CODE_OF_CONDUCT.md
 ├── LICENSE
 ├── README.md
-└── ...              
+└── ...
 ```
 
 ## License
@@ -178,27 +179,27 @@ This project is licensed under the [MIT License](LICENSE).
 ![GitHub closed PRs](https://img.shields.io/github/issues-pr-closed/RecodeHive/recode-website)
 ![Last commit](https://img.shields.io/github/last-commit/RecodeHive/recode-website)
 
-
 ## Contributors
 
 <a href="https://github.com/RecodeHive/recode-website/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=RecodeHive/recode-website" />
 </a>
 
-
 <div align="center">
 
-Happy open-source contributions and here’s to your career success! 🎉
+Happy open-source contributions—here’s to your career success! 🎉
 
 <p align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="600">
 </p>
 
-### recode-hive 2025
+### recode hive
 
 [Website](https://recodehive.com/) | [Instagram](https://www.instagram.com/nomad_brains/) | [LinkedIn](https://www.linkedin.com/in/sanjay-k-v/) | [Twitter](https://x.com/sanjay_kv_) | [YouTube](https://www.youtube.com/@RecodeHive)<br>
+
 **🔔 Don’t miss a beat!** <br>
-  Subscribe to receive our newsletter directly in your inbox for the latest career insights & tailored to your journey.<br>
+Subscribe to receive our newsletter directly in your inbox for the latest career insights & tailored to your journey.<br>
+
 [![Subscribe to Our Newsletter](https://img.shields.io/badge/Subscribe%20to%20Our%20Newsletter-%F0%9F%93%A9-blue)](https://recodehive.substack.com/) <br>
 
 <a href="#top">

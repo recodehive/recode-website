@@ -143,7 +143,7 @@ const testimonials = [
   {
     name: "Sarah Chen",
     role: "Senior Frontend Developer",
-    content: "RecodeHive has given me the opportunity to work on cutting-edge projects while maintaining an amazing work-life balance. The team is incredibly supportive and collaborative.",
+    content: "recode hive has given me the opportunity to work on cutting-edge projects while maintaining an amazing work-life balance. The team is incredibly supportive and collaborative.",
     avatar: "/img/testimonial-sarah.jpg"
   },
   {
@@ -155,7 +155,7 @@ const testimonials = [
   {
     name: "Priya Patel",
     role: "Product Manager",
-    content: "The growth mindset at RecodeHive is real. I've been able to take on new challenges and expand my skill set with full support from leadership.",
+    content: "The growth mindset at recode hive is real. I've been able to take on new challenges and expand my skill set with full support from leadership.",
     avatar: "/img/testimonial-priya.jpg"
   }
 ];
@@ -173,14 +173,14 @@ function CareersContent() {
 
   return (
     <Layout
-      title="Careers - Join RecodeHive"
-      description="Join our team of passionate developers and help shape the future of coding education. Explore career opportunities at RecodeHive."
+      title="Careers - Join recode hive"
+      description="Join our team of passionate developers and help shape the future of coding education. Explore career opportunities at recode hive."
     >
       <Head>
-        <title>Careers - Join RecodeHive</title>
+        <title>Careers - Join recode hive</title>
         <meta
           name="description"
-          content="Join our team of passionate developers and help shape the future of coding education. Explore career opportunities at RecodeHive."
+          content="Join our team of passionate developers and help shape the future of coding education. Explore career opportunities at recode hive."
         />
       </Head>
 
@@ -511,7 +511,7 @@ function CareersContent() {
                   color: isDark ? '#d1d5db' : '#4b5563'
                 }}
               >
-                Hear from our team members about their experience at RecodeHive.
+                Hear from our team members about their experience at recode hive.
               </p>
             </motion.div>
 

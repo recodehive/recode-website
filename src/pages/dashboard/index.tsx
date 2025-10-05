@@ -471,7 +471,7 @@ const DashboardContent: React.FC = () => {
 
       <div className="dashboard-main-content">
         <Head>
-          <title>Dashboard | Recode Hive</title>
+          <title>Dashboard | recode hive</title>
         </Head>
 
         {activeTab === "home" && (
@@ -481,9 +481,9 @@ const DashboardContent: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="dashboard-main-title">Recode Hive Community Dashboard</h1>
+            <h1 className="dashboard-main-title">recode hive Community Dashboard</h1>
             <p className="dashboard-description">
-              Welcome to the Recode Hive community hub! Explore our stats, engage in discussions, and connect with fellow contributors.
+              Welcome to the recode hive community hub! Explore our stats, engage in discussions, and connect with fellow contributors.
             </p>
 
             <section className="dashboard-stats-section">
@@ -616,8 +616,8 @@ const DashboardContent: React.FC = () => {
                   )}
                 {!discussionsLoading &&
                   !discussionsError &&
-                  filteredDiscussions.map((discussion) => (
-                    <DiscussionCard key={discussion.id} discussion={discussion} />
+                  filteredDiscussions.map((discussion, i) => (
+                    <DiscussionCard index={i} key={discussion.id} discussion={discussion} />
                   ))}
               </div>
             </div>

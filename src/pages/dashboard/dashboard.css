@@ -199,7 +199,7 @@
 
 .navbar-icon-item.active {
   background: var(--ifm-color-primary-lightest);
-  color: var(--ifm-color-primary);
+  color: white;
   font-weight: 600;
 }
 
@@ -527,7 +527,7 @@
 
 .category-sidebar li.active {
   background: var(--ifm-color-primary-lightest);
-  color: var(--ifm-color-primary);
+  color: #ffffff;
   font-weight: 600;
 }
 
