@@ -750,13 +750,13 @@ const GiveawayPage: React.FC = () => {
                 valueText={leaderboard.length.toString()}
                 description="Total participants"
               />
-              <StatCard
+              {/* <StatCard
                 icon="📈"
                 title="Top Score"
                 value={leaderboard[0]?.points || 0}
                 valueText={leaderboard[0]?.points?.toString() || "0"}
                 description="Leading participant"
-              />
+              /> */}
               <StatCard
                 icon="🏅"
                 title="Total Winners"
