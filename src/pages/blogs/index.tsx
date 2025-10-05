@@ -103,7 +103,7 @@ export default function Blogs(): React.JSX.Element {
                   </svg>
                   <input
                     type="text"
-                    placeholder="Search articles by title, description, or topic..."
+                    placeholder="Search article by title, topic"
                     className="search-input"
                     value={searchTerm}
                     onChange={handleSearchChange}

@@ -684,12 +684,13 @@
   transform: none;   
   width: 24px;
   height: 24px;
-  color: #6366f1;
+  color: #757575;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
+  stroke: #757575;
 }
 
 @keyframes iconPulse {
@@ -703,8 +704,13 @@
   }
 }
 
+[data-theme='dark'] .search-icon {
+  color:#757575;
+  stroke: white;
+}
+
 .search-wrapper:focus-within .search-icon {
-  color: #4f46e5;
+  color:#757575;
   animation-play-state: paused;
   transform: translateY(-50%) scale(1.1);
 }
