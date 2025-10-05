@@ -55,7 +55,7 @@ const sidebars: SidebarsConfig = {
             'GitHub/GitHub-basics/github-repo-command-line',
             'GitHub/GitHub-basics/how-to-clone-repository',
             'GitHub/GitHub-basics/how-to-fork',
-            'GitHub/GitHub-basics/firs-opensource-code',
+            'GitHub/GitHub-basics/first-opensource-code',
           ],
         },
         {
@@ -66,7 +66,7 @@ const sidebars: SidebarsConfig = {
             'GitHub/Maintainer-guide/github-labels',
             'GitHub/Maintainer-guide/milestone',
             'GitHub/Maintainer-guide/github-project',
-            'GitHub/Maintainer-guide/enable-dicussion',
+            'GitHub/Maintainer-guide/enable-discussion',
           ],
         },
       ],
