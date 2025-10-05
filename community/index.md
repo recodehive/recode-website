@@ -64,7 +64,3 @@ Thank you for your interest in **recode hive**!
 We're thrilled to have you here and can’t wait to **collaborate**, **learn**, and **grow** — together. 🌱
 
 > _Let’s make this community the best it can bee! 🐝_
-
----
-
-_Last updated on Oct 14, 2018 by Author (Simulated during dev for better per)_
