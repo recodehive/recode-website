@@ -20,7 +20,7 @@ description: In this tutorial, you will learn how to set up your development env
 ---
   
 Install Python
-  < />
+  
   ### Step 1: Let’s Download the git 
   
   1. Go to the [Git Website](https://git-scm.com/) and click on download for windows button.
@@ -52,7 +52,7 @@ Install Python
      - 1. The next screen click next on Public Licence.
      - 2. Choose the location as default and click on Next
   
-  < />
+  
   
   ### Step 3: Understanding the Interface.
   
@@ -107,7 +107,7 @@ Install Python
     ```html title="create a new repository on the command line"
   git --version
       ```
-  < />
+  
   
   ## Conclusion
   
