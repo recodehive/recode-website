@@ -1,5 +1,5 @@
 ---
-id: firs-opensource-code
+id: first-opensource-code
 title: Let's Do First Opensource Project
 sidebar_label: First Opensource Project
 sidebar_position: 5
