@@ -1,13 +1,6 @@
 :root {
   /* Dark Theme Variables (Default) */
-  --contact-bg-primary: linear-gradient(
-    135deg,
-    #0f0f23 0%,
-    #1a1a2e 25%,
-    #16213e 50%,
-    #0f3460 75%,
-    #533483 100%
-  );
+  --contact-bg-primary: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
   --contact-bg-card: rgba(255, 255, 255, 0.03);
   --contact-bg-card-hover: rgba(255, 255, 255, 0.08);
   --contact-bg-secondary: rgba(255, 255, 255, 0.05);
