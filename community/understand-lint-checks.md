@@ -83,9 +83,9 @@ Type Checking tsc
 
 ## 📸 Pull Request Submission Checklist
 
-Before opening a pull request:
+### Before opening a pull request:
 
-✅ Run all checks:
+### ✅ Run all checks:
 
 ```bash
 npm run lint:fix
