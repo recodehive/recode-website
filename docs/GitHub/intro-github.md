@@ -70,7 +70,7 @@ In the above example, all the developers were able to work on different features
 
 GitHub simplifies the command-line interface of Git and makes it more GUI-friendly. GitHub is built on top of Git. Here want we do is staging the files and doing the commit, You can clone the entire repository, create a branch, commit to that branch, and then ask the main developer to merge the branch. When you clone in reality you are creating a copy of the real code/repository in your local environment.
 
- [![Git Structure](./assets/2-git-strucutre.png)]
+ ![Git Structure](./assets/2-git-strucutre.png)
    
   
 :::info
@@ -90,12 +90,12 @@ The fork is a personal copy of the repo which is already present or uploaded in 
 
 :::
 
-< />
+
 
 ### Watch the video Tutorial
 <iframe width="880" height="480" src="https://www.youtube.com/embed/GrTV59Y84S8?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="How to start with GitHub in 2024 | Beginner&#39;s Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-< />
+
 
 ## Conclusion
 

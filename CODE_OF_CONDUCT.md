@@ -1,14 +1,14 @@
-**🌐 Documentation Code of Conduct — Recode-Website 🌐**
+**🌐 Documentation Code of Conduct — recode-website 🌐**
 
 **🤝 Our Commitment**
 
-Recode-Website is built to empower learners, developers, and open-source contributors from all walks of life. Whether you’re fixing a typo or designing a whole new feature, every contribution matters. We’re committed to ensuring a respectful, welcoming, and inclusive space for everyone.
+recode-website is built to empower learners, developers, and open-source contributors from all walks of life. Whether you’re fixing a typo or designing a whole new feature, every contribution matters. We’re committed to ensuring a respectful, welcoming, and inclusive space for everyone.
 
 ---
 
 **💡 Our Core Values**
 
-We believe the Recode community thrives when we:
+We believe the recode hive community thrives when we:
 - 💬 Encourage open communication and knowledge sharing
 - 🧠 Welcome new ideas, diverse perspectives, and honest questions
 - 🙌 Support and uplift contributors at all skill levels
@@ -31,11 +31,11 @@ To maintain a safe and productive space, we do not tolerate:
 
 **🧭 Scope of This Code**
 
-This Code of Conduct applies to all spaces where the Recode project is represented:
+This Code of Conduct applies to all spaces where the recode hive project is represented:
 - 📌 GitHub repository & discussions
 - 📌 Pull requests, issues, and commit comments
 - 📌 Project-related events, forums, and social media
-- 📌 Any other platform or medium connected to Recode
+- 📌 Any other platform or medium connected to recode hive
 
 ---
 
@@ -62,13 +62,13 @@ We ask all contributors to:
 - ✅ Maintain integrity and credit all sources
 - ✅ Embrace learning and be open to feedback
 - ✅ Avoid offensive, unethical, or AI-generated content without review
-- ✅ Help make Recode a safe, beginner-friendly environment
+- ✅ Help make recode hive a safe, beginner-friendly environment
 
 ---
 
 **💫 Our Vision**
 
-*Recode-Website* is more than a project—it’s a platform for exploration, skill-building, and meaningful collaboration. Let’s code not just with logic, but with empathy and purpose. Together, we can create tech that inspires and includes. 💻🌱
+*recode-website* is more than a project—it’s a platform for exploration, skill-building, and meaningful collaboration. Let’s code not just with logic, but with empathy and purpose. Together, we can create tech that inspires and includes. 💻🌱
 
 ---
 
@@ -76,6 +76,6 @@ We ask all contributors to:
 
 This Code of Conduct aligns with the principles of *GSSoC’25* and reflects our collective commitment to mentorship, inclusivity, and ethical open-source contribution.
 
-Inspired by [Contributor Covenant](https://www.contributor-covenant.org/version/3/0/code_of_conduct/) and has been adapted specifically for Recode-Website as part of the GSSoC’25 Open Source Contributions initiative.
+Inspired by [Contributor Covenant](https://www.contributor-covenant.org/version/3/0/code_of_conduct/) and has been adapted specifically for recode-website as part of the GSSoC’25 Open Source Contributions initiative.
 
 Modifications include beginner-friendly practices, inclusive open-source standards, and collaboration-focused values in line with GSSoC’s vision of mentorship and diversity in tech.

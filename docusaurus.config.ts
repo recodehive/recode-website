@@ -9,7 +9,7 @@ dotenv.config();
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "Recode Hive",
+  title: "recode hive",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
@@ -86,9 +86,9 @@ const config: Config = {
       respectPrefersColorScheme: false, // Let users manually control theme
     },
     navbar: {
-      title: "Recode Hive",
+      title: "recode hive",
       logo: {
-        alt: "RecodeHive Logo",
+        alt: "recode hive Logo",
         src: "img/logo.png",
       },
       items: [
@@ -223,7 +223,7 @@ const config: Config = {
     footer: {
       style: "dark",
       links: [],
-      copyright: `Copyright © ${new Date().getFullYear()} recodehive. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} recode hive. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
@@ -232,7 +232,7 @@ const config: Config = {
     // Disable Algolia search until properly configured
     // algolia: {
     //   appId: "YOUR_APP_ID",
-    //   apiKey: "YOUR_SEARCH_API_KEY", 
+    //   apiKey: "YOUR_SEARCH_API_KEY",
     //   indexName: "YOUR_INDEX_NAME",
     //   contextualSearch: true,
     //   externalUrlRegex: "external\\.com|domain\\.com",
@@ -249,7 +249,7 @@ const config: Config = {
   markdown: {
     mermaid: true,
   },
-  
+
   // Migrated legacy setting to markdown.hooks.onBrokenMarkdownLinks
 
   themes: ["@docusaurus/theme-mermaid"],
@@ -272,7 +272,7 @@ const config: Config = {
     gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
     hooks: {
       onBrokenMarkdownLinks: "warn",
-    }
+    },
   },
 };
 

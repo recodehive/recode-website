@@ -47,7 +47,7 @@ export default function Blogs(): React.JSX.Element {
   return (
     <Layout
       title={`Blogs from ${siteConfig.title}`}
-      description="Welcome to RecodeHive Blogs. Learn the basics to advanced concepts of web development including HTML, CSS, JavaScript, React, Node.js, DSA, and more."
+      description="Welcome to recode hive Blogs. Learn the basics to advanced concepts of web development including HTML, CSS, JavaScript, React, Node.js, DSA, and more."
     >
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -78,7 +78,7 @@ export default function Blogs(): React.JSX.Element {
           <div className="blog-hero-container">
             <div className="hero-content">
               <h1 className="blog-main-title">
-                Welcome to <span className="gradient-text">RecodeHive</span> Blogs
+                Welcome to <span className="gradient-text">recode hive</span> Blogs
               </h1>
               <p className="blog-main-subtitle">
                 Discover comprehensive web development articles, tutorials, and insights covering
@@ -103,7 +103,7 @@ export default function Blogs(): React.JSX.Element {
                   </svg>
                   <input
                     type="text"
-                    placeholder="Search articles by title, description, or topic..."
+                    placeholder="Search article by title, topic"
                     className="search-input"
                     value={searchTerm}
                     onChange={handleSearchChange}
@@ -175,7 +175,7 @@ const BlogCard = ({ blog, index }) => {
 
   // Get authors for this blog post
   const getAuthors = (slug) => {
-    const authors = authorMapping[slug] || ["RecodeHive Team"];
+    const authors = authorMapping[slug] || ["recode hive Team"];
     return authors.length > 1 ? authors.join(" & ") : authors[0];
   };
 

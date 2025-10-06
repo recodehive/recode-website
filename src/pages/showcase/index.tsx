@@ -27,7 +27,7 @@ import FavoriteIcon from '@site/src/components/svgIcons/FavoriteIcon';
 import { useColorMode } from '@docusaurus/theme-common';
 
 const TITLE =
-  'Recode Hive: Framing all the opensource projects built by our community members';
+  'recode hive: Framing all the opensource projects built by our community members';
 const DESCRIPTION =
   'All the opensource projects listed below are available for you to explore, learn, and contribute.';
 const EDIT_URL =
@@ -155,7 +155,7 @@ function ShowcaseHeader() {
           rel="noreferrer"
         >
           <Translate id="showcase.header.button">
-            🌟 Join the Hive Community
+            🌟 Join the recode hive Community
           </Translate>
         </a>
       </motion.div>
@@ -352,7 +352,7 @@ function ShowcaseCards() {
                   }}
                 >
                   <Translate id="showcase.favoritesList.title">
-                    Best of the Hive
+                    Best of the hive
                   </Translate>
                 </motion.h2>
                 <motion.h2
