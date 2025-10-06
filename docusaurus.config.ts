@@ -245,12 +245,12 @@ const config: Config = {
     // },
   } satisfies Preset.ThemeConfig,
 
+  // Migrated legacy setting to markdown.hooks.onBrokenMarkdownLinks
   markdown: {
     mermaid: true,
+    // ✅ CORRECT for Docusaurus 3.9+
     hooks: { onBrokenMarkdownLinks: "warn" },
   },
-
-  // Migrated legacy setting to markdown.hooks.onBrokenMarkdownLinks
 
   themes: ["@docusaurus/theme-mermaid"],
 
@@ -269,7 +269,8 @@ const config: Config = {
 
   // ✅ Add this customFields object to expose the token to the client-side
   customFields: {
-    gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
+    gitToken: process.env.GITHUB_TOKEN || process.env.DOCUSAURUS_GIT_TOKEN,
+
     // Shopify credentials for merch store
     SHOPIFY_STORE_DOMAIN:
       process.env.SHOPIFY_STORE_DOMAIN || "junh9v-gw.myshopify.com",
