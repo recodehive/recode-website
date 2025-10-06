@@ -8,23 +8,20 @@
  * 1. Create a Shopify store at https://shopify.com
  * 2. Go to Settings > Apps and sales channels > Develop apps
  * 3. Create a new app and get your Storefront API access token
- * 4. Add your credentials to docusaurus.config.ts customFields
- * 
- * For development, add these to your docusaurus.config.ts:
- * customFields: {
- *   SHOPIFY_STORE_DOMAIN: 'your-store.myshopify.com',
- *   SHOPIFY_STOREFRONT_ACCESS_TOKEN: 'your-token-here',
- * }
+ * 4. Credentials are configured in docusaurus.config.ts customFields
  */
 
-// Get credentials from Docusaurus customFields (configured in docusaurus.config.ts)
-// These are set at build time and won't expose credentials in the code
-const SHOPIFY_STORE_DOMAIN = 
-  (typeof window !== 'undefined' && (window as any).docusaurus?.siteConfig?.customFields?.SHOPIFY_STORE_DOMAIN as string) || '';
-const SHOPIFY_STOREFRONT_ACCESS_TOKEN = 
-  (typeof window !== 'undefined' && (window as any).docusaurus?.siteConfig?.customFields?.SHOPIFY_STOREFRONT_ACCESS_TOKEN as string) || '';
+import siteConfig from '@generated/docusaurus.config';
 
-const SHOPIFY_GRAPHQL_URL = `https://${SHOPIFY_STORE_DOMAIN}/api/2024-01/graphql.json`;
+// Get credentials from Docusaurus customFields
+function getShopifyConfig() {
+  const domain = (siteConfig.customFields?.SHOPIFY_STORE_DOMAIN as string) || '';
+  const token = (siteConfig.customFields?.SHOPIFY_STOREFRONT_ACCESS_TOKEN as string) || '';
+  
+  return { domain, token };
+}
+
+const SHOPIFY_GRAPHQL_URL = (domain: string) => `https://${domain}/api/2024-01/graphql.json`;
 
 interface ShopifyProduct {
   id: string;
@@ -97,16 +94,18 @@ interface ShopifyCheckout {
  * Make a request to Shopify's Storefront API
  */
 async function shopifyFetch<T>(query: string, variables = {}): Promise<T> {
-  if (!SHOPIFY_STORE_DOMAIN || !SHOPIFY_STOREFRONT_ACCESS_TOKEN) {
+  const config = getShopifyConfig();
+  
+  if (!config.domain || !config.token) {
     console.warn('Shopify credentials not configured. Using mock data.');
     throw new Error('Shopify not configured');
   }
 
-  const response = await fetch(SHOPIFY_GRAPHQL_URL, {
+  const response = await fetch(SHOPIFY_GRAPHQL_URL(config.domain), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': SHOPIFY_STOREFRONT_ACCESS_TOKEN,
+      'X-Shopify-Storefront-Access-Token': config.token,
     },
     body: JSON.stringify({ query, variables }),
   });
@@ -473,7 +472,8 @@ export async function removeFromCheckout(
  * Check if Shopify is configured
  */
 export function isShopifyConfigured(): boolean {
-  return Boolean(SHOPIFY_STORE_DOMAIN && SHOPIFY_STOREFRONT_ACCESS_TOKEN);
+  const config = getShopifyConfig();
+  return Boolean(config.domain && config.token);
 }
 
 export type { ShopifyProduct, ShopifyCheckout };
