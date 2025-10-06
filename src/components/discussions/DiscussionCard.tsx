@@ -123,7 +123,7 @@ export default function DiscussionCard({
               }}
             />
           ) : null}
-          <div 
+          <div
             className="author-avatar-fallback"
             style={{ display: discussion.author.avatar_url ? 'none' : 'flex' }}
           >
