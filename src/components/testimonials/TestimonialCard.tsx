@@ -1,3 +1,4 @@
+// prettier-ignore
 import React from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -26,7 +27,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   const formatLinkDisplay = (url: string) => {
     try {
       const urlObj = new URL(url);
-      return urlObj.hostname.replace("www.", "");
+      return urlObj.hostname + urlObj.pathname;
     } catch {
       return url;
     }
@@ -34,27 +35,30 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -12 }}
-      transition={{ duration: 0.3 }}
-      className={`rounded-2xl max-h-[250px] h-[246px] p-5 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between ${
-        isDark ? "bg-[#18181b] text-white" : "bg-white text-gray-900"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className={`rounded-2xl p-4 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between ${
+        isDark ? "bg-[#1a1a1a] text-white" : "bg-white text-gray-900"
       }`}
     >
-      {/* Header */}
-      <div className="flex items-center gap-4">
-        <Avatar className="w-15 h-15 border border-gray-200 dark:border-gray-700">
-          <AvatarImage
-            className="w-15 h-15 object-cover "
-            src={avatar}
-            alt={name}
-          />
-          <AvatarFallback>{name?.charAt(0) ?? "U"}</AvatarFallback>
+      {/* Header with Avatar and Name */}
+      <div className="flex items-center gap-3 ">
+        <Avatar className="w-16 h-16 rounded-full">
+          <AvatarImage src={avatar} className="object-cover" />
+          <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <div>
-          <h3 className="font-semibold text-base">{name}</h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+        <div className="box-border p-0 m-0">
+          <h3
+            className={`font-semibold text-base ${
+              isDark ? "text-white" : "text-gray-900"
+            }`}
+          >
+            {name}
+          </h3>
+          <p
+            className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}
+          >
             @{username}
           </p>
         </div>
@@ -62,47 +66,39 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
       {/* Content */}
       <p
-        className={`mt-4 mb-3 text-sm leading-relaxed ${
-          isDark ? "text-gray-300" : "text-gray-700"
-        }`}
+        className={`line-clamp-4 ${isDark ? "text-gray-300" : "text-gray-700"}`}
       >
-        {content.length > 220 ? content.slice(0, 220) + "..." : content}
+        {content.length > 100 ? content.slice(0, 99) + "..." : content}
       </p>
 
-      {/* Footer */}
+      {/* Footer with Hashtags and Date */}
       <div
-        className={`pt-3 mt-auto border-t text-sm flex flex-col gap-2 ${
-          isDark ? "border-gray-700" : "border-gray-100"
+        className={`flex flex-col gap-2 text-sm border-t ${
+          isDark ? "border-gray-700" : "border-gray-200"
         }`}
       >
         {/* Hashtags */}
-        {content.match(/#\w+/g) && (
-          <div className="flex flex-wrap gap-2">
-            {content
-              .match(/#\w+/g)
-              ?.slice(0, 3)
-              .map((tag, i) => (
-                <span
-                  key={i}
-                  className={`px-2 py-0.5 rounded-md text-xs font-medium ${
-                    isDark
-                      ? "bg-blue-900/40 text-blue-300"
-                      : "bg-blue-50 text-blue-700"
-                  }`}
-                >
-                  {tag}
-                </span>
-              ))}
-          </div>
-        )}
+        <div className="flex gap-2 flex-wrap">
+          {content
+            .match(/#\w+/g)
+            ?.slice(0, 3)
+            .map((hashtag, index) => (
+              <span
+                key={index}
+                className="text-blue-500 hover:text-blue-600 cursor-pointer"
+              >
+                {hashtag}
+              </span>
+            ))}
+        </div>
 
-        {/* Link and Date */}
-        <div className="flex items-center justify-between">
+        {/* Link and Date Row */}
+        <div className="flex items-center justify-between mt-1">
           <a
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`truncate max-w-[70%] text-sm font-medium hover:underline ${
+            className={`truncate max-w-[70%] hover:underline cursor-pointer ${
               isDark
                 ? "text-blue-400 hover:text-blue-300"
                 : "text-blue-600 hover:text-blue-700"
