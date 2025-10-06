@@ -67,7 +67,7 @@ class BankAccount:
 
 4. Inheritance - One class can inherit from another.
 
-📌 **Use Case**: car (parent) class is getting inherited by (child) Electric Car
+📌 **Use Case**: Car (parent) class is inherited by ElectricCar (child) class
 
 ```python
 class ElectricCar(Car):

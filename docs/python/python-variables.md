@@ -39,7 +39,7 @@ Here:
 
 ### 2. How to Declare and Assign Variables
 
-You simply write a variable name, use the assignment `=` sign, and assign a value.
+You simply write a variable name, use the assignment `=` operator, and assign a value.
 
 ```python
 a = 10

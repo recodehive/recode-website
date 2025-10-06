@@ -77,7 +77,7 @@ Install Python
       </BrowserWindow>
   
      
-  ### Step 5:  Adjusting Your path enviornment
+  ### Step 5:  Adjusting Your path enviornment.
   
   This is where we specify the path enviornment of git, just go with the recommended option which is 2.
   
@@ -111,6 +111,6 @@ Install Python
   
   ## Conclusion
   
-  I hope you enjoyed reading this article on “Setting up your Git Enviornment?”. In the next post, we'll discuss how to create a Repository and clone a project from Github. 
+  I hope you enjoyed reading this article on “Setting up your Git Enviornment”. In the next post, we'll discuss how to create a Repository and clone a project from Github. 
   Signing off,
   Sanjay Viswanathan.
