@@ -37,8 +37,8 @@ const BlogCard = ({
       initial={{ opacity: 0, y: 40, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      whileHover={{ 
-        y: -8, 
+      whileHover={{
+        y: -8,
         scale: 1.02,
         transition: { duration: 0.4, ease: "easeOut" }
       }}
@@ -46,7 +46,7 @@ const BlogCard = ({
       onMouseLeave={() => setIsHovered(false)}
       className="relative overflow-hidden h-full transition-all duration-300"
     >
-      <Link 
+      <Link
         to={`/blog/${id}`}
         className="block h-full text-decoration-none"
         style={{ textDecoration: 'none' }}
@@ -54,17 +54,17 @@ const BlogCard = ({
         <div className="article-card h-full">
           {/* Category Badge */}
           <div className="card-category">{category}</div>
-          
+
           {/* Card Image */}
           <div className="card-image">
             <img src={imageUrl} alt={title} />
           </div>
-          
+
           {/* Card Content */}
           <div className="card-content">
             <h3 className="card-title">{title}</h3>
             <p className="card-description">{content}</p>
-            
+
             {/* Card Meta */}
             <div className="card-meta">
               <div className="card-author">
@@ -73,7 +73,7 @@ const BlogCard = ({
               </div>
               <span className="card-read-time">5 min read</span>
             </div>
-            
+
             {/* Read More Button */}
             <div className="card-read-more">
               Read Article →
