@@ -18,7 +18,7 @@ tags:
 
 # Python Operators
 
-In Python, **operators** are special symbols used to perform operations on variables and values. Python supports a wide variety of operators categorized based on their functionality.
+In Python, **operators** are special symbols used to perform operations on variables and values. Python supports a wide range of operators categorized based on their functionality.
 
 
 Used to perform basic mathematical operations:
