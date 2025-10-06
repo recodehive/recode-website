@@ -145,6 +145,200 @@ const giveawayStyles = `
   color: var(--ifm-color-emphasis-700);
 }
 
+.giveaway-loading-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.giveaway-skeleton-card {
+  background: var(--ifm-background-color);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 12px var(--ifm-color-emphasis-200);
+}
+
+[data-theme='dark'] .giveaway-skeleton-card {
+  background: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-400);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.giveaway-skeleton-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .giveaway-skeleton-badge {
+  background: var(--ifm-color-emphasis-600);
+}
+
+.giveaway-skeleton-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-emphasis-200) 25%,
+    var(--ifm-color-emphasis-300) 50%,
+    var(--ifm-color-emphasis-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+[data-theme='dark'] .giveaway-skeleton-avatar {
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-emphasis-400) 25%,
+    var(--ifm-color-emphasis-500) 50%,
+    var(--ifm-color-emphasis-400) 75%
+  );
+  background-size: 200% 100%;
+}
+
+.giveaway-skeleton-name {
+  height: 24px;
+  width: 70%;
+  margin: 0 auto 1rem;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-emphasis-200) 25%,
+    var(--ifm-color-emphasis-300) 50%,
+    var(--ifm-color-emphasis-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+[data-theme='dark'] .giveaway-skeleton-name {
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-emphasis-400) 25%,
+    var(--ifm-color-emphasis-500) 50%,
+    var(--ifm-color-emphasis-400) 75%
+  );
+  background-size: 200% 100%;
+}
+
+.giveaway-skeleton-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 1.5rem;
+}
+
+.giveaway-skeleton-stat {
+  text-align: center;
+}
+
+.giveaway-skeleton-stat-value {
+  height: 32px;
+  width: 60px;
+  margin: 0 auto 0.5rem;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-emphasis-200) 25%,
+    var(--ifm-color-emphasis-300) 50%,
+    var(--ifm-color-emphasis-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+[data-theme='dark'] .giveaway-skeleton-stat-value {
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-emphasis-400) 25%,
+    var(--ifm-color-emphasis-500) 50%,
+    var(--ifm-color-emphasis-400) 75%
+  );
+  background-size: 200% 100%;
+}
+
+.giveaway-skeleton-stat-label {
+  height: 16px;
+  width: 50px;
+  margin: 0 auto;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-emphasis-200) 25%,
+    var(--ifm-color-emphasis-300) 50%,
+    var(--ifm-color-emphasis-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+[data-theme='dark'] .giveaway-skeleton-stat-label {
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-emphasis-400) 25%,
+    var(--ifm-color-emphasis-500) 50%,
+    var(--ifm-color-emphasis-400) 75%
+  );
+  background-size: 200% 100%;
+}
+
+.giveaway-skeleton-button {
+  height: 45px;
+  width: 100%;
+  border-radius: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-emphasis-200) 25%,
+    var(--ifm-color-emphasis-300) 50%,
+    var(--ifm-color-emphasis-200) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+[data-theme='dark'] .giveaway-skeleton-button {
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-emphasis-400) 25%,
+    var(--ifm-color-emphasis-500) 50%,
+    var(--ifm-color-emphasis-400) 75%
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.giveaway-loading-text {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+[data-theme='dark'] .giveaway-loading-text {
+  color: var(--ifm-color-emphasis-600);
+}
+
 .giveaway-leaderboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -770,8 +964,27 @@ const GiveawayPage: React.FC = () => {
 
             {loading ? (
               <div className="giveaway-loading">
-                <div className="loading-spinner">Loading...</div>
-                <p>Fetching leaderboard data...</p>
+                <p className="giveaway-loading-text">Loading leaderboard...</p>
+                <div className="giveaway-loading-container">
+                  {[...Array(6)].map((_, index) => (
+                    <div key={index} className="giveaway-skeleton-card">
+                      <div className="giveaway-skeleton-badge" />
+                      <div className="giveaway-skeleton-avatar" />
+                      <div className="giveaway-skeleton-name" />
+                      <div className="giveaway-skeleton-stats">
+                        <div className="giveaway-skeleton-stat">
+                          <div className="giveaway-skeleton-stat-value" />
+                          <div className="giveaway-skeleton-stat-label" />
+                        </div>
+                        <div className="giveaway-skeleton-stat">
+                          <div className="giveaway-skeleton-stat-value" />
+                          <div className="giveaway-skeleton-stat-label" />
+                        </div>
+                      </div>
+                      <div className="giveaway-skeleton-button" />
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : (
               <div className="giveaway-leaderboard-grid">
