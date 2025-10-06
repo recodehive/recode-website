@@ -2,26 +2,22 @@ import React, { useState, useEffect } from 'react';
 import Layout from '@theme/Layout';
 import type { ReactElement } from 'react';
 import { useLocation, useHistory } from '@docusaurus/router';
-import './video.css';
-import './index.css';
 import './details.css';
 
 interface VideoData {
   id: string;
   youtubeUrl: string;
-  type: 'video' | 'shorts';
+  type: 'video' | 'live' | 'other';
 }
 
 interface LocationState {
   video: VideoData;
 }
 
-// Function to extract YouTube video ID from URL
 const getYoutubeVideoId = (url: string): string => {
   let videoId = '';
   const normalMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
   const shortsMatch = url.match(/youtube\.com\/shorts\/([^&\s]+)/);
-  
   if (normalMatch) {
     videoId = normalMatch[1];
   } else if (shortsMatch) {
@@ -35,100 +31,107 @@ export default function VideoDetails(): ReactElement {
   const history = useHistory();
   const state = location.state as LocationState;
   const video = state?.video;
-  const [title, setTitle] = useState<string>('Loading...');
+  const [title, setTitle] = useState('Loading...');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchVideoTitle = async () => {
       if (!video?.youtubeUrl) return;
-      
       try {
-        const response = await fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(video.youtubeUrl)}&format=json`);
+        const response = await fetch(
+          `https://www.youtube.com/oembed?url=${encodeURIComponent(video.youtubeUrl)}&format=json`
+        );
         const data = await response.json();
         setTitle(data.title);
       } catch (error) {
         setTitle('Video Title Unavailable');
         console.error('Error fetching video title:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
-
     fetchVideoTitle();
   }, [video?.youtubeUrl]);
 
-  // Random descriptive text about videos
   const descriptions = [
-    "Watch engaging content that inspires and educates.",
-    "Experience the power of visual storytelling.",
-    "Join us on a journey of learning through video.",
-    "Explore new concepts through dynamic video content.",
-    "Get inspired by expert insights and demonstrations.",
-    "Discover trending topics and timely tutorials.",
-    "Learn from the best in the field.",
-    "Stay updated with the latest trends and techniques.",
-    "Enhance your skills through visual learning.",
+    'Watch engaging content that inspires and educates.',
+    'Experience the power of visual storytelling.',
+    'Join us on a journey of learning through video.',
+    'Explore new concepts through dynamic video content.',
+    'Get inspired by expert insights and demonstrations.',
+    'Discover trending topics and timely tutorials.',
+    'Learn from the best in the field.',
+    'Stay updated with the latest trends and techniques.',
+    'Enhance your skills through visual learning.',
   ];
 
-  // Get a random description
   const randomDescription = descriptions[Math.floor(Math.random() * descriptions.length)];
+
+  const getTypeLabel = () => {
+    switch (video?.type) {
+      case 'live':
+        return '🔴 Live Stream';
+      case 'other':
+        return '📱 Short';
+      default:
+        return '🎥 Video';
+    }
+  };
 
   if (!video) {
     return (
-      <Layout>
-        <div className="video-container">
-          <h1>Video Not Found</h1>
-          <p>Sorry, we couldn't find the video you're looking for.</p>
+      <Layout title="Video Not Found">
+        <div className="video-details-page">
+          <div className="error-container">
+            <div className="error-icon">📹</div>
+            <h1 className="error-title">Video Not Found</h1>
+            <p className="error-message">
+              Sorry, we couldn't find the video you're looking for.
+            </p>
+            <button onClick={() => history.push('/broadcasts')} className="back-button">
+              <span className="button-arrow">←</span>
+              <span>Back to Broadcasts</span>
+            </button>
+          </div>
         </div>
       </Layout>
     );
   }
 
+  const videoId = getYoutubeVideoId(video.youtubeUrl);
+
   return (
-    <Layout>
-      <div className="video-container">
-        <div className="video-card details-card">
-          <div className="video-content">
-            <div className="video-info">
-              <div className="video-title">
-                <h1>{title}</h1>
-                <div className="video-type">
-                  {video.type === 'shorts' ? '📱 Shorts' : '🎥 Video'}
-                </div>
-              </div>
-              <div className="video-description">
-                <p>{randomDescription}</p>
-              </div>
-            </div>
-            <div className="video-embed-large">
+    <Layout title={title}>
+      <div className="video-details-page">
+        {/* Floating Background Elements */}
+        <div className="floating-particles">
+          <div className="particle particle-1"></div>
+          <div className="particle particle-2"></div>
+          <div className="particle particle-3"></div>
+        </div>
+
+        <div className="video-details-container">
+          {/* Back Button */}
+          <button onClick={() => history.push('/broadcasts')} className="back-button-top">
+            <span className="button-arrow">←</span>
+            <span>Back to Broadcasts</span>
+          </button>
+    
+          {/* Video Player Section */}
+          <div className="video-player-section">
+            <div className="video-wrapper">
               <iframe
-                src={`https://www.youtube.com/embed/${getYoutubeVideoId(video.youtubeUrl)}${video.type === 'shorts' ? '?loop=1' : ''}`}
-                frameBorder="0"
-                allowFullScreen
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                loading="eager"
+                src={`https://www.youtube.com/embed/${videoId}`}
                 title={title}
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="video-iframe"
               />
             </div>
-            <div className="video-meta">
-              <p>Watch in full screen for the best viewing experience</p>
-            </div>
-            <div className="pagination" style={{marginTop: '30px'}}>
-              <button 
-                onClick={() => history.push('/broadcasts')}
-                style={{
-                  display: 'inline-block',
-                  padding: '12px 24px',
-                  backgroundColor: '#007bff',
-                  color: 'white',
-                  borderRadius: '8px',
-                  fontWeight: 'bold',
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-                  border: 'none'
-                }}
-              >
-                ← Back to Videos
-              </button>
-            </div>
           </div>
+
+
         </div>
       </div>
     </Layout>
