@@ -6,6 +6,7 @@ import ProductGrid from "../../components/merch/ProductGrid";
 import FilterBar from "../../components/merch/FilterBar";
 import ShoppingCart from "../../components/merch/ShoppingCart";
 import { ShoppingBag } from "lucide-react";
+import { getProducts, isShopifyConfigured } from "../../lib/shopify";
 import "./merch.css";
 
 export interface Product {
@@ -85,12 +86,69 @@ const sampleProducts: Product[] = [
 export default function MerchPage(): ReactNode {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("featured");
+  const [products, setProducts] = useState<Product[]>(sampleProducts);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>(sampleProducts);
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState<Array<Product & { quantity: number }>>([]);
+  const [loading, setLoading] = useState(true);
 
+  // Fetch products from Shopify on mount
   useEffect(() => {
-    let filtered = [...sampleProducts];
+    async function fetchShopifyProducts() {
+      try {
+        if (isShopifyConfigured()) {
+          console.log('Fetching products from Shopify...');
+          const shopifyProducts = await getProducts(20);
+          
+          if (shopifyProducts && shopifyProducts.length > 0) {
+            // Convert Shopify products to our Product interface
+            const formattedProducts: Product[] = shopifyProducts.map((p) => {
+              const imageUrl = p.images.edges[0]?.node.url || '';
+              const price = parseFloat(p.priceRange.minVariantPrice.amount);
+              
+              return {
+                id: p.id,
+                title: p.title,
+                description: p.description || '',
+                price: price,
+                image: imageUrl,
+                category: 'accessories', // Default category, you can use Shopify tags
+                shopifyId: p.id,
+                variants: {
+                  size: p.variants.edges.map(v => v.node.title).filter(t => t !== 'Default Title'),
+                },
+              };
+            });
+            
+            console.log('Loaded products from Shopify:', formattedProducts.length);
+            setProducts(formattedProducts);
+            setFilteredProducts(formattedProducts);
+          } else {
+            console.log('No products found in Shopify, using sample products');
+            setProducts(sampleProducts);
+            setFilteredProducts(sampleProducts);
+          }
+        } else {
+          console.log('Shopify not configured, using sample products');
+          setProducts(sampleProducts);
+          setFilteredProducts(sampleProducts);
+        }
+      } catch (error) {
+        console.error('Error fetching products from Shopify:', error);
+        // Fallback to sample products on error
+        setProducts(sampleProducts);
+        setFilteredProducts(sampleProducts);
+      } finally {
+        setLoading(false);
+      }
+    }
+    
+    fetchShopifyProducts();
+  }, []);
+
+  // Filter and sort products
+  useEffect(() => {
+    let filtered = [...products];
 
     // Filter by category
     if (selectedCategory !== "all") {
@@ -114,7 +172,7 @@ export default function MerchPage(): ReactNode {
     }
 
     setFilteredProducts(filtered);
-  }, [selectedCategory, sortBy]);
+  }, [selectedCategory, sortBy, products]);
 
   const addToCart = (product: Product) => {
     setCartItems((prev) => {
@@ -194,7 +252,15 @@ export default function MerchPage(): ReactNode {
 
         {/* Products Grid */}
         <section className="merch-products-section">
-          <ProductGrid products={filteredProducts} onAddToCart={addToCart} />
+          {loading ? (
+            <div style={{ textAlign: 'center', padding: '4rem 0' }}>
+              <p style={{ fontSize: '1.2rem', color: 'var(--ifm-color-primary)' }}>
+                Loading products...
+              </p>
+            </div>
+          ) : (
+            <ProductGrid products={filteredProducts} onAddToCart={addToCart} />
+          )}
         </section>
 
         {/* Shopping Cart */}

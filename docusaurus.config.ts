@@ -157,11 +157,6 @@ const config: Config = {
           position: "left",
         },
         {
-          to: "/merch",
-          html: '<span class="nav-emoji">🛍️</span> Merch',
-          position: "left",
-        },
-        {
           type: "dropdown",
           html: '<span class="nav-emoji">👩🏻‍💻</span> Devfolio',
           position: "left",
@@ -205,6 +200,10 @@ const config: Config = {
             {
               label: "🎙️ Podcast",
               to: "/podcasts/",
+            },
+            {
+              label: "🛍️ Merch Store",
+              to: "/merch",
             },
           ],
         },
@@ -270,6 +269,9 @@ const config: Config = {
   // ✅ Add this customFields object to expose the token to the client-side
   customFields: {
     gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
+    // Shopify credentials for merch store
+    SHOPIFY_STORE_DOMAIN: process.env.SHOPIFY_STORE_DOMAIN || 'junh9v-gw.myshopify.com',
+    SHOPIFY_STOREFRONT_ACCESS_TOKEN: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || '2503dfbf93132b42e627e7d53b3ba3e9',
     hooks: {
       onBrokenMarkdownLinks: "warn",
     },
