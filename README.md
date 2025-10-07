@@ -110,6 +110,16 @@ npm run serve
 - Push to the branch: `git push origin feature-name`
 - Submit a pull request detailing your changes.
 
+## Features
+
+- Comprehensive Tutorials – Step-by-step guides for Git, GitHub, Python, and Next.js, suitable for beginners and advanced users.
+- Hands-On Setup Guides – Practical walkthroughs for setting up projects, repositories, and development environments.
+- Leaderboards & Challenges – Track your progress, earn points, and compete with others to stay motivated.
+- Documentation Hub – Centralized docs for quick reference, best practices, and deep dives into concepts.
+- Merchandise Store – Exclusive branded merchandise to celebrate your learning milestones.
+- User Dashboard – Personalized space to monitor your completed tutorials, achievements, and activity.
+- Community & Collaboration – Engage with other learners, share tips, and collaborate on projects.
+
 ## Tech Stack
 
 ### Core
