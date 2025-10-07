@@ -11,7 +11,7 @@ interface Ebook {
   category: string;
 }
 
-// Sample Ebook Data
+// Redirection URL Ebook Data
 const ebooks: Ebook[] = [
   {
     id: '1',
@@ -21,6 +21,17 @@ const ebooks: Ebook[] = [
     category: 'Programming',
   },
 
+  // add here more ebooks or resources as needed for redirection
+  // sample
+  /*
+  {
+    id: '2',
+    title: 'Understanding React Hooks',
+    description: 'A deep dive into React Hooks for better state management.',
+    contentLink: 'https://learn.recodehive.com/react-hooks',
+    category: 'Web Development',
+  },
+  */
 ];
 
 // --------------------------
