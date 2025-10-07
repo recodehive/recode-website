@@ -16,6 +16,7 @@
   --contact-shadow-hover: rgba(0, 0, 0, 0.3);
   --contact-input-bg: rgba(255, 255, 255, 0.05);
   --contact-input-border: rgba(255, 255, 255, 0.1);
+  --select-text-primary: #000000;
 }
 
 /* Light Theme Variables */
@@ -335,7 +336,7 @@ html[data-theme='light'] {
 .form-textarea {
   width: 100%;
   padding: 0.875rem 1rem;
-  background: var(--contact-input-bg);
+  background: var(--contact-input-bg); /* Already defined, but ensure it's applied */
   border: 1px solid var(--contact-input-border);
   border-radius: 0.75rem;
   color: var(--contact-text-primary);
@@ -345,13 +346,11 @@ html[data-theme='light'] {
   backdrop-filter: blur(5px);
 }
 
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
-  outline: none;
-  border-color: var(--contact-accent-primary);
-  background: var(--contact-bg-card-hover);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+/* Fix dropdown options visibility in dark mode */
+.form-select option {
+  background: var(--contact-bg-card); /* Matches card background */
+  color: var(--select-text-primary); /* Matches primary text color */
+  padding: 0.5rem; /* Optional: Adds padding for better readability */
 }
 
 .form-input::placeholder,
@@ -369,18 +368,19 @@ html[data-theme='light'] {
   appearance: none;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
   background-position: right 0.75rem center;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; /* Ensure it doesn't repeat */
   background-size: 1.25rem;
-  padding-right: 2.5rem;
+  padding-right: 2.5rem; /* Enough space for the arrow */
 }
 
-[data-theme='light'] .form-select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23374151' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-}
-
-.form-select option {
-  background: var(--contact-bg-card);
-  color: var(--contact-text-primary);
+.form-select:focus {
+  outline: none;
+  border-color: var(--contact-accent-primary);
+  background: var(--contact-bg-card-hover); /* Consistent background on focus */
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); /* Single arrow on focus */
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat; /* Prevent repetition */
 }
 
 .submit-button {
