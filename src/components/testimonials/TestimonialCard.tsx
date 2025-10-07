@@ -38,19 +38,32 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`rounded-2xl p-4 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between ${
+      className={`rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 flex flex-col justify-between  h-full ${
         isDark ? "bg-[#1a1a1a] text-white" : "bg-white text-gray-900"
       }`}
     >
-      {/* Header with Avatar and Name */}
-      <div className="flex items-center gap-3 ">
-        <Avatar className="w-16 h-16 rounded-full">
-          <AvatarImage src={avatar} className="object-cover" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <div className="box-border p-0 m-0">
+      {/* Header */}
+      <div className="flex items-center gap-4 mb-4">
+        <div className="relative w-16 h-16 flex-shrink-0">
+          <div className="w-full h-full rounded-full overflow-hidden border border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+            {avatar ? (
+              <img
+                src={avatar}
+                alt={name}
+                className="w-full h-[180px] overflow-hidden object-cover rounded-full"
+                loading="lazy"
+              />
+            ) : (
+              <span className="text-sm font-semibold">
+                {name?.charAt(0)?.toUpperCase() ?? "U"}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <div className="flex flex-col">
           <h3
-            className={`font-semibold text-base ${
+            className={`font-semibold text-lg leading-tight ${
               isDark ? "text-white" : "text-gray-900"
             }`}
           >
@@ -66,34 +79,42 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
       {/* Content */}
       <p
-        className={`line-clamp-4 ${isDark ? "text-gray-300" : "text-gray-700"}`}
+        className={`text-sm line-clamp-4 ${
+          isDark ? "text-gray-300" : "text-gray-700"
+        }`}
       >
-        {content.length > 100 ? content.slice(0, 99) + "..." : content}
+        {content.length > 111 ? content.slice(0, 111) + "..." : content}
       </p>
 
-      {/* Footer with Hashtags and Date */}
+      {/* Footer */}
       <div
-        className={`flex flex-col gap-2 text-sm border-t ${
+        className={`pt-1 border-t text-sm flex flex-col gap-2 ${
           isDark ? "border-gray-700" : "border-gray-200"
         }`}
       >
         {/* Hashtags */}
-        <div className="flex gap-2 flex-wrap">
-          {content
-            .match(/#\w+/g)
-            ?.slice(0, 3)
-            .map((hashtag, index) => (
-              <span
-                key={index}
-                className="text-blue-500 hover:text-blue-600 cursor-pointer"
-              >
-                {hashtag}
-              </span>
-            ))}
-        </div>
+        {content.match(/#\w+/g) && (
+          <div className="flex flex-wrap gap-2">
+            {content
+              .match(/#\w+/g)
+              ?.slice(0, 3)
+              .map((tag, i) => (
+                <span
+                  key={i}
+                  className={`px-2 py-0.5 rounded-md text-xs font-medium ${
+                    isDark
+                      ? "bg-blue-900/40 text-blue-300"
+                      : "bg-blue-50 text-blue-700"
+                  }`}
+                >
+                  {tag}
+                </span>
+              ))}
+          </div>
+        )}
 
-        {/* Link and Date Row */}
-        <div className="flex items-center justify-between mt-1">
+        {/* Link and Date */}
+        <div className="flex items-center justify-between">
           <a
             href={link}
             target="_blank"
