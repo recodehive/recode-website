@@ -107,7 +107,7 @@ const GiscusComments: React.FC = () => {
   // 2. This useEffect watches for changes in colorMode and sends a message to Giscus.
   useEffect(() => {
     const iframe = ref.current?.querySelector<HTMLIFrameElement>(
-      "iframe.giscus-frame"
+      "iframe.giscus-frame",
     );
 
     if (!iframe) {
@@ -117,7 +117,7 @@ const GiscusComments: React.FC = () => {
     // Send a message to the Giscus iframe to update its theme
     iframe.contentWindow.postMessage(
       { giscus: { setConfig: { theme: colorMode } } },
-      "https://giscus.app"
+      "https://giscus.app",
     );
   }, [colorMode]); // <-- This runs every time colorMode changes.
 
