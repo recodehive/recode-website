@@ -35,6 +35,7 @@ import NavbarIcon from "@site/src/components/navbar/NavbarIcon";
 import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 import LeaderBoard from "@site/src/components/dashboard/LeaderBoard/leaderboard";
+import GiveawayLeaderboard from "@site/src/components/GiveawayLeaderboard/GiveawayLeaderboard";
 
 type DiscussionTab = "discussions" | "trending" | "unanswered";
 type SortOption = "most_popular" | "latest" | "oldest";
@@ -84,9 +85,9 @@ const DashboardContent: React.FC = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (showDashboardMenu && 
-          !target.closest('.dashboard-mobile-menu') && 
-          !target.closest('.dashboard-menu-btn')) {
+      if (showDashboardMenu &&
+        !target.closest('.dashboard-mobile-menu') &&
+        !target.closest('.dashboard-menu-btn')) {
         setShowDashboardMenu(false);
       }
     };
@@ -358,77 +359,77 @@ const DashboardContent: React.FC = () => {
 
   return (
     <div className="dashboard-layout">
-        {/* Dashboard Menu Button - Only visible on mobile */}
-        <button
-          className={`dashboard-menu-btn ${showDashboardMenu ? "open" : ""}`}
-          onClick={() => setShowDashboardMenu(!showDashboardMenu)}
-          aria-label="Toggle dashboard menu"
-        >
-          {showDashboardMenu ? "✕" : "☰"}
-        </button>
-        
-        {/* Dashboard Mobile Menu */}
-        <div className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}>
-          {/* Overlay */}
-          {showDashboardMenu && (
-            <div 
-              className="dashboard-menu-overlay"
+      {/* Dashboard Menu Button - Only visible on mobile */}
+      <button
+        className={`dashboard-menu-btn ${showDashboardMenu ? "open" : ""}`}
+        onClick={() => setShowDashboardMenu(!showDashboardMenu)}
+        aria-label="Toggle dashboard menu"
+      >
+        {showDashboardMenu ? "✕" : "☰"}
+      </button>
+
+      {/* Dashboard Mobile Menu */}
+      <div className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}>
+        {/* Overlay */}
+        {showDashboardMenu && (
+          <div
+            className="dashboard-menu-overlay"
+            onClick={() => setShowDashboardMenu(false)}
+          />
+        )}
+        <div>
+          <div className="dashboard-menu-header">
+            <h3>Dashboard Menu</h3>
+            <button
+              className="close-menu-btn"
               onClick={() => setShowDashboardMenu(false)}
-            />
-          )}
-          <div>
-            <div className="dashboard-menu-header">
-              <h3>Dashboard Menu</h3>
-              <button
-                className="close-menu-btn"
-                onClick={() => setShowDashboardMenu(false)}
-                aria-label="Close menu"
-              >
-                ✕
-              </button>
+              aria-label="Close menu"
+            >
+              ✕
+            </button>
+          </div>
+
+          {/* Dashboard navigation items */}
+          <div className="dashboard-menu-items">
+            <div
+              className={`menu-item ${activeTab === "home" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("home");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon"><Home size={18} /></span> Home
             </div>
-            
-            {/* Dashboard navigation items */}
-            <div className="dashboard-menu-items">
-              <div
-                className={`menu-item ${activeTab === "home" ? "active" : ""}`}
-                onClick={() => {
-                  handleTabChange("home");
-                  setShowDashboardMenu(false);
-                }}
-              >
-                <span className="menu-icon"><Home size={18} /></span> Home
-              </div>
-              <div
-                className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
-                onClick={() => {
-                  handleTabChange("discuss");
-                  setShowDashboardMenu(false);
-                }}
-              >
-                <span className="menu-icon"><MessageCircle size={18} /></span> Discussions
-              </div>
-              <div
-                className={`menu-item ${activeTab === "contributors" ? "active" : ""}`}
-                onClick={() => {
-                  handleTabChange("contributors");
-                  setShowDashboardMenu(false);
-                }}
-              >
-                <span className="menu-icon"><Users size={18} /></span> LeaderBoard
-              </div>
-              <div
-                className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
-                onClick={() => {
-                  handleTabChange("giveaway");
-                  setShowDashboardMenu(false);
-                }}
-              >
-                <span className="menu-icon"><Gift size={18} /></span> Giveaways
-              </div>
+            <div
+              className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("discuss");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon"><MessageCircle size={18} /></span> Discussions
+            </div>
+            <div
+              className={`menu-item ${activeTab === "contributors" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("contributors");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon"><Users size={18} /></span> LeaderBoard
+            </div>
+            <div
+              className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("giveaway");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon"><Gift size={18} /></span> Giveaways
             </div>
           </div>
         </div>
+      </div>
 
       <div className="dashboard-sidebar">
         <div className="sidebar-header">
@@ -518,6 +519,7 @@ const DashboardContent: React.FC = () => {
                 />
               </div>
             </section>
+            <GiveawayLeaderboard />
           </motion.div>
         )}
 
