@@ -152,6 +152,7 @@ const sidebars: SidebarsConfig = {
             'sql/SQL-Advance/sql-subqueries',
             'sql/SQL-Advance/common-table-expressions',
             'sql/SQL-Advance/window-functions',
+            'sql/SQL-Advance/sql-indexes'
           ],
         },
       ],
