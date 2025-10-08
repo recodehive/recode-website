@@ -35,6 +35,11 @@ const podcastUrls: string[] = [
   "https://open.spotify.com/episode/04G9l6lJCBuQ1OdqsjeZz1?si=YEC9zSFiTiSJlbiMjsJMjg",
   "https://open.spotify.com/episode/2y9SeEILUFWI6rzl8okASZ?si=52faf8736f914f79",
   "https://open.spotify.com/episode/21yp6PDe1XN8B1goR5qMI3?si=k6JURkMRTQq2Ltbujq9qLw",
+  "https://open.spotify.com/episode/6ZVSVMW8lb6JhI4Wjtr6ne?si=nBsMzEykQIONQvMV2oiYhQ",
+  "https://open.spotify.com/episode/4YTcQwxcHieov31zP5qYDr?si=88b68a6116814749",
+  "https://open.spotify.com/episode/6XFtJTqEfF2yTBITLHVEOX?si=941244cd165a45e1",
+  "https://open.spotify.com/episode/6XFtJTqEfF2yTBITLHVEOX?si=aa7272c71f354f20",
+  "https://open.spotify.com/show/1hRuJ14RwtnPtElAxnTEcO?si=7900bc46e9424eef",
 ];
 
 // Initialize podcast data without titles first
