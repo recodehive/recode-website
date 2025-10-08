@@ -150,6 +150,7 @@ const sidebars: SidebarsConfig = {
           className: 'custom-sidebar-sql-advance',
           items: [
             'sql/SQL-Advance/sql-subqueries',
+            'sql/SQL-Advance/common-table-expressions',
           ],
         },
       ],
