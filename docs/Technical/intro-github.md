@@ -78,14 +78,14 @@ GitHub Simplfy all the command line interface of Git and make it more GUI friend
 
         | Category | 	Description |
         | --- |  -------------------- |
-        | Issues | Retrieve data from tables |
-        | Discussions |  |
-        | Pull requests |  |
-        | Notifications |  |
-        | Labels |  |
-        | Actions |  |
-        | Forks |  |
-        | Projects |  |
+        | Issues | Track bugs and feature requests |
+        | Discussions | Community conversations and Q&A |
+        | Pull requests | Code changes and review workflow |
+        | Notifications | Activity alerts and updates |
+        | Labels | Organize and categorize items |
+        | Actions | Automated workflows and CI/CD |
+        | Forks | Repository copies for development |
+        | Projects | Track and manage work tasks |
 
 
 The fork is a personal copy of the repo which is already present or uploaded in GitHub by a different user. Once you fork and make changes to the repository the changes will happen to your forked repo, not the real one.
