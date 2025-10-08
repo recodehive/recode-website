@@ -858,30 +858,6 @@
     justify-self: center;
   }
   
-  /* Pagination mobile styles */
-  .pagination {
-    flex-wrap: wrap;
-    gap: 6px;
-    padding: 16px 0;
-  }
-  
-  .page-numbers {
-    order: 2;
-    width: 100%;
-    justify-content: center;
-    margin-top: 8px;
-  }
-  
-  .pagination-btn {
-    width: 36px;
-    height: 36px;
-  }
-  
-  .page-btn, .pagination-ellipsis {
-    width: 32px;
-    height: 32px;
-    font-size: 14px;
-  }
 }
 
 /* PR List Modal Styles */
@@ -1301,5 +1277,55 @@
   
   .pr-item-meta {
     gap: 12px;
+  }
+}
+
+/* Pagination mobile styles */
+/* Pagination responsive styles */
+@media (max-width: 768px) {
+  .contributors-container .pagination {
+    flex-direction: row;
+    gap: 0;
+  }
+  .contributors-container .page-numbers {
+    flex-wrap: nowrap;
+    gap: 0;
+    padding: 0;
+  }
+  .contributors-container .page-numbers .page-btn,
+  .contributors-container .pagination .pagination-btn,
+  .contributors-container .pagination-ellipsis {
+    min-width: 32px;
+    width: 32px;
+    height: 32px;
+    padding: 8px;
+    font-size: 14px;
+  }
+  .contributors-container .pagination span {
+    min-width: 32px;
+    border-radius: 8px;
+  }
+}
+
+@media (max-width: 475px) {
+  .contributors-container .page-numbers .page-btn,
+  .contributors-container .pagination .pagination-btn,
+  .contributors-container .pagination-ellipsis {
+    min-width: 24px;
+    width: 24px;
+    height: 24px;
+    margin: 0 4px;
+    font-size: 12px;
+  }
+  .contributors-container .pagination span {
+    min-width: 24px;
+  }
+}
+
+@media (max-width: 320px) {
+  .contributors-container .page-numbers .page-btn,
+  .contributors-container .pagination .pagination-btn,
+  .contributors-container .pagination-ellipsis {
+    margin: 0 2px;
   }
 }
