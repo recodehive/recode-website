@@ -1,4 +1,4 @@
-import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
+import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -142,6 +142,14 @@ const sidebars: SidebarsConfig = {
             'sql/SQL-joins/full-outer-join',
             'sql/SQL-joins/cross-join',
             'sql/SQL-joins/self-join',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'SQL Advance',
+          className: 'custom-sidebar-sql-advance',
+          items: [
+            'sql/SQL-Advance/sql-subqueries',
           ],
         },
       ],

@@ -400,6 +400,7 @@ HAVING AVG(salary) > (SELECT AVG(salary) FROM employees);
 **When to Choose What:**
 
 **Use Subqueries When:**
+
 - Logic is clearer with step-by-step thinking
 - You need aggregated values for comparison
 - Checking for existence/non-existence (EXISTS/NOT EXISTS)
@@ -534,6 +535,7 @@ WHERE o.order_date >= '2024-01-01';
 ## Conclusion
 
 Subqueries are your tool for asking layered questions - calculate something first, then use that answer to get what you really want. They make complex logic readable by breaking problems into steps. Start with simple subqueries in `WHERE` clauses, then gradually work up to more complex patterns. 
+
 **Remember :** if your subquery gets too complicated, there's probably a simpler way to write it. Keep it clear, keep it tested, and your queries will be both powerful and maintainable.
 
 <GiscusComments/>
