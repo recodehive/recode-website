@@ -39,7 +39,7 @@ Here:
 
 ### 2. How to Declare and Assign Variables
 
-You simply write a variable name, use the `=` sign, and assign a value.
+You simply write a variable name, use the assignment `=` operator, and assign a value.
 
 ```python
 a = 10
@@ -59,7 +59,7 @@ Python allows assigning values to multiple variables in a single line.
 x, y, z = 1, 2, 3
 ```
 
-You can also assign the **same value to multiple variables**:
+You can also assign **same value to multiple variables**:
 
 ```python
 a = b = c = 100
@@ -69,8 +69,8 @@ a = b = c = 100
 ### 4. Variable Naming Rules
 
 * Must start with a letter (a–z, A–Z) or an underscore (\_)
-* Can contain letters, digits, and underscores
-* Are case-sensitive (`name` and `Name` are different)
+* Can contain letters, digits, and special character like underscore.
+* Are case-sensitive (`name` and `Name` are different).
 * Cannot use reserved keywords like `if`, `class`, `def`, etc.
 
 ```python
@@ -129,7 +129,7 @@ print(x)  # Raises NameError
 
 ### 9. Scope of Variables
 
-There are **two types of variable scope**:
+There are **two scopes of variables**:
 
 ### 10. Global Variable
 

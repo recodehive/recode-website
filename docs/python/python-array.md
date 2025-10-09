@@ -17,7 +17,7 @@ tags:
 
 ---
 
-# Python Arrays
+# Arrays in Python
 
 An **Array** in Python is a data structure that stores multiple elements of the **same data type** in contiguous memory locations.  
 Arrays are **ordered**, **mutable**, and **type-restricted**, making them more memory-efficient than lists for large numeric data.
