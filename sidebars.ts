@@ -50,11 +50,11 @@ const sidebars: SidebarsConfig = {
           label: "📚 GitHub Basics",
           className: "custom-sidebar-basics",
           items: [
-            "GitHub/GitHub-basics/create-github-repo",
-            "GitHub/GitHub-basics/github-repo-command-line",
-            "GitHub/GitHub-basics/how-to-clone-repository",
-            "GitHub/GitHub-basics/how-to-fork",
-            "GitHub/GitHub-basics/firs-opensource-code",
+            'GitHub/GitHub-basics/create-github-repo',
+            'GitHub/GitHub-basics/github-repo-command-line',
+            'GitHub/GitHub-basics/how-to-clone-repository',
+            'GitHub/GitHub-basics/how-to-fork',
+            'GitHub/GitHub-basics/first-opensource-code',
           ],
         },
         {

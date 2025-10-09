@@ -897,6 +897,160 @@
   }
 }
 
+/* Skeleton Loader Styles */
+.skeleton-loader {
+  padding: 24px;
+  border-radius: 12px;
+  margin-top: 24px;
+}
+
+.skeleton-loader.light {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+}
+
+.skeleton-loader.dark {
+  background: #2b303b;
+  border: 1px solid #444;
+}
+
+.skeleton-header {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 2fr 1fr 1fr;
+  gap: 16px;
+  padding: 16px 24px;
+  font-weight: 600;
+  font-size: 14px;
+  border-bottom: 2px solid;
+  margin-bottom: 16px;
+}
+
+.skeleton-loader.light .skeleton-header {
+  color: #666;
+  border-color: #e2e8f0;
+}
+
+.skeleton-loader.dark .skeleton-header {
+  color: #b3b3b3;
+  border-color: #444;
+}
+
+.skeleton-row {
+  display: grid;
+  grid-template-columns: 0.5fr 0.5fr 2fr 1fr 1fr;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 24px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+}
+
+.skeleton-loader.light .skeleton-row {
+  background: #f8fafc;
+}
+
+.skeleton-loader.dark .skeleton-row {
+  background: #323742;
+}
+
+.skeleton-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(0, 0, 0, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 2s infinite;
+}
+
+.skeleton-loader.dark .skeleton-avatar {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+}
+
+.skeleton-avatar.large {
+  width: 40px;
+  height: 40px;
+}
+
+.skeleton-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.skeleton-bar {
+  height: 16px;
+  width: 60%;
+  border-radius: 4px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(0, 0, 0, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 2s infinite;
+}
+
+.skeleton-loader.dark .skeleton-bar {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+}
+
+.skeleton-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.skeleton-badge {
+  height: 20px;
+  width: 60px;
+  border-radius: 12px;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(0, 0, 0, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 2s infinite;
+}
+
+.skeleton-loader.dark .skeleton-badge {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
+  background-size: 200% 100%;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 /* PR List Modal Styles */
 .pr-modal-backdrop {
   position: fixed;
