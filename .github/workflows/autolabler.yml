@@ -27,7 +27,7 @@ jobs:
               labels: ["recode", "level 1", "hacktoberfest-accepted"]
             });
 
-            console.log(`Added labels [recode, level 1,hacktoberfest-accepted] to PR #${prNumber}`);
+            console.log(`Added labels [recode, level 1, hacktoberfest-accepted] to PR #${prNumber}`);
 
       - name: Add labels to Issue
         if: github.event_name == 'issues'
@@ -56,4 +56,3 @@ jobs:
             --header "authorization: token ${TOKEN}" \
             --header "content-type: application/json" \
             --data '{"type":"Bug"}'
-
