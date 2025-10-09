@@ -33,7 +33,7 @@ const sponsors: Sponsor[] = [
     linkedin: "https://www.linkedin.com/in/ayokanmiadejola/",
     twitter: "https://x.com/AyoAdejola100",
   },
-  
+
   {
     name: "Matheus Farias",
     image: "http://avatars.githubusercontent.com/u/22086460?v=4",
@@ -92,7 +92,6 @@ const sponsors: Sponsor[] = [
     linkedin: "https://www.linkedin.com/in/prakharsaxena5/",
     isPastSponsor: true,
   },
-  
 
   {
     name: "Varghese Baby",
@@ -102,7 +101,7 @@ const sponsors: Sponsor[] = [
     linkedin: "https://www.linkedin.com/in/varghese-baby-138429175/",
     isPastSponsor: true,
   },
- 
+
   {
     name: "Carlos Romero",
     image: "https://avatars.githubusercontent.com/u/119690391?v=4",
@@ -119,7 +118,7 @@ const sponsors: Sponsor[] = [
     linkedin: "https://x.com/Yahya_Banouk",
     twitter: "https://x.com/Yahya_Banouk",
     isPastSponsor: true,
-  }, 
+  },
   {
     name: "Mike ",
     image: "https://avatars.githubusercontent.com/u/79911993?v=4",
@@ -137,7 +136,7 @@ const sponsors: Sponsor[] = [
     twitter: "https://x.com/alexchhk",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Renato Maynard",
     image: "https://avatars.githubusercontent.com/u/79546214?v=4",
     description: "M.Sc. in Operations Research",
@@ -146,7 +145,7 @@ const sponsors: Sponsor[] = [
     twitter: "#",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Tram Khoi Nguyen",
     image: "https://avatars.githubusercontent.com/u/112838098?v=4",
     description: "Student at Tra Vinh, Vietnam",
@@ -155,7 +154,7 @@ const sponsors: Sponsor[] = [
     twitter: "#",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Bobby Azad",
     image: "https://avatars.githubusercontent.com/u/48394338?v=4",
     description: "BI Developer at Agtegra",
@@ -164,7 +163,7 @@ const sponsors: Sponsor[] = [
     twitter: "#",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Sudarshan Giri",
     image: "https://avatars.githubusercontent.com/u/41857483?v=4",
     description: "Drupal Developer at Webfirst",
@@ -173,16 +172,17 @@ const sponsors: Sponsor[] = [
     twitter: "https://x.com/sudarshanhang",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Aryan Jaiswal",
-    image: "https://pbs.twimg.com/profile_images/1921606118683426816/M1mU3vm8_400x400.jpg",
+    image:
+      "https://pbs.twimg.com/profile_images/1921606118683426816/M1mU3vm8_400x400.jpg",
     description: "Founder @MLSA",
     github: "https://github.com/Aryanjstar",
     linkedin: "https://www.linkedin.com/in/aryanjstar/",
     twitter: "https://x.com/Aryanjstar",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Kashif Khan",
     image: "https://avatars.githubusercontent.com/u/88695658?v=4",
     description: "Quality Assurance Engineer",
@@ -191,16 +191,17 @@ const sponsors: Sponsor[] = [
     twitter: "https://x.com/KaxhifKhan",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Judar",
-    image: "https://pbs.twimg.com/profile_images/1625875289795604480/Vghp-Ym6_400x400.jpg",
+    image:
+      "https://pbs.twimg.com/profile_images/1625875289795604480/Vghp-Ym6_400x400.jpg",
     description: "Founder @MLSA",
     github: "https://github.com/trongphuhappy",
     linkedin: "#",
     twitter: "https://x.com/Judar_Clitus",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Kriti Raj",
     image: "https://avatars.githubusercontent.com/u/62815511?v=4",
     description: "Student at IIIT , India",
@@ -209,7 +210,7 @@ const sponsors: Sponsor[] = [
     twitter: "https://x.com/kriti___raj",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Alex Cerezo",
     image: "https://avatars.githubusercontent.com/u/92682715?v=4",
     description: "Software Engineer at Outlier",
@@ -218,7 +219,7 @@ const sponsors: Sponsor[] = [
     twitter: "https://x.com/alexcerezx",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Monojit Pal",
     image: "https://avatars.githubusercontent.com/u/144504389?v=4",
     description: "Student at St. Thomas' College",
@@ -227,7 +228,7 @@ const sponsors: Sponsor[] = [
     twitter: "https://x.com/Monojit__18",
     isPastSponsor: true,
   },
-    {
+  {
     name: "Chiluka Akshitha",
     image: "https://avatars.githubusercontent.com/u/120377576?v=4",
     description: "Student at IIT Madras",
@@ -238,7 +239,7 @@ const sponsors: Sponsor[] = [
   },
 
   {
-    name: "Medha", 
+    name: "Medha",
     image: "https://avatars.githubusercontent.com/u/90996890?v=4",
     description: "Student: NextJs Developer",
     github: "https://github.com/medss19",
@@ -246,7 +247,7 @@ const sponsors: Sponsor[] = [
     isWeSponsor: true,
   },
   {
-    name: "Aadil Latif", 
+    name: "Aadil Latif",
     image: "https://avatars.githubusercontent.com/u/145087959?v=4",
     description: "Founder TechXNinjas",
     github: "https://github.com/iaadillatif",
@@ -255,7 +256,7 @@ const sponsors: Sponsor[] = [
   },
 
   {
-    name: "Richa jaishwal", 
+    name: "Richa jaishwal",
     image: "https://avatars.githubusercontent.com/u/156594333?v=4",
     description: "MERN Developer",
     github: "https://github.com/Richajaishwal0",
@@ -264,7 +265,7 @@ const sponsors: Sponsor[] = [
   },
 
   {
-    name: "Sonal Yadav", 
+    name: "Sonal Yadav",
     image: "https://avatars.githubusercontent.com/u/169170929?v=4",
     description: "Web & App Developer",
     github: "https://github.com/sonalyadav1",
@@ -273,7 +274,7 @@ const sponsors: Sponsor[] = [
     isWeSponsor: true,
   },
   {
-    name: "Ayokanmi Adejola", 
+    name: "Ayokanmi Adejola",
     image: "https://avatars.githubusercontent.com/u/191106326?v=4",
     description: "Final Year Student",
     github: "https://github.com/Ayokanmi-Adejola",
@@ -282,8 +283,8 @@ const sponsors: Sponsor[] = [
     isWeSponsor: true,
   },
 
-    {
-    name: "Nishant Rana", 
+  {
+    name: "Nishant Rana",
     image: "https://avatars.githubusercontent.com/u/126577697?v=4",
     description: "Final Year Student",
     github: "https://github.com/NishantRana07",
@@ -293,7 +294,7 @@ const sponsors: Sponsor[] = [
   },
 
   {
-    name: "Ankit Modanwal", 
+    name: "Ankit Modanwal",
     image: "https://avatars.githubusercontent.com/u/166202965?v=4",
     description: "Next.js & ML Developer ",
     github: "https://github.com/ankitmodanwall",
@@ -302,26 +303,25 @@ const sponsors: Sponsor[] = [
     isWeSponsor: true,
   },
 
-
   {
-    name: "Irfan", 
+    name: "Irfan",
     image: "https://avatars.githubusercontent.com/u/138690953?v=4",
     description: "Final Year Student",
     github: "https://github.com/iitzIrFan",
     linkedin: "https://www.linkedin.com/in/irfan-shaikh-8b5b94259/",
     twitter: "https://x.com/iitzIrfan",
     isWeSponsor: true,
-  },  
-    {
-    name: "Renato Maynard", 
+  },
+  {
+    name: "Renato Maynard",
     image: "https://avatars.githubusercontent.com/u/79546214?v=4",
     description: "M.Sc. in Operations Research",
     github: "https://www.linkedin.com/in/renatomaynardetche/",
     twitter: "https://x.com/codewithdhruba",
     isWeSponsor: true,
-  },  
+  },
 
-    {
+  {
     name: "Dhrubaraj Pati",
     image: "https://avatars.githubusercontent.com/u/146111647?v=4",
     description: "Student at SVU",
@@ -329,7 +329,7 @@ const sponsors: Sponsor[] = [
     linkedin: "#",
     twitter: "#",
     isWeSponsor: true,
-  }, 
+  },
   {
     name: "Carlos Romero",
     image: "https://avatars.githubusercontent.com/u/119690391?v=4",
@@ -352,7 +352,7 @@ const sponsors: Sponsor[] = [
     description: "Web Deveoper at SWOC",
     github: "https://github.com/MastanSayyad",
     linkedin: "https://www.linkedin.com/in/mastan-sayyad/",
-    twitter: "https://x.com/mastansayyad02",    
+    twitter: "https://x.com/mastansayyad02",
     isWeSponsor: true,
   },
   {
@@ -360,7 +360,8 @@ const sponsors: Sponsor[] = [
     image: "https://avatars.githubusercontent.com/u/166525102?s=200&v=4",
     description: "Girlscript Organisation",
     github: "https://github.com/GSSoC24",
-    linkedin: "https://www.linkedin.com/company/girlscriptsoc/posts/?feedView=all",
+    linkedin:
+      "https://www.linkedin.com/company/girlscriptsoc/posts/?feedView=all",
     isWeSponsor: true,
   },
   {
@@ -389,7 +390,7 @@ const sponsors: Sponsor[] = [
     linkedin: "#",
     isWeSponsor: true,
   },
-    {
+  {
     name: "Chiluka Akshitha",
     image: "https://avatars.githubusercontent.com/u/120377576?v=4",
     description: "Student at IIT Madras",
@@ -477,7 +478,8 @@ const sponsors: Sponsor[] = [
   },
   {
     name: "Swarnendu Bhandari",
-    image: "https://media.licdn.com/dms/image/v2/D5603AQExzsjM2S4ojA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724809628060?e=1762387200&v=beta&t=Q96VKNyWLZHrS65vuF3QtDEAXaZDFL4AmArlYMoRngM",
+    image:
+      "https://media.licdn.com/dms/image/v2/D5603AQExzsjM2S4ojA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724809628060?e=1762387200&v=beta&t=Q96VKNyWLZHrS65vuF3QtDEAXaZDFL4AmArlYMoRngM",
     description: "Student at IIT Kharagpur",
     github: "https://github.com/swrno",
     twitter: "https://x.com/Swarnendu___",
@@ -511,7 +513,8 @@ const sponsors: Sponsor[] = [
   },
   {
     name: "Dinesh Talwadker",
-    image: "https://media.licdn.com/dms/image/v2/D4D35AQEPaJ17Vq2zMw/profile-framedphoto-shrink_400_400/B4DZgO2PCnHAAg-/0/1752595755516?e=1760011200&v=beta&t=kpZQ9KX3shXtE3RKyYCaz1Q4GioffR1nE5nbDxQ16R0",
+    image:
+      "https://media.licdn.com/dms/image/v2/D4D35AQEPaJ17Vq2zMw/profile-framedphoto-shrink_400_400/B4DZgO2PCnHAAg-/0/1752595755516?e=1760011200&v=beta&t=kpZQ9KX3shXtE3RKyYCaz1Q4GioffR1nE5nbDxQ16R0",
     description: "Co-Founder at Sanity Esports",
     github: "https://github.com/dinxsh",
     linkedin: "https://www.linkedin.com/in/dineshtalwadker/",

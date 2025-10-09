@@ -50,17 +50,23 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <div>
-          <h3 className={`font-semibold text-lg ${isDark ? "text-white" : "text-gray-900"}`}>
+          <h3
+            className={`font-semibold text-lg ${isDark ? "text-white" : "text-gray-900"}`}
+          >
             {name}
           </h3>
-          <p className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}>
+          <p
+            className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}
+          >
             @{username}
           </p>
         </div>
       </div>
 
       {/* Content */}
-      <p className={`line-clamp-3 my-4 flex-grow ${isDark ? "text-gray-300" : "text-gray-700"}`}>
+      <p
+        className={`line-clamp-3 my-4 flex-grow ${isDark ? "text-gray-300" : "text-gray-700"}`}
+      >
         {content}
       </p>
 
@@ -84,17 +90,21 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
         {/* Link and Date Row */}
         <div className="flex items-center justify-between">
-          <a 
-            href={link} 
-            target="_blank" 
+          <a
+            href={link}
+            target="_blank"
             rel="noopener noreferrer"
             className={`hover:underline cursor-pointer ${
-              isDark ? "text-blue-400 hover:text-blue-300" : "text-blue-600 hover:text-blue-700"
+              isDark
+                ? "text-blue-400 hover:text-blue-300"
+                : "text-blue-600 hover:text-blue-700"
             }`}
           >
             {formatLinkDisplay(link)}
           </a>
-          <span className={isDark ? "text-gray-500" : "text-gray-400"}>{date}</span>
+          <span className={isDark ? "text-gray-500" : "text-gray-400"}>
+            {date}
+          </span>
         </div>
       </div>
     </motion.div>

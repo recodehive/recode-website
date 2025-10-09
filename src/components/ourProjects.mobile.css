@@ -15,10 +15,15 @@
     height: 220% !important; /* more scrollable viewport */
   }
   /* Improve readability on dark previews */
-  .ourprojects-overlay { 
-    background: linear-gradient(to top, rgba(0,0,0,0.35), transparent 50%, transparent) !important;
+  .ourprojects-overlay {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.35),
+      transparent 50%,
+      transparent
+    ) !important;
   }
-  .ourprojects-live-indicator { 
+  .ourprojects-live-indicator {
     display: none !important; /* avoid overlapping text, see red arrow in screenshot */
   }
 }
@@ -34,7 +39,9 @@
   .ourprojects-iframe {
     height: 250% !important;
   }
-  .ourprojects-live-indicator { display: none !important; }
+  .ourprojects-live-indicator {
+    display: none !important;
+  }
 }
 
 /* Safety for <320px specifically if needed */
@@ -48,11 +55,13 @@
   .ourprojects-iframe {
     height: 280% !important;
   }
-  .ourprojects-live-indicator { display: none !important; }
+  .ourprojects-live-indicator {
+    display: none !important;
+  }
 }
 
 /* Subtle text shadow to enhance contrast for any headings rendered inside iframe snapshot area
    Note: This only affects overlay/indicators we own, not cross-origin iframe content */
-.ourprojects-embed-card .text-shadow-soft { 
-  text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+.ourprojects-embed-card .text-shadow-soft {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
 }
