@@ -402,7 +402,9 @@ html[data-theme="light"] {
 .form-textarea {
   width: 100%;
   padding: 0.875rem 1rem;
-  background: var(--contact-input-bg); /* Already defined, but ensure it's applied */
+  background: var(
+    --contact-input-bg
+  ); /* Already defined, but ensure it's applied */
   border: 1px solid var(--contact-input-border);
   border-radius: 0.75rem;
   color: var(--contact-text-primary);
