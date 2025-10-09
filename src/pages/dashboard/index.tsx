@@ -497,12 +497,9 @@ const DashboardContent: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="dashboard-main-title">
-              recode hive Community Dashboard
-            </h1>
+            <h1 className="dashboard-main-title">Recode Hive Community Dashboard</h1>
             <p className="dashboard-description">
-              Welcome to the recode hive community hub! Explore our stats,
-              engage in discussions, and connect with fellow contributors.
+              Welcome to the Recode Hive community hub! Explore our stats, engage in discussions, and connect with fellow contributors.
             </p>
 
             <section className="dashboard-stats-section">

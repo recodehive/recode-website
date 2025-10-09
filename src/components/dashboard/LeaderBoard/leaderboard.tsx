@@ -331,7 +331,7 @@ export default function LeaderBoard(): JSX.Element {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="title">recode hive Leaderboard</h1>
+          <h1 className="title">Recode Hive Leaderboard</h1>
           <p className={`subtitle ${isDark ? "dark" : "light"}`}>
             Top contributors across the <strong>{GITHUB_ORG}</strong>{" "}
             organization
