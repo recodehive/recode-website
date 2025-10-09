@@ -7,7 +7,10 @@
     "esModuleInterop": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "types": ["@docusaurus/module-type-aliases", "node"]
+    "types": [
+      "@docusaurus/module-type-aliases",
+      "node"
+    ]
   },
   "include": [
     "src",
@@ -18,5 +21,9 @@
     "plugins",
     "docs"
   ],
-  "exclude": [".docusaurus", "build", "node_modules"]
+  "exclude": [
+    ".docusaurus",
+    "build",
+    "node_modules"
+  ]
 }
