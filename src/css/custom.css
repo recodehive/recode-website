@@ -73,15 +73,13 @@
 
 /* ================= SECTION 3: ACTIVE INDICATORS ================= */
 
-/* Add bright indicators */
-.menu__link--active::before {
-  content: "•";
-  position: absolute;
-  left: -2px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 24px;
-  color: #38a169; /* Green dot */
+/* Style the existing dot for active pages */
+a.menu__link.menu__link--active div span:first-child {
+  background-color: #38a169 !important; /* Green dot */
+  opacity: 1 !important;
+  width: 8px !important;
+  height: 8px !important;
+  box-shadow: 0 0 6px #38a169 !important; /* Add glow effect */
   animation: breatheGreen 2s infinite;
 }
 
@@ -203,8 +201,13 @@ html[data-theme="dark"] .menu__link--active span {
   color: #9ae6b4;
 }
 
+/* Dark mode dot styling */
+html[data-theme="dark"] a.menu__link.menu__link--active div span:first-child {
+  background-color: #9ae6b4 !important;
+  box-shadow: 0 0 8px #68d391 !important;
+}
+
 /* Dark mode indicator colors */
-html[data-theme="dark"] .menu__link--active::before,
 html[data-theme="dark"] .menu__link--active::after {
   color: #68d391;
 }
