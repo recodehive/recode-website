@@ -17,7 +17,7 @@ tags:
 
 ---
 
-# Python Arrays
+# Arrays in Python
 
 An **Array** in Python is a data structure that stores multiple elements of the **same data type** in contiguous memory locations.  
 Arrays are **ordered**, **mutable**, and **type-restricted**, making them more memory-efficient than lists for large numeric data.
@@ -224,6 +224,44 @@ c.append(5)
 print(a)  # array('i', [1, 2, 3, 4])
 print(c)  # array('i', [1, 2, 3, 4, 5])
 ```
+
+---
+
+### **Practice Questions**
+
+1. **Basic Traversal**
+
+    **Q1**: Write a Python program to traverse an array and print each element on a new line.
+
+2. **Maximum Element**
+
+    **Q2:** Write a Python program to find the maximum and minimum elements in an array without using built-in functions.
+
+3. **Array Reversal**
+
+   **Q3:**** Write a Python program to reverse an array without using slicing or the reverse() method.
+  
+
+4. **Insertion Operation**
+   
+   **Q4:** Write a Python program to insert an element at a specific index in an array.
+
+
+5. **Deletion Operation**
+
+    **Q5:** Write a Python program to delete an element from a given index in an array.
+
+6. **Search Element**
+
+   **Q6:** Write a Python program to search for a given element in an array and print its index if found, otherwise print "Not Found".
+
+7. **Sum of Elements**
+
+   **Q7:** Write a Python program to find the sum of all elements in an array without using the sum() function.
+
+8. **Second Largest Element**
+
+    **Q8:** Write a Python program to find the second largest element in an array.
 
 ---
 

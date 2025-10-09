@@ -23,7 +23,7 @@ Conditional statements in Python allow you to make decisions in your code. They 
 
 ## The `if` Statement
 
-The simplest conditional is the `if` statement.
+The simplest conditional statement is the `if` statement.
 
 **Syntax:**
 
@@ -163,7 +163,75 @@ print("Outside if block")
 | Nested `if`            | `if` inside another `if`                 |
 | Ternary Expression     | Short form of `if...else`                 |
 
----
+
+###  **Practice Questions**
+
+#### 1. **Positive / Negative / Zero Checker**
+
+Write a Python program that takes a number as input and checks whether it is **positive**, **negative**, or **zero**.
+
+
+#### 2. **Odd or Even**
+
+Write a Python program to check whether a number is **even** or **odd**.
+
+
+#### 3. **Age Eligibility for Voting**
+
+Write a program to take a person’s age as input and check if they are **eligible to vote** (18 years or older).
+
+
+#### 4. **Largest of Two Numbers**
+
+Write a Python program that takes two numbers as input and prints the **larger number** using conditional statements.
+
+
+#### 5. **Largest of Three Numbers**
+
+Write a Python program to find the **largest among three numbers** entered by the user using `if`, `elif`, and `else`.
+
+
+#### 6. **Grading System**
+
+Write a Python program to take a student's marks as input and print the **grade** according to the following criteria:
+
+* Marks ≥ 90 → Grade A
+* Marks ≥ 75 and < 90 → Grade B
+* Marks ≥ 50 and < 75 → Grade C
+* Marks < 50 → Grade F
+
+
+#### 7. **Leap Year Checker**
+
+Write a program to check whether a given year is a **leap year** or not.
+*(Hint: A year is leap if divisible by 4 but not 100, or divisible by 400)*
+
+
+#### 8. **Nested If — Number Range Checker**
+
+Write a program that takes a number as input and:
+
+* Checks if it's **positive**.
+* If positive, further checks if it is **less than 10**, **between 10 and 50**, or **greater than 50**.
+
+
+#### 9. **Character Classification**
+
+Write a program to input a single character and check whether it is:
+
+* a **vowel**,
+* a **consonant**,
+* a **digit**, or
+* a **special character**.
+
+
+#### 10. **Login Authentication (Simple)**
+
+Write a program that asks the user to enter a **username** and **password**.
+
+* If the username is `"admin"` and the password is `"12345"`, print **“Login Successful”**.
+* Otherwise, print **“Invalid credentials”**.
+
 
 ## Conclusion
 

@@ -11,6 +11,7 @@ interface PRDetails {
   mergedAt: string;
   repoName: string;
   number: number;
+  points: number; // Now includes the points field
 }
 
 interface Contributor {
@@ -28,24 +29,32 @@ interface PRListModalProps {
   onClose: () => void;
 }
 
-export default function PRListModal({ contributor, isOpen, onClose }: PRListModalProps): JSX.Element | null {
+export default function PRListModal({
+  contributor,
+  isOpen,
+  onClose,
+}: PRListModalProps): JSX.Element | null {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
-  
+
   // Get filtered PRs from context
-  const { getFilteredPRsForContributor, currentTimeFilter } = useCommunityStatsContext();
+  const { getFilteredPRsForContributor, currentTimeFilter } =
+    useCommunityStatsContext();
 
   if (!contributor) return null;
 
   // Get filtered PRs instead of using contributor.prDetails
   const filteredPRs = getFilteredPRsForContributor(contributor.username);
 
+  // Calculate total points from filtered PRs
+  const totalPoints = filteredPRs.reduce((sum, pr) => sum + pr.points, 0);
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
     });
   };
 
@@ -56,7 +65,7 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       onClose();
     }
   };
@@ -64,12 +73,25 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
   // Helper function to get filter display text
   const getFilterDisplayText = (filter: string) => {
     switch (filter) {
-      case 'week': return 'This Week';
-      case 'month': return 'This Month';
-      case 'year': return 'This Year';
-      case 'all': return 'All Time';
-      default: return 'All Time';
+      case "week":
+        return "This Week";
+      case "month":
+        return "This Month";
+      case "year":
+        return "This Year";
+      case "all":
+        return "All Time";
+      default:
+        return "All Time";
     }
+  };
+
+  // Helper function to get badge color based on points
+  const getPointsBadgeColor = (points: number) => {
+    if (points >= 50) return "#10b981"; // Green for Level 3
+    if (points >= 30) return "#f59e0b"; // Orange for Level 2
+    if (points >= 10) return "#3b82f6"; // Blue for Level 1
+    return "#6b7280"; // Gray for no points
   };
 
   return (
@@ -97,20 +119,27 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
             {/* Modal Header */}
             <div className={`pr-modal-header ${isDark ? "dark" : "light"}`}>
               <div className="pr-modal-user-info">
-                <img 
-                  src={contributor.avatar} 
-                  alt={contributor.username} 
+                <img
+                  src={contributor.avatar}
+                  alt={contributor.username}
                   className="pr-modal-avatar"
                 />
                 <div>
-                  <h2 id="pr-modal-title" className={`pr-modal-title ${isDark ? "dark" : "light"}`}>
+                  <h2
+                    id="pr-modal-title"
+                    className={`pr-modal-title ${isDark ? "dark" : "light"}`}
+                  >
                     {contributor.username}'s Pull Requests
                   </h2>
-                  <p className={`pr-modal-subtitle ${isDark ? "dark" : "light"}`}>
-                    {/*Show filtered count and add filter info */}
-                    {filteredPRs.length} merged PR{filteredPRs.length !== 1 ? 's' : ''} • {filteredPRs.length * 10} points
-                    {currentTimeFilter !== 'all' && (
-                      <span style={{ marginLeft: '8px', opacity: 0.7 }}>
+                  <p
+                    className={`pr-modal-subtitle ${isDark ? "dark" : "light"}`}
+                  >
+                    {/* Show filtered count with actual total points */}
+                    {filteredPRs.length} merged PR
+                    {filteredPRs.length !== 1 ? "s" : ""} • {totalPoints} point
+                    {totalPoints !== 1 ? "s" : ""}
+                    {currentTimeFilter !== "all" && (
+                      <span style={{ marginLeft: "8px", opacity: 0.7 }}>
                         ({getFilterDisplayText(currentTimeFilter)})
                       </span>
                     )}
@@ -128,7 +157,7 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
 
             {/* Modal Body */}
             <div className={`pr-modal-body ${isDark ? "dark" : "light"}`}>
-              {/*Use filteredPRs instead of contributor.prDetails */}
+              {/* Use filteredPRs instead of contributor.prDetails */}
               {filteredPRs && filteredPRs.length > 0 ? (
                 <div className="pr-list">
                   {filteredPRs.map((pr, index) => (
@@ -140,13 +169,32 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
                       transition={{ delay: index * 0.05 }}
                     >
                       <div className="pr-item-header">
-                        <h3 className={`pr-item-title ${isDark ? "dark" : "light"}`}>
+                        <h3
+                          className={`pr-item-title ${isDark ? "dark" : "light"}`}
+                        >
                           {pr.title}
                         </h3>
                         <div className="pr-item-actions">
-                          <a 
-                            href={pr.url} 
-                            target="_blank" 
+                          {/* Points badge */}
+                          {pr.points > 0 && (
+                            <span
+                              className="pr-points-badge"
+                              style={{
+                                backgroundColor: getPointsBadgeColor(pr.points),
+                                color: "white",
+                                padding: "4px 8px",
+                                borderRadius: "12px",
+                                fontSize: "12px",
+                                fontWeight: "600",
+                                marginRight: "8px",
+                              }}
+                            >
+                              +{pr.points} pts
+                            </span>
+                          )}
+                          <a
+                            href={pr.url}
+                            target="_blank"
                             rel="noopener noreferrer"
                             className={`pr-item-link ${isDark ? "dark" : "light"}`}
                             aria-label={`Open PR #${pr.number} in GitHub`}
@@ -156,14 +204,20 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
                         </div>
                       </div>
                       <div className="pr-item-meta">
-                        <span className={`pr-item-repo ${isDark ? "dark" : "light"}`}>
+                        <span
+                          className={`pr-item-repo ${isDark ? "dark" : "light"}`}
+                        >
                           <FaGithub />
                           {pr.repoName}
                         </span>
-                        <span className={`pr-item-number ${isDark ? "dark" : "light"}`}>
+                        <span
+                          className={`pr-item-number ${isDark ? "dark" : "light"}`}
+                        >
                           #{pr.number}
                         </span>
-                        <span className={`pr-item-date ${isDark ? "dark" : "light"}`}>
+                        <span
+                          className={`pr-item-date ${isDark ? "dark" : "light"}`}
+                        >
                           Merged on {formatDate(pr.mergedAt)}
                         </span>
                       </div>
@@ -174,16 +228,14 @@ export default function PRListModal({ contributor, isOpen, onClose }: PRListModa
                 <div className={`pr-empty-state ${isDark ? "dark" : "light"}`}>
                   <FaGithub className="pr-empty-icon" />
                   <p>
-                    {currentTimeFilter === 'all' 
-                      ? 'No pull request details available' 
-                      : `No PRs found for ${getFilterDisplayText(currentTimeFilter).toLowerCase()}`
-                    }
+                    {currentTimeFilter === "all"
+                      ? "No pull request details available"
+                      : `No PRs found for ${getFilterDisplayText(currentTimeFilter).toLowerCase()}`}
                   </p>
                   <p className="pr-empty-subtitle">
-                    {currentTimeFilter === 'all'
-                      ? 'PR details might not be loaded yet or this contributor has no merged PRs.'
-                      : `Try selecting a different time period or check "All Time" to see all PRs.`
-                    }
+                    {currentTimeFilter === "all"
+                      ? "PR details might not be loaded yet or this contributor has no merged PRs."
+                      : `Try selecting a different time period or check "All Time" to see all PRs.`}
                   </p>
                 </div>
               )}

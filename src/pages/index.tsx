@@ -39,7 +39,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Welcome to Recodehive. Learn the basics to advanced concepts of web development. sql, python, Cloud, GitHub and more."
+      description="Welcome to recode hive. Learn the basics to advanced concepts of web development. sql, python, Cloud, GitHub and more."
     >
       <Head>
         <script

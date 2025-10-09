@@ -16,7 +16,7 @@ HTML attributes are used to provide additional information about HTML elements.
 Here is an example of an HTML element with attributes:
 
 Go to this repository https://github.com/sanjay-kv/Learn-GitHub
-```html title="CLone the repository"
+```html title="Clone the repository"
 https://github.com/sanjay-kv/Learn-GitHub.git
 ```
 

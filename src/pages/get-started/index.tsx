@@ -124,7 +124,7 @@ function GetStartedHeader() {
 
   return (
     <header className={styles.heroBanner}>
-    <div className={styles.heroOverlay}></div>
+      <div className={styles.heroOverlay}></div>
       <div className="container">
         <div className={styles.heroContent}>
           <motion.h1
@@ -482,8 +482,8 @@ const LearningPath = ({
           transform: layout.isMobile
             ? "none"
             : isEven
-            ? "none"
-            : "translateX(50%)",
+              ? "none"
+              : "translateX(50%)",
           marginLeft: layout.isMobile ? "auto" : isEven ? 0 : "auto",
           marginRight: layout.isMobile ? "auto" : isEven ? "auto" : 0,
           opacity: isCompleted ? 0.9 : 1,
@@ -723,7 +723,7 @@ function GetStartedContent() {
     Math.round(
       (Object.values(completedPaths).filter(Boolean).length /
         learningPaths.length) *
-        100
+        100,
     ) || 0;
 
   // Save to localStorage whenever completedPaths changes
@@ -739,8 +739,8 @@ function GetStartedContent() {
 
   return (
     <Layout
-      title={`Get Started | ${siteConfig?.title || "Recode Hive"}`}
-      description="Start your coding journey with Recode Hive. Learn to code with our interactive platform and structured learning paths."
+      title={`Get Started | ${siteConfig?.title || "recode hive"}`}
+      description="Start your coding journey with recode hive. Learn to code with our interactive platform and structured learning paths."
     >
       <Head>
         <meta name="theme-color" content="#1e40af" />
@@ -768,7 +768,7 @@ function GetStartedContent() {
           <div className="container">
             <AnimatedSection>
               <div className={styles.sectionHeader}>
-                <h2>Why Choose Recode Hive?</h2>
+                <h2>Why Choose recode hive?</h2>
                 <p>
                   Discover the perfect learning experience tailored for your
                   coding journey
@@ -944,28 +944,30 @@ function GetStartedContent() {
                 viewport={{ once: true, margin: "-50px 0px -50px 0px" }}
                 transition={{ duration: 0.5, delay: 0.3 }}
               >
-               <Link
-  to="/courses"
-  className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-200 to-blue-300 font-semibold text-lg rounded-xl hover:from-blue-300 hover:to-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:no-underline"
-  style={{
-    textShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-  }}
->
-  <span className="relative z-10 text-gray-900 group-hover:text-gray-900">Explore All Paths</span>
-  <svg
-    className="w-6 h-6 ml-3 transform text-gray-900 group-hover:translate-x-1 group-hover:text-gray-900 transition-transform duration-300"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke="currentColor"
-    strokeWidth={2.5}
-  >
-    <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M14 5l7 7m0 0l-7 7m7-7H3"
-    />
-  </svg>
-</Link>
+                <Link
+                  to="/courses"
+                  className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-200 to-blue-300 font-semibold text-lg rounded-xl hover:from-blue-300 hover:to-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:no-underline"
+                  style={{
+                    textShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+                  }}
+                >
+                  <span className="relative z-10 text-gray-900 group-hover:text-gray-900">
+                    Explore All Paths
+                  </span>
+                  <svg
+                    className="w-6 h-6 ml-3 transform text-gray-900 group-hover:translate-x-1 group-hover:text-gray-900 transition-transform duration-300"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2.5}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                </Link>
               </motion.div>
             </div>
           </section>

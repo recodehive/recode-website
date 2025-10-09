@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "dev": "docusaurus start",
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
@@ -12,17 +13,28 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css}\"",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
-    "@docusaurus/core": "^3.8.1",
-    "@docusaurus/plugin-content-docs": "3.8.1",
-    "@docusaurus/plugin-google-analytics": "^3.8.1",
-    "@docusaurus/plugin-ideal-image": "3.8.1",
-    "@docusaurus/preset-classic": "^3.8.1",
-    "@docusaurus/theme-classic": "^3.8.1",
-    "@docusaurus/theme-mermaid": "3.8.1",
-    "@docusaurus/theme-search-algolia": "3.8.1",
+    "@docusaurus/core": "^3.9.1",
+    "@docusaurus/plugin-content-docs": "3.9.1",
+    "@docusaurus/plugin-google-analytics": "^3.9.1",
+    "@docusaurus/plugin-ideal-image": "3.9.1",
+    "@docusaurus/preset-classic": "^3.9.1",
+    "@docusaurus/theme-classic": "^3.9.1",
+    "@docusaurus/theme-mermaid": "3.9.1",
+    "@docusaurus/theme-search-algolia": "3.9.1",
     "@floating-ui/react": "^0.27.8",
     "@giscus/react": "^3.1.0",
     "@mdx-js/react": "^3.0.0",
@@ -57,15 +69,24 @@
     "vanilla-tilt": "^1.8.1"
   },
   "devDependencies": {
-    "@docusaurus/module-type-aliases": "^3.8.1",
-    "@docusaurus/tsconfig": "^3.8.1",
-    "@docusaurus/types": "^3.8.1",
+    "@docusaurus/module-type-aliases": "^3.9.1",
+    "@docusaurus/tsconfig": "^3.9.1",
+    "@docusaurus/types": "^3.9.1",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/canvas-confetti": "^1.9.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
+    "@typescript-eslint/eslint-plugin": "^8.45.0",
+    "@typescript-eslint/parser": "^8.45.0",
     "autoprefixer": "^10.4.21",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.3",
     "postcss": "^8.5.3",
+    "prettier": "^3.6.2",
     "tailwindcss": "^4.1.4",
     "typescript": "~5.3"
   },
