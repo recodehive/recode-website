@@ -39,36 +39,27 @@ So each indivituals works on different feature from the copy of the central repo
 ## What is Git?
 
 So in the above example all the developer where able to work on different feautre simulatneaulsy because of the git. For uploading your project to your Github account, you need to install Git first. In other words, Git helps to do this version management of the files and coordinating work among the diverse team in the software development phase. Git is an open-source project and developed in 2005 by Linus Torvalds and Junior.
-Git vs. GitHub: What's the Difference?
-This is the most common point of confusion for beginners. Let's make it simple.
-
-Git: The Local Tool 💻
-Git is the version control system itself. It's a command-line tool you install on your computer. Git is the engine that tracks changes, manages different versions (called "branches"), and handles the history of your project. It was created by Linus Torvalds, the same creator of the Linux operating system.
-
-It's Distributed: Every developer has a full copy of the project's history on their local machine. You can work offline, make changes, and commit them.
-
-
 
 1.**What is Version control System?**: To understand the version control system, let me give you one example; sometimes, you wish you have a record that contains all the changes you made in your code or your project. The version control systems are software tools that record all of your changes in the files. It is like a database of changes. Git is a version control system that most developers prefer to use. We will see how you can upload your code on Github using Git. With VCS you can track the branch, who made changes at what time, line of code added, retrive the previous version of changes. 
 2. **Basic Git Terminology:**
 
         | Keyword | 	Terminology | 	Description |
         | --- | --------------- | -------------------- |
-        | VCS   | Version Control System | Track changes to a collection of files |
-        | SCM  | Software configuration Management | 	Another name for VCS, the earlier version of VCS like CVS, SVN used to be centralised server, which cause single point of failure. |
-        | DVCS | 	Distributed Version Control System| Git is distributed, the project history is stored both in client and server. Means you can make changes locally and remote. |
-        | Working Tree  | Tree | Current version of files where the active project is on |
-        | Repo  | 	Repository | 		Top of working Tree where git keep all records and history. |
-        | Bare repo   | 	 | 		Not part of working Tree ends with .git, eg. backup.git |
-        | Hash  | 	160 bit long SHA-1 | 		Based on the hash number, the file has been modified or not. |
-        | Object  | 	Git have 4 objects | 		Tree Object(directory, names),  Blob Object(main file), Commit Object(spesfic versions), Tag(name attached to commit) |
-        | Commit  |  | 		Makes Changes |
-        | Branch  | 	a series of Linked commit | 		The recent commit is called Head. |
-        | Remote  | 	 | 		reference to other git repo |
-        | Pull Request: A proposal to merge a set of changes from one branch into another.|
-        | Actions: Automate your workflow, such as building, testing, and deploying your code right from GitHub.|
-        |Fork: A personal copy of another user's repository.|
-        | | 	 Git Command | 		Check this tutorial
+        | 1.VCS   | Version Control System | Track changes to a collection of files |
+        | 2.SCM  | Software configuration Management | 	Another name for VCS, the earlier version of VCS like CVS, SVN used to be centralised server, which cause single point of failure. |
+        |3. DVCS | 	Distributed Version Control System| Git is distributed, the project history is stored both in client and server. Means you can make changes locally and remote. |
+        | 4.Working Tree  | Tree | Current version of files where the active project is on |
+        | 5.Repo  | 	Repository | 		Top of working Tree where git keep all records and history. |
+        | 6.Bare repo   | 	 | 		Not part of working Tree ends with .git, eg. backup.git |
+        | 7.Hash  | 	160 bit long SHA-1 | 		Based on the hash number, the file has been modified or not.|
+        | 8.Object  | 	Git have 4 objects | 		Tree Object(directory, names),  Blob Object(main file), Commit Object(spesfic versions), Tag(name attached to commit) |
+        | 9.Commit  |  | 	Makes Changes |
+        | 10.Branch  | 	A series of Linked commit | 	The recent commit is called Head. |
+        |11.Remote  | 	 | 		Reference to other git repo |
+        | 12.Pull Request: A proposal to merge a set of changes from one branch into another.|
+        |13.Actions: Automate your workflow, such as building, testing, and deploying your code right from GitHub.|
+        |14.Fork: A personal copy of another user's repository.|
+        |Git Command | 		Check this tutorial
 
 
 
