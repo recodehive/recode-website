@@ -13,19 +13,30 @@ interface BehavioralTabProps {
   toggleCategory: (index: number) => void;
 }
 
-const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
-const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.2 } } };
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+const staggerContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.2 } },
+};
 
-const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
-  expandedCategories=[],
-  toggleCategory, }) => {
+const BehavioralTab: React.FC<BehavioralTabProps> = ({
+  behavioralQuestions = [],
+  expandedCategories = [],
+  toggleCategory,
+}) => {
   return (
     <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
       {/* Introduction Section */}
       <motion.div className="text-center mb-12" variants={fadeIn}>
-        <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">Behavioral Interview Preparation</h2>
+        <h2 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+          Behavioral Interview Preparation
+        </h2>
         <p className="text-xl text-center ml-3 text-gray-600 dark:text-gray-300 ">
-          Master the art of storytelling and showcase your soft skills with confidence
+          Master the art of storytelling and showcase your soft skills with
+          confidence
         </p>
       </motion.div>
 
@@ -42,17 +53,21 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
-                Behavioral interviews focus on how you've handled situations in the past to predict your future
-                performance. These questions typically start with phrases like "Tell me about a time when..." or
-                "Describe a situation where..."
+                Behavioral interviews focus on how you've handled situations in
+                the past to predict your future performance. These questions
+                typically start with phrases like "Tell me about a time when..."
+                or "Describe a situation where..."
               </p>
               <p className="text-gray-700 dark:text-gray-300">
-                Unlike technical interviews that test your coding skills, behavioral interviews evaluate your
-                soft skills, cultural fit, and ability to work in a team environment.
+                Unlike technical interviews that test your coding skills,
+                behavioral interviews evaluate your soft skills, cultural fit,
+                and ability to work in a team environment.
               </p>
             </div>
             <div className="bg-white dark:bg-gray-800 rounded-lg p-6 -mt-10">
-              <h4 className="font-bold text-gray-900 dark:text-white mb-4">Why They Matter</h4>
+              <h4 className="font-bold text-gray-900 dark:text-white mb-4">
+                Why They Matter
+              </h4>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
@@ -68,11 +83,15 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
                 </li>
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span className="text-gray-600 dark:text-gray-300">Evaluate problem-solving approach</span>
+                  <span className="text-gray-600 dark:text-gray-300">
+                    Evaluate problem-solving approach
+                  </span>
                 </li>
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span className="text-gray-600 dark:text-gray-300">Determine team collaboration ability</span>
+                  <span className="text-gray-600 dark:text-gray-300">
+                    Determine team collaboration ability
+                  </span>
                 </li>
               </ul>
             </div>
@@ -121,8 +140,12 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
               >
                 {item.letter}
               </div>
-              <h4 className="font-bold text-gray-900 dark:text-white mb-2">{item.word}</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-300">{item.desc}</p>
+              <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                {item.word}
+              </h4>
+              <p className="text-sm text-gray-600 dark:text-gray-300">
+                {item.desc}
+              </p>
             </div>
           ))}
         </div>
@@ -136,31 +159,40 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
             </h4>
             <div className="space-y-3 text-sm">
               <div className="border-l-4 border-red-500 star-border-red pl-4">
-                <strong className="text-red-600 dark:text-red-400">Situation:</strong>
+                <strong className="text-red-600 dark:text-red-400">
+                  Situation:
+                </strong>
                 <p className="text-gray-600 dark:text-gray-300 mt-1">
-                  "During my internship, our team was behind schedule on a critical project with only 2 weeks
-                  left before the deadline."
+                  "During my internship, our team was behind schedule on a
+                  critical project with only 2 weeks left before the deadline."
                 </p>
               </div>
               <div className="border-l-4 border-yellow-500 star-border-yellow pl-4">
-                <strong className="text-yellow-600 dark:text-yellow-400">Task:</strong>
+                <strong className="text-yellow-600 dark:text-yellow-400">
+                  Task:
+                </strong>
                 <p className="text-gray-600 dark:text-gray-300 mt-1">
-                  "As the junior developer, I needed to help coordinate efforts and find ways to accelerate our
-                  progress."
+                  "As the junior developer, I needed to help coordinate efforts
+                  and find ways to accelerate our progress."
                 </p>
               </div>
               <div className="border-l-4 border-green-500 star-border-green pl-4">
-                <strong className="text-green-600 dark:text-green-400">Action:</strong>
+                <strong className="text-green-600 dark:text-green-400">
+                  Action:
+                </strong>
                 <p className="text-gray-600 dark:text-gray-300 mt-1">
-                  "I organized daily stand-ups, created a shared task board, and volunteered to work extra hours
-                  on critical features."
+                  "I organized daily stand-ups, created a shared task board, and
+                  volunteered to work extra hours on critical features."
                 </p>
               </div>
               <div className="border-l-4 border-blue-500 star-border-blue pl-4">
-                <strong className="text-blue-600 dark:text-blue-400">Result:</strong>
+                <strong className="text-blue-600 dark:text-blue-400">
+                  Result:
+                </strong>
                 <p className="text-gray-600 dark:text-gray-300 mt-1">
-                  "We delivered the project on time, and my manager praised my initiative. I learned the
-                  importance of proactive communication."
+                  "We delivered the project on time, and my manager praised my
+                  initiative. I learned the importance of proactive
+                  communication."
                 </p>
               </div>
             </div>
@@ -173,30 +205,40 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
             </h4>
             <div className="space-y-3 text-sm">
               <div className="border-l-4 border-red-500 star-border-red pl-4">
-                <strong className="text-red-600 dark:text-red-400">Situation:</strong>
+                <strong className="text-red-600 dark:text-red-400">
+                  Situation:
+                </strong>
                 <p className="text-gray-600 dark:text-gray-300 mt-1">
-                  "Our main application was experiencing frequent crashes affecting 30% of users during peak
-                  hours."
+                  "Our main application was experiencing frequent crashes
+                  affecting 30% of users during peak hours."
                 </p>
               </div>
               <div className="border-l-4 border-yellow-500 star-border-yellow pl-4">
-                <strong className="text-yellow-600 dark:text-yellow-400">Task:</strong>
+                <strong className="text-yellow-600 dark:text-yellow-400">
+                  Task:
+                </strong>
                 <p className="text-gray-600 dark:text-gray-300 mt-1">
-                  "I was assigned to identify the root cause and implement a solution within 48 hours."
+                  "I was assigned to identify the root cause and implement a
+                  solution within 48 hours."
                 </p>
               </div>
               <div className="border-l-4 border-green-500 star-border-green pl-4">
-                <strong className="text-green-600 dark:text-green-400">Action:</strong>
+                <strong className="text-green-600 dark:text-green-400">
+                  Action:
+                </strong>
                 <p className="text-gray-600 dark:text-gray-300 mt-1">
-                  "I analyzed logs, reproduced the issue, and discovered a memory leak in our caching system. I
-                  implemented a fix and added monitoring."
+                  "I analyzed logs, reproduced the issue, and discovered a
+                  memory leak in our caching system. I implemented a fix and
+                  added monitoring."
                 </p>
               </div>
               <div className="border-l-4 border-blue-500 star-border-blue pl-4">
-                <strong className="text-blue-600 dark:text-blue-400">Result:</strong>
+                <strong className="text-blue-600 dark:text-blue-400">
+                  Result:
+                </strong>
                 <p className="text-gray-600 dark:text-gray-300 mt-1">
-                  "Crashes reduced by 95%, user satisfaction improved, and we prevented similar issues with
-                  better monitoring."
+                  "Crashes reduced by 95%, user satisfaction improved, and we
+                  prevented similar issues with better monitoring."
                 </p>
               </div>
             </div>
@@ -260,7 +302,10 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
               ],
             },
           ].map((section, index) => (
-            <div key={index} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+            <div
+              key={index}
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden"
+            >
               <button
                 onClick={() => toggleCategory(index)}
                 className={`w-full bg-gradient-to-r ${section.color} p-6 text-left hover:opacity-90 transition-opacity`}
@@ -272,7 +317,11 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
                   </h4>
                   <span
                     className="text-white text-2xl transform transition-transform duration-200"
-                    style={{ transform: expandedCategories[index] ? "rotate(180deg)" : "rotate(0deg)" }}
+                    style={{
+                      transform: expandedCategories[index]
+                        ? "rotate(180deg)"
+                        : "rotate(0deg)",
+                    }}
                   >
                     ▼
                   </span>
@@ -293,7 +342,9 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
                         key={i}
                         className="p-4 interview-prep-sidebar bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors cursor-pointer border-l-4 border-gray-300 dark:border-gray-600 hover:border-blue-500"
                       >
-                        <p className="text-gray-700 dark:text-gray-300 font-medium">"{question}"</p>
+                        <p className="text-gray-700 dark:text-gray-300 font-medium">
+                          "{question}"
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -305,7 +356,10 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
       </motion.div>
 
       {/* Do's and Don'ts */}
-      <motion.div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-12" variants={fadeIn}>
+      <motion.div
+        className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 mb-12"
+        variants={fadeIn}
+      >
         <h3 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white text-center">
           Do's and Don'ts for Behavioral Interviews
         </h3>
@@ -329,7 +383,9 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
               ].map((item, i) => (
                 <div key={i} className="flex items-start">
                   <span className="w-2 h-2 bg-green-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span className="text-gray-700 dark:text-gray-300">{item}</span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    {item}
+                  </span>
                 </div>
               ))}
             </div>
@@ -354,7 +410,9 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
               ].map((item, i) => (
                 <div key={i} className="flex items-start">
                   <span className="w-2 h-2 bg-red-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                  <span className="text-gray-700 dark:text-gray-300">{item}</span>
+                  <span className="text-gray-700 dark:text-gray-300">
+                    {item}
+                  </span>
                 </div>
               ))}
             </div>
@@ -377,7 +435,8 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
               title: "Behavioral Interview Masterclass",
               channel: "CareerVidz",
               duration: "25 min",
-              description: "Complete guide to behavioral interviews with real examples",
+              description:
+                "Complete guide to behavioral interviews with real examples",
               url: "https://www.youtube.com/watch?v=PJKYqLP6MRE",
               thumbnail: "../../img/Behavioural_Interviews1.png",
             },
@@ -385,7 +444,8 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
               title: "STAR Method Explained",
               channel: "Interview Success",
               duration: "15 min",
-              description: "Step-by-step breakdown of the STAR method with practice",
+              description:
+                "Step-by-step breakdown of the STAR method with practice",
               url: "https://www.youtube.com/watch?v=V0jktOX8Jog",
               thumbnail: "../../img/Behavioural_Interviews2.png",
             },
@@ -408,13 +468,26 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
                 className="w-full h-40 object-cover"
               />
               <div className="p-4">
-                <h4 className="font-bold text-gray-900 dark:text-white mb-2">{video.title}</h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">{video.description}</p>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+                  {video.title}
+                </h4>
+                <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                  {video.description}
+                </p>
                 <div className="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400 mb-3">
-                  <span className="text-gray-500 dark:text-gray-400">{video.channel}</span>
-                  <span className="text-gray-500 dark:text-gray-400">{video.duration}</span>
+                  <span className="text-gray-500 dark:text-gray-400">
+                    {video.channel}
+                  </span>
+                  <span className="text-gray-500 dark:text-gray-400">
+                    {video.duration}
+                  </span>
                 </div>
-                <a href={video.url} target="_blank" rel="noopener noreferrer" className="watch-video-btn">
+                <a
+                  href={video.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="watch-video-btn"
+                >
                   <span className="mr-2 text-inherit">▶️</span>
                   Watch Video
                 </a>
@@ -425,10 +498,14 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
 
         {/* Additional Resources */}
         <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-          <h4 className="font-bold text-gray-900 dark:text-white mb-4">Additional Learning Resources</h4>
+          <h4 className="font-bold text-gray-900 dark:text-white mb-4">
+            Additional Learning Resources
+          </h4>
           <div className="grid md:grid-cols-2 gap-4">
             <div>
-              <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">📚 Recommended Books</h5>
+              <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                📚 Recommended Books
+              </h5>
               <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
                 <li>• "Cracking the Coding Interview" by Gayle McDowell</li>
                 <li>• "The Behavioral Interview Handbook" by Lewis Lin</li>
@@ -436,7 +513,9 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
               </ul>
             </div>
             <div>
-              <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">🌐 Online Platforms</h5>
+              <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                🌐 Online Platforms
+              </h5>
               <ul className="space-y-1 text-sm text-gray-600 dark:text-gray-300">
                 <li>• Pramp - Free mock interviews</li>
                 <li>• InterviewBit - Behavioral question bank</li>
@@ -458,28 +537,36 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
             Join Our Community & Contribute
           </h3>
           <p className="text-gray-600 dark:text-gray-300 mt-2">
-            Help make this resource better for everyone in the recode hive community
+            Help make this resource better for everyone in the recode hive
+            community
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-lg">
             <div className="text-3xl mb-3">💬</div>
-            <h4 className="font-bold text-gray-900 dark:text-white mb-2">Share Your Experience</h4>
+            <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+              Share Your Experience
+            </h4>
             <p className="text-sm text-gray-600 dark:text-gray-300">
-              Share your behavioral interview experiences, both successes and challenges
+              Share your behavioral interview experiences, both successes and
+              challenges
             </p>
           </div>
           <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-lg">
             <div className="text-3xl mb-3">📝</div>
-            <h4 className="font-bold text-gray-900 dark:text-white mb-2">Suggest Resources</h4>
+            <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+              Suggest Resources
+            </h4>
             <p className="text-sm text-gray-600 dark:text-gray-300">
               Recommend helpful videos, articles, or tools you've found useful
             </p>
           </div>
           <div className="text-center p-4 bg-white dark:bg-gray-800 rounded-lg">
             <div className="text-3xl mb-3">🔧</div>
-            <h4 className="font-bold text-gray-900 dark:text-white mb-2">Improve Content</h4>
+            <h4 className="font-bold text-gray-900 dark:text-white mb-2">
+              Improve Content
+            </h4>
             <p className="text-sm text-gray-600 dark:text-gray-300">
               Help us add more examples, questions, or improve existing content
             </p>
@@ -487,10 +574,14 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
-          <h4 className="font-bold text-gray-900 dark:text-white mb-4 text-center">How to Contribute</h4>
+          <h4 className="font-bold text-gray-900 dark:text-white mb-4 text-center">
+            How to Contribute
+          </h4>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
-              <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-3">🚀 Quick Ways to Help</h5>
+              <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                🚀 Quick Ways to Help
+              </h5>
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
                   <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
@@ -519,7 +610,9 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({ behavioralQuestions=[],
               </ul>
             </div>
             <div>
-              <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-3">📋 Getting Started</h5>
+              <h5 className="font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                📋 Getting Started
+              </h5>
               <div className="space-y-3">
                 <Link
                   to="/community"

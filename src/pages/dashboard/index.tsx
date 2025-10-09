@@ -84,19 +84,21 @@ const DashboardContent: React.FC = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (showDashboardMenu &&
-        !target.closest('.dashboard-mobile-menu') &&
-        !target.closest('.dashboard-menu-btn')) {
+      if (
+        showDashboardMenu &&
+        !target.closest(".dashboard-mobile-menu") &&
+        !target.closest(".dashboard-menu-btn")
+      ) {
         setShowDashboardMenu(false);
       }
     };
 
     if (showDashboardMenu) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showDashboardMenu]);
 
@@ -129,7 +131,7 @@ const DashboardContent: React.FC = () => {
     } catch (error) {
       console.error("Failed to fetch discussions:", error);
       setDiscussionsError(
-        error instanceof Error ? error.message : "Failed to load discussions"
+        error instanceof Error ? error.message : "Failed to load discussions",
       );
     } finally {
       setDiscussionsLoading(false);
@@ -180,7 +182,7 @@ const DashboardContent: React.FC = () => {
   const handleNewDiscussion = () => {
     window.open(
       "https://github.com/recodehive/recode-website/discussions/new",
-      "_blank"
+      "_blank",
     );
   };
 
@@ -271,11 +273,11 @@ const DashboardContent: React.FC = () => {
 
   const filteredDiscussions = React.useMemo(
     () => getFilteredDiscussions(discussions),
-    [discussions, activeDiscussionTab, selectedCategory, searchQuery, sortBy]
+    [discussions, activeDiscussionTab, selectedCategory, searchQuery, sortBy],
   );
 
   const handleTabChange = (
-    tab: "home" | "discuss" | "giveaway" | "contributors"
+    tab: "home" | "discuss" | "giveaway" | "contributors",
   ) => {
     setActiveTab(tab);
     setShowDashboardMenu(false);
@@ -368,7 +370,9 @@ const DashboardContent: React.FC = () => {
       </button>
 
       {/* Dashboard Mobile Menu */}
-      <div className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}>
+      <div
+        className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}
+      >
         {/* Overlay */}
         {showDashboardMenu && (
           <div
@@ -397,7 +401,10 @@ const DashboardContent: React.FC = () => {
                 setShowDashboardMenu(false);
               }}
             >
-              <span className="menu-icon"><Home size={18} /></span> Home
+              <span className="menu-icon">
+                <Home size={18} />
+              </span>{" "}
+              Home
             </div>
             <div
               className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
@@ -406,7 +413,10 @@ const DashboardContent: React.FC = () => {
                 setShowDashboardMenu(false);
               }}
             >
-              <span className="menu-icon"><MessageCircle size={18} /></span> Discussions
+              <span className="menu-icon">
+                <MessageCircle size={18} />
+              </span>{" "}
+              Discussions
             </div>
             <div
               className={`menu-item ${activeTab === "contributors" ? "active" : ""}`}
@@ -415,7 +425,10 @@ const DashboardContent: React.FC = () => {
                 setShowDashboardMenu(false);
               }}
             >
-              <span className="menu-icon"><Users size={18} /></span> LeaderBoard
+              <span className="menu-icon">
+                <Users size={18} />
+              </span>{" "}
+              LeaderBoard
             </div>
             <div
               className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
@@ -424,7 +437,10 @@ const DashboardContent: React.FC = () => {
                 setShowDashboardMenu(false);
               }}
             >
-              <span className="menu-icon"><Gift size={18} /></span> Giveaways
+              <span className="menu-icon">
+                <Gift size={18} />
+              </span>{" "}
+              Giveaways
             </div>
           </div>
         </div>
@@ -503,7 +519,8 @@ const DashboardContent: React.FC = () => {
                   title="Contributors"
                   value={dashboardStats.totalContributors}
                   valueText={
-                    useCommunityStatsContext().githubContributorsCountText || "444"
+                    useCommunityStatsContext().githubContributorsCountText ||
+                    "444"
                   }
                   description="Amazing community members"
                 />
@@ -531,29 +548,33 @@ const DashboardContent: React.FC = () => {
             <div className="discussions-header">
               <h1>Community Discussions</h1>
               <p>
-                Engage with the community, ask questions, and share your projects.
+                Engage with the community, ask questions, and share your
+                projects.
               </p>
             </div>
             <div className="discussions-controls">
               <div className="discussion-tabs">
                 <button
                   onClick={() => handleDiscussionTabChange("discussions")}
-                  className={`tab-button ${activeDiscussionTab === "discussions" ? "active" : ""
-                    }`}
+                  className={`tab-button ${
+                    activeDiscussionTab === "discussions" ? "active" : ""
+                  }`}
                 >
                   <MessageCircle size={18} /> All Discussions
                 </button>
                 <button
                   onClick={() => handleDiscussionTabChange("trending")}
-                  className={`tab-button ${activeDiscussionTab === "trending" ? "active" : ""
-                    }`}
+                  className={`tab-button ${
+                    activeDiscussionTab === "trending" ? "active" : ""
+                  }`}
                 >
                   <TrendingUp size={18} /> Trending
                 </button>
                 <button
                   onClick={() => handleDiscussionTabChange("unanswered")}
-                  className={`tab-button ${activeDiscussionTab === "unanswered" ? "active" : ""
-                    }`}
+                  className={`tab-button ${
+                    activeDiscussionTab === "unanswered" ? "active" : ""
+                  }`}
                 >
                   <HelpCircle size={18} /> Unanswered
                 </button>
@@ -617,7 +638,11 @@ const DashboardContent: React.FC = () => {
                 {!discussionsLoading &&
                   !discussionsError &&
                   filteredDiscussions.map((discussion, i) => (
-                    <DiscussionCard index={i} key={discussion.id} discussion={discussion} />
+                    <DiscussionCard
+                      index={i}
+                      key={discussion.id}
+                      discussion={discussion}
+                    />
                   ))}
               </div>
             </div>
@@ -645,11 +670,13 @@ const DashboardContent: React.FC = () => {
           >
             <h1>Giveaways</h1>
             <p>
-              Participate in our exciting giveaways for a chance to win awesome prizes!
+              Participate in our exciting giveaways for a chance to win awesome
+              prizes!
             </p>
             <div className="giveaway-content">
               <p>
-                Stay tuned for our next giveaway. Follow our social media channels for updates!
+                Stay tuned for our next giveaway. Follow our social media
+                channels for updates!
               </p>
             </div>
           </motion.div>

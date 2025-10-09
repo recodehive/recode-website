@@ -87,9 +87,12 @@ export default function MerchPage(): ReactNode {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("featured");
   const [products, setProducts] = useState<Product[]>(sampleProducts);
-  const [filteredProducts, setFilteredProducts] = useState<Product[]>(sampleProducts);
+  const [filteredProducts, setFilteredProducts] =
+    useState<Product[]>(sampleProducts);
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<Array<Product & { quantity: number }>>([]);
+  const [cartItems, setCartItems] = useState<
+    Array<Product & { quantity: number }>
+  >([]);
   const [loading, setLoading] = useState(true);
 
   // Fetch products from Shopify on mount
@@ -97,44 +100,49 @@ export default function MerchPage(): ReactNode {
     async function fetchShopifyProducts() {
       try {
         if (isShopifyConfigured()) {
-          console.log('Fetching products from Shopify...');
+          console.log("Fetching products from Shopify...");
           const shopifyProducts = await getProducts(20);
-          
+
           if (shopifyProducts && shopifyProducts.length > 0) {
             // Convert Shopify products to our Product interface
             const formattedProducts: Product[] = shopifyProducts.map((p) => {
-              const imageUrl = p.images.edges[0]?.node.url || '';
+              const imageUrl = p.images.edges[0]?.node.url || "";
               const price = parseFloat(p.priceRange.minVariantPrice.amount);
-              
+
               return {
                 id: p.id,
                 title: p.title,
-                description: p.description || '',
+                description: p.description || "",
                 price: price,
                 image: imageUrl,
-                category: 'accessories', // Default category, you can use Shopify tags
+                category: "accessories", // Default category, you can use Shopify tags
                 shopifyId: p.id,
                 variants: {
-                  size: p.variants.edges.map(v => v.node.title).filter(t => t !== 'Default Title'),
+                  size: p.variants.edges
+                    .map((v) => v.node.title)
+                    .filter((t) => t !== "Default Title"),
                 },
               };
             });
-            
-            console.log('Loaded products from Shopify:', formattedProducts.length);
+
+            console.log(
+              "Loaded products from Shopify:",
+              formattedProducts.length,
+            );
             setProducts(formattedProducts);
             setFilteredProducts(formattedProducts);
           } else {
-            console.log('No products found in Shopify, using sample products');
+            console.log("No products found in Shopify, using sample products");
             setProducts(sampleProducts);
             setFilteredProducts(sampleProducts);
           }
         } else {
-          console.log('Shopify not configured, using sample products');
+          console.log("Shopify not configured, using sample products");
           setProducts(sampleProducts);
           setFilteredProducts(sampleProducts);
         }
       } catch (error) {
-        console.error('Error fetching products from Shopify:', error);
+        console.error("Error fetching products from Shopify:", error);
         // Fallback to sample products on error
         setProducts(sampleProducts);
         setFilteredProducts(sampleProducts);
@@ -142,7 +150,7 @@ export default function MerchPage(): ReactNode {
         setLoading(false);
       }
     }
-    
+
     fetchShopifyProducts();
   }, []);
 
@@ -179,7 +187,9 @@ export default function MerchPage(): ReactNode {
       const existing = prev.find((item) => item.id === product.id);
       if (existing) {
         return prev.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item,
         );
       }
       return [...prev, { ...product, quantity: 1 }];
@@ -197,7 +207,9 @@ export default function MerchPage(): ReactNode {
       return;
     }
     setCartItems((prev) =>
-      prev.map((item) => (item.id === productId ? { ...item, quantity } : item))
+      prev.map((item) =>
+        item.id === productId ? { ...item, quantity } : item,
+      ),
     );
   };
 
@@ -217,25 +229,31 @@ export default function MerchPage(): ReactNode {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="merch-hero-title" style={{ color: '#1a1a1a' }}>
+            <h1 className="merch-hero-title" style={{ color: "#1a1a1a" }}>
               <ShoppingBag className="inline-block mr-3" size={48} />
               Official Recode Merch
             </h1>
             <p className="merch-hero-description">
-              Wear your code pride! Premium quality apparel and accessories for developers
-              who love open source.
+              Wear your code pride! Premium quality apparel and accessories for
+              developers who love open source.
             </p>
             <div className="merch-hero-stats">
               <div className="stat-item">
-                <span className="stat-number" style={{ color: '#1a1a1a' }}>100%</span>
+                <span className="stat-number" style={{ color: "#1a1a1a" }}>
+                  100%
+                </span>
                 <span className="stat-label">Quality</span>
               </div>
               <div className="stat-item">
-                <span className="stat-number" style={{ color: '#1a1a1a' }}>🌍</span>
+                <span className="stat-number" style={{ color: "#1a1a1a" }}>
+                  🌍
+                </span>
                 <span className="stat-label">Worldwide Shipping</span>
               </div>
               <div className="stat-item">
-                <span className="stat-number" style={{ color: '#1a1a1a' }}>💚</span>
+                <span className="stat-number" style={{ color: "#1a1a1a" }}>
+                  💚
+                </span>
                 <span className="stat-label">Eco-Friendly</span>
               </div>
             </div>
@@ -253,8 +271,13 @@ export default function MerchPage(): ReactNode {
         {/* Products Grid */}
         <section className="merch-products-section">
           {loading ? (
-            <div style={{ textAlign: 'center', padding: '4rem 0' }}>
-              <p style={{ fontSize: '1.2rem', color: 'var(--ifm-color-primary)' }}>
+            <div style={{ textAlign: "center", padding: "4rem 0" }}>
+              <p
+                style={{
+                  fontSize: "1.2rem",
+                  color: "var(--ifm-color-primary)",
+                }}
+              >
                 Loading products...
               </p>
             </div>
@@ -279,7 +302,9 @@ export default function MerchPage(): ReactNode {
           aria-label="Open shopping cart"
         >
           <ShoppingBag size={24} />
-          {cartItemCount > 0 && <span className="cart-badge">{cartItemCount}</span>}
+          {cartItemCount > 0 && (
+            <span className="cart-badge">{cartItemCount}</span>
+          )}
         </button>
 
         {/* Info Section */}

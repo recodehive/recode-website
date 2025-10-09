@@ -19,14 +19,17 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
   onUpdateQuantity,
   onRemoveItem,
 }) => {
-  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = items.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0,
+  );
   const shipping = subtotal > 50 ? 0 : 5.99;
   const total = subtotal + shipping;
 
   const handleCheckout = () => {
     // TODO: Integrate with Shopify checkout
     alert(
-      "Shopify checkout integration coming soon! This will redirect to Shopify's secure checkout."
+      "Shopify checkout integration coming soon! This will redirect to Shopify's secure checkout.",
     );
   };
 
@@ -58,7 +61,11 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
                 <h2>Shopping Cart</h2>
                 <span className="cart-count">({items.length})</span>
               </div>
-              <button className="cart-close-button" onClick={onClose} aria-label="Close cart">
+              <button
+                className="cart-close-button"
+                onClick={onClose}
+                aria-label="Close cart"
+              >
                 <X size={24} />
               </button>
             </div>
@@ -92,19 +99,27 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
                         </div>
                         <div className="cart-item-details">
                           <h4 className="cart-item-title">{item.title}</h4>
-                          <p className="cart-item-price">${item.price.toFixed(2)}</p>
+                          <p className="cart-item-price">
+                            ${item.price.toFixed(2)}
+                          </p>
                           <div className="cart-item-actions">
                             <div className="quantity-controls">
                               <button
-                                onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+                                onClick={() =>
+                                  onUpdateQuantity(item.id, item.quantity - 1)
+                                }
                                 aria-label="Decrease quantity"
                                 disabled={item.quantity <= 1}
                               >
                                 <Minus size={16} />
                               </button>
-                              <span className="quantity-display">{item.quantity}</span>
+                              <span className="quantity-display">
+                                {item.quantity}
+                              </span>
                               <button
-                                onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                                onClick={() =>
+                                  onUpdateQuantity(item.id, item.quantity + 1)
+                                }
                                 aria-label="Increase quantity"
                               >
                                 <Plus size={16} />
@@ -129,7 +144,10 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
                     {subtotal < 50 && (
                       <div className="cart-notice">
                         <span>💡</span>
-                        <p>Add ${(50 - subtotal).toFixed(2)} more for free shipping!</p>
+                        <p>
+                          Add ${(50 - subtotal).toFixed(2)} more for free
+                          shipping!
+                        </p>
                       </div>
                     )}
                     {subtotal >= 50 && (
@@ -147,7 +165,9 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
                       </div>
                       <div className="cart-total-row">
                         <span>Shipping:</span>
-                        <span>{shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`}</span>
+                        <span>
+                          {shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`}
+                        </span>
                       </div>
                       <div className="cart-total-row total">
                         <span>Total:</span>
@@ -156,7 +176,10 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
                     </div>
 
                     {/* Checkout Button */}
-                    <button className="cart-checkout-button" onClick={handleCheckout}>
+                    <button
+                      className="cart-checkout-button"
+                      onClick={handleCheckout}
+                    >
                       <span>Proceed to Checkout</span>
                       <ArrowRight size={20} />
                     </button>

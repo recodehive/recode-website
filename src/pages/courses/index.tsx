@@ -2,16 +2,38 @@ import React, { useState, useRef, useEffect } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
-import './courses.css';
+import "./courses.css";
 
 // Animation variants for consistent animations
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
 const techTags = [
-  "AWS", "Apache Airflow", "Parquet", "Avro", "Microsoft Azure", "Google BigQuery", "CSV", "Databricks", "Azure Data Factory", "Docker", "Kafka", "Google Cloud", "GitHub", "Apache NiFi", "Snowflake", "Looker", "MAGE", "NumPy", "Pandas", "PostgreSQL", "Python", "Apache Spark", "SQL"
+  "AWS",
+  "Apache Airflow",
+  "Parquet",
+  "Avro",
+  "Microsoft Azure",
+  "Google BigQuery",
+  "CSV",
+  "Databricks",
+  "Azure Data Factory",
+  "Docker",
+  "Kafka",
+  "Google Cloud",
+  "GitHub",
+  "Apache NiFi",
+  "Snowflake",
+  "Looker",
+  "MAGE",
+  "NumPy",
+  "Pandas",
+  "PostgreSQL",
+  "Python",
+  "Apache Spark",
+  "SQL",
 ];
 
 const partnerLogos = [
@@ -36,19 +58,22 @@ const testimonials = [
   {
     img: "https://dummyimage.com/80x80/222/fff&text=S",
     name: "Sachin",
-    review: "Sanjay has been a great support in knowing various career paths and upcoming tech. The call was very crisp but valueable at the same time. For sure I am gonna schedule a call probably next month to give him updates. Thanks a ton Sanjay :)",
+    review:
+      "Sanjay has been a great support in knowing various career paths and upcoming tech. The call was very crisp but valueable at the same time. For sure I am gonna schedule a call probably next month to give him updates. Thanks a ton Sanjay :)",
     stars: 5,
   },
   {
     img: "https://dummyimage.com/80x80/333/fff&text=KP",
     name: "Kumar Priyanshu",
-    review: "I was thoroughly impressed by his clear, engaging communication and deep understanding of my issue. He listened attentively and offered valuable insights and solutions, leaving me extremely satisfied and confident in the guidance I received." ,
+    review:
+      "I was thoroughly impressed by his clear, engaging communication and deep understanding of my issue. He listened attentively and offered valuable insights and solutions, leaving me extremely satisfied and confident in the guidance I received.",
     stars: 5,
   },
   {
     img: "https://dummyimage.com/80x80/444/fff&text=AV",
     name: "Aman Vohra",
-    review: "It was an amazing session with you. And i can't thank you enough for your time and the great and valuable insights you have given me. Thank you so much🙌🏻",
+    review:
+      "It was an amazing session with you. And i can't thank you enough for your time and the great and valuable insights you have given me. Thank you so much🙌🏻",
     stars: 5,
   },
 ];
@@ -102,7 +127,8 @@ const projectReviews = [
   {
     img: "https://dummyimage.com/100x100/222/fff&text=AP",
     name: "Abhi Patel",
-    review: "Excited to share the Spotify End to End ETL pipeline project using AWS and Python...",
+    review:
+      "Excited to share the Spotify End to End ETL pipeline project using AWS and Python...",
   },
   {
     img: "https://dummyimage.com/100x100/333/fff&text=AM",
@@ -112,12 +138,70 @@ const projectReviews = [
   {
     img: "https://dummyimage.com/100x100/444/fff&text=HR",
     name: "Hariharan R",
-    review: "Excited to share the Spotify End to End ETL pipeline project using AWS and Python...",
+    review:
+      "Excited to share the Spotify End to End ETL pipeline project using AWS and Python...",
   },
 ];
 
 const topics = [
-  "ETL", "Data Modelling", "SQL", "Data Pipelines", "Cloud Data Warehousing", "Spark", "Databricks", "DataFrames", "RDDs", "PySpark", "Spark SQL", "MLlib", "Spark Streaming", "Cluster Management", "Fault Tolerance", "Big Data", "Apache Hadoop", "Data Ingestion", "Data Transformation", "Data Analytics", "Schema Design", "Machine Learning", "Snowflake", "Data Lake", "Business Intelligence", "Analytics", "OLAP", "Data Architecture", "Python", "Data Wrangling", "Pandas", "NumPy", "Data Visualisation", "Jupyter Notebooks", "Web Scraping", "APIs", "Data Cleaning", "Data Security", "Scalability", "Stored Procedures", "Triggers", "Views", "Normalization", "Relational Databases", "Data Integrity", "Data Consistency", "Query Performance", "Window Functions", "Transactions", "Indexing", "Batch Processing", "Real-Time Processing", "Data Orchestration", "Workflow Automation", "Data Quality", "Data Lineage", "Metadata Management", "Data Cataloging"
+  "ETL",
+  "Data Modelling",
+  "SQL",
+  "Data Pipelines",
+  "Cloud Data Warehousing",
+  "Spark",
+  "Databricks",
+  "DataFrames",
+  "RDDs",
+  "PySpark",
+  "Spark SQL",
+  "MLlib",
+  "Spark Streaming",
+  "Cluster Management",
+  "Fault Tolerance",
+  "Big Data",
+  "Apache Hadoop",
+  "Data Ingestion",
+  "Data Transformation",
+  "Data Analytics",
+  "Schema Design",
+  "Machine Learning",
+  "Snowflake",
+  "Data Lake",
+  "Business Intelligence",
+  "Analytics",
+  "OLAP",
+  "Data Architecture",
+  "Python",
+  "Data Wrangling",
+  "Pandas",
+  "NumPy",
+  "Data Visualisation",
+  "Jupyter Notebooks",
+  "Web Scraping",
+  "APIs",
+  "Data Cleaning",
+  "Data Security",
+  "Scalability",
+  "Stored Procedures",
+  "Triggers",
+  "Views",
+  "Normalization",
+  "Relational Databases",
+  "Data Integrity",
+  "Data Consistency",
+  "Query Performance",
+  "Window Functions",
+  "Transactions",
+  "Indexing",
+  "Batch Processing",
+  "Real-Time Processing",
+  "Data Orchestration",
+  "Workflow Automation",
+  "Data Quality",
+  "Data Lineage",
+  "Metadata Management",
+  "Data Cataloging",
 ];
 
 // Modified stats with numerical values for animation
@@ -128,15 +212,29 @@ const stats = [
 ];
 
 const faqs = [
-  { q: "Who can enroll in the programs?", a: "Anyone interested in data engineering, from beginners to professionals." },
-  { q: "Will I receive a certificate?", a: "Yes, you will receive a certificate upon successful completion of the course." },
-  { q: "Is the course in Hindi or English?", a: "Courses are available in both Hindi and English." },
-  { q: "How can I contact you if I have questions?", a: "You can contact us via the contact form or email provided on the website." },
-  { q: "Do I need to learn anything before this course starts?", a: "No prior experience is required. All fundamentals will be covered." },
+  {
+    q: "Who can enroll in the programs?",
+    a: "Anyone interested in data engineering, from beginners to professionals.",
+  },
+  {
+    q: "Will I receive a certificate?",
+    a: "Yes, you will receive a certificate upon successful completion of the course.",
+  },
+  {
+    q: "Is the course in Hindi or English?",
+    a: "Courses are available in both Hindi and English.",
+  },
+  {
+    q: "How can I contact you if I have questions?",
+    a: "You can contact us via the contact form or email provided on the website.",
+  },
+  {
+    q: "Do I need to learn anything before this course starts?",
+    a: "No prior experience is required. All fundamentals will be covered.",
+  },
 ];
 
 function CoursesContent() {
-
   const [showAllTopics, setShowAllTopics] = useState(false);
   const [modal, setModal] = useState({ open: false, content: "" });
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -144,7 +242,7 @@ function CoursesContent() {
   const [animatedStats, setAnimatedStats] = useState({
     Youtube: 0,
     LinkedIn: 0,
-    Twitter: 0
+    Twitter: 0,
   });
   const [isStatsVisible, setIsStatsVisible] = useState(false);
 
@@ -152,15 +250,14 @@ function CoursesContent() {
   const techTagsRef = useRef(null);
   const statsRef = useRef(null);
 
-
-
   // Horizontal scrolling for tech tags
   useEffect(() => {
     if (techTagsRef.current) {
       const scrollInterval = setInterval(() => {
         if (techTagsRef.current) {
           const currentScroll = techTagsRef.current.scrollLeft;
-          const maxScroll = techTagsRef.current.scrollWidth - techTagsRef.current.clientWidth;
+          const maxScroll =
+            techTagsRef.current.scrollWidth - techTagsRef.current.clientWidth;
 
           if (currentScroll >= maxScroll) {
             techTagsRef.current.scrollLeft = 0;
@@ -174,13 +271,11 @@ function CoursesContent() {
     }
   }, []);
 
-
-
   // Set up automatic carousel rotation
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveProjectIndex((prevIndex) =>
-        prevIndex === projects.length - 1 ? 0 : prevIndex + 1
+        prevIndex === projects.length - 1 ? 0 : prevIndex + 1,
       );
     }, 5000);
 
@@ -208,21 +303,21 @@ function CoursesContent() {
 
               if (startValue >= value) {
                 clearInterval(timer);
-                setAnimatedStats(prev => ({
+                setAnimatedStats((prev) => ({
                   ...prev,
-                  [label]: value
+                  [label]: value,
                 }));
               } else {
-                setAnimatedStats(prev => ({
+                setAnimatedStats((prev) => ({
                   ...prev,
-                  [label]: Math.floor(startValue)
+                  [label]: Math.floor(startValue),
                 }));
               }
             }, 16);
           });
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
 
     observer.observe(statsRef.current);
@@ -239,7 +334,13 @@ function CoursesContent() {
   };
 
   const handleAction = (type: string) => {
-    setModal({ open: true, content: type === "enroll" ? "Enrollment flow coming soon!" : "Purchase flow coming soon!" });
+    setModal({
+      open: true,
+      content:
+        type === "enroll"
+          ? "Enrollment flow coming soon!"
+          : "Purchase flow coming soon!",
+    });
   };
 
   const scrollProjects = (dir: number) => {
@@ -263,9 +364,15 @@ function CoursesContent() {
   const handleInfo = (info: string) => setModal({ open: true, content: info });
 
   return (
-    <Layout title="Courses" description="Explore our available courses and resources.">
+    <Layout
+      title="Courses"
+      description="Explore our available courses and resources."
+    >
       <Head>
-        <meta name="description" content="Landing page for all available courses." />
+        <meta
+          name="description"
+          content="Landing page for all available courses."
+        />
         <style>
           {`
             /* Hide scrollbar for carousel */
@@ -365,7 +472,7 @@ function CoursesContent() {
           animate="visible"
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.2 } }
+            visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
           }}
         >
           <div className="courses-container">
@@ -373,7 +480,8 @@ function CoursesContent() {
               className="courses-heading-1 courses-text-gradient mb-6 md:mb-8 relative z-10 tracking-tight"
               variants={fadeIn}
             >
-              Transform Your Career<br className="hidden md:block" />
+              Transform Your Career
+              <br className="hidden md:block" />
               <span className="block md:inline">in Data Engineering</span>
             </motion.h1>
             <div className="w-full flex justify-center">
@@ -381,8 +489,12 @@ function CoursesContent() {
                 className="courses-text-secondary courses-body-large max-w-2xl leading-relaxed font-medium mb-8 md:mb-12 text-center"
                 variants={fadeIn}
               >
-                Master the art of data engineering with industry-leading courses designed for{' '}
-                <span className="font-bold courses-text-gradient">modern tech careers</span>.
+                Master the art of data engineering with industry-leading courses
+                designed for{" "}
+                <span className="font-bold courses-text-gradient">
+                  modern tech careers
+                </span>
+                .
               </motion.p>
             </div>
             <motion.div
@@ -395,8 +507,18 @@ function CoursesContent() {
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Explore Courses
-                  <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  <svg
+                    className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
                   </svg>
                 </span>
               </button>
@@ -406,8 +528,18 @@ function CoursesContent() {
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   View Curriculum
-                  <svg className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  <svg
+                    className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
                   </svg>
                 </span>
               </button>
@@ -415,21 +547,15 @@ function CoursesContent() {
           </div>
 
           {/* Tech Tags */}
-          <motion.div
-            className="courses-container"
-            variants={fadeIn}
-          >
+          <motion.div className="courses-container" variants={fadeIn}>
             <div
               ref={techTagsRef}
               className="flex overflow-x-auto courses-hide-scrollbar gap-2 mb-8 pb-4 whitespace-nowrap"
-              style={{ scrollBehavior: 'smooth' }}
+              style={{ scrollBehavior: "smooth" }}
             >
               <div className="flex gap-2 px-4 md:px-0">
                 {techTags.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className="courses-topic-tag flex-shrink-0"
-                  >
+                  <span key={idx} className="courses-topic-tag flex-shrink-0">
                     {tag}
                   </span>
                 ))}
@@ -438,7 +564,9 @@ function CoursesContent() {
 
             {/* Partner Logos */}
             <div className="mt-8">
-              <h3 className="courses-text-secondary courses-body text-center font-medium mb-6">Students now available at</h3>
+              <h3 className="courses-text-secondary courses-body text-center font-medium mb-6">
+                Students now available at
+              </h3>
               <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
                 {partnerLogos.map((logo, idx) => (
                   <motion.img
@@ -457,7 +585,7 @@ function CoursesContent() {
 
         {/* Projects Carousel */}
         <section className="courses-section py-16 md:py-24 px-4 relative overflow-hidden transition-all duration-500 border-b">
-          <div className="courses-bg-overlay absolute inset-0"/>
+          <div className="courses-bg-overlay absolute inset-0" />
           <div className="courses-container">
             <motion.h2
               className="courses-heading-2 courses-gradient-text text-center mb-12 md:mb-16 tracking-tight leading-tight"
@@ -488,19 +616,21 @@ function CoursesContent() {
                 >
                   <div
                     className="flex transition-transform duration-500 ease-in-out"
-                    style={{ transform: `translateX(-${activeProjectIndex * 100}%)` }}
+                    style={{
+                      transform: `translateX(-${activeProjectIndex * 100}%)`,
+                    }}
                   >
                     {projects.map((img, idx) => (
                       <div
                         key={idx}
                         className="min-w-full flex justify-center px-2 md:px-4"
-                        style={{ width: '100%', flexShrink: 0 }}
+                        style={{ width: "100%", flexShrink: 0 }}
                       >
                         <img
                           src={img}
                           alt={`Project ${idx + 1}`}
                           className="rounded-xl shadow-lg hover:shadow-blue-500/30 transition transform hover:scale-105 cursor-pointer border-2 border-gray-700/50 hover:border-blue-500/50 w-full max-w-xs md:max-w-sm h-auto"
-                          style={{ aspectRatio: '16/10' }}
+                          style={{ aspectRatio: "16/10" }}
                         />
                       </div>
                     ))}
@@ -518,7 +648,7 @@ function CoursesContent() {
                   <button
                     key={idx}
                     className={`courses-carousel-indicator ${
-                      idx === activeProjectIndex ? 'active' : ''
+                      idx === activeProjectIndex ? "active" : ""
                     }`}
                     onClick={() => goToProjectSlide(idx)}
                   />
@@ -530,7 +660,7 @@ function CoursesContent() {
 
         {/* Testimonials */}
         <section className="courses-section py-16 md:py-24 px-4 relative overflow-hidden transition-all duration-500 border-b">
-          <div className="courses-bg-overlay absolute inset-0"/>
+          <div className="courses-bg-overlay absolute inset-0" />
           <div className="courses-container-wide">
             <motion.h2
               className="courses-heading-2 courses-gradient-text text-center mb-12 md:mb-16 tracking-tight leading-tight"
@@ -554,14 +684,16 @@ function CoursesContent() {
                   onClick={() => handleInfo(t.review)}
                 >
                   <div className="relative w-20 h-20 md:w-24 md:h-24 mb-6">
-                    <div className="absolute inset-0 rounded-full blur-lg opacity-50 group-hover:opacity-70 transition-opacity duration-300 bg-gradient-to-r from-blue-500 to-purple-500"/>
+                    <div className="absolute inset-0 rounded-full blur-lg opacity-50 group-hover:opacity-70 transition-opacity duration-300 bg-gradient-to-r from-blue-500 to-purple-500" />
                     <img
                       src={t.img}
                       alt={t.name}
                       className="relative w-full h-full rounded-full object-cover border-3 transition-all duration-300 z-10 shadow-lg border-blue-400/50 group-hover:border-blue-400 shadow-blue-500/30"
                     />
                   </div>
-                  <h4 className="courses-heading-4 courses-text-gradient mb-4">{t.name}</h4>
+                  <h4 className="courses-heading-4 courses-text-gradient mb-4">
+                    {t.name}
+                  </h4>
                   <div className="flex mb-4 gap-1">
                     {Array.from({ length: t.stars }).map((_, i) => (
                       <motion.span
@@ -608,33 +740,49 @@ function CoursesContent() {
             <div className="flex flex-col lg:flex-row w-full gap-8 lg:gap-0">
               {/* Left column */}
               <div className="flex-1 flex flex-col gap-6 lg:gap-8">
-                {courses.filter((_, i) => i % 2 === 0).map((course, idx) => (
-                  <motion.div
-                    key={course.number}
-                    className="courses-timeline-card flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 cursor-pointer group"
-                    onClick={() => handleCourseClick(course)}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  >
-                    <div className="relative w-full sm:w-32 md:w-40 h-32 sm:h-20 md:h-24 overflow-hidden rounded-lg flex-shrink-0">
-                      <img
-                        src={course.img}
-                        alt={course.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h3 className="courses-heading-4 courses-text-gradient mb-2 md:mb-3 line-clamp-2">{course.title}</h3>
-                      <p className="courses-body-small courses-text-secondary line-clamp-2 md:line-clamp-3 leading-relaxed">{course.desc}</p>
-                    </div>
-                    <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:text-blue-400 transform group-hover:translate-x-1 transition-all duration-300 courses-text-muted flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </motion.div>
-                ))}
+                {courses
+                  .filter((_, i) => i % 2 === 0)
+                  .map((course, idx) => (
+                    <motion.div
+                      key={course.number}
+                      className="courses-timeline-card flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 cursor-pointer group"
+                      onClick={() => handleCourseClick(course)}
+                      initial={{ opacity: 0, x: -30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    >
+                      <div className="relative w-full sm:w-32 md:w-40 h-32 sm:h-20 md:h-24 overflow-hidden rounded-lg flex-shrink-0">
+                        <img
+                          src={course.img}
+                          alt={course.title}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="courses-heading-4 courses-text-gradient mb-2 md:mb-3 line-clamp-2">
+                          {course.title}
+                        </h3>
+                        <p className="courses-body-small courses-text-secondary line-clamp-2 md:line-clamp-3 leading-relaxed">
+                          {course.desc}
+                        </p>
+                      </div>
+                      <svg
+                        className="w-5 h-5 md:w-6 md:h-6 group-hover:text-blue-400 transform group-hover:translate-x-1 transition-all duration-300 courses-text-muted flex-shrink-0"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </motion.div>
+                  ))}
               </div>
               {/* Timeline */}
               <div className="hidden lg:flex flex-col items-center mx-6 xl:mx-8 relative">
@@ -651,7 +799,9 @@ function CoursesContent() {
                       <div className="w-12 h-12 xl:w-16 xl:h-16 flex items-center justify-center rounded-full border-4 text-lg xl:text-2xl font-bold mb-2 bg-gradient-to-br from-purple-600 to-indigo-600 border-purple-400 text-white shadow-lg shadow-purple-500/50">
                         {course.number}
                       </div>
-                      {idx !== courses.length - 1 && <div className="w-1 h-12 xl:h-16 bg-transparent"></div>}
+                      {idx !== courses.length - 1 && (
+                        <div className="w-1 h-12 xl:h-16 bg-transparent"></div>
+                      )}
                     </motion.div>
                   </React.Fragment>
                 ))}
@@ -670,33 +820,49 @@ function CoursesContent() {
               </div>
               {/* Right column */}
               <div className="flex-1 flex flex-col gap-6 lg:gap-8">
-                {courses.filter((_, i) => i % 2 === 1).map((course, idx) => (
-                  <motion.div
-                    key={course.number}
-                    className="courses-timeline-card flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 cursor-pointer group"
-                    onClick={() => handleCourseClick(course)}
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  >
-                    <div className="flex-1 min-w-0 order-2 sm:order-1">
-                      <h3 className="courses-heading-4 courses-text-gradient mb-2 md:mb-3 line-clamp-2">{course.title}</h3>
-                      <p className="courses-body-small courses-text-secondary line-clamp-2 md:line-clamp-3 leading-relaxed">{course.desc}</p>
-                    </div>
-                    <div className="relative w-full sm:w-32 md:w-40 h-32 sm:h-20 md:h-24 overflow-hidden rounded-lg flex-shrink-0 order-1 sm:order-2">
-                      <img
-                        src={course.img}
-                        alt={course.title}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
-                    </div>
-                    <svg className="w-5 h-5 md:w-6 md:h-6 group-hover:text-blue-400 transform group-hover:translate-x-1 transition-all duration-300 courses-text-muted flex-shrink-0 order-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </motion.div>
-                ))}
+                {courses
+                  .filter((_, i) => i % 2 === 1)
+                  .map((course, idx) => (
+                    <motion.div
+                      key={course.number}
+                      className="courses-timeline-card flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 cursor-pointer group"
+                      onClick={() => handleCourseClick(course)}
+                      initial={{ opacity: 0, x: 30 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: idx * 0.1 }}
+                    >
+                      <div className="flex-1 min-w-0 order-2 sm:order-1">
+                        <h3 className="courses-heading-4 courses-text-gradient mb-2 md:mb-3 line-clamp-2">
+                          {course.title}
+                        </h3>
+                        <p className="courses-body-small courses-text-secondary line-clamp-2 md:line-clamp-3 leading-relaxed">
+                          {course.desc}
+                        </p>
+                      </div>
+                      <div className="relative w-full sm:w-32 md:w-40 h-32 sm:h-20 md:h-24 overflow-hidden rounded-lg flex-shrink-0 order-1 sm:order-2">
+                        <img
+                          src={course.img}
+                          alt={course.title}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      </div>
+                      <svg
+                        className="w-5 h-5 md:w-6 md:h-6 group-hover:text-blue-400 transform group-hover:translate-x-1 transition-all duration-300 courses-text-muted flex-shrink-0 order-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </motion.div>
+                  ))}
               </div>
 
               {/* Mobile Enroll Button */}
@@ -743,14 +909,16 @@ function CoursesContent() {
                   onClick={() => handleInfo(review.review)}
                 >
                   <div className="relative w-16 h-16 md:w-20 md:h-20 mb-4 md:mb-6">
-                    <div className="absolute inset-0 rounded-full blur-md opacity-50 group-hover:opacity-70 transition-opacity duration-300 bg-gradient-to-r from-green-400 to-emerald-500"/>
+                    <div className="absolute inset-0 rounded-full blur-md opacity-50 group-hover:opacity-70 transition-opacity duration-300 bg-gradient-to-r from-green-400 to-emerald-500" />
                     <img
                       src={review.img}
                       alt={review.name}
                       className="relative w-full h-full rounded-full object-cover border-3 border-green-400 group-hover:border-green-300 transition-all duration-300 z-10 shadow-lg"
                     />
                   </div>
-                  <h4 className="courses-heading-4 courses-text-gradient mb-3 md:mb-4">{review.name}</h4>
+                  <h4 className="courses-heading-4 courses-text-gradient mb-3 md:mb-4">
+                    {review.name}
+                  </h4>
                   <p className="courses-body-small courses-text-secondary text-center leading-relaxed line-clamp-4">
                     {review.review}
                   </p>
@@ -773,22 +941,24 @@ function CoursesContent() {
               100+ topics taught...
             </motion.h3>
             <motion.div
-              className={`flex flex-wrap justify-center gap-2 md:gap-3 mb-6 transition-all duration-500 ${showAllTopics ? 'max-h-none' : 'max-h-32 md:max-h-40 overflow-hidden'}`}
+              className={`flex flex-wrap justify-center gap-2 md:gap-3 mb-6 transition-all duration-500 ${showAllTopics ? "max-h-none" : "max-h-32 md:max-h-40 overflow-hidden"}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              {(showAllTopics ? topics : topics.slice(0, 20)).map((topic, idx) => (
-                <motion.span
-                  key={idx}
-                  className="courses-topic-tag"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  {topic}
-                </motion.span>
-              ))}
+              {(showAllTopics ? topics : topics.slice(0, 20)).map(
+                (topic, idx) => (
+                  <motion.span
+                    key={idx}
+                    className="courses-topic-tag"
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                  >
+                    {topic}
+                  </motion.span>
+                ),
+              )}
             </motion.div>
             <motion.div
               className="flex justify-center mb-8 md:mb-12"
@@ -807,7 +977,10 @@ function CoursesContent() {
           </div>
 
           {/* Community Stats */}
-          <div ref={statsRef} className="courses-grid courses-grid-3 mt-8 md:mt-12">
+          <div
+            ref={statsRef}
+            className="courses-grid courses-grid-3 mt-8 md:mt-12"
+          >
             {stats.map((stat, idx) => (
               <motion.div
                 key={idx}
@@ -828,7 +1001,9 @@ function CoursesContent() {
                     >
                       {isStatsVisible ? animatedStats[stat.label] : 0}
                     </motion.span>
-                    <span className="inline-block ml-1 text-lg md:text-xl lg:text-2xl">{stat.suffix}</span>
+                    <span className="inline-block ml-1 text-lg md:text-xl lg:text-2xl">
+                      {stat.suffix}
+                    </span>
                   </div>
                   <div className="courses-body-large courses-text-secondary font-semibold transition-colors duration-300 mb-4 md:mb-6">
                     {stat.label}
@@ -876,7 +1051,10 @@ function CoursesContent() {
                     <span className="pr-4">{faq.q}</span>
                     <span
                       className="transform transition-transform duration-300 text-xl md:text-2xl flex-shrink-0"
-                      style={{ transform: openFaq === idx ? 'rotate(45deg)' : 'rotate(0)' }}
+                      style={{
+                        transform:
+                          openFaq === idx ? "rotate(45deg)" : "rotate(0)",
+                      }}
                     >
                       +
                     </span>
@@ -884,8 +1062,8 @@ function CoursesContent() {
                   <div
                     className="transition-all duration-300 overflow-hidden"
                     style={{
-                      maxHeight: openFaq === idx ? '500px' : '0',
-                      opacity: openFaq === idx ? 1 : 0
+                      maxHeight: openFaq === idx ? "500px" : "0",
+                      opacity: openFaq === idx ? 1 : 0,
                     }}
                   >
                     <div className="courses-faq-answer py-4 md:py-6 px-4 md:px-6 courses-body leading-relaxed">

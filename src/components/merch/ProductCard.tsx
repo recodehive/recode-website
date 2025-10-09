@@ -77,7 +77,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
                     </span>
                   ))}
                   {product.variants.size.length > 3 && (
-                    <span className="variant-option">+{product.variants.size.length - 3}</span>
+                    <span className="variant-option">
+                      +{product.variants.size.length - 3}
+                    </span>
                   )}
                 </div>
               </div>
