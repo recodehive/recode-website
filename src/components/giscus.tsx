@@ -83,6 +83,14 @@ const GiscusComments: React.FC = () => {
       return;
     }
 
+    // Use localStorage to get user's last theme or fallback to 'light'
+    const storedTheme =
+      localStorage.getItem("theme") || (
+        document.documentElement.getAttribute("data-theme") === "dark"
+        ? "dark"
+        : "light"
+      );
+
     const script = document.createElement("script");
     script.src = "https://giscus.app/client.js";
     script.async = true;
@@ -99,7 +107,7 @@ const GiscusComments: React.FC = () => {
     script.setAttribute("data-lang", "en");
 
     // Use the initial colorMode from Docusaurus for the initial theme
-    script.setAttribute("data-theme", colorMode);
+    script.setAttribute("data-theme", storedTheme);
 
     ref.current.appendChild(script);
   }, []); // <-- Empty dependency array ensures this runs only once on mount.
