@@ -7,7 +7,14 @@ import React from "react";
 import { useColorMode } from "@docusaurus/theme-common";
 // Mobile-specific overrides for very small screens (<768px and <320px)
 import "./ourProjects.mobile.css";
+// Import projects data and types
+import projectsData from "../data/projects.json";
+import type { ProjectsData, ProjectItem } from "../data/types";
 
+/**
+ * Legacy interface for backward compatibility
+ * @deprecated Use ProjectsData from types.ts instead
+ */
 export interface OurProjectsData {
   tag: string;
   title: string;
@@ -18,14 +25,56 @@ export interface OurProjectsData {
   }[];
 }
 
+/**
+ * Legacy props interface for backward compatibility
+ * @deprecated Component now imports data directly
+ */
 export interface OurProjectsProps {
-  OurProjectsData: OurProjectsData;
+  OurProjectsData?: OurProjectsData;
 }
 
-const OurProjects: React.FC<OurProjectsProps> = ({ OurProjectsData }) => {
+/**
+ * OurProjects Component
+ * 
+ * Displays a showcase of RecodeHive projects with interactive previews.
+ * Now uses data-driven approach with JSON configuration for better maintainability.
+ * 
+ * Features:
+ * - Dynamic project loading from JSON
+ * - Live website previews for supported projects
+ * - Responsive design with mobile optimizations
+ * - Dark/light theme support
+ * - Interactive hover effects and animations
+ * 
+ * @param props - Optional props for backward compatibility
+ */
+const OurProjects: React.FC<OurProjectsProps> = ({ OurProjectsData: legacyData }) => {
   const { colorMode } = useColorMode(); // light or dark
-
   const isDark = colorMode === "dark";
+
+  // Use JSON data by default, fallback to legacy props for backward compatibility
+  // Convert legacy data to new format if needed
+  let data: ProjectsData;
+  
+  if (legacyData) {
+    // Convert legacy format to new format
+    data = {
+      tag: legacyData.tag,
+      title: legacyData.title,
+      description: legacyData.description,
+      items: legacyData.items.map((item, index) => ({
+        id: index + 1,
+        title: item.title,
+        description: `Learn more about ${item.title}`,
+        image: item.image,
+        projectUrl: getWebsiteUrl(item.title),
+        githubUrl: getWebsiteUrl(item.title),
+        tags: []
+      }))
+    };
+  } else {
+    data = projectsData as ProjectsData;
+  }
 
   return (
     <div
@@ -34,12 +83,12 @@ const OurProjects: React.FC<OurProjectsProps> = ({ OurProjectsData }) => {
       }`}
     >
       <HeadingComponent
-        tag={OurProjectsData.tag}
-        title={OurProjectsData.title}
-        description={OurProjectsData.description}
+        tag={data.tag}
+        title={data.title}
+        description={data.description}
         isDark={isDark}
       />
-      <SelectComponent items={OurProjectsData.items} isDark={isDark} />
+      <SelectComponent items={data.items} isDark={isDark} />
     </div>
   );
 };
@@ -114,10 +163,7 @@ const SelectComponent = ({
   items,
   isDark,
 }: {
-  items: {
-    title: string;
-    image: string;
-  }[];
+  items: ProjectItem[];
   isDark: boolean;
 }) => {
   const [activeItem, setActiveItem] = useState(0);
@@ -139,7 +185,7 @@ const SelectComponent = ({
           <motion.div
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            key={index}
+            key={item.id || index}
             onClick={() => setActiveItem(index)}
             className={`cursor-pointer transition-all duration-300 ease-in-out p-2 md:p-6 rounded-2xl md:rounded-r-full w-40 md:w-4/5 relative ${
               activeItem === index
@@ -468,7 +514,7 @@ const SelectComponent = ({
 
             return (
               <motion.div
-                key={index}
+                key={item.id || index}
                 initial={{ opacity: 0, scale: 0, rotateY: -90 }}
                 animate={{
                   opacity: 0.3,
