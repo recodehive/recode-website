@@ -62,8 +62,12 @@ In the above example, all the developers were able to work on different features
         | Commit  |  | 		Makes Changes |
         | Branch  | 	A series of linked commits | 		The most recent commit is called Head. |
         | Remote  | 	 | 		reference to other git repo |
-        | | 	 Git Command | 		Check this tutorial
+        | | 	 Git Command | 		Check our [Git Commands Cheatsheet](../GitHub/setup-environment/git-commands.md) for practical examples |
 
+:::
+
+:::tip Need Git Commands?
+Want to start using Git right away? Check out our [comprehensive Git Commands Cheatsheet](../GitHub/setup-environment/git-commands.md) that includes 50 essential Git commands with examples. We also recommend trying [Learn Git Branching](https://learngitbranching.js.org/) - an interactive visual tool to practice Git commands in a gamified environment!
 :::
 
 ## Why Learn GitHub? 
