@@ -5,7 +5,20 @@ import { motion } from "framer-motion";
 import SlotCounter from "react-slot-counter";
 import NavbarIcon from "../../../components/navbar/NavbarIcon";
 import { useHistory } from "@docusaurus/router";
-import { Home, MessageCircle, Gift, Trophy, Crown, Star, Award, Clock, Users, TrendingUp, Medal, ArrowLeft } from "lucide-react";
+import {
+  Home,
+  MessageCircle,
+  Gift,
+  Trophy,
+  Crown,
+  Star,
+  Award,
+  Clock,
+  Users,
+  TrendingUp,
+  Medal,
+  ArrowLeft,
+} from "lucide-react";
 import "../dashboard.css";
 
 // Giveaway-specific styles
@@ -422,11 +435,11 @@ const giveawayStyles = `
 `;
 
 // Inject styles
-if (typeof document !== 'undefined') {
-  const existingStyle = document.getElementById('giveaway-styles');
+if (typeof document !== "undefined") {
+  const existingStyle = document.getElementById("giveaway-styles");
   if (!existingStyle) {
-    const styleSheet = document.createElement('style');
-    styleSheet.id = 'giveaway-styles';
+    const styleSheet = document.createElement("style");
+    styleSheet.id = "giveaway-styles";
     styleSheet.textContent = giveawayStyles;
     document.head.appendChild(styleSheet);
   }
@@ -447,30 +460,34 @@ const GiveawayPage: React.FC = () => {
   const [showDashboardMenu, setShowDashboardMenu] = useState(false);
   const [leaderboard, setLeaderboard] = useState<GiveawayEntry[]>([]);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<"home" | "discuss" | "contributors" | "giveaway">("giveaway");
+  const [activeTab, setActiveTab] = useState<
+    "home" | "discuss" | "contributors" | "giveaway"
+  >("giveaway");
 
   // Close dashboard menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
       // Close menu when clicking on overlay or anywhere outside the menu
-      if (showDashboardMenu && 
-          (!target.closest('.dashboard-mobile-menu > div:last-child') && 
-           !target.closest('.dashboard-menu-btn') ||
-           target.closest('.dashboard-menu-overlay'))) {
+      if (
+        showDashboardMenu &&
+        ((!target.closest(".dashboard-mobile-menu > div:last-child") &&
+          !target.closest(".dashboard-menu-btn")) ||
+          target.closest(".dashboard-menu-overlay"))
+      ) {
         setShowDashboardMenu(false);
       }
     };
 
     if (showDashboardMenu) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showDashboardMenu]);
-  
+
   // Ensure active tab is set correctly when page loads
   useEffect(() => {
     // We're on the giveaway page, so the active tab should be "giveaway"
@@ -482,8 +499,8 @@ const GiveawayPage: React.FC = () => {
     const fetchLeaderboard = async () => {
       setLoading(true);
       // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
       const mockData: GiveawayEntry[] = [
         {
           rank: 1,
@@ -492,7 +509,7 @@ const GiveawayPage: React.FC = () => {
           points: 2500,
           contributions: 45,
           github_url: "https://github.com/sanjay-kv",
-          badge: "🏆 Champion"
+          badge: "🏆 Champion",
         },
         {
           rank: 2,
@@ -501,7 +518,7 @@ const GiveawayPage: React.FC = () => {
           points: 2100,
           contributions: 38,
           github_url: "https://github.com/vansh-codes",
-          badge: "🥈 Runner-up"
+          badge: "🥈 Runner-up",
         },
         {
           rank: 3,
@@ -510,23 +527,23 @@ const GiveawayPage: React.FC = () => {
           points: 1850,
           contributions: 32,
           github_url: "https://github.com/Hemu21",
-          badge: "🥉 Third Place"
-        }
+          badge: "🥉 Third Place",
+        },
       ];
-      
+
       setLeaderboard(mockData);
       setLoading(false);
     };
-    
+
     fetchLeaderboard();
   }, []);
 
   const handleTabChange = (
-    tab: "home" | "discuss" | "contributors" | "giveaway"
+    tab: "home" | "discuss" | "contributors" | "giveaway",
   ) => {
     setActiveTab(tab);
     setShowDashboardMenu(false);
-    // When navigating from giveaway page to other tabs, we need to 
+    // When navigating from giveaway page to other tabs, we need to
     // ensure we're using consistent paths with the dashboard page
     if (tab === "discuss") {
       // Navigate to main dashboard page with discuss hash
@@ -574,9 +591,9 @@ const GiveawayPage: React.FC = () => {
   );
 
   return (
-    <Layout title="Giveaway" description="RecodeHive Giveaway" noFooter>
+    <Layout title="Giveaway" description="recode hive Giveaway" noFooter>
       <Head>
-        <title>🎁 RecodeHive Giveaway</title>
+        <title>🎁 recode hive Giveaway</title>
       </Head>
       <div className="dashboard-layout">
         {/* Dashboard Menu Button - Only visible on mobile */}
@@ -585,13 +602,19 @@ const GiveawayPage: React.FC = () => {
           onClick={() => setShowDashboardMenu(!showDashboardMenu)}
           aria-label="Toggle dashboard menu"
         >
-          {showDashboardMenu ? <span aria-hidden="true">✕</span> : <span aria-hidden="true">☰</span>}
+          {showDashboardMenu ? (
+            <span aria-hidden="true">✕</span>
+          ) : (
+            <span aria-hidden="true">☰</span>
+          )}
         </button>
-        
+
         {/* Dashboard Mobile Menu */}
-        <div className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}>
+        <div
+          className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}
+        >
           {/* Overlay - always present but opacity controlled by CSS */}
-          <div 
+          <div
             className="dashboard-menu-overlay"
             onClick={() => setShowDashboardMenu(false)}
           />
@@ -606,7 +629,7 @@ const GiveawayPage: React.FC = () => {
                 ✕
               </button>
             </div>
-            
+
             {/* Dashboard navigation items */}
             <div className="dashboard-menu-items">
               <div
@@ -616,7 +639,10 @@ const GiveawayPage: React.FC = () => {
                   setShowDashboardMenu(false);
                 }}
               >
-                <span className="menu-icon"><Home size={18} /></span> Home
+                <span className="menu-icon">
+                  <Home size={18} />
+                </span>{" "}
+                Home
               </div>
               <div
                 className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
@@ -625,7 +651,10 @@ const GiveawayPage: React.FC = () => {
                   setShowDashboardMenu(false);
                 }}
               >
-                <span className="menu-icon"><MessageCircle size={18} /></span> Discussions
+                <span className="menu-icon">
+                  <MessageCircle size={18} />
+                </span>{" "}
+                Discussions
               </div>
               <div
                 className={`menu-item ${activeTab === "contributors" ? "active" : ""}`}
@@ -634,7 +663,10 @@ const GiveawayPage: React.FC = () => {
                   setShowDashboardMenu(false);
                 }}
               >
-                <span className="menu-icon"><Trophy size={18} /></span> LeaderBoard
+                <span className="menu-icon">
+                  <Trophy size={18} />
+                </span>{" "}
+                LeaderBoard
               </div>
               <div
                 className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
@@ -643,7 +675,10 @@ const GiveawayPage: React.FC = () => {
                   setShowDashboardMenu(false);
                 }}
               >
-                <span className="menu-icon"><Gift size={18} /></span> Giveaways
+                <span className="menu-icon">
+                  <Gift size={18} />
+                </span>{" "}
+                Giveaways
               </div>
             </div>
           </div>
@@ -658,7 +693,7 @@ const GiveawayPage: React.FC = () => {
                 if (history.length > 2) {
                   history.goBack();
                 } else {
-                  history.push('/dashboard');
+                  history.push("/dashboard");
                 }
               }}
               aria-label="Go back to dashboard"
@@ -778,7 +813,7 @@ const GiveawayPage: React.FC = () => {
                 {leaderboard.map((entry, index) => (
                   <motion.div
                     key={entry.rank}
-                    className={`giveaway-leaderboard-card rank-${entry.rank <= 3 ? entry.rank : 'other'}`}
+                    className={`giveaway-leaderboard-card rank-${entry.rank <= 3 ? entry.rank : "other"}`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
@@ -786,21 +821,25 @@ const GiveawayPage: React.FC = () => {
                   >
                     <div className="giveaway-rank-badge">
                       {entry.rank <= 3 ? (
-                        entry.rank === 1 ? <Crown size={20} /> :
-                        entry.rank === 2 ? <Award size={20} /> :
-                        <Star size={20} />
+                        entry.rank === 1 ? (
+                          <Crown size={20} />
+                        ) : entry.rank === 2 ? (
+                          <Award size={20} />
+                        ) : (
+                          <Star size={20} />
+                        )
                       ) : (
                         `#${entry.rank}`
                       )}
                     </div>
-                    
+
                     <div className="giveaway-avatar">
                       <img src={entry.avatar} alt={entry.name} />
                       {entry.badge && (
                         <div className="giveaway-badge">{entry.badge}</div>
                       )}
                     </div>
-                    
+
                     <div className="giveaway-info">
                       <h3 className="giveaway-name">{entry.name}</h3>
                       <div className="giveaway-stats">
@@ -809,12 +848,14 @@ const GiveawayPage: React.FC = () => {
                           <span className="stat-label">Points</span>
                         </div>
                         <div className="giveaway-stat">
-                          <span className="stat-value">{entry.contributions}</span>
+                          <span className="stat-value">
+                            {entry.contributions}
+                          </span>
                           <span className="stat-label">Contributions</span>
                         </div>
                       </div>
                     </div>
-                    
+
                     <a
                       href={entry.github_url}
                       target="_blank"

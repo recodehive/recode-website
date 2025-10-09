@@ -8,7 +8,6 @@ import Header from "../components/header/header";
 import ScrollBottomToTop from "../components/scroll/bottom-to-top";
 import ScrollTopToBottom from "../components/scroll/top-to-bottom";
 import { BlogCarousel } from "../components/blogCarousel/blogCarousel";
-import projectsData from "../database/projects/projects";
 import OurProjects from "../components/ourProjects";
 import TopMateSection from "../components/topmate/TopMateSection";
 import { TestimonialCarousel } from "../components/testimonials/TestimonialCarousel";
@@ -40,7 +39,7 @@ export default function Home(): ReactNode {
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Welcome to Recodehive. Learn the basics to advanced concepts of web development. sql, python, Cloud, GitHub and more."
+      description="Welcome to recode hive. Learn the basics to advanced concepts of web development. sql, python, Cloud, GitHub and more."
     >
       <Head>
         <script
@@ -85,7 +84,7 @@ export default function Home(): ReactNode {
           </div>
 
           <div className="m-4">
-            <OurProjects OurProjectsData={projectsData} />
+            <OurProjects />
           </div>
 
           <div className="m-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">

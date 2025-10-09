@@ -40,7 +40,7 @@
 }
 
 .statCard::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -82,7 +82,7 @@
 }
 
 .statValue::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -5px;
   left: 50%;
@@ -121,11 +121,11 @@
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
   }
-  
+
   .statCard {
     padding: 1.5rem 1rem;
   }
-  
+
   .statValue {
     font-size: 2rem;
   }
@@ -135,7 +135,7 @@
   .statsGrid {
     grid-template-columns: 1fr;
   }
-  
+
   .section {
     padding: 3rem 1rem;
   }
@@ -143,12 +143,18 @@
 
 /* Animation keyframes */
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
     opacity: 1;
   }

@@ -84,19 +84,21 @@ const DashboardContent: React.FC = () => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
-      if (showDashboardMenu && 
-          !target.closest('.dashboard-mobile-menu') && 
-          !target.closest('.dashboard-menu-btn')) {
+      if (
+        showDashboardMenu &&
+        !target.closest(".dashboard-mobile-menu") &&
+        !target.closest(".dashboard-menu-btn")
+      ) {
         setShowDashboardMenu(false);
       }
     };
 
     if (showDashboardMenu) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showDashboardMenu]);
 
@@ -129,7 +131,7 @@ const DashboardContent: React.FC = () => {
     } catch (error) {
       console.error("Failed to fetch discussions:", error);
       setDiscussionsError(
-        error instanceof Error ? error.message : "Failed to load discussions"
+        error instanceof Error ? error.message : "Failed to load discussions",
       );
     } finally {
       setDiscussionsLoading(false);
@@ -180,7 +182,7 @@ const DashboardContent: React.FC = () => {
   const handleNewDiscussion = () => {
     window.open(
       "https://github.com/recodehive/recode-website/discussions/new",
-      "_blank"
+      "_blank",
     );
   };
 
@@ -271,11 +273,11 @@ const DashboardContent: React.FC = () => {
 
   const filteredDiscussions = React.useMemo(
     () => getFilteredDiscussions(discussions),
-    [discussions, activeDiscussionTab, selectedCategory, searchQuery, sortBy]
+    [discussions, activeDiscussionTab, selectedCategory, searchQuery, sortBy],
   );
 
   const handleTabChange = (
-    tab: "home" | "discuss" | "giveaway" | "contributors"
+    tab: "home" | "discuss" | "giveaway" | "contributors",
   ) => {
     setActiveTab(tab);
     setShowDashboardMenu(false);
@@ -358,77 +360,91 @@ const DashboardContent: React.FC = () => {
 
   return (
     <div className="dashboard-layout">
-        {/* Dashboard Menu Button - Only visible on mobile */}
-        <button
-          className={`dashboard-menu-btn ${showDashboardMenu ? "open" : ""}`}
-          onClick={() => setShowDashboardMenu(!showDashboardMenu)}
-          aria-label="Toggle dashboard menu"
-        >
-          {showDashboardMenu ? "✕" : "☰"}
-        </button>
-        
-        {/* Dashboard Mobile Menu */}
-        <div className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}>
-          {/* Overlay */}
-          {showDashboardMenu && (
-            <div 
-              className="dashboard-menu-overlay"
+      {/* Dashboard Menu Button - Only visible on mobile */}
+      <button
+        className={`dashboard-menu-btn ${showDashboardMenu ? "open" : ""}`}
+        onClick={() => setShowDashboardMenu(!showDashboardMenu)}
+        aria-label="Toggle dashboard menu"
+      >
+        {showDashboardMenu ? "✕" : "☰"}
+      </button>
+
+      {/* Dashboard Mobile Menu */}
+      <div
+        className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}
+      >
+        {/* Overlay */}
+        {showDashboardMenu && (
+          <div
+            className="dashboard-menu-overlay"
+            onClick={() => setShowDashboardMenu(false)}
+          />
+        )}
+        <div>
+          <div className="dashboard-menu-header">
+            <h3>Dashboard Menu</h3>
+            <button
+              className="close-menu-btn"
               onClick={() => setShowDashboardMenu(false)}
-            />
-          )}
-          <div>
-            <div className="dashboard-menu-header">
-              <h3>Dashboard Menu</h3>
-              <button
-                className="close-menu-btn"
-                onClick={() => setShowDashboardMenu(false)}
-                aria-label="Close menu"
-              >
-                ✕
-              </button>
+              aria-label="Close menu"
+            >
+              ✕
+            </button>
+          </div>
+
+          {/* Dashboard navigation items */}
+          <div className="dashboard-menu-items">
+            <div
+              className={`menu-item ${activeTab === "home" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("home");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon">
+                <Home size={18} />
+              </span>{" "}
+              Home
             </div>
-            
-            {/* Dashboard navigation items */}
-            <div className="dashboard-menu-items">
-              <div
-                className={`menu-item ${activeTab === "home" ? "active" : ""}`}
-                onClick={() => {
-                  handleTabChange("home");
-                  setShowDashboardMenu(false);
-                }}
-              >
-                <span className="menu-icon"><Home size={18} /></span> Home
-              </div>
-              <div
-                className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
-                onClick={() => {
-                  handleTabChange("discuss");
-                  setShowDashboardMenu(false);
-                }}
-              >
-                <span className="menu-icon"><MessageCircle size={18} /></span> Discussions
-              </div>
-              <div
-                className={`menu-item ${activeTab === "contributors" ? "active" : ""}`}
-                onClick={() => {
-                  handleTabChange("contributors");
-                  setShowDashboardMenu(false);
-                }}
-              >
-                <span className="menu-icon"><Users size={18} /></span> LeaderBoard
-              </div>
-              <div
-                className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
-                onClick={() => {
-                  handleTabChange("giveaway");
-                  setShowDashboardMenu(false);
-                }}
-              >
-                <span className="menu-icon"><Gift size={18} /></span> Giveaways
-              </div>
+            <div
+              className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("discuss");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon">
+                <MessageCircle size={18} />
+              </span>{" "}
+              Discussions
+            </div>
+            <div
+              className={`menu-item ${activeTab === "contributors" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("contributors");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon">
+                <Users size={18} />
+              </span>{" "}
+              LeaderBoard
+            </div>
+            <div
+              className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
+              onClick={() => {
+                handleTabChange("giveaway");
+                setShowDashboardMenu(false);
+              }}
+            >
+              <span className="menu-icon">
+                <Gift size={18} />
+              </span>{" "}
+              Giveaways
             </div>
           </div>
         </div>
+      </div>
 
       <div className="dashboard-sidebar">
         <div className="sidebar-header">
@@ -471,7 +487,7 @@ const DashboardContent: React.FC = () => {
 
       <div className="dashboard-main-content">
         <Head>
-          <title>Dashboard | Recode Hive</title>
+          <title>Dashboard | recode hive</title>
         </Head>
 
         {activeTab === "home" && (
@@ -503,7 +519,8 @@ const DashboardContent: React.FC = () => {
                   title="Contributors"
                   value={dashboardStats.totalContributors}
                   valueText={
-                    useCommunityStatsContext().githubContributorsCountText || "444"
+                    useCommunityStatsContext().githubContributorsCountText ||
+                    "444"
                   }
                   description="Amazing community members"
                 />
@@ -531,29 +548,33 @@ const DashboardContent: React.FC = () => {
             <div className="discussions-header">
               <h1>Community Discussions</h1>
               <p>
-                Engage with the community, ask questions, and share your projects.
+                Engage with the community, ask questions, and share your
+                projects.
               </p>
             </div>
             <div className="discussions-controls">
               <div className="discussion-tabs">
                 <button
                   onClick={() => handleDiscussionTabChange("discussions")}
-                  className={`tab-button ${activeDiscussionTab === "discussions" ? "active" : ""
-                    }`}
+                  className={`tab-button ${
+                    activeDiscussionTab === "discussions" ? "active" : ""
+                  }`}
                 >
                   <MessageCircle size={18} /> All Discussions
                 </button>
                 <button
                   onClick={() => handleDiscussionTabChange("trending")}
-                  className={`tab-button ${activeDiscussionTab === "trending" ? "active" : ""
-                    }`}
+                  className={`tab-button ${
+                    activeDiscussionTab === "trending" ? "active" : ""
+                  }`}
                 >
                   <TrendingUp size={18} /> Trending
                 </button>
                 <button
                   onClick={() => handleDiscussionTabChange("unanswered")}
-                  className={`tab-button ${activeDiscussionTab === "unanswered" ? "active" : ""
-                    }`}
+                  className={`tab-button ${
+                    activeDiscussionTab === "unanswered" ? "active" : ""
+                  }`}
                 >
                   <HelpCircle size={18} /> Unanswered
                 </button>
@@ -616,8 +637,12 @@ const DashboardContent: React.FC = () => {
                   )}
                 {!discussionsLoading &&
                   !discussionsError &&
-                  filteredDiscussions.map((discussion) => (
-                    <DiscussionCard key={discussion.id} discussion={discussion} />
+                  filteredDiscussions.map((discussion, i) => (
+                    <DiscussionCard
+                      index={i}
+                      key={discussion.id}
+                      discussion={discussion}
+                    />
                   ))}
               </div>
             </div>
@@ -645,11 +670,13 @@ const DashboardContent: React.FC = () => {
           >
             <h1>Giveaways</h1>
             <p>
-              Participate in our exciting giveaways for a chance to win awesome prizes!
+              Participate in our exciting giveaways for a chance to win awesome
+              prizes!
             </p>
             <div className="giveaway-content">
               <p>
-                Stay tuned for our next giveaway. Follow our social media channels for updates!
+                Stay tuned for our next giveaway. Follow our social media
+                channels for updates!
               </p>
             </div>
           </motion.div>

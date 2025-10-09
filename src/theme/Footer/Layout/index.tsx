@@ -1,8 +1,8 @@
 import React, { type ReactNode, useState, useEffect } from "react";
 import Link from "@docusaurus/Link";
 import type { Props } from "@theme/Footer/Layout";
-import { useColorMode } from '@docusaurus/theme-common';
-import clsx from 'clsx';
+import { useColorMode } from "@docusaurus/theme-common";
+import clsx from "clsx";
 import "./enhanced-footer.css";
 import Counter from "./Counter";
 import { createPortal } from "react-dom";
@@ -25,7 +25,7 @@ export default function FooterLayout({
 }: Props): ReactNode {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
-  
+
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [stats, setStats] = useState<FooterStats>({
     activeUsers: "50K+",
@@ -60,10 +60,10 @@ export default function FooterLayout({
 
     fetchStats();
     const interval = setInterval(fetchStats, 30000); // Update every 30 seconds
-    
+
     return () => clearInterval(interval);
   }, []);
-  
+
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -94,10 +94,9 @@ export default function FooterLayout({
   };
 
   return (
-    <footer className={clsx(
-      "enhanced-footer",
-      isDark ? "dark-theme" : "light-theme"
-    )}>
+    <footer
+      className={clsx("enhanced-footer", isDark ? "dark-theme" : "light-theme")}
+    >
       {/* Toast Notification */}
       {showToast &&
         createPortal(
@@ -117,7 +116,7 @@ export default function FooterLayout({
               </button>
             </div>
           </div>,
-          document.body // 👈 mounts toast directly to <body>, outside footer
+          document.body, // 👈 mounts toast directly to <body>, outside footer
         )}
 
       {/* Hero Section */}

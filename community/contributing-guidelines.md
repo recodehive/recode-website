@@ -5,60 +5,186 @@ sidebar_label: Contributing Guidelines
 sidebar_position: 2
 ---
 
-Thank you for considering contributing to CodeHarborHub! We welcome contributions from everyone. Whether you're a seasoned developer or just starting out, there are many ways to get involved and help improve CodeHarborHub. This document outlines the guidelines for contributing to this project.
+## Table of Contents
 
-## Getting Started
+- [Local Setup Guide](#local-setup-guide)
+- [Environment Setup (for GitHub API access)](#environment-setup-for-github-api-access)
+- [Contributing to recode hive](#contributing-to-recode-hive)
+- [Formatting](#formatting)
+- [Branding & Naming Conventions](#branding--naming-conventions)
+- [License](#license)
 
-To get started with contributing to Recode-Hive, please refer to our [Contributing Guidelines](/community/contributing-guidelines).
+## Local Setup Guide
 
-Follow these steps:
+### How to set up recode hive:
 
+1. **Clone the repository:**
 
-```mermaid
-flowchart LR
-    Fork[Fork the project]-->branch[Create a New Branch]
-    branch-->Edit[Edit file]
-    Edit-->commit[Commit the changes]
-    commit -->|Finally|creatpr((Create a Pull Request))
-```
-
-1. **Clone the repository:** 
    ```bash
    git clone https://github.com/your-username/recodehive-website.git
    ```
 
 2. **Navigate to the project directory:**
+
    ```bash
    cd recodehive-website
    ```
 
 3. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 4. **Running the Application:**
 
-    Once you have installed the dependencies, you can run the application locally using:
-    ```bash
-    npm i
-    ```
-    ```bash
-    npm start
-    ```
+   Once you have installed the dependencies, you can run the application locally using:
 
-    This command will start a development server and open the application in your default web browser.
+   ```bash
+   npm start
+   ```
 
-**If you'd like to contribute to CodeHarborHub, please follow these guidelines:**
+   This command will start a development server and open the application in your default web browser.
 
-- **Fork** the repository and clone it locally.
-- Create a new branch for your feature or bug fix: `git checkout -b feature-name`
-- Make your changes and test thoroughly.
-- Commit your changes: `git commit -m "Brief description of your changes"`
-- Push to the branch: `git push origin feature-name`
-- Submit a pull request detailing your changes.
+## Environment Setup (for GitHub API access)
 
+Some parts of the dashboard — such as the Leaderboard — require access to the GitHub API.
+To avoid rate-limit issues, you’ll need to set up a GitHub Personal Access Token (PAT) locally.
+
+1. **Copy the example environment file**
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   This creates your local `.env` configuration file.
+
+2. **Generate a GitHub Personal Access Token**
+   1. Go to [https://github.com/settings/tokens](https://github.com/settings/tokens)
+   2. Click **“Generate new token (classic)”**
+   3. Give it a name (e.g. `recode hive`)
+   4. Select **no special permissions** (the default is fine for public data)
+   5. Copy the generated token
+
+3. **Add your token to `.env`**
+
+   Open `.env` and update this line:
+
+   ```bash
+   GITHUB_TOKEN=ghp_your_generated_token_here
+   ```
+
+## Contributing to recode hive
+
+We welcome contributions! Follow these steps to get started.
+
+1. **Fork the Repository**
+   - Go to the [recode hive repository](https://github.com/recodehive/recode-website) and click **Fork**.
+
+2. **Clone Your Fork Locally**
+
+   ```bash
+   git clone https://github.com/your-username/recodehive-website.git
+   cd recodehive-website
+   ```
+
+3. **Add the Original Repository as Upstream**
+
+   This allows you to fetch changes from the main repository to keep your fork up to date.
+
+   ```bash
+   git remote add upstream <repo-url>
+   ```
+
+   Verify the remotes:
+
+   ```bash
+   git remote -v
+   ```
+
+   You should see both origin (your fork) and upstream (main repository).
+
+4. **Keep Your Fork Updated**
+
+   Before starting a new feature or bug fix, update your local main branch:
+
+   ```bash
+   git checkout main
+   git fetch upstream
+   git merge upstream/main
+   ```
+
+   This ensures your branch starts from the latest version of the main repository.
+
+5. **Create a New Branch**
+
+   Create a branch for your feature or bug fix:
+
+   ```bash
+   git checkout -b feature-name
+   ```
+
+6. **Commit Your Changes**
+
+   ```bash
+   git add .
+   git commit -m "Brief description of your changes"
+   ```
+
+7. **Push Your Branch to Your Fork**
+
+   ```bash
+   git push origin feature-name
+   ```
+
+8. **Open a Pull Request**
+   1. Go to your fork on GitHub.
+
+   2. Click Compare & pull request for your branch.
+
+   3. Fill out the PR template with a clear description of your changes.
+
+   4. Submit the PR.
+
+   > Tip: If your branch falls behind main, you can fetch and merge updates from upstream again before pushing.
+
+## Formatting
+
+To ensure consistent code style and catch errors before committing, please follow these steps:
+
+2. **Automatically fix linting issues where possible**:
+
+   ```bash
+   npm run lint:fix
+   ```
+
+3. **Format code according to project conventions**:
+
+   ```bash
+   npm run format
+   ```
+
+4. **Build the project to verify everything compiles correctly**:
+
+   ```bash
+   npm run build
+   ```
+
+   It’s recommended to run these commands before committing to maintain code quality and consistency.
+
+## Branding & Naming Conventions
+
+- Use **`recode hive`** in lowercase for all mentions of the project name.
+- Update any headers, titles, or utility constants accordingly.
+
+### Exceptions to Lowercase Branding
+
+While we use lowercase **`recode hive`** throughout the project for consistency, there are some places where the exact repository name with capitalization must be used:
+
+- Repository-specific badges (e.g., [contrib.rocks](https://contrib.rocks))
+- GitHub repository URLs in tools or badges
+- Any external services that require exact repo names
 
 ## License
 
-This project is licensed under the [MIT License](/License).
+This project is open source and available under the [MIT License](LICENSE).

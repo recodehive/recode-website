@@ -5,9 +5,9 @@ import "./style.css";
 
 /**
  * GiscusComponent
- * 
+ *
  * A React component that integrates Giscus for GitHub discussions.
- * 
+ *
  * @returns {JSX.Element} The rendered component
  */
 export default function GiscusComponent() {

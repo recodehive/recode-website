@@ -7,12 +7,12 @@ const faqData = [
   {
     question: "What is the recode hive?",
     answer:
-      "Recode Hive is a comprehensive platform focused on providing students with the right resources at the right time. We help you focus on important topics and tools used in current industry standards compared to traditional university curricula. This includes data engineering tutorials, blogs, and opportunities for open-source contribution with earning potential. <br><br>🌐 <a href='https://recodehive.com/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Visit our official website</a> | 📚 <a href='/docs/intro' class='text-indigo-600 hover:text-indigo-800 underline'>Explore our documentation</a>",
+      "recode hive is a comprehensive platform focused on providing students with the right resources at the right time. We help you focus on important topics and tools used in current industry standards compared to traditional university curricula. This includes data engineering tutorials, blogs, and opportunities for open-source contribution with earning potential. <br><br>🌐 <a href='https://recodehive.com/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Visit our official website</a> | 📚 <a href='/docs/intro' class='text-indigo-600 hover:text-indigo-800 underline'>Explore our documentation</a>",
   },
   {
     question: "What features do the recode hive provides?",
     answer:
-      "We provide students with comprehensive learning opportunities through our <a href='https://github.com/recodehive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Recode Hive GitHub organization</a>, which includes 1000+ data-related projects. Our community is non-profit and inclusive for all, offering:<br><br>• <strong>Learning Resources:</strong> Tutorials, documentation, and hands-on projects<br>• <strong>Open Source Contribution:</strong> Real-world project experience<br>• <strong>Earning Opportunities:</strong> GitHub sponsorship program<br>• <strong>Community Support:</strong> Discord community and mentorship<br><br>🚀 <a href='https://github.com/recodehive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Browse our GitHub projects</a>",
+      "We provide students with comprehensive learning opportunities through our <a href='https://github.com/recodehive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>recode hive GitHub organization</a>, which includes 1000+ data-related projects. Our community is non-profit and inclusive for all, offering:<br><br>• <strong>Learning Resources:</strong> Tutorials, documentation, and hands-on projects<br>• <strong>Open Source Contribution:</strong> Real-world project experience<br>• <strong>Earning Opportunities:</strong> GitHub sponsorship program<br>• <strong>Community Support:</strong> Discord community and mentorship<br><br>🚀 <a href='https://github.com/recodehive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Browse our GitHub projects</a>",
   },
   {
     question: "How can I contribute tutorials?",
@@ -35,9 +35,10 @@ const faqData = [
       "We offer earning opportunities through our GitHub sponsorship program! Every week, we sponsor contributors who make valuable open-source contributions.<br><br><strong>Sponsorship Details:</strong><br>• Weekly sponsorship program<br>• Earning range: ₹100 to ₹500 per week<br>• Based on contribution quality and impact<br>• Open to all community members<br><br><strong>How to Qualify:</strong><br>• Make meaningful contributions to our projects<br>• Follow contribution guidelines<br>• Engage with the community<br><br>💰 <a href='https://github.com/sponsors/recodehive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Learn more about GitHub Sponsorship</a> | 🚀 <a href='https://github.com/recodehive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Start contributing today</a>",
   },
   {
-    question: "How will I stay up to date with the latest news from this organisation?",
+    question:
+      "How will I stay up to date with the latest news from this organisation?",
     answer:
-      "Stay connected with Recode Hive through multiple channels to never miss important updates:<br><br><strong>📧 Newsletter:</strong> Our primary communication channel providing weekly updates on community happenings, new resources, and opportunities.<br><br><strong>Social Media:</strong><br>• 📱 <a href='https://www.instagram.com/nomad_brains/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Instagram</a> - Visual updates and behind-the-scenes<br>• 🐦 <a href='https://x.com/sanjay_kv_' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Twitter</a> - Quick updates and tech insights<br>• 💼 <a href='https://www.linkedin.com/in/sanjay-k-v/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>LinkedIn</a> - Professional updates<br>• 🎥 <a href='https://www.youtube.com/@RecodeHive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>YouTube</a> - Video tutorials and content<br><br>📬 <a href='https://recodehive.substack.com/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline font-semibold'>Subscribe to our Newsletter</a> | 💬 <a href='https://discord.gg/Yxv9RA3r' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Join our Discord</a>",
+      "Stay connected with recode hive through multiple channels to never miss important updates:<br><br><strong>📧 Newsletter:</strong> Our primary communication channel providing weekly updates on community happenings, new resources, and opportunities.<br><br><strong>Social Media:</strong><br>• 📱 <a href='https://www.instagram.com/nomad_brains/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Instagram</a> - Visual updates and behind-the-scenes<br>• 🐦 <a href='https://x.com/sanjay_kv_' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Twitter</a> - Quick updates and tech insights<br>• 💼 <a href='https://www.linkedin.com/in/sanjay-k-v/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>LinkedIn</a> - Professional updates<br>• 🎥 <a href='https://www.youtube.com/@RecodeHive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>YouTube</a> - Video tutorials and content<br><br>📬 <a href='https://recodehive.substack.com/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline font-semibold'>Subscribe to our Newsletter</a> | 💬 <a href='https://discord.gg/Yxv9RA3r' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Join our Discord</a>",
   },
 ];
 
@@ -80,15 +81,38 @@ const FAQs: React.FC = () => {
                   isDark ? "text-gray-400" : "text-gray-600"
                 } text-center lg:text-left`}
               >
-                Find answers to the most common questions about Recode Hive.
+                Find answers to the most common questions about recode hive.
               </p>
             </div>
 
-    {/* FAQ Manual Column Layout - Prevents vertical shifting */}
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Left Column */}
-              <div className="space-y-4">
-                {leftColumnFAQs.map((faq, index) => (
+            {/* Accordion Masonry Columns to prevent sibling expansion */}
+            <div className="columns-1 md:columns-2 md:gap-x-6">
+              {faqData.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  className="accordion h-fit border-gray-200 dark:border-gray-700 pb-4 mb-4 break-inside-avoid"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <button
+                    className={`accordion-toggle group flex justify-between items-center text-lg font-medium w-full transition-all duration-300 
+                      ${
+                        isDark
+                          ? "text-gray-200 bg-gray-800 hover:text-indigo-400"
+                          : "text-gray-700 bg-gray-100 hover:text-indigo-600"
+                      } 
+                      p-4 rounded-lg focus:outline-none`}
+                    onClick={() => toggleAccordion(index)}
+                  >
+                    {faq.question}
+                    <motion.span
+                      className="transform transition-transform duration-300"
+                      animate={{ rotate: activeIndex === index ? 180 : 0 }}
+                    >
+                      <FiChevronDown size={22} />
+                    </motion.span>
+                  </button>
                   <motion.div
                     key={index}
                     className="accordion border-gray-200 dark:border-gray-700"
@@ -96,32 +120,23 @@ const FAQs: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <button
-                      className={`accordion-toggle group flex justify-between items-center text-lg font-semibold w-full transition-all duration-300 
-                        ${
-                          isDark
-                            ? "text-gray-100 bg-gray-800 hover:bg-gray-700 hover:text-white border border-gray-700 hover:border-gray-600"
-                            : "text-gray-900 bg-white hover:bg-gray-50 hover:text-gray-900 border border-gray-200 hover:border-gray-300 shadow-sm"
-                        } 
-                        p-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2`}
-                      onClick={() => toggleAccordion(index)}
-                    >
-                      <span className="text-left pr-4">{faq.question}</span>
-                      <motion.span
-                        className={`transform transition-transform duration-300 flex-shrink-0 ${
-                          isDark ? "text-gray-300" : "text-gray-600"
-                        }`}
-                        animate={{ rotate: activeIndex === index ? 180 : 0 }}
-                      >
-                        <FiChevronDown size={22} />
-                      </motion.span>
-                    </button>
-                    <motion.div
-                      className="accordion-content overflow-hidden"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{
-                        height: activeIndex === index ? "auto" : 0,
-                        opacity: activeIndex === index ? 1 : 0,
+                    <div
+                      className={`mt-2 text-base transition-colors duration-200 ${
+                        isDark ? "text-gray-300" : "text-gray-900"
+                      }`}
+                      style={{
+                        color: isDark ? "#d1d5db" : "#111827",
+                      }}
+                      dangerouslySetInnerHTML={{
+                        __html: faq.answer
+                          .replace(
+                            /<strong>/g,
+                            `<strong style="color: ${isDark ? "#f3f4f6" : "#000000"}; font-weight: 600;">`,
+                          )
+                          .replace(
+                            /<a /g,
+                            `<a style="color: ${isDark ? "#818cf8" : "#4f46e5"};" `,
+                          ),
                       }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >

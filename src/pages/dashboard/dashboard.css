@@ -3,7 +3,7 @@
   display: flex;
   min-height: 100vh;
   background: var(--ifm-background-color);
-  position:relative;
+  position: relative;
 }
 
 /* Dashboard Menu Button - Mobile Only */
@@ -199,12 +199,12 @@
 
 .navbar-icon-item.active {
   background: var(--ifm-color-primary-lightest);
-  color: var(--ifm-color-primary);
+  color: white;
   font-weight: 600;
 }
 
 .navbar-icon-item.active::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0;
@@ -289,13 +289,17 @@
 }
 
 .dashboard-stat-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--ifm-color-primary), var(--ifm-color-primary-light));
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-primary),
+    var(--ifm-color-primary-light)
+  );
 }
 
 .dashboard-stat-card:hover {
@@ -352,8 +356,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Discussions Section */
@@ -527,7 +535,7 @@
 
 .category-sidebar li.active {
   background: var(--ifm-color-primary-lightest);
-  color: var(--ifm-color-primary);
+  color: #ffffff;
   font-weight: 600;
 }
 

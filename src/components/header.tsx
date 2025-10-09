@@ -3,7 +3,7 @@ import "./header.css"; // Importing styles from external CSS file
 import Link from "@docusaurus/Link"; // Importing Link component from Docusaurus
 import VanillaTilt from "vanilla-tilt"; // Importing VanillaTilt for image tilt effect
 import { motion } from "framer-motion"; // Importing motion components from Framer Motion
-import ParticlesComponent from "./particle";// Importing custom ParticlesComponent
+import ParticlesComponent from "./particle"; // Importing custom ParticlesComponent
 
 declare global {
   interface HTMLImageElement {
@@ -26,7 +26,8 @@ const HeaderContent = () => {
         initial={{ opacity: 0, x: -10 }} // Initial animation properties
         whileInView={{ opacity: 1, x: 0 }} // Animation while in view
         viewport={{ once: true }} // Animation triggers once
-        transition={{ // Animation transition settings
+        transition={{
+          // Animation transition settings
           duration: 1,
           type: "spring",
           stiffness: 100,
@@ -34,8 +35,8 @@ const HeaderContent = () => {
         }}
         className="gradient__text" // CSS class for gradient text
       >
-        <ParticlesComponent/> {/* Render ParticlesComponent */}
-        Level Up Skills with Recode Hive{/* Text content */}
+        <ParticlesComponent /> {/* Render ParticlesComponent */}
+        Level Up Skills with recode hive{/* Text content */}
       </motion.h1>
 
       {/* Description paragraph with animated entrance */}
@@ -43,15 +44,19 @@ const HeaderContent = () => {
         initial={{ opacity: 0, x: -10 }} // Initial animation properties
         whileInView={{ opacity: 1, x: 0 }} // Animation while in view
         viewport={{ once: true }} // Animation triggers once
-        transition={{ // Animation transition settings
+        transition={{
+          // Animation transition settings
           duration: 1,
           type: "spring",
           stiffness: 100,
           delay: 0.2,
         }}
       >
-        Recode Hive helps you get started with open-source contributions. We have built an inclusive community from people from all around the world. We ain't doing any magic, we make the learning much more simplified and practical, which traditional 
-        education couldn't provide to you. Join our community to earn while learning.
+        recode hive helps you get started with open-source contributions. We
+        have built an inclusive community from people from all around the world.
+        We ain't doing any magic, we make the learning much more simplified and
+        practical, which traditional education couldn't provide to you. Join our
+        community to earn while learning.
       </motion.p>
 
       {/* Buttons for navigation */}
@@ -61,7 +66,8 @@ const HeaderContent = () => {
           initial={{ opacity: 0, x: -10 }} // Initial animation properties
           whileInView={{ opacity: 1, x: 0 }} // Animation while in view
           viewport={{ once: true }} // Animation triggers once
-          transition={{ // Animation transition settings
+          transition={{
+            // Animation transition settings
             duration: 1,
             type: "spring",
             stiffness: 100,
@@ -80,7 +86,8 @@ const HeaderContent = () => {
           initial={{ opacity: 0, x: 10 }} // Initial animation properties
           whileInView={{ opacity: 1, x: 0 }} // Animation while in view
           viewport={{ once: true }} // Animation triggers once
-          transition={{ // Animation transition settings
+          transition={{
+            // Animation transition settings
             duration: 1,
             type: "spring",
             stiffness: 100,
@@ -127,17 +134,18 @@ const HeaderImage = () => {
   return (
     // Animated wrapper for the header image
     <motion.div
-        initial={{ scale: 0, x: 10 }} // Initial animation properties
-        whileInView={{ scale: 0.8, x: 0 }} // Animation while in view
-        viewport={{ once: true }} // Animation triggers once
-        transition={{ // Animation transition settings
-          duration: 1,
-          type: "spring",
-          stiffness: 100,
-          delay: 0.3,
-        }}
-        className="chh__header-image" // CSS class for header image container
-      >
+      initial={{ scale: 0, x: 10 }} // Initial animation properties
+      whileInView={{ scale: 0.8, x: 0 }} // Animation while in view
+      viewport={{ once: true }} // Animation triggers once
+      transition={{
+        // Animation transition settings
+        duration: 1,
+        type: "spring",
+        stiffness: 100,
+        delay: 0.3,
+      }}
+      className="chh__header-image" // CSS class for header image container
+    >
       {/* Actual header image element */}
       <img
         src="/img/hero-img-01.gif" // Image source
@@ -156,8 +164,12 @@ const HeaderImage = () => {
  */
 const Header: React.FC = () => {
   return (
-    <div className="chh__header--body"> {/* Container for header */}
-      <div className="chh__header"> {/* Main header container */}
+    <div className="chh__header--body">
+      {" "}
+      {/* Container for header */}
+      <div className="chh__header">
+        {" "}
+        {/* Main header container */}
         <HeaderContent /> {/* Render header content section */}
         <HeaderImage /> {/* Render header image section */}
       </div>
