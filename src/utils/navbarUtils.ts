@@ -6,7 +6,10 @@ import { type NavbarIconName } from "../constants/navbarConfig";
  * @param label - The text label for the navbar item
  * @returns HTML string with icon placeholder and label
  */
-export function createNavbarItemHTML(iconName: NavbarIconName, label: string): string {
+export function createNavbarItemHTML(
+  iconName: NavbarIconName,
+  label: string,
+): string {
   return `<span id="nav-${iconName.toLowerCase()}" style="display:inline-flex;align-items:center;"></span> ${label}`;
 }
 
@@ -16,6 +19,9 @@ export function createNavbarItemHTML(iconName: NavbarIconName, label: string): s
  * @param label - The text label for the navbar item
  * @returns HTML string with icon placeholder and label
  */
-export function createSimpleNavbarItemHTML(iconName: NavbarIconName, label: string): string {
+export function createSimpleNavbarItemHTML(
+  iconName: NavbarIconName,
+  label: string,
+): string {
   return `<span id="nav-${iconName.toLowerCase()}"></span> ${label}`;
 }

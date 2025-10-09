@@ -13,7 +13,6 @@ export const Users: User[] = [
     tags: ["opensource", "ml", "favorite", "react"],
   },
 
-
   //  Opesource project
 
   {
@@ -25,8 +24,6 @@ export const Users: User[] = [
     source: "https://github.com/recodehive/Opensource-practice",
     tags: ["opensource", "clone", "templates"],
   },
-
-
 
   // Scrape ML
 
@@ -40,8 +37,6 @@ export const Users: User[] = [
     tags: ["opensource", "templates", "clone"],
   },
 
-
-
   // StackOverflow Analysis
 
   {
@@ -54,7 +49,7 @@ export const Users: User[] = [
     tags: ["opensource", "product", "nextjs", "javascript"],
   },
 
-// Awesome GitHub Profiles"
+  // Awesome GitHub Profiles"
 
   {
     title: "GitHub Profiles",
@@ -65,6 +60,4 @@ export const Users: User[] = [
     source: "https://github.com/recodehive/awesome-github-profiles",
     tags: ["opensource", "nextjs", "typescript", "ai", "favorite"],
   },
-
-
 ];

@@ -10,7 +10,7 @@ const firebaseConfig = {
   storageBucket: "awesome-github-profiles.firebasestorage.app",
   messagingSenderId: "490821849262",
   appId: "1:490821849262:web:7e97984d98f578b81f9d3f",
-  measurementId: "G-WM33JZYEV0"
+  measurementId: "G-WM33JZYEV0",
 };
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig);

@@ -23,7 +23,7 @@ Conditional statements in Python allow you to make decisions in your code. They 
 
 ## The `if` Statement
 
-The simplest conditional is the `if` statement.
+The simplest conditional statement is the `if` statement.
 
 **Syntax:**
 

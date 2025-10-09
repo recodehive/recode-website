@@ -35,7 +35,8 @@ const faqData = [
       "We offer earning opportunities through our GitHub sponsorship program! Every week, we sponsor contributors who make valuable open-source contributions.<br><br><strong>Sponsorship Details:</strong><br>• Weekly sponsorship program<br>• Earning range: ₹100 to ₹500 per week<br>• Based on contribution quality and impact<br>• Open to all community members<br><br><strong>How to Qualify:</strong><br>• Make meaningful contributions to our projects<br>• Follow contribution guidelines<br>• Engage with the community<br><br>💰 <a href='https://github.com/sponsors/recodehive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Learn more about GitHub Sponsorship</a> | 🚀 <a href='https://github.com/recodehive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Start contributing today</a>",
   },
   {
-    question: "How will I stay up to date with the latest news from this organisation?",
+    question:
+      "How will I stay up to date with the latest news from this organisation?",
     answer:
       "Stay connected with recode hive through multiple channels to never miss important updates:<br><br><strong>📧 Newsletter:</strong> Our primary communication channel providing weekly updates on community happenings, new resources, and opportunities.<br><br><strong>Social Media:</strong><br>• 📱 <a href='https://www.instagram.com/nomad_brains/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Instagram</a> - Visual updates and behind-the-scenes<br>• 🐦 <a href='https://x.com/sanjay_kv_' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Twitter</a> - Quick updates and tech insights<br>• 💼 <a href='https://www.linkedin.com/in/sanjay-k-v/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>LinkedIn</a> - Professional updates<br>• 🎥 <a href='https://www.youtube.com/@RecodeHive' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>YouTube</a> - Video tutorials and content<br><br>📬 <a href='https://recodehive.substack.com/' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline font-semibold'>Subscribe to our Newsletter</a> | 💬 <a href='https://discord.gg/Yxv9RA3r' target='_blank' rel='noopener noreferrer' class='text-indigo-600 hover:text-indigo-800 underline'>Join our Discord</a>",
   },
@@ -79,12 +80,12 @@ const FAQs: React.FC = () => {
               </p>
             </div>
 
-    {/* Accordion Masonry Columns to prevent sibling expansion */}
-    <div className="columns-1 md:columns-2 md:gap-x-6">
+            {/* Accordion Masonry Columns to prevent sibling expansion */}
+            <div className="columns-1 md:columns-2 md:gap-x-6">
               {faqData.map((faq, index) => (
                 <motion.div
                   key={index}
-      className="accordion h-fit border-gray-200 dark:border-gray-700 pb-4 mb-4 break-inside-avoid"
+                  className="accordion h-fit border-gray-200 dark:border-gray-700 pb-4 mb-4 break-inside-avoid"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
@@ -121,16 +122,18 @@ const FAQs: React.FC = () => {
                         isDark ? "text-gray-300" : "text-gray-900"
                       }`}
                       style={{
-                        color: isDark ? '#d1d5db' : '#111827'
+                        color: isDark ? "#d1d5db" : "#111827",
                       }}
-                      dangerouslySetInnerHTML={{ 
-                        __html: faq.answer.replace(
-                          /<strong>/g, 
-                          `<strong style="color: ${isDark ? '#f3f4f6' : '#000000'}; font-weight: 600;">`
-                        ).replace(
-                          /<a /g,
-                          `<a style="color: ${isDark ? '#818cf8' : '#4f46e5'};" `
-                        )
+                      dangerouslySetInnerHTML={{
+                        __html: faq.answer
+                          .replace(
+                            /<strong>/g,
+                            `<strong style="color: ${isDark ? "#f3f4f6" : "#000000"}; font-weight: 600;">`,
+                          )
+                          .replace(
+                            /<a /g,
+                            `<a style="color: ${isDark ? "#818cf8" : "#4f46e5"};" `,
+                          ),
                       }}
                     />
                   </motion.div>
