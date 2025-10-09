@@ -176,7 +176,8 @@ export function CommunityStatsProvider({
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   // Time filter state
-  const [currentTimeFilter, setCurrentTimeFilter] = useState<TimeFilter>("all");
+  const [currentTimeFilter, setCurrentTimeFilter] =
+    useState<TimeFilter>("week");
 
   // Enhanced state for leaderboard data (stores all contributors with full PR history)
   const [allContributors, setAllContributors] = useState<FullContributor[]>([]);
