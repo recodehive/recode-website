@@ -2,19 +2,21 @@
 .github-badges-page {
   background: #f6f5f5;
   border-radius: 18px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1.5px 4px rgba(0,0,0,0.06);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.08),
+    0 1.5px 4px rgba(0, 0, 0, 0.06);
   padding: 32px 24px;
   margin-top: 24px;
 }
 
 /* Dark theme body override - EXCLUDE community page */
-[data-theme='dark'] body:not(:has(.community-page)) {
-    background-color: var(--dark-bg-primary) !important;
-    color: var(--dark-text-primary) !important;
+[data-theme="dark"] body:not(:has(.community-page)) {
+  background-color: var(--dark-bg-primary) !important;
+  color: var(--dark-text-primary) !important;
 }
 
 /* Dark theme for main page container */
-[data-theme='dark'] .github-badges-page {
+[data-theme="dark"] .github-badges-page {
   background: var(--dark-bg-secondary) !important;
   color: var(--dark-text-primary) !important;
   box-shadow: var(--dark-shadow-lg) !important;
@@ -30,28 +32,34 @@
 .badgeItem {
   background: #f8fafc;
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.07), 0 1.5px 4px rgba(0,0,0,0.04);
+  box-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.07),
+    0 1.5px 4px rgba(0, 0, 0, 0.04);
   padding: 24px 20px 20px 20px;
   display: flex;
   align-items: center;
   gap: 18px;
-  transition: box-shadow 0.2s, transform 0.2s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.2s;
   position: relative;
 }
 
 .badgeItem:hover {
-  box-shadow: 0 6px 24px rgba(0,0,0,0.13), 0 3px 12px rgba(0,0,0,0.09);
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.13),
+    0 3px 12px rgba(0, 0, 0, 0.09);
   transform: translateY(-4px) scale(1.03);
 }
 
 /* Dark theme for badge items */
-[data-theme='dark'] .badgeItem {
+[data-theme="dark"] .badgeItem {
   background: var(--dark-bg-tertiary) !important;
   color: var(--dark-text-primary) !important;
   box-shadow: var(--dark-shadow) !important;
 }
 
-[data-theme='dark'] .badgeItem:hover {
+[data-theme="dark"] .badgeItem:hover {
   background: var(--dark-card-hover-bg) !important;
   box-shadow: var(--dark-shadow-lg) !important;
 }
@@ -63,7 +71,7 @@
   border-radius: 12px;
   border: 2px solid #e5e7eb;
   background: #fff;
-  box-shadow: 0 1.5px 6px rgba(0,0,0,0.04);
+  box-shadow: 0 1.5px 6px rgba(0, 0, 0, 0.04);
   margin-right: 10px;
 }
 
@@ -83,7 +91,9 @@
   font-size: 0.92rem;
   cursor: pointer;
   opacity: 0.85;
-  transition: background 0.2s, opacity 0.2s;
+  transition:
+    background 0.2s,
+    opacity 0.2s;
   z-index: 2;
 }
 
@@ -130,11 +140,13 @@
 #scrollToTop {
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s, background 0.2s;
+  transition:
+    opacity 0.3s,
+    background 0.2s;
   background: linear-gradient(135deg, #24292f, #0969da);
   color: #fff;
   border: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
 }
 
 #scrollToTop.show {
@@ -150,7 +162,6 @@
   transform: translateY(-3px) scale(1.2);
 }
 
-
 .github-badges-page h1 {
   color: #24292f;
   font-size: 2.5rem;
@@ -160,7 +171,7 @@
 }
 
 /* Dark theme for headings */
-[data-theme='dark'] .github-badges-page h1 {
+[data-theme="dark"] .github-badges-page h1 {
   color: var(--dark-text-primary) !important;
 }
 
@@ -184,12 +195,12 @@
 }
 
 /* Dark theme for banner and section headings */
-[data-theme='dark'] .bannerAchievements {
+[data-theme="dark"] .bannerAchievements {
   background: var(--dark-bg-tertiary) !important;
   color: var(--dark-text-primary) !important;
 }
 
-[data-theme='dark'] .sectionHeading {
+[data-theme="dark"] .sectionHeading {
   color: var(--dark-text-primary) !important;
 }
 
@@ -207,7 +218,7 @@
 }
 
 /* Dark theme for skin heading */
-[data-theme='dark'] .skinHeading {
+[data-theme="dark"] .skinHeading {
   color: var(--dark-text-primary) !important;
 }
 
@@ -246,7 +257,7 @@
   border-radius: 10px;
   padding: 12px;
   min-width: 120px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   gap: 6px;
   border: 1px solid #e5e7eb;
 }
@@ -262,7 +273,8 @@
   border: 1px solid #fbcfe8;
 }
 
-.skinToneTable td, .skinToneTable th {
+.skinToneTable td,
+.skinToneTable th {
   text-align: center;
 }
 
@@ -282,7 +294,9 @@
 }
 
 @media (max-width: 800px) {
-  .skinHeading, .highlightsHeading, .retiredHeading {
+  .skinHeading,
+  .highlightsHeading,
+  .retiredHeading {
     font-size: 1.25rem;
     margin: 24px 0 10px 0;
   }
@@ -292,7 +306,6 @@
   }
 }
 
-
 .tableWrapper {
   overflow-x: auto;
   margin-bottom: 32px;
@@ -300,12 +313,15 @@
   justify-content: center;
 }
 
-.achievementsTable, .skinToneTable, .highlightsTable, .retiredTable, table {
+.achievementsTable,
+.skinToneTable,
+.highlightsTable,
+.retiredTable,
+table {
   margin-left: auto;
   margin-right: auto;
   max-width: 95vw;
 }
-
 
 /* Add double border to all badge tables */
 .skinToneTable,
@@ -315,48 +331,69 @@ table {
   border: 3px double #bfc3c9;
   border-radius: 14px;
   background: #fff;
-  box-shadow: 0 2px 14px rgba(44,62,80,0.08);
+  box-shadow: 0 2px 14px rgba(44, 62, 80, 0.08);
   border-collapse: separate;
   border-spacing: 0;
 }
 
-.skinToneTable th, .skinToneTable td,
-.highlightsTable th, .highlightsTable td,
-.retiredTable th, .retiredTable td,
-table th, table td {
+.skinToneTable th,
+.skinToneTable td,
+.highlightsTable th,
+.highlightsTable td,
+.retiredTable th,
+.retiredTable td,
+table th,
+table td {
   border: 1.5px solid #d1d5db;
   padding: 10px 12px;
   text-align: center;
   vertical-align: middle;
 }
 
-.skinToneTable th:first-child, .highlightsTable th:first-child, .retiredTable th:first-child, table th:first-child {
+.skinToneTable th:first-child,
+.highlightsTable th:first-child,
+.retiredTable th:first-child,
+table th:first-child {
   border-top-left-radius: 10px;
 }
-.skinToneTable th:last-child, .highlightsTable th:last-child, .retiredTable th:last-child, table th:last-child {
+.skinToneTable th:last-child,
+.highlightsTable th:last-child,
+.retiredTable th:last-child,
+table th:last-child {
   border-top-right-radius: 10px;
 }
-.skinToneTable tr:last-child td:first-child, .highlightsTable tr:last-child td:first-child, .retiredTable tr:last-child td:first-child, table tr:last-child td:first-child {
+.skinToneTable tr:last-child td:first-child,
+.highlightsTable tr:last-child td:first-child,
+.retiredTable tr:last-child td:first-child,
+table tr:last-child td:first-child {
   border-bottom-left-radius: 10px;
 }
-.skinToneTable tr:last-child td:last-child, .highlightsTable tr:last-child td:last-child, .retiredTable tr:last-child td:last-child, table tr:last-child td:last-child {
+.skinToneTable tr:last-child td:last-child,
+.highlightsTable tr:last-child td:last-child,
+.retiredTable tr:last-child td:last-child,
+table tr:last-child td:last-child {
   border-bottom-right-radius: 10px;
 }
 
-
-.achievementsTable, .skinToneTable, .highlightsTable, .retiredTable {
+.achievementsTable,
+.skinToneTable,
+.highlightsTable,
+.retiredTable {
   /* width: 100%; */
   border-collapse: separate;
   border-spacing: 20px;
   background: #fff;
   border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
   margin-bottom: 32px;
   font-size: 1rem;
   overflow: hidden;
 }
 
-.achievementsTable th, .skinToneTable th, .highlightsTable th, .retiredTable th {
+.achievementsTable th,
+.skinToneTable th,
+.highlightsTable th,
+.retiredTable th {
   background: #f3f4f6;
   color: #1e293b;
   font-weight: 700;
@@ -365,53 +402,62 @@ table th, table td {
   text-align: left;
 }
 
-.achievementsTable td, .skinToneTable td, .highlightsTable td, .retiredTable td {
+.achievementsTable td,
+.skinToneTable td,
+.highlightsTable td,
+.retiredTable td {
   padding: 12px 10px;
   border-bottom: 1px solid #e5e7eb;
   color: #374151;
   vertical-align: middle;
 }
 
-.achievementsTable tr:last-child td, .skinToneTable tr:last-child td, .highlightsTable tr:last-child td, .retiredTable tr:last-child td {
+.achievementsTable tr:last-child td,
+.skinToneTable tr:last-child td,
+.highlightsTable tr:last-child td,
+.retiredTable tr:last-child td {
   border-bottom: none;
 }
 
-.achievementsTable tr:nth-child(even), .skinToneTable tr:nth-child(even), .highlightsTable tr:nth-child(even), .retiredTable tr:nth-child(even) {
+.achievementsTable tr:nth-child(even),
+.skinToneTable tr:nth-child(even),
+.highlightsTable tr:nth-child(even),
+.retiredTable tr:nth-child(even) {
   background: #f9fafb;
 }
 
 /* Dark theme for all table types */
-[data-theme='dark'] .skinToneTable,
-[data-theme='dark'] .highlightsTable,
-[data-theme='dark'] .retiredTable,
-[data-theme='dark'] table {
+[data-theme="dark"] .skinToneTable,
+[data-theme="dark"] .highlightsTable,
+[data-theme="dark"] .retiredTable,
+[data-theme="dark"] table {
   background: var(--dark-bg-secondary) !important;
   border-color: var(--dark-border) !important;
   color: var(--dark-text-primary) !important;
 }
 
-[data-theme='dark'] .skinToneTable th,
-[data-theme='dark'] .highlightsTable th,
-[data-theme='dark'] .retiredTable th,
-[data-theme='dark'] table th {
+[data-theme="dark"] .skinToneTable th,
+[data-theme="dark"] .highlightsTable th,
+[data-theme="dark"] .retiredTable th,
+[data-theme="dark"] table th {
   background: var(--dark-bg-tertiary) !important;
   color: var(--dark-text-primary) !important;
   border-color: var(--dark-border) !important;
 }
 
-[data-theme='dark'] .skinToneTable td,
-[data-theme='dark'] .highlightsTable td,
-[data-theme='dark'] .retiredTable td,
-[data-theme='dark'] table td {
+[data-theme="dark"] .skinToneTable td,
+[data-theme="dark"] .highlightsTable td,
+[data-theme="dark"] .retiredTable td,
+[data-theme="dark"] table td {
   border-color: var(--dark-border) !important;
   color: var(--dark-text-primary) !important;
 }
 
-[data-theme='dark'] .achievementsTable tr:nth-child(even),
-[data-theme='dark'] .skinToneTable tr:nth-child(even),
-[data-theme='dark'] .highlightsTable tr:nth-child(even),
-[data-theme='dark'] .retiredTable tr:nth-child(even),
-[data-theme='dark'] table tr:nth-child(even) {
+[data-theme="dark"] .achievementsTable tr:nth-child(even),
+[data-theme="dark"] .skinToneTable tr:nth-child(even),
+[data-theme="dark"] .highlightsTable tr:nth-child(even),
+[data-theme="dark"] .retiredTable tr:nth-child(even),
+[data-theme="dark"] table tr:nth-child(even) {
   background: var(--dark-bg-tertiary) !important;
 }
 
@@ -422,22 +468,25 @@ table th, table td {
   border-radius: 8px;
   border: 1.5px solid #e5e7eb;
   background: #fff;
-  box-shadow: 0 1.5px 6px rgba(0,0,0,0.04);
+  box-shadow: 0 1.5px 6px rgba(0, 0, 0, 0.04);
 }
 
 /* Dark theme for badge images */
-[data-theme='dark'] .badgeImg {
+[data-theme="dark"] .badgeImg {
   border-color: var(--dark-border) !important;
   background: var(--dark-bg-primary) !important;
 }
 
-[data-theme='dark'] .badgeImgSmall {
+[data-theme="dark"] .badgeImgSmall {
   border-color: var(--dark-border) !important;
   background: var(--dark-bg-primary) !important;
 }
 
 @media (max-width: 800px) {
-  .achievementsTable, .skinToneTable, .highlightsTable, .retiredTable {
+  .achievementsTable,
+  .skinToneTable,
+  .highlightsTable,
+  .retiredTable {
     font-size: 0.95rem;
   }
   .bannerAchievements {
@@ -451,7 +500,10 @@ table th, table td {
 }
 
 @media (max-width: 600px) {
-  .achievementsTable, .skinToneTable, .highlightsTable, .retiredTable {
+  .achievementsTable,
+  .skinToneTable,
+  .highlightsTable,
+  .retiredTable {
     font-size: 0.87rem;
   }
   .github-badges-page h1 {
@@ -461,7 +513,6 @@ table th, table td {
     font-size: 1.1rem;
   }
 }
-
 
 .github-badges-page h2 {
   color: #24292f;
@@ -487,7 +538,8 @@ table th, table td {
   text-decoration: underline;
 }
 
-.github-badges-page p, .github-badges-page li {
+.github-badges-page p,
+.github-badges-page li {
   color: #4b5563;
   font-size: 1rem;
 }
@@ -499,24 +551,24 @@ table th, table td {
 }
 
 /* Dark theme for text elements */
-[data-theme='dark'] .github-badges-page h2 {
+[data-theme="dark"] .github-badges-page h2 {
   color: var(--dark-text-primary) !important;
 }
 
-[data-theme='dark'] .github-badges-page a {
+[data-theme="dark"] .github-badges-page a {
   color: var(--ifm-color-primary) !important;
 }
 
-[data-theme='dark'] .github-badges-page a:hover {
+[data-theme="dark"] .github-badges-page a:hover {
   color: var(--ifm-color-primary-light) !important;
 }
 
-[data-theme='dark'] .github-badges-page p,
-[data-theme='dark'] .github-badges-page li {
+[data-theme="dark"] .github-badges-page p,
+[data-theme="dark"] .github-badges-page li {
   color: var(--dark-text-secondary) !important;
 }
 
-[data-theme='dark'] .github-badges-page hr {
+[data-theme="dark"] .github-badges-page hr {
   border-top-color: var(--dark-border) !important;
 }
 
@@ -536,11 +588,11 @@ table th, table td {
 }
 
 /* Dark theme for additional text elements */
-[data-theme='dark'] .subheading {
+[data-theme="dark"] .subheading {
   color: var(--dark-text-primary) !important;
 }
 
-[data-theme='dark'] .paragraph {
+[data-theme="dark"] .paragraph {
   color: var(--dark-text-secondary) !important;
 }
 
@@ -593,12 +645,12 @@ table th, table td {
 }
 
 /* Dark theme for certification section */
-[data-theme='dark'] .certificationHero {
+[data-theme="dark"] .certificationHero {
   background: var(--dark-bg-primary) !important;
   color: var(--dark-text-primary) !important;
 }
 
-[data-theme='dark'] .certificationHero p {
+[data-theme="dark"] .certificationHero p {
   color: var(--dark-text-secondary) !important;
 }
 
@@ -625,20 +677,28 @@ table th, table td {
 }
 
 /* Dark theme for certification cards */
-[data-theme='dark'] .certCard {
-  background: linear-gradient(135deg, var(--dark-bg-secondary), var(--dark-bg-tertiary)) !important;
+[data-theme="dark"] .certCard {
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-secondary),
+    var(--dark-bg-tertiary)
+  ) !important;
   color: var(--dark-text-primary) !important;
   box-shadow: var(--dark-shadow-lg) !important;
 }
 
 .certCard::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.05)
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -676,11 +736,11 @@ table th, table td {
 }
 
 /* Dark theme for card content */
-[data-theme='dark'] .cardContent h2 {
+[data-theme="dark"] .cardContent h2 {
   color: var(--dark-text-primary) !important;
 }
 
-[data-theme='dark'] .cardContent p {
+[data-theme="dark"] .cardContent p {
   color: var(--dark-text-secondary) !important;
 }
 
@@ -695,11 +755,15 @@ table th, table td {
 }
 
 .certBadge::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 180px;
   height: 180px;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.2) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
   transform: scale(0.8);
   opacity: 0;
@@ -743,11 +807,11 @@ table th, table td {
 }
 
 /* Dark theme for certification links */
-[data-theme='dark'] .certLink {
+[data-theme="dark"] .certLink {
   color: var(--ifm-color-primary) !important;
 }
 
-[data-theme='dark'] .certLink:hover {
+[data-theme="dark"] .certLink:hover {
   color: var(--ifm-color-primary-light) !important;
 }
 
@@ -763,7 +827,7 @@ table th, table td {
 
 /* Responsive design */
 @media (max-width: 768px) {
-  .certCard, 
+  .certCard,
   .certCard:nth-child(even) {
     flex-direction: column;
     text-align: center;
@@ -885,69 +949,69 @@ table th, table td {
   .skinToneGrid {
     gap: 3rem;
   }
-  
+
   .skinToneVariants {
     grid-template-columns: repeat(6, 1fr);
   }
 }
 
 /* Dark mode support */
-[data-theme='dark'] .skinToneBadgeCard {
+[data-theme="dark"] .skinToneBadgeCard {
   background: var(--dark-bg-secondary);
   color: var(--dark-text-primary);
 }
 
-[data-theme='dark'] .badgeHeader h3 {
+[data-theme="dark"] .badgeHeader h3 {
   color: var(--dark-text-primary);
 }
 
-[data-theme='dark'] .variant {
+[data-theme="dark"] .variant {
   background: var(--dark-bg-tertiary);
   color: var(--dark-text-primary);
 }
 
-[data-theme='dark'] .variant:hover {
+[data-theme="dark"] .variant:hover {
   background: var(--dark-card-hover-bg);
 }
 
-[data-theme='dark'] .skinToneLabel {
+[data-theme="dark"] .skinToneLabel {
   color: var(--dark-text-muted);
 }
 
-[data-theme='dark'] .achievementsTable {
+[data-theme="dark"] .achievementsTable {
   background: var(--dark-bg-secondary);
   color: var(--dark-text-primary);
 }
 
-[data-theme='dark'] .achievementsTable th {
+[data-theme="dark"] .achievementsTable th {
   background: var(--dark-bg-tertiary);
   color: var(--dark-text-primary);
   border-color: var(--dark-border);
 }
 
-[data-theme='dark'] .achievementsTable td {
+[data-theme="dark"] .achievementsTable td {
   border-color: var(--dark-border) !important;
   color: var(--dark-text-primary) !important;
   background: var(--dark-bg-secondary) !important;
 }
 
-[data-theme='dark'] .achievementsTable td:last-child {
+[data-theme="dark"] .achievementsTable td:last-child {
   background: var(--dark-bg-secondary) !important;
 }
 
-[data-theme='dark'] .achievementsTable tr {
+[data-theme="dark"] .achievementsTable tr {
   background: var(--dark-bg-secondary) !important;
 }
 
-[data-theme='dark'] .achievementsTable tr:hover {
+[data-theme="dark"] .achievementsTable tr:hover {
   background: var(--dark-card-hover-bg) !important;
 }
 
-[data-theme='dark'] .title {
+[data-theme="dark"] .title {
   color: var(--dark-text-primary);
 }
 
-[data-theme='dark'] .bannerAchievements {
+[data-theme="dark"] .bannerAchievements {
   background: var(--dark-bg-secondary);
   color: var(--dark-text-primary);
   border-color: var(--dark-border);
@@ -1143,7 +1207,7 @@ table th, table td {
   padding: 8px;
   border-radius: 8px;
   background: white;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 /* Enhanced Level Images Container */
@@ -1157,13 +1221,17 @@ table th, table td {
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   border-radius: 16px;
   border: 2px solid #e2e8f0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .achievementsTable .levelImages:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
   border-color: #c7d2fe;
 }
 
@@ -1173,14 +1241,18 @@ table th, table td {
   border-radius: 12px;
   border: 2px solid #e5e7eb;
   background: white;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.04);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
 }
 
 .achievementsTable .levelImages img:hover {
   transform: scale(1.2) rotate(8deg);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15), 0 3px 8px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.15),
+    0 3px 8px rgba(0, 0, 0, 0.1);
   border-color: #3b82f6;
   z-index: 10;
   position: relative;
@@ -1196,7 +1268,9 @@ table th, table td {
   font-size: 0.9em;
   margin-top: 8px;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.04);
   border: 2px solid #e2e8f0;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -1205,19 +1279,26 @@ table th, table td {
 }
 
 .achievementsTable .neededAmount::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
 .achievementsTable .neededAmount:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.12),
+    0 4px 8px rgba(0, 0, 0, 0.06);
   border-color: #3b82f6;
 }
 
@@ -1235,7 +1316,9 @@ table th, table td {
   border-radius: 12px;
   font-size: 0.85em;
   text-align: center;
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3), 0 2px 4px rgba(59, 130, 246, 0.2);
+  box-shadow:
+    0 4px 12px rgba(59, 130, 246, 0.3),
+    0 2px 4px rgba(59, 130, 246, 0.2);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1244,7 +1327,9 @@ table th, table td {
 
 .achievementsTable .levelText:hover {
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4), 0 3px 6px rgba(59, 130, 246, 0.3);
+  box-shadow:
+    0 6px 16px rgba(59, 130, 246, 0.4),
+    0 3px 6px rgba(59, 130, 246, 0.3);
 }
 
 /* Enhanced Badge Levels Container */
@@ -1257,7 +1342,9 @@ table th, table td {
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   border-radius: 20px;
   border: 2px solid #e2e8f0;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.04);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -1267,7 +1354,7 @@ table th, table td {
 }
 
 .achievementsTable .badgeLevels::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -1279,7 +1366,9 @@ table th, table td {
 
 .achievementsTable .badgeLevels:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.06);
   border-color: #3b82f6;
 }
 
@@ -1293,7 +1382,9 @@ table th, table td {
   background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
   border-radius: 20px;
   border: 2px solid #e2e8f0;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.06),
+    0 2px 8px rgba(0, 0, 0, 0.04);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -1303,7 +1394,7 @@ table th, table td {
 }
 
 .achievementsTable .singleBadge::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -1315,7 +1406,9 @@ table th, table td {
 
 .achievementsTable .singleBadge:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.06);
   border-color: #10b981;
 }
 
@@ -1375,85 +1468,143 @@ table th, table td {
 }
 
 /* Enhanced Dark Mode Adjustments */
-[data-theme='dark'] .achievementsTable .neededAmount {
-  background: linear-gradient(135deg, var(--dark-bg-tertiary) 0%, var(--dark-bg-secondary) 100%) !important;
+[data-theme="dark"] .achievementsTable .neededAmount {
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-tertiary) 0%,
+    var(--dark-bg-secondary) 100%
+  ) !important;
   color: var(--dark-text-primary) !important;
   border-color: var(--dark-border) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2) !important;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2) !important;
 }
 
-[data-theme='dark'] .achievementsTable .neededAmount::before {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent) !important;
+[data-theme="dark"] .achievementsTable .neededAmount::before {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  ) !important;
 }
 
-[data-theme='dark'] .achievementsTable .neededAmount:hover {
+[data-theme="dark"] .achievementsTable .neededAmount:hover {
   border-color: var(--ifm-color-primary) !important;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3) !important;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.4),
+    0 4px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
-[data-theme='dark'] .achievementsTable .levelText {
-  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%) !important;
+[data-theme="dark"] .achievementsTable .levelText {
+  background: linear-gradient(
+    135deg,
+    var(--ifm-color-primary) 0%,
+    var(--ifm-color-primary-dark) 100%
+  ) !important;
   color: white !important;
-  box-shadow: 0 4px 12px rgba(37, 194, 160, 0.3), 0 2px 4px rgba(37, 194, 160, 0.2) !important;
+  box-shadow:
+    0 4px 12px rgba(37, 194, 160, 0.3),
+    0 2px 4px rgba(37, 194, 160, 0.2) !important;
 }
 
-[data-theme='dark'] .achievementsTable .levelText:hover {
-  box-shadow: 0 6px 16px rgba(37, 194, 160, 0.4), 0 3px 6px rgba(37, 194, 160, 0.3) !important;
+[data-theme="dark"] .achievementsTable .levelText:hover {
+  box-shadow:
+    0 6px 16px rgba(37, 194, 160, 0.4),
+    0 3px 6px rgba(37, 194, 160, 0.3) !important;
 }
 
 /* Dark theme for enhanced badge containers */
-[data-theme='dark'] .achievementsTable .badgeLevels {
-  background: linear-gradient(135deg, var(--dark-bg-secondary) 0%, var(--dark-bg-tertiary) 100%) !important;
+[data-theme="dark"] .achievementsTable .badgeLevels {
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-secondary) 0%,
+    var(--dark-bg-tertiary) 100%
+  ) !important;
   border-color: var(--dark-border) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2) !important;
   color: var(--dark-text-primary) !important;
 }
 
-[data-theme='dark'] .achievementsTable .badgeLevels::before {
-  background: linear-gradient(90deg, var(--ifm-color-primary), #8b5cf6, #ec4899) !important;
+[data-theme="dark"] .achievementsTable .badgeLevels::before {
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-primary),
+    #8b5cf6,
+    #ec4899
+  ) !important;
 }
 
-[data-theme='dark'] .achievementsTable .badgeLevels:hover {
+[data-theme="dark"] .achievementsTable .badgeLevels:hover {
   border-color: var(--ifm-color-primary) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
-[data-theme='dark'] .achievementsTable .singleBadge {
-  background: linear-gradient(135deg, var(--dark-bg-secondary) 0%, var(--dark-bg-tertiary) 100%) !important;
+[data-theme="dark"] .achievementsTable .singleBadge {
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-secondary) 0%,
+    var(--dark-bg-tertiary) 100%
+  ) !important;
   border-color: var(--dark-border) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3), 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.3),
+    0 2px 8px rgba(0, 0, 0, 0.2) !important;
   color: var(--dark-text-primary) !important;
 }
 
-[data-theme='dark'] .achievementsTable .singleBadge::before {
-  background: linear-gradient(90deg, #10b981, var(--ifm-color-primary)) !important;
+[data-theme="dark"] .achievementsTable .singleBadge::before {
+  background: linear-gradient(
+    90deg,
+    #10b981,
+    var(--ifm-color-primary)
+  ) !important;
 }
 
-[data-theme='dark'] .achievementsTable .singleBadge:hover {
+[data-theme="dark"] .achievementsTable .singleBadge:hover {
   border-color: #10b981 !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.4),
+    0 4px 12px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Dark theme for enhanced level images */
-[data-theme='dark'] .achievementsTable .levelImages {
-  background: linear-gradient(135deg, var(--dark-bg-tertiary) 0%, var(--dark-bg-secondary) 100%) !important;
+[data-theme="dark"] .achievementsTable .levelImages {
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-tertiary) 0%,
+    var(--dark-bg-secondary) 100%
+  ) !important;
   border-color: var(--dark-border) !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
 }
 
-[data-theme='dark'] .achievementsTable .levelImages:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+[data-theme="dark"] .achievementsTable .levelImages:hover {
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
   border-color: var(--ifm-color-primary) !important;
 }
 
-[data-theme='dark'] .achievementsTable .levelImages img {
+[data-theme="dark"] .achievementsTable .levelImages img {
   border-color: var(--dark-border) !important;
   background: var(--dark-bg-primary) !important;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.3) !important;
 }
 
-[data-theme='dark'] .achievementsTable .levelImages img:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5), 0 3px 8px rgba(0, 0, 0, 0.4) !important;
+[data-theme="dark"] .achievementsTable .levelImages img:hover {
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.5),
+    0 3px 8px rgba(0, 0, 0, 0.4) !important;
   border-color: var(--ifm-color-primary) !important;
 }
 
@@ -1479,11 +1630,15 @@ table th, table td {
 }
 
 /* Dark theme for inline needed text */
-[data-theme='dark'] .achievementsTable td b {
-  background: linear-gradient(135deg, var(--ifm-color-primary) 0%, var(--ifm-color-primary-dark) 100%) !important;
+[data-theme="dark"] .achievementsTable td b {
+  background: linear-gradient(
+    135deg,
+    var(--ifm-color-primary) 0%,
+    var(--ifm-color-primary-dark) 100%
+  ) !important;
   box-shadow: 0 2px 6px rgba(37, 194, 160, 0.3) !important;
 }
 
-[data-theme='dark'] .achievementsTable td b:hover {
+[data-theme="dark"] .achievementsTable td b:hover {
   box-shadow: 0 4px 10px rgba(37, 194, 160, 0.4) !important;
 }

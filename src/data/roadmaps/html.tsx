@@ -2,7 +2,11 @@ export const htmlRoadmapData = [
   {
     title: "HTML Basics",
     items: [
-      { text: "Introduction to HTML", link: "/docs/html/intro-html/", status: "todo" },
+      {
+        text: "Introduction to HTML",
+        link: "/docs/html/intro-html/",
+        status: "todo",
+      },
       { text: "HTML Documents Structure", link: "#", status: "todo" },
       { text: "Basic HTML Tags", link: "#", status: "todo" },
       { text: "Attributes in HTML", link: "#", status: "todo" },

@@ -1,5 +1,5 @@
 /* Modern Blog Page Styles */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
 /* CSS Variables for Design System */
 :root {
@@ -9,7 +9,7 @@
   --blog-purple-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
   --blog-blue-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --blog-pink-gradient: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-  
+
   --blog-text-primary: #1a202c;
   --blog-text-secondary: #4a5568;
   --blog-text-muted: #718096;
@@ -17,10 +17,12 @@
   --blog-bg-secondary: #f7fafc;
   --blog-bg-card: #ffffff;
   --blog-border: #e2e8f0;
-  --blog-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --blog-shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --blog-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --blog-shadow-lg:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   --blog-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  
+
   --blog-spacing-xs: 4px;
   --blog-spacing-sm: 8px;
   --blog-spacing-md: 16px;
@@ -28,19 +30,19 @@
   --blog-spacing-xl: 32px;
   --blog-spacing-2xl: 48px;
   --blog-spacing-3xl: 64px;
-  
+
   --blog-radius-sm: 8px;
   --blog-radius-md: 12px;
   --blog-radius-lg: 16px;
   --blog-radius-xl: 24px;
-  
+
   --blog-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --blog-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   --blog-transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Dark Mode Variables - Using standardized colors */
-[data-theme='dark'] {
+[data-theme="dark"] {
   --blog-text-primary: var(--dark-text-primary);
   --blog-text-secondary: var(--dark-text-secondary);
   --blog-text-muted: var(--dark-text-muted);
@@ -59,7 +61,13 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -101,10 +109,22 @@ body {
   width: 100%;
   height: 100%;
   background: var(--blog-bg-primary);
-  background-image: 
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
+  background-image:
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(120, 119, 198, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 119, 198, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(120, 219, 255, 0.1) 0%,
+      transparent 50%
+    );
 }
 
 .blog-background-shapes {
@@ -150,7 +170,8 @@ body {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
   50% {
@@ -171,7 +192,7 @@ body {
 }
 
 .blog-hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -258,7 +279,8 @@ body {
 
 .blog-search-input {
   width: 100%;
-  padding: var(--blog-spacing-md) var(--blog-spacing-md) var(--blog-spacing-md) 48px;
+  padding: var(--blog-spacing-md) var(--blog-spacing-md) var(--blog-spacing-md)
+    48px;
   font-size: 16px;
   border: 2px solid var(--blog-border);
   border-radius: var(--blog-radius-lg);
@@ -271,7 +293,9 @@ body {
 .blog-search-input:focus {
   outline: none;
   border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), var(--blog-shadow-lg);
+  box-shadow:
+    0 0 0 3px rgba(102, 126, 234, 0.1),
+    var(--blog-shadow-lg);
   background: var(--blog-bg-card);
 }
 
@@ -438,7 +462,8 @@ body {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -503,7 +528,8 @@ body {
 
 .search-input {
   width: 100%;
-  padding: var(--blog-spacing-md) var(--blog-spacing-md) var(--blog-spacing-md) 48px;
+  padding: var(--blog-spacing-md) var(--blog-spacing-md) var(--blog-spacing-md)
+    48px;
   font-size: 16px;
   border: 2px solid var(--blog-border);
   border-radius: var(--blog-radius-lg);
@@ -516,7 +542,9 @@ body {
 .search-input:focus {
   outline: none;
   border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), var(--blog-shadow-lg);
+  box-shadow:
+    0 0 0 3px rgba(102, 126, 234, 0.1),
+    var(--blog-shadow-lg);
   background: var(--blog-bg-card);
 }
 
@@ -768,7 +796,7 @@ body {
 }
 
 .blog-cta-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -833,13 +861,18 @@ body {
 }
 
 .blog-cta-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -1108,7 +1141,7 @@ body {
     --blog-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
   }
 
-  [data-theme='dark'] {
+  [data-theme="dark"] {
     --blog-border: #ffffff;
   }
 
