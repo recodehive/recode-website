@@ -183,7 +183,7 @@ const config: Config = {
           items: [
             {
               label: "📚 E-books",
-              to: "https://learn.recodehive.com/datascience",
+              to: "/ebooks",
             },
             {
               label: "🗺️ Roadmap",
