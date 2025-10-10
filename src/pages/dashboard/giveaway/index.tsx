@@ -419,7 +419,7 @@ const giveawayStyles = `
 .dashboard-stat-value {
   font-size: 2.5rem;
   font-weight: 800;
-  margin-bottom: 10px;
+  margin-bottom: inherit;
   color: var(--ifm-color-primary);
   min-height: 60px;
   display: flex;

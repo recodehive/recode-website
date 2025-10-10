@@ -17,7 +17,7 @@ const OurSponsors: React.FC = () => {
 
   // Filter for current sponsors (exclude isWeSponsor)
   const currentSponsors = sponsors.filter(
-    (s) => !s.isPastSponsor && !s.isWeSponsor,
+    (s) => !s.isPastSponsor && !s.isWeSponsor
   );
   const pastSponsors = sponsors.filter((s) => s.isPastSponsor);
 
@@ -29,7 +29,7 @@ const OurSponsors: React.FC = () => {
   const handlePaymentSuccess = () => {
     setShowScanner(false);
     alert(
-      "Thanks, we will redirect to Github Sponsors page, upon sponsoring you will be added to our sponsors list.",
+      "Thanks, we will redirect to Github Sponsors page, upon sponsoring you will be added to our sponsors list."
     );
     window.location.href = "https://github.com/sponsors/sanjay-kv?o=esb";
   };
@@ -40,6 +40,7 @@ const OurSponsors: React.FC = () => {
     setActiveTab(tab);
   };
 
+  // Handle popup modal close on Escape key and click outside
   useEffect(() => {
     if (!showScanner) return;
 
@@ -61,6 +62,16 @@ const OurSponsors: React.FC = () => {
 
     return () => controller.abort();
   }, [showScanner]);
+
+  // Auto-switch tab if hash is "#people-we-sponsored"
+  useEffect(() => {
+    if (window.location.hash === "#people-we-sponsored") {
+      setActiveTab("past");
+      // Optionally scroll into view for a nice effect
+      const el = document.getElementById("people-we-sponsored");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
 
   return (
     <Layout>
@@ -181,7 +192,9 @@ const OurSponsors: React.FC = () => {
             </div>
           </div>
 
+          {/* --- Explicit anchor for "People We Sponsored" --- */}
           <div
+            id="people-we-sponsored"
             className={`tab-content ${activeTab === "past" ? "active" : ""}`}
           >
             {weSponsorPeople.length > 0 ? (
