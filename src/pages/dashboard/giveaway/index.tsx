@@ -7,6 +7,7 @@ import NavbarIcon from "../../../components/navbar/NavbarIcon";
 import { useHistory } from "@docusaurus/router";
 import { Home, MessageCircle, Gift, Trophy, Crown, Star, Award, Clock, Users, TrendingUp, Medal, ArrowLeft } from "lucide-react";
 import "../dashboard.css";
+import { add } from "date-fns";
 
 // Giveaway-specific styles
 const giveawayStyles = `
@@ -421,7 +422,8 @@ const giveawayStyles = `
 }
 `;
 
-// Inject styles
+
+
 if (typeof document !== 'undefined') {
   const existingStyle = document.getElementById('giveaway-styles');
   if (!existingStyle) {
@@ -449,7 +451,7 @@ const GiveawayPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [activeTab, setActiveTab] = useState<"home" | "discuss" | "contributors" | "giveaway">("giveaway");
 
-  // Close dashboard menu when clicking outside
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const target = event.target as Element;
@@ -466,18 +468,25 @@ const GiveawayPage: React.FC = () => {
       document.addEventListener('mousedown', handleClickOutside);
     }
 
+
     return () => {
+
+
+
+    
+
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showDashboardMenu]);
   
-  // Ensure active tab is set correctly when page loads
   useEffect(() => {
-    // We're on the giveaway page, so the active tab should be "giveaway"
     setActiveTab("giveaway");
   }, []);
 
   useEffect(() => {
+
+
+
     // Simulate fetching leaderboard data
     const fetchLeaderboard = async () => {
       setLoading(true);
@@ -578,36 +587,37 @@ const GiveawayPage: React.FC = () => {
       <Head>
         <title>🎁 recode hive Giveaway</title>
       </Head>
-      <div className="dashboard-layout">
-        {/* Dashboard Menu Button - Only visible on mobile */}
-        <button
+   <div className="dashboard-layout"> 
+      <button
           className={`dashboard-menu-btn ${showDashboardMenu ? "open" : ""}`}
           onClick={() => setShowDashboardMenu(!showDashboardMenu)}
           aria-label="Toggle dashboard menu"
         >
           {showDashboardMenu ? <span aria-hidden="true">✕</span> : <span aria-hidden="true">☰</span>}
         </button>
-        
-        {/* Dashboard Mobile Menu */}
+      
         <div className={`dashboard-mobile-menu ${showDashboardMenu ? "show" : ""}`}>
-          {/* Overlay - always present but opacity controlled by CSS */}
           <div 
             className="dashboard-menu-overlay"
-            onClick={() => setShowDashboardMenu(false)}
-          />
+            onClick={() => setShowDashboardMenu(false)}/>
           <div>
             <div className="dashboard-menu-header">
-              <h3>Dashboard Menu</h3>
-              <button
-                className="close-menu-btn"
-                onClick={() => setShowDashboardMenu(false)}
-                aria-label="Close menu"
-              >
-                ✕
-              </button>
-            </div>
+              {/* <h3>Dashboard Menu</h3> */}
+             
+            </div> 
+
+            <div className="dashboard-menu-header">
+  <h3>Dashboard Menu</h3>
+  <button
+    className="close-menu-btn"
+    onClick={() => setShowDashboardMenu(false)}
+    aria-label="Close menu"
+  >
+    ✕
+  </button>
+</div>
+
             
-            {/* Dashboard navigation items */}
             <div className="dashboard-menu-items">
               <div
                 className={`menu-item ${activeTab === "home" ? "active" : ""}`}
@@ -647,7 +657,11 @@ const GiveawayPage: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> 
+
+
+
+ 
 
         <div className="dashboard-sidebar">
           <div className="sidebar-header">

@@ -6,8 +6,10 @@
   position:relative;
 }
 
-/* Dashboard Menu Button - Mobile Only */
-.dashboard-menu-btn {
+
+
+/* Dashboard Menu Button - Mobile Only */ 
+ /* .dashboard-menu-btn {
   display: none;
   position: fixed;
   top: 70px;
@@ -24,19 +26,26 @@
   font-weight: bold;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-}
+} */
 
-.dashboard-menu-btn:hover {
+
+/* .dashboard-menu-btn:hover {
   background: var(--ifm-color-primary-dark);
   transform: scale(1.05);
 }
 
-.dashboard-menu-btn.open {
-  background: #dc3545;
-}
 
-/* Mobile Menu */
-.dashboard-mobile-menu {
+
+
+ .dashboard-menu-btn.open {
+  background: #dc3545;
+}   */
+
+
+
+
+/* Mobile Menu  */
+ .dashboard-mobile-menu {
   display: none;
   position: fixed;
   top: 0;
@@ -47,20 +56,33 @@
   pointer-events: none;
 }
 
+
+
 .dashboard-mobile-menu.show {
   display: block;
   pointer-events: all;
 }
 
+
+
+
+
+/* Overlay */
 .dashboard-menu-overlay {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 1051;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5);
+  z-index: 1050;
 }
+
+
+
+
+
+
 
 .dashboard-mobile-menu > div:last-child {
   position: absolute;
@@ -103,7 +125,7 @@
   padding: 0;
   width: 30px;
   height: 30px;
-  display: flex;
+ display: flex ;
   align-items: center;
   justify-content: center;
 }
