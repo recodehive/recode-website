@@ -1,0 +1,22 @@
+# Dependencies
+node_modules/
+
+# Build output
+build/
+dist/
+out/
+
+# Caches / temp
+.cache/
+.tmp/
+.eslintcache
+
+# Config files (optional)
+*.config.js
+babel.config.js
+
+# Docs
+*.md
+*.mdx
+docs/**/*.md
+blog/**/*.md

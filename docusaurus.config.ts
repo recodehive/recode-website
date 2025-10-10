@@ -9,7 +9,7 @@ dotenv.config();
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "Recode Hive",
+  title: "recode hive",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
@@ -86,9 +86,9 @@ const config: Config = {
       respectPrefersColorScheme: false, // Let users manually control theme
     },
     navbar: {
-      title: "Recode Hive",
+      title: "recode hive",
       logo: {
-        alt: "RecodeHive Logo",
+        alt: "recode hive Logo",
         src: "img/logo.png",
       },
       items: [
@@ -183,7 +183,7 @@ const config: Config = {
           items: [
             {
               label: "📚 E-books",
-              to: "https://learn.recodehive.com/datascience",
+              to: "/ebooks",
             },
             {
               label: "🗺️ Roadmap",
@@ -200,6 +200,10 @@ const config: Config = {
             {
               label: "🎙️ Podcast",
               to: "/podcasts/",
+            },
+            {
+              label: "🛍️ Merch Store",
+              to: "/merch",
             },
           ],
         },
@@ -218,7 +222,7 @@ const config: Config = {
     footer: {
       style: "dark",
       links: [],
-      copyright: `Copyright © ${new Date().getFullYear()} recodehive. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} recode hive. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
@@ -227,7 +231,7 @@ const config: Config = {
     // Disable Algolia search until properly configured
     // algolia: {
     //   appId: "YOUR_APP_ID",
-    //   apiKey: "YOUR_SEARCH_API_KEY", 
+    //   apiKey: "YOUR_SEARCH_API_KEY",
     //   indexName: "YOUR_INDEX_NAME",
     //   contextualSearch: true,
     //   externalUrlRegex: "external\\.com|domain\\.com",
@@ -244,7 +248,7 @@ const config: Config = {
   markdown: {
     mermaid: true,
   },
-  
+
   // Migrated legacy setting to markdown.hooks.onBrokenMarkdownLinks
 
   themes: ["@docusaurus/theme-mermaid"],
@@ -265,9 +269,15 @@ const config: Config = {
   // ✅ Add this customFields object to expose the token to the client-side
   customFields: {
     gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
+    // Shopify credentials for merch store
+    SHOPIFY_STORE_DOMAIN:
+      process.env.SHOPIFY_STORE_DOMAIN || "junh9v-gw.myshopify.com",
+    SHOPIFY_STOREFRONT_ACCESS_TOKEN:
+      process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN ||
+      "2503dfbf93132b42e627e7d53b3ba3e9",
     hooks: {
       onBrokenMarkdownLinks: "warn",
-    }
+    },
   },
 };
 

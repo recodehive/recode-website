@@ -213,7 +213,8 @@ export default function Broadcasts(): ReactElement {
                 Featured <span className="gradient-text">Content</span>
               </h1>
               <p className="broadcast-main-subtitle">
-                Watch our curated collection of videos and shorts
+                Watch our curated collection of videos and shorts.
+                Explore tutorials, live streams, and quick tips
               </p>
               <div className="hero-stats">
                 <div className="stat-item">
@@ -242,12 +243,7 @@ export default function Broadcasts(): ReactElement {
         {/* Main Content Section */}
         <section className="latest-broadcasts-section">
           <div className="broadcasts-container">
-            <div className="section-header">
-              <h2 className="section-title">Latest Content</h2>
-              <p className="section-subtitle">
-                Explore tutorials, live streams, and quick tips
-              </p>
-            </div>
+            
 
             {/* Tabs */}
             <div className="broadcast-tabs">

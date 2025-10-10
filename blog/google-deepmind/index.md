@@ -137,7 +137,7 @@ Google’s advanced mechanics and man-made reasoning endeavors were put under th
 
 ## 📍 Final Verdict
 
-In conclusion, we hope you found this guide helpful in exploring: For more articles like this, check out the **Data Science section** of RecodeHive.
+In conclusion, we hope you found this guide helpful in exploring: For more articles like this, check out the **Data Science Section** of recode hive.
 
 
 <GiscusComments/>

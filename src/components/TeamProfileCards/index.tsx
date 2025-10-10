@@ -39,7 +39,7 @@ function TeamProfileCard({
   children,
   githubUrl,
   twitterUrl,
-  linkedInUrl
+  linkedInUrl,
 }: ProfileProps) {
   return (
     <div className={`team-profile-card ${className}`}>
@@ -104,7 +104,9 @@ export function ActiveTeamRow(): JSX.Element {
           values={{
             website: <WebsiteLink to="https://ajay-dhangar.github.io/" />,
             devto: <Link to="https://dev.to/ajaydhangar49">Dev.to</Link>,
-            optimumAi: <Link to="https://www.optimumai.in/community">OptimumAI</Link>,
+            optimumAi: (
+              <Link to="https://www.optimumai.in/community">OptimumAI</Link>
+            ),
           }}
         >
           {

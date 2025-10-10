@@ -1,22 +1,22 @@
-import React from "react"
-import { useState } from "react"
-import Layout from "@theme/Layout"
-import Head from "@docusaurus/Head"
-import { motion } from "framer-motion"
-import Link from "@docusaurus/Link"
-import { useColorMode } from '@docusaurus/theme-common';
-import clsx from 'clsx'
-import OverviewTab from "./OverviewTab"
+import React from "react";
+import { useState } from "react";
+import Layout from "@theme/Layout";
+import Head from "@docusaurus/Head";
+import { motion } from "framer-motion";
+import Link from "@docusaurus/Link";
+import { useColorMode } from "@docusaurus/theme-common";
+import clsx from "clsx";
+import OverviewTab from "./OverviewTab";
 import TechnicalTab from "./TechnicalTab";
-import BehavioralTab from "./BehavioralTab"
-import CompaniesTab from "./CompaniesTab"
-import PracticeTab from "./PracticeTab"
+import BehavioralTab from "./BehavioralTab";
+import CompaniesTab from "./CompaniesTab";
+import PracticeTab from "./PracticeTab";
 
 // Animation variants
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-}
+};
 
 const staggerContainer = {
   hidden: {},
@@ -25,36 +25,40 @@ const staggerContainer = {
       staggerChildren: 0.2,
     },
   },
-}
+};
 
 const InterviewPrepPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<"overview" | "technical" | "behavioral" | "companies" | "practice">(
-    "overview",
-  )
-  const [expandedCategories, setExpandedCategories] = useState<{ [key: string]: boolean }>({})
+  const [activeTab, setActiveTab] = useState<
+    "overview" | "technical" | "behavioral" | "companies" | "practice"
+  >("overview");
+  const [expandedCategories, setExpandedCategories] = useState<{
+    [key: string]: boolean;
+  }>({});
   const toggleCategory = (categoryIndex: number) => {
     setExpandedCategories((prev) => ({
       ...prev,
       [categoryIndex]: !prev[categoryIndex],
-    }))
-  }
+    }));
+  };
 
-  const [showTips, setShowTips] = useState<{ [key: number]: boolean }>({})
-  const [showQuestions, setShowQuestions] = useState<{ [key: number]: boolean }>({})
+  const [showTips, setShowTips] = useState<{ [key: number]: boolean }>({});
+  const [showQuestions, setShowQuestions] = useState<{
+    [key: number]: boolean;
+  }>({});
 
   const toggleTips = (index: number) => {
     setShowTips((prev) => ({
       ...prev,
       [index]: !prev[index],
-    }))
-  }
+    }));
+  };
 
   const toggleQuestions = (index: number) => {
     setShowQuestions((prev) => ({
       ...prev,
       [index]: !prev[index],
-    }))
-  }
+    }));
+  };
   const behavioralQuestions = [
     {
       category: "Leadership",
@@ -88,7 +92,7 @@ const InterviewPrepPage: React.FC = () => {
         "What's the most important thing you've learned in your career?",
       ],
     },
-  ]
+  ];
 
   const companyTips = [
     {
@@ -96,8 +100,18 @@ const InterviewPrepPage: React.FC = () => {
       logo: "/img/google.png",
       focus: "Googleyness & Leadership",
       industry: "Technology",
-      roleTypes: ["Software Engineer", "Product Manager", "Data Scientist", "Site Reliability Engineer"],
-      focusAreas: ["Scalability", "Problem-Solving", "Innovation", "Technical Excellence"],
+      roleTypes: [
+        "Software Engineer",
+        "Product Manager",
+        "Data Scientist",
+        "Site Reliability Engineer",
+      ],
+      focusAreas: [
+        "Scalability",
+        "Problem-Solving",
+        "Innovation",
+        "Technical Excellence",
+      ],
       tips: [
         "Focus on scalability and efficiency in your solutions",
         "Demonstrate analytical thinking with data-driven approaches",
@@ -128,7 +142,8 @@ const InterviewPrepPage: React.FC = () => {
           category: "Problem Solving",
         },
         {
-          question: "Tell me about a time you solved a complex technical problem",
+          question:
+            "Tell me about a time you solved a complex technical problem",
           answer:
             "Use STAR method: Situation (complex distributed system issue), Task (restore service and prevent recurrence), Action (systematic debugging, root cause analysis, implemented monitoring), Result (99.9% uptime improvement, prevented similar issues). Focus on technical depth and problem-solving methodology.",
           category: "Behavioral",
@@ -146,8 +161,18 @@ const InterviewPrepPage: React.FC = () => {
       logo: "/img/amazon.png",
       focus: "Leadership Principles",
       industry: "E-commerce/Cloud",
-      roleTypes: ["Software Engineer", "Solutions Architect", "Product Manager", "DevOps Engineer"],
-      focusAreas: ["Leadership Principles", "Customer Obsession", "Ownership", "Bias for Action"],
+      roleTypes: [
+        "Software Engineer",
+        "Solutions Architect",
+        "Product Manager",
+        "DevOps Engineer",
+      ],
+      focusAreas: [
+        "Leadership Principles",
+        "Customer Obsession",
+        "Ownership",
+        "Bias for Action",
+      ],
       tips: [
         "Master all 16 Leadership Principles with 2-3 specific examples each",
         "Use STAR method for all behavioral questions",
@@ -166,7 +191,8 @@ const InterviewPrepPage: React.FC = () => {
           category: "Behavioral",
         },
         {
-          question: "Describe a time you had to make a decision with incomplete information",
+          question:
+            "Describe a time you had to make a decision with incomplete information",
           answer:
             "Demonstrate 'Bias for Action'. Situation: critical system outage with limited debugging info. Task: restore service quickly. Action: gathered available data, made calculated decision based on patterns, implemented fix with rollback plan. Result: restored service in 30 minutes, prevented $100K revenue loss.",
           category: "Behavioral",
@@ -196,7 +222,12 @@ const InterviewPrepPage: React.FC = () => {
       logo: "/img/meta.png",
       focus: "Move Fast & Impact",
       industry: "Social Media/VR",
-      roleTypes: ["Software Engineer", "Product Manager", "Data Scientist", "Research Scientist"],
+      roleTypes: [
+        "Software Engineer",
+        "Product Manager",
+        "Data Scientist",
+        "Research Scientist",
+      ],
       focusAreas: ["Scale", "Impact", "Execution", "People Connection"],
       tips: [
         "Focus on massive scale and global impact",
@@ -216,13 +247,15 @@ const InterviewPrepPage: React.FC = () => {
           category: "System Design",
         },
         {
-          question: "Tell me about a time you had to make a trade-off between speed and quality",
+          question:
+            "Tell me about a time you had to make a trade-off between speed and quality",
           answer:
             "Situation: urgent security fix needed. Task: balance quick deployment with thorough testing. Action: implemented fix with comprehensive monitoring, deployed to small percentage first, gradually rolled out. Result: fixed security issue within 24 hours while maintaining system stability.",
           category: "Behavioral",
         },
         {
-          question: "How would you handle a feature that's negatively impacting user engagement?",
+          question:
+            "How would you handle a feature that's negatively impacting user engagement?",
           answer:
             "Data analysis approach: segment users, analyze metrics, identify root causes, A/B test solutions, gather qualitative feedback. Action: iterate quickly, measure impact, communicate with stakeholders. Focus on user value and long-term engagement over short-term metrics.",
           category: "Product Sense",
@@ -246,7 +279,12 @@ const InterviewPrepPage: React.FC = () => {
       logo: "/img/apple.png",
       focus: "Innovation & User Experience",
       industry: "Consumer Electronics",
-      roleTypes: ["Software Engineer", "Hardware Engineer", "Product Manager", "Design Engineer"],
+      roleTypes: [
+        "Software Engineer",
+        "Hardware Engineer",
+        "Product Manager",
+        "Design Engineer",
+      ],
       focusAreas: ["User Experience", "Innovation", "Quality", "Privacy"],
       tips: [
         "Focus on user experience and design thinking",
@@ -266,7 +304,8 @@ const InterviewPrepPage: React.FC = () => {
           category: "Product Design",
         },
         {
-          question: "Tell me about a time you had to meet very high quality standards",
+          question:
+            "Tell me about a time you had to meet very high quality standards",
           answer:
             "Situation: developing user-facing feature with strict quality requirements. Task: deliver bug-free, polished experience. Action: implemented comprehensive testing, code reviews, user testing, performance optimization. Result: zero critical bugs in production, positive user feedback.",
           category: "Behavioral",
@@ -296,7 +335,12 @@ const InterviewPrepPage: React.FC = () => {
       logo: "/img/netflix.png",
       focus: "Freedom & Responsibility",
       industry: "Streaming/Entertainment",
-      roleTypes: ["Software Engineer", "Data Engineer", "Product Manager", "ML Engineer"],
+      roleTypes: [
+        "Software Engineer",
+        "Data Engineer",
+        "Product Manager",
+        "ML Engineer",
+      ],
       focusAreas: ["Scale", "Personalization", "Reliability", "Data-Driven"],
       tips: [
         "Understand Netflix's culture of freedom and responsibility",
@@ -322,13 +366,15 @@ const InterviewPrepPage: React.FC = () => {
           category: "Behavioral",
         },
         {
-          question: "How would you handle video streaming for millions of concurrent users?",
+          question:
+            "How would you handle video streaming for millions of concurrent users?",
           answer:
             "CDN strategy, adaptive bitrate streaming, content pre-positioning, load balancing, caching at multiple levels, real-time monitoring, graceful degradation, and global infrastructure optimization. Consider peak traffic patterns and regional differences.",
           category: "System Design",
         },
         {
-          question: "Describe a time you had to make a decision with limited data",
+          question:
+            "Describe a time you had to make a decision with limited data",
           answer:
             "Situation: new feature launch decision with incomplete user research. Task: decide on launch strategy. Action: analyzed available data, made assumptions explicit, designed experiments to validate quickly. Result: successful launch with rapid iteration based on real user feedback.",
           category: "Behavioral",
@@ -340,8 +386,18 @@ const InterviewPrepPage: React.FC = () => {
       logo: "/img/microsoft.png",
       focus: "Growth Mindset & Collaboration",
       industry: "Technology",
-      roleTypes: ["Software Engineer", "Program Manager", "Cloud Architect", "AI Engineer"],
-      focusAreas: ["Growth Mindset", "Collaboration", "Inclusive Design", "Cloud Computing"],
+      roleTypes: [
+        "Software Engineer",
+        "Program Manager",
+        "Cloud Architect",
+        "AI Engineer",
+      ],
+      focusAreas: [
+        "Growth Mindset",
+        "Collaboration",
+        "Inclusive Design",
+        "Cloud Computing",
+      ],
       tips: [
         "Emphasize continuous learning and growth mindset",
         "Show collaborative approach and inclusive thinking",
@@ -379,7 +435,7 @@ const InterviewPrepPage: React.FC = () => {
         },
       ],
     },
-  ]
+  ];
 
   const mockInterviewQuestions = [
     // 🔹 Technical
@@ -390,26 +446,48 @@ const InterviewPrepPage: React.FC = () => {
       type: "technical",
       question: "Find the first non-repeating character in a string",
       difficulty: "Easy",
-      hints: ["Use a hash map to count frequencies", "Return the first character with count 1"],
+      hints: [
+        "Use a hash map to count frequencies",
+        "Return the first character with count 1",
+      ],
       estimatedTime: 10,
       category: "Strings",
       links: [
-        { title: "LeetCode - First Unique Character", url: "https://leetcode.com/problems/first-unique-character-in-a-string/", type: "example" },
-        { title: "MDN - Map Object", url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map", type: "documentation" }
-      ]
+        {
+          title: "LeetCode - First Unique Character",
+          url: "https://leetcode.com/problems/first-unique-character-in-a-string/",
+          type: "example",
+        },
+        {
+          title: "MDN - Map Object",
+          url: "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+          type: "documentation",
+        },
+      ],
     },
     {
       id: "tech-arr-2",
       type: "technical",
       question: "Merge two sorted arrays without using extra space",
       difficulty: "Medium",
-      hints: ["Two-pointer technique works well", "Consider edge cases where one array is empty"],
+      hints: [
+        "Two-pointer technique works well",
+        "Consider edge cases where one array is empty",
+      ],
       estimatedTime: 15,
       category: "Arrays",
       links: [
-        { title: "LeetCode - Merge Sorted Array", url: "https://leetcode.com/problems/merge-sorted-array/", type: "example" },
-        { title: "GeeksforGeeks - Merge Without Extra Space", url: "https://www.geeksforgeeks.org/merge-two-sorted-arrays-o1-extra-space/", type: "tutorial" }
-      ]
+        {
+          title: "LeetCode - Merge Sorted Array",
+          url: "https://leetcode.com/problems/merge-sorted-array/",
+          type: "example",
+        },
+        {
+          title: "GeeksforGeeks - Merge Without Extra Space",
+          url: "https://www.geeksforgeeks.org/merge-two-sorted-arrays-o1-extra-space/",
+          type: "tutorial",
+        },
+      ],
     },
 
     // Linked Lists
@@ -418,26 +496,48 @@ const InterviewPrepPage: React.FC = () => {
       type: "technical",
       question: "Reverse a linked list",
       difficulty: "Medium",
-      hints: ["Think about iterative vs recursive approach", "Consider edge cases like empty list"],
+      hints: [
+        "Think about iterative vs recursive approach",
+        "Consider edge cases like empty list",
+      ],
       estimatedTime: 20,
       category: "Linked List",
       links: [
-        { title: "LeetCode - Reverse Linked List", url: "https://leetcode.com/problems/reverse-linked-list/", type: "example" },
-        { title: "GeeksforGeeks - Reverse Linked List", url: "https://www.geeksforgeeks.org/reverse-a-linked-list/", type: "tutorial" }
-      ]
+        {
+          title: "LeetCode - Reverse Linked List",
+          url: "https://leetcode.com/problems/reverse-linked-list/",
+          type: "example",
+        },
+        {
+          title: "GeeksforGeeks - Reverse Linked List",
+          url: "https://www.geeksforgeeks.org/reverse-a-linked-list/",
+          type: "tutorial",
+        },
+      ],
     },
     {
       id: "tech-ll-2",
       type: "technical",
       question: "Detect if a linked list has a cycle",
       difficulty: "Medium",
-      hints: ["Use fast and slow pointers (Floyd’s cycle detection)", "Watch out for null references"],
+      hints: [
+        "Use fast and slow pointers (Floyd’s cycle detection)",
+        "Watch out for null references",
+      ],
       estimatedTime: 15,
       category: "Linked List",
       links: [
-        { title: "LeetCode - Linked List Cycle", url: "https://leetcode.com/problems/linked-list-cycle/", type: "example" },
-        { title: "GeeksForGeeks- Detect Loop in a Linked List", url: "https://www.geeksforgeeks.org/dsa/detect-loop-in-a-linked-list/", type: "reference" }
-      ]
+        {
+          title: "LeetCode - Linked List Cycle",
+          url: "https://leetcode.com/problems/linked-list-cycle/",
+          type: "example",
+        },
+        {
+          title: "GeeksForGeeks- Detect Loop in a Linked List",
+          url: "https://www.geeksforgeeks.org/dsa/detect-loop-in-a-linked-list/",
+          type: "reference",
+        },
+      ],
     },
 
     // Trees & Graphs
@@ -450,9 +550,17 @@ const InterviewPrepPage: React.FC = () => {
       estimatedTime: 10,
       category: "Trees",
       links: [
-        { title: "LeetCode - Maximum Depth of Binary Tree", url: "https://leetcode.com/problems/maximum-depth-of-binary-tree/", type: "example" },
-        { title: "GeeksForGeeks - DFS", url: "https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/", type: "reference" }
-      ]
+        {
+          title: "LeetCode - Maximum Depth of Binary Tree",
+          url: "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+          type: "example",
+        },
+        {
+          title: "GeeksForGeeks - DFS",
+          url: "https://www.geeksforgeeks.org/dsa/depth-first-search-or-dfs-for-a-graph/",
+          type: "reference",
+        },
+      ],
     },
     {
       id: "tech-graph-1",
@@ -463,9 +571,17 @@ const InterviewPrepPage: React.FC = () => {
       estimatedTime: 25,
       category: "Graphs",
       links: [
-        { title: "LeetCode - Clone Graph", url: "https://leetcode.com/problems/clone-graph/", type: "example" },
-        { title: "GeeksforGeeks - Clone Graph", url: "https://www.geeksforgeeks.org/clone-an-undirected-graph/", type: "tutorial" }
-      ]
+        {
+          title: "LeetCode - Clone Graph",
+          url: "https://leetcode.com/problems/clone-graph/",
+          type: "example",
+        },
+        {
+          title: "GeeksforGeeks - Clone Graph",
+          url: "https://www.geeksforgeeks.org/clone-an-undirected-graph/",
+          type: "tutorial",
+        },
+      ],
     },
 
     // Dynamic Programming
@@ -478,22 +594,41 @@ const InterviewPrepPage: React.FC = () => {
       estimatedTime: 15,
       category: "Dynamic Programming",
       links: [
-        { title: "LeetCode - Climbing Stairs", url: "https://leetcode.com/problems/climbing-stairs/", type: "example" },
-        { title: "DP Introduction", url: "https://www.geeksforgeeks.org/dynamic-programming/", type: "tutorial" }
-      ]
+        {
+          title: "LeetCode - Climbing Stairs",
+          url: "https://leetcode.com/problems/climbing-stairs/",
+          type: "example",
+        },
+        {
+          title: "DP Introduction",
+          url: "https://www.geeksforgeeks.org/dynamic-programming/",
+          type: "tutorial",
+        },
+      ],
     },
     {
       id: "tech-dp-2",
       type: "technical",
       question: "Longest Increasing Subsequence",
       difficulty: "Medium",
-      hints: ["DP with O(n^2)", "Can be optimized with Binary Search (O(n log n))"],
+      hints: [
+        "DP with O(n^2)",
+        "Can be optimized with Binary Search (O(n log n))",
+      ],
       estimatedTime: 35,
       category: "Dynamic Programming",
       links: [
-        { title: "LeetCode - Longest Increasing Subsequence", url: "https://leetcode.com/problems/longest-increasing-subsequence/", type: "example" },
-        { title: "GeeksforGeeks - LIS Explained", url: "https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/", type: "tutorial" }
-      ]
+        {
+          title: "LeetCode - Longest Increasing Subsequence",
+          url: "https://leetcode.com/problems/longest-increasing-subsequence/",
+          type: "example",
+        },
+        {
+          title: "GeeksforGeeks - LIS Explained",
+          url: "https://www.geeksforgeeks.org/longest-increasing-subsequence-dp-3/",
+          type: "tutorial",
+        },
+      ],
     },
 
     // Greedy Algorithms
@@ -502,13 +637,24 @@ const InterviewPrepPage: React.FC = () => {
       type: "technical",
       question: "Jump Game",
       difficulty: "Medium",
-      hints: ["Track the maximum reachable index", "Greedy works better than DP"],
+      hints: [
+        "Track the maximum reachable index",
+        "Greedy works better than DP",
+      ],
       estimatedTime: 20,
       category: "Greedy",
       links: [
-        { title: "LeetCode - Jump Game", url: "https://leetcode.com/problems/jump-game/", type: "example" },
-        { title: "Greedy Algorithm Basics", url: "https://www.geeksforgeeks.org/greedy-algorithms/", type: "reference" }
-      ]
+        {
+          title: "LeetCode - Jump Game",
+          url: "https://leetcode.com/problems/jump-game/",
+          type: "example",
+        },
+        {
+          title: "Greedy Algorithm Basics",
+          url: "https://www.geeksforgeeks.org/greedy-algorithms/",
+          type: "reference",
+        },
+      ],
     },
     {
       id: "tech-greedy-2",
@@ -519,9 +665,17 @@ const InterviewPrepPage: React.FC = () => {
       estimatedTime: 25,
       category: "Greedy",
       links: [
-        { title: "GeeksforGeeks - Activity Selection", url: "https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/", type: "tutorial" },
-        { title: "MIT Greedy Algorithms Notes", url: "https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-notes/MIT6_006F11_lec05.pdf", type: "reference" }
-      ]
+        {
+          title: "GeeksforGeeks - Activity Selection",
+          url: "https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/",
+          type: "tutorial",
+        },
+        {
+          title: "MIT Greedy Algorithms Notes",
+          url: "https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-notes/MIT6_006F11_lec05.pdf",
+          type: "reference",
+        },
+      ],
     },
 
     // Bit Manipulation
@@ -534,9 +688,17 @@ const InterviewPrepPage: React.FC = () => {
       estimatedTime: 10,
       category: "Bit Manipulation",
       links: [
-        { title: "LeetCode - Single Number", url: "https://leetcode.com/problems/single-number/", type: "example" },
-        { title: "Bitwise Operators in C++", url: "https://cplusplus.com/doc/tutorial/operators/#bitwise", type: "documentation" }
-      ]
+        {
+          title: "LeetCode - Single Number",
+          url: "https://leetcode.com/problems/single-number/",
+          type: "example",
+        },
+        {
+          title: "Bitwise Operators in C++",
+          url: "https://cplusplus.com/doc/tutorial/operators/#bitwise",
+          type: "documentation",
+        },
+      ],
     },
     {
       id: "tech-bit-2",
@@ -547,9 +709,17 @@ const InterviewPrepPage: React.FC = () => {
       estimatedTime: 12,
       category: "Bit Manipulation",
       links: [
-        { title: "LeetCode - Number of 1 Bits", url: "https://leetcode.com/problems/number-of-1-bits/", type: "example" },
-        { title: "Hamming Weight Explained", url: "https://www.geeksforgeeks.org/count-set-bits-in-an-integer/", type: "tutorial" }
-      ]
+        {
+          title: "LeetCode - Number of 1 Bits",
+          url: "https://leetcode.com/problems/number-of-1-bits/",
+          type: "example",
+        },
+        {
+          title: "Hamming Weight Explained",
+          url: "https://www.geeksforgeeks.org/count-set-bits-in-an-integer/",
+          type: "tutorial",
+        },
+      ],
     },
 
     // Sorting Algorithms
@@ -558,13 +728,24 @@ const InterviewPrepPage: React.FC = () => {
       type: "technical",
       question: "Sort Colors (Dutch National Flag problem)",
       difficulty: "Medium",
-      hints: ["Use three pointers (low, mid, high)", "In-place solution required"],
+      hints: [
+        "Use three pointers (low, mid, high)",
+        "In-place solution required",
+      ],
       estimatedTime: 20,
       category: "Sorting",
       links: [
-        { title: "LeetCode - Sort Colors", url: "https://leetcode.com/problems/sort-colors/", type: "example" },
-        { title: "Dutch National Flag Problem", url: "https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/", type: "tutorial" }
-      ]
+        {
+          title: "LeetCode - Sort Colors",
+          url: "https://leetcode.com/problems/sort-colors/",
+          type: "example",
+        },
+        {
+          title: "Dutch National Flag Problem",
+          url: "https://www.geeksforgeeks.org/sort-an-array-of-0s-1s-and-2s/",
+          type: "tutorial",
+        },
+      ],
     },
     {
       id: "tech-sort-2",
@@ -575,9 +756,17 @@ const InterviewPrepPage: React.FC = () => {
       estimatedTime: 25,
       category: "Sorting/Heap",
       links: [
-        { title: "LeetCode - Kth Largest Element", url: "https://leetcode.com/problems/kth-largest-element-in-an-array/", type: "example" },
-        { title: "QuickSelect Algorithm", url: "https://www.geeksforgeeks.org/quickselect-algorithm/", type: "tutorial" }
-      ]
+        {
+          title: "LeetCode - Kth Largest Element",
+          url: "https://leetcode.com/problems/kth-largest-element-in-an-array/",
+          type: "example",
+        },
+        {
+          title: "QuickSelect Algorithm",
+          url: "https://www.geeksforgeeks.org/quickselect-algorithm/",
+          type: "tutorial",
+        },
+      ],
     },
 
     // Binary Search
@@ -590,9 +779,17 @@ const InterviewPrepPage: React.FC = () => {
       estimatedTime: 10,
       category: "Binary Search",
       links: [
-        { title: "LeetCode - Binary Search", url: "https://leetcode.com/problems/binary-search/", type: "example" },
-        { title: "Binary Search Explained", url: "https://www.geeksforgeeks.org/binary-search/", type: "tutorial" }
-      ]
+        {
+          title: "LeetCode - Binary Search",
+          url: "https://leetcode.com/problems/binary-search/",
+          type: "example",
+        },
+        {
+          title: "Binary Search Explained",
+          url: "https://www.geeksforgeeks.org/binary-search/",
+          type: "tutorial",
+        },
+      ],
     },
     {
       id: "tech-bs-2",
@@ -603,24 +800,37 @@ const InterviewPrepPage: React.FC = () => {
       estimatedTime: 20,
       category: "Binary Search",
       links: [
-        { title: "LeetCode - Find Minimum in Rotated Array", url: "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/", type: "example" },
-        { title: "Binary Search Variants", url: "https://www.geeksforgeeks.org/binary-search/", type: "reference" }
-      ]
+        {
+          title: "LeetCode - Find Minimum in Rotated Array",
+          url: "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+          type: "example",
+        },
+        {
+          title: "Binary Search Variants",
+          url: "https://www.geeksforgeeks.org/binary-search/",
+          type: "reference",
+        },
+      ],
     },
 
     // 🔹 Behavioral
     {
       id: "behavioral-2",
       type: "behavioral",
-      question: "Tell me about a time you had to work with a difficult team member",
+      question:
+        "Tell me about a time you had to work with a difficult team member",
       framework: "STAR Method",
       difficulty: "Medium",
       hints: ["Situation", "Task", "Action", "Result"],
       estimatedTime: 15,
       category: "Teamwork",
       links: [
-        { title: "Behavioral Interview Tips", url: "https://www.youtube.com/watch?v=OqoGEMlNk_g", type: "tutorial" }
-      ]
+        {
+          title: "Behavioral Interview Tips",
+          url: "https://www.youtube.com/watch?v=OqoGEMlNk_g",
+          type: "tutorial",
+        },
+      ],
     },
     {
       id: "behavioral-3",
@@ -628,12 +838,20 @@ const InterviewPrepPage: React.FC = () => {
       question: "Describe a situation where you had to meet a tight deadline",
       framework: "STAR Method",
       difficulty: "Medium",
-      hints: ["Explain how you prioritized tasks", "Mention communication with stakeholders", "Highlight the outcome"],
+      hints: [
+        "Explain how you prioritized tasks",
+        "Mention communication with stakeholders",
+        "Highlight the outcome",
+      ],
       estimatedTime: 12,
       category: "Time Management",
       links: [
-        { title: "STAR Method Guide", url: "https://mondo.com/insights/how-to-use-star-method-to-answer-performace-based-interview-questions/#:~:text=Talk%20about%20a%20time%20when%20you%20had%20to,timeline%20and%20assigned%20tasks%20to%20each%20team%20member.", type: "tutorial" }
-      ]
+        {
+          title: "STAR Method Guide",
+          url: "https://mondo.com/insights/how-to-use-star-method-to-answer-performace-based-interview-questions/#:~:text=Talk%20about%20a%20time%20when%20you%20had%20to,timeline%20and%20assigned%20tasks%20to%20each%20team%20member.",
+          type: "tutorial",
+        },
+      ],
     },
     {
       id: "behavioral-4",
@@ -641,12 +859,20 @@ const InterviewPrepPage: React.FC = () => {
       question: "What’s the most challenging project you have worked on?",
       framework: "STAR Method",
       difficulty: "Medium",
-      hints: ["Focus on the problem complexity", "Explain how you collaborated", "Highlight measurable outcomes"],
+      hints: [
+        "Focus on the problem complexity",
+        "Explain how you collaborated",
+        "Highlight measurable outcomes",
+      ],
       estimatedTime: 15,
       category: "Problem Solving",
       links: [
-        { title: "Problem Solving in Interviews", url: "https://megainterview.com/what-was-the-most-challenging-project-you-have-worked-on/", type: "reference" }
-      ]
+        {
+          title: "Problem Solving in Interviews",
+          url: "https://megainterview.com/what-was-the-most-challenging-project-you-have-worked-on/",
+          type: "reference",
+        },
+      ],
     },
     {
       id: "behavioral-5",
@@ -654,12 +880,20 @@ const InterviewPrepPage: React.FC = () => {
       question: "Tell me about a time you failed. How did you handle it?",
       framework: "STAR Method",
       difficulty: "Hard",
-      hints: ["Be honest but professional", "Emphasize what you learned", "Show resilience and growth"],
+      hints: [
+        "Be honest but professional",
+        "Emphasize what you learned",
+        "Show resilience and growth",
+      ],
       estimatedTime: 15,
       category: "Resilience",
       links: [
-        { title: "Answering Failure Questions", url: "https://interviewpenguin.com/tell-me-about-a-time-when-you-failed/", type: "tutorial" }
-      ]
+        {
+          title: "Answering Failure Questions",
+          url: "https://interviewpenguin.com/tell-me-about-a-time-when-you-failed/",
+          type: "tutorial",
+        },
+      ],
     },
 
     // 🔹 System Design
@@ -672,65 +906,119 @@ const InterviewPrepPage: React.FC = () => {
       estimatedTime: 40,
       category: "Web Systems",
       links: [
-        { title: "System Design - URL Shortener", url: "https://www.geeksforgeeks.org/system-design/system-design-url-shortening-service/", type: "example" },
-        { title: "High Scalability - URL Shortener", url: "https://www.hellointerview.com/learn/system-design/problem-breakdowns/bitly", type: "reference" }
-      ]
+        {
+          title: "System Design - URL Shortener",
+          url: "https://www.geeksforgeeks.org/system-design/system-design-url-shortening-service/",
+          type: "example",
+        },
+        {
+          title: "High Scalability - URL Shortener",
+          url: "https://www.hellointerview.com/learn/system-design/problem-breakdowns/bitly",
+          type: "reference",
+        },
+      ],
     },
     {
       id: "system-3",
       type: "system-design",
       question: "Design a chat application like WhatsApp",
       difficulty: "Hard",
-      hints: ["Think about message delivery guarantees", "Consider real-time sync across devices", "Handle offline users gracefully"],
+      hints: [
+        "Think about message delivery guarantees",
+        "Consider real-time sync across devices",
+        "Handle offline users gracefully",
+      ],
       estimatedTime: 60,
       category: "Messaging Systems",
       links: [
-        { title: "System Design - WhatsApp", url: "https://blog.algomaster.io/p/design-a-chat-application-like-whatsapp", type: "example" },
-        { title: "Scalable Chat App Design", url: "https://www.youtube.com/watch?v=3HXFy_7M12E&t=1s", type: "tutorial" }
-      ]
+        {
+          title: "System Design - WhatsApp",
+          url: "https://blog.algomaster.io/p/design-a-chat-application-like-whatsapp",
+          type: "example",
+        },
+        {
+          title: "Scalable Chat App Design",
+          url: "https://www.youtube.com/watch?v=3HXFy_7M12E&t=1s",
+          type: "tutorial",
+        },
+      ],
     },
     {
       id: "system-4",
       type: "system-design",
       question: "Design an online food delivery system like Swiggy/Zomato",
       difficulty: "Hard",
-      hints: ["Users, restaurants, delivery partners → entities", "Real-time location tracking", "Scalability and load balancing"],
+      hints: [
+        "Users, restaurants, delivery partners → entities",
+        "Real-time location tracking",
+        "Scalability and load balancing",
+      ],
       estimatedTime: 70,
       category: "Distributed Systems",
       links: [
-        { title: "System Design - Food Delivery", url: "https://upvey.com/technology/interview/system-design/design-architecture-food-delivery-service-like-swiggy-or-ubereats/#google_vignette", type: "example" },
-        { title: "Scalable Food Delivery Architecture", url: "https://www.youtube.com/watch?v=rZyAgZuuZiA&t=8s", type: "tutorial" }
-      ]
+        {
+          title: "System Design - Food Delivery",
+          url: "https://upvey.com/technology/interview/system-design/design-architecture-food-delivery-service-like-swiggy-or-ubereats/#google_vignette",
+          type: "example",
+        },
+        {
+          title: "Scalable Food Delivery Architecture",
+          url: "https://www.youtube.com/watch?v=rZyAgZuuZiA&t=8s",
+          type: "tutorial",
+        },
+      ],
     },
     {
       id: "system-5",
       type: "system-design",
       question: "Design a recommendation system for an e-commerce website",
       difficulty: "Medium",
-      hints: ["Collaborative filtering", "Content-based recommendations", "Cold start problem"],
+      hints: [
+        "Collaborative filtering",
+        "Content-based recommendations",
+        "Cold start problem",
+      ],
       estimatedTime: 50,
       category: "Machine Learning Systems",
       links: [
-        { title: "Recommendation Systems Intro", url: "https://www.geeksforgeeks.org/recommendation-system-in-python/", type: "tutorial" },
-        { title: "System Design - Recommendation Engine", url: "https://webkul.com/blog/e-commerce-recommendation-system/", type: "reference" }
-      ]
+        {
+          title: "Recommendation Systems Intro",
+          url: "https://www.geeksforgeeks.org/recommendation-system-in-python/",
+          type: "tutorial",
+        },
+        {
+          title: "System Design - Recommendation Engine",
+          url: "https://webkul.com/blog/e-commerce-recommendation-system/",
+          type: "reference",
+        },
+      ],
     },
     {
       id: "system-6",
       type: "system-design",
       question: "Design YouTube (video streaming platform)",
       difficulty: "Hard",
-      hints: ["Video upload, transcoding, and storage", "Content delivery networks (CDNs)", "Search and recommendation engine"],
+      hints: [
+        "Video upload, transcoding, and storage",
+        "Content delivery networks (CDNs)",
+        "Search and recommendation engine",
+      ],
       estimatedTime: 90,
       category: "Media Systems",
       links: [
-        { title: "System Design - YouTube", url: "https://www.geeksforgeeks.org/system-design/system-design-of-youtube-a-complete-architecture/", type: "example" },
-        { title: "Designing Video Streaming Platforms", url: "https://www.youtube.com/watch?v=jPKTo1iGQiE&t=1s", type: "tutorial" }
-      ]
-    }
-  ]
-
-
+        {
+          title: "System Design - YouTube",
+          url: "https://www.geeksforgeeks.org/system-design/system-design-of-youtube-a-complete-architecture/",
+          type: "example",
+        },
+        {
+          title: "Designing Video Streaming Platforms",
+          url: "https://www.youtube.com/watch?v=jPKTo1iGQiE&t=1s",
+          type: "tutorial",
+        },
+      ],
+    },
+  ];
 
   const practicePlatforms = [
     {
@@ -739,7 +1027,12 @@ const InterviewPrepPage: React.FC = () => {
       problems: "2000+",
       difficulty: ["Easy", "Medium", "Hard"],
       url: "https://leetcode.com/",
-      features: ["Mock Interviews", "Company Tags", "Discussion Forums", "Premium Content"],
+      features: [
+        "Mock Interviews",
+        "Company Tags",
+        "Discussion Forums",
+        "Premium Content",
+      ],
     },
     {
       name: "HackerRank",
@@ -747,7 +1040,12 @@ const InterviewPrepPage: React.FC = () => {
       problems: "1000+",
       difficulty: ["Easy", "Medium", "Hard"],
       url: "https://hackerrank.com/",
-      features: ["Skill Assessments", "Certification", "Company Challenges", "Interview Prep"],
+      features: [
+        "Skill Assessments",
+        "Certification",
+        "Company Challenges",
+        "Interview Prep",
+      ],
     },
     {
       name: "CodeChef",
@@ -755,14 +1053,20 @@ const InterviewPrepPage: React.FC = () => {
       problems: "3000+",
       difficulty: ["Easy", "Medium", "Hard"],
       url: "https://www.codechef.com/",
-      features: ["Monthly Contests", "Long Challenge", "Cook-Off", "Practice Problems"],
+      features: [
+        "Monthly Contests",
+        "Long Challenge",
+        "Cook-Off",
+        "Practice Problems",
+      ],
     },
   ];
 
   const technicalResources = [
     {
       category: "📊 Data Structures & Algorithms",
-      description: "Master core algorithms and problem-solving patterns for interviews",
+      description:
+        "Master core algorithms and problem-solving patterns for interviews",
       totalProblems: 220,
       subcategories: [
         {
@@ -770,13 +1074,25 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Easy",
           problems: 50,
           subtopics: [
-            "Two Pointers", "Sliding Window", "String Manipulation", "Prefix Sums", "Rotation & Reversal",
-            "Frequency Counting", "Hashing for Arrays", "Anagram Problems"
+            "Two Pointers",
+            "Sliding Window",
+            "String Manipulation",
+            "Prefix Sums",
+            "Rotation & Reversal",
+            "Frequency Counting",
+            "Hashing for Arrays",
+            "Anagram Problems",
           ],
           resources: [
             { name: "LeetCode Arrays", url: "https://leetcode.com/tag/array/" },
-            { name: "HackerRank Strings", url: "https://hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=strings" },
-            { name: "NeetCode Array Playlist", url: "https://www.youtube.com/playlist?list=PLot-Xpze53lfOdF3KwpMSFEyfE77zIwiP" }
+            {
+              name: "HackerRank Strings",
+              url: "https://hackerrank.com/domains/algorithms?filters%5Bsubdomains%5D%5B%5D=strings",
+            },
+            {
+              name: "NeetCode Array Playlist",
+              url: "https://www.youtube.com/playlist?list=PLot-Xpze53lfOdF3KwpMSFEyfE77zIwiP",
+            },
           ],
         },
         {
@@ -784,13 +1100,27 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Medium",
           problems: 30,
           subtopics: [
-            "Traversal", "Reversal", "Cycle Detection", "Merge Operations", "Dummy Nodes",
-            "Doubly Linked List", "Skip Lists"
+            "Traversal",
+            "Reversal",
+            "Cycle Detection",
+            "Merge Operations",
+            "Dummy Nodes",
+            "Doubly Linked List",
+            "Skip Lists",
           ],
           resources: [
-            { name: "LeetCode Linked List", url: "https://leetcode.com/tag/linked-list/" },
-            { name: "GeeksforGeeks", url: "https://geeksforgeeks.org/data-structures/linked-list/" },
-            { name: "FreeCodeCamp Linked List", url: "https://www.youtube.com/watch?v=Hj_rA0dhr2I" }
+            {
+              name: "LeetCode Linked List",
+              url: "https://leetcode.com/tag/linked-list/",
+            },
+            {
+              name: "GeeksforGeeks",
+              url: "https://geeksforgeeks.org/data-structures/linked-list/",
+            },
+            {
+              name: "FreeCodeCamp Linked List",
+              url: "https://www.youtube.com/watch?v=Hj_rA0dhr2I",
+            },
           ],
         },
         {
@@ -798,13 +1128,23 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Hard",
           problems: 50,
           subtopics: [
-            "Binary Trees", "BST Operations", "Tree Traversals", "Graph Representations", "DFS & BFS",
-            "Shortest Path", "Topological Sort", "Union-Find", "Minimum Spanning Tree"
+            "Binary Trees",
+            "BST Operations",
+            "Tree Traversals",
+            "Graph Representations",
+            "DFS & BFS",
+            "Shortest Path",
+            "Topological Sort",
+            "Union-Find",
+            "Minimum Spanning Tree",
           ],
           resources: [
             { name: "LeetCode Tree", url: "https://leetcode.com/tag/tree/" },
             { name: "LeetCode Graph", url: "https://leetcode.com/tag/graph/" },
-            { name: "WilliamFiset Graph Theory", url: "https://www.youtube.com/playlist?list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu" }
+            {
+              name: "WilliamFiset Graph Theory",
+              url: "https://www.youtube.com/playlist?list=PLDV1Zeh2NRsB6SWUrDFW2RmDotAfPbeHu",
+            },
           ],
         },
         {
@@ -812,13 +1152,28 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Hard",
           problems: 50,
           subtopics: [
-            "1D DP", "2D DP", "Memoization", "Tabulation", "State Optimization",
-            "Knapsack Variants", "Subsequence Problems", "Game Theory DP"
+            "1D DP",
+            "2D DP",
+            "Memoization",
+            "Tabulation",
+            "State Optimization",
+            "Knapsack Variants",
+            "Subsequence Problems",
+            "Game Theory DP",
           ],
           resources: [
-            { name: "LeetCode DP", url: "https://leetcode.com/tag/dynamic-programming/" },
-            { name: "DP Patterns", url: "https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns" },
-            { name: "NeetCode DP Playlist", url: "https://www.youtube.com/playlist?list=PLot-Xpze53ldVwtstag2TL4HQhAnC8m4D" }
+            {
+              name: "LeetCode DP",
+              url: "https://leetcode.com/tag/dynamic-programming/",
+            },
+            {
+              name: "DP Patterns",
+              url: "https://leetcode.com/discuss/general-discussion/458695/dynamic-programming-patterns",
+            },
+            {
+              name: "NeetCode DP Playlist",
+              url: "https://www.youtube.com/playlist?list=PLot-Xpze53ldVwtstag2TL4HQhAnC8m4D",
+            },
           ],
         },
         {
@@ -826,13 +1181,28 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Medium",
           problems: 40,
           subtopics: [
-            "Heaps", "Hash Tables", "Bit Manipulation", "Greedy Algorithms", "Backtracking",
-            "Math & Number Theory", "Sorting Algorithms", "Binary Search Variants"
+            "Heaps",
+            "Hash Tables",
+            "Bit Manipulation",
+            "Greedy Algorithms",
+            "Backtracking",
+            "Math & Number Theory",
+            "Sorting Algorithms",
+            "Binary Search Variants",
           ],
           resources: [
-            { name: "Heap Guide", url: "https://www.geeksforgeeks.org/heap-data-structure/" },
-            { name: "Backtracking Patterns", url: "https://leetcode.com/tag/backtracking/" },
-            { name: "Princeton Algorithms", url: "https://algs4.cs.princeton.edu/home/" }
+            {
+              name: "Heap Guide",
+              url: "https://www.geeksforgeeks.org/heap-data-structure/",
+            },
+            {
+              name: "Backtracking Patterns",
+              url: "https://leetcode.com/tag/backtracking/",
+            },
+            {
+              name: "Princeton Algorithms",
+              url: "https://algs4.cs.princeton.edu/home/",
+            },
           ],
         },
       ],
@@ -847,13 +1217,24 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Medium",
           problems: 15,
           subtopics: [
-            "Scalability", "Load Balancing", "Caching", "Database Sharding", "CAP Theorem",
-            "Consistency Models", "Fault Tolerance"
+            "Scalability",
+            "Load Balancing",
+            "Caching",
+            "Database Sharding",
+            "CAP Theorem",
+            "Consistency Models",
+            "Fault Tolerance",
           ],
           resources: [
-            { name: "System Design Primer", url: "https://github.com/donnemartin/system-design-primer" },
+            {
+              name: "System Design Primer",
+              url: "https://github.com/donnemartin/system-design-primer",
+            },
             { name: "High Scalability", url: "http://highscalability.com/" },
-            { name: "ByteByteGo YouTube", url: "https://www.youtube.com/c/ByteByteGo" }
+            {
+              name: "ByteByteGo YouTube",
+              url: "https://www.youtube.com/c/ByteByteGo",
+            },
           ],
         },
         {
@@ -861,12 +1242,20 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Hard",
           problems: 20,
           subtopics: [
-            "URL Shortener", "Chat System", "News Feed", "Search Engine", "Video Streaming",
-            "Payment Gateway", "Social Media Platform"
+            "URL Shortener",
+            "Chat System",
+            "News Feed",
+            "Search Engine",
+            "Video Streaming",
+            "Payment Gateway",
+            "Social Media Platform",
           ],
           resources: [
-            { name: "Grokking System Design", url: "https://educative.io/courses/grokking-the-system-design-interview" },
-            { name: "System Design Interview", url: "https://bytebytego.com/" }
+            {
+              name: "Grokking System Design",
+              url: "https://educative.io/courses/grokking-the-system-design-interview",
+            },
+            { name: "System Design Interview", url: "https://bytebytego.com/" },
           ],
         },
         {
@@ -874,19 +1263,29 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Medium",
           problems: 15,
           subtopics: [
-            "Monitoring & Logging", "Event-driven Architecture", "Message Queues", "Content Delivery Networks",
-            "Security in System Design"
+            "Monitoring & Logging",
+            "Event-driven Architecture",
+            "Message Queues",
+            "Content Delivery Networks",
+            "Security in System Design",
           ],
           resources: [
-            { name: "Grafana Monitoring", url: "https://grafana.com/oss/grafana/" },
-            { name: "Event-driven Design", url: "https://microservices.io/patterns/rel/async-messaging.html" }
+            {
+              name: "Grafana Monitoring",
+              url: "https://grafana.com/oss/grafana/",
+            },
+            {
+              name: "Event-driven Design",
+              url: "https://microservices.io/patterns/rel/async-messaging.html",
+            },
           ],
         },
       ],
     },
     {
       category: "🗄️ Database Design",
-      description: "Learn relational & NoSQL databases for real-world applications",
+      description:
+        "Learn relational & NoSQL databases for real-world applications",
       totalProblems: 70,
       subcategories: [
         {
@@ -894,12 +1293,20 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Easy",
           problems: 20,
           subtopics: [
-            "SELECT Queries", "Joins", "Indexes", "Aggregate Functions", "Stored Procedures",
-            "Views", "Transactions"
+            "SELECT Queries",
+            "Joins",
+            "Indexes",
+            "Aggregate Functions",
+            "Stored Procedures",
+            "Views",
+            "Transactions",
           ],
           resources: [
             { name: "SQLBolt", url: "https://sqlbolt.com/" },
-            { name: "LeetCode Database", url: "https://leetcode.com/problemset/database/" }
+            {
+              name: "LeetCode Database",
+              url: "https://leetcode.com/problemset/database/",
+            },
           ],
         },
         {
@@ -907,12 +1314,16 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Medium",
           problems: 20,
           subtopics: [
-            "Document Stores", "Key-Value Stores", "Column Stores", "Graph Databases",
-            "Sharding", "Replication"
+            "Document Stores",
+            "Key-Value Stores",
+            "Column Stores",
+            "Graph Databases",
+            "Sharding",
+            "Replication",
           ],
           resources: [
             { name: "MongoDB Basics", url: "https://www.mongodb.com/basics" },
-            { name: "Cassandra Guide", url: "https://cassandra.apache.org/" }
+            { name: "Cassandra Guide", url: "https://cassandra.apache.org/" },
           ],
         },
         {
@@ -920,12 +1331,22 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Hard",
           problems: 15,
           subtopics: [
-            "Normalization", "Denormalization", "Indexing Strategies", "Partitioning",
-            "Data Warehousing", "Query Optimization"
+            "Normalization",
+            "Denormalization",
+            "Indexing Strategies",
+            "Partitioning",
+            "Data Warehousing",
+            "Query Optimization",
           ],
           resources: [
-            { name: "Database Normalization", url: "https://www.guru99.com/database-normalization.html" },
-            { name: "AWS Data Warehousing", url: "https://aws.amazon.com/redshift/" }
+            {
+              name: "Database Normalization",
+              url: "https://www.guru99.com/database-normalization.html",
+            },
+            {
+              name: "AWS Data Warehousing",
+              url: "https://aws.amazon.com/redshift/",
+            },
           ],
         },
         {
@@ -933,11 +1354,17 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Medium",
           problems: 15,
           subtopics: [
-            "ACID Properties", "Database Security", "Backup & Recovery", "OLAP vs OLTP",
-            "Temporal Databases"
+            "ACID Properties",
+            "Database Security",
+            "Backup & Recovery",
+            "OLAP vs OLTP",
+            "Temporal Databases",
           ],
           resources: [
-            { name: "Transactions in SQL", url: "https://www.postgresql.org/docs/current/tutorial-transactions.html" }
+            {
+              name: "Transactions in SQL",
+              url: "https://www.postgresql.org/docs/current/tutorial-transactions.html",
+            },
           ],
         },
       ],
@@ -952,12 +1379,20 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Easy",
           problems: 15,
           subtopics: [
-            "HTTP Methods", "CRUD Operations", "Error Handling", "Versioning", "Rate Limiting",
-            "Pagination", "CORS"
+            "HTTP Methods",
+            "CRUD Operations",
+            "Error Handling",
+            "Versioning",
+            "Rate Limiting",
+            "Pagination",
+            "CORS",
           ],
           resources: [
             { name: "RESTful API Tutorial", url: "https://restfulapi.net/" },
-            { name: "Postman Learning Center", url: "https://learning.postman.com/" }
+            {
+              name: "Postman Learning Center",
+              url: "https://learning.postman.com/",
+            },
           ],
         },
         {
@@ -965,12 +1400,23 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Medium",
           problems: 15,
           subtopics: [
-            "Queries", "Mutations", "Subscriptions", "Schemas", "Resolvers",
-            "Apollo Server", "GraphQL Security"
+            "Queries",
+            "Mutations",
+            "Subscriptions",
+            "Schemas",
+            "Resolvers",
+            "Apollo Server",
+            "GraphQL Security",
           ],
           resources: [
-            { name: "GraphQL Official Docs", url: "https://graphql.org/learn/" },
-            { name: "Apollo GraphQL", url: "https://www.apollographql.com/docs/" }
+            {
+              name: "GraphQL Official Docs",
+              url: "https://graphql.org/learn/",
+            },
+            {
+              name: "Apollo GraphQL",
+              url: "https://www.apollographql.com/docs/",
+            },
           ],
         },
         {
@@ -978,12 +1424,17 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Hard",
           problems: 15,
           subtopics: [
-            "Service Discovery", "API Gateway", "Authentication", "Authorization", "JWT",
-            "OAuth2", "gRPC"
+            "Service Discovery",
+            "API Gateway",
+            "Authentication",
+            "Authorization",
+            "JWT",
+            "OAuth2",
+            "gRPC",
           ],
           resources: [
             { name: "Microservices Guide", url: "https://microservices.io/" },
-            { name: "JWT Introduction", url: "https://jwt.io/introduction/" }
+            { name: "JWT Introduction", url: "https://jwt.io/introduction/" },
           ],
         },
         {
@@ -991,25 +1442,31 @@ const InterviewPrepPage: React.FC = () => {
           difficulty: "Medium",
           problems: 15,
           subtopics: [
-            "API Testing", "OpenAPI/Swagger", "Async APIs", "WebSockets", "gRPC Streaming",
-            "API Performance Tuning"
+            "API Testing",
+            "OpenAPI/Swagger",
+            "Async APIs",
+            "WebSockets",
+            "gRPC Streaming",
+            "API Performance Tuning",
           ],
           resources: [
-            { name: "OpenAPI Specification", url: "https://swagger.io/specification/" },
-            { name: "gRPC Basics", url: "https://grpc.io/docs/what-is-grpc/" }
+            {
+              name: "OpenAPI Specification",
+              url: "https://swagger.io/specification/",
+            },
+            { name: "gRPC Basics", url: "https://grpc.io/docs/what-is-grpc/" },
           ],
         },
       ],
     },
   ];
 
-
   return (
     <Layout
-      title="Interview Preparation - RecodeHive"
+      title="Interview Preparation - recode hive"
       description="Comprehensive interview preparation resources for technical and behavioral interviews at top tech companies"
     >
-      <InterviewPrepContent 
+      <InterviewPrepContent
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         expandedCategories={expandedCategories}
@@ -1025,26 +1482,30 @@ const InterviewPrepPage: React.FC = () => {
         mockInterviewQuestions={mockInterviewQuestions}
       />
     </Layout>
-  )
-}
+  );
+};
 
-function InterviewPrepContent({ 
-  activeTab, 
-  setActiveTab, 
-  expandedCategories, 
-  toggleCategory, 
-  showTips, 
-  toggleTips, 
-  showQuestions, 
+function InterviewPrepContent({
+  activeTab,
+  setActiveTab,
+  expandedCategories,
+  toggleCategory,
+  showTips,
+  toggleTips,
+  showQuestions,
   toggleQuestions,
   behavioralQuestions,
   technicalResources,
   practicePlatforms,
   companyTips,
-  mockInterviewQuestions
+  mockInterviewQuestions,
 }: {
   activeTab: string;
-  setActiveTab: React.Dispatch<React.SetStateAction<"overview" | "technical" | "behavioral" | "companies" | "practice">>;
+  setActiveTab: React.Dispatch<
+    React.SetStateAction<
+      "overview" | "technical" | "behavioral" | "companies" | "practice"
+    >
+  >;
   expandedCategories: { [key: string]: boolean };
   toggleCategory: (categoryIndex: number) => void;
   showTips: { [key: number]: boolean };
@@ -1063,19 +1524,21 @@ function InterviewPrepContent({
   return (
     <>
       <Head>
-        <title>Interview Preparation - RecodeHive</title>
+        <title>Interview Preparation - recode hive</title>
         <meta
           name="description"
           content="Master technical and behavioral interviews with our comprehensive preparation resources, practice questions, and company-specific guides."
         />
       </Head>
 
-      <div className={clsx(
-        "min-h-screen",
-        isDark 
-          ? "bg-gradient-to-b from-gray-900 to-gray-800 text-white" 
-          : "bg-gradient-to-b from-white to-gray-50 text-black"
-      )}>
+      <div
+        className={clsx(
+          "min-h-screen",
+          isDark
+            ? "bg-gradient-to-b from-gray-900 to-gray-800 text-white"
+            : "bg-gradient-to-b from-white to-gray-50 text-black",
+        )}
+      >
         {/* Hero Section */}
         <motion.section
           className="hero-section py-20 px-4 text-center bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white relative overflow-hidden"
@@ -1091,10 +1554,17 @@ function InterviewPrepContent({
             >
               Ace Your Next Interview
             </motion.h1>
-            <motion.p className="text-xl md:text-2xl mb-8 text-blue-100" variants={fadeIn}>
-              Master technical challenges and behavioral questions with our comprehensive interview preparation platform
+            <motion.p
+              className="text-xl md:text-2xl mb-8 text-blue-100"
+              variants={fadeIn}
+            >
+              Master technical challenges and behavioral questions with our
+              comprehensive interview preparation platform
             </motion.p>
-            <motion.div className="flex flex-col sm:flex-row gap-4 justify-center" variants={fadeIn}>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              variants={fadeIn}
+            >
               <button
                 onClick={() => setActiveTab("practice")}
                 className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -1125,10 +1595,11 @@ function InterviewPrepContent({
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center space-x-2 py-4 px-2 border-b-2 font-medium text-sm transition-colors ${activeTab === tab.id
-                    ? "interview-prep-nav-tab-active border-blue-500 text-blue-600 dark:text-blue-400"
-                    : "interview-prep-nav-tab-inactive border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-                    }`}
+                  className={`flex items-center space-x-2 py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                    activeTab === tab.id
+                      ? "interview-prep-nav-tab-active border-blue-500 text-blue-600 dark:text-blue-400"
+                      : "interview-prep-nav-tab-inactive border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                  }`}
                 >
                   <span className="text-inherit">{tab.icon}</span>
                   <span className="text-inherit">{tab.label}</span>
@@ -1139,7 +1610,7 @@ function InterviewPrepContent({
         </div>
 
         {/* Tab Content */}
-  <div className="interview-prep-page max-w-6xl mx-auto px-4 py-12">
+        <div className="interview-prep-page max-w-6xl mx-auto px-4 py-12">
           {/* Overview Tab */}
           {activeTab === "overview" && (
             <OverviewTab
@@ -1196,13 +1667,20 @@ function InterviewPrepContent({
           variants={staggerContainer}
         >
           <div className="max-w-4xl mx-auto">
-            <motion.h2 className="text-4xl md:text-5xl font-bold mb-6" variants={fadeIn}>
+            <motion.h2
+              className="text-4xl md:text-5xl font-bold mb-6"
+              variants={fadeIn}
+            >
               Ready to Land Your Dream Job?
             </motion.h2>
             <motion.p className="text-xl mb-8 text-blue-100" variants={fadeIn}>
-              Join thousands of developers who have successfully prepared for interviews with RecodeHive
+              Join thousands of developers who have successfully prepared for
+              interviews with recode hive
             </motion.p>
-            <motion.div className="flex flex-col sm:flex-row gap-4 justify-center" variants={fadeIn}>
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              variants={fadeIn}
+            >
               <Link
                 to="/get-started"
                 className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
@@ -1220,7 +1698,7 @@ function InterviewPrepContent({
         </motion.section>
       </div>
     </>
-  )
+  );
 }
 
-export default InterviewPrepPage
+export default InterviewPrepPage;

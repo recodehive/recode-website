@@ -92,7 +92,7 @@ export default function DiscussionCard({
           <p className="discussion-excerpt">
             {truncateText(
               discussion.body.replace(/[#*`\[\]]/g, "").replace(/\n/g, " "),
-              150
+              150,
             )}
           </p>
         )}
@@ -117,15 +117,15 @@ export default function DiscussionCard({
               className="author-avatar-small"
               onError={(e) => {
                 const target = e.currentTarget;
-                target.style.display = 'none';
+                target.style.display = "none";
                 const fallback = target.nextElementSibling;
-                if (fallback) fallback.style.display = 'flex';
+                if (fallback) fallback.style.display = "flex";
               }}
             />
           ) : null}
-          <div 
+          <div
             className="author-avatar-fallback"
-            style={{ display: discussion.author.avatar_url ? 'none' : 'flex' }}
+            style={{ display: discussion.author.avatar_url ? "none" : "flex" }}
           >
             {discussion.author.login.charAt(0).toUpperCase()}
           </div>

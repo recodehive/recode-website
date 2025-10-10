@@ -1,7 +1,7 @@
 ---
 id: python-tuple
 title: Tuple in Python
-sidebar_label: Tuple in Python #displays in sidebar
+sidebar_label: Tuples in Python #displays in sidebar
 sidebar_position: 9
 tags:
   [

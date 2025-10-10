@@ -1,6 +1,6 @@
-# Building a GitHub Organization Leaderboard: A Deep Dive into Recode Hive's Implementation
+# Building a GitHub Organization Leaderboard: A Deep Dive into recode hive's Implementation
 
-Ever wondered how to build a live leaderboard that tracks contributions across an entire GitHub organization? Let me walk you through how we built ours at Recode Hive. This isn't your typical "fetch and display" tutorial - we're talking about handling rate limits, caching strategies, time-based filtering, and creating a smooth user experience that doesn't make the GitHub API cry.
+Ever wondered how to build a live leaderboard that tracks contributions across an entire GitHub organization? Let me walk you through how we built ours at recode hive. This isn't your typical "fetch and display" tutorial - we're talking about handling rate limits, caching strategies, time-based filtering, and creating a smooth user experience that doesn't make the GitHub API cry.
 
 ## What We're Building
 
@@ -557,7 +557,7 @@ Response Example:
   "repos_url": "https://api.github.com/orgs/recodehive/repos",
   "avatar_url": "https://avatars.githubusercontent.com/u/98765?v=4",
   "description": "Community-driven open source projects",
-  "name": "Recode Hive",
+  "name": "recode hive",
   "company": null,
   "blog": "https://recodehive.com",
   "location": "Worldwide",

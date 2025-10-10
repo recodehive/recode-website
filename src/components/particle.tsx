@@ -92,7 +92,7 @@ const ParticlesComponent = (props) => {
       },
       detectRetina: true,
     }),
-    []
+    [],
   );
 
   return (

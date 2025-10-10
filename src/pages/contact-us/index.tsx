@@ -7,18 +7,17 @@ const ContactUs: React.FC = () => {
   return (
     <Layout
       title="Contact Us"
-      description="Get in touch with the RecodeHive team. We're here to help with your questions, feedback, and collaboration opportunities."
+      description="Get in touch with the recode hive team. We're here to help with your questions, feedback, and collaboration opportunities."
     >
       <div className="enhanced-contact-container">
         <div className="contact-content-wrapper">
           {/* Header Section */}
           <div className="contact-header">
-            <h1 className="contact-title">
-              Get In Touch
-            </h1>
+            <h1 className="contact-title">Get In Touch</h1>
             <p className="contact-description">
-              Have questions, feedback, or want to collaborate? We'd love to hear from you. 
-              Reach out to us and we'll get back to you as soon as possible.
+              Have questions, feedback, or want to collaborate? We'd love to
+              hear from you. Reach out to us and we'll get back to you as soon
+              as possible.
             </p>
           </div>
 
@@ -26,58 +25,67 @@ const ContactUs: React.FC = () => {
             {/* Contact Information */}
             <div className="contact-info-section">
               <div>
-                <h2 className="contact-info-title">
-                  Contact Information
-                </h2>
-                
+                <h2 className="contact-info-title">Contact Information</h2>
+
                 <div className="contact-info-items">
                   {/* Email */}
                   <div className="contact-info-item">
                     <div className="contact-icon-wrapper">
-                      <Mail className="w-6 h-6" style={{ color: 'var(--contact-accent-primary)' }} />
+                      <Mail
+                        className="w-6 h-6"
+                        style={{ color: "var(--contact-accent-primary)" }}
+                      />
                     </div>
                     <div className="contact-info-details">
                       <h3>Email</h3>
-                      <a 
-                        href="mailto:sanjay@recodehive.com"
-                      >
+                      <a href="mailto:sanjay@recodehive.com">
                         sanjay@recodehive.com
                       </a>
-                      <p>
-                        General inquiries and support
-                      </p>
+                      <p>General inquiries and support</p>
                     </div>
                   </div>
 
                   {/* Response Time */}
                   <div className="contact-info-item">
                     <div className="contact-icon-wrapper">
-                      <Clock className="w-6 h-6" style={{ color: 'var(--contact-accent-primary)' }} />
+                      <Clock
+                        className="w-6 h-6"
+                        style={{ color: "var(--contact-accent-primary)" }}
+                      />
                     </div>
                     <div className="contact-info-details">
                       <h3>Response Time</h3>
-                      <p style={{ marginTop: 0, color: 'var(--contact-text-secondary)' }}>
+                      <p
+                        style={{
+                          marginTop: 0,
+                          color: "var(--contact-text-secondary)",
+                        }}
+                      >
                         Within 24-48 hours
                       </p>
-                      <p>
-                        We'll get back to you promptly
-                      </p>
+                      <p>We'll get back to you promptly</p>
                     </div>
                   </div>
 
                   {/* Location */}
                   <div className="contact-info-item">
                     <div className="contact-icon-wrapper">
-                      <MapPin className="w-6 h-6" style={{ color: 'var(--contact-accent-primary)' }} />
+                      <MapPin
+                        className="w-6 h-6"
+                        style={{ color: "var(--contact-accent-primary)" }}
+                      />
                     </div>
                     <div className="contact-info-details">
                       <h3>Location</h3>
-                      <p style={{ marginTop: 0, color: 'var(--contact-text-secondary)' }}>
+                      <p
+                        style={{
+                          marginTop: 0,
+                          color: "var(--contact-text-secondary)",
+                        }}
+                      >
                         Online & Global
                       </p>
-                      <p>
-                        Serving developers worldwide
-                      </p>
+                      <p>Serving developers worldwide</p>
                     </div>
                   </div>
                 </div>
@@ -85,9 +93,7 @@ const ContactUs: React.FC = () => {
 
               {/* Additional Information */}
               <div className="contact-info-box">
-                <h3>
-                  What we can help you with:
-                </h3>
+                <h3>What we can help you with:</h3>
                 <ul>
                   <li>
                     <span className="bullet"></span>
@@ -115,10 +121,8 @@ const ContactUs: React.FC = () => {
 
             {/* Contact Form */}
             <div className="contact-form-section">
-              <h2 className="contact-form-title">
-                Send us a message
-              </h2>
-              
+              <h2 className="contact-form-title">Send us a message</h2>
+
               <form className="contact-form">
                 <div className="form-row">
                   <div className="form-group">
@@ -197,10 +201,7 @@ const ContactUs: React.FC = () => {
                   ></textarea>
                 </div>
 
-                <button
-                  type="submit"
-                  className="submit-button"
-                >
+                <button type="submit" className="submit-button">
                   Send Message
                 </button>
               </form>
@@ -209,41 +210,24 @@ const ContactUs: React.FC = () => {
 
           {/* Additional Resources */}
           <div className="contact-resources">
-            <h2 className="resources-title">
-              Other Ways to Connect
-            </h2>
+            <h2 className="resources-title">Other Ways to Connect</h2>
             <div className="resources-grid">
-              <a
-                href="/community"
-                className="resource-card"
-              >
+              <a href="/community" className="resource-card">
                 <div className="resource-icon">📚</div>
                 <h3>Community</h3>
-                <p>
-                  Join our community and connect with fellow developers
-                </p>
+                <p>Join our community and connect with fellow developers</p>
               </a>
-              
-              <a
-                href="/docs"
-                className="resource-card"
-              >
+
+              <a href="/docs" className="resource-card">
                 <div className="resource-icon">📖</div>
                 <h3>Documentation</h3>
-                <p>
-                  Explore our comprehensive learning resources
-                </p>
+                <p>Explore our comprehensive learning resources</p>
               </a>
-              
-              <a
-                href="/blogs"
-                className="resource-card"
-              >
+
+              <a href="/blogs" className="resource-card">
                 <div className="resource-icon">✍️</div>
                 <h3>Blog</h3>
-                <p>
-                  Read our latest articles and tutorials
-                </p>
+                <p>Read our latest articles and tutorials</p>
               </a>
             </div>
           </div>

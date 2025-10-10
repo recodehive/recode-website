@@ -1,0 +1,17 @@
+# Documentation
+docs/**/*.md
+docs/**/*.mdx
+blog/**/*.md
+blog/**/*.mdx
+*.md
+*.mdx
+
+# Build outputs
+node_modules/
+build/
+.docusaurus/
+.cache-loader/
+tmp/
+
+# Package files
+package-lock.json

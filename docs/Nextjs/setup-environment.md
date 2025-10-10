@@ -20,7 +20,7 @@ description: In this tutorial, you will learn how to set up your development env
 ---
 
 Setting up Next.js Development Environment
-< />
+
 
 ### Step 1: Install Node.js
 
@@ -61,7 +61,7 @@ Next.js requires Node.js to run. Let's download and install it first.
    npm --version
    ```
 
-< />
+
 
 ### Step 3: Install a Code Editor
 
@@ -228,7 +228,7 @@ When you're ready to deploy:
    npm run start
    ```
 
-< />
+
 
 ## Useful Commands Reference
 

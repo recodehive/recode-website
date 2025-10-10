@@ -7,7 +7,7 @@ const TopMateSection = ({ setShowTopmate }) => {
 
   const profileData = {
     title: "1:1 Mentorship Call",
-    description: "Book a slot, Free for Hive Community Members",
+    description: "Book a slot, Free for recode hive Community Members",
     duration: "30 mins",
     profileImage: "/sanjay.png",
     username: "sanjaykv",

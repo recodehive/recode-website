@@ -58,7 +58,7 @@ function getAllDocIds(items: any[]): string[] {
 
 const getIcon = (
   label: string,
-  className: string | undefined
+  className: string | undefined,
 ): React.ReactNode => {
   // Use the className to determine the appropriate icon and color
   if (label.includes("GitHub") || className?.includes("github")) {
@@ -125,7 +125,7 @@ function DocSidebarItemCategory({
         // Check for nested items (for categories like SQL Basics)
         if (item.type === "category" && item.items) {
           return item.items.some(
-            (subItem) => subItem.href && isSamePath(subItem.href, activePath)
+            (subItem) => subItem.href && isSamePath(subItem.href, activePath),
           );
         }
         return false;
@@ -195,7 +195,7 @@ function DocSidebarItemCategory({
         {
           [styles.categoryLevel1]: level === 1,
           [styles.categoryLevel2]: level === 2,
-        }
+        },
       )}
     >
       <div
@@ -210,7 +210,7 @@ function DocSidebarItemCategory({
               {
                 "menu__link--active": active,
               },
-              styles.categoryLink
+              styles.categoryLink,
             )}
             to={href}
             onClick={handleClick}
@@ -229,7 +229,7 @@ function DocSidebarItemCategory({
               {
                 "menu__link--active": active,
               },
-              styles.categoryLink
+              styles.categoryLink,
             )}
             href="#"
             onClick={handleClick}

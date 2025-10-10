@@ -34,7 +34,6 @@ export function BlogCarousel() {
 
   return (
     <div className="w-full max-w-8xl mx-auto px-4">
-      
       <Carousel
         setApi={setApi}
         className="w-full"
@@ -51,7 +50,10 @@ export function BlogCarousel() {
       >
         <CarouselContent className="my-10">
           {blogs.map((blog, index) => (
-            <CarouselItem key={blog.id} className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+            <CarouselItem
+              key={blog.id}
+              className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+            >
               <BlogCard
                 type="blog"
                 date="2024-01-01"

@@ -32,7 +32,7 @@
   margin-right: 0.5rem;
 }
 
-[data-theme='dark'] .checkboxListItem {
+[data-theme="dark"] .checkboxListItem {
   color: var(--dark-text-primary);
 }
 
@@ -51,13 +51,13 @@
   border: 1px solid gray;
 }
 
-[data-theme='dark'] .searchContainer input {
+[data-theme="dark"] .searchContainer input {
   background: var(--dark-input-bg);
   border-color: var(--dark-input-border);
   color: var(--dark-text-primary);
 }
 
-[data-theme='dark'] .searchContainer input:focus {
+[data-theme="dark"] .searchContainer input:focus {
   border-color: var(--dark-input-focus-border);
 }
 

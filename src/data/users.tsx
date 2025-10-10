@@ -1,4 +1,3 @@
-
 import { sortBy } from "../utils/jsUtils";
 import { Users } from "./userData";
 export type Tag = {
@@ -192,8 +191,7 @@ export const Tags: { [type in TagType]: Tag } = {
     color: "#007acc",
   },
 
-  documentation:
-  {
+  documentation: {
     label: "Documentation",
     description: "",
     color: "#007acc",
