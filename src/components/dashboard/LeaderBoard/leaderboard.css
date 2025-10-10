@@ -239,7 +239,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  color: #fff;
+  color: #080808;
   font-size: 20px;
 }
 
@@ -260,6 +260,8 @@
   font-weight: 800;
   margin-bottom: 4px;
   text-align: center;
+  width: 100%;
+
 }
 
 .light .stat-value {
