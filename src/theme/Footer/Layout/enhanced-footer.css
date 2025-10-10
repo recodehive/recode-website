@@ -894,6 +894,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .support-icon {
+  font-size: 12px !important;
   background: linear-gradient(135deg, #10b981 0%, #047857 100%);
 }
 
