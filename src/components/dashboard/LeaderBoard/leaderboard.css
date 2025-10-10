@@ -259,6 +259,7 @@
   font-size: 2rem;
   font-weight: 800;
   margin-bottom: 4px;
+  text-align: center;
 }
 
 .light .stat-value {
@@ -276,7 +277,7 @@
 }
 
 .light .stat-label {
-  color: #666;
+  color: #000000 !important;
 }
 
 .dark .stat-label {
@@ -347,10 +348,12 @@
     border-color: #6366f1;
     box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4);
   }
+
   70% {
     border-color: #6366f1;
     box-shadow: 0 0 0 6px rgba(99, 102, 241, 0);
   }
+
   100% {
     border-color: inherit;
   }
@@ -387,11 +390,9 @@
   font-weight: 600;
   letter-spacing: 0.3px;
   appearance: none;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(0, 0, 0, 0.05) 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(0, 0, 0, 0.05) 100%);
   cursor: pointer;
   transition: all 0.25s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -834,16 +835,20 @@
   .leaderboard-container {
     padding: 24px 8px;
   }
+
   .top-performers-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
+
   .contributors-header {
     display: none;
   }
+
   .contributor-row {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -851,20 +856,25 @@
     margin-bottom: 12px;
     border-radius: 8px;
   }
+
   .contributor-cell {
     padding: 0;
   }
+
   .rank-cell {
     position: absolute;
     top: 8px;
     left: 8px;
   }
+
   .avatar-cell {
     justify-self: center;
   }
+
   .username-cell {
     text-align: center;
   }
+
   .prs-cell,
   .points-cell {
     justify-self: center;
@@ -957,23 +967,19 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.06) 25%,
-    rgba(0, 0, 0, 0.12) 50%,
-    rgba(0, 0, 0, 0.06) 75%
-  );
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.06) 25%,
+      rgba(0, 0, 0, 0.12) 50%,
+      rgba(0, 0, 0, 0.06) 75%);
   background-size: 200% 100%;
   animation: skeleton-shimmer 2s infinite;
 }
 
 .skeleton-loader.dark .skeleton-avatar {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.05) 25%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 75%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 75%);
   background-size: 200% 100%;
 }
 
@@ -993,23 +999,19 @@
   height: 16px;
   width: 60%;
   border-radius: 4px;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.06) 25%,
-    rgba(0, 0, 0, 0.12) 50%,
-    rgba(0, 0, 0, 0.06) 75%
-  );
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.06) 25%,
+      rgba(0, 0, 0, 0.12) 50%,
+      rgba(0, 0, 0, 0.06) 75%);
   background-size: 200% 100%;
   animation: skeleton-shimmer 2s infinite;
 }
 
 .skeleton-loader.dark .skeleton-bar {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.05) 25%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 75%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 75%);
   background-size: 200% 100%;
 }
 
@@ -1022,23 +1024,19 @@
   height: 20px;
   width: 60px;
   border-radius: 12px;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.06) 25%,
-    rgba(0, 0, 0, 0.12) 50%,
-    rgba(0, 0, 0, 0.06) 75%
-  );
+  background: linear-gradient(90deg,
+      rgba(0, 0, 0, 0.06) 25%,
+      rgba(0, 0, 0, 0.12) 50%,
+      rgba(0, 0, 0, 0.06) 75%);
   background-size: 200% 100%;
   animation: skeleton-shimmer 2s infinite;
 }
 
 .skeleton-loader.dark .skeleton-badge {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.05) 25%,
-    rgba(255, 255, 255, 0.1) 50%,
-    rgba(255, 255, 255, 0.05) 75%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.05) 25%,
+      rgba(255, 255, 255, 0.1) 50%,
+      rgba(255, 255, 255, 0.05) 75%);
   background-size: 200% 100%;
 }
 
@@ -1046,6 +1044,7 @@
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
