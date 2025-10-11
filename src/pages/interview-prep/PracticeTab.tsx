@@ -44,21 +44,76 @@ interface PracticeStats {
 
 interface PracticeTabProps {
   mockInterviewQuestions?: MockQuestion[];
-  onTabChange?: (tab: string) => void;
+  onTabChange?: (tab: "overview" | "technical" | "behavioral" | "companies" | "practice") => void;
 }
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-const staggerContainer = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-};
-const scaleIn = {
-  hidden: { scale: 0.8, opacity: 0 },
-  visible: { scale: 1, opacity: 1, transition: { duration: 0.5 } },
-};
+
+const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
+const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
+const scaleIn = { hidden: { scale: 0.8, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { duration: 0.5 } } }
+
+const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], onTabChange }) => {
+    const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null)
+    const [activeSession, setActiveSession] = useState<PracticeSession | null>(null)
+    const [timer, setTimer] = useState<number>(0)
+    const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false)
+    const [completedQuestions, setCompletedQuestions] = useState<Set<string>>(new Set())
+    const [practiceStats, setPracticeStats] = useState<PracticeStats>({
+        totalCompleted: 0,
+        averageTime: 0,
+        easyCompleted: 0,
+        mediumCompleted: 0,
+        hardCompleted: 0,
+        technicalCompleted: 0,
+        behavioralCompleted: 0,
+        systemDesignCompleted: 0,
+    })
+    const [filterType, setFilterType] = useState<string>("all")
+    const [filterDifficulty, setFilterDifficulty] = useState<string>("all")
+    const [showHints, setShowHints] = useState<Set<string>>(new Set())
+    const [showResources, setShowResources] = useState<Set<string>>(new Set())
+    const [showConfetti, setShowConfetti] = useState<boolean>(false)
+    const [recentlyCompleted, setRecentlyCompleted] = useState<string | null>(null)
+
+    const allQuestions = [...mockInterviewQuestions]
+
+    useEffect(() => {
+        let interval: NodeJS.Timeout
+        if (isTimerRunning && activeSession) {
+            interval = setInterval(() => {
+                setTimer((prev) => prev + 1)
+            }, 1000)
+        }
+        return () => {
+            if (interval) clearInterval(interval)
+        }
+    }, [isTimerRunning, activeSession])
+
+    useEffect(() => {
+        if (showConfetti) {
+            const timeout = setTimeout(() => setShowConfetti(false), 3000)
+            return () => clearTimeout(timeout)
+        }
+    }, [showConfetti])
+
+    const filteredQuestions = allQuestions.filter((q) => {
+        const typeMatch = filterType === "all" || q.type === filterType
+        const difficultyMatch = filterDifficulty === "all" || q.difficulty === filterDifficulty
+        return typeMatch && difficultyMatch
+    })
+
+    const startPractice = (question: MockQuestion) => {
+        const session: PracticeSession = {
+            questionId: question.id,
+            timeSpent: 0,
+            completed: false,
+            startTime: Date.now(),
+        }
+        setActiveSession(session)
+        setTimer(0)
+        setIsTimerRunning(true)
+        setSelectedQuestion(question.id)
+    }
 
 const PracticeTab: React.FC<PracticeTabProps> = ({
   mockInterviewQuestions = [],
@@ -183,18 +238,12 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
     }
   };
 
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case "technical":
-        return "bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 dark:from-blue-900/30 dark:to-cyan-900/30 dark:text-blue-200 border border-blue-200 dark:border-blue-700";
-      case "behavioral":
-        return "bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 dark:from-green-900/30 dark:to-emerald-900/30 dark:text-green-200 border border-green-200 dark:border-green-700";
-      case "system-design":
-        return "bg-gradient-to-r from-purple-100 to-violet-100 text-purple-800 dark:from-purple-900/30 dark:to-violet-900/30 dark:text-purple-200 border border-purple-200 dark:border-purple-700";
-      default:
-        return "bg-gradient-to-r from-gray-100 to-slate-100 text-gray-800 dark:from-gray-700 dark:to-slate-700 dark:text-gray-200 border border-gray-200 dark:border-gray-600";
+    const handleTabNavigation = (tab: "overview" | "technical" | "behavioral" | "companies" | "practice") => {
+    if (onTabChange) {
+        onTabChange(tab)
     }
-  };
+}
+
 
   const toggleHints = (questionId: string) => {
     setShowHints((prev) => {

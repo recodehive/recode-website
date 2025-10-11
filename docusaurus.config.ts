@@ -156,20 +156,16 @@ const config: Config = {
           html: '<span class="nav-emoji">💰</span> Donate',
           position: "left",
         },
+        //Moved the link directly to main menus!
         {
-          type: "dropdown",
-          html: '<span class="nav-emoji">👩🏻‍💻</span> Devfolio',
+        to: "https://dev.recodehive.com/devfolio",
+          html: '<span class="nav-emoji">💻</span> GitHub Profiles',
           position: "left",
-          items: [
-            {
-              label: "💻GitHub Profiles",
-              to: "https://dev.recodehive.com/devfolio",
-            },
-            {
-              label: "🎖️ GitHub Badges",
-              to: "/badges/github-badges/",
-            },
-          ],
+        },
+        {
+          to: "/badges/github-badges/",
+          html: '<span class="nav-emoji">🎖️</span> GitHub Badges',
+          position: "left",
         },
         {
           to: "/blogs",
