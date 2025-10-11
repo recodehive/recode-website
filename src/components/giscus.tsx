@@ -85,11 +85,10 @@ const GiscusComments: React.FC = () => {
 
     // Use localStorage to get user's last theme or fallback to 'light'
     const storedTheme =
-      localStorage.getItem("theme") || (
-        document.documentElement.getAttribute("data-theme") === "dark"
+      localStorage.getItem("theme") ||
+      (document.documentElement.getAttribute("data-theme") === "dark"
         ? "dark"
-        : "light"
-      );
+        : "light");
 
     const script = document.createElement("script");
     script.src = "https://giscus.app/client.js";
