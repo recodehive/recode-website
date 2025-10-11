@@ -37,9 +37,10 @@ interface PracticeStats {
 }
 
 interface PracticeTabProps {
-    mockInterviewQuestions?: MockQuestion[]
-    onTabChange?: (tab: string) => void
+  mockInterviewQuestions?: MockQuestion[];
+  onTabChange?: (tab: "overview" | "technical" | "behavioral" | "companies" | "practice") => void;
 }
+
 
 const fadeIn = { hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }
 const staggerContainer = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
@@ -188,11 +189,12 @@ const PracticeTab: React.FC<PracticeTabProps> = ({ mockInterviewQuestions = [], 
         })
     }
 
-    const handleTabNavigation = (tab: string) => {
-        if (onTabChange) {
-            onTabChange(tab)
-        }
+    const handleTabNavigation = (tab: "overview" | "technical" | "behavioral" | "companies" | "practice") => {
+    if (onTabChange) {
+        onTabChange(tab)
     }
+}
+
 
     const progressPercentage = allQuestions.length > 0 ? (practiceStats.totalCompleted / allQuestions.length) * 100 : 0
 

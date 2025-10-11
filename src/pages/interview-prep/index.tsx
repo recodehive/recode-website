@@ -1138,54 +1138,57 @@ function InterviewPrepContent({
           </div>
         </div>
 
-        {/* Tab Content */}
-  <div className="interview-prep-page max-w-6xl mx-auto px-4 py-12">
-          {/* Overview Tab */}
-          {activeTab === "overview" && (
-            <OverviewTab
-              toggleTips={toggleTips}
-              toggleQuestions={toggleQuestions}
-              showTips={showTips}
-              showQuestions={showQuestions}
-              setActiveTab={setActiveTab}
-            />
-          )}
+{/* Tab Content */}
+<div className="interview-prep-page max-w-6xl mx-auto px-4 py-12">
+  {/* Overview Tab */}
+  {activeTab === "overview" && (
+    <OverviewTab
+      toggleTips={toggleTips}
+      toggleQuestions={toggleQuestions}
+      showTips={showTips}
+      showQuestions={showQuestions}
+      setActiveTab={setActiveTab}
+    />
+  )}
 
-          {/* Technical Tab */}
-          {activeTab === "technical" && (
-            <TechnicalTab
-              technicalResources={technicalResources}
-              practicePlatforms={practicePlatforms}
-              expandedCategories={expandedCategories}
-              toggleCategory={toggleCategory}
-            />
-          )}
+  {/* Technical Tab */}
+  {activeTab === "technical" && (
+    <TechnicalTab
+      technicalResources={technicalResources}
+      practicePlatforms={practicePlatforms}
+      expandedCategories={expandedCategories}
+      toggleCategory={toggleCategory}
+    />
+  )}
 
-          {/* Behavioral Tab */}
-          {activeTab === "behavioral" && (
-            <BehavioralTab
-              behavioralQuestions={behavioralQuestions}
-              expandedCategories={expandedCategories}
-              toggleCategory={toggleCategory}
-            />
-          )}
+  {/* Behavioral Tab */}
+  {activeTab === "behavioral" && (
+    <BehavioralTab
+      behavioralQuestions={behavioralQuestions}
+      expandedCategories={expandedCategories}
+      toggleCategory={toggleCategory}
+    />
+  )}
 
-          {/* Companies Tab */}
-          {activeTab === "companies" && (
-            <CompaniesTab
-              companyTips={companyTips}
-              toggleTips={toggleTips}
-              toggleQuestions={toggleQuestions}
-              showTips={showTips}
-              showQuestions={showQuestions}
-            />
-          )}
+  {/* Companies Tab */}
+  {activeTab === "companies" && (
+    <CompaniesTab
+      companyTips={companyTips}
+      toggleTips={toggleTips}
+      toggleQuestions={toggleQuestions}
+      showTips={showTips}
+      showQuestions={showQuestions}
+    />
+  )}
 
-          {/* Practice Tab */}
-          {activeTab === "practice" && (
-            <PracticeTab mockInterviewQuestions={mockInterviewQuestions} />
-          )}
-        </div>
+  {/* Practice Tab */}
+  {activeTab === "practice" && (
+    <PracticeTab
+      mockInterviewQuestions={mockInterviewQuestions}
+      onTabChange={setActiveTab}  // ✅ pass the function here
+    />
+  )}
+</div>
 
         {/* Call to Action */}
         <motion.section
