@@ -21,7 +21,7 @@ const HeaderContent = () => {
         className="gradient__text"
       >
         <ParticlesComponent />
-        Level Up Skills with <br /> recode hive
+        Level Up Skills with <br /> Recode hive
       </motion.h1>
 
       <motion.p
@@ -35,7 +35,7 @@ const HeaderContent = () => {
           delay: 0.2,
         }}
       >
-        recode hive helps you get started with open-source contributions. We’ve
+        Recode hive helps you get started with open-source contributions. We’ve
         built an inclusive community with people from around the world. Join us
         to earn while learning — everything made simpler and more practical.
       </motion.p>
