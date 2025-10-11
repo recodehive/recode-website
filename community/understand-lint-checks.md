@@ -70,11 +70,6 @@ npm run build
 
 ## 🧹 Code Quality Checks
 
-Standard Tool(s)
-Linting eslint
-Formatting prettier
-Type Checking tsc
-
 | Standard        | Tools(s) |
 | --------------- | -------- |
 | `Linting`       | eslint   |

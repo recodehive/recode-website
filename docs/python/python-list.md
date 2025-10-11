@@ -18,7 +18,7 @@ tags:
 ---
 
 
-# Python Lists
+# Lists in Python
 
 A **List** in Python is a data structure that allows you to store multiple items in a single variable. Lists are **ordered**, **mutable**, and **can contain elements of different data types**.
 

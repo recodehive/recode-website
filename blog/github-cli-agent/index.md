@@ -72,7 +72,7 @@ pwsh --version
 
 Install globally with npm:
 Powered by the same agentic harness as GitHub's Copilot coding agent, it provides intelligent assistance while staying deeply integrated with your GitHub workflow.
-Enter the promt in the command line. 
+Enter the prompt in the command line. 
 
 ```bash
 npm install -g @github/copilot
@@ -112,7 +112,7 @@ setx GH_TOKEN your_token_here
 ---
 
 ## 🖥️ Usage
-Once you installed run copilot on your terminal, Image of the splash screen for the Copilot CLI. The usage is pretty straight forward you can use the arrow keys to navigate to proceed cancel instruction etc.
+Once installed, run copilot on your terminal, Image of the splash screen for the Copilot CLI. The usage is pretty straight forward you can use the arrow keys to navigate to proceed cancel instruction etc.
 
 Each time you submit a prompt to GitHub Copilot CLI, your monthly quota of premium requests is reduced by one. For information about premium requests,
 `https://docs.github.com/en/copilot/concepts/billing/copilot-requests`
@@ -139,7 +139,7 @@ set COPILOT_MODEL=gpt-5
 
 ## Version checking and Exit CLI
 ```bash
-gh copilot --version
+copilot --version
 ```
 
 Exit anytime with:
@@ -150,7 +150,7 @@ Ctrl + C (twice)
 
 ## Get Suggestions for Common Dev Tasks
 
-Now lets get start with development, here fork this repo and activate GitHub CLI and enter the below bash commands. [Website](https://github.com/recodehive/recode-website)
+Now let's get started with development, here fork this repo and activate GitHub CLI and enter the below bash commands. [Website](https://github.com/recodehive/recode-website)
 
 ### List of all commands in CLI
 I have linked the offical website repo to log any bugs or do direct PR. [GitHub CLI repo](https://github.com/github/copilot-cli?utm_source=changelog-amp-linkedin&utm_campaign=agentic-copilot-cli-launch-2025) and [Official Documentation](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli?utm_campaign=agentic-copilot-cli-launch-2025&utm_source=changelog-amp-linkedin)

@@ -16,7 +16,7 @@ import PRListModal from "./PRListModal";
 import { mockContributors } from "./mockData";
 import "./leaderboard.css";
 
-const GITHUB_ORG = "recodehive"; 
+const GITHUB_ORG = "recodehive";
 
 // Users to exclude from the leaderboard
 const EXCLUDED_USERS = ["sanjay-kv", "allcontributors", "allcontributors[bot]"];
@@ -44,23 +44,23 @@ interface Stats {
   flooredTotalPoints: number;
 }
 
-function Badge({ 
-  count, 
-  label, 
-  color, 
+function Badge({
+  count,
+  label,
+  color,
   onClick,
-  clickable = false 
-}: { 
-  count: number; 
-  label: string; 
+  clickable = false,
+}: {
+  count: number;
+  label: string;
   color: { background: string; color: string };
   onClick?: () => void;
   clickable?: boolean;
 }) {
   const badgeStyle = {
     ...color,
-    cursor: clickable ? 'pointer' : 'default',
-    transition: clickable ? 'all 0.2s ease' : 'none',
+    cursor: clickable ? "pointer" : "default",
+    transition: clickable ? "all 0.2s ease" : "none",
   };
 
   const handleClick = () => {
@@ -70,20 +70,20 @@ function Badge({
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (clickable && (e.key === 'Enter' || e.key === ' ')) {
+    if (clickable && (e.key === "Enter" || e.key === " ")) {
       e.preventDefault();
       if (onClick) onClick();
     }
   };
 
   return (
-    <span 
-      className={`badge ${clickable ? 'clickable' : ''}`}
+    <span
+      className={`badge ${clickable ? "clickable" : ""}`}
       style={badgeStyle}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       tabIndex={clickable ? 0 : -1}
-      role={clickable ? 'button' : undefined}
+      role={clickable ? "button" : undefined}
       aria-label={clickable ? `View ${label.toLowerCase()} details` : undefined}
     >
       {count} {label}
@@ -91,38 +91,51 @@ function Badge({
   );
 }
 
-function TopPerformerCard({ 
-  contributor, 
-  rank, 
-  onPRClick 
-}: { 
-  contributor: Contributor; 
+function TopPerformerCard({
+  contributor,
+  rank,
+  onPRClick,
+}: {
+  contributor: Contributor;
   rank: number;
   onPRClick: (contributor: Contributor) => void;
 }) {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const rankClass = rank === 1 ? "top-1" : rank === 2 ? "top-2" : "top-3";
-  
+
   return (
     <div className={`top-performer-card ${isDark ? "dark" : "light"}`}>
-      <img src={contributor.avatar} alt={contributor.username} className="avatar large" />
+      <img
+        src={contributor.avatar}
+        alt={contributor.username}
+        className="avatar large"
+      />
       <div className={`rank-overlay ${rankClass}`}>
         <span className="rank-text">{rank}</span>
       </div>
       <div className="performer-info">
-        <a href={contributor.profile} target="_blank" rel="noreferrer" className="username-link">
+        <a
+          href={contributor.profile}
+          target="_blank"
+          rel="noreferrer"
+          className="username-link"
+        >
           {contributor.username}
         </a>
         <div className="badges-container">
-          <Badge 
-            count={contributor.prs} 
-            label="PRs" 
+          <Badge
+            count={contributor.prs}
+            label="PRs"
             color={{ background: "#dbeafe", color: "#2563eb" }}
             onClick={() => onPRClick(contributor)}
             clickable={true}
           />
-          <Badge count={contributor.points} label="Points" color={{ background: "#ede9fe", color: "#7c3aed" }} />
+          <Badge
+            count={contributor.points}
+            label="Points"
+            color={{ background: "#ede9fe", color: "#7c3aed" }}
+          />
         </div>
       </div>
     </div>
@@ -131,21 +144,22 @@ function TopPerformerCard({
 
 export default function LeaderBoard(): JSX.Element {
   // Get time filter functions from context
-  const { 
-    contributors, 
-    stats, 
-    loading, 
-    error, 
-    currentTimeFilter, 
-    setTimeFilter 
+  const {
+    contributors,
+    stats,
+    loading,
+    error,
+    currentTimeFilter,
+    setTimeFilter,
   } = useCommunityStatsContext();
-  
+
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedContributor, setSelectedContributor] = useState<Contributor | null>(null);
+  const [selectedContributor, setSelectedContributor] =
+    useState<Contributor | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSelectChanged, setIsSelectChanged] = useState(false);
   const itemsPerPage = 10;
@@ -163,22 +177,23 @@ export default function LeaderBoard(): JSX.Element {
 
   // Use mock data only in development mode when there's an error or no contributors
   const displayContributors =
-    (error || contributors.length === 0)
-      ? (typeof process !== "undefined" && process.env.NODE_ENV === "development"
-          ? mockContributors
-          : [])
+    error || contributors.length === 0
+      ? typeof process !== "undefined" && process.env.NODE_ENV === "development"
+        ? mockContributors
+        : []
       : contributors;
-
 
   // Filter out excluded users and apply search filter
   const filteredContributors = contributors
-    .filter((contributor) => 
-      !EXCLUDED_USERS.some(excludedUser => 
-        contributor.username.toLowerCase() === excludedUser.toLowerCase()
-      )
+    .filter(
+      (contributor) =>
+        !EXCLUDED_USERS.some(
+          (excludedUser) =>
+            contributor.username.toLowerCase() === excludedUser.toLowerCase(),
+        ),
     )
     .filter((contributor) =>
-      contributor.username.toLowerCase().includes(searchQuery.toLowerCase())
+      contributor.username.toLowerCase().includes(searchQuery.toLowerCase()),
     );
 
   const totalPages = Math.ceil(filteredContributors.length / itemsPerPage);
@@ -186,12 +201,13 @@ export default function LeaderBoard(): JSX.Element {
   const indexOfFirst = indexOfLast - itemsPerPage;
   const currentItems = filteredContributors.slice(indexOfFirst, indexOfLast);
 
-  const paginate = (pageNumber: number) => setCurrentPage(Math.max(1, Math.min(pageNumber, totalPages)));
+  const paginate = (pageNumber: number) =>
+    setCurrentPage(Math.max(1, Math.min(pageNumber, totalPages)));
 
   const renderPaginationButtons = () => {
     const pages = [];
     const maxVisibleButtons = 5; // Maximum number of page buttons to show directly
-    
+
     // Special case: if we have 7 or fewer pages, show all of them without ellipsis
     if (totalPages <= 7) {
       for (let i = 1; i <= totalPages; i++) {
@@ -202,14 +218,14 @@ export default function LeaderBoard(): JSX.Element {
             className={`page-btn ${currentPage === i ? "active" : ""}`}
           >
             {i}
-          </button>
+          </button>,
         );
       }
       return pages;
     }
-    
+
     // For more than 7 pages, use the ellipsis approach
-    
+
     // Always show first page
     pages.push(
       <button
@@ -218,14 +234,14 @@ export default function LeaderBoard(): JSX.Element {
         className={`page-btn ${currentPage === 1 ? "active" : ""}`}
       >
         1
-      </button>
+      </button>,
     );
-    
+
     // Calculate the range of pages to show (middle section)
     // We want to show current page and 1-2 pages before and after when possible
     let startPage = Math.max(2, currentPage - 1);
     let endPage = Math.min(totalPages - 1, currentPage + 1);
-    
+
     // Adjust start and end page if we're near the beginning or end
     if (currentPage <= 3) {
       // Near the beginning, show pages 2, 3, 4
@@ -236,14 +252,16 @@ export default function LeaderBoard(): JSX.Element {
       endPage = totalPages - 1;
       startPage = Math.max(2, totalPages - 3);
     }
-    
+
     // Show ellipsis if needed before the middle range
     if (startPage > 2) {
       pages.push(
-        <span key="ellipsis-1" className="pagination-ellipsis">...</span>
+        <span key="ellipsis-1" className="pagination-ellipsis">
+          ...
+        </span>,
       );
     }
-    
+
     // Show pages in the middle range
     for (let i = startPage; i <= endPage; i++) {
       pages.push(
@@ -253,17 +271,19 @@ export default function LeaderBoard(): JSX.Element {
           className={`page-btn ${currentPage === i ? "active" : ""}`}
         >
           {i}
-        </button>
+        </button>,
       );
     }
-    
+
     // Show ellipsis if needed after the middle range
     if (endPage < totalPages - 1) {
       pages.push(
-        <span key="ellipsis-2" className="pagination-ellipsis">...</span>
+        <span key="ellipsis-2" className="pagination-ellipsis">
+          ...
+        </span>,
       );
     }
-    
+
     // Always show last page
     pages.push(
       <button
@@ -272,9 +292,9 @@ export default function LeaderBoard(): JSX.Element {
         className={`page-btn ${currentPage === totalPages ? "active" : ""}`}
       >
         {totalPages}
-      </button>
+      </button>,
     );
-    
+
     return pages;
   };
 
@@ -288,11 +308,16 @@ export default function LeaderBoard(): JSX.Element {
   // Helper function for time filter display
   const getTimeFilterLabel = (filter: string) => {
     switch (filter) {
-      case 'week': return '📊 This Week';
-      case 'month': return '📆 This Month'; 
-      case 'year': return '📅 This Year';
-      case 'all': return '🏆 All Time';
-      default: return '🏆 All Time';
+      case "week":
+        return "📊 This Week";
+      case "month":
+        return "📆 This Month";
+      case "year":
+        return "📅 This Year";
+      case "all":
+        return "🏆 All Time";
+      default:
+        return "🏆 All Time";
     }
   };
 
@@ -306,9 +331,10 @@ export default function LeaderBoard(): JSX.Element {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="title">recode hive Leaderboard</h1>
+          <h1 className="title">Recode Hive Leaderboard</h1>
           <p className={`subtitle ${isDark ? "dark" : "light"}`}>
-            Top contributors across the <strong>{GITHUB_ORG}</strong> organization
+            Top contributors across the <strong>{GITHUB_ORG}</strong>{" "}
+            organization
           </p>
         </motion.div>
 
@@ -316,9 +342,15 @@ export default function LeaderBoard(): JSX.Element {
         {!loading && filteredContributors.length > 2 && (
           <div className="top-performers-container">
             <div className="title-filter-container">
-              <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>recode hive Top Performers</h2>
+              <h2
+                className={`top-performers-title ${isDark ? "dark" : "light"}`}
+              >
+                recode hive Top Performers
+              </h2>
               <div className="time-filter-wrapper top-title-filter">
-                <label htmlFor="time-period-filter" className="filter-label">Time Period:</label>
+                <label htmlFor="time-period-filter" className="filter-label">
+                  Time Period:
+                </label>
                 <select
                   id="time-period-filter"
                   value={currentTimeFilter}
@@ -329,7 +361,7 @@ export default function LeaderBoard(): JSX.Element {
                     setIsSelectChanged(true);
                     setTimeout(() => setIsSelectChanged(false), 1200);
                   }}
-                  className={`time-filter-select ${isDark ? "dark" : "light"} ${isSelectChanged ? 'highlight-change' : ''}`}
+                  className={`time-filter-select ${isDark ? "dark" : "light"} ${isSelectChanged ? "highlight-change" : ""}`}
                 >
                   <option value="all">🏆 All Time</option>
                   <option value="year">📅 This Year</option>
@@ -339,9 +371,21 @@ export default function LeaderBoard(): JSX.Element {
               </div>
             </div>
             <div className="top-performers-grid">
-              <TopPerformerCard contributor={filteredContributors[1]} rank={2} onPRClick={handlePRClick} />
-              <TopPerformerCard contributor={filteredContributors[0]} rank={1} onPRClick={handlePRClick} />
-              <TopPerformerCard contributor={filteredContributors[2]} rank={3} onPRClick={handlePRClick} />
+              <TopPerformerCard
+                contributor={filteredContributors[1]}
+                rank={2}
+                onPRClick={handlePRClick}
+              />
+              <TopPerformerCard
+                contributor={filteredContributors[0]}
+                rank={1}
+                onPRClick={handlePRClick}
+              />
+              <TopPerformerCard
+                contributor={filteredContributors[2]}
+                rank={3}
+                onPRClick={handlePRClick}
+              />
             </div>
           </div>
         )}
@@ -355,8 +399,12 @@ export default function LeaderBoard(): JSX.Element {
                   <FaUsers />
                 </div>
                 <div>
-                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>{stats.totalContributors}</div>
-                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>Total Contributors</div>
+                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>
+                    {stats.totalContributors}
+                  </div>
+                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>
+                    Total Contributors
+                  </div>
                 </div>
               </div>
             </div>
@@ -366,8 +414,12 @@ export default function LeaderBoard(): JSX.Element {
                   <FaCode />
                 </div>
                 <div>
-                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>{stats.flooredTotalPRs}</div>
-                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>Merged PRs</div>
+                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>
+                    {stats.flooredTotalPRs}
+                  </div>
+                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>
+                    Merged PRs
+                  </div>
                 </div>
               </div>
             </div>
@@ -377,8 +429,12 @@ export default function LeaderBoard(): JSX.Element {
                   <FaStar />
                 </div>
                 <div>
-                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>{stats.flooredTotalPoints}</div>
-                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>Total Points</div>
+                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>
+                    {stats.flooredTotalPoints}
+                  </div>
+                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>
+                    Total Points
+                  </div>
                 </div>
               </div>
             </div>
@@ -438,26 +494,31 @@ export default function LeaderBoard(): JSX.Element {
         )}
 
         {!loading && filteredContributors.length > 0 && (
-          <div className={`contributors-container ${isDark ? "dark" : "light"}`}>
+          <div
+            className={`contributors-container ${isDark ? "dark" : "light"}`}
+          >
             {error && (
-              <div className="error-banner" style={{ 
-                padding: '12px', 
-                backgroundColor: isDark ? '#fee8e7' : '#fee8e7', 
-                color: '#dc2626', 
-                borderRadius: '8px', 
-                marginBottom: '16px',
-                fontSize: '14px',
-                textAlign: 'center'
-              }}>
+              <div
+                className="error-banner"
+                style={{
+                  padding: "12px",
+                  backgroundColor: isDark ? "#fee8e7" : "#fee8e7",
+                  color: "#dc2626",
+                  borderRadius: "8px",
+                  marginBottom: "16px",
+                  fontSize: "14px",
+                  textAlign: "center",
+                }}
+              >
                 Demo Mode: Showing sample data due to API configuration issue
               </div>
             )}
             <div className="contributors-header">
-                <div className="contributor-cell rank">Rank</div>
-                <div className="contributor-cell avatar-cell">Avatar</div>
-                <div className="contributor-cell username-cell">User</div>
-                <div className="contributor-cell prs-cell">PRs</div>
-                <div className="contributor-cell points-cell">Points</div>
+              <div className="contributor-cell rank">Rank</div>
+              <div className="contributor-cell avatar-cell">Avatar</div>
+              <div className="contributor-cell username-cell">User</div>
+              <div className="contributor-cell prs-cell">PRs</div>
+              <div className="contributor-cell points-cell">Points</div>
             </div>
             {currentItems.map((contributor, index) => (
               <motion.div
@@ -465,10 +526,12 @@ export default function LeaderBoard(): JSX.Element {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className={`contributor-row ${isDark ? (index % 2 === 0 ? "even" : "odd") : (index % 2 === 0 ? "even" : "odd")}`}
+                className={`contributor-row ${isDark ? (index % 2 === 0 ? "even" : "odd") : index % 2 === 0 ? "even" : "odd"}`}
               >
                 <div className={`contributor-cell rank-cell`}>
-                  <div className={`rank-badge ${getRankClass(filteredContributors.indexOf(contributor))}`}>
+                  <div
+                    className={`rank-badge ${getRankClass(filteredContributors.indexOf(contributor))}`}
+                  >
                     {filteredContributors.indexOf(contributor) + 1}
                   </div>
                 </div>
@@ -480,21 +543,30 @@ export default function LeaderBoard(): JSX.Element {
                   />
                 </div>
                 <div className="contributor-cell username-cell">
-                    <a href={contributor.profile} target="_blank" rel="noreferrer" className={`username-link ${isDark ? "dark" : "light"}`}>
-                      {contributor.username}
-                    </a>
+                  <a
+                    href={contributor.profile}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`username-link ${isDark ? "dark" : "light"}`}
+                  >
+                    {contributor.username}
+                  </a>
                 </div>
                 <div className="contributor-cell prs-cell">
-                  <Badge 
-                    count={contributor.prs} 
-                    label="PRs" 
+                  <Badge
+                    count={contributor.prs}
+                    label="PRs"
                     color={{ background: "#dbeafe", color: "#2563eb" }}
                     onClick={() => handlePRClick(contributor)}
                     clickable={true}
                   />
                 </div>
                 <div className="contributor-cell points-cell">
-                  <Badge count={contributor.points} label="Points" color={{ background: "#ede9fe", color: "#7c3aed" }} />
+                  <Badge
+                    count={contributor.points}
+                    label="Points"
+                    color={{ background: "#ede9fe", color: "#7c3aed" }}
+                  />
                 </div>
               </motion.div>
             ))}
@@ -523,10 +595,12 @@ export default function LeaderBoard(): JSX.Element {
                 </button>
               </div>
             )}
-            
+
             {/* CTA Footer */}
             <div className={`cta-footer ${isDark ? "dark" : "light"}`}>
-              <p className={`cta-text ${isDark ? "dark" : "light"}`}>Want to get on this leaderboard?</p>
+              <p className={`cta-text ${isDark ? "dark" : "light"}`}>
+                Want to get on this leaderboard?
+              </p>
               <a
                 href={`https://github.com/${GITHUB_ORG}`}
                 target="_blank"

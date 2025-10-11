@@ -1,9 +1,9 @@
 /**
  * Shopify Integration for Recode Merch Store
- * 
+ *
  * This file provides functions to interact with Shopify's Storefront API
  * to fetch products, create carts, and process checkouts.
- * 
+ *
  * Setup Instructions:
  * 1. Create a Shopify store at https://shopify.com
  * 2. Go to Settings > Apps and sales channels > Develop apps
@@ -11,17 +11,20 @@
  * 4. Credentials are configured in docusaurus.config.ts customFields
  */
 
-import siteConfig from '@generated/docusaurus.config';
+import siteConfig from "@generated/docusaurus.config";
 
 // Get credentials from Docusaurus customFields
 function getShopifyConfig() {
-  const domain = (siteConfig.customFields?.SHOPIFY_STORE_DOMAIN as string) || '';
-  const token = (siteConfig.customFields?.SHOPIFY_STOREFRONT_ACCESS_TOKEN as string) || '';
-  
+  const domain =
+    (siteConfig.customFields?.SHOPIFY_STORE_DOMAIN as string) || "";
+  const token =
+    (siteConfig.customFields?.SHOPIFY_STOREFRONT_ACCESS_TOKEN as string) || "";
+
   return { domain, token };
 }
 
-const SHOPIFY_GRAPHQL_URL = (domain: string) => `https://${domain}/api/2024-01/graphql.json`;
+const SHOPIFY_GRAPHQL_URL = (domain: string) =>
+  `https://${domain}/api/2024-01/graphql.json`;
 
 interface ShopifyProduct {
   id: string;
@@ -95,17 +98,17 @@ interface ShopifyCheckout {
  */
 async function shopifyFetch<T>(query: string, variables = {}): Promise<T> {
   const config = getShopifyConfig();
-  
+
   if (!config.domain || !config.token) {
-    console.warn('Shopify credentials not configured. Using mock data.');
-    throw new Error('Shopify not configured');
+    console.warn("Shopify credentials not configured. Using mock data.");
+    throw new Error("Shopify not configured");
   }
 
   const response = await fetch(SHOPIFY_GRAPHQL_URL(config.domain), {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': config.token,
+      "Content-Type": "application/json",
+      "X-Shopify-Storefront-Access-Token": config.token,
     },
     body: JSON.stringify({ query, variables }),
   });
@@ -115,7 +118,7 @@ async function shopifyFetch<T>(query: string, variables = {}): Promise<T> {
   }
 
   const json = await response.json();
-  
+
   if (json.errors) {
     throw new Error(`Shopify GraphQL errors: ${JSON.stringify(json.errors)}`);
   }
@@ -170,13 +173,12 @@ export async function getProducts(first = 20): Promise<ShopifyProduct[]> {
   `;
 
   try {
-    const data = await shopifyFetch<{ products: { edges: Array<{ node: ShopifyProduct }> } }>(
-      query,
-      { first }
-    );
+    const data = await shopifyFetch<{
+      products: { edges: Array<{ node: ShopifyProduct }> };
+    }>(query, { first });
     return data.products.edges.map((edge) => edge.node);
   } catch (error) {
-    console.error('Error fetching products:', error);
+    console.error("Error fetching products:", error);
     return [];
   }
 }
@@ -184,7 +186,9 @@ export async function getProducts(first = 20): Promise<ShopifyProduct[]> {
 /**
  * Get a single product by handle
  */
-export async function getProductByHandle(handle: string): Promise<ShopifyProduct | null> {
+export async function getProductByHandle(
+  handle: string,
+): Promise<ShopifyProduct | null> {
   const query = `
     query GetProduct($handle: String!) {
       productByHandle(handle: $handle) {
@@ -224,10 +228,13 @@ export async function getProductByHandle(handle: string): Promise<ShopifyProduct
   `;
 
   try {
-    const data = await shopifyFetch<{ productByHandle: ShopifyProduct }>(query, { handle });
+    const data = await shopifyFetch<{ productByHandle: ShopifyProduct }>(
+      query,
+      { handle },
+    );
     return data.productByHandle;
   } catch (error) {
-    console.error('Error fetching product:', error);
+    console.error("Error fetching product:", error);
     return null;
   }
 }
@@ -260,13 +267,13 @@ export async function createCheckout(): Promise<ShopifyCheckout | null> {
     }>(query);
 
     if (data.checkoutCreate.checkoutUserErrors.length > 0) {
-      console.error('Checkout errors:', data.checkoutCreate.checkoutUserErrors);
+      console.error("Checkout errors:", data.checkoutCreate.checkoutUserErrors);
       return null;
     }
 
     return data.checkoutCreate.checkout;
   } catch (error) {
-    console.error('Error creating checkout:', error);
+    console.error("Error creating checkout:", error);
     return null;
   }
 }
@@ -276,7 +283,7 @@ export async function createCheckout(): Promise<ShopifyCheckout | null> {
  */
 export async function addToCheckout(
   checkoutId: string,
-  lineItems: Array<{ variantId: string; quantity: number }>
+  lineItems: Array<{ variantId: string; quantity: number }>,
 ): Promise<ShopifyCheckout | null> {
   const query = `
     mutation AddToCheckout($checkoutId: ID!, $lineItems: [CheckoutLineItemInput!]!) {
@@ -333,13 +340,16 @@ export async function addToCheckout(
     });
 
     if (data.checkoutLineItemsAdd.checkoutUserErrors.length > 0) {
-      console.error('Add to checkout errors:', data.checkoutLineItemsAdd.checkoutUserErrors);
+      console.error(
+        "Add to checkout errors:",
+        data.checkoutLineItemsAdd.checkoutUserErrors,
+      );
       return null;
     }
 
     return data.checkoutLineItemsAdd.checkout;
   } catch (error) {
-    console.error('Error adding to checkout:', error);
+    console.error("Error adding to checkout:", error);
     return null;
   }
 }
@@ -349,7 +359,7 @@ export async function addToCheckout(
  */
 export async function updateCheckoutLineItems(
   checkoutId: string,
-  lineItems: Array<{ id: string; quantity: number }>
+  lineItems: Array<{ id: string; quantity: number }>,
 ): Promise<ShopifyCheckout | null> {
   const query = `
     mutation UpdateCheckout($checkoutId: ID!, $lineItems: [CheckoutLineItemUpdateInput!]!) {
@@ -395,13 +405,16 @@ export async function updateCheckoutLineItems(
     });
 
     if (data.checkoutLineItemsUpdate.checkoutUserErrors.length > 0) {
-      console.error('Update checkout errors:', data.checkoutLineItemsUpdate.checkoutUserErrors);
+      console.error(
+        "Update checkout errors:",
+        data.checkoutLineItemsUpdate.checkoutUserErrors,
+      );
       return null;
     }
 
     return data.checkoutLineItemsUpdate.checkout;
   } catch (error) {
-    console.error('Error updating checkout:', error);
+    console.error("Error updating checkout:", error);
     return null;
   }
 }
@@ -411,7 +424,7 @@ export async function updateCheckoutLineItems(
  */
 export async function removeFromCheckout(
   checkoutId: string,
-  lineItemIds: string[]
+  lineItemIds: string[],
 ): Promise<ShopifyCheckout | null> {
   const query = `
     mutation RemoveFromCheckout($checkoutId: ID!, $lineItemIds: [ID!]!) {
@@ -457,13 +470,16 @@ export async function removeFromCheckout(
     });
 
     if (data.checkoutLineItemsRemove.checkoutUserErrors.length > 0) {
-      console.error('Remove from checkout errors:', data.checkoutLineItemsRemove.checkoutUserErrors);
+      console.error(
+        "Remove from checkout errors:",
+        data.checkoutLineItemsRemove.checkoutUserErrors,
+      );
       return null;
     }
 
     return data.checkoutLineItemsRemove.checkout;
   } catch (error) {
-    console.error('Error removing from checkout:', error);
+    console.error("Error removing from checkout:", error);
     return null;
   }
 }

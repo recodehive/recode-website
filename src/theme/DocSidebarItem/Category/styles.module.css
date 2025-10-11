@@ -100,7 +100,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease, opacity 0.2s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.2s ease;
 }
 
 .categoryLink:hover .categoryCollapseIcon {
@@ -125,7 +127,9 @@
   margin-top: 0.2rem;
   margin-bottom: 0.5rem; /* Add bottom margin for spacing */
   max-height: 2000px; /* Increase max height to accommodate more items */
-  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition:
+    max-height 0.3s ease-in-out,
+    opacity 0.3s ease-in-out;
   overflow: visible; /* Change to visible to prevent items from being cut off */
   opacity: 1;
 }
@@ -135,8 +139,11 @@
   opacity: 0;
   margin-top: 0;
   margin-bottom: 0;
-  transition: max-height 0.2s ease-in-out, opacity 0.2s ease-in-out,
-    margin-top 0.2s ease-in-out, margin-bottom 0.2s ease-in-out;
+  transition:
+    max-height 0.2s ease-in-out,
+    opacity 0.2s ease-in-out,
+    margin-top 0.2s ease-in-out,
+    margin-bottom 0.2s ease-in-out;
 }
 
 /* Styling for subcategories */

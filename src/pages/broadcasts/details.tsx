@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import Layout from '@theme/Layout';
-import type { ReactElement } from 'react';
-import { useLocation, useHistory } from '@docusaurus/router';
-import './video.css';
-import './index.css';
-import './details.css';
+import React, { useState, useEffect } from "react";
+import Layout from "@theme/Layout";
+import type { ReactElement } from "react";
+import { useLocation, useHistory } from "@docusaurus/router";
+import "./video.css";
+import "./index.css";
+import "./details.css";
 
 interface VideoData {
   id: string;
   youtubeUrl: string;
-  type: 'video' | 'shorts';
+  type: "video" | "shorts";
 }
 
 interface LocationState {
@@ -18,10 +18,12 @@ interface LocationState {
 
 // Function to extract YouTube video ID from URL
 const getYoutubeVideoId = (url: string): string => {
-  let videoId = '';
-  const normalMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+  let videoId = "";
+  const normalMatch = url.match(
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/,
+  );
   const shortsMatch = url.match(/youtube\.com\/shorts\/([^&\s]+)/);
-  
+
   if (normalMatch) {
     videoId = normalMatch[1];
   } else if (shortsMatch) {
@@ -35,19 +37,21 @@ export default function VideoDetails(): ReactElement {
   const history = useHistory();
   const state = location.state as LocationState;
   const video = state?.video;
-  const [title, setTitle] = useState<string>('Loading...');
+  const [title, setTitle] = useState<string>("Loading...");
 
   useEffect(() => {
     const fetchVideoTitle = async () => {
       if (!video?.youtubeUrl) return;
-      
+
       try {
-        const response = await fetch(`https://www.youtube.com/oembed?url=${encodeURIComponent(video.youtubeUrl)}&format=json`);
+        const response = await fetch(
+          `https://www.youtube.com/oembed?url=${encodeURIComponent(video.youtubeUrl)}&format=json`,
+        );
         const data = await response.json();
         setTitle(data.title);
       } catch (error) {
-        setTitle('Video Title Unavailable');
-        console.error('Error fetching video title:', error);
+        setTitle("Video Title Unavailable");
+        console.error("Error fetching video title:", error);
       }
     };
 
@@ -68,7 +72,8 @@ export default function VideoDetails(): ReactElement {
   ];
 
   // Get a random description
-  const randomDescription = descriptions[Math.floor(Math.random() * descriptions.length)];
+  const randomDescription =
+    descriptions[Math.floor(Math.random() * descriptions.length)];
 
   if (!video) {
     return (
@@ -90,7 +95,7 @@ export default function VideoDetails(): ReactElement {
               <div className="video-title">
                 <h1>{title}</h1>
                 <div className="video-type">
-                  {video.type === 'shorts' ? '📱 Shorts' : '🎥 Video'}
+                  {video.type === "shorts" ? "📱 Shorts" : "🎥 Video"}
                 </div>
               </div>
               <div className="video-description">
@@ -99,7 +104,7 @@ export default function VideoDetails(): ReactElement {
             </div>
             <div className="video-embed-large">
               <iframe
-                src={`https://www.youtube.com/embed/${getYoutubeVideoId(video.youtubeUrl)}${video.type === 'shorts' ? '?loop=1' : ''}`}
+                src={`https://www.youtube.com/embed/${getYoutubeVideoId(video.youtubeUrl)}${video.type === "shorts" ? "?loop=1" : ""}`}
                 frameBorder="0"
                 allowFullScreen
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -110,19 +115,19 @@ export default function VideoDetails(): ReactElement {
             <div className="video-meta">
               <p>Watch in full screen for the best viewing experience</p>
             </div>
-            <div className="pagination" style={{marginTop: '30px'}}>
-              <button 
-                onClick={() => history.push('/broadcasts')}
+            <div className="pagination" style={{ marginTop: "30px" }}>
+              <button
+                onClick={() => history.push("/broadcasts")}
                 style={{
-                  display: 'inline-block',
-                  padding: '12px 24px',
-                  backgroundColor: '#007bff',
-                  color: 'white',
-                  borderRadius: '8px',
-                  fontWeight: 'bold',
-                  textDecoration: 'none',
-                  boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-                  border: 'none'
+                  display: "inline-block",
+                  padding: "12px 24px",
+                  backgroundColor: "#007bff",
+                  color: "white",
+                  borderRadius: "8px",
+                  fontWeight: "bold",
+                  textDecoration: "none",
+                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+                  border: "none",
                 }}
               >
                 ← Back to Videos

@@ -3,32 +3,32 @@
 /* CSS Custom Properties for Consistent Design */
 :root {
   /* Spacing System (8px grid) */
-  --courses-spacing-xs: 0.5rem;    /* 8px */
-  --courses-spacing-sm: 1rem;      /* 16px */
-  --courses-spacing-md: 1.5rem;    /* 24px */
-  --courses-spacing-lg: 2rem;      /* 32px */
-  --courses-spacing-xl: 3rem;      /* 48px */
-  --courses-spacing-2xl: 4rem;     /* 64px */
-  --courses-spacing-3xl: 6rem;     /* 96px */
+  --courses-spacing-xs: 0.5rem; /* 8px */
+  --courses-spacing-sm: 1rem; /* 16px */
+  --courses-spacing-md: 1.5rem; /* 24px */
+  --courses-spacing-lg: 2rem; /* 32px */
+  --courses-spacing-xl: 3rem; /* 48px */
+  --courses-spacing-2xl: 4rem; /* 64px */
+  --courses-spacing-3xl: 6rem; /* 96px */
 
   /* Border Radius System */
-  --courses-radius-sm: 0.5rem;     /* 8px */
-  --courses-radius-md: 0.75rem;    /* 12px */
-  --courses-radius-lg: 1rem;       /* 16px */
-  --courses-radius-xl: 1.5rem;     /* 24px */
-  --courses-radius-2xl: 2rem;      /* 32px */
+  --courses-radius-sm: 0.5rem; /* 8px */
+  --courses-radius-md: 0.75rem; /* 12px */
+  --courses-radius-lg: 1rem; /* 16px */
+  --courses-radius-xl: 1.5rem; /* 24px */
+  --courses-radius-2xl: 2rem; /* 32px */
 
   /* Typography Scale */
-  --courses-text-xs: 0.75rem;      /* 12px */
-  --courses-text-sm: 0.875rem;     /* 14px */
-  --courses-text-base: 1rem;       /* 16px */
-  --courses-text-lg: 1.125rem;     /* 18px */
-  --courses-text-xl: 1.25rem;      /* 20px */
-  --courses-text-2xl: 1.5rem;      /* 24px */
-  --courses-text-3xl: 1.875rem;    /* 30px */
-  --courses-text-4xl: 2.25rem;     /* 36px */
-  --courses-text-5xl: 3rem;        /* 48px */
-  --courses-text-6xl: 3.75rem;     /* 60px */
+  --courses-text-xs: 0.75rem; /* 12px */
+  --courses-text-sm: 0.875rem; /* 14px */
+  --courses-text-base: 1rem; /* 16px */
+  --courses-text-lg: 1.125rem; /* 18px */
+  --courses-text-xl: 1.25rem; /* 20px */
+  --courses-text-2xl: 1.5rem; /* 24px */
+  --courses-text-3xl: 1.875rem; /* 30px */
+  --courses-text-4xl: 2.25rem; /* 36px */
+  --courses-text-5xl: 3rem; /* 48px */
+  --courses-text-6xl: 3.75rem; /* 60px */
 
   /* Transitions */
   --courses-transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
@@ -43,39 +43,49 @@
   --courses-text-secondary: #475569;
   --courses-text-muted: #64748b;
   --courses-border: #e2e8f0;
-  --courses-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --courses-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --courses-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --courses-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --courses-shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --courses-shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Dark Theme Colors */
-[data-theme='dark'] {
+[data-theme="dark"] {
   /* backgrounds */
-  --courses-bg-primary: #0b1220;   /* page & cards base */
+  --courses-bg-primary: #0b1220; /* page & cards base */
   --courses-bg-secondary: #0f172a; /* alt sections */
-  --courses-bg-tertiary: #111827;  /* subtle panels */
+  --courses-bg-tertiary: #111827; /* subtle panels */
 
   /* text */
-  --courses-text-primary: #e5e7eb;   /* main text */
+  --courses-text-primary: #e5e7eb; /* main text */
   --courses-text-secondary: #cbd5e1; /* secondary text */
-  --courses-text-muted: #94a3b8;     /* muted/help text */
+  --courses-text-muted: #94a3b8; /* muted/help text */
 
   /* borders & effects */
   --courses-border: #1f2937;
 
   /* shadows tuned for dark UI */
-  --courses-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.6), 0 1px 2px 0 rgba(0, 0, 0, 0.4);
-  --courses-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.55), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+  --courses-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.6), 0 1px 2px 0 rgba(0, 0, 0, 0.4);
+  --courses-shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.55), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
   --courses-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
 }
-
 
 /* Main page container */
 .courses-page {
   background-color: var(--courses-bg-primary);
   color: var(--courses-text-primary);
   transition: var(--courses-transition-slow);
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
   line-height: 1.6;
   min-height: 100vh;
   position: relative;
@@ -83,20 +93,28 @@
 
 /* Section Layouts */
 .courses-hero {
-  background: linear-gradient(135deg, var(--courses-bg-primary) 0%, var(--courses-bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-primary) 0%,
+    var(--courses-bg-secondary) 100%
+  );
   border-color: var(--courses-border);
   position: relative;
   overflow: hidden;
 }
 
 .courses-hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(59, 130, 246, 0.1) 0%,
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -114,13 +132,17 @@
 }
 
 .courses-stats-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, rgba(99, 102, 241, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+  background: linear-gradient(
+    45deg,
+    rgba(99, 102, 241, 0.05) 0%,
+    rgba(59, 130, 246, 0.05) 100%
+  );
   pointer-events: none;
 }
 
@@ -190,13 +212,17 @@
 }
 
 .courses-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.02) 0%, rgba(99, 102, 241, 0.02) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.02) 0%,
+    rgba(99, 102, 241, 0.02) 100%
+  );
   opacity: 0;
   transition: var(--courses-transition);
   pointer-events: none;
@@ -213,7 +239,11 @@
 }
 
 .courses-stat-card {
-  background: linear-gradient(135deg, var(--courses-bg-primary) 0%, var(--courses-bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-primary) 0%,
+    var(--courses-bg-secondary) 100%
+  );
   border: 1px solid var(--courses-border);
   border-radius: var(--courses-radius-xl);
   padding: var(--courses-spacing-xl);
@@ -225,13 +255,17 @@
 }
 
 .courses-stat-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    rgba(99, 102, 241, 0.05) 100%
+  );
   opacity: 0;
   transition: var(--courses-transition);
   pointer-events: none;
@@ -249,7 +283,11 @@
 
 /* Course Timeline Cards */
 .courses-timeline-card {
-  background: linear-gradient(135deg, var(--courses-bg-primary) 0%, var(--courses-bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-primary) 0%,
+    var(--courses-bg-secondary) 100%
+  );
   border: 1px solid var(--courses-border);
   border-radius: var(--courses-radius-xl);
   padding: var(--courses-spacing-lg);
@@ -260,13 +298,17 @@
 }
 
 .courses-timeline-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(99, 102, 241, 0.03) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.03) 0%,
+    rgba(99, 102, 241, 0.03) 100%
+  );
   opacity: 0;
   transition: var(--courses-transition);
   pointer-events: none;
@@ -299,13 +341,18 @@
 }
 
 .courses-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   transition: var(--courses-transition);
 }
 
@@ -333,7 +380,11 @@
 }
 
 .courses-button-secondary {
-  background: linear-gradient(135deg, var(--courses-bg-primary) 0%, var(--courses-bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-primary) 0%,
+    var(--courses-bg-secondary) 100%
+  );
   color: var(--courses-text-primary);
   border: 1px solid var(--courses-border);
   backdrop-filter: blur(10px);
@@ -341,7 +392,11 @@
 
 .courses-button-secondary:hover {
   border-color: rgba(59, 130, 246, 0.5);
-  background: linear-gradient(135deg, var(--courses-bg-secondary) 0%, var(--courses-bg-tertiary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-secondary) 0%,
+    var(--courses-bg-tertiary) 100%
+  );
 }
 
 .courses-button-ghost {
@@ -361,7 +416,11 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--courses-bg-primary) 0%, var(--courses-bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-primary) 0%,
+    var(--courses-bg-secondary) 100%
+  );
   border: 1px solid var(--courses-border);
   display: flex;
   align-items: center;
@@ -379,7 +438,11 @@
 
 /* Modal Components */
 .courses-modal {
-  background: linear-gradient(135deg, var(--courses-bg-primary) 0%, var(--courses-bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-primary) 0%,
+    var(--courses-bg-secondary) 100%
+  );
   color: var(--courses-text-primary);
   border: 1px solid var(--courses-border);
   border-radius: var(--courses-radius-xl);
@@ -390,13 +453,17 @@
 }
 
 .courses-modal::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    rgba(99, 102, 241, 0.05) 100%
+  );
   pointer-events: none;
 }
 
@@ -466,7 +533,11 @@
 
 /* Topic Tags */
 .courses-topic-tag {
-  background: linear-gradient(135deg, var(--courses-bg-primary) 0%, var(--courses-bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-primary) 0%,
+    var(--courses-bg-secondary) 100%
+  );
   color: var(--courses-text-primary);
   border: 1px solid var(--courses-border);
   border-radius: var(--courses-radius-lg);
@@ -481,13 +552,17 @@
 }
 
 .courses-topic-tag::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(99, 102, 241, 0.1) 100%
+  );
   opacity: 0;
   transition: var(--courses-transition);
   pointer-events: none;
@@ -526,7 +601,7 @@
 }
 
 .courses-topic-tag-new::after {
-  content: 'NEW';
+  content: "NEW";
   position: absolute;
   top: -8px;
   right: -8px;
@@ -540,7 +615,11 @@
 
 /* FAQ Components */
 .courses-faq-item {
-  background: linear-gradient(135deg, var(--courses-bg-primary) 0%, var(--courses-bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-primary) 0%,
+    var(--courses-bg-secondary) 100%
+  );
   border: 1px solid var(--courses-border);
   border-radius: var(--courses-radius-xl);
   overflow: hidden;
@@ -567,11 +646,19 @@
 }
 
 .courses-faq-button:hover {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.05) 0%,
+    rgba(99, 102, 241, 0.05) 100%
+  );
 }
 
 .courses-faq-answer {
-  background: linear-gradient(135deg, var(--courses-bg-secondary) 0%, var(--courses-bg-tertiary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-secondary) 0%,
+    var(--courses-bg-tertiary) 100%
+  );
   color: var(--courses-text-secondary);
   padding: var(--courses-spacing-lg);
   border-top: 1px solid var(--courses-border);
@@ -579,7 +666,11 @@
 
 /* Project Cards */
 .courses-project-card {
-  background: linear-gradient(135deg, var(--courses-bg-primary) 0%, var(--courses-bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-primary) 0%,
+    var(--courses-bg-secondary) 100%
+  );
   border: 1px solid var(--courses-border);
   border-radius: var(--courses-radius-xl);
   color: var(--courses-text-primary);
@@ -590,13 +681,17 @@
 }
 
 .courses-project-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.03) 0%, rgba(99, 102, 241, 0.03) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.03) 0%,
+    rgba(99, 102, 241, 0.03) 100%
+  );
   opacity: 0;
   transition: var(--courses-transition);
   pointer-events: none;
@@ -614,7 +709,11 @@
 
 /* Navigation Buttons */
 .courses-nav-button {
-  background: linear-gradient(135deg, var(--courses-bg-primary) 0%, var(--courses-bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-bg-primary) 0%,
+    var(--courses-bg-secondary) 100%
+  );
   color: var(--courses-text-primary);
   border: 1px solid var(--courses-border);
   width: 48px;
@@ -672,7 +771,12 @@
 
 /* Legacy Theme Overrides - Simplified */
 .courses-gradient-text {
-  background: linear-gradient(135deg, var(--courses-text-primary) 0%, #3b82f6 50%, #6366f1 100%);
+  background: linear-gradient(
+    135deg,
+    var(--courses-text-primary) 0%,
+    #3b82f6 50%,
+    #6366f1 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -704,7 +808,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-[data-theme='dark'] .courses-glass {
+[data-theme="dark"] .courses-glass {
   background: rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -761,7 +865,8 @@
 }
 
 @keyframes coursesFloat {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {

@@ -1,8 +1,8 @@
-import {ReactNode} from 'react';
+import { ReactNode } from "react";
 
 export interface DocSidebarItemCategoryProps {
   item: {
-    type: 'category';
+    type: "category";
     label: string;
     items: Array<any>;
     collapsible?: boolean;
@@ -19,7 +19,7 @@ export interface DocSidebarItemCategoryProps {
 
 export interface DocSidebarItemLinkProps {
   item: {
-    type: 'link' | 'doc';
+    type: "link" | "doc";
     label: string;
     href: string;
     className?: string;
@@ -36,7 +36,7 @@ export interface DocSidebarItemLinkProps {
 
 export interface DocSidebarItemHtmlProps {
   item: {
-    type: 'html';
+    type: "html";
     value: string;
     className?: string;
   };
@@ -48,7 +48,7 @@ export interface DocSidebarItemHtmlProps {
 
 export interface DocSidebarItemProps {
   item: {
-    type: 'category' | 'link' | 'doc' | 'html';
+    type: "category" | "link" | "doc" | "html";
     label?: string;
     href?: string;
     items?: Array<any>;

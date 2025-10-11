@@ -23,11 +23,7 @@ export default function DocSidebarItems({ items, activePath, level = 0 }) {
     typeof window !== "undefined" ? window.location.pathname : "";
 
   // Check if we're at the docs root page
-  const isDocsRootPath =
-    currentPath === "/" ||
-    currentPath === "/docs" ||
-    currentPath === "/docs/" ||
-    currentPath.startsWith("/docs/GitHub/intro-github");
+  const isDocsRootPath = currentPath === "/";
 
   // If we're at the docs root, force an empty active path
   const effectiveActivePath = isDocsRootPath ? "" : activePath;

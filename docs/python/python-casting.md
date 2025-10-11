@@ -16,7 +16,7 @@ tags:
 
 ---
 
-# Python Casting
+# Type Casting
 
 In Python, **casting** is the process of converting a variable from one type to another. Python has built-in functions for converting between data types.
 

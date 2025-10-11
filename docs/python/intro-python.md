@@ -72,7 +72,7 @@ You can run this code in any Python interpreter, and it will display the message
 4. Verify installation by typing `python --version` in the terminal or command prompt.
 
 
-### Why Python is So Popular?
+### Why is Python so Popular?
 
 Python has gained massive popularity across industries and educational institutions because of the following reasons:
 
@@ -86,7 +86,7 @@ Python has gained massive popularity across industries and educational instituti
   Python offers a rich standard library and thousands of third-party packages (like NumPy, Pandas, Flask, Django, TensorFlow, etc.) to build anything from simple scripts to complex systems.
 
 * **Cross-platform Compatibility**
-  Python runs on all major operating systems (Windows, macOS, Linux), making it accessible and flexible.
+  Python runs on all major operating systems (Windows, macOS, Linux) making it accessible and flexible.
 
 * **Strong Community Support**
   Python has a huge global community, active forums, and abundant learning resources for beginners and professionals alike.
@@ -97,4 +97,4 @@ Python has gained massive popularity across industries and educational instituti
 
 ## Conclusion
 
-Python is a powerful and versatile programming language that is easy to learn and widely used across different domains. Its simple syntax, vast libraries, and strong community support make it an excellent choice for both beginners and experienced developers.
+Python is a powerful and versatile programming language that is easy to learn and widely used across different domains. Its simple syntax, vast libraries and strong community support make it an excellent choice for both beginners and experienced developers.

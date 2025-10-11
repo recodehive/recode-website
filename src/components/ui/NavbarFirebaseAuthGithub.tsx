@@ -8,7 +8,7 @@ const NavbarFirebaseAuthGithub: React.FC = () => {
   useEffect(() => {
     setContainer(document.getElementById("firebase-auth-github-navbar"));
   }, []);
-  
+
   return container ? createPortal(<FirebaseAuthGithub />, container) : null;
 };
 

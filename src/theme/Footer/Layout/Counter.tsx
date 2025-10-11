@@ -3,10 +3,14 @@ import React, { useEffect, useRef, useState } from "react";
 interface CounterProps {
   value: number;
   duration?: number; // animation duration in ms
-  suffix?: string;   // optional suffix like %, K+, etc.
+  suffix?: string; // optional suffix like %, K+, etc.
 }
 
-const Counter: React.FC<CounterProps> = ({ value, duration = 1500, suffix = "" }) => {
+const Counter: React.FC<CounterProps> = ({
+  value,
+  duration = 1500,
+  suffix = "",
+}) => {
   const [count, setCount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
@@ -22,7 +26,7 @@ const Counter: React.FC<CounterProps> = ({ value, duration = 1500, suffix = "" }
           setHasAnimated(true);
         }
       },
-      { threshold: 0.5 } // Trigger when 50% of element is visible
+      { threshold: 0.5 }, // Trigger when 50% of element is visible
     );
 
     observer.observe(ref.current);
