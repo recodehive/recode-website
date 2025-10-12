@@ -24,7 +24,7 @@ tags:
 Characteristics of OOP (Object Oriented Programming)
 Python supports the core principles of object-oriented programming, which are the building blocks for designing robust and reusable software. The diagram below demonstrates these core principles:
 
-1. Class - A blueprint for creating objects.
+1. Class - A blueprint for creating objects, learn more
 
 📌 **Use Case**: create a class - car
 
