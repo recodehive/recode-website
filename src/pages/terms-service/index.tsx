@@ -13,11 +13,11 @@ const TermsOfService: React.FC = () => {
         </h2>
         <p className="mb-6">
           These Terms of Service govern your use of{" "}
-          <b className="bg-yellow-100 dark:bg-yellow-600 dark:text-gray-900">
+          <b className="dark:text-gray-900">
             recodehive
           </b>
           , provided by{" "}
-          <strong className="bg-yellow-100 dark:bg-yellow-600 dark:text-gray-900">
+          <strong className=" dark:text-gray-900">
             Sanjay Viswanathan
           </strong>
           . Below are the Terms and Conditions for the use of
@@ -68,7 +68,7 @@ const TermsOfService: React.FC = () => {
             <strong>Intellectual Property:</strong> All content, trademarks,
             service marks, logos, and other intellectual property displayed on
             or related to the Service are the property of{" "}
-            <strong className="bg-yellow-100 dark:bg-yellow-600 dark:text-gray-900">
+            <strong className="dark:text-gray-900">
               Sanjay Viswanathan
             </strong>{" "}
             or its licensors. You may not use or display any of these without
