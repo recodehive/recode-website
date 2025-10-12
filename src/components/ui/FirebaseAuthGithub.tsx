@@ -39,7 +39,7 @@ const FirebaseAuthGithub: React.FC = () => {
         <br />
         <button
           onClick={() => auth.signOut()}
-          className="bg-gray-900 hover:bg-gray-700 text-white px-4 py-1 rounded flex items-center gap-2 transition-colors duration-200 shadow-md font-semibold"
+          className="cursor-pointer bg-gray-900 hover:bg-gray-700 text-white px-4 py-1 rounded flex items-center gap-2 transition-colors duration-200 shadow-md font-semibold"
         >
           <svg
             height="20"
@@ -77,7 +77,7 @@ const FirebaseAuthGithub: React.FC = () => {
     >
       <button
         onClick={handleGithubSignIn}
-        className="bg-black text-white px-4 py-2 rounded flex items-center gap-2"
+        className="bg-[#1f1e1e] hover:bg-[#2c2c2c] text-white px-4 py-2 rounded flex items-center gap-2 cursor-pointer"
       >
         <svg
           height="24"
