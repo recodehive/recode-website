@@ -371,7 +371,7 @@ function StatCard({ value, label, index = 0 }: StatCardProps) {
       <motion.div
         className={styles.statValue}
         aria-label={value}
-        initial={{ scale: 0.9 }}
+        initial={{ opacity: 1.9, scale: 0 }}
         whileInView={{
           scale: 1,
           transition: {
@@ -405,7 +405,7 @@ const LearningPath = ({
   color = "#3b82f6",
   index = 0,
   isCompleted = false,
-  onToggleComplete = () => {},
+  onToggleComplete = () => { },
 }: LearningPathProps) => {
   const isEven = index % 2 === 0;
   const delay = index * 0.15;
@@ -489,9 +489,8 @@ const LearningPath = ({
           opacity: isCompleted ? 0.9 : 1,
           filter: isCompleted ? "saturate(0.9)" : "none",
           transition: "all 0.3s ease-in-out",
-          border: `1px solid ${
-            isCompleted ? `${color}40` : "rgba(255, 255, 255, 0.1)"
-          }`,
+          border: `1px solid ${isCompleted ? `${color}40` : "rgba(255, 255, 255, 0.1)"
+            }`,
           background:
             "linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98))",
           boxShadow: "0 8px 20px -5px rgba(0, 0, 0, 0.15)",
@@ -592,17 +591,15 @@ const LearningPath = ({
             <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-700/50">
               <Link
                 to="/docs/GitHub/intro-github"
-                className={`inline-flex items-center text-sm font-medium transition-all duration-200 ${
-                  isCompleted
-                    ? "text-green-400 hover:text-green-300"
-                    : "text-blue-400 hover:text-blue-300"
-                } group-hover:underline`}
+                className={`inline-flex items-center text-sm font-medium transition-all duration-200 ${isCompleted
+                  ? "text-green-400 hover:text-green-300"
+                  : "text-blue-400 hover:text-blue-300"
+                  } group-hover:underline`}
               >
                 {isCompleted ? "Continue Learning" : "Start Learning"}
                 <svg
-                  className={`w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1 ${
-                    isCompleted ? "text-green-400" : "text-blue-400"
-                  }`}
+                  className={`w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1 ${isCompleted ? "text-green-400" : "text-blue-400"
+                    }`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -622,11 +619,10 @@ const LearningPath = ({
                   e.preventDefault();
                   onToggleComplete();
                 }}
-                className={`relative inline-flex items-center h-6 rounded-full w-11 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 ${
-                  isCompleted
-                    ? "bg-green-500 focus:ring-green-500"
-                    : "bg-gray-600 hover:bg-gray-500 focus:ring-blue-500"
-                }`}
+                className={`relative inline-flex items-center h-6 rounded-full w-11 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 ${isCompleted
+                  ? "bg-green-500 focus:ring-green-500"
+                  : "bg-gray-600 hover:bg-gray-500 focus:ring-blue-500"
+                  }`}
                 whileTap={{ scale: 0.95 }}
                 aria-pressed={isCompleted}
                 aria-label={
@@ -637,9 +633,8 @@ const LearningPath = ({
                   {isCompleted ? "Mark as incomplete" : "Mark as complete"}
                 </span>
                 <motion.span
-                  className={`inline-block w-4 h-4 transform bg-white rounded-full transition-all duration-200 ease-in-out flex items-center justify-center ${
-                    isCompleted ? "translate-x-6" : "translate-x-1"
-                  }`}
+                  className={`inline-block w-4 h-4 transform bg-white rounded-full transition-all duration-200 ease-in-out flex items-center justify-center ${isCompleted ? "translate-x-6" : "translate-x-1"
+                    }`}
                   layout
                 >
                   {isCompleted && (
@@ -723,7 +718,7 @@ function GetStartedContent() {
     Math.round(
       (Object.values(completedPaths).filter(Boolean).length /
         learningPaths.length) *
-        100,
+      100,
     ) || 0;
 
   // Save to localStorage whenever completedPaths changes
@@ -759,9 +754,8 @@ function GetStartedContent() {
       <GetStartedHeader />
 
       <main
-        className={`transition-colors duration-300 ${
-          isDark ? "dark-bg-primary dark-text-primary" : "bg-white text-black"
-        }`}
+        className={`transition-colors duration-300 ${isDark ? "dark-bg-primary dark-text-primary" : "bg-white text-black"
+          }`}
       >
         {/* Features Section */}
         <section className={styles.features}>
