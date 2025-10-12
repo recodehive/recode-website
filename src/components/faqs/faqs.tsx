@@ -91,7 +91,7 @@ const FAQs: React.FC = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <button
-                    className={`accordion-toggle group flex justify-between items-center text-lg font-medium w-full transition-all duration-300 
+                    className={`cursor-pointer accordion-toggle group flex justify-between items-center text-lg font-medium w-full transition-all duration-300 
                       ${
                         isDark
                           ? "text-gray-200 bg-gray-800 hover:text-indigo-400"
