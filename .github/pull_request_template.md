@@ -22,14 +22,17 @@ Describe the key changes (e.g., new sections, updated components, responsive fix
 -->
 
 ## Dependencies
-
+<!--
 - List any new dependencies or tools required for this change.
 - Mention any version updates or configurations that need to be considered.
+- List any version changes made to the codebase.
+-->
 
 ## Checklist
 
 - [ ] My code follows the style guidelines of this project.
 - [ ] I have tested my changes across major browsers and devices
+- [ ] I had self reviewed my changes before opening the PR.
 - [ ] My changes do not generate new console warnings or errors .
 - [ ] I ran `npm run build` and attached screenshot(s) in this PR.
 - [ ] This is already assigned Issue to me, not an unassigned issue.
