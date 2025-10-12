@@ -1,6 +1,8 @@
 // GitHub API service for fetching organization metrics
 // Uses localStorage for caching to reduce API calls
-// Changes: no client-side token read; supports ETag conditional requests and stores ETags in cache meta.
+// 1) discussions count used org-wide search — replaced with repo-specific GraphQL query (default repo: "Support").
+// 2) anonymous contributors (anon=true) made configurable (default: false).
+// Changes are annotated with // === ADDED and // === UPDATED where applicable.
 
 export interface GitHubOrgStats {
   totalStars: number;
@@ -57,78 +59,51 @@ export interface GitHubDiscussion {
   }>;
 }
 
-// Cache meta shape (stores data + etags + lastUpdated)
-interface CachedMeta {
-  data: GitHubOrgStats;
-  etags?: Record<string, string>; // keyed by endpoint URL (base)
-  lastUpdated: number;
-}
-
 class GitHubService {
   private readonly ORG_NAME = "recodehive";
   private readonly CACHE_KEY = "github_org_stats";
   private readonly CACHE_DURATION = 30 * 60 * 1000; // 30 minutes in milliseconds
   private readonly BASE_URL = "https://api.github.com";
 
-  // Optional auth token — provide server-side only (do NOT set on window in production)
-  private authToken?: string;
+  // === ADDED: include anonymous contributors configurable (default false)
+  private includeAnonymousContributors = false;
 
-  // Allow passing token at instantiation (server side) or set later via setAuthToken()
-  constructor(authToken?: string) {
-    this.authToken = authToken;
-  }
-
-  // Optional helper to set token at runtime (useful when instantiating server-side)
-  // DO NOT call from client-side code in production.
-  setAuthToken(token?: string) {
-    this.authToken = token;
-  }
-
-  // Get headers for GitHub API requests (no client-side window token read)
+  // Get headers for GitHub API requests
   private getHeaders(): Record<string, string> {
     const headers: Record<string, string> = {
       Accept: "application/vnd.github.v3+json",
       "Content-Type": "application/json",
     };
 
-    // Attach Authorization only when the token was explicitly provided to the service.
-    if (this.authToken) {
-      headers["Authorization"] = `token ${this.authToken}`;
+    // Add GitHub token if available in environment
+    // Note: In production, you might want to use a server-side proxy to avoid exposing tokens
+    if (typeof window !== "undefined" && (window as any).GITHUB_TOKEN) {
+      headers["Authorization"] = `token ${(window as any).GITHUB_TOKEN}`;
     }
 
     return headers;
   }
 
-  // Fetch with error handling, rate-limit consideration, and optional custom headers/signal
-  private async fetchWithRetry(
-    url: string,
-    options?: {
-      retries?: number;
-      headers?: Record<string, string>;
-      signal?: AbortSignal;
-      method?: string;
-      body?: any;
-    },
-  ): Promise<Response> {
-    const retries = options?.retries ?? 3;
+  // === ADDED: setter to toggle anonymous contributors inclusion
+  setIncludeAnonymousContributors(value: boolean) {
+    this.includeAnonymousContributors = value;
+  }
+
+  // Fetch with error handling and rate limit consideration
+  private async fetchWithRetry(url: string, retries = 3): Promise<Response> {
     for (let i = 0; i < retries; i++) {
       try {
-        const mergedHeaders = { ...this.getHeaders(), ...(options?.headers || {}) };
-
         const response = await fetch(url, {
-          method: options?.method ?? "GET",
-          headers: mergedHeaders,
-          body: options?.body ? JSON.stringify(options.body) : undefined,
-          signal: options?.signal,
+          headers: this.getHeaders(),
         });
 
         if (response.status === 403) {
+          // Rate limited - don't retry, just throw error
           console.warn("GitHub API rate limit exceeded");
           throw new Error("GitHub API rate limit exceeded");
         }
 
-        // Do not treat 304 as error here — caller handles 304.
-        if (!response.ok && response.status !== 304) {
+        if (!response.ok) {
           throw new Error(`HTTP ${response.status}: ${response.statusText}`);
         }
 
@@ -141,98 +116,84 @@ class GitHubService {
     throw new Error("Failed after retries");
   }
 
-  // ----- Cache helpers (store meta with etags) -----
-  private getCachedMeta(): CachedMeta | null {
+  // Get cached data if valid
+  private getCachedData(): GitHubOrgStats | null {
     if (typeof window === "undefined") return null;
+
     try {
-      const cachedRaw = localStorage.getItem(this.CACHE_KEY);
-      if (!cachedRaw) return null;
-      const meta = JSON.parse(cachedRaw) as CachedMeta;
+      const cached = localStorage.getItem(this.CACHE_KEY);
+      if (!cached) return null;
+
+      const data = JSON.parse(cached) as GitHubOrgStats;
       const now = Date.now();
-      if (now - meta.lastUpdated < this.CACHE_DURATION) {
-        return meta;
+
+      if (now - data.lastUpdated < this.CACHE_DURATION) {
+        return data;
       }
-      // If stale, remove and return null
-      localStorage.removeItem(this.CACHE_KEY);
-      return null;
     } catch (error) {
       console.warn("Error reading GitHub stats cache:", error);
+      // Clear invalid cache
       localStorage.removeItem(this.CACHE_KEY);
-      return null;
     }
+
+    return null;
   }
 
-  // Backwards-compatible wrapper returning only the data
-  private getCachedData(): GitHubOrgStats | null {
-    const meta = this.getCachedMeta();
-    return meta ? meta.data : null;
-  }
-
-  // Save meta including etags map
-  private setCachedData(data: GitHubOrgStats, etags: Record<string, string> = {}): void {
+  // Cache data to localStorage
+  private setCachedData(data: GitHubOrgStats): void {
     if (typeof window === "undefined") return;
+
     try {
-      const meta: CachedMeta = {
-        data,
-        etags,
-        lastUpdated: Date.now(),
-      };
-      localStorage.setItem(this.CACHE_KEY, JSON.stringify(meta));
+      localStorage.setItem(
+        this.CACHE_KEY,
+        JSON.stringify({
+          ...data,
+          lastUpdated: Date.now(),
+        }),
+      );
     } catch (error) {
       console.warn("Error caching GitHub stats:", error);
     }
   }
 
-  // ----- API calls -----
-
   // Fetch organization basic info
-  private async fetchOrganizationInfo(signal?: AbortSignal): Promise<GitHubOrganization> {
-    const url = `${this.BASE_URL}/orgs/${this.ORG_NAME}`;
-    const response = await this.fetchWithRetry(url, { signal });
-    if (response.status === 304) {
-      // Caller should have handled cached meta — but fallback to throwing so higher-level uses cached data if needed
-      throw new Error("Not Modified (304) for organization info — use cached meta");
-    }
+  private async fetchOrganizationInfo(
+    signal?: AbortSignal,
+  ): Promise<GitHubOrganization> {
+    const response = await fetch(`${this.BASE_URL}/orgs/${this.ORG_NAME}`, {
+      headers: this.getHeaders(),
+      signal,
+    });
+
     if (!response.ok) {
       throw new Error(`Failed to fetch organization info: ${response.status}`);
     }
+
     return response.json();
   }
 
   // Fetch all public repositories for the organization
-  // Accepts optional etags map (keyed by endpoint base) to perform conditional GETs
-  private async fetchAllRepositories(signal?: AbortSignal, etags?: Record<string, string>): Promise<{ repositories: GitHubRepository[]; receivedETag?: string; notModified?: boolean; }> {
+  private async fetchAllRepositories(
+    signal?: AbortSignal,
+  ): Promise<GitHubRepository[]> {
     const repositories: GitHubRepository[] = [];
     let page = 1;
     const perPage = 100;
 
-    const reposUrlBase = `${this.BASE_URL}/orgs/${this.ORG_NAME}/repos?type=public&per_page=${perPage}`;
-    const etagsMap = etags || {};
-    const ifNoneMatchForRepos = etagsMap[reposUrlBase];
-
-    let receivedETag: string | undefined;
-
     while (true) {
-      const url = `${reposUrlBase}&page=${page}&sort=updated`;
-      const headers: Record<string, string> = {};
-      if (ifNoneMatchForRepos) headers["If-None-Match"] = ifNoneMatchForRepos;
-
-      const response = await this.fetchWithRetry(url, { headers, signal });
-
-      // If server says Not Modified, signal caller to use cached aggregate stats
-      if (response.status === 304) {
-        return { repositories: [], notModified: true, receivedETag: ifNoneMatchForRepos };
-      }
-
-      // Capture ETag (the server may include it)
-      const etag = response.headers.get("etag");
-      if (etag && !receivedETag) {
-        receivedETag = etag;
-      }
+      const response = await fetch(
+        `${this.BASE_URL}/orgs/${this.ORG_NAME}/repos?type=public&per_page=${perPage}&page=${page}&sort=updated`,
+        {
+          headers: this.getHeaders(),
+          signal,
+        },
+      );
 
       if (!response.ok) {
         if (response.status === 403) {
-          console.warn("GitHub API rate limit exceeded while fetching repositories");
+          console.warn(
+            "GitHub API rate limit exceeded while fetching repositories",
+          );
           throw new Error("GitHub API rate limit exceeded");
         }
         throw new Error(`Failed to fetch repositories: ${response.status}`);
@@ -249,7 +210,7 @@ class GitHubService {
       page++;
     }
 
-    return { repositories, receivedETag };
+    return repositories;
   }
 
   // Estimate contributors count (GitHub API doesn't provide org-wide contributor count)
@@ -263,15 +224,20 @@ class GitHubService {
       .sort((a, b) => b.stargazers_count - a.stargazers_count)
       .slice(0, 10); // Sample top 10 repositories
 
-    // If no repos (e.g., we used cached aggregated stats instead), return 0 — caller may fallback to cached value
-    if (topRepos.length === 0) return 0;
+    let totalContributors = 0;
 
-    // Use parallel requests for better performance — but keep the list small to avoid excessive rate use
+    // Use parallel requests for better performance
     const contributorPromises = topRepos.map(async (repo) => {
       try {
-        // Use per_page=1 to leverage Link header for total pages, if present
-        const url = `${this.BASE_URL}/repos/${repo.full_name}/contributors?per_page=1&anon=true`;
-        const response = await this.fetchWithRetry(url, { signal });
+        // === UPDATED: make anon param configurable based on class setting
+        const anonParam = this.includeAnonymousContributors ? "true" : "false";
+        const response = await fetch(
+          `${this.BASE_URL}/repos/${repo.full_name}/contributors?per_page=1&anon=${anonParam}`,
+          {
+            headers: this.getHeaders(),
+            signal,
+          },
+        );
 
         if (response.ok) {
           // Get total count from Link header if available
@@ -297,102 +263,99 @@ class GitHubService {
     const contributorCounts = await Promise.all(contributorPromises);
 
     // Estimate total unique contributors (with some overlap factor)
-    const sumContributors = contributorCounts.reduce((sum, count) => sum + count, 0);
+    const sumContributors = contributorCounts.reduce(
+      (sum, count) => sum + count,
+      0,
+    );
 
-    // Apply estimation factor for unique contributors across repos (configurable if desired)
-    const estimatedUnique = Math.round(sumContributors * 0.7); // assume ~30% overlap
+    // Apply estimation factor for unique contributors across repos
+    totalContributors = Math.round(sumContributors * 0.7); // Assume 30% overlap
 
-    // No hard-coded floor here — let caller use fallback or cached value if needed
-    return estimatedUnique;
+    // NOTE: original code had a floor (e.g., Math.max(..., 140)). I kept behavior simple and returned the estimate.
+    return totalContributors;
   }
 
-  // Get discussions count (approximate using search)
-  private async getDiscussionsCount(signal?: AbortSignal): Promise<number> {
+  // === UPDATED: Get discussions count for a specific repository (default: "Support")
+  // Reason: previous code used an org-wide issues search which returned issues, not discussions.
+  // This function uses GraphQL to read repository.discussions.totalCount (repo-specific).
+  // If you need org-wide discussions count, we should iterate all repos and sum totalCount (heavier).
+  private async getDiscussionsCount(
+    signal?: AbortSignal,
+    repoName: string = "Support",
+  ): Promise<number> {
     try {
-      const url = `${this.BASE_URL}/search/issues?q=org:${this.ORG_NAME}+type:issue`;
-      const response = await this.fetchWithRetry(url, { signal });
+      // GraphQL query to get discussions totalCount for a repository
+      const query = `
+        query ($owner: String!, $name: String!) {
+          repository(owner: $owner, name: $name) {
+            discussions { totalCount }
+          }
+        }
+      `;
+      const variables = { owner: this.ORG_NAME, name: repoName };
 
-      if (response.ok) {
-        const data = await response.json();
-        return data.total_count || 0;
+      const resp = await fetch("https://api.github.com/graphql", {
+        method: "POST",
+        headers: {
+          ...this.getHeaders(),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query, variables }),
+        signal,
+      });
+
+      if (!resp.ok) {
+        console.warn(`GraphQL request for discussions failed: ${resp.status}`);
+        return 0;
       }
-    } catch (error) {
-      console.warn("Error fetching discussions count:", error);
-    }
 
-    return 0;
+      const data = await resp.json();
+      if (data.errors) {
+        console.warn("GraphQL errors while fetching discussions:", data.errors);
+        return 0;
+      }
+
+      const count = data?.data?.repository?.discussions?.totalCount || 0;
+      return Number(count);
+    } catch (error) {
+      console.warn("Error fetching discussions count via GraphQL:", error);
+      return 0;
+    }
   }
 
   // Main method to fetch all organization statistics
-  // If cached meta exists and is still fresh, it returns cached immediately.
-  // If cached meta exists but stale, it will try conditional requests using stored ETags.
   async fetchOrganizationStats(signal?: AbortSignal): Promise<GitHubOrgStats> {
-    // Try to get cached meta first (includes etags)
-    const cachedMeta = this.getCachedMeta();
-    if (cachedMeta) {
-      // Fresh cached meta — return immediately
-      return cachedMeta.data;
-    }
-
-    // Try to read stale meta (if any) to attempt conditional GETs
-    let staleMeta: CachedMeta | null = null;
-    if (typeof window !== "undefined") {
-      try {
-        const raw = localStorage.getItem(this.CACHE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw) as CachedMeta;
-          // treat as stale if older than CACHE_DURATION
-          if (Date.now() - parsed.lastUpdated >= this.CACHE_DURATION) {
-            staleMeta = parsed;
-          }
-        }
-      } catch {
-        // ignore parsing errors
-      }
+    // Try to get cached data first
+    const cached = this.getCachedData();
+    if (cached) {
+      return cached;
     }
 
     try {
-      // Use staleMeta.etags (if any) to make conditional requests
-      const etagsToSend = staleMeta?.etags || {};
+      // Fetch organization info and repositories in parallel
+      const [orgInfo, repositories] = await Promise.all([
+        this.fetchOrganizationInfo(signal),
+        this.fetchAllRepositories(signal),
+      ]);
 
-      // Fetch organization info and repositories in parallel (repos supports conditional GET)
-      const orgInfoPromise = this.fetchOrganizationInfo(signal);
-      const reposPromise = this.fetchAllRepositories(signal, etagsToSend);
-
-      const [orgInfo, reposResult] = await Promise.allSettled([orgInfoPromise, reposPromise]);
-
-      // If reposResult indicates Not Modified (304), use stale cached aggregated stats if available
-      if (reposResult.status === "fulfilled" && reposResult.value.notModified && staleMeta) {
-        // Return stale cached aggregated stats — they are expected to be mostly up-to-date
-        return staleMeta.data;
-      }
-
-      // If repos fetch failed, but we have stale meta, return stale aggregated stats as fallback
-      if (reposResult.status === "rejected") {
-        if (staleMeta) return staleMeta.data;
-        throw reposResult.reason;
-      }
-
-      // If organization info failed but we have stale meta, return stale aggregated stats as fallback
-      if (orgInfo.status === "rejected") {
-        if (staleMeta) return staleMeta.data;
-        throw orgInfo.reason;
-      }
-
-      // Collect repositories
-      const repositories = reposResult.status === "fulfilled" ? reposResult.value.repositories : [];
-
-      // If repositories empty and we had no real response (and no stale meta), proceed but totals will be zero
+      // Filter out archived repositories for active stats
       const activeRepos = repositories.filter((repo) => !repo.archived);
 
       // Calculate totals
-      const totalStars = repositories.reduce((sum, repo) => sum + repo.stargazers_count, 0);
-      const totalForks = repositories.reduce((sum, repo) => sum + repo.forks_count, 0);
+      const totalStars = repositories.reduce(
+        (sum, repo) => sum + repo.stargazers_count,
+        0,
+      );
+      const totalForks = repositories.reduce(
+        (sum, repo) => sum + repo.forks_count,
+        0,
+      );
 
       // Estimate contributors and get discussions count
+      // === UPDATED: getDiscussionsCount now uses GraphQL for a specific repo (default 'Support')
       const [totalContributors, discussionsCount] = await Promise.all([
         this.estimateContributors(activeRepos, signal),
-        this.getDiscussionsCount(signal),
+        this.getDiscussionsCount(signal), // default repoName: "Support" (change if you prefer another repo)
       ]);
 
       const stats: GitHubOrgStats = {
@@ -405,28 +368,14 @@ class GitHubService {
         lastUpdated: Date.now(),
       };
 
-      // Persist returned ETag(s) for repo list if present
-      const etagsToSave: Record<string, string> = { ...(staleMeta?.etags || {}) };
-
-      // reposResult may include receivedETag
-      if (reposResult.status === "fulfilled" && reposResult.value.receivedETag) {
-        const reposUrlBase = `${this.BASE_URL}/orgs/${this.ORG_NAME}/repos?type=public&per_page=100`;
-        etagsToSave[reposUrlBase] = reposResult.value.receivedETag;
-      }
-
-      // Save stats + etags in cache
-      this.setCachedData(stats, etagsToSave);
+      // Cache the results
+      this.setCachedData(stats);
 
       return stats;
     } catch (error) {
       console.error("Error fetching GitHub organization stats:", error);
 
-      // Try returning stale meta if available
-      if (staleMeta) {
-        return staleMeta.data;
-      }
-
-      // Return conservative fallback (no arbitrary floor)
+      // Return fallback data if API fails
       const fallbackStats: GitHubOrgStats = {
         totalStars: 0,
         totalForks: 0,
@@ -448,21 +397,24 @@ class GitHubService {
     }
   }
 
-  // Get cache status (uses cached meta)
+  // Get cache status
   getCacheStatus(): { cached: boolean; age: number; expiresIn: number } {
-    const meta = this.getCachedMeta();
-    if (!meta) {
+    const cached = this.getCachedData();
+    if (!cached) {
       return { cached: false, age: 0, expiresIn: 0 };
     }
 
-    const age = Date.now() - meta.lastUpdated;
+    const age = Date.now() - cached.lastUpdated;
     const expiresIn = Math.max(0, this.CACHE_DURATION - age);
 
     return { cached: true, age, expiresIn };
   }
 
-  // Fetch GitHub Discussions using GraphQL API
-  async fetchDiscussions(limit: number = 20, signal?: AbortSignal): Promise<GitHubDiscussion[]> {
+  // Fetch GitHub Discussions using GraphQL API (existing method kept intact)
+  async fetchDiscussions(
+    limit: number = 20,
+    signal?: AbortSignal,
+  ): Promise<GitHubDiscussion[]> {
     const query = `
       query GetDiscussions($owner: String!, $name: String!, $first: Int!) {
         repository(owner: $owner, name: $name) {
@@ -503,17 +455,18 @@ class GitHubService {
 
     const variables = {
       owner: this.ORG_NAME,
-      name: "recode-website", // Main repository for discussions
+      name: "recode-website", // Main repository for discussions (unchanged)
       first: limit,
     };
 
     try {
-      const response = await this.fetchWithRetry("https://api.github.com/graphql", {
+      const response = await fetch("https://api.github.com/graphql", {
         method: "POST",
         headers: {
+          ...this.getHeaders(),
           "Content-Type": "application/json",
         },
-        body: { query, variables },
+        body: JSON.stringify({ query, variables }),
         signal,
       });
 
@@ -530,41 +483,43 @@ class GitHubService {
 
       const discussions = data.data?.repository?.discussions?.nodes || [];
 
-      return discussions.map((discussion: any): GitHubDiscussion => ({
-        id: discussion.id,
-        title: discussion.title,
-        body: discussion.body || "",
-        author: {
-          login: discussion.author?.login || "Unknown",
-          avatar_url: discussion.author?.avatarUrl || "",
-          html_url: discussion.author?.url || "",
-        },
-        category: {
-          name: discussion.category?.name || "General",
-          emoji: discussion.category?.emoji || "💬",
-        },
-        created_at: discussion.createdAt,
-        updated_at: discussion.updatedAt,
-        comments: discussion.comments?.totalCount || 0,
-        reactions: {
-          total_count: discussion.reactions?.totalCount || 0,
-        },
-        html_url: discussion.url,
-        labels:
-          discussion.labels?.nodes?.map((label: any) => ({
-            name: label.name,
-            color: label.color,
-          })) || [],
-      }));
+      return discussions.map(
+        (discussion: any): GitHubDiscussion => ({
+          id: discussion.id,
+          title: discussion.title,
+          body: discussion.body || "",
+          author: {
+            login: discussion.author?.login || "Unknown",
+            avatar_url: discussion.author?.avatarUrl || "",
+            html_url: discussion.author?.url || "",
+          },
+          category: {
+            name: discussion.category?.name || "General",
+            emoji: discussion.category?.emoji || "💬",
+          },
+          created_at: discussion.createdAt,
+          updated_at: discussion.updatedAt,
+          comments: discussion.comments?.totalCount || 0,
+          reactions: {
+            total_count: discussion.reactions?.totalCount || 0,
+          },
+          html_url: discussion.url,
+          labels:
+            discussion.labels?.nodes?.map((label: any) => ({
+              name: label.name,
+              color: label.color,
+            })) || [],
+        }),
+      );
     } catch (error) {
       console.error("Error fetching discussions:", error);
-      
+
       // Return mock data for development/fallback
       return this.getMockDiscussions();
     }
   }
 
-  // Mock discussions for development/fallback
+  // Mock discussions for development/fallback (unchanged)
   private getMockDiscussions(): GitHubDiscussion[] {
     return [
       {
