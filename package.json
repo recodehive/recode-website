@@ -79,12 +79,10 @@
     "@typescript-eslint/eslint-plugin": "^8.45.0",
     "@typescript-eslint/parser": "^8.45.0",
     "autoprefixer": "^10.4.21",
-    "commitizen": "^4.3.1",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-react": "^7.37.5",
-    "git-cz": "^4.9.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.3",
     "postcss": "^8.5.3",
@@ -107,10 +105,5 @@
   },
   "engines": {
     "node": ">=18.0"
-  },
-   "config": {
-    "commitizen": {
-      "path": "git-cz"
-    }
   }
 }
