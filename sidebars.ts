@@ -163,7 +163,7 @@ const sidebars: SidebarsConfig = {
       items: [
         "Nextjs/intro-nextjs",
         "Nextjs/setup-environment",
-        // 'Nextjs/git-commands',
+        "Nextjs/project-structure",
       ],
     },
     {
