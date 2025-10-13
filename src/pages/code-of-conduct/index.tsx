@@ -9,7 +9,7 @@ interface SectionProps {
 
 const Section = ({ title, children }: SectionProps) => (
   <section className="mb-6">
-    <h3 className="text-xl font-semibold mb-4">{title}</h3>
+    <h3 className="mb-4 text-xl font-semibold">{title}</h3>
     {children}
   </section>
 );
@@ -27,7 +27,7 @@ const ListItem = ({ title, description }: ListItemProps) => (
 );
 
 const LastUpdated = () => (
-  <p className="text-sm text-gray-600 dark:text-gray-500 mb-4">
+  <p className="mb-4 text-sm text-gray-600 dark:text-gray-500">
     <strong>Last Updated:</strong> 25th May 2025
   </p>
 );
@@ -55,7 +55,7 @@ const OurStandards = () => (
       Examples of behavior that contributes to a positive environment for our
       community include:
     </p>
-    <ul className="list-disc list-inside mb-4">
+    <ul className="mb-4 list-inside list-disc">
       <li>Demonstrating empathy and kindness toward other people</li>
       <li>
         Being respectful of differing opinions, viewpoints, and experiences
@@ -71,7 +71,7 @@ const OurStandards = () => (
       </li>
     </ul>
     <p className="mb-4">Examples of unacceptable behavior include:</p>
-    <ul className="list-disc list-inside mb-4">
+    <ul className="mb-4 list-inside list-disc">
       <li>
         The use of sexualized language or imagery, and sexual attention or
         advances of any kind
@@ -141,7 +141,7 @@ const EnforcementGuidelines = () => (
       determining the consequences for any action they deem in violation of this
       Code of Conduct:
     </p>
-    <ol className="list-decimal list-inside mb-4">
+    <ol className="mb-4 list-inside list-decimal">
       <ListItem
         title="Correction"
         description={
@@ -230,8 +230,8 @@ const Attribution = () => (
 
 const CodeOfConduct = () => (
   <Layout>
-    <div className="max-w-4xl mx-auto p-6 mt-5 mb-5 rounded-lg shadow-md">
-      <h2 className="text-center text-2xl font-bold mb-5">Code Of Conduct</h2>
+    <div className="mx-auto mt-5 mb-5 max-w-4xl rounded-lg p-6 shadow-md">
+      <h2 className="mb-5 text-center text-2xl font-bold">Code Of Conduct</h2>
       <div className="space-y-6">
         <LastUpdated />
         <OurPledge />

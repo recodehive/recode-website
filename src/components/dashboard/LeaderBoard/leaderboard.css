@@ -261,7 +261,6 @@
   margin-bottom: 4px;
   text-align: center;
   width: 100%;
-
 }
 
 .light .stat-value {
@@ -392,9 +391,11 @@
   font-weight: 600;
   letter-spacing: 0.3px;
   appearance: none;
-  background: linear-gradient(to bottom,
-      rgba(255, 255, 255, 0.05) 0%,
-      rgba(0, 0, 0, 0.05) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
   cursor: pointer;
   transition: all 0.25s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -917,7 +918,6 @@
 }
 
 @media (max-width: 475px) {
-
   .contributors-container .page-numbers .page-btn,
   .contributors-container .pagination .pagination-btn,
   .contributors-container .pagination-ellipsis {
@@ -934,7 +934,6 @@
 }
 
 @media (max-width: 320px) {
-
   .contributors-container .page-numbers .page-btn,
   .contributors-container .pagination .pagination-btn,
   .contributors-container .pagination-ellipsis {
@@ -1002,19 +1001,23 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(90deg,
-      rgba(0, 0, 0, 0.06) 25%,
-      rgba(0, 0, 0, 0.12) 50%,
-      rgba(0, 0, 0, 0.06) 75%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(0, 0, 0, 0.06) 75%
+  );
   background-size: 200% 100%;
   animation: skeleton-shimmer 2s infinite;
 }
 
 .skeleton-loader.dark .skeleton-avatar {
-  background: linear-gradient(90deg,
-      rgba(255, 255, 255, 0.05) 25%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0.05) 75%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
   background-size: 200% 100%;
 }
 
@@ -1034,19 +1037,23 @@
   height: 16px;
   width: 60%;
   border-radius: 4px;
-  background: linear-gradient(90deg,
-      rgba(0, 0, 0, 0.06) 25%,
-      rgba(0, 0, 0, 0.12) 50%,
-      rgba(0, 0, 0, 0.06) 75%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(0, 0, 0, 0.06) 75%
+  );
   background-size: 200% 100%;
   animation: skeleton-shimmer 2s infinite;
 }
 
 .skeleton-loader.dark .skeleton-bar {
-  background: linear-gradient(90deg,
-      rgba(255, 255, 255, 0.05) 25%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0.05) 75%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
   background-size: 200% 100%;
 }
 
@@ -1059,19 +1066,23 @@
   height: 20px;
   width: 60px;
   border-radius: 12px;
-  background: linear-gradient(90deg,
-      rgba(0, 0, 0, 0.06) 25%,
-      rgba(0, 0, 0, 0.12) 50%,
-      rgba(0, 0, 0, 0.06) 75%);
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.06) 25%,
+    rgba(0, 0, 0, 0.12) 50%,
+    rgba(0, 0, 0, 0.06) 75%
+  );
   background-size: 200% 100%;
   animation: skeleton-shimmer 2s infinite;
 }
 
 .skeleton-loader.dark .skeleton-badge {
-  background: linear-gradient(90deg,
-      rgba(255, 255, 255, 0.05) 25%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0.05) 75%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 25%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0.05) 75%
+  );
   background-size: 200% 100%;
 }
 

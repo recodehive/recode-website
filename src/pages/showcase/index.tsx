@@ -190,7 +190,7 @@ function ShowcaseFilters() {
   const filteredUsers = useFilteredUsers();
   const siteCountPlural = useSiteCountPlural();
   return (
-    <section className="container margin-top--l margin-bottom--lg">
+    <section className="margin-top--l margin-bottom--lg container">
       <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
         <div>
           <motion.h2
@@ -324,7 +324,7 @@ function ShowcaseCards() {
   if (filteredUsers.length === 0) {
     return (
       <section className="margin-top--lg margin-bottom--xl">
-        <div className="container padding-vert--md text--center">
+        <div className="padding-vert--md text--center container">
           <h2>
             <Translate id="showcase.usersList.noResult">No result</Translate>
           </h2>
@@ -394,7 +394,7 @@ function ShowcaseCards() {
               </motion.ul>
             </div>
           </div>
-          <div className="container margin-top--lg">
+          <div className="margin-top--lg container">
             <motion.h2
               initial={{ opacity: 0, x: -15 }}
               whileInView={{ opacity: 1, x: 0 }}

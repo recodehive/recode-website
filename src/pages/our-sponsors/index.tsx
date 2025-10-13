@@ -17,7 +17,7 @@ const OurSponsors: React.FC = () => {
 
   // Filter for current sponsors (exclude isWeSponsor)
   const currentSponsors = sponsors.filter(
-    (s) => !s.isPastSponsor && !s.isWeSponsor
+    (s) => !s.isPastSponsor && !s.isWeSponsor,
   );
   const pastSponsors = sponsors.filter((s) => s.isPastSponsor);
 
@@ -29,7 +29,7 @@ const OurSponsors: React.FC = () => {
   const handlePaymentSuccess = () => {
     setShowScanner(false);
     alert(
-      "Thanks, we will redirect to Github Sponsors page, upon sponsoring you will be added to our sponsors list."
+      "Thanks, we will redirect to Github Sponsors page, upon sponsoring you will be added to our sponsors list.",
     );
     window.location.href = "https://github.com/sponsors/sanjay-kv?o=esb";
   };
@@ -120,7 +120,7 @@ const OurSponsors: React.FC = () => {
             className={`tab-content ${activeTab === "current" ? "active" : ""}`}
           >
             <div className="sponsors-section">
-              <h3 className="text-xl font-semibold text-gray-800 mb-4 mt-2">
+              <h3 className="mt-2 mb-4 text-xl font-semibold text-gray-800">
                 Current Sponsors
               </h3>
               <div className="sponsors-list">
@@ -143,20 +143,20 @@ const OurSponsors: React.FC = () => {
                   role="button"
                   tabIndex={0}
                 >
-                  <div className="text-center p-4">
-                    <div className="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-indigo-100 transition-colors duration-200">
-                      <FaPlusCircle className="text-3xl text-indigo-500 group-hover:text-indigo-600 transition-colors duration-200" />
+                  <div className="p-4 text-center">
+                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50 transition-colors duration-200 group-hover:bg-indigo-100">
+                      <FaPlusCircle className="text-3xl text-indigo-500 transition-colors duration-200 group-hover:text-indigo-600" />
                     </div>
-                    <h3 className="text-lg font-semibold text-indigo-700 mb-1 group-hover:text-indigo-800 transition-colors duration-200">
+                    <h3 className="mb-1 text-lg font-semibold text-indigo-700 transition-colors duration-200 group-hover:text-indigo-800">
                       Partner With Us
                     </h3>
-                    <p className="text-sm text-gray-500 group-hover:text-gray-600 transition-colors duration-200">
+                    <p className="text-sm text-gray-500 transition-colors duration-200 group-hover:text-gray-600">
                       Support innovation in open-source development
                     </p>
-                    <div className="mt-3 inline-flex items-center text-sm font-medium text-indigo-600 group-hover:text-indigo-700 transition-colors duration-200">
+                    <div className="mt-3 inline-flex items-center text-sm font-medium text-indigo-600 transition-colors duration-200 group-hover:text-indigo-700">
                       Join us
                       <svg
-                        className="ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200"
+                        className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -176,7 +176,7 @@ const OurSponsors: React.FC = () => {
 
               {pastSponsors.length > 0 && (
                 <>
-                  <h3 className="text-xl font-semibold text-gray-800 mb-4 mt-12">
+                  <h3 className="mt-12 mb-4 text-xl font-semibold text-gray-800">
                     Past Sponsors
                   </h3>
                   <div className="sponsors-list">
@@ -222,7 +222,7 @@ const OurSponsors: React.FC = () => {
                 <FaTimes size={20} />
               </button>
               <h2 className="TitleText">Become a Valued Partner</h2>
-              <p className="text-gray-600 mb-6">
+              <p className="mb-6 text-gray-600">
                 Join our mission to advance open-source innovation and education
                 through your sponsorship
               </p>
@@ -231,9 +231,9 @@ const OurSponsors: React.FC = () => {
                   className="scanner-button group"
                   onClick={handlePaymentSuccess}
                 >
-                  <span className="absolute left-4 opacity-0 group-hover:opacity-100 group-hover:left-6 transition-all duration-300">
+                  <span className="absolute left-4 opacity-0 transition-all duration-300 group-hover:left-6 group-hover:opacity-100">
                     <svg
-                      className="w-5 h-5"
+                      className="h-5 w-5"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
@@ -248,9 +248,9 @@ const OurSponsors: React.FC = () => {
                   <span className="relative transition-all duration-300 group-hover:translate-x-2">
                     Sponsor on GitHub
                   </span>
-                  <span className="absolute right-4 opacity-0 group-hover:opacity-100 group-hover:right-6 transition-all duration-300">
+                  <span className="absolute right-4 opacity-0 transition-all duration-300 group-hover:right-6 group-hover:opacity-100">
                     <svg
-                      className="w-4 h-4"
+                      className="h-4 w-4"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

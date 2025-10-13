@@ -62,7 +62,7 @@
   z-index: 1051;
 }
 
-.dashboard-mobile-menu>div:last-child {
+.dashboard-mobile-menu > div:last-child {
   position: absolute;
   top: 0;
   left: 0;
@@ -76,7 +76,7 @@
   transition: transform 0.3s ease;
 }
 
-.dashboard-mobile-menu.show>div:last-child {
+.dashboard-mobile-menu.show > div:last-child {
   transform: translateX(0);
 }
 
@@ -295,9 +295,11 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg,
-      var(--ifm-color-primary),
-      var(--ifm-color-primary-light));
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-primary),
+    var(--ifm-color-primary-light)
+  );
 }
 
 .dashboard-stat-card:hover {

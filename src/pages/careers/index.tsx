@@ -203,40 +203,40 @@ function CareersContent() {
       </Head>
 
       <div
-        className={`careers-page transition-colors duration-300 min-h-screen ${
+        className={`careers-page min-h-screen transition-colors duration-300 ${
           isDark ? "bg-gray-900" : "bg-gradient-to-b from-white to-gray-50"
         }`}
       >
         {/* Hero Section */}
         <motion.section
-          className="hero-section py-20 px-4 text-center bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white relative overflow-hidden"
+          className="hero-section relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 px-4 py-20 text-center text-white"
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
         >
           <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative z-10 max-w-4xl mx-auto">
+          <div className="relative z-10 mx-auto max-w-4xl">
             <motion.h1
-              className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100"
+              className="mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-5xl font-bold text-transparent md:text-6xl"
               variants={fadeIn}
             >
               Join the Future of Code Education
             </motion.h1>
             <motion.p
-              className="text-xl md:text-2xl mb-8 text-blue-100"
+              className="mb-8 text-xl text-blue-100 md:text-2xl"
               variants={fadeIn}
             >
               Help us build the next generation of developers. Work with a
               passionate team creating impact through education.
             </motion.p>
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col justify-center gap-4 sm:flex-row"
               variants={fadeIn}
             >
-              <Link className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Link className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50">
                 View Open Positions
               </Link>
-              <Link className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+              <Link className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50">
                 Learn About Our Culture
               </Link>
             </motion.div>
@@ -246,7 +246,7 @@ function CareersContent() {
         {/* Culture Highlights Section */}
         <motion.section
           id="culture"
-          className="culture-section py-20 px-4"
+          className="culture-section px-4 py-20"
           style={{
             backgroundColor: isDark ? "#111827" : "#ffffff",
           }}
@@ -255,10 +255,10 @@ function CareersContent() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="max-w-6xl mx-auto">
-            <motion.div className="text-center mb-16" variants={fadeIn}>
+          <div className="mx-auto max-w-6xl">
+            <motion.div className="mb-16 text-center" variants={fadeIn}>
               <h2
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="mb-6 text-4xl font-bold md:text-5xl"
                 id="our-culture"
                 style={{
                   color: isDark ? "#ffffff" : "#111827",
@@ -267,7 +267,7 @@ function CareersContent() {
                 Our Culture & Values
               </h2>
               <div
-                className="w-full flex justify-center"
+                className="flex w-full justify-center"
                 style={{
                   display: "flex",
                   justifyContent: "center",
@@ -275,7 +275,7 @@ function CareersContent() {
                 }}
               >
                 <p
-                  className="text-xl max-w-3xl"
+                  className="max-w-3xl text-xl"
                   style={{
                     color: isDark ? "#d1d5db" : "#4b5563",
                     textAlign: "center",
@@ -288,21 +288,21 @@ function CareersContent() {
               </div>
             </motion.div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid gap-8 md:grid-cols-3">
               {cultureValues.map((value, index) => (
                 <motion.div
                   key={index}
-                  className="culture-card rounded-xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  className="culture-card transform rounded-xl p-8 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
                   style={{
                     backgroundColor: isDark ? "#0f172a" : "#ffffff",
                   }}
                   variants={fadeIn}
                 >
-                  <div className="h-48 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg mb-6 flex items-center justify-center">
+                  <div className="mb-6 flex h-48 items-center justify-center rounded-lg bg-gradient-to-br from-blue-400 to-purple-500">
                     <span className="text-6xl">🚀</span>
                   </div>
                   <h3
-                    className="text-2xl font-bold mb-4"
+                    className="mb-4 text-2xl font-bold"
                     style={{
                       color: isDark ? "#ffffff" : "#111827",
                     }}
@@ -324,7 +324,7 @@ function CareersContent() {
 
         {/* Perks & Benefits Section */}
         <motion.section
-          className="perks-section py-20 px-4"
+          className="perks-section px-4 py-20"
           style={{
             backgroundColor: isDark ? "#0f172a" : "#f9fafb",
           }}
@@ -333,10 +333,10 @@ function CareersContent() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="max-w-6xl mx-auto">
-            <motion.div className="text-center mb-16" variants={fadeIn}>
+          <div className="mx-auto max-w-6xl">
+            <motion.div className="mb-16 text-center" variants={fadeIn}>
               <h2
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="mb-6 text-4xl font-bold md:text-5xl"
                 style={{
                   color: isDark ? "#ffffff" : "#111827",
                 }}
@@ -344,7 +344,7 @@ function CareersContent() {
                 Perks & Benefits
               </h2>
               <div
-                className="w-full flex justify-center"
+                className="flex w-full justify-center"
                 style={{
                   display: "flex",
                   justifyContent: "center",
@@ -352,7 +352,7 @@ function CareersContent() {
                 }}
               >
                 <p
-                  className="text-xl max-w-3xl"
+                  className="max-w-3xl text-xl"
                   style={{
                     color: isDark ? "#d1d5db" : "#4b5563",
                     textAlign: "center",
@@ -365,19 +365,19 @@ function CareersContent() {
               </div>
             </motion.div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {perks.map((perk, index) => (
                 <motion.div
                   key={index}
-                  className="perk-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  className="perk-card transform rounded-xl p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
                   style={{
                     backgroundColor: isDark ? "#1f2937" : "#ffffff",
                   }}
                   variants={fadeIn}
                 >
-                  <div className="text-4xl mb-4">{perk.icon}</div>
+                  <div className="mb-4 text-4xl">{perk.icon}</div>
                   <h3
-                    className="text-xl font-bold mb-3"
+                    className="mb-3 text-xl font-bold"
                     style={{
                       color: isDark ? "#ffffff" : "#111827",
                     }}
@@ -400,7 +400,7 @@ function CareersContent() {
         {/* Job Openings Section */}
         <motion.section
           id="openings"
-          className="jobs-section py-20 px-4"
+          className="jobs-section px-4 py-20"
           style={{
             backgroundColor: isDark ? "#111827" : "#ffffff",
           }}
@@ -409,10 +409,10 @@ function CareersContent() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="max-w-6xl mx-auto">
-            <motion.div className="text-center mb-16" variants={fadeIn}>
+          <div className="mx-auto max-w-6xl">
+            <motion.div className="mb-16 text-center" variants={fadeIn}>
               <h2
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="mb-6 text-4xl font-bold md:text-5xl"
                 id="open-positions"
                 style={{
                   color: isDark ? "#ffffff" : "#111827",
@@ -421,7 +421,7 @@ function CareersContent() {
                 Open Positions
               </h2>
               <p
-                className="text-xl max-w-3xl mx-auto text-center"
+                className="mx-auto max-w-3xl text-center text-xl"
                 style={{
                   color: isDark ? "#d1d5db" : "#4b5563",
                 }}
@@ -435,7 +435,7 @@ function CareersContent() {
               {jobOpenings.map((job, index) => (
                 <motion.div
                   key={index}
-                  className="job-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="job-card rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
                   style={{
                     backgroundColor: isDark ? "#1f2937" : "#ffffff",
                   }}
@@ -443,7 +443,7 @@ function CareersContent() {
                 >
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between">
                     <div className="flex-1">
-                      <div className="flex flex-col md:flex-row md:items-center gap-4 mb-4">
+                      <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-center">
                         <h3
                           className="text-2xl font-bold"
                           style={{
@@ -454,7 +454,7 @@ function CareersContent() {
                         </h3>
                         <div className="flex gap-2">
                           <span
-                            className={`px-3 py-1 rounded-full text-sm ${
+                            className={`rounded-full px-3 py-1 text-sm ${
                               isDark
                                 ? "bg-blue-900 text-blue-200"
                                 : "bg-blue-100 text-blue-800"
@@ -463,7 +463,7 @@ function CareersContent() {
                             {job.department}
                           </span>
                           <span
-                            className={`px-3 py-1 rounded-full text-sm ${
+                            className={`rounded-full px-3 py-1 text-sm ${
                               isDark
                                 ? "bg-green-900 text-green-200"
                                 : "bg-green-100 text-green-800"
@@ -472,7 +472,7 @@ function CareersContent() {
                             {job.location}
                           </span>
                           <span
-                            className={`px-3 py-1 rounded-full text-sm ${
+                            className={`rounded-full px-3 py-1 text-sm ${
                               isDark
                                 ? "bg-purple-900 text-purple-200"
                                 : "bg-purple-100 text-purple-800"
@@ -494,7 +494,7 @@ function CareersContent() {
                     <div className="md:ml-6">
                       <Link
                         to="/contact-us"
-                        className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg inline-block"
+                        className="inline-block transform rounded-lg bg-blue-600 px-6 py-3 font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-700"
                         style={{
                           color: "#ffffff",
                           textDecoration: "none",
@@ -512,7 +512,7 @@ function CareersContent() {
 
         {/* Testimonials Section */}
         <motion.section
-          className="testimonials-section py-20 px-4"
+          className="testimonials-section px-4 py-20"
           style={{
             backgroundColor: isDark ? "#0f172a" : "#f9fafb",
           }}
@@ -521,10 +521,10 @@ function CareersContent() {
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="max-w-4xl mx-auto">
-            <motion.div className="text-center mb-16" variants={fadeIn}>
+          <div className="mx-auto max-w-4xl">
+            <motion.div className="mb-16 text-center" variants={fadeIn}>
               <h2
-                className="text-4xl md:text-5xl font-bold mb-6"
+                className="mb-6 text-4xl font-bold md:text-5xl"
                 style={{
                   color: isDark ? "#ffffff" : "#111827",
                 }}
@@ -532,7 +532,7 @@ function CareersContent() {
                 What Our Team Says
               </h2>
               <p
-                className="text-xl text-center"
+                className="text-center text-xl"
                 style={{
                   color: isDark ? "#d1d5db" : "#4b5563",
                 }}
@@ -550,11 +550,11 @@ function CareersContent() {
               variants={fadeIn}
             >
               <div className="testimonial-content text-center">
-                <div className="w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500">
                   <span className="text-2xl">👤</span>
                 </div>
                 <blockquote
-                  className="text-lg md:text-xl mb-6 italic"
+                  className="mb-6 text-lg italic md:text-xl"
                   style={{
                     color: isDark ? "#d1d5db" : "#374151",
                   }}
@@ -580,13 +580,13 @@ function CareersContent() {
                 </div>
               </div>
 
-              <div className="flex justify-center mt-8 gap-2">
+              <div className="mt-8 flex justify-center gap-2">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`h-3 w-3 rounded-full transition-all duration-300 ${
                       index === activeTestimonial
-                        ? "bg-blue-600 scale-110"
+                        ? "scale-110 bg-blue-600"
                         : isDark
                           ? "bg-gray-600 hover:bg-gray-500"
                           : "bg-gray-300 hover:bg-gray-400"
@@ -601,36 +601,36 @@ function CareersContent() {
 
         {/* Call to Action Section */}
         <motion.section
-          className="cta-section py-20 px-4 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white text-center"
+          className="cta-section bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 px-4 py-20 text-center text-white"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="max-w-4xl mx-auto">
+          <div className="mx-auto max-w-4xl">
             <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-6"
+              className="mb-6 text-4xl font-bold md:text-5xl"
               variants={fadeIn}
             >
               Ready to Shape the Future?
             </motion.h2>
-            <motion.p className="text-xl mb-8 text-blue-100" variants={fadeIn}>
+            <motion.p className="mb-8 text-xl text-blue-100" variants={fadeIn}>
               Don't see a perfect fit? We're always looking for talented
               individuals to join our mission.
             </motion.p>
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col justify-center gap-4 sm:flex-row"
               variants={fadeIn}
             >
               <Link
                 to="/contact-us"
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50"
               >
                 Get In Touch
               </Link>
               <Link
                 to="/community"
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50"
               >
                 Join Our Community
               </Link>
