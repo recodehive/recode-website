@@ -452,10 +452,10 @@ function CoursesContent() {
       <main className="courses-page min-h-screen transition-all duration-500">
         {/* Modal */}
         {modal.open && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 courses-fade-in p-4">
-            <div className="courses-modal p-6 md:p-8 max-w-md w-full text-center relative courses-scale-in">
+          <div className="bg-opacity-60 courses-fade-in fixed inset-0 z-50 flex items-center justify-center bg-black p-4">
+            <div className="courses-modal courses-scale-in relative w-full max-w-md p-6 text-center md:p-8">
               <button
-                className="courses-icon-button absolute top-3 right-3 text-xl md:text-2xl transition-transform hover:scale-110"
+                className="courses-icon-button absolute top-3 right-3 text-xl transition-transform hover:scale-110 md:text-2xl"
                 onClick={() => setModal({ open: false, content: "" })}
               >
                 ×
@@ -467,7 +467,7 @@ function CoursesContent() {
 
         {/* Hero Section */}
         <motion.section
-          className="courses-hero py-16 md:py-24 px-4 text-center relative overflow-hidden transition-all duration-500 border-b"
+          className="courses-hero relative overflow-hidden border-b px-4 py-16 text-center transition-all duration-500 md:py-24"
           initial="hidden"
           animate="visible"
           variants={{
@@ -477,38 +477,38 @@ function CoursesContent() {
         >
           <div className="courses-container">
             <motion.h1
-              className="courses-heading-1 courses-text-gradient mb-6 md:mb-8 relative z-10 tracking-tight"
+              className="courses-heading-1 courses-text-gradient relative z-10 mb-6 tracking-tight md:mb-8"
               variants={fadeIn}
             >
               Transform Your Career
               <br className="hidden md:block" />
               <span className="block md:inline">in Data Engineering</span>
             </motion.h1>
-            <div className="w-full flex justify-center">
+            <div className="flex w-full justify-center">
               <motion.p
-                className="courses-text-secondary courses-body-large max-w-2xl leading-relaxed font-medium mb-8 md:mb-12 text-center"
+                className="courses-text-secondary courses-body-large mb-8 max-w-2xl text-center leading-relaxed font-medium md:mb-12"
                 variants={fadeIn}
               >
                 Master the art of data engineering with industry-leading courses
                 designed for{" "}
-                <span className="font-bold courses-text-gradient">
+                <span className="courses-text-gradient font-bold">
                   modern tech careers
                 </span>
                 .
               </motion.p>
             </div>
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center mb-12 md:mb-16 max-w-md md:max-w-none mx-auto"
+              className="mx-auto mb-12 flex max-w-md flex-col justify-center gap-4 sm:flex-row md:mb-16 md:max-w-none md:gap-6"
               variants={fadeIn}
             >
               <button
-                className="courses-button-primary group relative px-8 md:px-10 py-3 md:py-4 overflow-hidden rounded-2xl font-bold text-base md:text-lg shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-blue-500/30 border border-blue-400/20 courses-backdrop-blur"
+                className="courses-button-primary group courses-backdrop-blur relative overflow-hidden rounded-2xl border border-blue-400/20 px-8 py-3 text-base font-bold shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-blue-500/30 md:px-10 md:py-4 md:text-lg"
                 onClick={() => handleAction("enroll")}
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Explore Courses
                   <svg
-                    className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1 md:h-5 md:w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -523,13 +523,13 @@ function CoursesContent() {
                 </span>
               </button>
               <button
-                className="courses-button-secondary group relative px-8 md:px-10 py-3 md:py-4 overflow-hidden rounded-2xl font-bold text-base md:text-lg shadow-2xl transition-all duration-300 hover:scale-105"
+                className="courses-button-secondary group relative overflow-hidden rounded-2xl px-8 py-3 text-base font-bold shadow-2xl transition-all duration-300 hover:scale-105 md:px-10 md:py-4 md:text-lg"
                 onClick={() => handleAction("curriculum")}
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   View Curriculum
                   <svg
-                    className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform"
+                    className="h-4 w-4 transition-transform group-hover:translate-x-1 md:h-5 md:w-5"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -550,7 +550,7 @@ function CoursesContent() {
           <motion.div className="courses-container" variants={fadeIn}>
             <div
               ref={techTagsRef}
-              className="flex overflow-x-auto courses-hide-scrollbar gap-2 mb-8 pb-4 whitespace-nowrap"
+              className="courses-hide-scrollbar mb-8 flex gap-2 overflow-x-auto pb-4 whitespace-nowrap"
               style={{ scrollBehavior: "smooth" }}
             >
               <div className="flex gap-2 px-4 md:px-0">
@@ -564,16 +564,16 @@ function CoursesContent() {
 
             {/* Partner Logos */}
             <div className="mt-8">
-              <h3 className="courses-text-secondary courses-body text-center font-medium mb-6">
+              <h3 className="courses-text-secondary courses-body mb-6 text-center font-medium">
                 Students now available at
               </h3>
-              <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
                 {partnerLogos.map((logo, idx) => (
                   <motion.img
                     key={idx}
                     src={logo}
                     alt="Partner Logo"
-                    className="h-10 md:h-12 w-auto object-contain opacity-70 hover:opacity-100 transition-opacity"
+                    className="h-10 w-auto object-contain opacity-70 transition-opacity hover:opacity-100 md:h-12"
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   />
@@ -584,11 +584,11 @@ function CoursesContent() {
         </motion.section>
 
         {/* Projects Carousel */}
-        <section className="courses-section py-16 md:py-24 px-4 relative overflow-hidden transition-all duration-500 border-b">
+        <section className="courses-section relative overflow-hidden border-b px-4 py-16 transition-all duration-500 md:py-24">
           <div className="courses-bg-overlay absolute inset-0" />
           <div className="courses-container">
             <motion.h2
-              className="courses-heading-2 courses-gradient-text text-center mb-12 md:mb-16 tracking-tight leading-tight"
+              className="courses-heading-2 courses-gradient-text mb-12 text-center leading-tight tracking-tight md:mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -597,7 +597,7 @@ function CoursesContent() {
               Explore over 14+ extensive projects
             </motion.h2>
             <motion.div
-              className="relative z-10 max-w-2xl mx-auto"
+              className="relative z-10 mx-auto max-w-2xl"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -605,14 +605,14 @@ function CoursesContent() {
             >
               <div className="relative">
                 <button
-                  className="courses-nav-button absolute left-2 md:left-0 top-1/2 -translate-y-1/2 z-10 shadow-xl transform transition-all duration-300 hover:scale-110"
+                  className="courses-nav-button absolute top-1/2 left-2 z-10 -translate-y-1/2 transform shadow-xl transition-all duration-300 hover:scale-110 md:left-0"
                   onClick={() => scrollProjects(-1)}
                 >
                   &lt;
                 </button>
                 <div
                   ref={projectCarouselRef}
-                  className="overflow-hidden courses-hide-scrollbar mx-12 md:mx-16"
+                  className="courses-hide-scrollbar mx-12 overflow-hidden md:mx-16"
                 >
                   <div
                     className="flex transition-transform duration-500 ease-in-out"
@@ -623,13 +623,13 @@ function CoursesContent() {
                     {projects.map((img, idx) => (
                       <div
                         key={idx}
-                        className="min-w-full flex justify-center px-2 md:px-4"
+                        className="flex min-w-full justify-center px-2 md:px-4"
                         style={{ width: "100%", flexShrink: 0 }}
                       >
                         <img
                           src={img}
                           alt={`Project ${idx + 1}`}
-                          className="rounded-xl shadow-lg hover:shadow-blue-500/30 transition transform hover:scale-105 cursor-pointer border-2 border-gray-700/50 hover:border-blue-500/50 w-full max-w-xs md:max-w-sm h-auto"
+                          className="h-auto w-full max-w-xs transform cursor-pointer rounded-xl border-2 border-gray-700/50 shadow-lg transition hover:scale-105 hover:border-blue-500/50 hover:shadow-blue-500/30 md:max-w-sm"
                           style={{ aspectRatio: "16/10" }}
                         />
                       </div>
@@ -637,7 +637,7 @@ function CoursesContent() {
                   </div>
                 </div>
                 <button
-                  className="courses-nav-button absolute right-2 md:right-0 top-1/2 -translate-y-1/2 z-10 shadow-xl transform transition-all duration-300 hover:scale-110"
+                  className="courses-nav-button absolute top-1/2 right-2 z-10 -translate-y-1/2 transform shadow-xl transition-all duration-300 hover:scale-110 md:right-0"
                   onClick={() => scrollProjects(1)}
                 >
                   &gt;
@@ -659,11 +659,11 @@ function CoursesContent() {
         </section>
 
         {/* Testimonials */}
-        <section className="courses-section py-16 md:py-24 px-4 relative overflow-hidden transition-all duration-500 border-b">
+        <section className="courses-section relative overflow-hidden border-b px-4 py-16 transition-all duration-500 md:py-24">
           <div className="courses-bg-overlay absolute inset-0" />
           <div className="courses-container-wide">
             <motion.h2
-              className="courses-heading-2 courses-gradient-text text-center mb-12 md:mb-16 tracking-tight leading-tight"
+              className="courses-heading-2 courses-gradient-text mb-12 text-center leading-tight tracking-tight md:mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -675,7 +675,7 @@ function CoursesContent() {
               {testimonials.map((t, idx) => (
                 <motion.div
                   key={idx}
-                  className="courses-card group cursor-pointer flex flex-col items-center text-center"
+                  className="courses-card group flex cursor-pointer flex-col items-center text-center"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -683,22 +683,22 @@ function CoursesContent() {
                   whileHover={{ scale: 1.02 }}
                   onClick={() => handleInfo(t.review)}
                 >
-                  <div className="relative w-20 h-20 md:w-24 md:h-24 mb-6">
-                    <div className="absolute inset-0 rounded-full blur-lg opacity-50 group-hover:opacity-70 transition-opacity duration-300 bg-gradient-to-r from-blue-500 to-purple-500" />
+                  <div className="relative mb-6 h-20 w-20 md:h-24 md:w-24">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-lg transition-opacity duration-300 group-hover:opacity-70" />
                     <img
                       src={t.img}
                       alt={t.name}
-                      className="relative w-full h-full rounded-full object-cover border-3 transition-all duration-300 z-10 shadow-lg border-blue-400/50 group-hover:border-blue-400 shadow-blue-500/30"
+                      className="relative z-10 h-full w-full rounded-full border-3 border-blue-400/50 object-cover shadow-lg shadow-blue-500/30 transition-all duration-300 group-hover:border-blue-400"
                     />
                   </div>
                   <h4 className="courses-heading-4 courses-text-gradient mb-4">
                     {t.name}
                   </h4>
-                  <div className="flex mb-4 gap-1">
+                  <div className="mb-4 flex gap-1">
                     {Array.from({ length: t.stars }).map((_, i) => (
                       <motion.span
                         key={i}
-                        className="text-yellow-400 text-lg"
+                        className="text-lg text-yellow-400"
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: i * 0.1 }}
@@ -707,7 +707,7 @@ function CoursesContent() {
                       </motion.span>
                     ))}
                   </div>
-                  <p className="courses-body-small text-center line-clamp-4 transition-colors duration-300 leading-relaxed courses-text-secondary">
+                  <p className="courses-body-small courses-text-secondary line-clamp-4 text-center leading-relaxed transition-colors duration-300">
                     {t.review}
                   </p>
                 </motion.div>
@@ -717,10 +717,10 @@ function CoursesContent() {
         </section>
 
         {/* Courses Timeline Section */}
-        <section className="courses-section py-16 md:py-24 px-4 transition-all duration-500 border-b">
+        <section className="courses-section border-b px-4 py-16 transition-all duration-500 md:py-24">
           <div className="courses-container-wide">
             <motion.h2
-              className="courses-heading-2 courses-gradient-text text-center mb-6 tracking-tight leading-tight"
+              className="courses-heading-2 courses-gradient-text mb-6 text-center leading-tight tracking-tight"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -729,7 +729,7 @@ function CoursesContent() {
               Courses Available
             </motion.h2>
             <motion.h3
-              className="courses-body-large courses-text-secondary text-center mb-12 md:mb-16"
+              className="courses-body-large courses-text-secondary mb-12 text-center md:mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -737,39 +737,39 @@ function CoursesContent() {
             >
               Courses Covered In the Program
             </motion.h3>
-            <div className="flex flex-col lg:flex-row w-full gap-8 lg:gap-0">
+            <div className="flex w-full flex-col gap-8 lg:flex-row lg:gap-0">
               {/* Left column */}
-              <div className="flex-1 flex flex-col gap-6 lg:gap-8">
+              <div className="flex flex-1 flex-col gap-6 lg:gap-8">
                 {courses
                   .filter((_, i) => i % 2 === 0)
                   .map((course, idx) => (
                     <motion.div
                       key={course.number}
-                      className="courses-timeline-card flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 cursor-pointer group"
+                      className="courses-timeline-card group flex cursor-pointer flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6"
                       onClick={() => handleCourseClick(course)}
                       initial={{ opacity: 0, x: -30 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: idx * 0.1 }}
                     >
-                      <div className="relative w-full sm:w-32 md:w-40 h-32 sm:h-20 md:h-24 overflow-hidden rounded-lg flex-shrink-0">
+                      <div className="relative h-32 w-full flex-shrink-0 overflow-hidden rounded-lg sm:h-20 sm:w-32 md:h-24 md:w-40">
                         <img
                           src={course.img}
                           alt={course.title}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="courses-heading-4 courses-text-gradient mb-2 md:mb-3 line-clamp-2">
+                      <div className="min-w-0 flex-1">
+                        <h3 className="courses-heading-4 courses-text-gradient mb-2 line-clamp-2 md:mb-3">
                           {course.title}
                         </h3>
-                        <p className="courses-body-small courses-text-secondary line-clamp-2 md:line-clamp-3 leading-relaxed">
+                        <p className="courses-body-small courses-text-secondary line-clamp-2 leading-relaxed md:line-clamp-3">
                           {course.desc}
                         </p>
                       </div>
                       <svg
-                        className="w-5 h-5 md:w-6 md:h-6 group-hover:text-blue-400 transform group-hover:translate-x-1 transition-all duration-300 courses-text-muted flex-shrink-0"
+                        className="courses-text-muted h-5 w-5 flex-shrink-0 transform transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-400 md:h-6 md:w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -785,28 +785,28 @@ function CoursesContent() {
                   ))}
               </div>
               {/* Timeline */}
-              <div className="hidden lg:flex flex-col items-center mx-6 xl:mx-8 relative">
-                <div className="absolute top-0 bottom-0 w-1 left-1/2 -translate-x-1/2 bg-gradient-to-b from-purple-500 to-indigo-500"></div>
+              <div className="relative mx-6 hidden flex-col items-center lg:flex xl:mx-8">
+                <div className="absolute top-0 bottom-0 left-1/2 w-1 -translate-x-1/2 bg-gradient-to-b from-purple-500 to-indigo-500"></div>
                 {courses.map((course, idx) => (
                   <React.Fragment key={course.number}>
                     <motion.div
-                      className="flex flex-col items-center relative z-10"
+                      className="relative z-10 flex flex-col items-center"
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: idx * 0.1 }}
                     >
-                      <div className="w-12 h-12 xl:w-16 xl:h-16 flex items-center justify-center rounded-full border-4 text-lg xl:text-2xl font-bold mb-2 bg-gradient-to-br from-purple-600 to-indigo-600 border-purple-400 text-white shadow-lg shadow-purple-500/50">
+                      <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full border-4 border-purple-400 bg-gradient-to-br from-purple-600 to-indigo-600 text-lg font-bold text-white shadow-lg shadow-purple-500/50 xl:h-16 xl:w-16 xl:text-2xl">
                         {course.number}
                       </div>
                       {idx !== courses.length - 1 && (
-                        <div className="w-1 h-12 xl:h-16 bg-transparent"></div>
+                        <div className="h-12 w-1 bg-transparent xl:h-16"></div>
                       )}
                     </motion.div>
                   </React.Fragment>
                 ))}
                 <motion.button
-                  className="courses-button-primary mt-8 xl:mt-12 py-3 xl:py-4 px-8 xl:px-10 rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-110 relative z-10"
+                  className="courses-button-primary relative z-10 mt-8 transform rounded-2xl px-8 py-3 shadow-2xl transition-all duration-300 hover:scale-110 xl:mt-12 xl:px-10 xl:py-4"
                   onClick={() => handleAction("enroll")}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -819,37 +819,37 @@ function CoursesContent() {
                 </motion.button>
               </div>
               {/* Right column */}
-              <div className="flex-1 flex flex-col gap-6 lg:gap-8">
+              <div className="flex flex-1 flex-col gap-6 lg:gap-8">
                 {courses
                   .filter((_, i) => i % 2 === 1)
                   .map((course, idx) => (
                     <motion.div
                       key={course.number}
-                      className="courses-timeline-card flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 cursor-pointer group"
+                      className="courses-timeline-card group flex cursor-pointer flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6"
                       onClick={() => handleCourseClick(course)}
                       initial={{ opacity: 0, x: 30 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: idx * 0.1 }}
                     >
-                      <div className="flex-1 min-w-0 order-2 sm:order-1">
-                        <h3 className="courses-heading-4 courses-text-gradient mb-2 md:mb-3 line-clamp-2">
+                      <div className="order-2 min-w-0 flex-1 sm:order-1">
+                        <h3 className="courses-heading-4 courses-text-gradient mb-2 line-clamp-2 md:mb-3">
                           {course.title}
                         </h3>
-                        <p className="courses-body-small courses-text-secondary line-clamp-2 md:line-clamp-3 leading-relaxed">
+                        <p className="courses-body-small courses-text-secondary line-clamp-2 leading-relaxed md:line-clamp-3">
                           {course.desc}
                         </p>
                       </div>
-                      <div className="relative w-full sm:w-32 md:w-40 h-32 sm:h-20 md:h-24 overflow-hidden rounded-lg flex-shrink-0 order-1 sm:order-2">
+                      <div className="relative order-1 h-32 w-full flex-shrink-0 overflow-hidden rounded-lg sm:order-2 sm:h-20 sm:w-32 md:h-24 md:w-40">
                         <img
                           src={course.img}
                           alt={course.title}
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                       </div>
                       <svg
-                        className="w-5 h-5 md:w-6 md:h-6 group-hover:text-blue-400 transform group-hover:translate-x-1 transition-all duration-300 courses-text-muted flex-shrink-0 order-3"
+                        className="courses-text-muted order-3 h-5 w-5 flex-shrink-0 transform transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-400 md:h-6 md:w-6"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -866,9 +866,9 @@ function CoursesContent() {
               </div>
 
               {/* Mobile Enroll Button */}
-              <div className="lg:hidden mt-8 flex justify-center">
+              <div className="mt-8 flex justify-center lg:hidden">
                 <motion.button
-                  className="courses-button-primary py-3 px-8 rounded-2xl shadow-2xl transform transition-all duration-300 hover:scale-105"
+                  className="courses-button-primary transform rounded-2xl px-8 py-3 shadow-2xl transition-all duration-300 hover:scale-105"
                   onClick={() => handleAction("enroll")}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -885,10 +885,10 @@ function CoursesContent() {
         </section>
 
         {/* Project Reviews Section */}
-        <section className="courses-stats-section py-16 md:py-20 px-4 transition-all duration-500 border-b">
+        <section className="courses-stats-section border-b px-4 py-16 transition-all duration-500 md:py-20">
           <div className="courses-container-wide">
             <motion.h2
-              className="courses-heading-2 courses-text-primary text-center mb-8 md:mb-12"
+              className="courses-heading-2 courses-text-primary mb-8 text-center md:mb-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -900,7 +900,7 @@ function CoursesContent() {
               {projectReviews.map((review, idx) => (
                 <motion.div
                   key={idx}
-                  className="courses-card flex flex-col items-center text-center cursor-pointer group"
+                  className="courses-card group flex cursor-pointer flex-col items-center text-center"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -908,18 +908,18 @@ function CoursesContent() {
                   whileHover={{ scale: 1.02 }}
                   onClick={() => handleInfo(review.review)}
                 >
-                  <div className="relative w-16 h-16 md:w-20 md:h-20 mb-4 md:mb-6">
-                    <div className="absolute inset-0 rounded-full blur-md opacity-50 group-hover:opacity-70 transition-opacity duration-300 bg-gradient-to-r from-green-400 to-emerald-500" />
+                  <div className="relative mb-4 h-16 w-16 md:mb-6 md:h-20 md:w-20">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 opacity-50 blur-md transition-opacity duration-300 group-hover:opacity-70" />
                     <img
                       src={review.img}
                       alt={review.name}
-                      className="relative w-full h-full rounded-full object-cover border-3 border-green-400 group-hover:border-green-300 transition-all duration-300 z-10 shadow-lg"
+                      className="relative z-10 h-full w-full rounded-full border-3 border-green-400 object-cover shadow-lg transition-all duration-300 group-hover:border-green-300"
                     />
                   </div>
                   <h4 className="courses-heading-4 courses-text-gradient mb-3 md:mb-4">
                     {review.name}
                   </h4>
-                  <p className="courses-body-small courses-text-secondary text-center leading-relaxed line-clamp-4">
+                  <p className="courses-body-small courses-text-secondary line-clamp-4 text-center leading-relaxed">
                     {review.review}
                   </p>
                 </motion.div>
@@ -929,10 +929,10 @@ function CoursesContent() {
         </section>
 
         {/* Topics Tag Cloud & Community Stats */}
-        <section className="courses-section py-16 md:py-20 px-4 transition-all duration-500 border-b">
+        <section className="courses-section border-b px-4 py-16 transition-all duration-500 md:py-20">
           <div className="courses-container-wide">
             <motion.h3
-              className="courses-heading-3 courses-text-primary text-center mb-6 md:mb-8"
+              className="courses-heading-3 courses-text-primary mb-6 text-center md:mb-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -941,7 +941,7 @@ function CoursesContent() {
               100+ topics taught...
             </motion.h3>
             <motion.div
-              className={`flex flex-wrap justify-center gap-2 md:gap-3 mb-6 transition-all duration-500 ${showAllTopics ? "max-h-none" : "max-h-32 md:max-h-40 overflow-hidden"}`}
+              className={`mb-6 flex flex-wrap justify-center gap-2 transition-all duration-500 md:gap-3 ${showAllTopics ? "max-h-none" : "max-h-32 overflow-hidden md:max-h-40"}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -961,14 +961,14 @@ function CoursesContent() {
               )}
             </motion.div>
             <motion.div
-              className="flex justify-center mb-8 md:mb-12"
+              className="mb-8 flex justify-center md:mb-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
               <button
-                className="courses-button-ghost px-6 md:px-8 py-2 md:py-3 rounded-full font-semibold transform transition-all duration-300 hover:scale-105"
+                className="courses-button-ghost transform rounded-full px-6 py-2 font-semibold transition-all duration-300 hover:scale-105 md:px-8 md:py-3"
                 onClick={() => setShowAllTopics((v) => !v)}
               >
                 {showAllTopics ? "Show less" : "Show more"}
@@ -992,7 +992,7 @@ function CoursesContent() {
                 whileHover={{ scale: 1.02 }}
               >
                 <div className="relative z-10">
-                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold mb-3 md:mb-4 flex justify-center items-baseline courses-text-gradient">
+                  <div className="courses-text-gradient mb-3 flex items-baseline justify-center text-3xl font-bold md:mb-4 md:text-4xl lg:text-5xl">
                     <motion.span
                       className="inline-block"
                       initial={{ opacity: 0, scale: 0.5 }}
@@ -1001,14 +1001,14 @@ function CoursesContent() {
                     >
                       {isStatsVisible ? animatedStats[stat.label] : 0}
                     </motion.span>
-                    <span className="inline-block ml-1 text-lg md:text-xl lg:text-2xl">
+                    <span className="ml-1 inline-block text-lg md:text-xl lg:text-2xl">
                       {stat.suffix}
                     </span>
                   </div>
-                  <div className="courses-body-large courses-text-secondary font-semibold transition-colors duration-300 mb-4 md:mb-6">
+                  <div className="courses-body-large courses-text-secondary mb-4 font-semibold transition-colors duration-300 md:mb-6">
                     {stat.label}
                   </div>
-                  <div className="h-2 w-full rounded-full overflow-hidden bg-gradient-to-r from-gray-200 to-gray-300">
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-gradient-to-r from-gray-200 to-gray-300">
                     <motion.div
                       className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
                       initial={{ width: "0%" }}
@@ -1023,10 +1023,10 @@ function CoursesContent() {
         </section>
 
         {/* FAQ Section */}
-        <section className="courses-faq-section py-16 md:py-20 px-4 transition-all duration-500 border-b">
+        <section className="courses-faq-section border-b px-4 py-16 transition-all duration-500 md:py-20">
           <div className="courses-container">
             <motion.h2
-              className="courses-heading-2 courses-text-primary text-center mb-8 md:mb-12"
+              className="courses-heading-2 courses-text-primary mb-8 text-center md:mb-12"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -1034,7 +1034,7 @@ function CoursesContent() {
             >
               Commonly asked questions
             </motion.h2>
-            <div className="max-w-3xl mx-auto">
+            <div className="mx-auto max-w-3xl">
               {faqs.map((faq, idx) => (
                 <motion.div
                   key={idx}
@@ -1045,12 +1045,12 @@ function CoursesContent() {
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                 >
                   <button
-                    className="courses-faq-button w-full text-left py-4 md:py-6 px-4 md:px-6 courses-body md:courses-body-large font-semibold flex justify-between items-center focus:outline-none transition-all duration-300"
+                    className="courses-faq-button courses-body md:courses-body-large flex w-full items-center justify-between px-4 py-4 text-left font-semibold transition-all duration-300 focus:outline-none md:px-6 md:py-6"
                     onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
                   >
                     <span className="pr-4">{faq.q}</span>
                     <span
-                      className="transform transition-transform duration-300 text-xl md:text-2xl flex-shrink-0"
+                      className="flex-shrink-0 transform text-xl transition-transform duration-300 md:text-2xl"
                       style={{
                         transform:
                           openFaq === idx ? "rotate(45deg)" : "rotate(0)",
@@ -1060,13 +1060,13 @@ function CoursesContent() {
                     </span>
                   </button>
                   <div
-                    className="transition-all duration-300 overflow-hidden"
+                    className="overflow-hidden transition-all duration-300"
                     style={{
                       maxHeight: openFaq === idx ? "500px" : "0",
                       opacity: openFaq === idx ? 1 : 0,
                     }}
                   >
-                    <div className="courses-faq-answer py-4 md:py-6 px-4 md:px-6 courses-body leading-relaxed">
+                    <div className="courses-faq-answer courses-body px-4 py-4 leading-relaxed md:px-6 md:py-6">
                       {faq.a}
                     </div>
                   </div>

@@ -230,7 +230,7 @@ export default function MerchPage(): ReactNode {
             transition={{ duration: 0.6 }}
           >
             <h1 className="merch-hero-title" style={{ color: "#1a1a1a" }}>
-              <ShoppingBag className="inline-block mr-3" size={48} />
+              <ShoppingBag className="mr-3 inline-block" size={48} />
               Official Recode Merch
             </h1>
             <p className="merch-hero-description">

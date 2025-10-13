@@ -1541,39 +1541,39 @@ function InterviewPrepContent({
       >
         {/* Hero Section */}
         <motion.section
-          className="hero-section py-20 px-4 text-center bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white relative overflow-hidden"
+          className="hero-section relative overflow-hidden bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 px-4 py-20 text-center text-white"
           initial="hidden"
           animate="visible"
           variants={staggerContainer}
         >
           <div className="absolute inset-0 bg-black/20"></div>
-          <div className="relative z-10 max-w-4xl mx-auto">
+          <div className="relative z-10 mx-auto max-w-4xl">
             <motion.h1
-              className="text-5xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100"
+              className="mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-5xl font-bold text-transparent md:text-6xl"
               variants={fadeIn}
             >
               Ace Your Next Interview
             </motion.h1>
             <motion.p
-              className="text-xl md:text-2xl mb-8 text-blue-100"
+              className="mb-8 text-xl text-blue-100 md:text-2xl"
               variants={fadeIn}
             >
               Master technical challenges and behavioral questions with our
               comprehensive interview preparation platform
             </motion.p>
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col justify-center gap-4 sm:flex-row"
               variants={fadeIn}
             >
               <button
                 onClick={() => setActiveTab("practice")}
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50"
               >
                 Start Practice
               </button>
               <button
                 onClick={() => setActiveTab("technical")}
-                className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300"
+                className="rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-white hover:text-blue-600"
               >
                 Browse Resources
               </button>
@@ -1582,8 +1582,8 @@ function InterviewPrepContent({
         </motion.section>
 
         {/* Navigation Tabs */}
-        <div className="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm">
-          <div className="max-w-6xl mx-auto px-4">
+        <div className="sticky top-0 z-40 border-b border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-900">
+          <div className="mx-auto max-w-6xl px-4">
             <nav className="flex space-x-8 overflow-x-auto">
               {[
                 { id: "overview", label: "Overview", icon: "📋" },
@@ -1595,7 +1595,7 @@ function InterviewPrepContent({
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center space-x-2 py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
+                  className={`flex items-center space-x-2 border-b-2 px-2 py-4 text-sm font-medium transition-colors ${
                     activeTab === tab.id
                       ? "interview-prep-nav-tab-active border-blue-500 text-blue-600 dark:text-blue-400"
                       : "interview-prep-nav-tab-inactive border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
@@ -1610,7 +1610,7 @@ function InterviewPrepContent({
         </div>
 
         {/* Tab Content */}
-        <div className="interview-prep-page max-w-6xl mx-auto px-4 py-12">
+        <div className="interview-prep-page mx-auto max-w-6xl px-4 py-12">
           {/* Overview Tab */}
           {activeTab === "overview" && (
             <OverviewTab
@@ -1660,36 +1660,36 @@ function InterviewPrepContent({
 
         {/* Call to Action */}
         <motion.section
-          className="cta-section py-20 px-4 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white text-center"
+          className="cta-section bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 px-4 py-20 text-center text-white"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={staggerContainer}
         >
-          <div className="max-w-4xl mx-auto">
+          <div className="mx-auto max-w-4xl">
             <motion.h2
-              className="text-4xl md:text-5xl font-bold mb-6"
+              className="mb-6 text-4xl font-bold md:text-5xl"
               variants={fadeIn}
             >
               Ready to Land Your Dream Job?
             </motion.h2>
-            <motion.p className="text-xl mb-8 text-blue-100" variants={fadeIn}>
+            <motion.p className="mb-8 text-xl text-blue-100" variants={fadeIn}>
               Join thousands of developers who have successfully prepared for
               interviews with recode hive
             </motion.p>
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              className="flex flex-col justify-center gap-4 sm:flex-row"
               variants={fadeIn}
             >
               <Link
                 to="/get-started"
-                className="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50"
               >
                 Start Preparing Now
               </Link>
               <Link
                 to="/community"
-                className="border-2 border-white bg-white text-blue-500 px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-all duration-300"
+                className="rounded-lg border-2 border-white bg-white px-8 py-4 font-semibold text-blue-500 transition-all duration-300 hover:bg-white hover:text-blue-600"
               >
                 Join Community
               </Link>

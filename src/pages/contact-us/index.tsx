@@ -32,7 +32,7 @@ const ContactUs: React.FC = () => {
                   <div className="contact-info-item">
                     <div className="contact-icon-wrapper">
                       <Mail
-                        className="w-6 h-6"
+                        className="h-6 w-6"
                         style={{ color: "var(--contact-accent-primary)" }}
                       />
                     </div>
@@ -49,7 +49,7 @@ const ContactUs: React.FC = () => {
                   <div className="contact-info-item">
                     <div className="contact-icon-wrapper">
                       <Clock
-                        className="w-6 h-6"
+                        className="h-6 w-6"
                         style={{ color: "var(--contact-accent-primary)" }}
                       />
                     </div>
@@ -71,7 +71,7 @@ const ContactUs: React.FC = () => {
                   <div className="contact-info-item">
                     <div className="contact-icon-wrapper">
                       <MapPin
-                        className="w-6 h-6"
+                        className="h-6 w-6"
                         style={{ color: "var(--contact-accent-primary)" }}
                       />
                     </div>

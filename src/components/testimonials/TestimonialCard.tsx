@@ -39,19 +39,19 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className={`rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 h-[250px] flex flex-col justify-between ${
+      className={`flex h-[250px] flex-col justify-between rounded-2xl p-6 shadow-lg transition-shadow duration-300 hover:shadow-xl ${
         isDark ? "bg-[#1a1a1a] text-white" : "bg-white text-gray-900"
       }`}
     >
       {/* Header with Avatar and Name */}
       <div className="flex items-center gap-4">
-        <Avatar className="w-24 h-24 rounded-full">
+        <Avatar className="h-24 w-24 rounded-full">
           <AvatarImage src={avatar} className="object-contain" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <div>
           <h3
-            className={`font-semibold text-lg ${isDark ? "text-white" : "text-gray-900"}`}
+            className={`text-lg font-semibold ${isDark ? "text-white" : "text-gray-900"}`}
           >
             {name}
           </h3>
@@ -65,23 +65,23 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
       {/* Content */}
       <p
-        className={`line-clamp-3 my-4 flex-grow ${isDark ? "text-gray-300" : "text-gray-700"}`}
+        className={`my-4 line-clamp-3 flex-grow ${isDark ? "text-gray-300" : "text-gray-700"}`}
       >
         {content}
       </p>
 
       {/* Footer with Hashtags and Date */}
       <div
-        className={`flex flex-col gap-2 text-sm pt-2 border-t ${
+        className={`flex flex-col gap-2 border-t pt-2 text-sm ${
           isDark ? "border-gray-700" : "border-gray-100"
         }`}
       >
         {/* Hashtags */}
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex flex-wrap gap-2">
           {content.match(/#\w+/g)?.map((hashtag, index) => (
             <span
               key={index}
-              className="text-blue-500 hover:text-blue-600 cursor-pointer"
+              className="cursor-pointer text-blue-500 hover:text-blue-600"
             >
               {hashtag}
             </span>
@@ -94,7 +94,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className={`hover:underline cursor-pointer ${
+            className={`cursor-pointer hover:underline ${
               isDark
                 ? "text-blue-400 hover:text-blue-300"
                 : "text-blue-600 hover:text-blue-700"

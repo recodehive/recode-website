@@ -58,7 +58,7 @@ export default function Home(): ReactNode {
         }}
       >
         <main
-          className="transition-colors duration-300 page-enter"
+          className="page-enter transition-colors duration-300"
           style={{
             backgroundColor: "var(--ifm-background-color)",
             color: "var(--ifm-font-color-base)",
@@ -79,7 +79,7 @@ export default function Home(): ReactNode {
             <img
               src="/selfhero.png"
               alt="recodehive"
-              className="w-full h-full object-cover rounded-2xl cursor-pointer"
+              className="h-full w-full cursor-pointer rounded-2xl object-cover"
             />
           </div>
 
@@ -87,7 +87,7 @@ export default function Home(): ReactNode {
             <OurProjects />
           </div>
 
-          <div className="m-4 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
+          <div className="m-4 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
             {showTopmate && (
               <div className="col-span-1">
                 <TopMateSection setShowTopmate={setShowTopmate} />

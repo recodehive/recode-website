@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import Layout from '@theme/Layout';
-import { useHistory } from '@docusaurus/router';
-import './index.css';
+import React, { useState } from "react";
+import Layout from "@theme/Layout";
+import { useHistory } from "@docusaurus/router";
+import "./index.css";
 
 interface Ebook {
   id: string;
@@ -14,11 +14,11 @@ interface Ebook {
 // Redirection URL Ebook Data
 const ebooks: Ebook[] = [
   {
-    id: '1',
-    title: 'Mastering Data Science with Python',
-    description: 'Learn Data Science with examples and real-world projects.',
-    contentLink: 'https://learn.recodehive.com/datascience',
-    category: 'Programming',
+    id: "1",
+    title: "Mastering Data Science with Python",
+    description: "Learn Data Science with examples and real-world projects.",
+    contentLink: "https://learn.recodehive.com/datascience",
+    category: "Programming",
   },
 
   // add here more ebooks or resources as needed for redirection
@@ -41,8 +41,8 @@ const EbookCard: React.FC<{ ebook: Ebook }> = ({ ebook }) => {
   const history = useHistory();
 
   const handleClick = () => {
-    if (ebook.contentLink.startsWith('http')) {
-      window.open(ebook.contentLink, '_blank');
+    if (ebook.contentLink.startsWith("http")) {
+      window.open(ebook.contentLink, "_blank");
     } else {
       history.push(ebook.contentLink);
     }
@@ -50,7 +50,6 @@ const EbookCard: React.FC<{ ebook: Ebook }> = ({ ebook }) => {
 
   return (
     <div className="ebook-card" onClick={handleClick}>
-     
       <div className="ebook-content">
         <h3 className="ebook-card-title">{ebook.title}</h3>
         <p className="ebook-card-desc">{ebook.description}</p>
@@ -65,10 +64,10 @@ const EbookCard: React.FC<{ ebook: Ebook }> = ({ ebook }) => {
 // Main Ebook Page
 // --------------------------
 export default function EbookPage(): JSX.Element {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
 
   const filteredEbooks = ebooks.filter((ebook) =>
-    ebook.title.toLowerCase().includes(searchTerm.toLowerCase())
+    ebook.title.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (

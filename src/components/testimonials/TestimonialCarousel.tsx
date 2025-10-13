@@ -62,9 +62,9 @@ export function TestimonialCarousel() {
 
   return (
     <div className="w-full">
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-bold mb-2">Loved by Many Users</h2>
-        <div className="w-32 h-1 bg-blue-500 mx-auto rounded-full"></div>
+      <div className="mb-10 text-center">
+        <h2 className="mb-2 text-3xl font-bold">Loved by Many Users</h2>
+        <div className="mx-auto h-1 w-32 rounded-full bg-blue-500"></div>
       </div>
 
       <Carousel
@@ -80,18 +80,18 @@ export function TestimonialCarousel() {
           }),
         ]}
       >
-        <CarouselContent className="-ml-2 md:-ml-4 my-16">
+        <CarouselContent className="my-16 -ml-2 md:-ml-4">
           {testimonials.map((testimonial, index) => (
             <CarouselItem
               key={index}
-              className="pl-2 md:pl-4 md:basis-1/2 h-full"
+              className="h-full pl-2 md:basis-1/2 md:pl-4"
             >
               <TestimonialCard {...testimonial} />
             </CarouselItem>
           ))}
         </CarouselContent>
 
-        <div className="flex items-center justify-center gap-2 mt-8">
+        <div className="mt-8 flex items-center justify-center gap-2">
           <CarouselPrevious className="static translate-y-0" />
           <div className="flex gap-2">
             {Array.from({ length: count }).map((_, index) => (
@@ -99,7 +99,7 @@ export function TestimonialCarousel() {
                 key={index}
                 variant={current === index + 1 ? "default" : "outline"}
                 size="icon"
-                className="h-2 w-2 p-0 rounded-full"
+                className="h-2 w-2 rounded-full p-0"
                 onClick={() => api?.scrollTo(index)}
               />
             ))}

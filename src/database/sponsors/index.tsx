@@ -534,7 +534,6 @@ const sponsors: Sponsor[] = [
     image: "https://avatars.githubusercontent.com/u/4665641?v=4",
     description: "Team lead of Quasar Framework",
     github: "https://github.com/rstoenescu",
-    linkedin: "#",
     isWeSponsor: true,
   },
   {
@@ -542,7 +541,6 @@ const sponsors: Sponsor[] = [
     image: "https://avatars.githubusercontent.com/u/2281088?v=4",
     description: "Director at Google",
     github: "https://github.com/sdras",
-    linkedin: "#",
     twitter: "https://x.com/sarah_edo",
     isWeSponsor: true,
   },
@@ -551,7 +549,6 @@ const sponsors: Sponsor[] = [
     image: "https://avatars.githubusercontent.com/u/1503512?s=200&v=4",
     description: "package manager for macOS",
     github: "https://github.com/Homebrew",
-    linkedin: "#",
     isWeSponsor: true,
   },
   {
@@ -560,6 +557,7 @@ const sponsors: Sponsor[] = [
     description: "Opensouce Contributor",
     github: "https://github.com/Adez017",
     linkedin: "https://www.linkedin.com/in/aditya-singh-rathore0017/",
+    twitter: "https://x.com/Adez017",
     isWeSponsor: true,
   },
 ];

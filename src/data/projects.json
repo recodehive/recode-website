@@ -37,7 +37,12 @@
       "image": "/img/blogs/Scrape-ml-project.png",
       "projectUrl": "https://github.com/recodehive/Scrape-ML-Project",
       "githubUrl": "https://github.com/recodehive/Scrape-ML-Project",
-      "tags": ["web-scraping", "machine-learning", "automation", "data-extraction"]
+      "tags": [
+        "web-scraping",
+        "machine-learning",
+        "automation",
+        "data-extraction"
+      ]
     },
     {
       "id": 5,

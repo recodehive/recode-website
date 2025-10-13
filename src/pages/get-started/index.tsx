@@ -405,7 +405,7 @@ const LearningPath = ({
   color = "#3b82f6",
   index = 0,
   isCompleted = false,
-  onToggleComplete = () => { },
+  onToggleComplete = () => {},
 }: LearningPathProps) => {
   const isEven = index % 2 === 0;
   const delay = index * 0.15;
@@ -489,8 +489,9 @@ const LearningPath = ({
           opacity: isCompleted ? 0.9 : 1,
           filter: isCompleted ? "saturate(0.9)" : "none",
           transition: "all 0.3s ease-in-out",
-          border: `1px solid ${isCompleted ? `${color}40` : "rgba(255, 255, 255, 0.1)"
-            }`,
+          border: `1px solid ${
+            isCompleted ? `${color}40` : "rgba(255, 255, 255, 0.1)"
+          }`,
           background:
             "linear-gradient(145deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98))",
           boxShadow: "0 8px 20px -5px rgba(0, 0, 0, 0.15)",
@@ -537,16 +538,16 @@ const LearningPath = ({
     >
       {/* Hover overlay */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-transparent via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0"
+        className="absolute inset-0 z-0 bg-gradient-to-br from-transparent via-transparent to-black/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background: `radial-gradient(circle at 70% 30%, ${color}10 0%, transparent 70%)`,
         }}
       />
 
       <div className="relative z-10">
-        <div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 p-4 sm:p-5 md:p-6">
+        <div className="flex flex-col items-start gap-3 p-4 sm:flex-row sm:gap-4 sm:p-5 md:p-6">
           <motion.div
-            className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl text-lg sm:text-xl md:text-2xl relative overflow-hidden"
+            className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl text-lg sm:h-12 sm:w-12 sm:text-xl md:h-14 md:w-14 md:text-2xl"
             style={{
               background: `linear-gradient(135deg, ${color}, ${color}80)`,
               boxShadow: `0 4px 15px -5px ${color}80`,
@@ -563,14 +564,14 @@ const LearningPath = ({
           </motion.div>
 
           <div className="flex-1">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full gap-2">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold text-white break-words leading-tight">
+            <div className="flex w-full flex-col justify-between gap-2 sm:flex-row sm:items-center">
+              <h3 className="text-base leading-tight font-bold break-words text-white sm:text-lg md:text-xl">
                 {title}
               </h3>
               {isCompleted && (
-                <div className="ml-2 px-2 py-0.5 bg-green-500/20 text-green-400 text-xs font-medium rounded-full flex items-center whitespace-nowrap">
+                <div className="ml-2 flex items-center rounded-full bg-green-500/20 px-2 py-0.5 text-xs font-medium whitespace-nowrap text-green-400">
                   <svg
-                    className="w-3 h-3 mr-1 flex-shrink-0"
+                    className="mr-1 h-3 w-3 flex-shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -586,20 +587,22 @@ const LearningPath = ({
               )}
             </div>
 
-            <p className="text-gray-300 mb-4 leading-relaxed">{description}</p>
+            <p className="mb-4 leading-relaxed text-gray-300">{description}</p>
 
-            <div className="flex items-center justify-between mt-4 pt-3 border-t border-gray-700/50">
+            <div className="mt-4 flex items-center justify-between border-t border-gray-700/50 pt-3">
               <Link
                 to="/docs/GitHub/intro-github"
-                className={`inline-flex items-center text-sm font-medium transition-all duration-200 ${isCompleted
-                  ? "text-green-400 hover:text-green-300"
-                  : "text-blue-400 hover:text-blue-300"
-                  } group-hover:underline`}
+                className={`inline-flex items-center text-sm font-medium transition-all duration-200 ${
+                  isCompleted
+                    ? "text-green-400 hover:text-green-300"
+                    : "text-blue-400 hover:text-blue-300"
+                } group-hover:underline`}
               >
                 {isCompleted ? "Continue Learning" : "Start Learning"}
                 <svg
-                  className={`w-4 h-4 ml-2 transition-transform duration-300 group-hover:translate-x-1 ${isCompleted ? "text-green-400" : "text-blue-400"
-                    }`}
+                  className={`ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 ${
+                    isCompleted ? "text-green-400" : "text-blue-400"
+                  }`}
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -619,10 +622,11 @@ const LearningPath = ({
                   e.preventDefault();
                   onToggleComplete();
                 }}
-                className={`relative inline-flex items-center h-6 rounded-full w-11 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 ${isCompleted
-                  ? "bg-green-500 focus:ring-green-500"
-                  : "bg-gray-600 hover:bg-gray-500 focus:ring-blue-500"
-                  }`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-all duration-200 focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-none ${
+                  isCompleted
+                    ? "bg-green-500 focus:ring-green-500"
+                    : "bg-gray-600 hover:bg-gray-500 focus:ring-blue-500"
+                }`}
                 whileTap={{ scale: 0.95 }}
                 aria-pressed={isCompleted}
                 aria-label={
@@ -633,13 +637,14 @@ const LearningPath = ({
                   {isCompleted ? "Mark as incomplete" : "Mark as complete"}
                 </span>
                 <motion.span
-                  className={`inline-block w-4 h-4 transform bg-white rounded-full transition-all duration-200 ease-in-out flex items-center justify-center ${isCompleted ? "translate-x-6" : "translate-x-1"
-                    }`}
+                  className={`flex inline-block h-4 w-4 transform items-center justify-center rounded-full bg-white transition-all duration-200 ease-in-out ${
+                    isCompleted ? "translate-x-6" : "translate-x-1"
+                  }`}
                   layout
                 >
                   {isCompleted && (
                     <motion.svg
-                      className="w-3 h-3 text-green-500"
+                      className="h-3 w-3 text-green-500"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                       xmlns="http://www.w3.org/2000/svg"
@@ -665,14 +670,14 @@ const LearningPath = ({
         </div>
 
         {/* Bottom border */}
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gray-700/50"></div>
+        <div className="absolute right-0 bottom-0 left-0 h-px bg-gray-700/50"></div>
 
         {/* Glow effect on hover */}
-        <div className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-10 blur transition-opacity duration-300 -z-10"></div>
+        <div className="absolute -inset-1 -z-10 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 blur transition-opacity duration-300 group-hover:opacity-10"></div>
       </div>
 
       {/* Subtle corner accent */}
-      <div className="absolute top-0 right-0 w-16 h-16 -mr-8 -mt-8 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full"></div>
+      <div className="absolute top-0 right-0 -mt-8 -mr-8 h-16 w-16 rounded-full bg-gradient-to-br from-blue-500/20 to-transparent"></div>
 
       {/* Subtle pattern overlay */}
       <div
@@ -718,7 +723,7 @@ function GetStartedContent() {
     Math.round(
       (Object.values(completedPaths).filter(Boolean).length /
         learningPaths.length) *
-      100,
+        100,
     ) || 0;
 
   // Save to localStorage whenever completedPaths changes
@@ -754,8 +759,9 @@ function GetStartedContent() {
       <GetStartedHeader />
 
       <main
-        className={`transition-colors duration-300 ${isDark ? "dark-bg-primary dark-text-primary" : "bg-white text-black"
-          }`}
+        className={`transition-colors duration-300 ${
+          isDark ? "dark-bg-primary dark-text-primary" : "bg-white text-black"
+        }`}
       >
         {/* Features Section */}
         <section className={styles.features}>
@@ -822,9 +828,9 @@ function GetStartedContent() {
           >
             <div className="w-full bg-gray-900 py-16">
               <div className="container mx-auto">
-                <div className="text-center mb-16">
+                <div className="mb-16 text-center">
                   <motion.h2
-                    className="text-3xl md:text-4xl font-bold mb-4 px-6 py-3 inline-block rounded-xl bg-blue-100 text-gray-900"
+                    className="mb-4 inline-block rounded-xl bg-blue-100 px-6 py-3 text-3xl font-bold text-gray-900 md:text-4xl"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{
                       opacity: 1,
@@ -845,37 +851,37 @@ function GetStartedContent() {
               </div>
             </div>
 
-            <div className="container mx-auto -mt-10 relative">
+            <div className="relative container mx-auto -mt-10">
               {/* Progress Overview */}
               <motion.div
-                className="mb-12 p-6 bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700/50 shadow-lg"
+                className="mb-12 rounded-2xl border border-gray-700/50 bg-gray-800/50 p-6 shadow-lg backdrop-blur-sm"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px 0px -50px 0px" }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+                <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                   <div>
-                    <h3 className="text-xl font-bold mb-4 px-6 py-3 inline-block rounded-xl bg-gradient-to-r from-blue-200 to-purple-200 text-gray-800 shadow-md">
+                    <h3 className="mb-4 inline-block rounded-xl bg-gradient-to-r from-blue-200 to-purple-200 px-6 py-3 text-xl font-bold text-gray-800 shadow-md">
                       Your Learning Progress
                     </h3>
-                    <p className="text-gray-300 text-sm">
+                    <p className="text-sm text-gray-300">
                       {completionPercentage}% Complete •{" "}
                       {Object.values(completedPaths).filter(Boolean).length} of{" "}
                       {learningPaths.length} paths started
                     </p>
                   </div>
                   <div className="text-right">
-                    <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-2xl font-bold text-transparent">
                       {completionPercentage}%
                     </span>
                   </div>
                 </div>
 
                 {/* Progress Bar */}
-                <div className="w-full h-3 bg-gray-700/50 rounded-full overflow-hidden">
+                <div className="h-3 w-full overflow-hidden rounded-full bg-gray-700/50">
                   <motion.div
-                    className="h-full bg-gradient-to-r from-blue-500 to-purple-500 rounded-full relative"
+                    className="relative h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
                     initial={{ width: 0 }}
                     animate={{ width: `${completionPercentage}%` }}
                     transition={{ duration: 1, ease: "easeOut" }}
@@ -907,7 +913,7 @@ function GetStartedContent() {
                 <div className={styles.timeline}>
                   {/* Animated progress indicator on the timeline */}
                   <motion.div
-                    className="absolute left-0 top-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500 h-0"
+                    className="absolute top-0 left-0 h-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500"
                     initial={{ height: 0 }}
                     animate={{
                       height: `${(completionPercentage / 100) * 100}%`,
@@ -932,7 +938,7 @@ function GetStartedContent() {
               </div>
 
               <motion.div
-                className="text-center mt-12 pb-12"
+                className="mt-12 pb-12 text-center"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px 0px -50px 0px" }}
@@ -940,7 +946,7 @@ function GetStartedContent() {
               >
                 <Link
                   to="/courses"
-                  className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-200 to-blue-300 font-semibold text-lg rounded-xl hover:from-blue-300 hover:to-blue-400 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 hover:no-underline"
+                  className="group inline-flex items-center rounded-xl bg-gradient-to-r from-blue-200 to-blue-300 px-8 py-4 text-lg font-semibold shadow-lg transition-all duration-300 hover:-translate-y-1 hover:from-blue-300 hover:to-blue-400 hover:no-underline hover:shadow-xl"
                   style={{
                     textShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
                   }}
@@ -949,7 +955,7 @@ function GetStartedContent() {
                     Explore All Paths
                   </span>
                   <svg
-                    className="w-6 h-6 ml-3 transform text-gray-900 group-hover:translate-x-1 group-hover:text-gray-900 transition-transform duration-300"
+                    className="ml-3 h-6 w-6 transform text-gray-900 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gray-900"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
