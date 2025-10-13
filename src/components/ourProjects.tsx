@@ -35,27 +35,29 @@ export interface OurProjectsProps {
 
 /**
  * OurProjects Component
- * 
+ *
  * Displays a showcase of RecodeHive projects with interactive previews.
  * Now uses data-driven approach with JSON configuration for better maintainability.
- * 
+ *
  * Features:
  * - Dynamic project loading from JSON
  * - Live website previews for supported projects
  * - Responsive design with mobile optimizations
  * - Dark/light theme support
  * - Interactive hover effects and animations
- * 
+ *
  * @param props - Optional props for backward compatibility
  */
-const OurProjects: React.FC<OurProjectsProps> = ({ OurProjectsData: legacyData }) => {
+const OurProjects: React.FC<OurProjectsProps> = ({
+  OurProjectsData: legacyData,
+}) => {
   const { colorMode } = useColorMode(); // light or dark
   const isDark = colorMode === "dark";
 
   // Use JSON data by default, fallback to legacy props for backward compatibility
   // Convert legacy data to new format if needed
   let data: ProjectsData;
-  
+
   if (legacyData) {
     // Convert legacy format to new format
     data = {
@@ -69,8 +71,8 @@ const OurProjects: React.FC<OurProjectsProps> = ({ OurProjectsData: legacyData }
         image: item.image,
         projectUrl: getWebsiteUrl(item.title),
         githubUrl: getWebsiteUrl(item.title),
-        tags: []
-      }))
+        tags: [],
+      })),
     };
   } else {
     data = projectsData as ProjectsData;
@@ -78,7 +80,7 @@ const OurProjects: React.FC<OurProjectsProps> = ({ OurProjectsData: legacyData }
 
   return (
     <div
-      className={`flex flex-col items-center justify-center gap-10 sm:gap-20 py-10 sm:py-20 px-4 min-h-screen transition-colors duration-300 ${
+      className={`flex min-h-screen flex-col items-center justify-center gap-10 px-4 py-10 transition-colors duration-300 sm:gap-20 sm:py-20 ${
         isDark ? "bg-[#0c0c0c] text-white" : "bg-white text-black"
       }`}
     >
@@ -106,15 +108,15 @@ const HeadingComponent = ({
   isDark: boolean;
 }) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 w-full">
+    <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
       <motion.div
         initial={{ opacity: 0, x: -20 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex items-center md:items-start md:justify-start gap-6 sm:gap-10 flex-col"
+        className="flex flex-col items-center gap-6 sm:gap-10 md:items-start md:justify-start"
       >
         <div
-          className="cursor-pointer px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full text-sm sm:text-base font-medium tracking-wide shadow-lg transform hover:scale-105 transition-transform duration-300"
+          className="transform cursor-pointer rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-2 text-sm font-medium tracking-wide text-white shadow-lg transition-transform duration-300 hover:scale-105 sm:text-base"
           onClick={() =>
             (window.location.href = "https://github.com/recodehive")
           }
@@ -122,7 +124,7 @@ const HeadingComponent = ({
           {tag}
         </div>
         <div
-          className={`text-3xl sm:text-4xl md:text-5xl font-bold md:w-11/12 text-center md:text-left bg-clip-text text-transparent bg-gradient-to-r ${
+          className={`bg-gradient-to-r bg-clip-text text-center text-3xl font-bold text-transparent sm:text-4xl md:w-11/12 md:text-left md:text-5xl ${
             isDark
               ? "from-white via-gray-300 to-white"
               : "from-black via-gray-700 to-black"
@@ -138,7 +140,7 @@ const HeadingComponent = ({
         transition={{ duration: 0.5, delay: 0.2 }}
         className={`${
           isDark ? "text-gray-300" : "text-gray-700"
-        } text-base sm:text-lg text-justify h-full flex items-center md:pr-10 justify-center leading-relaxed`}
+        } flex h-full items-center justify-center text-justify text-base leading-relaxed sm:text-lg md:pr-10`}
       >
         {description}
       </motion.div>
@@ -174,10 +176,10 @@ const SelectComponent = ({
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4 }}
-      className="grid grid-cols-1 md:grid-cols-12 w-full rounded-[30px] sm:rounded-[50px] shadow-2xl overflow-hidden"
+      className="grid w-full grid-cols-1 overflow-hidden rounded-[30px] shadow-2xl sm:rounded-[50px] md:grid-cols-12"
     >
       <div
-        className={`flex flex-row md:flex-col col-span-1 md:col-span-4 gap-4 md:gap-6 items-start justify-start p-4 md:p-8 max-h-[30vh] md:max-h-[70vh] overflow-x-auto md:overflow-y-auto no-scrollbar ${
+        className={`no-scrollbar col-span-1 flex max-h-[30vh] flex-row items-start justify-start gap-4 overflow-x-auto p-4 md:col-span-4 md:max-h-[70vh] md:flex-col md:gap-6 md:overflow-y-auto md:p-8 ${
           isDark ? "bg-black" : "bg-gray-100"
         }`}
       >
@@ -187,36 +189,36 @@ const SelectComponent = ({
             whileTap={{ scale: 0.98 }}
             key={item.id || index}
             onClick={() => setActiveItem(index)}
-            className={`cursor-pointer transition-all duration-300 ease-in-out p-2 md:p-6 rounded-2xl md:rounded-r-full w-40 md:w-4/5 relative ${
+            className={`relative w-40 cursor-pointer rounded-2xl p-2 transition-all duration-300 ease-in-out md:w-4/5 md:rounded-r-full md:p-6 ${
               activeItem === index
                 ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white"
                 : isDark
-                  ? "bg-gray-800 hover:bg-gray-700 text-white"
-                  : "bg-gray-200 hover:bg-gray-300 text-black"
+                  ? "bg-gray-800 text-white hover:bg-gray-700"
+                  : "bg-gray-200 text-black hover:bg-gray-300"
             }`}
           >
-            <div className="text-xs md:text-lg font-semibold md:w-10/12">
+            <div className="text-xs font-semibold md:w-10/12 md:text-lg">
               {item.title}
             </div>
             <div
-              className={`absolute right-2 md:right-4 top-1/2 -translate-y-1/2 rounded-full transition-transform duration-300 ${
+              className={`absolute top-1/2 right-2 -translate-y-1/2 rounded-full transition-transform duration-300 md:right-4 ${
                 activeItem === index ? "translate-x-2" : ""
               }`}
             >
-              <ChevronRight className="hidden md:block h-6 w-6 md:h-8 md:w-8" />
+              <ChevronRight className="hidden h-6 w-6 md:block md:h-8 md:w-8" />
             </div>
           </motion.div>
         ))}
       </div>
 
       <div
-        className={`col-span-1 md:col-span-8 p-4 md:p-8 relative overflow-hidden min-h-[80vh] md:min-h-[70vh] ourprojects-embed-container`}
+        className={`ourprojects-embed-container relative col-span-1 min-h-[80vh] overflow-hidden p-4 md:col-span-8 md:min-h-[70vh] md:p-8`}
       >
         {/* Animated Mesh Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-blue-600/30 via-cyan-500/30 to-emerald-500/30">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)] animate-pulse"></div>
+          <div className="absolute inset-0 animate-pulse bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.3),transparent_50%)]"></div>
           <div
-            className="absolute inset-0 bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(147,51,234,0.1)_60deg,transparent_120deg)] animate-spin"
+            className="absolute inset-0 animate-spin bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(147,51,234,0.1)_60deg,transparent_120deg)]"
             style={{ animationDuration: "20s" }}
           ></div>
         </div>
@@ -226,7 +228,7 @@ const SelectComponent = ({
           {[...Array(12)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute w-1 h-1 bg-gradient-to-r from-purple-400 to-cyan-400 rounded-full"
+              className="absolute h-1 w-1 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400"
               animate={{
                 x: [0, 100, 0],
                 y: [0, -50, 0],
@@ -250,32 +252,32 @@ const SelectComponent = ({
         <motion.div
           animate={{ y: [-10, 10, -10], rotate: [0, 5, 0] }}
           transition={{ duration: 4, repeat: Infinity }}
-          className="hidden md:flex absolute top-8 right-8 w-16 h-16 bg-gradient-to-br from-purple-500 via-blue-500 to-cyan-500 rounded-2xl items-center justify-center shadow-2xl backdrop-blur-sm border border-white/20"
+          className="absolute top-8 right-8 hidden h-16 w-16 items-center justify-center rounded-2xl border border-white/20 bg-gradient-to-br from-purple-500 via-blue-500 to-cyan-500 shadow-2xl backdrop-blur-sm md:flex"
         >
           <svg
-            className="w-8 h-8 text-white"
+            className="h-8 w-8 text-white"
             fill="currentColor"
             viewBox="0 0 24 24"
           >
             <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
           </svg>
-          <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-cyan-500 rounded-2xl blur opacity-30 animate-pulse"></div>
+          <div className="absolute -inset-1 animate-pulse rounded-2xl bg-gradient-to-r from-purple-500 to-cyan-500 opacity-30 blur"></div>
         </motion.div>
 
         <motion.div
           animate={{ x: [-5, 5, -5], rotate: [0, -10, 0] }}
           transition={{ duration: 3, repeat: Infinity }}
-          className="hidden md:flex absolute top-20 left-8 w-12 h-12 bg-gradient-to-br from-emerald-400 via-blue-500 to-purple-600 rounded-xl shadow-xl backdrop-blur-sm border border-white/20 items-center justify-center"
+          className="absolute top-20 left-8 hidden h-12 w-12 items-center justify-center rounded-xl border border-white/20 bg-gradient-to-br from-emerald-400 via-blue-500 to-purple-600 shadow-xl backdrop-blur-sm md:flex"
         >
-          <span className="text-white text-xl">⚡</span>
+          <span className="text-xl text-white">⚡</span>
         </motion.div>
 
         <motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.7, 1, 0.7] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="hidden md:flex absolute bottom-20 right-16 w-10 h-10 bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-600 rounded-full shadow-lg backdrop-blur-sm border border-white/30 items-center justify-center"
+          className="absolute right-16 bottom-20 hidden h-10 w-10 items-center justify-center rounded-full border border-white/30 bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-600 shadow-lg backdrop-blur-sm md:flex"
         >
-          <span className="text-white text-sm">🚀</span>
+          <span className="text-sm text-white">🚀</span>
         </motion.div>
 
         {/* Holographic Main Browser */}
@@ -284,71 +286,71 @@ const SelectComponent = ({
           initial={{ opacity: 0, rotateY: -20, scale: 0.8, z: -100 }}
           animate={{ opacity: 1, rotateY: 0, scale: 1, z: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 perspective-1000"
+          className="perspective-1000 relative z-10"
         >
           <div
-            className={`h-[78vh] sm:h-[80vh] md:h-[65vh] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl backdrop-blur-md border-2 transform hover:scale-105 md:hover:rotateY-5 transition-all duration-700 group ourprojects-embed-card ${
+            className={`md:hover:rotateY-5 group ourprojects-embed-card h-[78vh] transform overflow-hidden rounded-2xl border-2 shadow-2xl backdrop-blur-md transition-all duration-700 hover:scale-105 sm:h-[80vh] sm:rounded-3xl md:h-[65vh] ${
               isDark
-                ? "bg-gray-900/95 border-purple-500/50 shadow-purple-500/25"
-                : "bg-white/95 border-blue-400/50 shadow-blue-500/25"
+                ? "border-purple-500/50 bg-gray-900/95 shadow-purple-500/25"
+                : "border-blue-400/50 bg-white/95 shadow-blue-500/25"
             }`}
           >
             {/* Holographic Border Effect */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 rounded-3xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+            <div className="absolute -inset-0.5 rounded-3xl bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 opacity-20 blur transition-opacity duration-500 group-hover:opacity-40"></div>
 
             {/* Premium Browser Header */}
             <div
-              className={`relative flex items-center px-3 py-2 sm:px-6 sm:py-4 border-b backdrop-blur-xl ${
+              className={`relative flex items-center border-b px-3 py-2 backdrop-blur-xl sm:px-6 sm:py-4 ${
                 isDark
-                  ? "bg-gray-800/90 border-gray-600/50"
-                  : "bg-gray-50/90 border-gray-300/50"
+                  ? "border-gray-600/50 bg-gray-800/90"
+                  : "border-gray-300/50 bg-gray-50/90"
               }`}
             >
-              <div className="flex space-x-3 mr-6">
+              <div className="mr-6 flex space-x-3">
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 180 }}
-                  className="w-4 h-4 rounded-full bg-gradient-to-br from-red-400 to-red-600 shadow-lg cursor-pointer relative"
+                  className="relative h-4 w-4 cursor-pointer rounded-full bg-gradient-to-br from-red-400 to-red-600 shadow-lg"
                 >
-                  <div className="absolute inset-0 rounded-full bg-red-300 animate-ping opacity-20"></div>
+                  <div className="absolute inset-0 animate-ping rounded-full bg-red-300 opacity-20"></div>
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: -180 }}
-                  className="w-4 h-4 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 shadow-lg cursor-pointer relative"
+                  className="relative h-4 w-4 cursor-pointer rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 shadow-lg"
                 >
-                  <div className="absolute inset-0 rounded-full bg-yellow-300 animate-ping opacity-20"></div>
+                  <div className="absolute inset-0 animate-ping rounded-full bg-yellow-300 opacity-20"></div>
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.2, rotate: 360 }}
-                  className="w-4 h-4 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 shadow-lg cursor-pointer relative"
+                  className="relative h-4 w-4 cursor-pointer rounded-full bg-gradient-to-br from-green-400 to-emerald-600 shadow-lg"
                 >
-                  <div className="absolute inset-0 rounded-full bg-green-300 animate-ping opacity-20"></div>
+                  <div className="absolute inset-0 animate-ping rounded-full bg-green-300 opacity-20"></div>
                 </motion.div>
               </div>
 
               <div
-                className={`flex-1 px-2 py-2 sm:px-4 sm:py-3 rounded-2xl text-xs sm:text-sm font-mono flex items-center backdrop-blur-sm relative overflow-hidden ${
+                className={`relative flex flex-1 items-center overflow-hidden rounded-2xl px-2 py-2 font-mono text-xs backdrop-blur-sm sm:px-4 sm:py-3 sm:text-sm ${
                   isDark
-                    ? "bg-gray-700/70 text-gray-200 border border-gray-500/50"
-                    : "bg-white/80 text-gray-700 border border-gray-300/50 shadow-inner"
+                    ? "border border-gray-500/50 bg-gray-700/70 text-gray-200"
+                    : "border border-gray-300/50 bg-white/80 text-gray-700 shadow-inner"
                 }`}
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse"></div>
+                <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-transparent via-white/5 to-transparent"></div>
                 <motion.span
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="text-emerald-500 mr-3 text-lg"
+                  className="mr-3 text-lg text-emerald-500"
                 >
                   🔒
                 </motion.span>
-                <span className="text-blue-500 font-semibold">github.com</span>
-                <span className="text-gray-400 mx-1">/</span>
-                <span className="text-purple-500 font-bold">recodehive</span>
-                <span className="text-gray-400 mx-1">/</span>
+                <span className="font-semibold text-blue-500">github.com</span>
+                <span className="mx-1 text-gray-400">/</span>
+                <span className="font-bold text-purple-500">recodehive</span>
+                <span className="mx-1 text-gray-400">/</span>
                 <motion.span
                   key={activeItem}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="text-cyan-500 font-semibold"
+                  className="font-semibold text-cyan-500"
                 >
                   {items[activeItem].title.toLowerCase().replace(/\s+/g, "-")}
                 </motion.span>
@@ -357,7 +359,7 @@ const SelectComponent = ({
               <motion.div
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className={`ml-2 sm:ml-4 px-2 py-1 sm:px-4 sm:py-2 rounded-xl text-[10px] sm:text-xs font-bold flex items-center backdrop-blur-sm ${
+                className={`ml-2 flex items-center rounded-xl px-2 py-1 text-[10px] font-bold backdrop-blur-sm sm:ml-4 sm:px-4 sm:py-2 sm:text-xs ${
                   isDark
                     ? "bg-gradient-to-r from-emerald-600 to-green-600 text-white shadow-lg"
                     : "bg-gradient-to-r from-emerald-100 to-green-100 text-emerald-700 shadow-md"
@@ -366,7 +368,7 @@ const SelectComponent = ({
                 <motion.div
                   animate={{ scale: [1, 1.3, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
-                  className="w-2 h-2 bg-emerald-400 rounded-full mr-2"
+                  className="mr-2 h-2 w-2 rounded-full bg-emerald-400"
                 ></motion.div>
                 LIVE
               </motion.div>
@@ -378,13 +380,13 @@ const SelectComponent = ({
                 initial={{ opacity: 0, scale: 1.1, rotateX: 10 }}
                 animate={{ opacity: 1, scale: 1, rotateX: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
-                className="relative h-full overflow-hidden group"
+                className="group relative h-full overflow-hidden"
               >
                 {items[activeItem].title === "Awesome GitHub Profile" ||
                 items[activeItem].title === "Machine Learning Repository" ? (
                   /* Auto-scrolling Website Iframe */
                   <motion.div
-                    className="relative w-full h-full overflow-hidden cursor-pointer"
+                    className="relative h-full w-full cursor-pointer overflow-hidden"
                     onClick={() =>
                       window.open(
                         getWebsiteUrl(items[activeItem].title),
@@ -397,7 +399,7 @@ const SelectComponent = ({
                       src={
                         PROJECT_URLS[items[activeItem].title] || "about:blank"
                       }
-                      className="w-full h-[220%] sm:h-[200%] border-0 origin-top pointer-events-none ourprojects-iframe"
+                      className="ourprojects-iframe pointer-events-none h-[220%] w-full origin-top border-0 sm:h-[200%]"
                       initial={{ opacity: 0, y: 0 }}
                       animate={{
                         opacity: 1,
@@ -413,7 +415,7 @@ const SelectComponent = ({
                 ) : (
                   /* Interactive Screenshot for other projects */
                   <motion.div
-                    className="relative w-full h-full cursor-pointer"
+                    className="relative h-full w-full cursor-pointer"
                     whileHover="hover"
                     onClick={() =>
                       window.open(
@@ -425,7 +427,7 @@ const SelectComponent = ({
                     <motion.img
                       src={items[activeItem].image}
                       alt={items[activeItem].title}
-                      className="w-full h-auto min-h-full object-cover object-top"
+                      className="h-auto min-h-full w-full object-cover object-top"
                       variants={{
                         hover: { y: -100, scale: 1.05 },
                       }}
@@ -433,11 +435,11 @@ const SelectComponent = ({
                     />
 
                     {/* Click to Visit Overlay */}
-                    <div className="absolute inset-0 bg-black/0 hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 hover:bg-black/20">
                       <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         whileHover={{ opacity: 1, scale: 1 }}
-                        className="bg-white/90 backdrop-blur-sm rounded-2xl px-6 py-3 text-gray-900 font-semibold shadow-xl"
+                        className="rounded-2xl bg-white/90 px-6 py-3 font-semibold text-gray-900 shadow-xl backdrop-blur-sm"
                       >
                         🔗 Click to Visit Repository
                       </motion.div>
@@ -447,7 +449,7 @@ const SelectComponent = ({
 
                 {/* Dynamic Indicator */}
                 <motion.div
-                  className={`ourprojects-live-indicator absolute bottom-4 right-4 backdrop-blur-sm rounded-full px-3 py-2 text-white text-xs font-medium flex items-center ${
+                  className={`ourprojects-live-indicator absolute right-4 bottom-4 flex items-center rounded-full px-3 py-2 text-xs font-medium text-white backdrop-blur-sm ${
                     items[activeItem].title === "Awesome GitHub Profile" ||
                     items[activeItem].title === "Machine Learning Repository"
                       ? "bg-green-600/90"
@@ -459,7 +461,7 @@ const SelectComponent = ({
                   {items[activeItem].title === "Awesome GitHub Profile" ||
                   items[activeItem].title === "Machine Learning Repository" ? (
                     <>
-                      <div className="w-2 h-2 bg-green-300 rounded-full mr-2 animate-pulse"></div>
+                      <div className="mr-2 h-2 w-2 animate-pulse rounded-full bg-green-300"></div>
                       Auto-scrolling Live Site
                     </>
                   ) : (
@@ -468,7 +470,7 @@ const SelectComponent = ({
                 </motion.div>
 
                 {/* Holographic Overlay */}
-                <div className="ourprojects-overlay absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none">
+                <div className="ourprojects-overlay pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-cyan-500/10"></div>
                 </div>
               </motion.div>
@@ -477,7 +479,7 @@ const SelectComponent = ({
         </motion.div>
 
         {/* 3D Floating Background Mockups */}
-        <div className="hidden md:block absolute inset-0 pointer-events-none">
+        <div className="pointer-events-none absolute inset-0 hidden md:block">
           {items.map((item, index) => {
             if (index === activeItem) return null;
             const positions = [
@@ -543,30 +545,30 @@ const SelectComponent = ({
                     repeat: Infinity,
                     ease: "easeInOut",
                   }}
-                  className={`w-56 h-36 rounded-2xl overflow-hidden shadow-2xl backdrop-blur-md border ${
+                  className={`h-36 w-56 overflow-hidden rounded-2xl border shadow-2xl backdrop-blur-md ${
                     isDark
-                      ? "bg-gray-800/70 border-purple-500/30"
-                      : "bg-white/70 border-blue-400/30"
+                      ? "border-purple-500/30 bg-gray-800/70"
+                      : "border-blue-400/30 bg-white/70"
                   }`}
                 >
                   <div
-                    className={`h-8 flex items-center px-3 border-b ${
+                    className={`flex h-8 items-center border-b px-3 ${
                       isDark
-                        ? "bg-gray-700/80 border-gray-600/50"
-                        : "bg-gray-100/80 border-gray-300/50"
+                        ? "border-gray-600/50 bg-gray-700/80"
+                        : "border-gray-300/50 bg-gray-100/80"
                     }`}
                   >
                     <div className="flex space-x-1.5">
-                      <div className="w-2.5 h-2.5 rounded-full bg-red-400 opacity-80"></div>
-                      <div className="w-2.5 h-2.5 rounded-full bg-yellow-400 opacity-80"></div>
-                      <div className="w-2.5 h-2.5 rounded-full bg-green-400 opacity-80"></div>
+                      <div className="h-2.5 w-2.5 rounded-full bg-red-400 opacity-80"></div>
+                      <div className="h-2.5 w-2.5 rounded-full bg-yellow-400 opacity-80"></div>
+                      <div className="h-2.5 w-2.5 rounded-full bg-green-400 opacity-80"></div>
                     </div>
                   </div>
                   <div className="relative h-full">
                     <img
                       src={item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover opacity-70"
+                      className="h-full w-full object-cover opacity-70"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                   </div>

@@ -47,11 +47,11 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className="relative overflow-hidden h-full transition-all duration-300"
+      className="relative h-full overflow-hidden transition-all duration-300"
     >
       <Link
         to={`/blog/${id}`}
-        className="block h-full text-decoration-none"
+        className="text-decoration-none block h-full"
         style={{ textDecoration: "none" }}
       >
         <div className="article-card h-full">

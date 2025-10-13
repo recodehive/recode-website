@@ -31,7 +31,7 @@ declare module "@docusaurus/theme-common" {
     colorMode: "light" | "dark";
     setColorMode: (mode: "light" | "dark") => void;
   };
-  
+
   export function useThemeConfig(): any;
   export function usePluralForm(): any;
   export function isMultiColumnFooterLinks(): any;

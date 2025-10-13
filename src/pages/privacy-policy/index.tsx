@@ -7,8 +7,8 @@ const PrivacyPolicy: React.FC = () => {
       title="Privacy Policy"
       description="Privacy Policy of recode hive for Learners, and users"
     >
-      <div className="max-w-4xl mx-auto p-5 mt-5 mb-5 rounded-lg shadow-md">
-        <h2 className="text-3xl font-bold text-center mb-5">Privacy Policy</h2>
+      <div className="mx-auto mt-5 mb-5 max-w-4xl rounded-lg p-5 shadow-md">
+        <h2 className="mb-5 text-center text-3xl font-bold">Privacy Policy</h2>
         <p className="text-base leading-7">
           <strong>Last Updated:</strong> 25th May 2025
           <br /> <br />
@@ -40,7 +40,7 @@ const PrivacyPolicy: React.FC = () => {
           Policy, please do not use our website.
         </p>
 
-        <h3 className="text-xl font-semibold mt-5 mb-3">
+        <h3 className="mt-5 mb-3 text-xl font-semibold">
           Information We Collect
         </h3>
         <p className="mb-4">
@@ -51,10 +51,10 @@ const PrivacyPolicy: React.FC = () => {
           our website&apos;s functionality and user experience.
         </p>
 
-        <h3 className="text-xl font-semibold mt-5 mb-3">
+        <h3 className="mt-5 mb-3 text-xl font-semibold">
           What personal data we collect and why we collect it
         </h3>
-        <ol className="list-decimal list-inside mb-4 space-y-4">
+        <ol className="mb-4 list-inside list-decimal space-y-4">
           <li>
             <strong>Comments & Personalization:</strong> When visitors leave
             comments on the site we collect the data shown in the comments form,
@@ -105,7 +105,7 @@ const PrivacyPolicy: React.FC = () => {
           </li>
         </ol>
 
-        <h3 className="text-xl font-semibold mt-5 mb-3">
+        <h3 className="mt-5 mb-3 text-xl font-semibold">
           How long we retain your data
         </h3>
         <p className="mb-4">
@@ -114,7 +114,7 @@ const PrivacyPolicy: React.FC = () => {
           comments automatically instead of holding them in a moderation queue.
         </p>
 
-        <h3 className="text-xl font-semibold mt-5 mb-3">Data Retention</h3>
+        <h3 className="mt-5 mb-3 text-xl font-semibold">Data Retention</h3>
         <p className="mb-4">
           We will retain your personal information for as long as necessary to
           fulfill the purposes outlined in this Privacy Policy, unless a longer
@@ -126,7 +126,7 @@ const PrivacyPolicy: React.FC = () => {
           edit that information.
         </p>
 
-        <h3 className="text-xl font-semibold mt-5 mb-3">Your Rights</h3>
+        <h3 className="mt-5 mb-3 text-xl font-semibold">Your Rights</h3>
         <p className="mb-4">
           We are using CloudFlare SSL on our website and everything which you
           send to us is with us and the data won’t be shared with any third
@@ -137,7 +137,7 @@ const PrivacyPolicy: React.FC = () => {
           contact us using the information provided below.
         </p>
 
-        <h3 className="text-xl font-semibold mt-5 mb-3">Third-Party Links</h3>
+        <h3 className="mt-5 mb-3 text-xl font-semibold">Third-Party Links</h3>
         <p className="mb-4">
           Our website may contain links to third-party websites or resources
           that are not owned or controlled by us. We are not responsible for the
@@ -146,7 +146,7 @@ const PrivacyPolicy: React.FC = () => {
           providing any personal information.
         </p>
 
-        <h3 className="text-xl font-semibold mt-5 mb-3">
+        <h3 className="mt-5 mb-3 text-xl font-semibold">
           Children&apos;s Privacy
         </h3>
         <p className="mb-4">
@@ -159,7 +159,7 @@ const PrivacyPolicy: React.FC = () => {
           appropriate steps to remove such information from our records.
         </p>
 
-        <h3 className="text-xl font-semibold mt-5 mb-3">
+        <h3 className="mt-5 mb-3 text-xl font-semibold">
           What third parties we receive data from
         </h3>
         <p className="mb-4">
@@ -171,7 +171,7 @@ const PrivacyPolicy: React.FC = () => {
           Privacy Policy.
         </p>
 
-        <h3 className="text-xl font-semibold mt-5 mb-3">Contact Us</h3>
+        <h3 className="mt-5 mb-3 text-xl font-semibold">Contact Us</h3>
         <p className="mb-4">
           If you have any questions or concerns about this Privacy Policy,
           please contact us at{" "}

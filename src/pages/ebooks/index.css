@@ -7,10 +7,7 @@
   max-width: 1280px;
   margin: 0 auto;
   font-family: var(--ifm-font-family-base);
-
 }
-
-
 
 /* ------------------------------
    Hero Section
@@ -79,7 +76,9 @@
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .ebook-card:hover {
@@ -162,7 +161,9 @@
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.25s ease, transform 0.2s ease;
+  transition:
+    background-color 0.25s ease,
+    transform 0.2s ease;
   align-self: flex-start;
 }
 

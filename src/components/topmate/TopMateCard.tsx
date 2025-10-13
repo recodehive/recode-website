@@ -28,7 +28,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`relative w-full max-w-md mx-auto rounded-3xl shadow-2xl overflow-hidden hover:shadow-3xl transition-all duration-300 transform hover:-translate-y-1 ${
+      className={`hover:shadow-3xl relative mx-auto w-full max-w-md transform overflow-hidden rounded-3xl shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
         isDark ? "bg-[#1a1a1a] text-white" : "bg-white text-black"
       }`}
     >
@@ -42,7 +42,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
             transition={{ delay: i * 0.1 }}
             className="text-purple-500"
           >
-            <ArrowUpRight size={24} className="transform rotate-45" />
+            <ArrowUpRight size={24} className="rotate-45 transform" />
           </motion.div>
         ))}
       </div>
@@ -50,7 +50,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
       {/* Card Content */}
       <div className="p-6">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span
               className={`text-sm font-medium ${
@@ -82,7 +82,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
 
         {/* Title */}
         <h2
-          className={`text-2xl font-bold mb-4 ${
+          className={`mb-4 text-2xl font-bold ${
             isDark ? "text-white" : "text-gray-900"
           }`}
         >
@@ -95,12 +95,12 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         </p>
 
         {/* Profile Section */}
-        <div className="flex items-center justify-between flex-wrap md:flex-nowrap gap-y-3">
-          <div className="flex items-center gap-3 min-w-0">
+        <div className="flex flex-wrap items-center justify-between gap-y-3 md:flex-nowrap">
+          <div className="flex min-w-0 items-center gap-3">
             <img
               src={profileImage}
               alt="Profile"
-              className="w-12 h-12 rounded-full object-cover border-2 border-purple-200"
+              className="h-12 w-12 rounded-full border-2 border-purple-200 object-cover"
             />
             <div className="flex flex-col">
               <span
@@ -114,16 +114,16 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
                 href={`https://topmate.io/${username}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-purple-500 font-semibold hover:text-purple-600 transition-colors flex items-center gap-1 truncate"
+                className="flex items-center gap-1 truncate font-semibold text-purple-500 transition-colors hover:text-purple-600"
               >
                 <span className="truncate">topmate.io/{username}</span>
                 <ArrowUpRight size={16} />
               </a>
             </div>
           </div>
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex shrink-0 items-center gap-2">
             {/* Show only the circular icon part of the Topmate logo */}
-            <div className="h-4 w-4 overflow-hidden flex-shrink-0 rounded-sm">
+            <div className="h-4 w-4 flex-shrink-0 overflow-hidden rounded-sm">
               <img
                 src="/icons/topmate.png"
                 alt="Topmate icon"
@@ -132,7 +132,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
             </div>
             {/* Theme-aware text to ensure readability on dark backgrounds */}
             <span
-              className={`text-sm font-semibold shrink-0 ${
+              className={`shrink-0 text-sm font-semibold ${
                 isDark ? "text-gray-200" : "text-gray-700"
               }`}
             >
@@ -143,7 +143,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
       </div>
 
       {/* Gradient Border Effect */}
-      <div className="absolute inset-0 border-2 border-transparent rounded-3xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 -z-10" />
+      <div className="absolute inset-0 -z-10 rounded-3xl border-2 border-transparent bg-gradient-to-br from-purple-500/20 to-pink-500/20" />
     </motion.div>
   );
 };
