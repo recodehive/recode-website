@@ -12,6 +12,10 @@ sidebar_position: 2
   - [How to set up recode hive:](#how-to-set-up-recode-hive)
 - [Environment Setup (for GitHub API access)](#environment-setup-for-github-api-access)
 - [Contributing to recode hive](#contributing-to-recode-hive)
+- [Branch Validation](#branch-validation)
+  - [Valid Branch Name Pattern](#valid-branch-name-pattern)
+  - [Example Branch Names](#example-branch-names)
+  - [Valid Types](#valid-types)
     - [Commit Message Format](#commit-message-format)
   - [Example Commit Messages:](#example-commit-messages)
   - [Using Commitizen with Husky](#using-commitizen-with-husky)
@@ -129,6 +133,36 @@ We welcome contributions! Follow these steps to get started.
    ```bash
    git checkout -b feature-name
    ```
+
+   ## Branch Validation
+
+   To ensure that branch names follow our naming conventions, use the following guidelines. The branch name should match the required pattern, and feedback will be provided if it does not.
+
+   ### Valid Branch Name Pattern
+
+   Branch names should follow this regex pattern:
+
+   ```
+   ^((fix|docs|style|refactor|test|chore|perf|task|shared)\/-[0-9A-Za-z-]+|misc-[0-9A-Za-z-]+)$
+   ```
+
+   ### Example Branch Names
+
+   - `fix/1234-fix-bug`
+   - `misc-1234-description`
+
+   ### Valid Types
+
+   - **fix:** A bug fix
+   - **docs:** Documentation only changes
+   - **style:** Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+   - **refactor:** A code change that neither fixes a bug nor adds a feature
+   - **test:** Adding missing tests or correcting existing tests
+   - **chore:** Changes to the build process or auxiliary tools and libraries such as documentation generation
+   - **perf:** A code change that improves performance
+   - **task:** A task that needs to be done
+   - **shared:** Shared code or resources
+   - **misc:** Miscellaneous changes
 
 6. **Commit Your Changes**
 
