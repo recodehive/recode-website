@@ -1,40 +1,50 @@
-# Docker Container Setup - Documentation
+# Docker Container Setup - Simplified Documentation
 
-This is the documentation on how to containerize and run the recode hive website while using Docker.
+This guide explains how to set up and run the Recode Hive website using Docker.
 
-## Prerequesites
+## Prerequisites
 
-- [Docker](https://docs.docker.com/engine/install/) installed
-- Docker compose installed (Optional)
+- Install [Docker](https://docs.docker.com/engine/install/).
+- (Optional) Install Docker Compose for easier multi-container management.
 
 ## Steps
 
-### 1. Create a `Dockerfile` in the root directory
+### 1. Build and Run with Docker Compose (Recommended)
 
-This is a text document that contains all the commands needs to build a Docker image. Basically a blue print of a docker image.
+Using Docker Compose simplifies the setup process. Run the following command in the project root directory:
 
-Key instructions include <br>
+```bash
+docker-compose up --build
+```
 
-- `FROM <base_image>:<tag>` : The first instruction and specifies the base image to build upon.
-- `WORKDIR <path>` : Sets the working directory inside the container for subsequent instructions.
-- `COPY <source> <destination>` : This instruction copies files or directories from your local machine (the build context) into the Docker image.
-- `RUN <command>` : Executes commands during the image build process. This is used for installing dependencies, updating packages etc.
-- `EXPOSE <port>` : Informs docker that the container listens on the specified ports at runtime.
+This command will:
+- Build the Docker image.
+- Start the container.
+- Map port `3000` from the container to your local machine.
 
-### 2. Build the Docker Image
+Visit [http://localhost:3000](http://localhost:3000) to view the site.
 
+### 2. Manual Setup with Docker (Optional)
+
+If you prefer not to use Docker Compose, follow these steps:
+
+#### a. Build the Docker Image
 ```bash
 docker build -t recodehive-app .
 ```
 
-This command builds the Docker image using the instructions in the Dockerfile and tags it as recodehive-app.
-
-### 3. Run the Container
-
+#### b. Run the Docker Container
 ```bash
 docker run -p 3000:3000 recodehive-app
 ```
 
-This runs the container and maps port 3000 from the container to your local machine. <br>
-Now Visit http://localhost:3000 to view the site.
+Visit [http://localhost:3000](http://localhost:3000) to view the site.
+
+## Notes
+
+- Ensure the `Dockerfile` and `docker-compose.yml` are correctly configured.
+- The application is set to bind to `0.0.0.0` for external access.
+- Use `docker logs <container_id>` to debug any issues.
+
+For more details, refer to the official Docker documentation.
 
