@@ -72,8 +72,8 @@ const GithubBadgesContent = (): React.ReactElement => {
 
   return (
     <Layout
-      title="GitHub Achievements - recode hive"
-      description="Explore GitHub achievements and badges"
+      title="GitHub Achievements Guide - recode hive"
+      description="Complete guide to GitHub achievements and badges. Learn how to unlock and showcase your GitHub contributions with the recode hive community."
     >
       <div
         className={`${styles["github-badges-page"]} transition-colors duration-300 ${
@@ -82,10 +82,14 @@ const GithubBadgesContent = (): React.ReactElement => {
       >
         {/* Hero section */}
         <Head>
-          <title>GitHub Achievements - recode hive</title>
+          <title>GitHub Achievements Guide - recode hive</title>
           <meta
             name="description"
-            content="Explore GitHub achievements and badges"
+            content="Complete guide to GitHub achievements and badges. Learn how to unlock and showcase your GitHub contributions with the recode hive community."
+          />
+          <meta
+            name="keywords"
+            content="GitHub, badges, achievements, recode hive, open source, contributors, programming"
           />
           <link
             rel="stylesheet"
@@ -95,489 +99,599 @@ const GithubBadgesContent = (): React.ReactElement => {
             referrerPolicy="no-referrer"
           />
         </Head>
-        {/* Main content */}{" "}
-        <motion.h1
+        {/* Main content */} {/* Hero Banner Section */}
+        <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 10,
-          }}
-          className={styles.title}
+          className={styles.heroBanner}
         >
-          🏆 GitHub Achievements 🏆
-        </motion.h1>
-        <div className={styles.bannerAchievements}>
-          <strong>Achievements Banner</strong>
-        </div>
-        <h2>📃 Achievement List 📃</h2>
-        <div className={styles.tableWrapper}>
-          <table className={styles.achievementsTable}>
-            <thead>
-              <tr>
-                <th>Badge</th>
-                <th>Name</th>
-                <th>How to get</th>
-                <th>
-                  Needed Amount
-                  <br />
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {/* Starstruck */}
-              <motion.tr
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.05 }}
-                whileHover={{ scale: 1.02 }}
-                style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.07)" }}
-              >
-                <td>
-                  <motion.img
-                    src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png"
-                    alt="Starstruck"
-                    className={styles.badgeImgSmall}
-                    whileHover={{ scale: 1.13, rotate: -6 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  />
-                </td>
-                <td>Starstruck</td>
-                <td>
-                  Create a repository with a lot of stars.
-                  <br />
-                  <a
-                    href="https://github.com/sanjay-kv/Open-source-Practice"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Sample repo
-                  </a>
-                  <br />
-                  If you get the first 16 stars you will unlock the badge.
-                  <br />
-                  <a
-                    href="https://youtu.be/v2Pai1TY_Lg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Watch the Video Tutorial
-                  </a>
-                </td>
-                <td>
-                  <div className={styles.badgeLevels}>
-                    <div className={styles.levelText}>
-                      Levels: Default, Bronze, Silver, Gold
+          <div className={styles.heroContent}>
+            <motion.div
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className={styles.logoSection}
+            >
+              <div className={styles.recodeLogoContainer}>
+                <span className={styles.recodeText}>recode</span>
+                <span className={styles.hiveText}>hive</span>
+              </div>
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className={styles.heroTitle}
+            >
+              🏆 GitHub Achievement Badges 🏆
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.6 }}
+              className={styles.heroDescription}
+            >
+              Unlock and showcase your GitHub achievements! Join the recode hive
+              community and earn badges that highlight your contributions to the
+              open source ecosystem.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.8 }}
+              className={styles.badgeStats}
+            >
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>20+</div>
+                <div className={styles.statLabel}>Available Badges</div>
+              </div>
+              <div className={styles.statDivider}></div>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>5K+</div>
+                <div className={styles.statLabel}>Community Members</div>
+              </div>
+              <div className={styles.statDivider}></div>
+              <div className={styles.statItem}>
+                <div className={styles.statNumber}>100%</div>
+                <div className={styles.statLabel}>Free Resources</div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className={styles.heroVisual}>
+            <motion.div
+              animate={{
+                rotate: [0, 5, -5, 0],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              className={styles.floatingBadge}
+            >
+              🥇
+            </motion.div>
+            <motion.div
+              animate={{
+                rotate: [0, -3, 3, 0],
+                y: [0, -10, 0],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1,
+              }}
+              className={styles.floatingBadge}
+            >
+              ⭐
+            </motion.div>
+            <motion.div
+              animate={{
+                rotate: [0, 8, -8, 0],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2,
+              }}
+              className={styles.floatingBadge}
+            >
+              🏅
+            </motion.div>
+          </div>
+        </motion.div>
+        {/* Achievement List Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className={styles.achievementSection}
+        >
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>
+              🎯 Complete Achievement Guide
+            </h2>
+            <p className={styles.sectionSubtitle}>
+              Master these challenges to earn exclusive GitHub badges and
+              showcase your expertise
+            </p>
+          </div>
+
+          <div className={styles.tableWrapper}>
+            <table className={styles.achievementsTable}>
+              <thead>
+                <tr>
+                  <th>Badge</th>
+                  <th>Name</th>
+                  <th>How to get</th>
+                  <th>
+                    Needed Amount
+                    <br />
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {/* Starstruck */}
+                <motion.tr
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
+                  whileHover={{ scale: 1.02 }}
+                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.07)" }}
+                >
+                  <td>
+                    <motion.img
+                      src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png"
+                      alt="Starstruck"
+                      className={styles.badgeImgSmall}
+                      whileHover={{ scale: 1.13, rotate: -6 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    />
+                  </td>
+                  <td>Starstruck</td>
+                  <td>
+                    Create a repository with a lot of stars.
+                    <br />
+                    <a
+                      href="https://github.com/sanjay-kv/Open-source-Practice"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Sample repo
+                    </a>
+                    <br />
+                    If you get the first 16 stars you will unlock the badge.
+                    <br />
+                    <a
+                      href="https://youtu.be/v2Pai1TY_Lg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Watch the Video Tutorial
+                    </a>
+                  </td>
+                  <td>
+                    <div className={styles.badgeLevels}>
+                      <div className={styles.levelText}>
+                        Levels: Default, Bronze, Silver, Gold
+                      </div>
+                      <div className={styles.levelImages}>
+                        <img
+                          src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png"
+                          alt="Starstruck Default"
+                          title="Default (16)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-bronze.png"
+                          alt="Starstruck Bronze"
+                          title="Bronze (128)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-silver.png"
+                          alt="Starstruck Silver"
+                          title="Silver (512)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-gold.png"
+                          alt="Starstruck Gold"
+                          title="Gold (4096)"
+                          className={styles.badgeImgSmall}
+                        />
+                      </div>
+                      <div className={styles.neededAmount}>
+                        Needed: 16, 128, 512, 4096
+                      </div>
                     </div>
-                    <div className={styles.levelImages}>
+                  </td>
+                </motion.tr>
+                {/* Quickdraw */}
+                <motion.tr
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
+                  }}
+                >
+                  <td>
+                    <motion.img
+                      src="https://github.githubassets.com/images/modules/profile/achievements/quickdraw-default.png"
+                      alt="Quickdraw"
+                      className={styles.badgeImgSmall}
+                      whileHover={{ scale: 1.13, rotate: 6 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    />
+                  </td>
+                  <td>Quickdraw</td>
+                  <td>
+                    Gitty up!
+                    <br />
+                    If you closed an issue / pull request within 5 minutes of
+                    opening you will unlock this badge
+                  </td>
+                  <td>
+                    <div className={styles.singleBadge}>
+                      <div className={styles.levelText}>Level: Default</div>
                       <img
-                        src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png"
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone1.png"
+                        alt="Quickdraw Default"
+                        className={styles.badgeImgSmall}
+                      />
+                      <div className={styles.neededAmount}>Needed: 1</div>
+                    </div>
+                  </td>
+                </motion.tr>
+                {/* Pair Extraordinaire */}
+                <motion.tr
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.15 }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
+                  }}
+                >
+                  <td>
+                    <motion.img
+                      src="https://github.githubassets.com/images/modules/profile/achievements/pair-extraordinaire-default.png"
+                      alt="Pair Extraordinaire"
+                      className={styles.badgeImgSmall}
+                      whileHover={{ scale: 1.13, rotate: -8 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    />
+                  </td>
+                  <td>Pair Extraordinaire</td>
+                  <td>
+                    Coauthored commits on merged pull request
+                    <br />
+                    Requirement: VSCode IDE (bit difficult to get)
+                    <br />
+                    You can raise a sample PR{" "}
+                    <a
+                      href="https://github.com/recodehive/Opensource-practice"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      here
+                    </a>{" "}
+                    by adding to the existing readme file and tag{" "}
+                    <b>@sanjay-kv</b>
+                    <br />
+                    <a
+                      href="https://youtu.be/BNKSlT8jLQ0"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Watch the Video Tutorial
+                    </a>
+                  </td>
+                  <td>
+                    <b>Needed:</b> 1, 10, 24, 48
+                    <br />
+                    <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire.png"
                         alt="Starstruck Default"
                         title="Default (16)"
                         className={styles.badgeImgSmall}
                       />
                       <img
-                        src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-bronze.png"
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Bronze.png"
                         alt="Starstruck Bronze"
                         title="Bronze (128)"
                         className={styles.badgeImgSmall}
                       />
                       <img
-                        src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-silver.png"
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Silver.png"
                         alt="Starstruck Silver"
                         title="Silver (512)"
                         className={styles.badgeImgSmall}
                       />
                       <img
-                        src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-gold.png"
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Gold.png"
                         alt="Starstruck Gold"
                         title="Gold (4096)"
                         className={styles.badgeImgSmall}
                       />
                     </div>
-                    <div className={styles.neededAmount}>
-                      Needed: 16, 128, 512, 4096
+                    <b>Levels:</b> Default, Bronze, Silver, Gold
+                  </td>
+                </motion.tr>
+                {/* Pull Shark */}
+                <motion.tr
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
+                  }}
+                >
+                  <td>
+                    <motion.img
+                      src="https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png"
+                      alt="Pull Shark"
+                      className={styles.badgeImgSmall}
+                      whileHover={{ scale: 1.13, rotate: 6 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                    />
+                  </td>
+                  <td>Pull Shark</td>
+                  <td>
+                    Opened a pull request and it should be merged
+                    <br />
+                    You can raise a sample PR{" "}
+                    <a
+                      href="https://github.com/recodehive/resume-pitch"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      here
+                    </a>{" "}
+                    by adding on existing readme file and tag <b>@sanjay-kv</b>
+                    <br />
+                    <a
+                      href="https://youtu.be/7uKMWBFN2jQ"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Watch the Video Tutorial
+                    </a>
+                  </td>
+                  <td>
+                    <b>Needed:</b> 2, 16, 128, 1024
+                    <br />
+                    <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark.png"
+                        alt="Starstruck Default"
+                        title="Default (16)"
+                        className={styles.badgeImgSmall}
+                      />
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Bronze.png"
+                        alt="Starstruck Bronze"
+                        title="Bronze (128)"
+                        className={styles.badgeImgSmall}
+                      />
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Silver.png"
+                        alt="Starstruck Silver"
+                        title="Silver (512)"
+                        className={styles.badgeImgSmall}
+                      />
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Gold.png"
+                        alt="Starstruck Gold"
+                        title="Gold (4096)"
+                        className={styles.badgeImgSmall}
+                      />
                     </div>
-                  </div>
-                </td>
-              </motion.tr>
-              {/* Quickdraw */}
-              <motion.tr
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                }}
-              >
-                <td>
-                  <motion.img
-                    src="https://github.githubassets.com/images/modules/profile/achievements/quickdraw-default.png"
-                    alt="Quickdraw"
-                    className={styles.badgeImgSmall}
-                    whileHover={{ scale: 1.13, rotate: 6 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  />
-                </td>
-                <td>Quickdraw</td>
-                <td>
-                  Gitty up!
-                  <br />
-                  If you closed an issue / pull request within 5 minutes of
-                  opening you will unlock this badge
-                </td>
-                <td>
-                  <div className={styles.singleBadge}>
-                    <div className={styles.levelText}>Level: Default</div>
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone1.png"
-                      alt="Quickdraw Default"
+                    <b>Levels:</b> Default, Bronze, Silver, Gold
+                  </td>
+                </motion.tr>
+                {/* Galaxy Brain */}
+                <motion.tr
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.25 }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
+                  }}
+                >
+                  <td>
+                    <motion.img
+                      src="https://github.githubassets.com/images/modules/profile/achievements/galaxy-brain-default.png"
+                      alt="Galaxy Brain"
                       className={styles.badgeImgSmall}
+                      whileHover={{ scale: 1.13, rotate: -8 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     />
-                    <div className={styles.neededAmount}>Needed: 1</div>
-                  </div>
-                </td>
-              </motion.tr>
-              {/* Pair Extraordinaire */}
-              <motion.tr
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.15 }}
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                }}
-              >
-                <td>
-                  <motion.img
-                    src="https://github.githubassets.com/images/modules/profile/achievements/pair-extraordinaire-default.png"
-                    alt="Pair Extraordinaire"
-                    className={styles.badgeImgSmall}
-                    whileHover={{ scale: 1.13, rotate: -8 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  />
-                </td>
-                <td>Pair Extraordinaire</td>
-                <td>
-                  Coauthored commits on merged pull request
-                  <br />
-                  Requirement: VSCode IDE (bit difficult to get)
-                  <br />
-                  You can raise a sample PR{" "}
-                  <a
-                    href="https://github.com/recodehive/Opensource-practice"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    here
-                  </a>{" "}
-                  by adding to the existing readme file and tag{" "}
-                  <b>@sanjay-kv</b>
-                  <br />
-                  <a
-                    href="https://youtu.be/BNKSlT8jLQ0"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Watch the Video Tutorial
-                  </a>
-                </td>
-                <td>
-                  <b>Needed:</b> 1, 10, 24, 48
-                  <br />
-                  <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire.png"
-                      alt="Starstruck Default"
-                      title="Default (16)"
+                  </td>
+                  <td>Galaxy Brain</td>
+                  <td>
+                    Answered a discussion and someone marked your reply as
+                    answer
+                    <br />
+                    You can answer some of the discussions{" "}
+                    <a
+                      href="https://github.com/orgs/recodehive/discussions"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      here
+                    </a>
+                    <br />
+                    <a
+                      href="https://youtu.be/v2Pai1TY_Lg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Watch the Video Tutorial
+                    </a>
+                  </td>
+                  <td>
+                    <b>Needed:</b> 2, 8, 16, 32
+                    <br />
+                    <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain.png"
+                        alt="Starstruck Default"
+                        title="Default (16)"
+                        className={styles.badgeImgSmall}
+                      />
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Bronze.png"
+                        alt="Starstruck Bronze"
+                        title="Bronze (128)"
+                        className={styles.badgeImgSmall}
+                      />
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Silver.png"
+                        alt="Starstruck Silver"
+                        title="Silver (512)"
+                        className={styles.badgeImgSmall}
+                      />
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Gold.png"
+                        alt="Starstruck Gold"
+                        title="Gold (4096)"
+                        className={styles.badgeImgSmall}
+                      />
+                    </div>
+                    <b>Levels:</b> Default, Bronze, Silver, Gold
+                  </td>
+                </motion.tr>
+                {/* YOLO */}
+                <motion.tr
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
+                  }}
+                >
+                  <td>
+                    <motion.img
+                      src="https://github.githubassets.com/images/modules/profile/achievements/yolo-default.png"
+                      alt="YOLO"
                       className={styles.badgeImgSmall}
+                      whileHover={{ scale: 1.13, rotate: 8 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     />
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Bronze.png"
-                      alt="Starstruck Bronze"
-                      title="Bronze (128)"
+                  </td>
+                  <td>YOLO</td>
+                  <td>
+                    Merged a pull request without a review
+                    <br />
+                    You can raise a PR{" "}
+                    <a
+                      href="https://github.com/recodehive/machine-learning-repos"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      here
+                    </a>
+                    <br />
+                    <a
+                      href="https://youtu.be/GnHNScuGKrg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Watch the Video Tutorial
+                    </a>
+                  </td>
+                  <td>
+                    <div className={styles.singleBadge}>
+                      <div className={styles.levelText}>Level: Default</div>
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/YOLO/PNG/YOLO_Badge.png"
+                        alt="Starstruck Default"
+                        title="Default (16)"
+                        className={styles.badgeImgSmall}
+                      />
+                      <div className={styles.neededAmount}>Needed: 1</div>
+                    </div>
+                  </td>
+                </motion.tr>
+                {/* Public Sponsor */}
+                <motion.tr
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.35 }}
+                  whileHover={{
+                    scale: 1.02,
+                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
+                  }}
+                >
+                  <td>
+                    <motion.img
+                      src="https://github.githubassets.com/images/modules/profile/achievements/public-sponsor-default.png"
+                      alt="Public Sponsor"
                       className={styles.badgeImgSmall}
+                      whileHover={{ scale: 1.13, rotate: -6 }}
+                      transition={{ type: "spring", stiffness: 300 }}
                     />
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Silver.png"
-                      alt="Starstruck Silver"
-                      title="Silver (512)"
-                      className={styles.badgeImgSmall}
-                    />
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Gold.png"
-                      alt="Starstruck Gold"
-                      title="Gold (4096)"
-                      className={styles.badgeImgSmall}
-                    />
-                  </div>
-                  <b>Levels:</b> Default, Bronze, Silver, Gold
-                </td>
-              </motion.tr>
-              {/* Pull Shark */}
-              <motion.tr
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                }}
-              >
-                <td>
-                  <motion.img
-                    src="https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png"
-                    alt="Pull Shark"
-                    className={styles.badgeImgSmall}
-                    whileHover={{ scale: 1.13, rotate: 6 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  />
-                </td>
-                <td>Pull Shark</td>
-                <td>
-                  Opened a pull request and it should be merged
-                  <br />
-                  You can raise a sample PR{" "}
-                  <a
-                    href="https://github.com/recodehive/resume-pitch"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    here
-                  </a>{" "}
-                  by adding on existing readme file and tag <b>@sanjay-kv</b>
-                  <br />
-                  <a
-                    href="https://youtu.be/7uKMWBFN2jQ"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Watch the Video Tutorial
-                  </a>
-                </td>
-                <td>
-                  <b>Needed:</b> 2, 16, 128, 1024
-                  <br />
-                  <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark.png"
-                      alt="Starstruck Default"
-                      title="Default (16)"
-                      className={styles.badgeImgSmall}
-                    />
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Bronze.png"
-                      alt="Starstruck Bronze"
-                      title="Bronze (128)"
-                      className={styles.badgeImgSmall}
-                    />
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Silver.png"
-                      alt="Starstruck Silver"
-                      title="Silver (512)"
-                      className={styles.badgeImgSmall}
-                    />
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Gold.png"
-                      alt="Starstruck Gold"
-                      title="Gold (4096)"
-                      className={styles.badgeImgSmall}
-                    />
-                  </div>
-                  <b>Levels:</b> Default, Bronze, Silver, Gold
-                </td>
-              </motion.tr>
-              {/* Galaxy Brain */}
-              <motion.tr
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.25 }}
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                }}
-              >
-                <td>
-                  <motion.img
-                    src="https://github.githubassets.com/images/modules/profile/achievements/galaxy-brain-default.png"
-                    alt="Galaxy Brain"
-                    className={styles.badgeImgSmall}
-                    whileHover={{ scale: 1.13, rotate: -8 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  />
-                </td>
-                <td>Galaxy Brain</td>
-                <td>
-                  Answered a discussion and someone marked your reply as answer
-                  <br />
-                  You can answer some of the discussions{" "}
-                  <a
-                    href="https://github.com/orgs/recodehive/discussions"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    here
-                  </a>
-                  <br />
-                  <a
-                    href="https://youtu.be/v2Pai1TY_Lg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Watch the Video Tutorial
-                  </a>
-                </td>
-                <td>
-                  <b>Needed:</b> 2, 8, 16, 32
-                  <br />
-                  <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain.png"
-                      alt="Starstruck Default"
-                      title="Default (16)"
-                      className={styles.badgeImgSmall}
-                    />
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Bronze.png"
-                      alt="Starstruck Bronze"
-                      title="Bronze (128)"
-                      className={styles.badgeImgSmall}
-                    />
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Silver.png"
-                      alt="Starstruck Silver"
-                      title="Silver (512)"
-                      className={styles.badgeImgSmall}
-                    />
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Gold.png"
-                      alt="Starstruck Gold"
-                      title="Gold (4096)"
-                      className={styles.badgeImgSmall}
-                    />
-                  </div>
-                  <b>Levels:</b> Default, Bronze, Silver, Gold
-                </td>
-              </motion.tr>
-              {/* YOLO */}
-              <motion.tr
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                }}
-              >
-                <td>
-                  <motion.img
-                    src="https://github.githubassets.com/images/modules/profile/achievements/yolo-default.png"
-                    alt="YOLO"
-                    className={styles.badgeImgSmall}
-                    whileHover={{ scale: 1.13, rotate: 8 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  />
-                </td>
-                <td>YOLO</td>
-                <td>
-                  Merged a pull request without a review
-                  <br />
-                  You can raise a PR{" "}
-                  <a
-                    href="https://github.com/recodehive/machine-learning-repos"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    here
-                  </a>
-                  <br />
-                  <a
-                    href="https://youtu.be/GnHNScuGKrg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Watch the Video Tutorial
-                  </a>
-                </td>
-                <td>
-                  <div className={styles.singleBadge}>
-                    <div className={styles.levelText}>Level: Default</div>
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/YOLO/PNG/YOLO_Badge.png"
-                      alt="Starstruck Default"
-                      title="Default (16)"
-                      className={styles.badgeImgSmall}
-                    />
-                    <div className={styles.neededAmount}>Needed: 1</div>
-                  </div>
-                </td>
-              </motion.tr>
-              {/* Public Sponsor */}
-              <motion.tr
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.35 }}
-                whileHover={{
-                  scale: 1.02,
-                  boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                }}
-              >
-                <td>
-                  <motion.img
-                    src="https://github.githubassets.com/images/modules/profile/achievements/public-sponsor-default.png"
-                    alt="Public Sponsor"
-                    className={styles.badgeImgSmall}
-                    whileHover={{ scale: 1.13, rotate: -6 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  />
-                </td>
-                <td>Public Sponsor</td>
-                <td>
-                  GitHub Sponsors.
-                  <br />
-                  <a
-                    href="https://github.com/sponsors"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GitHub Sponsors
-                  </a>
-                  <br />
-                  <a
-                    href="https://youtu.be/dcdpkD7lYDg"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Watch the Video Tutorial
-                  </a>
-                </td>
-                <td>
-                  <div className={styles.singleBadge}>
-                    <div className={styles.levelText}>Level: Default</div>
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/GitHub-Sponsor/PNG/GitHubSponsorBadge.png"
-                      alt="Starstruck Default"
-                      title="Default (16)"
-                      className={styles.badgeImgSmall}
-                    />
-                    <div className={styles.neededAmount}>Needed: 1</div>
-                  </div>
-                </td>
-              </motion.tr>
-            </tbody>
-          </table>
-        </div>
+                  </td>
+                  <td>Public Sponsor</td>
+                  <td>
+                    GitHub Sponsors.
+                    <br />
+                    <a
+                      href="https://github.com/sponsors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      GitHub Sponsors
+                    </a>
+                    <br />
+                    <a
+                      href="https://youtu.be/dcdpkD7lYDg"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Watch the Video Tutorial
+                    </a>
+                  </td>
+                  <td>
+                    <div className={styles.singleBadge}>
+                      <div className={styles.levelText}>Level: Default</div>
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/GitHub-Sponsor/PNG/GitHubSponsorBadge.png"
+                        alt="Starstruck Default"
+                        title="Default (16)"
+                        className={styles.badgeImgSmall}
+                      />
+                      <div className={styles.neededAmount}>Needed: 1</div>
+                    </div>
+                  </td>
+                </motion.tr>
+              </tbody>
+            </table>
+          </div>
+        </motion.section>
         <motion.h2
           className={styles.skinHeading}
           initial={{ opacity: 0, x: -40 }}
