@@ -4,7 +4,7 @@
 # Validate git branch name
 echo "Validating branch name..."
 branch_name=$(git symbolic-ref --short HEAD)
-branch_name_regex='^((fix|docs|style|refactor|test|chore|perf|task|shared)\/[0-9A-Za-z-]+|misc\/[0-9A-Za-z-]+)$'
+branch_name_regex='^((fix|feat|docs|style|refactor|test|chore|perf|task|shared)\/[0-9A-Za-z-]+|misc\/[0-9A-Za-z-]+)$'
 
 if [[ $branch_name =~ $branch_name_regex ]]; then
   echo "✅ Branch name is valid."
