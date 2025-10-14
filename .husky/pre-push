@@ -12,18 +12,5 @@ else
   echo -e "\033[0;31m❌ Branch name is invalid. Please follow the format: <type>/<issue_number>-<description>.\033[0m"
   echo "Example:"
   echo -e "\033[0;32m  fix/1234-fix-bug or misc-1234-description\033[0m"
-  echo ""
-  echo -e "\033[0;34mValid types are:\033[0m"
-  echo -e "\033[0;34m  fix/123 A bug fix\033[0m"
-  echo -e "\033[0;34m  docs/123 Documentation only changes\033[0m"
-  echo -e "\033[0;34m  style/123 Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)\033[0m"
-  echo -e "\033[0;34m  refactor/123 A code change that neither fixes a bug nor adds a feature\033[0m"
-  echo -e "\033[0;34m  test/123 Adding missing tests or correcting existing tests\033[0m"
-  echo -e "\033[0;34m  chore/123 Changes to the build process or auxiliary tools and libraries such as documentation generation\033[0m"
-  echo -e "\033[0;34m  perf/123 A code change that improves performance\033[0m"
-  echo -e "\033[0;34m  story/123 A new feature or user story\033[0m"
-  echo -e "\033[0;34m  task/123 A task that needs to be done\033[0m"
-  echo -e "\033[0;34m  shared/123 Shared code or resources\033[0m"
-  echo -e "\033[0;34m  misc/123 Miscellaneous changes\033[0m"
   exit 1
 fi
