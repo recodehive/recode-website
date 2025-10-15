@@ -674,7 +674,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
               <div className="flex-1 px-8 pb-4">
                 <motion.button
                   onClick={() => toggleHints(question.id)}
-                  className="group flex w-full items-center justify-between space-x-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-800 shadow-lg transition-colors hover:bg-gray-100 hover:text-gray-900 dark:border-gray-600 dark:bg-gray-700/50 dark:text-gray-200 dark:hover:bg-gray-600/50 dark:hover:text-gray-100"
+                  className="group flex w-full items-center justify-between space-x-3 rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm shadow-lg transition-all hover:bg-gray-50 hover:shadow-xl dark:border-gray-600 dark:bg-gray-800 dark:hover:bg-gray-700"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -691,7 +691,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                     </span>
                   </div>
                   <motion.span
-                    className="rounded-full border border-blue-200 bg-gradient-to-r from-blue-100 to-purple-100 px-3 py-1 text-xs font-bold text-blue-700 dark:border-blue-700 dark:from-blue-900/40 dark:to-purple-900/40 dark:text-blue-300"
+                    className="rounded-full border border-blue-300 bg-gradient-to-r from-blue-200 to-purple-200 px-3 py-1 text-xs font-bold text-blue-800 dark:border-blue-600 dark:from-blue-800/60 dark:to-purple-800/60 dark:text-blue-200"
                     whileHover={{ scale: 1.1 }}
                   >
                     {question.hints.length}
@@ -751,7 +751,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                   <div className="mt-6">
                     <motion.button
                       onClick={() => toggleResources(question.id)}
-                      className="group flex w-full items-center justify-between space-x-3 rounded-xl border-2 border-indigo-200/50 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-4 py-3 text-sm text-gray-800 shadow-lg transition-colors hover:from-indigo-100 hover:via-purple-100 hover:to-pink-100 hover:text-gray-900 dark:border-indigo-700/50 dark:from-indigo-900/30 dark:via-purple-900/30 dark:to-pink-900/30 dark:text-gray-200 dark:hover:from-indigo-800/40 dark:hover:via-purple-800/40 dark:hover:to-pink-800/40 dark:hover:text-gray-100"
+                      className="group flex w-full items-center justify-between space-x-3 rounded-xl border-2 border-indigo-300 bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100 px-4 py-3 text-sm shadow-lg transition-all hover:from-indigo-200 hover:via-purple-200 hover:to-pink-200 hover:shadow-xl dark:border-indigo-600 dark:from-indigo-900/50 dark:via-purple-900/50 dark:to-pink-900/50 dark:hover:from-indigo-800/60 dark:hover:via-purple-800/60 dark:hover:to-pink-800/60"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -772,7 +772,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                         </span>
                       </div>
                       <motion.span
-                        className="rounded-full border border-indigo-200 bg-gradient-to-r from-indigo-100 to-purple-100 px-3 py-1 text-xs font-bold text-indigo-700 dark:border-indigo-700 dark:from-indigo-900/40 dark:to-purple-900/40 dark:text-indigo-300"
+                        className="rounded-full border border-indigo-300 bg-gradient-to-r from-indigo-200 to-purple-200 px-3 py-1 text-xs font-bold text-indigo-800 dark:border-indigo-600 dark:from-indigo-800/60 dark:to-purple-800/60 dark:text-indigo-200"
                         whileHover={{ scale: 1.1 }}
                       >
                         {question.links.length}
