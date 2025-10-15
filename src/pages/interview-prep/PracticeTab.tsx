@@ -275,7 +275,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
             >
               Mock Interview Practice
             </motion.h2>
-            <p className="text-xl leading-relaxed text-gray-700 dark:text-gray-300">
+            <p className="text-xl leading-relaxed text-gray-800 dark:text-gray-200">
               Simulate real interview scenarios with our interactive practice
               sessions. Track your progress, time your responses, and get
               instant feedback to improve your interview performance.
@@ -300,7 +300,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                 <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                   Technical Deep Dive
                 </h3>
-                <p className="mb-4 leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mb-4 leading-relaxed text-gray-700 dark:text-gray-200">
                   Explore comprehensive technical resources, coding patterns,
                   and algorithm practice.
                 </p>
@@ -337,7 +337,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                 <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                   Behavioral Mastery
                 </h3>
-                <p className="mb-4 leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mb-4 leading-relaxed text-gray-700 dark:text-gray-200">
                   Master the STAR method and practice storytelling for
                   behavioral interviews.
                 </p>
@@ -375,7 +375,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                 <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                   Company Research
                 </h3>
-                <p className="mb-4 leading-relaxed text-gray-600 dark:text-gray-300">
+                <p className="mb-4 leading-relaxed text-gray-700 dark:text-gray-200">
                   Research specific companies, their interview processes, and
                   preparation strategies.
                 </p>
@@ -1067,7 +1067,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
               <h4 className="mb-3 text-lg font-black text-gray-900 dark:text-white">
                 {feature.title}
               </h4>
-              <p className="text-sm leading-relaxed font-medium text-gray-600 dark:text-gray-300">
+              <p className="text-sm leading-relaxed font-medium text-gray-700 dark:text-gray-200">
                 {feature.desc}
               </p>
             </motion.div>
