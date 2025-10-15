@@ -34,7 +34,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
         <h2 className="mb-4 text-4xl font-bold text-gray-900 dark:text-white">
           Behavioral Interview Preparation
         </h2>
-        <p className="ml-3 text-center text-xl text-gray-600 dark:text-gray-300">
+        <p className="ml-3 text-center text-xl text-gray-700 dark:text-gray-200">
           Master the art of storytelling and showcase your soft skills with
           confidence
         </p>
@@ -52,13 +52,13 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
           </h3>
           <div className="grid gap-12 md:grid-cols-2">
             <div>
-              <p className="mb-4 text-gray-700 dark:text-gray-300">
+              <p className="mb-4 text-gray-800 dark:text-gray-200">
                 Behavioral interviews focus on how you've handled situations in
                 the past to predict your future performance. These questions
                 typically start with phrases like "Tell me about a time when..."
                 or "Describe a situation where..."
               </p>
-              <p className="text-gray-700 dark:text-gray-300">
+              <p className="text-gray-800 dark:text-gray-200">
                 Unlike technical interviews that test your coding skills,
                 behavioral interviews evaluate your soft skills, cultural fit,
                 and ability to work in a team environment.
@@ -71,25 +71,25 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start">
                   <span className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"></span>
-                  <span className="text-gray-600 dark:text-gray-300">
+                  <span className="text-gray-700 dark:text-gray-200">
                     70% of hiring decisions are based on cultural fit
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"></span>
-                  <span className="text-gray-600 dark:text-gray-300">
+                  <span className="text-gray-700 dark:text-gray-200">
                     Assess leadership and communication skills
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"></span>
-                  <span className="text-gray-600 dark:text-gray-300">
+                  <span className="text-gray-700 dark:text-gray-200">
                     Evaluate problem-solving approach
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"></span>
-                  <span className="text-gray-600 dark:text-gray-300">
+                  <span className="text-gray-700 dark:text-gray-200">
                     Determine team collaboration ability
                   </span>
                 </li>
@@ -143,7 +143,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
               <h4 className="mb-2 font-bold text-gray-900 dark:text-white">
                 {item.word}
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-200">
                 {item.desc}
               </p>
             </div>
@@ -162,7 +162,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
                 <strong className="text-red-600 dark:text-red-400">
                   Situation:
                 </strong>
-                <p className="mt-1 text-gray-600 dark:text-gray-300">
+                <p className="mt-1 text-gray-700 dark:text-gray-200">
                   "During my internship, our team was behind schedule on a
                   critical project with only 2 weeks left before the deadline."
                 </p>
@@ -171,7 +171,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
                 <strong className="text-yellow-600 dark:text-yellow-400">
                   Task:
                 </strong>
-                <p className="mt-1 text-gray-600 dark:text-gray-300">
+                <p className="mt-1 text-gray-700 dark:text-gray-200">
                   "As the junior developer, I needed to help coordinate efforts
                   and find ways to accelerate our progress."
                 </p>
@@ -180,7 +180,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
                 <strong className="text-green-600 dark:text-green-400">
                   Action:
                 </strong>
-                <p className="mt-1 text-gray-600 dark:text-gray-300">
+                <p className="mt-1 text-gray-700 dark:text-gray-200">
                   "I organized daily stand-ups, created a shared task board, and
                   volunteered to work extra hours on critical features."
                 </p>
@@ -189,7 +189,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
                 <strong className="text-blue-600 dark:text-blue-400">
                   Result:
                 </strong>
-                <p className="mt-1 text-gray-600 dark:text-gray-300">
+                <p className="mt-1 text-gray-700 dark:text-gray-200">
                   "We delivered the project on time, and my manager praised my
                   initiative. I learned the importance of proactive
                   communication."
@@ -208,7 +208,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
                 <strong className="text-red-600 dark:text-red-400">
                   Situation:
                 </strong>
-                <p className="mt-1 text-gray-600 dark:text-gray-300">
+                <p className="mt-1 text-gray-700 dark:text-gray-200">
                   "Our main application was experiencing frequent crashes
                   affecting 30% of users during peak hours."
                 </p>
@@ -217,7 +217,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
                 <strong className="text-yellow-600 dark:text-yellow-400">
                   Task:
                 </strong>
-                <p className="mt-1 text-gray-600 dark:text-gray-300">
+                <p className="mt-1 text-gray-700 dark:text-gray-200">
                   "I was assigned to identify the root cause and implement a
                   solution within 48 hours."
                 </p>
@@ -226,7 +226,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
                 <strong className="text-green-600 dark:text-green-400">
                   Action:
                 </strong>
-                <p className="mt-1 text-gray-600 dark:text-gray-300">
+                <p className="mt-1 text-gray-700 dark:text-gray-200">
                   "I analyzed logs, reproduced the issue, and discovered a
                   memory leak in our caching system. I implemented a fix and
                   added monitoring."
@@ -236,7 +236,7 @@ const BehavioralTab: React.FC<BehavioralTabProps> = ({
                 <strong className="text-blue-600 dark:text-blue-400">
                   Result:
                 </strong>
-                <p className="mt-1 text-gray-600 dark:text-gray-300">
+                <p className="mt-1 text-gray-700 dark:text-gray-200">
                   "Crashes reduced by 95%, user satisfaction improved, and we
                   prevented similar issues with better monitoring."
                 </p>
