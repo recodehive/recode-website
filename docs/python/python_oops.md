@@ -16,7 +16,7 @@ tags:
 ---
 
 
-# Python OOPs
+# Python OOPs concept
 
 **OOP** is a way of organizing code that uses objects and classes to represent real-world entities and their behavior. In OOP, object has attributes thing that has specific data and can perform certain actions using methods.
 
@@ -24,7 +24,7 @@ tags:
 Characteristics of OOP (Object Oriented Programming)
 Python supports the core principles of object-oriented programming, which are the building blocks for designing robust and reusable software. The diagram below demonstrates these core principles:
 
-1. Class - A blueprint for creating objects.
+1. Class - A blueprint for creating objects, learn more
 
 📌 **Use Case**: create a class - car
 
@@ -67,7 +67,7 @@ class BankAccount:
 
 4. Inheritance - One class can inherit from another.
 
-📌 **Use Case**: car (parent) class is getting inherited by (child) ElectricCar
+📌 **Use Case**: Car (parent) class is inherited by ElectricCar (child) class
 
 ```python
 class ElectricCar(Car):

@@ -73,15 +73,13 @@
 
 /* ================= SECTION 3: ACTIVE INDICATORS ================= */
 
-/* Add bright indicators */
-.menu__link--active::before {
-  content: "•";
-  position: absolute;
-  left: -2px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 24px;
-  color: #38a169; /* Green dot */
+/* Style the existing dot for active pages */
+a.menu__link.menu__link--active div span:first-child {
+  background-color: #38a169 !important; /* Green dot */
+  opacity: 1 !important;
+  width: 8px !important;
+  height: 8px !important;
+  box-shadow: 0 0 6px #38a169 !important; /* Add glow effect */
   animation: breatheGreen 2s infinite;
 }
 
@@ -203,8 +201,13 @@ html[data-theme="dark"] .menu__link--active span {
   color: #9ae6b4;
 }
 
+/* Dark mode dot styling */
+html[data-theme="dark"] a.menu__link.menu__link--active div span:first-child {
+  background-color: #9ae6b4 !important;
+  box-shadow: 0 0 8px #68d391 !important;
+}
+
 /* Dark mode indicator colors */
-html[data-theme="dark"] .menu__link--active::before,
 html[data-theme="dark"] .menu__link--active::after {
   color: #68d391;
 }
@@ -215,7 +218,8 @@ html[data-theme="dark"] .menu__link--active::after {
 .navbar__brand,
 .navbar__item,
 .navbar__link {
-  transition: background-color var(--ifm-transition-fast) ease,
+  transition:
+    background-color var(--ifm-transition-fast) ease,
     color var(--ifm-transition-fast) ease;
 }
 
@@ -301,17 +305,17 @@ html[data-theme="dark"] .menu__link--active::after {
     left: 0 !important;
     z-index: 9999 !important;
     display: none !important;
-  min-width: 50px !important;
-  /* Give a little more room so icons never clip */
-  max-width: 520px !important;
-  box-sizing: border-box !important;
+    min-width: 50px !important;
+    /* Give a little more room so icons never clip */
+    max-width: 520px !important;
+    box-sizing: border-box !important;
     width: max-content !important;
     background: var(--ifm-background-color) !important;
     border: 1px solid var(--ifm-color-emphasis-300) !important;
     border-radius: 8px !important;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
-  /* Slightly more breathing room inside dropdown */
-  padding: 1rem !important;
+    /* Slightly more breathing room inside dropdown */
+    padding: 1rem !important;
     margin-top: 8px !important;
     overflow: visible !important;
   }
@@ -322,11 +326,11 @@ html[data-theme="dark"] .menu__link--active::after {
   .navbar__item .dropdown-content:hover {
     display: block !important;
   }
-  
+
   /* Add hover bridge to prevent dropdown from disappearing */
   .navbar__item.dropdown::after,
   .navbar__item:has(.dropdown-content)::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 100%;
     left: 0;
@@ -377,14 +381,18 @@ html[data-theme="dark"] .menu__link--active::after {
 /* ======= SECTION 9 :Smooth theme transitions ========== */
 html,
 body {
-  transition: background-color 150ms ease, color 150ms ease;
+  transition:
+    background-color 150ms ease,
+    color 150ms ease;
 }
 
 .navbar,
 .footer,
 .sidebar,
 .main-wrapper {
-  transition: background-color 150ms ease, color 150ms ease,
+  transition:
+    background-color 150ms ease,
+    color 150ms ease,
     border-color 150ms ease;
 }
 
@@ -410,21 +418,22 @@ body {
 
   /* Global dark theme tokens used across feature pages (courses, broadcasts, sponsors, etc.) */
   /* Backgrounds */
-  --dark-bg-primary: #0b1220;     /* base page background (deep navy) */
-  --dark-bg-secondary: #0f172a;   /* section alt background */
-  --dark-bg-tertiary: #111827;    /* subtle surfaces */
+  --dark-bg-primary: #0b1220; /* base page background (deep navy) */
+  --dark-bg-secondary: #0f172a; /* section alt background */
+  --dark-bg-tertiary: #111827; /* subtle surfaces */
   /* Cards */
-  --dark-card-bg: #111827;        /* card background */
-  --dark-card-hover-bg: #0f172a;  /* card hover background */
+  --dark-card-bg: #111827; /* card background */
+  --dark-card-hover-bg: #0f172a; /* card hover background */
   /* Text */
-  --dark-text-primary: #e5e7eb;   /* gray-200 */
+  --dark-text-primary: #e5e7eb; /* gray-200 */
   --dark-text-secondary: #cbd5e1; /* slate-300 */
-  --dark-text-muted: #94a3b8;     /* slate-400 */
+  --dark-text-muted: #94a3b8; /* slate-400 */
   /* Borders */
-  --dark-border: #334155;         /* slate-700 */
+  --dark-border: #334155; /* slate-700 */
   /* Shadows */
   --dark-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.4);
-  --dark-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.7), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+  --dark-shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.7), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
 }
 
 /* =====  SECTION 10: DESKTOP NAVBAR ENHANCEMENTS ===== */
@@ -553,7 +562,9 @@ body {
 .navbar__item,
 .navbar__link {
   color: var(--ifm-font-color-base);
-  transition: color 0.2s ease, background 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
 }
 
 .dropdown-content a:hover,
@@ -721,7 +732,7 @@ body {
 /* Add hover bridge for second dropdown section */
 .dropdown::after,
 .navbar__item:has(.dropdown-content)::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 100%;
   left: 0;
@@ -738,7 +749,9 @@ body {
 }
 .dropdown-content a {
   color: var(--ifm-font-color-base);
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
 }
 .dropdown-content .border-r,
 .dropdown-content .col-span-1,
@@ -857,7 +870,8 @@ html.theme-light .text-gray-900 {
 }
 
 .modern-card-shadow {
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
@@ -1061,9 +1075,9 @@ html {
   .navbar-sidebar .dropdown__menu .grid,
   .navbar-sidebar .dropdown-content .grid {
     width: 100% !important;
-  column-gap: 0.5rem !important;
-  row-gap: 0.6rem !important; 
-  align-items: center !important; /* align titles with icons vertically */
+    column-gap: 0.5rem !important;
+    row-gap: 0.6rem !important;
+    align-items: center !important; /* align titles with icons vertically */
   }
 
   /* So the icon column doesn't get clipped in the 3-col layout */
@@ -1076,9 +1090,9 @@ html {
     border-right: 0 !important;
     padding-right: 0.25rem !important;
     font-weight: 600;
-  display: flex !important;           /* center the title block */
-  align-items: center !important;     /* vertically center with icons */
-  line-height: 1.1 !important;        /* avoid baseline drift */
+    display: flex !important; /* center the title block */
+    align-items: center !important; /* vertically center with icons */
+    line-height: 1.1 !important; /* avoid baseline drift */
   }
 
   /* The inner icon group for Tutorials/Courses only (have grid-cols-4) */
@@ -1087,8 +1101,8 @@ html {
   .navbar-sidebar .dropdown-content .grid .grid.grid-cols-4 {
     display: grid !important;
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  column-gap: 0.5rem !important; /* keep columns tight */
-  row-gap: 1.5rem !important;   
+    column-gap: 0.5rem !important; /* keep columns tight */
+    row-gap: 1.5rem !important;
     overflow: visible !important;
   }
 
@@ -1112,8 +1126,8 @@ html {
 
   /* Add vertical space between Tutorials, Courses, Interview Prep blocks */
   .navbar-sidebar .dropdown__menu > .grid {
-  padding: 1rem 0 !important;  
-  margin: 1rem 0 !important;   
+    padding: 1rem 0 !important;
+    margin: 1rem 0 !important;
   }
 
   /* Dark mode: ensure GitHub/Next.js icons are visible in Tutorials on mobile */
@@ -1378,7 +1392,6 @@ html {
   max-width: none !important;
 }
 
-
 .navbar .navbar__items {
   display: flex !important;
   align-items: center !important;
@@ -1404,20 +1417,22 @@ html {
   width: 100% !important;
   padding: 0 !important;
 }
-.practice-tab-link:hover{
+.practice-tab-link:hover {
   text-decoration: none;
 }
-[data-theme="dark"] .practice-tab-link{
+[data-theme="dark"] .practice-tab-link {
   color: white;
 }
-[data-theme="light"] .practice-tab-link{
+[data-theme="light"] .practice-tab-link {
   color: #1d4ed8; /* blue-700 */
 }
 
 /* ===== SECTION 14: SMOOTH PAGE TRANSITIONS ===== */
 /* Global page transition styles */
 main {
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
 }
 
 /* Blog carousel section background */
@@ -1427,20 +1442,28 @@ main {
   overflow: hidden;
 }
 
-[data-theme='dark'] .blog-carousel-section {
+[data-theme="dark"] .blog-carousel-section {
   background: linear-gradient(135deg, #1b1b1d 0%, #121212 50%, #1a202c 100%);
 }
 
 .blog-carousel-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(168, 85, 247, 0.06) 0%, transparent 45%);
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(99, 102, 241, 0.08) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
+      rgba(168, 85, 247, 0.06) 0%,
+      transparent 45%
+    );
   pointer-events: none;
 }
 
@@ -1471,12 +1494,11 @@ a {
   animation: pageSlideIn 0.6s ease-out;
 }
 
-
 @media screen and (max-width: 768px) {
   .navbar .navbar__items--right {
     display: flex;
     align-items: center;
-    gap: 20px; 
+    gap: 20px;
   }
 
   .navbar .DocSearch-Button {

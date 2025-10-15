@@ -307,6 +307,13 @@ By managing these resources efficiently, web developers can create engaging and 
 
 < />
 <iframe width="880" height="480" src="https://www.youtube.com/embed/jE8nqWSbUQs?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="Understanding the GitHub Flow" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## Practice Git Interactively
+
+:::tip Learn By Doing
+Master Git through gameplay at [Learn Git Branching↗](https://learngitbranching.js.org/). This interactive learning platform turns Git concepts into visual puzzles and challenges. It's like a game that teaches you Git commands with immediate visual feedback - perfect for beginners and experienced developers alike.
+:::
+
 ## Conclusion
 
 In conclusion, I hope you enjoyed reading this article on “Git Cheat Sheet. 50 Git commands |Git Tutorials”. In the next post, We will continue the Git/Github courses with more added materials and set up of git in your system. Signing off Sanjay Kv

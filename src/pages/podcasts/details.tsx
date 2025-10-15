@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import Layout from '@theme/Layout';
-import type { ReactElement } from 'react';
-import { useLocation, useHistory } from '@docusaurus/router';
-import './details.css';
+import React, { useState, useEffect } from "react";
+import Layout from "@theme/Layout";
+import type { ReactElement } from "react";
+import { useLocation, useHistory } from "@docusaurus/router";
+import "./details.css";
 
 interface PodcastData {
   id: string;
   spotifyUrl: string;
-  type: 'episode' | 'show' | 'playlist';
+  type: "episode" | "show" | "playlist";
 }
 
 interface LocationState {
@@ -16,21 +16,23 @@ interface LocationState {
 
 interface SpotifyTitleProps {
   spotifyUrl: string;
-  type: 'episode' | 'show' | 'playlist';
+  type: "episode" | "show" | "playlist";
 }
 
 // Enhanced Spotify Title Component
 const SpotifyTitle: React.FC<SpotifyTitleProps> = ({ spotifyUrl, type }) => {
-  const [title, setTitle] = React.useState<string>('');
-  const [artist, setArtist] = React.useState<string>('');
+  const [title, setTitle] = React.useState<string>("");
+  const [artist, setArtist] = React.useState<string>("");
   const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`)
-      .then(res => res.json())
-      .then(data => {
+    fetch(
+      `https://open.spotify.com/oembed?url=${encodeURIComponent(spotifyUrl)}`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
         if (!cancelled) {
           setTitle(data.title);
           // Extract artist/show info if available
@@ -42,11 +44,13 @@ const SpotifyTitle: React.FC<SpotifyTitleProps> = ({ spotifyUrl, type }) => {
       })
       .catch(() => {
         if (!cancelled) {
-          setTitle('');
+          setTitle("");
           setLoading(false);
         }
       });
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, [spotifyUrl]);
 
   if (loading) {
@@ -63,9 +67,11 @@ const SpotifyTitle: React.FC<SpotifyTitleProps> = ({ spotifyUrl, type }) => {
     <div className="enhanced-podcast-title">
       <div className="title-badge">
         <span className="badge-icon">
-          {type === 'episode' ? '🎙️' : type === 'show' ? '📻' : '🎵'}
+          {type === "episode" ? "🎙️" : type === "show" ? "📻" : "🎵"}
         </span>
-        <span className="badge-text">{type.charAt(0).toUpperCase() + type.slice(1)}</span>
+        <span className="badge-text">
+          {type.charAt(0).toUpperCase() + type.slice(1)}
+        </span>
       </div>
       <h1 className="main-title">
         {title || `Featured ${type.charAt(0).toUpperCase() + type.slice(1)}`}
@@ -85,7 +91,7 @@ export default function PodcastDetails(): ReactElement {
   const history = useHistory();
   const state = location.state as LocationState;
   const podcast = state?.podcast;
-  
+
   const [favorites, setFavorites] = useState<string[]>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("podcast-favorites");
@@ -96,15 +102,15 @@ export default function PodcastDetails(): ReactElement {
   const isFavorited = podcast ? favorites.includes(podcast.id) : false;
   const toggleFavorite = () => {
     if (!podcast) return;
-    setFavorites(prev => {
+    setFavorites((prev) => {
       const updated = prev.includes(podcast.id)
-        ? prev.filter(id => id !== podcast.id)
+        ? prev.filter((id) => id !== podcast.id)
         : [...prev, podcast.id];
       localStorage.setItem("podcast-favorites", JSON.stringify(updated));
       return updated;
     });
   };
-  
+
   // Enhanced descriptions with categories
   const descriptions = {
     episode: [
@@ -112,35 +118,53 @@ export default function PodcastDetails(): ReactElement {
       "Experience expert insights and engaging narratives that expand your understanding of the world.",
       "Join compelling discussions that bridge the gap between knowledge and practical wisdom.",
       "Explore unique perspectives from industry leaders and innovative thinkers.",
-      "Uncover hidden stories and behind-the-scenes insights that mainstream media rarely covers."
+      "Uncover hidden stories and behind-the-scenes insights that mainstream media rarely covers.",
     ],
     show: [
       "Discover a treasure trove of episodes covering diverse topics and groundbreaking ideas.",
       "Follow an incredible journey of storytelling that spans multiple fascinating episodes.",
       "Experience consistent quality content that keeps you coming back for more insights.",
       "Join a community of listeners who appreciate depth, authenticity, and expert curation.",
-      "Explore a comprehensive collection of discussions that shape modern discourse."
+      "Explore a comprehensive collection of discussions that shape modern discourse.",
     ],
     playlist: [
       "Enjoy a carefully curated selection of audio content designed for your listening pleasure.",
       "Experience the perfect blend of entertainment and education in one convenient collection.",
       "Discover diverse voices and perspectives assembled into a cohesive listening experience.",
       "Tune into a handpicked selection that showcases the best of podcast storytelling.",
-      "Explore a thoughtfully arranged collection that takes you on an audio journey."
-    ]
+      "Explore a thoughtfully arranged collection that takes you on an audio journey.",
+    ],
   };
 
   // Additional podcast features
   const features = [
-    { icon: "🎯", label: "Expert Insights", description: "Learn from industry professionals" },
-    { icon: "🌟", label: "Premium Quality", description: "High-quality audio production" },
-    { icon: "📈", label: "Trending Content", description: "Stay ahead with latest topics" },
-    { icon: "🎧", label: "Immersive Experience", description: "Engaging storytelling format" }
+    {
+      icon: "🎯",
+      label: "Expert Insights",
+      description: "Learn from industry professionals",
+    },
+    {
+      icon: "🌟",
+      label: "Premium Quality",
+      description: "High-quality audio production",
+    },
+    {
+      icon: "📈",
+      label: "Trending Content",
+      description: "Stay ahead with latest topics",
+    },
+    {
+      icon: "🎧",
+      label: "Immersive Experience",
+      description: "Engaging storytelling format",
+    },
   ];
 
-  const getRandomDescription = (type: 'episode' | 'show' | 'playlist') => {
+  const getRandomDescription = (type: "episode" | "show" | "playlist") => {
     const typeDescriptions = descriptions[type];
-    return typeDescriptions[Math.floor(Math.random() * typeDescriptions.length)];
+    return typeDescriptions[
+      Math.floor(Math.random() * typeDescriptions.length)
+    ];
   };
 
   const handleBack = () => {
@@ -152,7 +176,7 @@ export default function PodcastDetails(): ReactElement {
       try {
         await navigator.share({
           title: `Check out this ${podcast.type}`,
-          url: podcast.spotifyUrl
+          url: podcast.spotifyUrl,
         });
       } catch (err) {
         // Fallback to clipboard
@@ -173,7 +197,10 @@ export default function PodcastDetails(): ReactElement {
             <p className="error-description">
               Sorry, we couldn't find the podcast you're looking for.
             </p>
-            <button className="back-to-podcasts" onClick={() => history.push('/podcasts')}>
+            <button
+              className="back-to-podcasts"
+              onClick={() => history.push("/podcasts")}
+            >
               <span className="button-icon">←</span>
               Back to Podcasts
             </button>
@@ -193,25 +220,25 @@ export default function PodcastDetails(): ReactElement {
             <span className="nav-text">Back to Podcasts</span>
           </button>
           <div className="nav-actions">
-  <button
-    className="nav-action-button"
-    onClick={() => handleShare(podcast)}
-    title="Share"
-  >
-    <span className="action-icon">🔗</span>
-  </button>
-  <button
-    className={`nav-action-button favorite ${isFavorited ? "favorited" : ""}`}
-    title={isFavorited ? "Remove from favorites" : "Add to favorites"}
-    onClick={e => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleFavorite();
-    }}
-  >
-    <span className="action-icon">{isFavorited ? "🤍" : "❤️"}</span>
-  </button>
-</div>
+            <button
+              className="nav-action-button"
+              onClick={() => handleShare(podcast)}
+              title="Share"
+            >
+              <span className="action-icon">🔗</span>
+            </button>
+            <button
+              className={`nav-action-button favorite ${isFavorited ? "favorited" : ""}`}
+              title={isFavorited ? "Remove from favorites" : "Add to favorites"}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleFavorite();
+              }}
+            >
+              <span className="action-icon">{isFavorited ? "🤍" : "❤️"}</span>
+            </button>
+          </div>
         </div>
 
         {/* Main Content */}
@@ -219,11 +246,14 @@ export default function PodcastDetails(): ReactElement {
           {/* Hero Section */}
           <div className="details-hero">
             <div className="hero-content">
-              <SpotifyTitle spotifyUrl={podcast.spotifyUrl} type={podcast.type} />
+              <SpotifyTitle
+                spotifyUrl={podcast.spotifyUrl}
+                type={podcast.type}
+              />
               <p className="hero-description">
                 {getRandomDescription(podcast.type)}
               </p>
-              
+
               {/* Quick Stats */}
               <div className="quick-stats">
                 <div className="stat-pill">
@@ -256,10 +286,10 @@ export default function PodcastDetails(): ReactElement {
                   </button>
                 </div>
               </div>
-              
+
               <div className="spotify-embed-wrapper">
                 <iframe
-                  src={`https://open.spotify.com/embed/${podcast.type}/${podcast.spotifyUrl.split('/').pop()?.split('?')[0]}`}
+                  src={`https://open.spotify.com/embed/${podcast.type}/${podcast.spotifyUrl.split("/").pop()?.split("?")[0]}`}
                   width="100%"
                   height="400"
                   frameBorder="0"
@@ -269,7 +299,7 @@ export default function PodcastDetails(): ReactElement {
                   title={`Spotify embed ${podcast.id}`}
                 />
               </div>
-              
+
               <div className="embed-footer">
                 <div className="platform-info">
                   <span className="platform-badge">
@@ -278,13 +308,16 @@ export default function PodcastDetails(): ReactElement {
                   </span>
                 </div>
                 <div className="embed-actions">
-                  <button className="embed-action" onClick={() => handleShare(podcast)}>
+                  <button
+                    className="embed-action"
+                    onClick={() => handleShare(podcast)}
+                  >
                     <span className="action-icon">📤</span>
                     Share
                   </button>
-                  <a 
-                    href={podcast.spotifyUrl} 
-                    target="_blank" 
+                  <a
+                    href={podcast.spotifyUrl}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="embed-action external"
                   >
@@ -304,7 +337,11 @@ export default function PodcastDetails(): ReactElement {
             </h2>
             <div className="features-grid">
               {features.map((feature, index) => (
-                <div key={index} className="feature-card" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div
+                  key={index}
+                  className="feature-card"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
                   <div className="feature-icon">{feature.icon}</div>
                   <div className="feature-content">
                     <h3 className="feature-title">{feature.label}</h3>
@@ -328,23 +365,23 @@ export default function PodcastDetails(): ReactElement {
                   <h3>Discover More Shows</h3>
                   <p>Explore our curated collection of premium podcasts</p>
                 </div>
-                <button 
+                <button
                   className="suggestion-button"
-                  onClick={() => history.push('/podcasts')}
+                  onClick={() => history.push("/podcasts")}
                 >
                   Browse All →
                 </button>
               </div>
-              
+
               <div className="suggestion-card secondary">
                 <div className="suggestion-icon">🎯</div>
                 <div className="suggestion-text">
                   <h3>Similar Content</h3>
                   <p>Find podcasts matching your interests</p>
                 </div>
-                <button 
+                <button
                   className="suggestion-button"
-                  onClick={() => history.push('/podcasts')}
+                  onClick={() => history.push("/podcasts")}
                 >
                   Discover →
                 </button>

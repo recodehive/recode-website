@@ -12,7 +12,8 @@ export default function ScrollTopToBottom() {
   };
 
   const handleScroll = () => {
-    const bottomThreshold = document.documentElement.scrollHeight - window.innerHeight - 100;
+    const bottomThreshold =
+      document.documentElement.scrollHeight - window.innerHeight - 100;
     if (window.scrollY < bottomThreshold) {
       setShowButton(true);
     } else {
@@ -29,9 +30,9 @@ export default function ScrollTopToBottom() {
 
   return (
     showButton && (
-      <button 
-        onClick={scrollToBottom} 
-        className="fixed bottom-5 right-5 bg-green-600 text-white border-none rounded-lg p-2.5 cursor-pointer shadow-md transition-opacity duration-300 opacity-80 z-50 hover:bg-green-700 hover:opacity-100"
+      <button
+        onClick={scrollToBottom}
+        className="fixed right-5 bottom-5 z-50 cursor-pointer rounded-lg border-none bg-green-600 p-2.5 text-white opacity-80 shadow-md transition-opacity duration-300 hover:bg-green-700 hover:opacity-100"
       >
         <FaArrowDown />
       </button>

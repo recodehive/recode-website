@@ -53,12 +53,12 @@
   background-color: var(--ifm-color-secondary-dark);
 }
 
-[data-theme='dark'] .showcaseCardSrcBtn {
+[data-theme="dark"] .showcaseCardSrcBtn {
   background-color: var(--ifm-color-emphasis-200) !important;
   color: inherit;
 }
 
-[data-theme='dark'] .showcaseCardSrcBtn:hover {
+[data-theme="dark"] .showcaseCardSrcBtn:hover {
   background-color: var(--ifm-color-emphasis-300) !important;
 }
 
@@ -102,7 +102,7 @@
   --card-scale: 1;
   --card-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
   --card-border: 1px solid var(--ifm-color-emphasis-200);
-  
+
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -135,7 +135,11 @@
   bottom: 0;
   z-index: 1;
   opacity: 0;
-  background: linear-gradient(135deg, rgba(var(--ifm-color-primary-rgb), 0.1) 0%, rgba(var(--ifm-color-primary-rgb), 0) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(var(--ifm-color-primary-rgb), 0.1) 0%,
+    rgba(var(--ifm-color-primary-rgb), 0) 100%
+  );
   transition: opacity 0.3s ease;
 }
 
@@ -251,7 +255,7 @@
 }
 
 .showcaseCardImage::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -275,7 +279,7 @@
 .tag {
   --tag-scale: 1;
   --tag-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  
+
   position: relative;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -295,7 +299,7 @@
 }
 
 .tag::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;

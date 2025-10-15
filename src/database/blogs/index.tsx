@@ -36,7 +36,7 @@ const blogs: Blog[] = [
     slug: "ux-designers-ai",
     authors: ["dharshibalasubramaniyam", "sanjay-kv"],
   },
-    {
+  {
     id: 4,
     title: "What is Google DeepMind?",
     image: "/img/blogs/02-deepmind.png",
@@ -45,7 +45,7 @@ const blogs: Blog[] = [
     slug: "google-deepmind",
     authors: ["dharshibalasubramaniyam", "sanjay-kv"],
   },
-      {
+  {
     id: 5,
     title: "What are backlinks for SEO",
     image: "/img/blogs/01-seo-image.png",
@@ -55,7 +55,7 @@ const blogs: Blog[] = [
     authors: ["sanjay-kv"],
   },
 
-        {
+  {
     id: 6,
     title: "What is GitHub Copilot",
     image: "/img/blogs/06-github-agent.png",
@@ -64,14 +64,14 @@ const blogs: Blog[] = [
     slug: "git-coding-agent",
     authors: ["sanjay-kv"],
   },
-    {
+  {
     id: 7,
     title: "Apache Spark Architecture Explained",
     image: "img/blogs/07-spark-blog-banner.png",
     description:
       "Apache Spark is a fast, open-source big data framework that leverages in-memory computing for high performance. Its architecture powers scalable distributed processing across clusters, making it essential for analytics and machine learning.",
     slug: "spark-architecture",
-    authors: ["Aditya-Singh-Rathore","sanjay-kv"],
+    authors: ["Aditya-Singh-Rathore", "sanjay-kv"],
   },
   {
     id: 8,
@@ -80,9 +80,17 @@ const blogs: Blog[] = [
     description:
       "N8N is an open-source workflow automation tool that enables users to connect various apps and services to automate tasks without extensive coding knowledge.",
     slug: "n8n-workflow-automation",
-    authors: ["Aditya-Singh-Rathore",],
-  }
-
+    authors: ["Aditya-Singh-Rathore"],
+  },
+  {
+    id: 9,
+    title: "OpenAI AgentKit: Building AI Agents Without the Complexity",
+    image: "/img/blogs/Agent_Builder.png",
+    description:
+      "OpenAI AgentKit is a framework that simplifies the process of building AI agents, allowing developers to create intelligent applications without getting bogged down in the underlying complexities.",
+    slug: "open-ai-agent-builder",
+    authors: ["Aditya-Singh-Rathore"],
+  },
 ];
 
 export default blogs;

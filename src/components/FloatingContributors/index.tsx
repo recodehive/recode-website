@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import './FloatingContributors.css';
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import "./FloatingContributors.css";
 
 // Format relative time (e.g., "2 hours ago")
 const formatTimeAgo = (date: Date): string => {
@@ -86,7 +86,14 @@ interface ContributorActivity {
     avatar_url: string;
     html_url: string;
   };
-  action: 'pushed' | 'created' | 'merged' | 'opened' | 'commented' | 'closed' | 'other';
+  action:
+    | "pushed"
+    | "created"
+    | "merged"
+    | "opened"
+    | "commented"
+    | "closed"
+    | "other";
   message?: string;
   timestamp: Date;
   timeAgo: string;
@@ -96,7 +103,9 @@ interface FloatingContributorsProps {
   headerEmbedded?: boolean;
 }
 
-const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbedded = false }) => {
+const FloatingContributors: React.FC<FloatingContributorsProps> = ({
+  headerEmbedded = false,
+}) => {
   const [contributors, setContributors] = useState<Contributor[]>([]);
   const [activities, setActivities] = useState<ContributorActivity[]>([]);
   const [currentActivityIndex, setCurrentActivityIndex] = useState(0);
@@ -109,47 +118,55 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
   const createFallbackActivities = useCallback((): ContributorActivity[] => {
     const fallbackContributors = [
       {
-        login: 'sanjay-kv',
-        avatar_url: 'https://avatars.githubusercontent.com/u/30715153?v=4',
-        html_url: 'https://github.com/sanjay-kv',
+        login: "sanjay-kv",
+        avatar_url: "https://avatars.githubusercontent.com/u/30715153?v=4",
+        html_url: "https://github.com/sanjay-kv",
       },
       {
-        login: 'recodehive-team',
-        avatar_url: 'https://avatars.githubusercontent.com/u/150000000?v=4',
-        html_url: 'https://github.com/recodehive',
+        login: "recodehive-team",
+        avatar_url: "https://avatars.githubusercontent.com/u/150000000?v=4",
+        html_url: "https://github.com/recodehive",
       },
       {
-        login: 'open-source-contributor',
-        avatar_url: 'https://avatars.githubusercontent.com/u/583231?v=4',
-        html_url: 'https://github.com/open-source-contributor',
+        login: "open-source-contributor",
+        avatar_url: "https://avatars.githubusercontent.com/u/583231?v=4",
+        html_url: "https://github.com/open-source-contributor",
       },
       {
-        login: 'developer',
-        avatar_url: 'https://avatars.githubusercontent.com/u/9919?v=4',
-        html_url: 'https://github.com/developer',
+        login: "developer",
+        avatar_url: "https://avatars.githubusercontent.com/u/9919?v=4",
+        html_url: "https://github.com/developer",
       },
       {
-        login: 'coder',
-        avatar_url: 'https://avatars.githubusercontent.com/u/6154722?v=4',
-        html_url: 'https://github.com/coder',
+        login: "coder",
+        avatar_url: "https://avatars.githubusercontent.com/u/6154722?v=4",
+        html_url: "https://github.com/coder",
       },
     ];
 
-    const actions: ContributorActivity['action'][] = ['pushed', 'created', 'merged', 'opened', 'commented'];
+    const actions: ContributorActivity["action"][] = [
+      "pushed",
+      "created",
+      "merged",
+      "opened",
+      "commented",
+    ];
     const timeOffsets = [5, 10, 30, 60, 120, 240, 480]; // minutes
     const messages = [
-      'Updated documentation',
-      'Fixed styling issues',
-      'Added new feature',
-      'Resolved conflict in package.json',
-      'Implemented responsive design',
-      'Updated dependencies',
-      'Fixed typo in README'
+      "Updated documentation",
+      "Fixed styling issues",
+      "Added new feature",
+      "Resolved conflict in package.json",
+      "Implemented responsive design",
+      "Updated dependencies",
+      "Fixed typo in README",
     ];
 
     return fallbackContributors.map((contributor, index) => {
       const now = new Date();
-      const timestamp = new Date(now.getTime() - (timeOffsets[index % timeOffsets.length] * 60 * 1000));
+      const timestamp = new Date(
+        now.getTime() - timeOffsets[index % timeOffsets.length] * 60 * 1000,
+      );
 
       return {
         id: `fallback-${index}`,
@@ -170,7 +187,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
   const fetchLiveData = useCallback(async () => {
     try {
       // Use specific cache key for this repository's events
-      const CACHE_KEY = 'recodehive_website_events';
+      const CACHE_KEY = "recodehive_website_events";
       const CACHE_DURATION = 2 * 60 * 1000; // 2 minutes - short for "live" data
 
       // Check if we have recent data already
@@ -182,7 +199,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
 
       // Check for cached events
       let events: GitHubEvent[] = [];
-      if (typeof window !== 'undefined') {
+      if (typeof window !== "undefined") {
         try {
           const cachedData = localStorage.getItem(CACHE_KEY);
           if (cachedData) {
@@ -192,7 +209,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
             }
           }
         } catch (e) {
-          console.warn('Error retrieving cached events', e);
+          console.warn("Error retrieving cached events", e);
         }
       }
 
@@ -201,7 +218,9 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
         setLoading(true);
 
         // Fetch repository events from GitHub API
-        const eventsResponse = await fetch('https://api.github.com/repos/recodehive/recode-website/events?per_page=30');
+        const eventsResponse = await fetch(
+          "https://api.github.com/repos/recodehive/recode-website/events?per_page=30",
+        );
 
         if (!eventsResponse.ok) {
           throw new Error(`GitHub API error: ${eventsResponse.status}`);
@@ -210,14 +229,17 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
         events = await eventsResponse.json();
 
         // Save to cache
-        if (typeof window !== 'undefined' && Array.isArray(events)) {
+        if (typeof window !== "undefined" && Array.isArray(events)) {
           try {
-            localStorage.setItem(CACHE_KEY, JSON.stringify({
-              data: events,
-              timestamp: now,
-            }));
+            localStorage.setItem(
+              CACHE_KEY,
+              JSON.stringify({
+                data: events,
+                timestamp: now,
+              }),
+            );
           } catch (e) {
-            console.warn('Error caching events data', e);
+            console.warn("Error caching events data", e);
           }
         }
       }
@@ -227,30 +249,36 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
         // Convert GitHub events to our activity format
         const newActivities: ContributorActivity[] = events.map((event) => {
           // Map GitHub event types to our action types
-          let action: ContributorActivity['action'] = 'other';
+          let action: ContributorActivity["action"] = "other";
           let message: string | undefined;
 
           switch (event.type) {
-            case 'PushEvent':
-              action = 'pushed';
-              message = event.payload.commits && event.payload.commits[0]?.message?.slice(0, 50);
+            case "PushEvent":
+              action = "pushed";
+              message =
+                event.payload.commits &&
+                event.payload.commits[0]?.message?.slice(0, 50);
               break;
-            case 'PullRequestEvent':
-              if (event.payload.action === 'opened') action = 'opened';
-              else if (event.payload.action === 'closed' && event.payload.pull_request?.merged) action = 'merged';
-              else if (event.payload.action === 'closed') action = 'closed';
+            case "PullRequestEvent":
+              if (event.payload.action === "opened") action = "opened";
+              else if (
+                event.payload.action === "closed" &&
+                event.payload.pull_request?.merged
+              )
+                action = "merged";
+              else if (event.payload.action === "closed") action = "closed";
               break;
-            case 'CreateEvent':
-              action = 'created';
+            case "CreateEvent":
+              action = "created";
               break;
-            case 'IssueCommentEvent':
-            case 'CommitCommentEvent':
-            case 'PullRequestReviewCommentEvent':
-              action = 'commented';
+            case "IssueCommentEvent":
+            case "CommitCommentEvent":
+            case "PullRequestReviewCommentEvent":
+              action = "commented";
               message = event.payload.comment?.body?.slice(0, 50);
               break;
             default:
-              action = 'other';
+              action = "other";
           }
 
           const timestamp = new Date(event.created_at);
@@ -278,14 +306,16 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
 
           // Also fetch contributors directly for contribution counts
           try {
-            const contributorsResponse = await fetch('https://api.github.com/repos/recodehive/recode-website/contributors?per_page=100');
+            const contributorsResponse = await fetch(
+              "https://api.github.com/repos/recodehive/recode-website/contributors?per_page=100",
+            );
 
             if (contributorsResponse.ok) {
               const contributorsData = await contributorsResponse.json();
 
               if (Array.isArray(contributorsData)) {
-                contributorsData.forEach(contributor => {
-                  if (contributor.login && contributor.type === 'User') {
+                contributorsData.forEach((contributor) => {
+                  if (contributor.login && contributor.type === "User") {
                     contributorsMap.set(contributor.login, {
                       id: contributor.id.toString(),
                       login: contributor.login,
@@ -298,10 +328,10 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
               }
             }
           } catch (error) {
-            console.warn('Error fetching contributors:', error);
+            console.warn("Error fetching contributors:", error);
 
             // If we couldn't get contributors data, at least use actors from events
-            events.forEach(event => {
+            events.forEach((event) => {
               const login = event.actor.login;
               if (!contributorsMap.has(login)) {
                 contributorsMap.set(login, {
@@ -332,9 +362,8 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
       refreshTimerRef.current = setTimeout(() => {
         fetchLiveData();
       }, 60000); // Refresh every minute
-
     } catch (error) {
-      console.warn('Error fetching GitHub events:', error);
+      console.warn("Error fetching GitHub events:", error);
 
       // Use fallback data if we have no activities yet
       if (activities.length === 0) {
@@ -343,7 +372,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
 
         // Create fallback contributors
         const contributorsMap = new Map<string, Contributor>();
-        fallbackActivities.forEach(activity => {
+        fallbackActivities.forEach((activity) => {
           const login = activity.contributor.login;
           if (!contributorsMap.has(login)) {
             contributorsMap.set(login, {
@@ -392,18 +421,18 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
 
   // Get GitHub URL for event
   const getGitHubEventUrl = (activity: ContributorActivity): string => {
-    const repoUrl = 'https://github.com/recodehive/recode-website';
+    const repoUrl = "https://github.com/recodehive/recode-website";
 
     switch (activity.action) {
-      case 'pushed':
+      case "pushed":
         return `${repoUrl}/commits`;
-      case 'merged':
-      case 'opened':
-      case 'closed':
+      case "merged":
+      case "opened":
+      case "closed":
         return `${repoUrl}/pulls`;
-      case 'commented':
+      case "commented":
         return `${repoUrl}/issues`;
-      case 'created':
+      case "created":
         return repoUrl;
       default:
         return repoUrl;
@@ -411,28 +440,42 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
   };
 
   // Get icon for action type
-  const getActionIcon = (action: ContributorActivity['action']): string => {
+  const getActionIcon = (action: ContributorActivity["action"]): string => {
     switch (action) {
-      case 'pushed': return '🚀';
-      case 'created': return '✨';
-      case 'merged': return '🔄';
-      case 'opened': return '📝';
-      case 'commented': return '💬';
-      case 'closed': return '✅';
-      default: return '💻';
+      case "pushed":
+        return "🚀";
+      case "created":
+        return "✨";
+      case "merged":
+        return "🔄";
+      case "opened":
+        return "📝";
+      case "commented":
+        return "💬";
+      case "closed":
+        return "✅";
+      default:
+        return "💻";
     }
   };
 
   // Get text for action type
-  const getActionText = (action: ContributorActivity['action']): string => {
+  const getActionText = (action: ContributorActivity["action"]): string => {
     switch (action) {
-      case 'pushed': return 'PUSHED';
-      case 'created': return 'CREATED';
-      case 'merged': return 'MERGED';
-      case 'opened': return 'OPENED';
-      case 'commented': return 'COMMENTED';
-      case 'closed': return 'CLOSED';
-      default: return 'ACTIVE';
+      case "pushed":
+        return "PUSHED";
+      case "created":
+        return "CREATED";
+      case "merged":
+        return "MERGED";
+      case "opened":
+        return "OPENED";
+      case "commented":
+        return "COMMENTED";
+      case "closed":
+        return "CLOSED";
+      default:
+        return "ACTIVE";
     }
   };
 
@@ -448,30 +491,46 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className={`floating-contributors-container ${headerEmbedded ? 'header-embedded' : ''}`}
-          initial={{ opacity: 0, y: headerEmbedded ? 0 : 50, scale: headerEmbedded ? 1 : 0.9 }}
+          className={`floating-contributors-container ${headerEmbedded ? "header-embedded" : ""}`}
+          initial={{
+            opacity: 0,
+            y: headerEmbedded ? 0 : 50,
+            scale: headerEmbedded ? 1 : 0.9,
+          }}
           animate={{
             opacity: 1,
             y: 0,
             scale: 1,
           }}
-          exit={{ opacity: 0, y: headerEmbedded ? 0 : 50, scale: headerEmbedded ? 1 : 0.9 }}
+          exit={{
+            opacity: 0,
+            y: headerEmbedded ? 0 : 50,
+            scale: headerEmbedded ? 1 : 0.9,
+          }}
           transition={{
             duration: headerEmbedded ? 0.8 : 0.6,
-            ease: [0.4, 0, 0.2, 1]
+            ease: [0.4, 0, 0.2, 1],
           }}
         >
           {/* Main floating card */}
           <motion.div
             className="floating-contributors-card"
-            animate={headerEmbedded ? {} : {
-              y: [0, -8, 0],
-            }}
-            transition={headerEmbedded ? {} : {
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            animate={
+              headerEmbedded
+                ? {}
+                : {
+                    y: [0, -8, 0],
+                  }
+            }
+            transition={
+              headerEmbedded
+                ? {}
+                : {
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }
+            }
           >
             {/* Close button */}
             <button
@@ -502,7 +561,9 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.4 }}
-                onClick={() => window.open(getGitHubEventUrl(currentActivity), '_blank')}
+                onClick={() =>
+                  window.open(getGitHubEventUrl(currentActivity), "_blank")
+                }
                 tabIndex={0}
                 role="link"
                 aria-label={`View ${currentActivity.contributor.login}'s ${currentActivity.action} activity on GitHub`}
@@ -522,13 +583,21 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
 
                 <div className="activity-details">
                   <div className="activity-user">
-                    <span className="activity-username" title={`@${currentActivity.contributor.login}`}>@{currentActivity.contributor.login}</span>
+                    <span
+                      className="activity-username"
+                      title={`@${currentActivity.contributor.login}`}
+                    >
+                      @{currentActivity.contributor.login}
+                    </span>
                     <span className="activity-action-badge">
                       {getActionText(currentActivity.action)}
                     </span>
                   </div>
                   {currentActivity.message && (
-                    <div className="activity-message" title={currentActivity.message}>
+                    <div
+                      className="activity-message"
+                      title={currentActivity.message}
+                    >
                       {currentActivity.message}
                     </div>
                   )}
@@ -541,7 +610,9 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
             <div className="floating-contributors-grid">
               <div className="contributors-grid-header">
                 <span>Recent Contributors</span>
-                <span className="contributors-count">{contributors.length}</span>
+                <span className="contributors-count">
+                  {contributors.length}
+                </span>
               </div>
 
               <div className="contributors-avatars">
@@ -558,7 +629,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                         delay: index * 0.05,
                         type: "spring",
                         stiffness: 300,
-                        damping: 15
+                        damping: 15,
                       }}
                       whileHover={{ scale: 1.1, zIndex: 5 }}
                     >
@@ -575,8 +646,12 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({ headerEmbed
                           className="contributor-avatar"
                         />
                         <div className="contributor-tooltip">
-                          <div className="tooltip-username">@{contributor.login}</div>
-                          <div className="tooltip-contributions">{contributor.contributions || 0} contributions</div>
+                          <div className="tooltip-username">
+                            @{contributor.login}
+                          </div>
+                          <div className="tooltip-contributions">
+                            {contributor.contributions || 0} contributions
+                          </div>
                         </div>
                       </a>
                     </motion.div>

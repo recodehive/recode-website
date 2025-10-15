@@ -1,7 +1,7 @@
-import React, {type CSSProperties, type ReactNode} from 'react';
-import clsx from 'clsx';
+import React, { type CSSProperties, type ReactNode } from "react";
+import clsx from "clsx";
 
-import styles from './BrowserWindow.module.css';
+import styles from "./BrowserWindow.module.css";
 
 interface Props {
   children: ReactNode;
@@ -14,19 +14,19 @@ interface Props {
 export default function BrowserWindow({
   children,
   minHeight,
-  url = 'http://localhost:3000',
+  url = "http://localhost:3000",
   style,
   bodyStyle,
 }: Props): JSX.Element {
   return (
-    <div className={styles.browserWindow} style={{...style, minHeight}}>
+    <div className={styles.browserWindow} style={{ ...style, minHeight }}>
       <div className={styles.browserWindowHeader}>
         <div className={styles.buttons}>
-          <span className={styles.dot} style={{background: '#f25f58'}} />
-          <span className={styles.dot} style={{background: '#fbbe3c'}} />
-          <span className={styles.dot} style={{background: '#58cb42'}} />
+          <span className={styles.dot} style={{ background: "#f25f58" }} />
+          <span className={styles.dot} style={{ background: "#fbbe3c" }} />
+          <span className={styles.dot} style={{ background: "#58cb42" }} />
         </div>
-        <div className={clsx(styles.browserWindowAddressBar, 'text--truncate')}>
+        <div className={clsx(styles.browserWindowAddressBar, "text--truncate")}>
           {url}
         </div>
         <div className={styles.browserWindowMenuIcon}>
