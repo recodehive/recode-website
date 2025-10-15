@@ -1185,7 +1185,7 @@ function InterviewPrepContent({
   {activeTab === "practice" && (
     <PracticeTab
       mockInterviewQuestions={mockInterviewQuestions}
-      onTabChange={setActiveTab}  // ✅ pass the function here
+      onTabChange={setActiveTab} 
     />
   )}
 </div>
