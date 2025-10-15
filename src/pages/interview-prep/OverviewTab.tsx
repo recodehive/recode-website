@@ -152,28 +152,28 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
               <ul className="space-y-3">
                 <li className="flex items-start">
                   <span className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-blue-500"></span>
-                  <span>
+                  <span className="text-gray-800 dark:text-gray-200">
                     <strong>Technical Mastery:</strong> 500+ coding problems,
                     algorithms, data structures, and system design challenges
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-green-500"></span>
-                  <span className="text-gray-700 dark:text-gray-300">
+                  <span className="text-gray-800 dark:text-gray-200">
                     <strong>Behavioral Excellence:</strong> STAR method
                     framework, leadership scenarios, and communication skills
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-purple-500"></span>
-                  <span className="text-gray-700 dark:text-gray-300">
+                  <span className="text-gray-800 dark:text-gray-200">
                     <strong>Company Intelligence:</strong> FAANG-specific
                     strategies, culture insights, and insider tips
                   </span>
                 </li>
                 <li className="flex items-start">
                   <span className="mt-2 mr-3 h-2 w-2 flex-shrink-0 rounded-full bg-orange-500"></span>
-                  <span className="text-gray-700 dark:text-gray-300">
+                  <span className="text-gray-800 dark:text-gray-200">
                     <strong>Mock Practice:</strong> Real-time simulations with
                     feedback and performance tracking
                   </span>
@@ -193,7 +193,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                   <h4 className="mb-2 font-semibold text-gray-900 dark:text-white">
                     Technical Skills (60% Weight)
                   </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <p className="text-sm text-gray-700 dark:text-gray-200">
                     Prove you can solve complex problems, write clean code, and
                     design scalable systems. Technical competence is your entry
                     ticket.
@@ -203,7 +203,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                   <h4 className="mb-2 font-semibold text-gray-900 dark:text-white">
                     Behavioral Skills (40% Weight)
                   </h4>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
+                  <p className="text-sm text-gray-700 dark:text-gray-200">
                     Demonstrate leadership, collaboration, and cultural fit.
                     Many technically strong candidates fail here due to poor
                     communication or team dynamics.
@@ -211,7 +211,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                 </div>
               </div>
               <div className="rounded-lg border border-yellow-200 bg-gradient-to-r from-yellow-100 to-orange-100 p-4 dark:border-yellow-700 dark:from-yellow-900/30 dark:to-orange-900/30">
-                <p className="text-sm text-gray-700 dark:text-gray-300">
+                <p className="text-sm text-gray-800 dark:text-gray-100">
                   <strong>💡 Key Insight:</strong> Top companies hire for both
                   technical excellence AND cultural alignment. Neglecting either
                   aspect significantly reduces your success rate.
@@ -374,7 +374,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                           </div>
                         </div>
 
-                        <p className="mb-6 leading-relaxed text-gray-600 dark:text-gray-300">
+                        <p className="mb-6 leading-relaxed text-gray-700 dark:text-gray-200">
                           {stage.description}
                         </p>
 
@@ -426,7 +426,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                   {stage.tips?.map((tip, tipIndex) => (
                                     <motion.li
                                       key={tipIndex}
-                                      className="flex items-start gap-3 text-gray-600 dark:text-gray-300"
+                                      className="flex items-start gap-3 text-gray-700 dark:text-gray-200"
                                       initial={{ opacity: 0, x: -20 }}
                                       animate={{ opacity: 1, x: 0 }}
                                       transition={{
@@ -435,7 +435,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                       }}
                                     >
                                       <span className="mt-2 h-2 w-2 flex-shrink-0 rounded-full bg-green-500"></span>
-                                      <span className="leading-relaxed text-gray-700 dark:text-gray-300">
+                                      <span className="leading-relaxed text-gray-800 dark:text-gray-100">
                                         {tip}
                                       </span>
                                     </motion.li>
@@ -499,7 +499,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                                           delay: qIndex * 0.1,
                                         }}
                                       >
-                                        <p className="text-gray-700 italic dark:text-gray-300">
+                                        <p className="text-gray-800 italic dark:text-gray-100">
                                           "{question}"
                                         </p>
                                       </motion.div>
@@ -535,7 +535,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
               <h4 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                 Problem-Solving Mastery
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-200">
                 Build strong algorithmic thinking through consistent practice.
                 Focus on understanding patterns rather than memorizing
                 solutions.
@@ -548,7 +548,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
               <h4 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                 Communication Excellence
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-200">
                 Practice explaining complex concepts clearly. Develop your
                 ability to think out loud and collaborate effectively.
               </p>
@@ -560,7 +560,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
               <h4 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
                 Behavioral Readiness
               </h4>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-200">
                 Prepare compelling stories using the STAR method. Showcase
                 leadership, growth mindset, and cultural alignment.
               </p>
@@ -635,7 +635,7 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                   <h4 className="text-xl font-bold">{section.title}</h4>
                 </div>
                 <div className="flex flex-grow flex-col p-6">
-                  <p className="mb-4 text-sm text-gray-600 dark:text-gray-300">
+                  <p className="mb-4 text-sm text-gray-700 dark:text-gray-200">
                     {section.description}
                   </p>
                   <div className="mb-4 space-y-2">
