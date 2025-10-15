@@ -20,6 +20,7 @@ jobs:
         id: extract-issues
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
           script: |
             const prBody = context.payload.pull_request.body || '';
@@ -54,6 +55,7 @@ jobs:
         id: get-labels
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           result-encoding: string
           script: |
             const issueNumbers = JSON.parse('${{ steps.extract-issues.outputs.result }}');
@@ -99,6 +101,7 @@ jobs:
       - name: Apply Labels to PR
         uses: actions/github-script@v7
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const labels = ${{ steps.get-labels.outputs.result }};
             
