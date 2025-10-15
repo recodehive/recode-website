@@ -497,7 +497,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
       >
         <div className="flex flex-wrap items-center gap-8">
           <div className="flex items-center space-x-4">
-            <label className="text-sm font-bold text-gray-700 dark:text-gray-300">
+            <label className="text-sm font-bold text-gray-800 dark:text-gray-200">
               Filter by Type:
             </label>
             <motion.select
@@ -513,7 +513,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
             </motion.select>
           </div>
           <div className="flex items-center space-x-4">
-            <label className="text-sm font-bold text-gray-700 dark:text-gray-300">
+            <label className="text-sm font-bold text-gray-800 dark:text-gray-200">
               Filter by Difficulty:
             </label>
             <motion.select
@@ -529,7 +529,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
             </motion.select>
           </div>
           <motion.div
-            className="rounded-xl border border-gray-200 bg-gradient-to-r from-gray-100 to-slate-100 px-6 py-3 text-sm font-bold text-gray-600 shadow-lg dark:border-gray-600 dark:from-gray-700 dark:to-slate-700 dark:text-gray-400"
+            className="rounded-xl border border-gray-200 bg-gradient-to-r from-gray-100 to-slate-100 px-6 py-3 text-sm font-bold text-gray-800 shadow-lg dark:border-gray-600 dark:from-gray-700 dark:to-slate-700 dark:text-gray-200"
             whileHover={{ scale: 1.05 }}
           >
             <span className="font-black text-blue-600 dark:text-blue-400">
@@ -664,7 +664,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                 {question.category && (
                   <div className="mb-6 flex items-center space-x-3">
                     <span className="text-lg text-gray-400">📂</span>
-                    <span className="rounded-full bg-gray-100 px-3 py-1 text-sm font-bold text-gray-600 dark:bg-gray-700 dark:text-gray-400">
+                    <span className="rounded-full bg-gray-100 px-3 py-1 text-sm font-bold text-gray-800 dark:bg-gray-700 dark:text-gray-200">
                       {question.category}
                     </span>
                   </div>
@@ -674,7 +674,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
               <div className="flex-1 px-8 pb-4">
                 <motion.button
                   onClick={() => toggleHints(question.id)}
-                  className="group flex w-full items-center justify-between space-x-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-600 shadow-lg transition-colors hover:bg-gray-100 hover:text-gray-800 dark:border-gray-600 dark:bg-gray-700/50 dark:text-gray-400 dark:hover:bg-gray-600/50 dark:hover:text-gray-200"
+                  className="group flex w-full items-center justify-between space-x-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-800 shadow-lg transition-colors hover:bg-gray-100 hover:text-gray-900 dark:border-gray-600 dark:bg-gray-700/50 dark:text-gray-200 dark:hover:bg-gray-600/50 dark:hover:text-gray-100"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -725,7 +725,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                         {question.hints.map((hint, i) => (
                           <motion.li
                             key={i}
-                            className="flex items-start space-x-4 text-sm text-gray-700 dark:text-gray-300"
+                            className="flex items-start space-x-4 text-sm text-gray-800 dark:text-gray-200"
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: i * 0.1 }}
@@ -737,7 +737,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                             >
                               {i + 1}
                             </motion.span>
-                            <span className="leading-relaxed font-medium text-gray-700 dark:text-gray-300">
+                            <span className="leading-relaxed font-medium text-gray-800 dark:text-gray-200">
                               {hint}
                             </span>
                           </motion.li>
@@ -751,7 +751,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                   <div className="mt-6">
                     <motion.button
                       onClick={() => toggleResources(question.id)}
-                      className="group flex w-full items-center justify-between space-x-3 rounded-xl border-2 border-indigo-200/50 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-4 py-3 text-sm text-gray-600 shadow-lg transition-colors hover:from-indigo-100 hover:via-purple-100 hover:to-pink-100 hover:text-gray-800 dark:border-indigo-700/50 dark:from-indigo-900/30 dark:via-purple-900/30 dark:to-pink-900/30 dark:text-gray-400 dark:hover:from-indigo-800/40 dark:hover:via-purple-800/40 dark:hover:to-pink-800/40 dark:hover:text-gray-200"
+                      className="group flex w-full items-center justify-between space-x-3 rounded-xl border-2 border-indigo-200/50 bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 px-4 py-3 text-sm text-gray-800 shadow-lg transition-colors hover:from-indigo-100 hover:via-purple-100 hover:to-pink-100 hover:text-gray-900 dark:border-indigo-700/50 dark:from-indigo-900/30 dark:via-purple-900/30 dark:to-pink-900/30 dark:text-gray-200 dark:hover:from-indigo-800/40 dark:hover:via-purple-800/40 dark:hover:to-pink-800/40 dark:hover:text-gray-100"
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -834,7 +834,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                                   case "tool":
                                     return "from-orange-100 to-red-100 dark:from-orange-900/40 dark:to-red-900/40 text-orange-700 dark:text-orange-300 border-orange-200 dark:border-orange-700";
                                   default:
-                                    return "from-gray-100 to-slate-100 dark:from-gray-700 dark:to-slate-700 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-600";
+                                    return "from-gray-100 to-slate-100 dark:from-gray-700 dark:to-slate-700 text-gray-800 dark:text-gray-200 border-gray-200 dark:border-gray-600";
                                 }
                               };
 
@@ -950,7 +950,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                       disabled={!!activeSession}
                       className={`flex w-full items-center justify-center space-x-3 rounded-xl border-2 py-4 font-black shadow-2xl transition-all ${
                         completedQuestions.has(question.id)
-                          ? "cursor-default border-gray-300 bg-gradient-to-r from-gray-200 to-slate-200 text-gray-600 dark:border-gray-500 dark:from-gray-600 dark:to-slate-600 dark:text-gray-300"
+                          ? "cursor-default border-gray-300 bg-gradient-to-r from-gray-200 to-slate-200 text-gray-800 dark:border-gray-500 dark:from-gray-600 dark:to-slate-600 dark:text-gray-200"
                           : activeSession
                             ? "cursor-not-allowed border-gray-400 bg-gradient-to-r from-gray-300 to-slate-300 text-gray-500 dark:border-gray-600 dark:from-gray-700 dark:to-slate-700 dark:text-gray-400"
                             : "border-blue-500/20 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white hover:from-blue-700 hover:via-indigo-700 hover:to-purple-700 hover:shadow-blue-500/25"
