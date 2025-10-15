@@ -124,7 +124,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
         <h2 className="mb-6 text-5xl font-bold text-gray-900 dark:text-white">
           Company-Specific Interview Prep
         </h2>
-        <p className="text-xl leading-relaxed text-gray-600 dark:text-gray-300">
+        <p className="text-xl leading-relaxed text-gray-700 dark:text-gray-200">
           Get insider knowledge, real interview questions, and proven strategies
           for landing your dream job at top tech companies
         </p>
@@ -151,7 +151,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
               <span className="mr-4 text-4xl">🏢</span>
               FAANG+ Companies Overview
             </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-gray-700 dark:text-gray-200">
               Navigate the unique interview processes of the world's most
               competitive tech companies
             </p>
@@ -224,10 +224,10 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                   <h4 className="mb-3 text-lg font-bold text-gray-900 dark:text-white">
                     {item.title}
                   </h4>
-                  <p className="mb-3 text-sm leading-relaxed text-gray-600 dark:text-gray-300">
+                  <p className="mb-3 text-sm leading-relaxed text-gray-700 dark:text-gray-200">
                     {item.description}
                   </p>
-                  <div className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700 dark:bg-gray-700 dark:text-gray-300">
+                  <div className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-800 dark:bg-gray-700 dark:text-gray-200">
                     {item.stats}
                   </div>
                 </motion.div>
