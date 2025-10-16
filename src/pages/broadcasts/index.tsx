@@ -151,10 +151,8 @@ const VideoCard: React.FC<{
         )}
       </div>
       <div className="card-content">
-        <h3 className="card-title">{title}</h3>
-        <div className="card-meta">
-          <span className="video-type">{getTypeLabel()}</span>
-        </div>
+        <span className="card-title">{title}</span>
+        
       </div>
     </div>
   );
@@ -213,27 +211,10 @@ export default function Broadcasts(): ReactElement {
                 Featured <span className="gradient-text">Content</span>
               </h1>
               <p className="broadcast-main-subtitle">
-                Watch our curated collection of videos and shorts
+                Watch our curated collection of videos and shorts.
               </p>
-              <div className="hero-stats">
-                <div className="stat-item">
-                  <span className="stat-number">{videos.length}</span>
-                  <span className="stat-label">Total Videos</span>
-                </div>
-                <div className="stat-divider"></div>
-                <div className="stat-item">
-                  <span className="stat-number">
-                    {videos.filter((v) => v.type === 'video').length}
-                  </span>
-                  <span className="stat-label">Videos</span>
-                </div>
-                <div className="stat-divider"></div>
-                <div className="stat-item">
-                  <span className="stat-number">
-                    {videos.filter((v) => v.type === 'live').length}
-                  </span>
-                  <span className="stat-label">Live Streams</span>
-                </div>
+              <div className="">
+                <h1 className='stat-number'>Latest Videos</h1>
               </div>
             </div>
           </div>
@@ -242,39 +223,24 @@ export default function Broadcasts(): ReactElement {
         {/* Main Content Section */}
         <section className="latest-broadcasts-section">
           <div className="broadcasts-container">
-            <div className="section-header">
-              <h2 className="section-title">Latest Content</h2>
-              <p className="section-subtitle">
-                Explore tutorials, live streams, and quick tips
-              </p>
-            </div>
+            
 
             {/* Tabs */}
             <div className="broadcast-tabs">
-              <button
-                className={`tab-button ${activeTab === 'all' ? 'active' : ''}`}
-                onClick={() => setActiveTab('all')}
-              >
-                All ({videos.length})
-              </button>
+              
               <button
                 className={`tab-button ${activeTab === 'video' ? 'active' : ''}`}
                 onClick={() => setActiveTab('video')}
               >
-                Videos ({videos.filter((v) => v.type === 'video').length})
+                🎥 Videos ({videos.filter((v) => v.type === 'video').length})
               </button>
               <button
                 className={`tab-button ${activeTab === 'live' ? 'active' : ''}`}
                 onClick={() => setActiveTab('live')}
               >
-                Live ({videos.filter((v) => v.type === 'live').length})
+                🔴 Past Live ({videos.filter((v) => v.type === 'live').length})
               </button>
-              <button
-                className={`tab-button ${activeTab === 'other' ? 'active' : ''}`}
-                onClick={() => setActiveTab('other')}
-              >
-                Shorts ({videos.filter((v) => v.type === 'other').length})
-              </button>
+              
             </div>
 
             {/* Grid */}
@@ -284,30 +250,31 @@ export default function Broadcasts(): ReactElement {
               ))}
             </div>
 
-            {/* Pagination */}
+           
             {totalPages > 1 && (
-              <div className="pagination">
-                <button
-                  onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-                  disabled={currentPage === 1}
-                  className="pagination-btn"
-                >
-                  <span className="pagination-arrow">←</span>
-                  <span>Previous</span>
-                </button>
-                <span className="pagination-info">
-                  Page {currentPage} of {totalPages}
-                </span>
-                <button
-                  onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                  disabled={currentPage === totalPages}
-                  className="pagination-btn"
-                >
-                  <span>Next</span>
-                  <span className="pagination-arrow">→</span>
-                </button>
-              </div>
-            )}
+          <div className="pagination">
+            <button
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="pagination-btn"
+            >
+              <span className="pagination-arrow">←</span>
+              <span>Previous</span>
+            </button>
+            <span className="pagination-info">
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="pagination-btn"
+            >
+              <span>Next</span>
+              <span className="pagination-arrow">→</span>
+            </button>
+          </div>
+              )}
+
           </div>
         </section>
       </div>
