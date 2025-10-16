@@ -2,23 +2,23 @@
 title: "GitHub Copilot Coding Agent"
 sidebar_label: GitHub Copilot Coding Agent
 authors: [sanjay-kv]
-tags: [GitHub, SEO, Coding agent]
+tags: [GitHub, SEO, Coding agent,Copilot, AI, Automation]
 date: 2025-07-04
 
-description: DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI.
+description: An overview of the GitHub Copilot Coding Agent, an AI-powered tool that automates software engineering tasks by taking GitHub Issues as input to write code, run tests, and create pull requests.
 draft: false
 canonical_url: 
 # meta:
 #   - name: "robots"
 #     content: "index, follow"
 #   - property: "og:title"
-#     content: "What is Google DeepMind AI?"
+#     content: "Introduction to the GitHub Copilot Coding Agent"
 #   - property: "og:description"
-#     content: "DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI called AI"
+#     content: "Learn how the GitHub Copilot Coding Agent works asynchronously within GitHub Actions to improve developer productivity."
 #   - property: "og:type"
 #     content: "article"
 #   - property: "og:url"
-#     content: "/blog/getting-started-with-mern"
+#     content: "/blog/getting-copilot-coding-agent"
 #   - property: "og:image"
 #     content: "/assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
 #   - name: "twitter:card"
@@ -32,7 +32,7 @@ canonical_url:
 
 ---
  <!-- truncate -->
-
+In the fast-evolving world of software development, AI-powered tools are changing the game. GitHub is at the forefront with its latest innovation: the **GitHub Copilot Coding Agent**. More than just an in-editor assistant, this powerful new agent works asynchronously to handle entire engineering tasks on its own. Let's dive into what it is, how it works, and how you can leverage it to automate your workflow.
 ### 🚀 **What Is GitHub Coding Agent**  
 The GitHub Copilot Coding Agent is an asynchronous software engineering agent that:
 
@@ -49,7 +49,7 @@ When creating an issue for the GitHub Copilot Coding Agent, clarity and structur
 
 - **Provide Clear Context:**  
     Begin by describing the problem or feature request in detail. Explain *why* the change is needed, referencing any relevant background, user stories, or business goals. If the issue relates to a bug, include steps to reproduce, expected vs. actual behavior, and any error messages or screenshots.
-![UI-UX Design impact in future](/img/blogs/github-copilot/01-code-issue.png)
+![Creating a new GitHub issue for Copilot](/img/blogs/github-copilot/01-code-issue.png)
     
 
 - **Define Expected Outcomes:**  
@@ -63,7 +63,7 @@ When creating an issue for the GitHub Copilot Coding Agent, clarity and structur
 
 - **Assign the Issue to Copilot:**  
     Just like you would with a human teammate, assign the issue to Copilot. This triggers the agent workflow and signals that the issue is ready for automated handling.
-    ![UI-UX Design impact in future](/img/blogs/github-copilot/02-assign-copilot.png)
+    ![Assigning the GitHub issue to the Copilot agent](/img/blogs/github-copilot/02-assign-copilot.png)
     
 
 ### **Example Issue Template:**
@@ -96,12 +96,12 @@ Once you assign the issue to GitHub Copilot, the agent will analyze the requirem
 You can expect:
 
 - A new PR created automatically by Copilot, referencing the original issue.  
-    [View the example PR here.](https://github.com/recodehive/recode-website/pull/141)
+    [An example Pull Request created by GitHub Copilot](https://github.com/recodehive/recode-website/pull/141)
 - Automated test results and code suggestions included in the PR.
 - Clear traceability between your issue and the resulting code changes.
 
 Stay engaged by reviewing the PR, providing feedback, or merging it when ready. This workflow helps you leverage automation while maintaining control over your codebase.
-    ![UI-UX Design impact in future](/img/blogs/github-copilot/03-pr-copilot.png)
+    ![Promotional banner for GitHub Copilot feedback](/img/blogs/github-copilot/03-pr-copilot.png)
     
 ---
 
@@ -110,6 +110,8 @@ Stay engaged by reviewing the PR, providing feedback, or merging it when ready. 
 💬 **Share your feedback on Copilot Coding Agent for a chance to win a $200 gift card!**  
 
 We’re inviting early adopters to help shape the future of the GitHub Copilot Coding Agent. Your insights are invaluable in improving the agent’s usability, reliability, and overall experience. By participating, you’ll have the opportunity to directly influence upcoming features and enhancements.
+
+📍**Note:** The following feedback program was available for early adopters and may no longer be active. Please check the official GitHub blog for current opportunities.
 
 **How to participate:**
 1. **Try out the Copilot Coding Agent:**  

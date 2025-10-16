@@ -7,7 +7,7 @@ const TopMateSection = ({ setShowTopmate }) => {
 
   const profileData = {
     title: "1:1 Mentorship Call",
-    description: "Book a slot, Free for Hive Community Members",
+    description: "Book a slot, Free for recode hive Community Members",
     duration: "30 mins",
     profileImage: "/sanjay.png",
     username: "sanjaykv",
@@ -16,9 +16,9 @@ const TopMateSection = ({ setShowTopmate }) => {
   return (
     <div className="px-4">
       <div className="mx-auto">
-        <div className="mx-auto text-center mb-16">
+        <div className="mx-auto mb-16 text-center">
           <h1
-            className={`text-4xl font-bold mb-4 ${
+            className={`mb-4 text-4xl font-bold ${
               colorMode === "dark" ? "text-white" : "text-gray-900"
             }`}
           >

@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef, JSX } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useEffect, useState, useRef, JSX } from "react";
+import ReactDOM from "react-dom";
 import {
   useFloating,
   autoUpdate,
@@ -11,9 +11,9 @@ import {
   useFocus,
   useDismiss,
   useRole,
-  useInteractions
-} from '@floating-ui/react';
-import styles from './styles.module.css';
+  useInteractions,
+} from "@floating-ui/react";
+import styles from "./styles.module.css";
 
 interface Props {
   anchorEl?: HTMLElement | string;
@@ -21,7 +21,9 @@ interface Props {
   text: string;
   delay?: number;
   placement?: Placement;
-  children: React.ReactElement<React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }>;
+  children: React.ReactElement<
+    React.HTMLAttributes<HTMLElement> & { ref?: React.Ref<HTMLElement> }
+  >;
 }
 
 export default function Tooltip({
@@ -30,7 +32,7 @@ export default function Tooltip({
   anchorEl,
   text,
   delay = 400,
-  placement = 'top'
+  placement = "top",
 }: Props): JSX.Element {
   const [open, setOpen] = useState(false);
   const [container, setContainer] = useState<Element | null>(null);
@@ -52,7 +54,7 @@ export default function Tooltip({
   const hover = useHover(context, { delay });
   const focus = useFocus(context);
   const dismiss = useDismiss(context);
-  const role = useRole(context, { role: 'tooltip' });
+  const role = useRole(context, { role: "tooltip" });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     hover,
@@ -69,10 +71,11 @@ export default function Tooltip({
       return;
     }
 
-    const newContainer = typeof anchorEl === 'string' 
-      ? document.querySelector(anchorEl)
-      : anchorEl;
-    
+    const newContainer =
+      typeof anchorEl === "string"
+        ? document.querySelector(anchorEl)
+        : anchorEl;
+
     setContainer(newContainer);
   }, [anchorEl]);
 
@@ -80,30 +83,32 @@ export default function Tooltip({
     ? React.cloneElement(children, {
         ref: refs.setReference,
         ...getReferenceProps(),
-        'aria-describedby': open ? tooltipId : undefined,
+        "aria-describedby": open ? tooltipId : undefined,
       })
     : children;
 
   return (
     <>
       {childWithProps}
-      {container && open && ReactDOM.createPortal(
-        <div
-          id={tooltipId}
-          ref={refs.setFloating}
-          className={styles.tooltip}
-          style={floatingStyles}
-          {...getFloatingProps()}
-        >
-          {text}
-          <FloatingArrow
-            ref={arrowRef}
-            context={context}
-            className={styles.tooltipArrow}
-          />
-        </div>,
-        container
-      )}
+      {container &&
+        open &&
+        ReactDOM.createPortal(
+          <div
+            id={tooltipId}
+            ref={refs.setFloating}
+            className={styles.tooltip}
+            style={floatingStyles}
+            {...getFloatingProps()}
+          >
+            {text}
+            <FloatingArrow
+              ref={arrowRef}
+              context={context}
+              className={styles.tooltipArrow}
+            />
+          </div>,
+          container,
+        )}
     </>
   );
 }

@@ -28,9 +28,9 @@ export default function ScrollBottomToTop() {
 
   return (
     showButton && (
-      <button 
-        onClick={scrollToTop} 
-        className="fixed bottom-20 right-5 bg-blue-600 text-white border-none rounded-lg p-2.5 cursor-pointer shadow-md transition-opacity duration-300 opacity-80 z-50 hover:bg-blue-700 hover:opacity-100"
+      <button
+        onClick={scrollToTop}
+        className="fixed right-5 bottom-20 z-50 cursor-pointer rounded-lg border-none bg-blue-600 p-2.5 text-white opacity-80 shadow-md transition-opacity duration-300 hover:bg-blue-700 hover:opacity-100"
       >
         <FaArrowUp />
       </button>

@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import NavbarIcon from "./NavbarIcon";
-import { NAVBAR_ICONS, type NavbarIconName } from "../../constants/navbarConfig";
+import {
+  NAVBAR_ICONS,
+  type NavbarIconName,
+} from "../../constants/navbarConfig";
 
 export default function NavbarIconInjector() {
   useEffect(() => {
     const roots = new Map<string, any>();
-    
+
     NAVBAR_ICONS.forEach((name: NavbarIconName) => {
       const id = `nav-${name.toLowerCase()}`;
       try {

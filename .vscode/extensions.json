@@ -1,0 +1,9 @@
+{
+  // VS Code will prompt the user to install these extensions when they open the workspace
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss"
+  ],
+  "unwantedRecommendations": []
+}

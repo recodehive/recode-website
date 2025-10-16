@@ -1,0 +1,57 @@
+{
+  "tag": "Our Projects",
+  "title": "Explore Our Latest Projects and Innovations",
+  "description": "Discover our diverse projects showcasing all the beginner friendly opensource contributions, innovative applications. Each project represents our commitment to excellence and continuous learning.",
+  "items": [
+    {
+      "id": 1,
+      "title": "Awesome GitHub Profile",
+      "description": "A comprehensive collection of amazing GitHub profile READMEs that inspire developers to create beautiful and functional profile pages with interactive elements and stunning designs.",
+      "image": "/img/blogs/awesome-project.png",
+      "projectUrl": "https://recodehive.github.io/awesome-github-profiles/",
+      "githubUrl": "https://github.com/recodehive/awesome-github-profiles",
+      "tags": ["github", "profile", "readme", "showcase"]
+    },
+    {
+      "id": 2,
+      "title": "Machine Learning Repository",
+      "description": "An extensive collection of machine learning algorithms, tutorials, and projects designed to help developers learn and implement ML solutions in real-world scenarios.",
+      "image": "/img/blogs/machine-learning-project.png",
+      "projectUrl": "https://machine-learning-repos.vercel.app/",
+      "githubUrl": "https://github.com/recodehive/machine-learning-repos",
+      "tags": ["machine-learning", "algorithms", "python", "tutorials"]
+    },
+    {
+      "id": 3,
+      "title": "Stack Overflow Analysis",
+      "description": "A comprehensive data analysis project that examines Stack Overflow trends, popular technologies, and developer insights using advanced data science techniques.",
+      "image": "/img/blogs/Stackoverflow-analysis.png",
+      "projectUrl": "https://github.com/recodehive/Stackoverflow-Analysis",
+      "githubUrl": "https://github.com/recodehive/Stackoverflow-Analysis",
+      "tags": ["data-analysis", "python", "visualization", "statistics"]
+    },
+    {
+      "id": 4,
+      "title": "Scrape ML Project",
+      "description": "An intelligent web scraping framework combined with machine learning capabilities for automated data extraction and analysis from various web sources.",
+      "image": "/img/blogs/Scrape-ml-project.png",
+      "projectUrl": "https://github.com/recodehive/Scrape-ML-Project",
+      "githubUrl": "https://github.com/recodehive/Scrape-ML-Project",
+      "tags": [
+        "web-scraping",
+        "machine-learning",
+        "automation",
+        "data-extraction"
+      ]
+    },
+    {
+      "id": 5,
+      "title": "Open Source Project",
+      "description": "A collaborative platform showcasing various open source contributions and projects that demonstrate best practices in community-driven development.",
+      "image": "/img/blogs/opesource-project.png",
+      "projectUrl": "https://github.com/recodehive",
+      "githubUrl": "https://github.com/recodehive",
+      "tags": ["open-source", "community", "collaboration", "development"]
+    }
+  ]
+}

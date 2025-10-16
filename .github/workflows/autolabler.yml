@@ -24,10 +24,10 @@ jobs:
             await github.rest.issues.addLabels({
               ...context.repo,
               issue_number: prNumber,
-              labels: ["recode", "level 1", "hacktoberfest-accepted"]
+              labels: ["recode","hacktoberfest-accepted"]
             });
 
-            console.log(`Added labels [recode, level 1,hacktoberfest-accepted] to PR #${prNumber}`);
+            console.log(`Added labels [recode, hacktoberfest-accepted] to PR #${prNumber}`);
 
       - name: Add labels to Issue
         if: github.event_name == 'issues'
@@ -43,3 +43,16 @@ jobs:
             });
 
             console.log(`Added labels [recode, level 1, hacktoberfest-accepted] to Issue #${issueNumber}`);
+
+      - name: Set Issue Type to Bug
+        if: github.event_name == 'issues'
+        run: |
+          ISSUE_NUMBER=${{ github.event.issue.number }}
+          REPO=${{ github.repository }}
+          TOKEN=${{ secrets.GITHUB_TOKEN }}
+
+          curl --request PATCH \
+            --url https://api.github.com/repos/${REPO}/issues/${ISSUE_NUMBER} \
+            --header "authorization: token ${TOKEN}" \
+            --header "content-type: application/json" \
+            --data '{"type":"Bug"}'

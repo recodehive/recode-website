@@ -33,8 +33,7 @@ export function BlogCarousel() {
   }, [api]);
 
   return (
-    <div className="w-full max-w-8xl mx-auto px-4">
-      
+    <div className="max-w-8xl mx-auto w-full px-4">
       <Carousel
         setApi={setApi}
         className="w-full"
@@ -51,7 +50,10 @@ export function BlogCarousel() {
       >
         <CarouselContent className="my-10">
           {blogs.map((blog, index) => (
-            <CarouselItem key={blog.id} className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4">
+            <CarouselItem
+              key={blog.id}
+              className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
+            >
               <BlogCard
                 type="blog"
                 date="2024-01-01"
@@ -66,24 +68,24 @@ export function BlogCarousel() {
         </CarouselContent>
 
         {/* Enhanced Carousel controls */}
-        <div className="flex items-center justify-center gap-4 mt-8">
-          <CarouselPrevious className="static translate-y-0 h-12 w-12 border-2 border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 hover:scale-110" />
+        <div className="mt-8 flex items-center justify-center gap-4">
+          <CarouselPrevious className="static h-12 w-12 translate-y-0 border-2 border-blue-200 transition-all duration-300 hover:scale-110 hover:border-blue-400 dark:border-blue-800 dark:hover:border-blue-600" />
           <div className="flex gap-2">
             {Array.from({ length: count }).map((_, index) => (
               <Button
                 key={index}
                 variant="ghost"
                 size="sm"
-                className={`h-3 w-3 p-0 rounded-full transition-all duration-300 ${
+                className={`h-3 w-3 rounded-full p-0 transition-all duration-300 ${
                   current === index + 1
-                    ? "bg-gradient-to-r from-blue-500 to-purple-500 scale-125"
-                    : "bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500"
+                    ? "scale-125 bg-gradient-to-r from-blue-500 to-purple-500"
+                    : "bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500"
                 }`}
                 onClick={() => api?.scrollTo(index)}
               />
             ))}
           </div>
-          <CarouselNext className="static translate-y-0 h-12 w-12 border-2 border-blue-200 dark:border-blue-800 hover:border-blue-400 dark:hover:border-blue-600 transition-all duration-300 hover:scale-110" />
+          <CarouselNext className="static h-12 w-12 translate-y-0 border-2 border-blue-200 transition-all duration-300 hover:scale-110 hover:border-blue-400 dark:border-blue-800 dark:hover:border-blue-600" />
         </div>
       </Carousel>
     </div>
