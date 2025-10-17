@@ -17,8 +17,6 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
     githubContributorsCount,
     githubForksCount,
     githubReposCount,
-    loading,
-    error,
   } = useCommunityStatsContext();
 
   const generateList = useMemo(
@@ -84,11 +82,6 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
           </span>
           .
         </h2>
-        {error && (
-          <div className="landing-community__error">
-            <small>⚠️ Stats may be cached or incomplete</small>
-          </div>
-        )}
       </div>
 
       <div className="landing-community__content">
@@ -96,7 +89,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
           {generateList.map((item, index) => (
             <div
               key={index}
-              className={`landing-community__stat-item ${item.href ? "clickable" : ""} ${loading ? "loading" : ""}`}
+              className={`landing-community__stat-item ${item.href ? "clickable" : ""}`}
               onClick={() => handleCardClick(item.href)}
               role={item.href ? "button" : "presentation"}
               tabIndex={item.href ? 0 : -1}
@@ -109,27 +102,19 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
               title={item.href ? `Click to visit ${item.label}` : item.label}
             >
               <div className="landing-community__stat-value">
-                {loading ? (
-                  <div className="landing-community__loading">
-                    <span className="loading-spinner">⏳</span>
-                  </div>
-                ) : (
-                  <span>
-                    <SlotCounter
-                      value={item.stat}
-                      duration={2}
-                      animateOnVisible={{
-                        triggerOnce: true,
-                        rootMargin: "0px 0px -100px 0px",
-                      }}
-                      numberSlotClassName="slot-counter-number"
-                      separatorClassName="slot-counter-separator"
-                    />
-                    {item.href && (
-                      <span className="external-link-icon">↗</span>
-                    )}
-                  </span>
-                )}
+                <span>
+                  <SlotCounter
+                    value={item.stat}
+                    duration={2}
+                    animateOnVisible={{
+                      triggerOnce: true,
+                      rootMargin: "0px 0px -100px 0px",
+                    }}
+                    numberSlotClassName="slot-counter-number"
+                    separatorClassName="slot-counter-separator"
+                  />
+                  {item.href && <span className="external-link-icon">↗</span>}
+                </span>
               </div>
               <div className="landing-community__stat-description">
                 {item.description}
