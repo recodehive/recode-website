@@ -5,10 +5,7 @@ on:
     types: [assigned]
 
 permissions:
-  # Grant write permissions for issues to allow commenting on issues
-  issues: write
-  # Grant write permissions for contents to allow access to repository content
-  contents: write
+  issues: write   # Only need write access to issuescl
 
 jobs:
   comment:
@@ -19,9 +16,15 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            github.rest.issues.createComment({
+            // Get all assignees as mentions
+            const assignees = context.payload.assignees
+              ? context.payload.assignees.map(u => `@${u.login}`).join(', ')
+              : `@${context.payload.assignee.login}`;
+
+            // Post a comment
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `👤 Issue assigned to @${context.payload.assignee.login}.`
+              body: `👤 Issue assigned to ${assignees}. Please start working on it when possible.`
             });
