@@ -1595,11 +1595,10 @@ function InterviewPrepContent({
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`flex items-center space-x-2 border-b-2 px-2 py-4 text-sm font-medium transition-colors ${
-                    activeTab === tab.id
-                      ? "interview-prep-nav-tab-active border-blue-500 text-blue-600 dark:text-blue-400"
-                      : "interview-prep-nav-tab-inactive border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-                  }`}
+                  className={`flex items-center space-x-2 border-b-2 px-2 py-4 text-sm font-medium transition-colors ${activeTab === tab.id
+                    ? "interview-prep-nav-tab-active border-blue-500 text-blue-600 dark:text-blue-400"
+                    : "interview-prep-nav-tab-inactive border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+                    }`}
                 >
                   <span className="text-inherit">{tab.icon}</span>
                   <span className="text-inherit">{tab.label}</span>
@@ -1610,7 +1609,7 @@ function InterviewPrepContent({
         </div>
 
         {/* Tab Content */}
-        <div className="interview-prep-page mx-auto max-w-6xl px-4 py-12">
+        <div className="interview-prep-page max-w-6xl mx-auto px-4 py-12">
           {/* Overview Tab */}
           {activeTab === "overview" && (
             <OverviewTab
@@ -1654,7 +1653,10 @@ function InterviewPrepContent({
 
           {/* Practice Tab */}
           {activeTab === "practice" && (
-            <PracticeTab mockInterviewQuestions={mockInterviewQuestions} />
+            <PracticeTab
+              mockInterviewQuestions={mockInterviewQuestions}
+              onTabChange={setActiveTab}
+            />
           )}
         </div>
 
