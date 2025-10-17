@@ -17,7 +17,6 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
     githubContributorsCount,
     githubForksCount,
     githubReposCount,
-    error,
   } = useCommunityStatsContext();
 
   const generateList = useMemo(
@@ -83,11 +82,6 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
           </span>
           .
         </h2>
-        {error && (
-          <div className="landing-community__error">
-            <small>⚠️ Stats may be cached or incomplete</small>
-          </div>
-        )}
       </div>
 
       <div className="landing-community__content">
