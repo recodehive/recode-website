@@ -28,11 +28,9 @@ jobs:
             
             // Check if triggered by issue event
             if (context.eventName === 'issues') {
-              // Find all open PRs that link to this issue
               const issueNumber = context.payload.issue.number;
               console.log(`Issue #${issueNumber} labels were updated`);
               
-              // Search for PRs that mention this issue
               const { data: pullRequests } = await github.rest.pulls.list({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -46,7 +44,6 @@ jobs:
                   new RegExp(`(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\\s+#${issueNumber}\\b`, 'i'),
                   new RegExp(`#${issueNumber}\\b`)
                 ];
-                
                 if (patterns.some(p => p.test(prText))) {
                   linkedPRs.push(pr.number);
                 }
@@ -60,7 +57,6 @@ jobs:
               console.log(`Found linked PRs: ${linkedPRs.join(', ')}`);
               return JSON.stringify({ prs: linkedPRs, issue: issueNumber });
             } else {
-              // Triggered by PR event - original logic
               prBody = context.payload.pull_request.body || '';
               prTitle = context.payload.pull_request.title || '';
               
@@ -74,9 +70,7 @@ jobs:
               
               patterns.forEach(pattern => {
                 const matches = [...textToSearch.matchAll(pattern)];
-                matches.forEach(match => {
-                  issueNumbers.add(match[1]);
-                });
+                matches.forEach(match => issueNumbers.add(match[1]));
               });
               
               const issues = Array.from(issueNumbers);
@@ -97,19 +91,13 @@ jobs:
           script: |
             const extractData = JSON.parse('${{ steps.extract-issues.outputs.result }}');
             
-            // Labels to exclude from being applied to PRs
-            const excludedLabels = ['recode', 'hacktoberfest-accepted'];
-            
             let issueNumbers = [];
             let prsToUpdate = [];
             
-            // Handle both PR and issue events
             if (extractData.issue) {
-              // Issue event - update all linked PRs
               issueNumbers = [extractData.issue];
               prsToUpdate = extractData.prs || [];
             } else {
-              // PR event - update the current PR
               issueNumbers = extractData.issues || [];
               prsToUpdate = extractData.prs || [];
             }
@@ -130,15 +118,7 @@ jobs:
                 });
                 
                 console.log(`Issue #${issueNumber} labels:`, issue.data.labels.map(l => l.name));
-                
-                issue.data.labels.forEach(label => {
-                  // Only add label if it's not in the excluded list
-                  if (!excludedLabels.includes(label.name.toLowerCase())) {
-                    allLabels.add(label.name);
-                  } else {
-                    console.log(`Excluding label: ${label.name}`);
-                  }
-                });
+                issue.data.labels.forEach(label => allLabels.add(label.name));
               } catch (error) {
                 console.log(`Could not fetch issue #${issueNumber}:`, error.message);
               }
@@ -168,17 +148,14 @@ jobs:
               return;
             }
             
-            // Update each PR
             for (const prNumber of prsToUpdate) {
               try {
-                // First, get current PR labels
                 const { data: pr } = await github.rest.pulls.get({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   pull_number: prNumber
                 });
                 
-                // Remove all existing labels first (to handle removed issue labels)
                 const currentLabels = pr.labels.map(l => l.name);
                 if (currentLabels.length > 0) {
                   for (const label of currentLabels) {
@@ -195,7 +172,6 @@ jobs:
                   }
                 }
                 
-                // Apply new labels
                 await github.rest.issues.addLabels({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
@@ -203,9 +179,8 @@ jobs:
                   labels: labels
                 });
                 
-                console.log(`Successfully applied ${labels.length} labels to PR #${prNumber}`);
+                console.log(`✅ Successfully applied ${labels.length} labels to PR #${prNumber}`);
                 
-                // Add a comment to the PR
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
