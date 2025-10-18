@@ -23,7 +23,6 @@ const HeaderContent = () => {
         <ParticlesComponent />
         Level Up Skills with <br /> recode hive
       </motion.h1>
-
       <motion.p
         initial={{ opacity: 0, x: -10 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -34,10 +33,16 @@ const HeaderContent = () => {
           stiffness: 100,
           delay: 0.2,
         }}
+        style={{ textAlign: "center" }}
       >
-        recode hive helps you get started with open-source contributions. We’ve
-        built an inclusive community with people from around the world. Join us
-        to earn while learning — everything made simpler and more practical.
+        <strong>recode hive</strong> helps you get started with open-source
+        contributions. We’ve built an inclusive community with people from
+        around the world. Join us to earn while learning —{" "}
+        <span style={{ color: "#e44d26", fontWeight: "bold" }}>
+          everything made simpler and more practical.
+        </span>
+        <br></br>
+        <br></br>
       </motion.p>
 
       <div className="chh__header-content__input">
