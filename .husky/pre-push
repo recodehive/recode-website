@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# . "$(dirname "$0")/_/husky.sh"
+
+# Validate git branch name
+echo "Validating branch name..."
+branch_name=$(git symbolic-ref --short HEAD)
+branch_name_regex='^((fix|feat|docs|style|refactor|test|chore|perf|task|shared)\/[0-9A-Za-z-]+|misc\/[0-9A-Za-z-]+)$'
+
+if [[ $branch_name =~ $branch_name_regex ]]; then
+  echo "✅ Branch name is valid."
+else
+  echo -e "\033[0;31m❌ Branch name is invalid. Please follow the format: <type>/<issue_number>-<description>.\033[0m"
+  echo "Example:"
+  echo -e "\033[0;32m  fix/1234-fix-bug or misc-1234-description\033[0m"
+  exit 1
+fi
