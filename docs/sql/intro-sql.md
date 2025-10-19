@@ -1,12 +1,12 @@
 ---
 id: intro-sql
-title: Introduction of SQL #Remember to keep this unique, as it maps with giscus discussions in the recodehive/support/general discussions
-sidebar_label: Introduction of SQL #displays in sidebar
+title: Introduction to SQL #Remember to keep this unique, as it maps with giscus discussions in the recodehive/support/general discussions
+sidebar_label: Introduction to SQL #displays in sidebar
 sidebar_position: 1
 tags:
   [
     sql,
-    introduction of sql,
+    introduction to sql,
     what is sql,
     why learn sql,
     how to use sql,
@@ -14,24 +14,24 @@ tags:
     sql elements,
     sql attributes,
   ]
-description: In this tutorial, you will learn about SQL, its importance, what is SQL, why learn SQL, how to use SQL, steps to start using SQL, and more.
+description: In this tutorial, you will learn about SQL, its importance, what is SQL, why learn SQL, how to use SQL, steps to start using SQL and more.
 ---
 
 ##
-SQL **Structured Query Language** is a standard programming language used to manage and manipulate relational databases. It allows users to store, retrieve, update, and delete data in a structured format. SQL became a standard of the American National Standards Institute (ANSI) in 1986 and of the International Organization for Standardization (ISO) in 1987. 
+SQL **Structured Query Language** is a standard programming language used to manage and manipulate relational databases. It allows users to store, retrieve, update and delete data in a structured format. SQL became a standard of the American National Standards Institute (ANSI) in 1986 and of the International Organization for Standardization (ISO) in 1987. 
 
 
 :::note
 Key Features of SQL:
 Data Querying: Retrieve data from one or more tables using commands like **SELECT**.
 
-DML (Data Manupulation Language): Add, update, or delete records using **INSERT**, **UPDATE**, and **DELETE**.
+DML (Data Manipulation Language): Add, update, or delete records using **INSERT**, **UPDATE**, and **DELETE**.
 
 DDL (Data Definition Language): Define database structures using **CREATE**, **ALTER**, and **DROP**.
 
 DCL ( Data Control Language): Control access and permissions with **GRANT** and **REVOKE**.
 
-TCL (Transactional Control Language): Involves **COMMIT** and **ROLLBACK**.
+TCL (Transactional Control Language): Controls transactions using **COMMIT** and **ROLLBACK**.
 :::
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
@@ -41,13 +41,13 @@ TCL (Transactional Control Language): Involves **COMMIT** and **ROLLBACK**.
 
 
 :::success
-Let's talk about history of Storing Data, It's started with physical files and shelf. Then later on company started using Excel or Access. There is limitation for these tools when comes to high data volume. 
+Let's talk about the history of storing data, it all started with physical files and shelves. Later, companies started using Excel or Access. These tools have limitations when it comes to handling high data volumes.
 
-Then company started developing database management system like SQL, Postgres,MySQL.
+Then, companies started developing database management systems like SQL, PostgreSQL, and MySQL.
 
-> Databases are two types, SQL(Relational, Analytical OLAP) and NOSQL(key value, Graph, Document) mainly used for un-structured dataset. This NoSQL provides more flexibility over Relational as it dont have to follow schemas.
+> Databases are of two types: SQL(Relational, Analytical OLAP) and NoSQL(key value, Graph, Document) mainly used for unstructured dataset. This NoSQL provides more flexibility over Relational as it doesn't have to follow schemas.
 
-> Schema is named collection of tables, which can contains, views, index, datatypes, operators and functions.
+> Schema is named collection of tables, which can contain views, indexes, data types, operators and functions.
 :::
 
 :::info 
@@ -83,7 +83,7 @@ Then company started developing database management system like SQL, Postgres,My
 
 
 
-    **For example, the following SAQl code creates a table named students**
+    **For example, the following SQL code creates a table named students**
 
     <Tabs>
       <TabItem value="Basic SQL">
@@ -173,7 +173,7 @@ Then company started developing database management system like SQL, Postgres,My
 
 
 
-1.  Advantages: **Platform Independent?**: Yes and No — It Depends. The core SQL language (based on ANSI/ISO standards) is platform-independent, meaning the basic syntax and concepts—like SELECT, INSERT, UPDATE, and DELETE—are the same across different database systems. ❌ But, SQL Implementations Are Not Fully Platform Independent:
+1.  Advantages: **Platform Independent?** yes and no — it depends. The core SQL language (based on ANSI/ISO standards) is platform-independent, meaning the basic syntax and concepts—like SELECT, INSERT, UPDATE, and DELETE are the same across different database systems. ❌ But, SQL Implementations Are Not Fully Platform Independent:
    
 Different Database Management Systems (DBMS)—like MySQL, PostgreSQL, Oracle, SQL Server, and SQLite—extend SQL differently. They may:
 
@@ -218,12 +218,12 @@ From running ad-hoc queries to building pipelines and dashboards — SQL is ever
 
 ---
 
-### Steps to start using SQL
+### Getting started with SQL
 
 **1. Set up your development environment**: Go to MySQL Downloads Page:
     - Visit MySQL Workbench Downloads.
 
-**2. Download the Installer:**: To create your first SQL commands, follow these steps:
+**2. Download the Installer:**: To write your first SQL commands, follow these steps:
 
     - Select the version compatible with your operating system (Windows, macOS, or Linux).
     - Click Download and follow the installation instructions.
@@ -234,6 +234,6 @@ From running ad-hoc queries to building pipelines and dashboards — SQL is ever
 
 ## Conclusion
 
-Learning SQL empowers you to talk to data, unlock insights, and build data-driven solutions—making it one of the most valuable and versatile skills in the digital world.
+Learning SQL empowers you to talk to data, unlock insights and build data-driven solutions—making it one of the most valuable and versatile skills in the digital world.
 
 <GiscusComments/>

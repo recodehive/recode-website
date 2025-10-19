@@ -10,15 +10,15 @@ keywords:  [sql filtering, sql where clause, sql distinct, sql select statement,
 
 ## 📙 Selecting Data
 
-Welcome to the **Selecting Data** module! This foundational learning path is designed to help you master the basics of querying data, particularly focusing on how to retrieve specific information from databases effectively.
+Welcome to the **Selecting Data** module! This foundational learning path is designed to help you master the basics of querying data, with a particular focus on retrieving specific information from databases effectively.
 
 ### 📘 Using Conditions with the WHERE Clause
 
-In this tutorial, you'll learn how to interpret and use rows in a database table. Tables are essential to storing structured data, and each **row** in a table represents a unique **item or record**.
+In this tutorial, you'll learn how to interpret and work with rows in a database table. Tables are essential to storing structured data, and each **row** in a table represents a unique **item or record**.
 > The first step in filtering is selecting the items.
-> We use **WHERE** keyword to filter the data by applying conditions. 
-> We filter the table items, we select to get only items that satisfy certain conditions.
-> The condition we want our items to fulfill comes after the where keyword
+> We use the **WHERE** keyword to filter the data by applying conditions. 
+> We filter the table items, we select to get only the rows that satisfy specific conditions.
+> The condition we want our rows to fulfill comes after the where keyword
 
 
 For example, consider a table named `Students`. Below is how a simple table might look:
@@ -61,7 +61,7 @@ For example, consider a table named `Students`. Below is how a simple table migh
 
 ### 📘 Practice Example
 
-> To query data from a table, use the FROM clause followed by the table&apos;s name and then the WHERE clause to specify the conditions for the data you want to retrieve.
+> To query data from a table, use the FROM clause followed by the table name and then the WHERE clause to specify the conditions for the data you want to retrieve.
 
 
 For example, consider a table named `Students`. Below is how a simple table might look:

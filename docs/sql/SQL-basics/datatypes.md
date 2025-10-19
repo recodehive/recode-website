@@ -10,7 +10,7 @@ keywords: [sql, data types, sql tutorial, sql basics, database management, relat
 
 ## 📙 Welcome to SQL Data Types!
 
-Hey there! If you're new to SQL or just getting started, this module is perfect for you. Data types are like labels that tell your database what kind of information (like numbers, text, or dates) can go into each column of a table. Think of them as rules to keep your data neat and safe! Let’s explore them step by step with easy examples.
+Hey there! If you're new to SQL or just getting started, this module is perfect for you. Data types are like labels that tell your database what kind of information (like numbers, text, or dates) can go into each column of a table. Think of them as rules to keep your data neat and safe! Let’s explore them step by step with simple examples.
 
 ### 📘 What Are Data Types?
 
