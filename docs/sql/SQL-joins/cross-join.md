@@ -14,7 +14,7 @@ tags:
     sql tutorial,
     database queries,
   ]
-description: Learn about SQL CROSS JOIN, how it creates Cartesian products, syntax, examples, and when to use it for generating all possible combinations.
+description: Learn about SQL CROSS JOIN,  how it creates Cartesian products, syntax, examples, and when to use it for generating all possible combinations.
 ---
 
 ## What is CROSS JOIN?
