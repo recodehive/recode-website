@@ -523,35 +523,6 @@ body {
   }
 
   .navbar-sidebar .navbar__link:hover {
-    background-color: var(--ifm-color-emphasis-200) !important;
-  }
-
-  /* Improve sidebar dropdown behavior */
-  .navbar-sidebar .dropdown {
-    display: block !important;
-  }
-
-  .navbar-sidebar .dropdown__menu {
-    position: static !important;
-    display: block !important;
-    box-shadow: none !important;
-    border: none !important;
-    margin: 0 !important;
-    padding: 0.5rem 0 !important;
-    background: transparent !important;
-    overflow: visible !important;
-  }
-
-  .navbar-sidebar .dropdown__link {
-    padding: 0.5rem 1rem 0.5rem 2rem !important;
-    border-radius: 4px !important;
-    margin: 2px 0 !important;
-    font-size: 0.9rem !important;
-    display: block !important;
-    color: var(--ifm-font-color-base) !important;
-  }
-
-  .navbar-sidebar .dropdown__link:hover {
     background-color: var(--ifm-color-emphasis-300) !important;
     color: var(--ifm-color-primary) !important;
   }
@@ -1574,4 +1545,32 @@ a {
 
 [data-theme='dark'] .rounded.dark\:bg-gray-700 {
   background-color: #374151 !important; /* gray-700 */
+}
+
+/* difficulty badge overrides — ensure readable in light mode and lift above overlays */
+.interview-prep-page .difficulty-badge {
+  z-index: 50;
+  background-clip: padding-box;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* Light mode: explicit background + text for each variant */
+[data-theme="light"] .interview-prep-page .difficulty-badge.bg-green-200 {
+  background-color: #DCFCE7 !important; /* green-200 -> higher contrast */
+  color: #14532D !important;
+}
+[data-theme="light"] .interview-prep-page .difficulty-badge.bg-yellow-200 {
+  background-color: #FEF3C7 !important; /* yellow-200 */
+  color: #78350F !important;
+}
+[data-theme="light"] .interview-prep-page .difficulty-badge.bg-red-200 {
+  background-color: #FEE2E2 !important; /* red-200 */
+  color: #7F1D1D !important;
+}
+
+/* Keep all duration badges grey in light mode */
+[data-theme="light"] .interview-prep-page .duration-badge {
+  background-color: #f3f4f6 !important; /* gray-100 */
+  color: #1f2937 !important; /* gray-800 */
+  z-index: 50;
 }

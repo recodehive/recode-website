@@ -358,17 +358,17 @@ const OverviewTab: React.FC<OverviewTabProps> = ({
                           </div>
                           <div className="flex flex-col gap-2">
                             <span
-                              className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                              className={`difficulty-badge relative z-50 px-3 py-1 rounded-full text-xs font-semibold ${
                                 stage.difficulty === "Easy"
-                                  ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                                  ? "bg-green-200 text-green-900 dark:bg-green-800 dark:text-green-100"
                                   : stage.difficulty === "Medium"
-                                    ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-                                    : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                                    ? "bg-yellow-200 text-yellow-900 dark:bg-yellow-800 dark:text-yellow-100"
+                                    : "bg-red-200 text-red-900 dark:bg-gray-700 dark:text-gray-200"
                               }`}
                             >
                               {stage.difficulty}
                             </span>
-                            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200">
+                            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 duration-badge">
                               {stage.duration}
                             </span>
                           </div>
