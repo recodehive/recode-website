@@ -1,8 +1,7 @@
-name: Sync PR data from Linked Issues
+name: PR Issue Sync
 
 on:
-  pull_request_target:
-    types: [opened, edited, synchronize]
+  workflow_dispatch: {}  # manual trigger only (disables automatic runs)
 
 jobs:
   sync-metadata:
