@@ -72,8 +72,13 @@
 }
 
 @keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .heroDescription {
@@ -198,32 +203,32 @@
   .heroBanner {
     padding: 40px 20px;
   }
-  
+
   .heroTitle {
     font-size: 2.2rem;
   }
-  
+
   .recodeLogoContainer {
     font-size: 2rem;
   }
-  
+
   .badgeStats {
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .statDivider {
     display: none;
   }
-  
+
   .heroDescription {
     font-size: 1.1rem;
   }
-  
+
   .sectionTitle {
     font-size: 2rem;
   }
-  
+
   .sectionSubtitle {
     font-size: 1rem;
     padding: 0 20px;
