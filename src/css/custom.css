@@ -1517,3 +1517,61 @@ a {
 .theme-doc-breadcrumbs a.breadcrumbs__link > svg.breadcrumbHomeIcon_YNFT {
   display: inline-block;
 }
+
+/* Fix difficulty and topic pill backgrounds in light/dark mode */
+[data-theme='light'] .rounded.bg-gray-100,
+[data-theme='light'] .rounded-full.bg-green-100,
+[data-theme='light'] .rounded-full.bg-yellow-100,
+[data-theme='light'] .rounded-full.bg-red-100,
+[data-theme='light'] .rounded-full.bg-blue-100 {
+  background-color: var(--ifm-color-emphasis-100) !important;
+}
+
+[data-theme='light'] .rounded-full.bg-green-100 {
+  background-color: #dcfce7 !important; /* green-100 */
+}
+
+[data-theme='light'] .rounded-full.bg-yellow-100 {
+  background-color: #fef9c3 !important; /* yellow-100 */
+}
+
+[data-theme='light'] .rounded-full.bg-red-100 {
+  background-color: #fee2e2 !important; /* red-100 */
+}
+
+[data-theme='light'] .rounded-full.bg-blue-100 {
+  background-color: #dbeafe !important; /* blue-100 */
+}
+
+[data-theme='light'] .rounded.bg-gray-100 {
+  background-color: #f3f4f6 !important; /* gray-100 */
+}
+
+/* Dark mode overrides */
+[data-theme='dark'] .rounded.dark\:bg-gray-700,
+[data-theme='dark'] .rounded-full.dark\:bg-green-900,
+[data-theme='dark'] .rounded-full.dark\:bg-yellow-900,
+[data-theme='dark'] .rounded-full.dark\:bg-red-900,
+[data-theme='dark'] .rounded-full.dark\:bg-blue-900 {
+  opacity: 1 !important;
+}
+
+[data-theme='dark'] .rounded-full.dark\:bg-green-900 {
+  background-color: #14532d !important; /* green-900 */
+}
+
+[data-theme='dark'] .rounded-full.dark\:bg-yellow-900 {
+  background-color: #713f12 !important; /* yellow-900 */
+}
+
+[data-theme='dark'] .rounded-full.dark\:bg-red-900 {
+  background-color: #7f1d1d !important; /* red-900 */
+}
+
+[data-theme='dark'] .rounded-full.dark\:bg-blue-900 {
+  background-color: #1e3a8a !important; /* blue-900 */
+}
+
+[data-theme='dark'] .rounded.dark\:bg-gray-700 {
+  background-color: #374151 !important; /* gray-700 */
+}
