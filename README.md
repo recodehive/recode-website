@@ -191,7 +191,7 @@ git checkout -b feature/your-feature-name
 **Commit your changes:**
 
 ```bash
-git commit
+git commit -m "Add: brief description of your changes"
 ```
 
 **Push to your fork:**

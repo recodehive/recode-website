@@ -7,17 +7,11 @@ sidebar_position: 2
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
 - [Local Setup Guide](#local-setup-guide)
-  - [How to set up recode hive:](#how-to-set-up-recode-hive)
 - [Environment Setup (for GitHub API access)](#environment-setup-for-github-api-access)
 - [Contributing to recode hive](#contributing-to-recode-hive)
-    - [Commit Message Format](#commit-message-format)
-  - [Example Commit Messages:](#example-commit-messages)
-  - [Using Commitizen with Husky](#using-commitizen-with-husky)
 - [Formatting](#formatting)
-- [Branding \& Naming Conventions](#branding--naming-conventions)
-  - [Exceptions to Lowercase Branding](#exceptions-to-lowercase-branding)
+- [Branding & Naming Conventions](#branding--naming-conventions)
 - [License](#license)
 
 ## Local Setup Guide
@@ -149,39 +143,6 @@ We welcome contributions! Follow these steps to get started.
    git add .
    git commit -m "Brief description of your changes"
    ```
-   #### Commit Message Format
-
-   We use [Commitizen](https://www.npmjs.com/package/commitizen) with the [git-cz](https://www.npmjs.com/package/git-cz) adapter to ensure consistent commit messages that follow a standard changelog style. This helps in generating changelogs and maintaining a clear project history.
-
-   Commit messages should follow this pattern:
-
-   ```
-   <type>: [#<GIT-ISSUE>] <subject>
-   ```
-   - **type**: The type of change that you're committing. It should be one of the following:
-     - **feat**: A new feature
-     - **fix**: A bug fix
-     - **docs**: Documentation only changes
-     - **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-     - **refactor**: A code change that neither fixes a bug nor adds a feature
-     - **perf**: A code change that improves performance
-     - **test**: Adding missing tests or correcting existing tests
-     - **chore**: Changes to the build process or auxiliary tools and libraries such as documentation generation
-     - **ci**: Changes to CI configuration files and scripts
-
-   - **GIT-ISSUE**: The Git issue ID associated with the change.
-   - **subject**: A brief description of the change.
-
-   ### Example Commit Messages:
-
-   - `feat: [#1] Add user login functionality`
-   - `fix: [#24] Resolve navbar alignment issue`
-   - `chore: [#101] Update dependencies to latest versions`
-
-   ### Using Commitizen with Husky
-
-   We have configured [Husky](https://www.npmjs.com/package/husky) to automatically run Commitizen when you commit changes. This is done using the `prepare-commit-msg` hook. Simply use the `git commit` command, and Commitizen will guide you through the commit message creation process.
-
 
 7. **Push Your Branch to Your Fork**
 
