@@ -28,13 +28,12 @@ jobs:
             }
             core.setOutput("issues", JSON.stringify(matches));
 
-      - name: Post or Update data Comment
-        if: steps.extract.outputs.issues && steps.extract.outputs.issues != '[]'
+      - name: Sync metadata
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issues = JSON.parse(`${{ steps.extract.outputs.issues }}`);
+            const issues = ${{ fromJSON(steps.extract.outputs.issues) }};
             const prNumber = context.payload.pull_request.number;
 
             let combinedLabels = [];
