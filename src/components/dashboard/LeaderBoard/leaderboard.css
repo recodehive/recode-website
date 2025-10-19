@@ -485,6 +485,11 @@
   transition: background-color 0.2s ease;
 }
 
+/* Ensure each contributor row is a positioning context so absolute rank badges stay inside the row */
+.contributor-row {
+  position: relative;
+}
+
 .light .contributor-row.even {
   background: #fff;
 }
@@ -511,6 +516,32 @@
 
 .contributor-cell {
   padding: 0 8px;
+}
+
+/* Make rank cell a stable container for the badge (desktop + mobile) */
+.contributor-cell.rank-cell {
+  position: relative;
+  width: 40px;
+  padding: 8px;
+}
+
+/* Position the badge inside the cell */
+.rank-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  line-height: 1;
 }
 
 .avatar {

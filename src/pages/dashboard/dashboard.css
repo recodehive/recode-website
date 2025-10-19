@@ -12,7 +12,7 @@
   position: fixed;
   top: 70px;
   left: 20px;
-  z-index: 1100;
+  z-index: 100;
   background: var(--ifm-color-primary);
   color: white;
   border: none;
@@ -32,7 +32,7 @@
 }
 
 .dashboard-menu-btn.open {
-  background: #dc3545;
+  display: none;
 }
 
 /* Mobile Menu */

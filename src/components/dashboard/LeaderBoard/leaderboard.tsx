@@ -1,14 +1,7 @@
 // src/components/dashboard/LeaderBoard/leaderboard.tsx
 import React, { JSX, useState } from "react";
 import { motion } from "framer-motion";
-import {
-  FaTrophy,
-  FaStar,
-  FaCode,
-  FaUsers,
-  FaGithub,
-  FaSearch,
-} from "react-icons/fa";
+import { FaStar, FaCode, FaUsers, FaGithub, FaSearch } from "react-icons/fa";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useColorMode } from "@docusaurus/theme-common";
 import { useCommunityStatsContext } from "@site/src/lib/statsProvider";
@@ -528,12 +521,18 @@ export default function LeaderBoard(): JSX.Element {
                 transition={{ duration: 0.3, delay: index * 0.05 }}
                 className={`contributor-row ${isDark ? (index % 2 === 0 ? "even" : "odd") : index % 2 === 0 ? "even" : "odd"}`}
               >
+                {/*
+                  This avoids indexOf() issues and is O(1).
+                */}
                 <div className={`contributor-cell rank-cell`}>
-                  <div
-                    className={`rank-badge ${getRankClass(filteredContributors.indexOf(contributor))}`}
-                  >
-                    {filteredContributors.indexOf(contributor) + 1}
-                  </div>
+                  {(() => {
+                    const rankIndex = indexOfFirst + index; // zero-based global index
+                    return (
+                      <div className={`rank-badge ${getRankClass(rankIndex)}`}>
+                        {rankIndex + 1}
+                      </div>
+                    );
+                  })()}
                 </div>
                 <div className="contributor-cell avatar-cell">
                   <img
