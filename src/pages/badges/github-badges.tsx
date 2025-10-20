@@ -1122,7 +1122,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Prepare for the GitHub Foundations exam →
+                Prepare for the GitHub Foundations exam
               </a>
             </div>
             <div className={styles.certBadge}>
@@ -1163,7 +1163,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Prepare for the GitHub Actions exam →
+                Prepare for the GitHub Actions exam
               </a>
             </div>
           </motion.div>
@@ -1189,7 +1189,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Prepare for the GitHub Advanced Security exam →
+                Prepare for the GitHub Advanced Security exam
               </a>
             </div>
             <div className={styles.certBadge}>
@@ -1229,7 +1229,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Prepare for the GitHub Administration exam →
+                Prepare for the GitHub Administration exam
               </a>
             </div>
           </motion.div>
@@ -1255,7 +1255,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Coming Soon! Join the waitlist now for priority access →
+                Coming Soon! Join the waitlist now for priority access
               </a>
             </div>
             <div className={styles.certBadge}>
