@@ -18,6 +18,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Extract linked issue(s)
       - name: Extract linked issue(s) from PR
         id: extract-issues
         uses: actions/github-script@v7
@@ -43,19 +44,33 @@ jobs:
               }
             }
 
-            return JSON.stringify({ issues: Array.from(issueNumbers), pr: prNumber });
+            // Return valid JSON
+            return { issues: Array.from(issueNumbers), pr: prNumber };
 
+      # Sync metadata safely
       - name: Sync Issue Metadata to PR
         uses: actions/github-script@v7
+        env:
+          RESULT_JSON: ${{ steps.extract-issues.outputs.result }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const data = JSON.parse('${{ steps.extract-issues.outputs.result }}');
+            const core = require('@actions/core');
+
+            // Safely parse the previous step’s JSON
+            let data;
+            try {
+              data = JSON.parse(process.env.RESULT_JSON);
+            } catch (err) {
+              core.setFailed(`Invalid JSON from extract-issues: ${err.message}`);
+              return;
+            }
+
             const prNumber = data.pr;
             const issueNumbers = data.issues || [];
 
-            if (issueNumbers.length === 0) {
-              console.log("No linked issues found");
+            if (!issueNumbers.length) {
+              console.log("No linked issues found.");
               return;
             }
 
@@ -99,14 +114,13 @@ jobs:
                   console.log(`Milestone synced: ${issue.milestone.title}`);
                 }
 
-                // --- Sync Projects (GitHub Projects v2) ---
-                if(issue.project_cards_url) {
-                  // Fetch project cards of issue
+                // --- Sync Projects (optional, GitHub Projects v2 is different API) ---
+                if (issue.project_cards_url) {
                   const cardsResponse = await github.rest.projects.listCards({
-                    column_id: issue.project_cards_url.split('/').pop() // last part is column_id
-                  }).catch(()=>({data:[]}));
-                  
-                  for(const card of cardsResponse.data || []) {
+                    column_id: issue.project_cards_url.split('/').pop()
+                  }).catch(() => ({ data: [] }));
+
+                  for (const card of cardsResponse.data || []) {
                     await github.rest.projects.createCard({
                       column_id: card.column_id,
                       content_id: prNumber,
@@ -116,7 +130,7 @@ jobs:
                   }
                 }
 
-                // --- Optionally: Add a comment on PR ---
+                // --- Optional: Add a comment on PR ---
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
