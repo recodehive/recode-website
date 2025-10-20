@@ -1,5 +1,5 @@
 // src/components/dashboard/LeaderBoard/PRListModal.tsx
-import React from "react";
+import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import { useColorMode } from "@docusaurus/theme-common";
@@ -64,12 +64,6 @@ export default function PRListModal({
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Escape") {
-      onClose();
-    }
-  };
-
   // Helper function to get filter display text
   const getFilterDisplayText = (filter: string) => {
     switch (filter) {
@@ -94,6 +88,21 @@ export default function PRListModal({
     return "#6b7280"; // Gray for no points
   };
 
+  // Close modal on Escape key press
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [isOpen]);
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -103,7 +112,6 @@ export default function PRListModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleBackdropClick}
-          onKeyDown={handleKeyDown}
           tabIndex={0}
           role="dialog"
           aria-modal="true"

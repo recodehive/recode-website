@@ -63,7 +63,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
             <h2 className="mb-6 text-4xl font-bold text-gray-900 dark:text-white">
               Master Technical Interviews
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-gray-700 dark:text-gray-200">
               Technical interviews are the cornerstone of software engineering
               hiring. They evaluate your problem-solving abilities, coding
               skills, and understanding of computer science fundamentals.
@@ -79,7 +79,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
               <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                 Problem Solving
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-200">
                 Develop systematic approaches to break down complex problems
                 into manageable components.
               </p>
@@ -91,7 +91,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
               <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                 Pattern Recognition
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-200">
                 Learn to identify common patterns and apply proven techniques to
                 solve similar problems efficiently.
               </p>
@@ -103,7 +103,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
               <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                 Communication
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-200">
                 Master the art of explaining your approach, discussing
                 trade-offs, and collaborating with interviewers.
               </p>
@@ -116,7 +116,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                 <h4 className="mb-2 font-semibold text-gray-900 dark:text-white">
                   Success Strategy
                 </h4>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
+                <p className="text-sm text-gray-800 dark:text-gray-100">
                   Focus on understanding patterns rather than memorizing
                   solutions. Practice explaining your thought process out loud,
                   and always consider time/space complexity. Consistent daily
@@ -320,7 +320,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                 <h4 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
                   {platform.name}
                 </h4>
-                <p className="mb-3 text-sm text-gray-600 dark:text-gray-300">
+                <p className="mb-3 text-sm text-gray-700 dark:text-gray-200">
                   {platform.description}
                 </p>
                 <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
@@ -401,7 +401,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Start with Easy Problems
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Build confidence and understand patterns before tackling
                   harder challenges.
                 </p>
@@ -415,7 +415,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Practice Consistently
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Solve 1-2 problems daily rather than cramming before
                   interviews.
                 </p>
@@ -429,7 +429,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Focus on Patterns
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Learn common problem-solving patterns like two pointers,
                   sliding window, etc.
                 </p>
@@ -445,7 +445,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Time Yourself
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Practice under time constraints to simulate real interview
                   conditions.
                 </p>
@@ -459,7 +459,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Explain Your Thinking
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Practice verbalizing your approach and reasoning process.
                 </p>
               </div>
@@ -472,7 +472,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Review Solutions
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Study optimal solutions and alternative approaches after
                   solving problems.
                 </p>

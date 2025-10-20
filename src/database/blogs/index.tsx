@@ -82,6 +82,15 @@ const blogs: Blog[] = [
     slug: "n8n-workflow-automation",
     authors: ["Aditya-Singh-Rathore"],
   },
+  {
+    id: 9,
+    title: "OpenAI AgentKit: Building AI Agents Without the Complexity",
+    image: "/img/blogs/Agent_Builder.png",
+    description:
+      "OpenAI AgentKit is a framework that simplifies the process of building AI agents, allowing developers to create intelligent applications without getting bogged down in the underlying complexities.",
+    slug: "open-ai-agent-builder",
+    authors: ["Aditya-Singh-Rathore"],
+  },
 ];
 
 export default blogs;
