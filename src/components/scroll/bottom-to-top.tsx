@@ -30,7 +30,8 @@ export default function ScrollBottomToTop() {
     showButton && (
       <button
         onClick={scrollToTop}
-        className="fixed right-5 bottom-20 z-50 cursor-pointer rounded-lg border-none bg-blue-600 p-2.5 text-white opacity-80 shadow-md transition-opacity duration-300 hover:bg-blue-700 hover:opacity-100"
+        className="fixed right-5 bottom-5 z-50 cursor-pointer rounded-full border-none bg-gray-700 p-3 text-white shadow-lg transition-all duration-300 hover:scale-110 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700"
+        style={{ backgroundColor: "var(--ifm-color-primary)" }}
       >
         <FaArrowUp />
       </button>
