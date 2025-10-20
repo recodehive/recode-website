@@ -1,7 +1,7 @@
 name: Sync Issue Metadata to PR
 
 on:
-  pull_request_target:
+  pull_request:  # Changed from pull_request_target for testing
     types: [opened, edited, synchronize, reopened]
 
 permissions:
@@ -25,26 +25,26 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const core = require('@actions/core');
-
+            
             const prNumber = context.payload.pull_request.number;
             const prTitle = context.payload.pull_request.title || '';
             const prBody = context.payload.pull_request.body || '';
-
+            
             // Regex patterns for issue references
             const patterns = [
               /(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s+#(\d+)/gi,
               /#(\d+)/g
             ];
-
+            
             const issueNumbers = new Set();
             const text = prTitle + ' ' + prBody;
-
+            
             for (const pattern of patterns) {
               for (const match of text.matchAll(pattern)) {
                 issueNumbers.add(match[1]);
               }
             }
-
+            
             // Use core.setOutput instead of return
             core.setOutput('issues', JSON.stringify(Array.from(issueNumbers)));
             core.setOutput('pr', prNumber.toString());
@@ -57,12 +57,12 @@ jobs:
           script: |
             const issueNumbers = JSON.parse('${{ steps.extract-issues.outputs.issues }}');
             const prNumber = parseInt('${{ steps.extract-issues.outputs.pr }}');
-
+            
             if (issueNumbers.length === 0) {
               console.log("No linked issues found");
               return;
             }
-
+            
             for (const issueNumber of issueNumbers) {
               try {
                 // Fetch issue
