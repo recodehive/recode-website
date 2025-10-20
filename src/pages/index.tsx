@@ -107,10 +107,9 @@ export default function Home(): ReactNode {
           <div className="m-4">
             <FAQs />
           </div>
-
-          <ScrollBottomToTop />
         </main>
       </div>
+      <ScrollBottomToTop />
     </Layout>
   );
 }
