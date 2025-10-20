@@ -16,7 +16,7 @@ Welcome to your first open source contribution! In this tutorial, you will learn
 
 ## What is Open Source?
 
-Open source software is code that is freely available for anyone to view, use, modify, and distribute. Contributing to open source projects helps you:
+Open source software is code that is freely available for anyone to view, use, modify and distribute. Contributing to open source projects helps you:
 - Learn from real-world code
 - Build your portfolio
 - Connect with the developer community
@@ -26,8 +26,8 @@ Open source software is code that is freely available for anyone to view, use, m
 ## Prerequisites
 
 Before starting, make sure you have:
-- A GitHub account (create one at [github.com](https://github.com))
-- Basic understanding of Git and GitHub concepts
+- A GitHub account. (create one at [github.com](https://github.com))
+- Basic understanding of Git and GitHub concepts.
 - Willingness to learn and contribute!
 
 ## The Contribution Workflow
@@ -56,7 +56,7 @@ Take a moment to:
 - Read the README file to understand the project
 - Check if there are contribution guidelines (CONTRIBUTING.md)
 - Look at existing issues or pull requests
-- Understand what kind of contributions are welcome
+- Understand what kind of contributions are welcomed
 
 ## Step 2: Fork the Repository
 
@@ -85,7 +85,7 @@ Once the fork is complete, you'll see:
   <div align="center"><small>Step 4: Fork Complete</small></div>
 </BrowserWindow>
 
-## Step 3: Edit Files Directly on GitHub
+## Step 3: Edit files directly on GitHub
 
 One of the great features of GitHub is the ability to edit files directly in your browser without cloning the repository to your computer.
 
@@ -126,11 +126,11 @@ Common first contributions include:
 
 :::
 
-## Step 4: Commit Your Changes
+## Step 4: Commit your changes
 
 After making your edits, you need to commit them. A commit is like saving a snapshot of your changes with a description.
 
-### Writing a Good Commit Message
+### Writing a good commit message
 
 1. Scroll down to the "Commit changes" section
 2. Write a clear, concise commit message describing what you changed
