@@ -227,7 +227,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                   <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 leading-relaxed">
                     {item.description}
                   </p>
-                  <div className="inline-flex items-center px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-semibold text-gray-700 dark:text-gray-300">
+                  <div className="inline-flex items-center px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-semibold text-gray-700 dark:text-gray-300 pill-badge">
                     {item.stats}
                   </div>
                 </motion.div>
@@ -678,7 +678,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 pill-badge">
             {[
               {
                 title: "Share Experiences",
@@ -747,7 +747,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                   {item.description}
                 </p>
-                <div className="inline-flex items-center px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-semibold text-gray-700 dark:text-gray-300">
+                <div className="inline-flex items-center px-3 py-1 bg-gray-100 dark:bg-gray-700 rounded-full text-xs font-semibold text-gray-700 dark:text-gray-300 pill-badge">
                   {item.benefit}
                 </div>
               </motion.div>
@@ -762,7 +762,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
             >
               <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white hover:from-indigo-700 hover:to-purple-700 px-12 py-4 text-mdx`x rounded-2xl shadow-lg">
                 <Users className="w-5 h-5 mr-3" />
-                <Link to="/community" className="company-tab-link">
+                <Link to="/community" className="company-tab-link text-white">
                   Join Community Discord
                 </Link>
               </Button>

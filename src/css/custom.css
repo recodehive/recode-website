@@ -1625,11 +1625,45 @@ html[data-theme="light"] .company-outer {
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
   mix-blend-mode: normal !important;
-  isolation: isolate !important;
 }
 html[data-theme="light"] .company-outer::before,
 html[data-theme="light"] .company-outer::after {
   display: none !important;
   background: none !important;
   content: none !important;
+}
+
+/* Strong, final overrides for pill buttons and community button text in light mode */
+html[data-theme="light"] .pill-badge,
+html[data-theme="light"] .company-outer .pill-badge,
+html[data-theme="light"] [data-slot="card-header"] .pill-badge,
+html[data-theme="light"] .company-border .pill-badge,
+html[data-theme="light"] .pill-badge[class*="bg-"],
+html[data-theme="light"] span.bg-gray-100.pill-badge {
+  background-color: #f3f4f6 !important; /* gray-100 visible in light mode */
+  color: #1f2937 !important;            /* dark text */
+  mix-blend-mode: normal !important;
+  background-clip: padding-box !important;
+  z-index: 9999 !important;
+  opacity: 1 !important;
+}
+
+/* Force link text inside gradient buttons to be white */
+html[data-theme="light"] .company-tab-link,
+html[data-theme="light"] .company-tab-community-link,
+html[data-theme="light"] .company-border a,
+html[data-theme="light"] button [class*="company-tab-link"],
+html[data-theme="light"] a.company-tab-link {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* If any Tailwind gradient utility still applies, remove it for these containers in light mode */
+html[data-theme="light"] .company-outer.bg-gradient-to-br,
+html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
+  background-image: linear-gradient(135deg,#ffffff 0%, #f8fafc 100%) !important;
+  background-color: #ffffff !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
 }
