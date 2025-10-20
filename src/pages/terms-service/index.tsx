@@ -7,26 +7,20 @@ const TermsOfService: React.FC = () => {
       title={"Terms and condition of recodehive.com"}
       description="Terms of Service Page for recodehive Learners, and users"
     >
-      <div className="max-w-3xl mx-auto p-6 rounded-lg shadow-lg mt-8 mb-8 text-base leading-relaxed font-sans text-justify">
-        <h2 className="text-2xl font-bold mb-6 text-center">
+      <div className="mx-auto mt-8 mb-8 max-w-3xl rounded-lg p-6 text-justify font-sans text-base leading-relaxed shadow-lg">
+        <h2 className="mb-6 text-center text-2xl font-bold">
           Terms of Service
         </h2>
         <p className="mb-6">
           These Terms of Service govern your use of{" "}
-          <b className="bg-yellow-100 dark:bg-yellow-600 dark:text-gray-900">
-            recodehive
-          </b>
-          , provided by{" "}
-          <strong className="bg-yellow-100 dark:bg-yellow-600 dark:text-gray-900">
-            Sanjay Viswanathan
-          </strong>
-          . Below are the Terms and Conditions for the use of
-          www.recodehive.com. Please read these carefully. If you need to
-          contact us regarding any aspect of the following terms of use of our
-          website, please reach out us at the following email address –
-          sanjay@recodehive.com.
+          <b className="dark:text-gray-900">recodehive</b>, provided by{" "}
+          <strong className="dark:text-gray-900">Sanjay Viswanathan</strong>.
+          Below are the Terms and Conditions for the use of www.recodehive.com.
+          Please read these carefully. If you need to contact us regarding any
+          aspect of the following terms of use of our website, please reach out
+          us at the following email address – sanjay@recodehive.com.
         </p>
-        <h3 className="text-xl font-bold mb-4">Acceptance of Terms</h3>
+        <h3 className="mb-4 text-xl font-bold">Acceptance of Terms</h3>
         <p className="mb-6">
           By accessing or using the Service, you acknowledge that you have read,
           understood, and agree to be bound by these Terms, as well as any
@@ -34,8 +28,8 @@ const TermsOfService: React.FC = () => {
           us. If you do not agree to these Terms, please refrain from using the
           Service.
         </p>
-        <h3 className="text-xl font-bold mb-4">Use of the Service</h3>
-        <ol className="list-decimal pl-6 mb-6">
+        <h3 className="mb-4 text-xl font-bold">Use of the Service</h3>
+        <ol className="mb-6 list-decimal pl-6">
           <li className="mb-4">
             <strong>Usage Instructions:</strong> You agree not to use the
             website in a way that may impair the performance, corrupt or
@@ -55,8 +49,8 @@ const TermsOfService: React.FC = () => {
             may believe exist on the website or server where it is hosted.
           </li>
         </ol>
-        <h3 className="text-xl font-bold mb-4">Content</h3>
-        <ol className="list-decimal pl-6 mb-6">
+        <h3 className="mb-4 text-xl font-bold">Content</h3>
+        <ol className="mb-6 list-decimal pl-6">
           <li className="mb-4">
             <strong>User Content:</strong> You retain ownership of any content
             you submit or upload to the Service (&quot;User Content&quot;). By
@@ -68,9 +62,7 @@ const TermsOfService: React.FC = () => {
             <strong>Intellectual Property:</strong> All content, trademarks,
             service marks, logos, and other intellectual property displayed on
             or related to the Service are the property of{" "}
-            <strong className="bg-yellow-100 dark:bg-yellow-600 dark:text-gray-900">
-              Sanjay Viswanathan
-            </strong>{" "}
+            <strong className="dark:text-gray-900">Sanjay Viswanathan</strong>{" "}
             or its licensors. You may not use or display any of these without
             our prior written consent.
           </li>
@@ -82,7 +74,7 @@ const TermsOfService: React.FC = () => {
             you continue to use the website.
           </li>
         </ol>
-        <h3 className="text-xl font-bold mb-4">Privacy</h3>
+        <h3 className="mb-4 text-xl font-bold">Privacy</h3>
         <p className="mb-6">
           Your privacy is important to us. Please review our{" "}
           <a
@@ -96,19 +88,19 @@ const TermsOfService: React.FC = () => {
           to understand how we collect, use, and disclose your personal
           information.
         </p>
-        <h3 className="text-xl font-bold mb-4">Termination</h3>
+        <h3 className="mb-4 text-xl font-bold">Termination</h3>
         <p className="mb-6">
           We reserve the right to suspend or terminate your access to the
           Service at any time, with or without cause, and without notice or
           liability.
         </p>
 
-        <h3 className="text-xl font-bold mb-4">Governing Law</h3>
+        <h3 className="mb-4 text-xl font-bold">Governing Law</h3>
         <p className="mb-6">
           These Terms shall be governed by and construed per the laws of India,
           without regard to its conflict of law principles.
         </p>
-        <h3 className="text-xl font-bold mb-4">Changes to the Terms</h3>
+        <h3 className="mb-4 text-xl font-bold">Changes to the Terms</h3>
         <p className="mb-6">
           Though we strive to be entirely accurate in the information that is
           presented on our site and attempt to keep it as up to date as
@@ -117,7 +109,7 @@ const TermsOfService: React.FC = () => {
           right to make any modifications or corrections to the information you
           find on the site at any time without notice.
         </p>
-        <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+        <h3 className="mb-4 text-xl font-bold">Contact Us</h3>
         <p>
           If you have any questions about these Terms, please contact us at{" "}
           <a

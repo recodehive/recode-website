@@ -54,16 +54,16 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
   return (
     <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
       <motion.div className="mb-12" variants={fadeIn}>
-        <div className="bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20 rounded-2xl p-8 border border-blue-100 dark:border-blue-800 technical-outer">
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900/30 rounded-full text-blue-600 dark:text-blue-400 text-sm font-medium mb-4">
-              <span className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse"></span>
+        <div className="technical-outer rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-8 dark:border-blue-800 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20">
+          <div className="mb-8 text-center">
+            <div className="mb-4 inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+              <span className="mr-2 h-2 w-2 animate-pulse rounded-full bg-blue-500"></span>
               Technical Interview Mastery
             </div>
-            <h2 className="text-4xl font-bold mb-6 text-gray-900 dark:text-white">
+            <h2 className="mb-6 text-4xl font-bold text-gray-900 dark:text-white">
               Master Technical Interviews
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-gray-700 dark:text-gray-200">
               Technical interviews are the cornerstone of software engineering
               hiring. They evaluate your problem-solving abilities, coding
               skills, and understanding of computer science fundamentals.
@@ -71,52 +71,52 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
               ability to communicate your thought process clearly.
             </p>
           </div>
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 technical-inner">
-              <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center mb-4">
+          <div className="mb-8 grid gap-6 md:grid-cols-3">
+            <div className="technical-inner rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/30">
                 <span className="text-2xl">🧠</span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                 Problem Solving
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-200">
                 Develop systematic approaches to break down complex problems
                 into manageable components.
               </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700  technical-inner">
-              <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center mb-4">
+            <div className="technical-inner rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 dark:bg-green-900/30">
                 <span className="text-2xl">⚡</span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                 Pattern Recognition
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-200">
                 Learn to identify common patterns and apply proven techniques to
                 solve similar problems efficiently.
               </p>
             </div>
-            <div className="bg-white dark:bg-gray-800 rounded-lg p-6 border border-gray-200 dark:border-gray-700 technical-inner">
-              <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mb-4">
+            <div className="technical-inner rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-700 dark:bg-gray-800">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-900/30">
                 <span className="text-2xl">💬</span>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
                 Communication
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+              <p className="text-sm text-gray-700 dark:text-gray-200">
                 Master the art of explaining your approach, discussing
                 trade-offs, and collaborating with interviewers.
               </p>
             </div>
           </div>
-          <div className="bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900/30 dark:to-orange-900/30 rounded-lg p-6 border border-yellow-200 dark:border-yellow-700 technical-inner-success">
+          <div className="technical-inner-success rounded-lg border border-yellow-200 bg-gradient-to-r from-yellow-100 to-orange-100 p-6 dark:border-yellow-700 dark:from-yellow-900/30 dark:to-orange-900/30">
             <div className="flex items-start space-x-3">
               <span className="text-2xl">💡</span>
               <div>
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                <h4 className="mb-2 font-semibold text-gray-900 dark:text-white">
                   Success Strategy
                 </h4>
-                <p className="text-sm text-gray-700 dark:text-gray-300">
+                <p className="text-sm text-gray-800 dark:text-gray-100">
                   Focus on understanding patterns rather than memorizing
                   solutions. Practice explaining your thought process out loud,
                   and always consider time/space complexity. Consistent daily
@@ -130,7 +130,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
 
       {/* Question Bank by Category - Collapsible */}
       <motion.div className="mb-16" variants={fadeIn}>
-        <h3 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white text-center">
+        <h3 className="mb-8 text-center text-2xl font-bold text-gray-900 dark:text-white">
           📚 Question Bank by Category
         </h3>
         <div className="space-y-8">
@@ -174,20 +174,20 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
             return (
               <div
                 key={categoryIndex}
-                className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden"
+                className="overflow-hidden rounded-2xl bg-white shadow-lg dark:bg-gray-800"
               >
                 {/* Outer header */}
                 <button
                   onClick={() => toggleCategory(categoryIndex)}
-                  className={`w-full bg-gradient-to-r ${gradient} p-6 text-left hover:opacity-90 transition-opacity`}
+                  className={`w-full bg-gradient-to-r ${gradient} p-6 text-left transition-opacity hover:opacity-90`}
                 >
-                  <div className="flex justify-between items-center">
+                  <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="text-2xl font-bold mb-2 text-white">
+                      <h3 className="mb-2 text-2xl font-bold text-white">
                         {category.category}
                       </h3>
                       <p className="text-blue-100">{category.description}</p>
-                      <span className="inline-block bg-white/20 text-sm font-medium px-3 py-1 rounded-full hover:bg-white/30 transition">
+                      <span className="inline-block rounded-full bg-white/20 px-3 py-1 text-sm font-medium transition hover:bg-white/30">
                         <Link
                           to="/docs/category/technical"
                           className="explore-btn"
@@ -204,7 +204,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                         Total Problems
                       </div>
                       <span
-                        className="text-white text-2xl transform transition-transform duration-200 origin-center"
+                        className="origin-center transform text-2xl text-white transition-transform duration-200"
                         style={{
                           transform: expandedCategories[categoryIndex]
                             ? "rotate(180deg)"
@@ -226,20 +226,20 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                     exit={{ opacity: 0, height: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 ">
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                       {category.subcategories.map((subcategory, subIndex) => (
                         <div
                           key={subIndex}
-                          className={`border rounded-xl p-5 hover:shadow-md transition-all duration-300 ${border} ${subtopicBorderClasses[categoryIndex % subtopicBorderClasses.length]} hover:border-opacity-80 technical-inner`}
+                          className={`rounded-xl border p-5 transition-all duration-300 hover:shadow-md ${border} ${subtopicBorderClasses[categoryIndex % subtopicBorderClasses.length]} hover:border-opacity-80 technical-inner`}
                         >
                           {/* Subcategory Header */}
-                          <div className="flex justify-between items-start mb-4">
+                          <div className="mb-4 flex items-start justify-between">
                             <h5 className="text-lg font-semibold text-gray-900 dark:text-white">
                               {subcategory.title}
                             </h5>
                             <div className="flex items-center space-x-2">
                               <span
-                                className={`px-2 py-1 rounded-full text-xs font-medium ${
+                                className={`rounded-full px-2 py-1 text-xs font-medium ${
                                   subcategory.difficulty === "Easy"
                                     ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                                     : subcategory.difficulty === "Medium"
@@ -249,7 +249,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                               >
                                 {subcategory.difficulty}
                               </span>
-                              <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs">
+                              <span className="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-800 dark:bg-blue-900 dark:text-blue-200">
                                 {subcategory.problems}
                               </span>
                             </div>
@@ -257,7 +257,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
 
                           {/* Subtopics */}
                           <div className="mb-4">
-                            <h6 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            <h6 className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                               Key Topics:
                             </h6>
                             <div className="flex flex-wrap gap-1">
@@ -265,7 +265,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                                 (topic, topicIndex) => (
                                   <span
                                     key={topicIndex}
-                                    className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2 py-1 rounded text-xs"
+                                    className="rounded bg-gray-100 px-2 py-1 text-xs text-gray-600 dark:bg-gray-700 dark:text-gray-300"
                                   >
                                     {topic}
                                   </span>
@@ -286,7 +286,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                                   href={resource.url}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="block text-sm text-blue-600 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-300 hover:underline"
+                                  className="block text-sm text-blue-600 hover:text-blue-800 hover:underline dark:text-blue-300 dark:hover:text-blue-300"
                                 >
                                   🔗 {resource.name}
                                 </a>
@@ -306,21 +306,21 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
 
       {/* Practice Platforms */}
       <motion.div className="mb-16" variants={fadeIn}>
-        <h3 className="text-2xl font-bold mb-8 text-gray-900 dark:text-white text-center">
+        <h3 className="mb-8 text-center text-2xl font-bold text-gray-900 dark:text-white">
           🎯 Recommended Practice Platforms
         </h3>
-        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="grid items-stretch gap-6 md:grid-cols-3">
           {practicePlatforms.map((platform, index) => (
             <motion.div
               key={index}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 flex flex-col"
+              className="flex flex-col rounded-xl border border-gray-200 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:border-gray-700 dark:bg-gray-800"
               variants={fadeIn}
             >
-              <div className="text-center mb-4">
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+              <div className="mb-4 text-center">
+                <h4 className="mb-2 text-xl font-bold text-gray-900 dark:text-white">
                   {platform.name}
                 </h4>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                <p className="mb-3 text-sm text-gray-700 dark:text-gray-200">
                   {platform.description}
                 </p>
                 <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
@@ -332,11 +332,11 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
               </div>
 
               <div className="mb-4">
-                <div className="flex justify-center space-x-2 mb-3">
+                <div className="mb-3 flex justify-center space-x-2">
                   {platform.difficulty.map((diff, diffIndex) => (
                     <span
                       key={diffIndex}
-                      className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      className={`rounded-full px-2 py-1 text-xs font-medium ${
                         diff === "Easy"
                           ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                           : diff === "Medium"
@@ -351,16 +351,16 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
               </div>
 
               <div className="mb-6">
-                <h5 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <h5 className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
                   Key Features:
                 </h5>
                 <ul className="space-y-1">
                   {platform.features.map((feature, featureIndex) => (
                     <li
                       key={featureIndex}
-                      className="text-xs text-gray-600 dark:text-gray-400 flex items-center"
+                      className="flex items-center text-xs text-gray-600 dark:text-gray-400"
                     >
-                      <span className="w-1 h-1 bg-blue-500 rounded-full mr-2"></span>
+                      <span className="mr-2 h-1 w-1 rounded-full bg-blue-500"></span>
                       {feature}
                     </li>
                   ))}
@@ -373,7 +373,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                   href={platform.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="technical-btn w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors text-center block font-medium"
+                  className="technical-btn block w-full rounded-lg bg-blue-600 px-4 py-2 text-center font-medium text-white transition-colors hover:bg-blue-700"
                 >
                   Start Practicing
                 </a>
@@ -385,51 +385,51 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
 
       {/* Tips & Best Practices */}
       <motion.div
-        className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl p-8"
+        className="rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 p-8 dark:from-gray-800 dark:to-gray-700"
         variants={fadeIn}
       >
-        <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center">
+        <h3 className="mb-6 text-center text-2xl font-bold text-gray-900 dark:text-white">
           💡 Pro Tips for Technical Interview Success
         </h3>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid gap-6 md:grid-cols-2">
           <div className="space-y-4">
             <div className="flex items-start space-x-3">
-              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <span className="text-white text-xs font-bold">1</span>
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500">
+                <span className="text-xs font-bold text-white">1</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Start with Easy Problems
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Build confidence and understand patterns before tackling
                   harder challenges.
                 </p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <span className="text-white text-xs font-bold">2</span>
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500">
+                <span className="text-xs font-bold text-white">2</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Practice Consistently
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Solve 1-2 problems daily rather than cramming before
                   interviews.
                 </p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <span className="text-white text-xs font-bold">3</span>
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500">
+                <span className="text-xs font-bold text-white">3</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Focus on Patterns
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Learn common problem-solving patterns like two pointers,
                   sliding window, etc.
                 </p>
@@ -438,41 +438,41 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
           </div>
           <div className="space-y-4">
             <div className="flex items-start space-x-3">
-              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <span className="text-white text-xs font-bold">4</span>
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-purple-500">
+                <span className="text-xs font-bold text-white">4</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Time Yourself
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Practice under time constraints to simulate real interview
                   conditions.
                 </p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <span className="text-white text-xs font-bold">5</span>
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-purple-500">
+                <span className="text-xs font-bold text-white">5</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Explain Your Thinking
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Practice verbalizing your approach and reasoning process.
                 </p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                <span className="text-white text-xs font-bold">6</span>
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-purple-500">
+                <span className="text-xs font-bold text-white">6</span>
               </div>
               <div>
                 <h4 className="font-semibold text-gray-900 dark:text-white">
                   Review Solutions
                 </h4>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-200">
                   Study optimal solutions and alternative approaches after
                   solving problems.
                 </p>

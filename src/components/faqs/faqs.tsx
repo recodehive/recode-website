@@ -58,14 +58,14 @@ const FAQs: React.FC = () => {
       }`}
     >
       <div className="mx-auto px-2 sm:px-4 lg:px-6">
-        <div className="flex flex-col justify-center items-center gap-x-8 gap-y-12 xl:gap-28 lg:flex-row lg:justify-between">
+        <div className="flex flex-col items-center justify-center gap-x-8 gap-y-12 lg:flex-row lg:justify-between xl:gap-28">
           <div className="w-full">
             <div className="mb-8 lg:mb-16">
-              <h6 className="text-lg text-center lg:text-left font-medium text-indigo-600 mb-2">
+              <h6 className="mb-2 text-center text-lg font-medium text-indigo-600 lg:text-left">
                 FAQs
               </h6>
               <h2
-                className={`text-4xl text-center lg:text-left font-bold ${
+                className={`text-center text-4xl font-bold lg:text-left ${
                   isDark ? "text-gray-100" : "text-gray-900"
                 } leading-snug`}
               >
@@ -85,19 +85,17 @@ const FAQs: React.FC = () => {
               {faqData.map((faq, index) => (
                 <motion.div
                   key={index}
-                  className="accordion h-fit border-gray-200 dark:border-gray-700 pb-4 mb-4 break-inside-avoid"
+                  className="accordion mb-4 h-fit break-inside-avoid border-gray-200 pb-4 dark:border-gray-700"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
                   <button
-                    className={`accordion-toggle group flex justify-between items-center text-lg font-medium w-full transition-all duration-300 
-                      ${
-                        isDark
-                          ? "text-gray-200 bg-gray-800 hover:text-indigo-400"
-                          : "text-gray-700 bg-gray-100 hover:text-indigo-600"
-                      } 
-                      p-4 rounded-lg focus:outline-none`}
+                    className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between text-lg font-medium transition-all duration-300 ${
+                      isDark
+                        ? "bg-gray-800 text-gray-200 hover:text-indigo-400"
+                        : "bg-gray-100 text-gray-700 hover:text-indigo-600"
+                    } rounded-lg p-4 focus:outline-none`}
                     onClick={() => toggleAccordion(index)}
                   >
                     {faq.question}

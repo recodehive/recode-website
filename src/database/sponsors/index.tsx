@@ -356,12 +356,12 @@ const sponsors: Sponsor[] = [
     isWeSponsor: true,
   },
   {
-    name: "GSSOC",
-    image: "https://avatars.githubusercontent.com/u/166525102?s=200&v=4",
-    description: "Girlscript Organisation",
-    github: "https://github.com/GSSoC24",
-    linkedin:
-      "https://www.linkedin.com/company/girlscriptsoc/posts/?feedView=all",
+    name: "recode hive",
+    image: "/img/logo.svg",
+    description: "Open Source Community",
+    github: "https://github.com/recodehive",
+    linkedin: "https://www.linkedin.com/company/recode-hive/",
+    twitter: "https://x.com/recodehive",
     isWeSponsor: true,
   },
   {
@@ -436,7 +436,7 @@ const sponsors: Sponsor[] = [
   {
     name: "Hemanth kumar",
     image: "https://avatars.githubusercontent.com/u/106808387?v=4",
-    description: "Tech Lead at GSSOC",
+    description: "Community Leader at recode hive",
     github: "https://github.com/Hemu21",
     linkedin: "https://www.linkedin.com/in/hemu21/",
     twitter: "https://x.com/Hemu21_",
@@ -534,7 +534,6 @@ const sponsors: Sponsor[] = [
     image: "https://avatars.githubusercontent.com/u/4665641?v=4",
     description: "Team lead of Quasar Framework",
     github: "https://github.com/rstoenescu",
-    linkedin: "#",
     isWeSponsor: true,
   },
   {
@@ -542,7 +541,6 @@ const sponsors: Sponsor[] = [
     image: "https://avatars.githubusercontent.com/u/2281088?v=4",
     description: "Director at Google",
     github: "https://github.com/sdras",
-    linkedin: "#",
     twitter: "https://x.com/sarah_edo",
     isWeSponsor: true,
   },
@@ -551,7 +549,6 @@ const sponsors: Sponsor[] = [
     image: "https://avatars.githubusercontent.com/u/1503512?s=200&v=4",
     description: "package manager for macOS",
     github: "https://github.com/Homebrew",
-    linkedin: "#",
     isWeSponsor: true,
   },
   {
@@ -560,6 +557,7 @@ const sponsors: Sponsor[] = [
     description: "Opensouce Contributor",
     github: "https://github.com/Adez017",
     linkedin: "https://www.linkedin.com/in/aditya-singh-rathore0017/",
+    twitter: "https://x.com/Adez017",
     isWeSponsor: true,
   },
 ];

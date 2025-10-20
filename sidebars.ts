@@ -50,11 +50,11 @@ const sidebars: SidebarsConfig = {
           label: "📚 GitHub Basics",
           className: "custom-sidebar-basics",
           items: [
-            'GitHub/GitHub-basics/create-github-repo',
-            'GitHub/GitHub-basics/github-repo-command-line',
-            'GitHub/GitHub-basics/how-to-clone-repository',
-            'GitHub/GitHub-basics/how-to-fork',
-            'GitHub/GitHub-basics/first-opensource-code',
+            "GitHub/GitHub-basics/create-github-repo",
+            "GitHub/GitHub-basics/github-repo-command-line",
+            "GitHub/GitHub-basics/how-to-clone-repository",
+            "GitHub/GitHub-basics/how-to-fork",
+            "GitHub/GitHub-basics/first-opensource-code",
           ],
         },
         {
@@ -144,14 +144,14 @@ const sidebars: SidebarsConfig = {
           ],
         },
         {
-          type: 'category',
-          label: 'SQL Advance',
-          className: 'custom-sidebar-sql-advance',
+          type: "category",
+          label: "SQL Advance",
+          className: "custom-sidebar-sql-advance",
           items: [
-            'sql/SQL-Advance/sql-subqueries',
-            'sql/SQL-Advance/common-table-expressions',
-            'sql/SQL-Advance/window-functions',
-            'sql/SQL-Advance/sql-indexes'
+            "sql/SQL-Advance/sql-subqueries",
+            "sql/SQL-Advance/common-table-expressions",
+            "sql/SQL-Advance/window-functions",
+            "sql/SQL-Advance/sql-indexes",
           ],
         },
       ],
@@ -163,7 +163,7 @@ const sidebars: SidebarsConfig = {
       items: [
         "Nextjs/intro-nextjs",
         "Nextjs/setup-environment",
-        // 'Nextjs/git-commands',
+        "Nextjs/project-structure",
       ],
     },
     {

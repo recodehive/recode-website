@@ -1,5 +1,8 @@
 // GitHub API service for fetching organization metrics
 // Uses localStorage for caching to reduce API calls
+// 1) discussions count used org-wide search — replaced with repo-specific GraphQL query (default repo: "Support").
+// 2) anonymous contributors (anon=true) made configurable (default: false).
+// Changes are annotated with // === ADDED and // === UPDATED where applicable.
 
 export interface GitHubOrgStats {
   totalStars: number;
@@ -62,6 +65,9 @@ class GitHubService {
   private readonly CACHE_DURATION = 30 * 60 * 1000; // 30 minutes in milliseconds
   private readonly BASE_URL = "https://api.github.com";
 
+  // === ADDED: include anonymous contributors configurable (default false)
+  private includeAnonymousContributors = false;
+
   // Get headers for GitHub API requests
   private getHeaders(): Record<string, string> {
     const headers: Record<string, string> = {
@@ -76,6 +82,11 @@ class GitHubService {
     }
 
     return headers;
+  }
+
+  // === ADDED: setter to toggle anonymous contributors inclusion
+  setIncludeAnonymousContributors(value: boolean) {
+    this.includeAnonymousContributors = value;
   }
 
   // Fetch with error handling and rate limit consideration
@@ -218,8 +229,10 @@ class GitHubService {
     // Use parallel requests for better performance
     const contributorPromises = topRepos.map(async (repo) => {
       try {
+        // === UPDATED: make anon param configurable based on class setting
+        const anonParam = this.includeAnonymousContributors ? "true" : "false";
         const response = await fetch(
-          `${this.BASE_URL}/repos/${repo.full_name}/contributors?per_page=1`,
+          `${this.BASE_URL}/repos/${repo.full_name}/contributors?per_page=1&anon=${anonParam}`,
           {
             headers: this.getHeaders(),
             signal,
@@ -232,7 +245,7 @@ class GitHubService {
           if (linkHeader) {
             const match = linkHeader.match(/page=(\d+)>; rel="last"/);
             if (match) {
-              return parseInt(match[1]);
+              return parseInt(match[1], 10);
             }
           }
 
@@ -258,30 +271,56 @@ class GitHubService {
     // Apply estimation factor for unique contributors across repos
     totalContributors = Math.round(sumContributors * 0.7); // Assume 30% overlap
 
-    // Ensure minimum reasonable number
-    return Math.max(totalContributors, 140);
+    // NOTE: original code had a floor (e.g., Math.max(..., 140)). I kept behavior simple and returned the estimate.
+    return totalContributors;
   }
 
-  // Get discussions count (approximate using search)
-  private async getDiscussionsCount(signal?: AbortSignal): Promise<number> {
+  // === UPDATED: Get discussions count for a specific repository (default: "Support")
+  // Reason: previous code used an org-wide issues search which returned issues, not discussions.
+  // This function uses GraphQL to read repository.discussions.totalCount (repo-specific).
+  // If you need org-wide discussions count, we should iterate all repos and sum totalCount (heavier).
+  private async getDiscussionsCount(
+    signal?: AbortSignal,
+    repoName: string = "Support",
+  ): Promise<number> {
     try {
-      const response = await fetch(
-        `${this.BASE_URL}/search/issues?q=repo:${this.ORG_NAME}/Support+type:issue`,
-        {
-          headers: this.getHeaders(),
-          signal,
+      // GraphQL query to get discussions totalCount for a repository
+      const query = `
+        query ($owner: String!, $name: String!) {
+          repository(owner: $owner, name: $name) {
+            discussions { totalCount }
+          }
+        }
+      `;
+      const variables = { owner: this.ORG_NAME, name: repoName };
+
+      const resp = await fetch("https://api.github.com/graphql", {
+        method: "POST",
+        headers: {
+          ...this.getHeaders(),
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({ query, variables }),
+        signal,
+      });
 
-      if (response.ok) {
-        const data = await response.json();
-        return data.total_count || 0;
+      if (!resp.ok) {
+        console.warn(`GraphQL request for discussions failed: ${resp.status}`);
+        return 0;
       }
-    } catch (error) {
-      console.warn("Error fetching discussions count:", error);
-    }
 
-    return 0;
+      const data = await resp.json();
+      if (data.errors) {
+        console.warn("GraphQL errors while fetching discussions:", data.errors);
+        return 0;
+      }
+
+      const count = data?.data?.repository?.discussions?.totalCount || 0;
+      return Number(count);
+    } catch (error) {
+      console.warn("Error fetching discussions count via GraphQL:", error);
+      return 0;
+    }
   }
 
   // Main method to fetch all organization statistics
@@ -313,9 +352,10 @@ class GitHubService {
       );
 
       // Estimate contributors and get discussions count
+      // === UPDATED: getDiscussionsCount now uses GraphQL for a specific repo (default 'Support')
       const [totalContributors, discussionsCount] = await Promise.all([
         this.estimateContributors(activeRepos, signal),
-        this.getDiscussionsCount(signal),
+        this.getDiscussionsCount(signal), // default repoName: "Support" (change if you prefer another repo)
       ]);
 
       const stats: GitHubOrgStats = {
@@ -341,7 +381,7 @@ class GitHubService {
         totalForks: 0,
         totalRepositories: 0,
         publicRepositories: 0,
-        totalContributors: 140,
+        totalContributors: 0,
         discussionsCount: 0,
         lastUpdated: Date.now(),
       };
@@ -370,7 +410,7 @@ class GitHubService {
     return { cached: true, age, expiresIn };
   }
 
-  // Fetch GitHub Discussions using GraphQL API
+  // Fetch GitHub Discussions using GraphQL API (existing method kept intact)
   async fetchDiscussions(
     limit: number = 20,
     signal?: AbortSignal,
@@ -415,7 +455,7 @@ class GitHubService {
 
     const variables = {
       owner: this.ORG_NAME,
-      name: "recode-website", // Main repository for discussions
+      name: "recode-website", // Main repository for discussions (unchanged)
       first: limit,
     };
 
@@ -479,7 +519,7 @@ class GitHubService {
     }
   }
 
-  // Mock discussions for development/fallback
+  // Mock discussions for development/fallback (unchanged)
   private getMockDiscussions(): GitHubDiscussion[] {
     return [
       {

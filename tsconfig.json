@@ -30,10 +30,5 @@
     "plugins/**/*",
     "docs/**/*"
   ],
-  "exclude": [
-    ".docusaurus",
-    "build",
-    "node_modules",
-    "dist"
-  ]
+  "exclude": [".docusaurus", "build", "node_modules", "dist"]
 }

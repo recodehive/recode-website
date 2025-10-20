@@ -1,4 +1,3 @@
-/** @jsxImportSource react */
 import React, {
   createContext,
   useCallback,
@@ -6,7 +5,7 @@ import React, {
   useEffect,
   useMemo,
   useState,
-  ReactNode,
+  type ReactNode,
 } from "react";
 import { githubService, type GitHubOrgStats } from "../services/githubService";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
@@ -166,12 +165,12 @@ export function CommunityStatsProvider({
   } = useDocusaurusContext();
   const token = customFields?.gitToken || "";
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Start with false to avoid hourglass
   const [error, setError] = useState<string | null>(null);
-  const [githubStarCount, setGithubStarCount] = useState(0);
-  const [githubContributorsCount, setGithubContributorsCount] = useState(0);
-  const [githubForksCount, setGithubForksCount] = useState(0);
-  const [githubReposCount, setGithubReposCount] = useState(0);
+  const [githubStarCount, setGithubStarCount] = useState(984); // Placeholder value - updated to match production
+  const [githubContributorsCount, setGithubContributorsCount] = useState(467); // Placeholder value - updated to match production
+  const [githubForksCount, setGithubForksCount] = useState(1107); // Placeholder value - updated to match production
+  const [githubReposCount, setGithubReposCount] = useState(10); // Placeholder value - updated to match production
   const [githubDiscussionsCount, setGithubDiscussionsCount] = useState(0);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
@@ -412,16 +411,27 @@ export function CommunityStatsProvider({
 
   const fetchAllStats = useCallback(
     async (signal: AbortSignal) => {
-      setLoading(true);
-      setError(null);
-
-      // Check cache first
+      // Check cache first and load it immediately without showing loading state
       const now = Date.now();
-      if (cache.data && now - cache.timestamp < CACHE_DURATION) {
+      const isCacheValid = cache.data && now - cache.timestamp < CACHE_DURATION;
+
+      if (isCacheValid) {
+        // Use cached data immediately
         setAllContributors(cache.data.contributors);
         setLoading(false);
         return;
       }
+
+      // If cache is expired or empty, show cached data anyway but fetch fresh data
+      // This provides immediate content while updating in the background
+      if (cache.data) {
+        setAllContributors(cache.data.contributors);
+        setLoading(false); // Don't show loading state for background refresh
+      } else {
+        setLoading(true); // Only show loading on first load
+      }
+
+      setError(null);
 
       if (!token) {
         setError(

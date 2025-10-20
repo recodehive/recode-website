@@ -74,6 +74,19 @@ To avoid rate-limit issues, you’ll need to set up a GitHub Personal Access Tok
    GITHUB_TOKEN=ghp_your_generated_token_here
    ```
 
+4. **Note for Local Development**
+   
+   Most pages work without a GitHub token, including:
+   - 🎖️ GitHub Badges page (`/badges/github-badges/`)
+   - 📚 Documentation and blog posts
+   - 🏪 Merch store (requires Shopify config)
+   
+   The GitHub token is only required for:
+   - 📊 Dashboard leaderboard functionality
+   - 📈 Real-time GitHub statistics
+   
+   If you see GitHub API errors, ensure your `.env` file is properly configured.
+
 ## Contributing to recode hive
 
 We welcome contributions! Follow these steps to get started.

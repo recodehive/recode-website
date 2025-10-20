@@ -20,12 +20,12 @@ const DeveloperMockup: React.FC<DeveloperMockupProps> = ({ items }) => {
   return (
     <div className="w-full py-16">
       {/* Section Header */}
-      <div className="text-center mb-12">
+      <div className="mb-12 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-block px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full text-sm font-medium mb-4"
+          className="mb-4 inline-block rounded-full bg-gradient-to-r from-blue-500 to-purple-500 px-6 py-2 text-sm font-medium text-white"
         >
           Live Preview
         </motion.div>
@@ -33,7 +33,7 @@ const DeveloperMockup: React.FC<DeveloperMockupProps> = ({ items }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className={`text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${
+          className={`mb-4 bg-gradient-to-r bg-clip-text text-4xl font-bold text-transparent md:text-5xl ${
             isDark
               ? "from-white via-gray-300 to-white"
               : "from-black via-gray-700 to-black"
@@ -45,7 +45,7 @@ const DeveloperMockup: React.FC<DeveloperMockupProps> = ({ items }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className={`text-lg max-w-2xl mx-auto ${
+          className={`mx-auto max-w-2xl text-lg ${
             isDark ? "text-gray-300" : "text-gray-600"
           }`}
         >
@@ -58,26 +58,26 @@ const DeveloperMockup: React.FC<DeveloperMockupProps> = ({ items }) => {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.3 }}
-        className={`max-w-7xl mx-auto p-8 rounded-3xl shadow-2xl backdrop-blur-sm ${
+        className={`mx-auto max-w-7xl rounded-3xl p-8 shadow-2xl backdrop-blur-sm ${
           isDark
-            ? "bg-gray-900/90 border border-gray-700"
-            : "bg-white/90 border border-gray-200"
+            ? "border border-gray-700 bg-gray-900/90"
+            : "border border-gray-200 bg-white/90"
         }`}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 h-[700px]">
+        <div className="grid h-[700px] grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Enhanced Sidebar */}
           <div
             className={`lg:col-span-4 ${
               isDark
                 ? "bg-gradient-to-b from-gray-800 to-gray-900"
                 : "bg-gradient-to-b from-gray-50 to-gray-100"
-            } rounded-2xl p-6 overflow-y-auto border ${
+            } overflow-y-auto rounded-2xl border p-6 ${
               isDark ? "border-gray-700" : "border-gray-200"
             }`}
           >
-            <div className="flex items-center mb-6">
+            <div className="mb-6 flex items-center">
               <div
-                className={`w-3 h-3 rounded-full bg-green-500 mr-3 animate-pulse`}
+                className={`mr-3 h-3 w-3 animate-pulse rounded-full bg-green-500`}
               ></div>
               <h3
                 className={`text-xl font-bold ${
@@ -95,18 +95,18 @@ const DeveloperMockup: React.FC<DeveloperMockupProps> = ({ items }) => {
                   whileHover={{ scale: 1.02, x: 4 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setActiveIndex(index)}
-                  className={`relative p-5 rounded-xl cursor-pointer transition-all duration-300 overflow-hidden ${
+                  className={`relative cursor-pointer overflow-hidden rounded-xl p-5 transition-all duration-300 ${
                     activeIndex === index
-                      ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-xl transform scale-105"
+                      ? "scale-105 transform bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-xl"
                       : isDark
-                        ? "bg-gray-700/50 hover:bg-gray-600/70 text-gray-200 border border-gray-600"
-                        : "bg-white hover:bg-gray-50 text-gray-700 shadow-md border border-gray-200"
+                        ? "border border-gray-600 bg-gray-700/50 text-gray-200 hover:bg-gray-600/70"
+                        : "border border-gray-200 bg-white text-gray-700 shadow-md hover:bg-gray-50"
                   }`}
                 >
                   {activeIndex === index && (
                     <motion.div
                       layoutId="activeBackground"
-                      className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl"
+                      className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600"
                       transition={{
                         type: "spring",
                         bounce: 0.2,
@@ -117,7 +117,7 @@ const DeveloperMockup: React.FC<DeveloperMockupProps> = ({ items }) => {
 
                   <div className="relative z-10 flex items-start justify-between">
                     <div className="flex-1">
-                      <h4 className="font-semibold text-base mb-2 leading-tight">
+                      <h4 className="mb-2 text-base leading-tight font-semibold">
                         {item.title}
                       </h4>
                       <p
@@ -133,7 +133,7 @@ const DeveloperMockup: React.FC<DeveloperMockupProps> = ({ items }) => {
                       </p>
                     </div>
                     <div
-                      className={`ml-4 w-3 h-3 rounded-full flex-shrink-0 mt-1 ${
+                      className={`mt-1 ml-4 h-3 w-3 flex-shrink-0 rounded-full ${
                         activeIndex === index
                           ? "bg-white shadow-lg"
                           : "bg-gray-400"
@@ -145,7 +145,7 @@ const DeveloperMockup: React.FC<DeveloperMockupProps> = ({ items }) => {
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: "100%" }}
-                      className="absolute bottom-0 left-0 h-1 bg-white/30 rounded-full"
+                      className="absolute bottom-0 left-0 h-1 rounded-full bg-white/30"
                     />
                   )}
                 </motion.div>
@@ -156,38 +156,38 @@ const DeveloperMockup: React.FC<DeveloperMockupProps> = ({ items }) => {
           {/* Enhanced Main Screen */}
           <div className="lg:col-span-8">
             <div
-              className={`h-full rounded-2xl overflow-hidden shadow-2xl border ${
+              className={`h-full overflow-hidden rounded-2xl border shadow-2xl ${
                 isDark
-                  ? "bg-gray-800 border-gray-700"
-                  : "bg-white border-gray-200"
+                  ? "border-gray-700 bg-gray-800"
+                  : "border-gray-200 bg-white"
               }`}
             >
               {/* Enhanced Browser Header */}
               <div
-                className={`flex items-center px-6 py-4 border-b backdrop-blur-sm ${
+                className={`flex items-center border-b px-6 py-4 backdrop-blur-sm ${
                   isDark
-                    ? "bg-gray-700/80 border-gray-600"
-                    : "bg-gray-100/80 border-gray-300"
+                    ? "border-gray-600 bg-gray-700/80"
+                    : "border-gray-300 bg-gray-100/80"
                 }`}
               >
-                <div className="flex space-x-2 mr-4">
-                  <div className="w-3 h-3 rounded-full bg-red-500 hover:bg-red-400 transition-colors cursor-pointer"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-400 transition-colors cursor-pointer"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500 hover:bg-green-400 transition-colors cursor-pointer"></div>
+                <div className="mr-4 flex space-x-2">
+                  <div className="h-3 w-3 cursor-pointer rounded-full bg-red-500 transition-colors hover:bg-red-400"></div>
+                  <div className="h-3 w-3 cursor-pointer rounded-full bg-yellow-500 transition-colors hover:bg-yellow-400"></div>
+                  <div className="h-3 w-3 cursor-pointer rounded-full bg-green-500 transition-colors hover:bg-green-400"></div>
                 </div>
                 <div
-                  className={`flex-1 mx-4 px-4 py-2 rounded-lg text-sm font-mono flex items-center ${
+                  className={`mx-4 flex flex-1 items-center rounded-lg px-4 py-2 font-mono text-sm ${
                     isDark
                       ? "bg-gray-600 text-gray-300"
                       : "bg-white text-gray-600 shadow-inner"
                   }`}
                 >
-                  <span className="text-green-500 mr-2">🔒</span>
+                  <span className="mr-2 text-green-500">🔒</span>
                   github.com/recodehive/
                   {items[activeIndex]?.title.toLowerCase().replace(/\s+/g, "-")}
                 </div>
                 <div
-                  className={`px-3 py-1 rounded-md text-xs ${
+                  className={`rounded-md px-3 py-1 text-xs ${
                     isDark
                       ? "bg-green-600 text-white"
                       : "bg-green-100 text-green-700"
@@ -209,34 +209,34 @@ const DeveloperMockup: React.FC<DeveloperMockupProps> = ({ items }) => {
                   <img
                     src={items[activeIndex]?.image}
                     alt={items[activeIndex]?.title}
-                    className="w-full h-full object-cover"
+                    className="h-full w-full object-cover"
                   />
 
                   {/* Enhanced Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent">
-                    <div className="absolute bottom-0 left-0 right-0 p-8">
+                    <div className="absolute right-0 bottom-0 left-0 p-8">
                       <motion.div
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.6 }}
                         className="text-white"
                       >
-                        <div className="flex items-center mb-3">
-                          <div className="w-2 h-2 bg-green-400 rounded-full mr-3 animate-pulse"></div>
+                        <div className="mb-3 flex items-center">
+                          <div className="mr-3 h-2 w-2 animate-pulse rounded-full bg-green-400"></div>
                           <span className="text-sm font-medium text-green-400">
                             Active Project
                           </span>
                         </div>
-                        <h3 className="text-3xl font-bold mb-3 leading-tight">
+                        <h3 className="mb-3 text-3xl leading-tight font-bold">
                           {items[activeIndex]?.title}
                         </h3>
-                        <p className="text-gray-200 text-base leading-relaxed max-w-2xl">
+                        <p className="max-w-2xl text-base leading-relaxed text-gray-200">
                           {items[activeIndex]?.description}
                         </p>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
-                          className="mt-4 px-6 py-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-lg text-white font-medium hover:bg-white/30 transition-all duration-300"
+                          className="mt-4 rounded-lg border border-white/30 bg-white/20 px-6 py-2 font-medium text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/30"
                         >
                           View Project →
                         </motion.button>

@@ -29,7 +29,7 @@ const FirebaseAuthGithub: React.FC = () => {
     return (
       <div
         style={{ textAlign: "center" }}
-        className="flex justify-center items-center gap-5 p-0"
+        className="flex items-center justify-center gap-5 p-0"
       >
         <img
           src={user.photoURL || ""}
@@ -39,7 +39,7 @@ const FirebaseAuthGithub: React.FC = () => {
         <br />
         <button
           onClick={() => auth.signOut()}
-          className="bg-gray-900 hover:bg-gray-700 text-white px-4 py-1 rounded flex items-center gap-2 transition-colors duration-200 shadow-md font-semibold"
+          className="flex cursor-pointer items-center gap-2 rounded bg-gray-900 px-4 py-1 font-semibold text-white shadow-md transition-colors duration-200 hover:bg-gray-700"
         >
           <svg
             height="20"
@@ -73,11 +73,11 @@ const FirebaseAuthGithub: React.FC = () => {
   return (
     <div
       style={{ textAlign: "center" }}
-      className="flex justify-center items-center gap-5 p-0"
+      className="flex items-center justify-center gap-5 p-0"
     >
       <button
         onClick={handleGithubSignIn}
-        className="bg-black text-white px-4 py-2 rounded flex items-center gap-2"
+        className="flex cursor-pointer items-center gap-2 rounded bg-[#1f1e1e] px-4 py-2 text-white hover:bg-[#2c2c2c]"
       >
         <svg
           height="24"
