@@ -846,6 +846,32 @@ html[data-theme="light"] .interview-prep-page .technical-outer {
   z-index: 10 !important;
 }
 
+/* Companies tab: use white gradients in light mode and remove overlays */
+[data-theme="light"] .company-outer {
+  background-image: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  isolation: isolate !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+}
+
+/* hide the subtle pattern overlay added inside the component */
+[data-theme="light"] .company-outer > .absolute.inset-0,
+[data-theme="light"] .company-outer .absolute.inset-0.opacity-5 {
+  display: none !important;
+  background: none !important;
+  opacity: 1 !important;
+}
+
+/* ensure badges & inner panels render normally */
+[data-theme="light"] .company-outer,
+[data-theme="light"] .company-outer * {
+  mix-blend-mode: normal !important;
+  background-blend-mode: normal !important;
+}
+
 /*==== SECTION 13 Modern Blog Enhancements ======*/
 .modern-gradient-bg {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -1590,4 +1616,20 @@ a {
 html[data-theme="light"] .bg-gradient-to-r.from-blue-50.to-purple-50 {
   background-image: none !important;
   background-color: #ffffff !important;
+}
+
+/* Companies: force white/near-white surface in light mode for .company-outer */
+html[data-theme="light"] .company-outer {
+  background-image: linear-gradient(135deg,#ffffff 0%, #f8fafc 100%) !important;
+  background-color: #ffffff !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+  isolation: isolate !important;
+}
+html[data-theme="light"] .company-outer::before,
+html[data-theme="light"] .company-outer::after {
+  display: none !important;
+  background: none !important;
+  content: none !important;
 }

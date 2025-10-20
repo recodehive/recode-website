@@ -131,7 +131,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
       </motion.div>
 
       <motion.div
-        className="relative bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900/50 dark:via-blue-900/20 dark:to-indigo-900/20 rounded-3xl p-12 mb-16 overflow-hidden border company-blue-border"
+        className="company-outer relative bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-900/50 dark:via-blue-900/20 dark:to-indigo-900/20 rounded-3xl p-12 mb-16 overflow-hidden border company-blue-border"
         variants={fadeIn}
       >
         {/* Background pattern */}
@@ -340,7 +340,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
             <motion.div key={companyIndex} variants={fadeIn} className="group">
               <Card className="overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] border-0">
                 {/* --------- HEADER --------- */}
-                <CardHeader className="pb-6 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-800 dark:via-blue-900/20 dark:to-indigo-900/20 relative">
+                <CardHeader className="company-outer pb-6 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-800 dark:via-blue-900/20 dark:to-indigo-900/20 relative">
                   {/* Background pattern */}
                   <div className="absolute inset-0 opacity-5">
                     <div
