@@ -24,8 +24,6 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const core = require('@actions/core');
-            
             const prNumber = context.payload.pull_request.number;
             const prTitle = context.payload.pull_request.title || '';
             const prBody = context.payload.pull_request.body || '';
