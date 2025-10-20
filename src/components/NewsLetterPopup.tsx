@@ -38,7 +38,7 @@ const NewsletterPopup = () => {
           className="mx-auto mb-4 h-16 w-16 rounded-full shadow-md"
         />
 
-        <h2 className="mb-2 text-3xl font-extrabold text-gray-900">
+        <h2 className="mb-2 text-3xl font-extrabold text-gray-900!">
           Sanjay’s Substack
         </h2>
 
