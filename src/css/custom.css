@@ -835,6 +835,17 @@ html.theme-light .text-gray-900 {
   background-color: #ffffff !important;
 }
 
+/* Ensure the specific block is forced light in light mode */
+html[data-theme="light"] .interview-prep-page .technical-outer {
+  background-image: linear-gradient(135deg,#eff6ff 0%, #f8fafc 100%) !important;
+  background-color: #ffffff !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  mix-blend-mode: normal !important;
+  isolation: isolate !important;
+  z-index: 10 !important;
+}
+
 /*==== SECTION 13 Modern Blog Enhancements ======*/
 .modern-gradient-bg {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -1573,4 +1584,10 @@ a {
   background-color: #f3f4f6 !important; /* gray-100 */
   color: #1f2937 !important; /* gray-800 */
   z-index: 50;
+}
+
+/* Force removal of that Tailwind gradient in light mode */
+html[data-theme="light"] .bg-gradient-to-r.from-blue-50.to-purple-50 {
+  background-image: none !important;
+  background-color: #ffffff !important;
 }
