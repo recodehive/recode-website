@@ -291,7 +291,16 @@ html[data-theme="light"] {
 
 .stat-label {
   font-size: 14px;
-  color: var(--podcast-text-dim);
+  background: linear-gradient(
+    135deg,
+    var(--podcast-text-primary) 0%,
+    var(--podcast-text-secondary) 30%,
+    var(--podcast-text-muted) 60%,
+    var(--podcast-text-dim) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
