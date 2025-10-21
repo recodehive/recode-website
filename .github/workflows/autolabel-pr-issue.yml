@@ -53,9 +53,16 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             // Safely parse outputs
-            const issuesOutput = ${{ steps.extract-issues.outputs.issues }} || '[]';
-            const issueNumbers = JSON.parse(issuesOutput);
-            const prNumber = parseInt(${{ steps.extract-issues.outputs.pr }});
+            const issuesOutput = '${{ steps.extract-issues.outputs.issues }}' || '[]';
+            let issueNumbers;
+            try {
+              issueNumbers = JSON.parse(issuesOutput);
+            } catch (err) {
+              console.error('Failed to parse issues output:', issuesOutput);
+              issueNumbers = [];
+            }
+            const prNumber = parseInt('${{ steps.extract-issues.outputs.pr }}');
+  
 
             if (issueNumbers.length === 0) {
               console.log("No linked issues found");
