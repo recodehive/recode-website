@@ -971,7 +971,7 @@ table tr:last-child td:last-child {
 }
 
 .certBadge {
-  flex: 0 0 200px;
+  flex: 0 0 auto;
   padding: 1rem;
   display: flex;
   justify-content: center;
@@ -997,7 +997,7 @@ table tr:last-child td:last-child {
 }
 
 .certBadge img {
-  width: 180px;
+  width: 200px;
   height: 180px;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
