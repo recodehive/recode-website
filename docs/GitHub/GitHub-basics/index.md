@@ -10,7 +10,7 @@ description: Learn the fundamentals of Git and GitHub — forking, commits, pull
 
 Welcome to the GitHub Basics section. This collection is designed to help beginners get comfortable with Git, GitHub workflows, and making their first open-source contributions.
 
-Whether you're completely new or need a refresher, these guides walk you through practical steps with examples so you can start contributing confidently.
+Whether you're completely new or need a refresher, these guides will walk you through practical steps with examples so you can start contributing confidently.
 
 ## What you'll learn
 
