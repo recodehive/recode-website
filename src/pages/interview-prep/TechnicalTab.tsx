@@ -385,7 +385,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
 
       {/* Tips & Best Practices */}
       <motion.div
-        className="rounded-2xl bg-gradient-to-r from-blue-50 to-purple-50 p-8 dark:from-gray-800 dark:to-gray-700"
+        className="rounded-2xl border border-blue-100 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-8 dark:border-blue-800 dark:from-blue-900/20 dark:via-indigo-900/20 dark:to-purple-900/20"
         variants={fadeIn}
       >
         <h3 className="mb-6 text-center text-2xl font-bold text-gray-900 dark:text-white">
@@ -394,7 +394,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
         <div className="grid gap-6 md:grid-cols-2">
           <div className="space-y-4">
             <div className="flex items-start space-x-3">
-              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500">
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-500">
                 <span className="text-xs font-bold text-white">1</span>
               </div>
               <div>
@@ -408,7 +408,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500">
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-500">
                 <span className="text-xs font-bold text-white">2</span>
               </div>
               <div>
@@ -422,7 +422,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500">
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-500">
                 <span className="text-xs font-bold text-white">3</span>
               </div>
               <div>
@@ -438,7 +438,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
           </div>
           <div className="space-y-4">
             <div className="flex items-start space-x-3">
-              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-purple-500">
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-500">
                 <span className="text-xs font-bold text-white">4</span>
               </div>
               <div>
@@ -452,7 +452,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-purple-500">
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500">
                 <span className="text-xs font-bold text-white">5</span>
               </div>
               <div>
@@ -465,7 +465,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
               </div>
             </div>
             <div className="flex items-start space-x-3">
-              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-purple-500">
+              <div className="mt-1 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-pink-500">
                 <span className="text-xs font-bold text-white">6</span>
               </div>
               <div>
