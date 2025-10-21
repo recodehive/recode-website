@@ -101,7 +101,7 @@ export default function PRListModal({
     return () => {
       window.removeEventListener("keydown", handleEsc);
     };
-  }, [isOpen])
+  }, [isOpen]);
 
   return (
     <AnimatePresence>

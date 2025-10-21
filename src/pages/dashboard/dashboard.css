@@ -12,7 +12,7 @@
   position: fixed;
   top: 70px;
   left: 20px;
-  z-index: 1100;
+  z-index: 100;
   background: var(--ifm-color-primary);
   color: white;
   border: none;
@@ -32,7 +32,7 @@
 }
 
 .dashboard-menu-btn.open {
-  background: #dc3545;
+  display: none;
 }
 
 /* Mobile Menu */
@@ -62,7 +62,7 @@
   z-index: 1051;
 }
 
-.dashboard-mobile-menu > div:last-child {
+.dashboard-mobile-menu>div:last-child {
   position: absolute;
   top: 0;
   left: 0;
@@ -76,7 +76,7 @@
   transition: transform 0.3s ease;
 }
 
-.dashboard-mobile-menu.show > div:last-child {
+.dashboard-mobile-menu.show>div:last-child {
   transform: translateX(0);
 }
 
@@ -159,11 +159,11 @@
   display: flex;
   align-items: center;
   padding: 10px;
-  background: var(--ifm-color-emphasis-100);
+  background-color: var(--ifm-color-emphasis-100);
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0s ease;
   color: var(--ifm-color-content);
 }
 
@@ -295,11 +295,9 @@
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(
-    90deg,
-    var(--ifm-color-primary),
-    var(--ifm-color-primary-light)
-  );
+  background: linear-gradient(90deg,
+      var(--ifm-color-primary),
+      var(--ifm-color-primary-light));
 }
 
 .dashboard-stat-card:hover {

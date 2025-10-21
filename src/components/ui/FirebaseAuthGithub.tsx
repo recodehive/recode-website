@@ -77,11 +77,11 @@ const FirebaseAuthGithub: React.FC = () => {
     >
       <button
         onClick={handleGithubSignIn}
-        className="flex cursor-pointer items-center gap-2 rounded bg-[#1f1e1e] px-4 py-2 text-white hover:bg-[#2c2c2c]"
+        className="flex items-center justify-center gap-2 rounded bg-[var(--btn-bg)] px-3 py-1.5 text-xs font-semibold text-[var(--btn-text)] transition-colors duration-300 hover:bg-[var(--btn-hover)] hover:text-[var(--btn-hover-text)] sm:text-sm md:text-base"
       >
         <svg
-          height="24"
-          width="24"
+          height="22"
+          width="22"
           viewBox="0 0 16 16"
           fill="currentColor"
           aria-hidden="true"
