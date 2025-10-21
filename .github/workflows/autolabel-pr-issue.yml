@@ -47,13 +47,15 @@ jobs:
             core.setOutput('pr', prNumber.toString());
 
       - name: Sync Issue Metadata to PR
-        if: steps.extract-issues.outputs.issues != '[]'
+        if: steps.extract-issues.outputs.issues != '' && steps.extract-issues.outputs.issues != '[]'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issueNumbers = JSON.parse('${{ steps.extract-issues.outputs.issues }}');
-            const prNumber = parseInt('${{ steps.extract-issues.outputs.pr }}');
+            // Safely parse outputs
+            const issuesOutput = ${{ steps.extract-issues.outputs.issues }} || '[]';
+            const issueNumbers = JSON.parse(issuesOutput);
+            const prNumber = parseInt(${{ steps.extract-issues.outputs.pr }});
 
             if (issueNumbers.length === 0) {
               console.log("No linked issues found");
@@ -68,9 +70,9 @@ jobs:
                   repo: context.repo.repo,
                   issue_number: parseInt(issueNumber)
                 });
-                
+
                 console.log(`Syncing metadata from Issue #${issueNumber} to PR #${prNumber}`);
-                
+
                 // --- Sync Labels ---
                 const issueLabels = issue.labels.map(l => l.name);
                 const { data: pr } = await github.rest.pulls.get({
@@ -80,7 +82,7 @@ jobs:
                 });
                 const currentPRLabels = pr.labels.map(l => l.name);
                 const combinedLabels = Array.from(new Set([...currentPRLabels, ...issueLabels]));
-                
+
                 if (combinedLabels.length > 0) {
                   await github.rest.issues.setLabels({
                     owner: context.repo.owner,
@@ -90,7 +92,7 @@ jobs:
                   });
                   console.log(`Labels applied: ${combinedLabels.join(', ')}`);
                 }
-                
+
                 // --- Sync Milestone ---
                 if (issue.milestone) {
                   await github.rest.issues.update({
@@ -101,14 +103,15 @@ jobs:
                   });
                   console.log(`Milestone synced: ${issue.milestone.title}`);
                 }
-                
-                // --- Add a comment on PR ---
+
+                // --- Add comment on PR ---
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: prNumber,
                   body: `✅ Synchronized metadata from Issue #${issueNumber}:\n- Labels: ${issueLabels.length > 0 ? issueLabels.join(', ') : 'None'}\n- Milestone: ${issue.milestone ? issue.milestone.title : 'None'}`
                 });
+
               } catch (error) {
                 console.error(`Error syncing issue #${issueNumber} to PR #${prNumber}:`, error.message);
               }
