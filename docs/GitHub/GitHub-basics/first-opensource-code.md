@@ -26,7 +26,7 @@ Open source software is code that is freely available for anyone to view, use, m
 ## Prerequisites
 
 Before starting, make sure you have:
-- A GitHub account. (create one at [github.com](https://github.com))
+- A GitHub account (create one at [github.com](https://github.com))
 - Basic understanding of Git and GitHub concepts.
 - Willingness to learn and contribute!
 
