@@ -12,7 +12,7 @@ HTML (Hypertext Markup Language) is the standard markup language for creating we
 ## Prerequisites
 
 1. You should have a GitHub account.
-2. You Should have a basic understanding of how Git works and ensure Git is installed and running on your operating system.
+2. You should have a basic understanding of how Git works and ensure Git is installed and running on your operating system.
 
 
 
