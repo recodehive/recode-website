@@ -68,6 +68,17 @@ const sidebars: SidebarsConfig = {
             "GitHub/Maintainer-guide/enable-dicussion",
           ],
         },
+        {
+          type: "category",
+          label: "🎨 Fun Proflie Contributions",
+          className: "custom-sidebar-fun",
+          items: [
+            "GitHub/Fun-profile-contributions/Why-Customize",
+            "GitHub/Fun-profile-contributions/Anurag-Hazra's-GitHub-Readme-Cards",
+            "GitHub/Fun-profile-contributions/Trophy Case-Streaks",
+            "GitHub/Fun-profile-contributions/Snake-Contribution-Animation",
+          ]
+        }
       ],
     },
     {
