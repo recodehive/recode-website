@@ -11,26 +11,27 @@ HTML (Hypertext Markup Language) is the standard markup language for creating we
 
 ## Prerequisites
 
-You should have a Github account 2. Should have a basic understanding of how Git works/ and Git running in your OS.
+1. You should have a GitHub account.
+2. You should have a basic understanding of how Git works and ensure Git is installed and running on your operating system.
 
 
 
 ### How to create Github Repository
 
-Step 1: Go to Git hub and create a new Repository.
+Step 1: Go to GitHub and create a new Repository.
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/1-GitHub-repo.png)](https://github.com/sanjay-kv)
     </BrowserWindow>
 <br />
 
-Step 2: Specify the Name of the Project, make It public or primate, check on the readme file. Then click on Create repository on the button below.
+Step 2: Specify the name of your project, make it public or private, check the option to include a README file. Then click on Create repository on the button below.
 
 
     <BrowserWindow url="https://github.com/new" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/2-repo-create-github.png)](https://github.com/sanjay-kv)
     </BrowserWindow>
-Upon creation you will get a screen like this below, the explanation of each elements is mentioned below. 
+Once the repository is created, you'll see a screen similar to the one below, the explanation for each element is provided below. 
  
   ```html title="create a new repository on the command line"
 echo "# demo-repo" >> README.md
@@ -76,7 +77,7 @@ When the above HTML code is rendered in a browser, it will display the following
      [![GitHub](./assets/14-git-command-add.png)](https://github.com/sanjay-kv)
     </BrowserWindow>
 
-Now you can see the new file been added in your local system
+Now you can see the new file has been added to your local system
 
 When the above HTML code is rendered in a browser, it will display the following content:
 
@@ -88,7 +89,7 @@ When the above HTML code is rendered in a browser, it will display the following
 
 When the above HTML code is rendered in a browser, it will display the following content:
 How to push Github Repository?
-Step 10:  Once the work is done click on save and open cmd/ terminal
+Step 10:  Once the work is done, click save and open cmd or Terminal
 
     <BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/16-remote-repo.png)](https://github.com/sanjay-kv)
@@ -96,7 +97,8 @@ Step 10:  Once the work is done click on save and open cmd/ terminal
 
 Step 11: Initially when I was creating the repo I used Git add * to add all files in one go.
 
-If you are committing for the first time adding a file in this way you may ask to enter your GitHub email id and username to proceed. The screenshot will be the same as below. and then while you enter the push command it will ask you browser prompt to sign in to Github.
+If you are committing for the first time, Git may prompt you to enter your GitHub email id and username to proceed. 
+The screenshot below shows an example of the prompt. After entering these details, when you run the git push command, a browser window may open asking you to sign in to GitHub.
 
   ```html title="create a new repository on the command line"
 git config --global user.email "Enter your github Email"
@@ -112,4 +114,7 @@ git config --global user.name "Github username"
 
 ## Conclusion
 
-In this tutorial, you learned about the syntax and structure of HTML. HTML syntax consists of elements, tags, and attributes that define the structure and content of a web page. An HTML document follows a basic structure with elements like `<!DOCTYPE html>`, `<html>`, `<head>`, `<title>`, `<meta>`, and `<body>`. Understanding HTML syntax and structure is essential for creating web pages and applications.
+In this tutorial, you learned about the syntax and structure of HTML. HTML syntax consists of elements, tags, and attributes that define the structure and content of a web page.
+
+A HTML document follows a basic structure with elements like `<!DOCTYPE html>`, `<html>`, `<head>`, `<title>`, `<meta>`, and `<body>`.
+ Understanding HTML syntax and structure is essential for creating web pages and applications.

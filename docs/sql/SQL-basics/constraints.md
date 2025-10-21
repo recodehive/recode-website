@@ -10,18 +10,18 @@ keywords: [sql, constraints, sql tutorial, sql basics, database management, rela
 
 ## 📙 Welcome to SQL Constraints!
 
-Hey there, new SQL learner! Imagine you are organizing a big toy box, and you want to make sure no toy gets lost or mixed up. Constraints are like special rules you set for your database tables to keep everything in order. They help stop mistakes, like adding a negative age or leaving a name blank. We’ll use a `students` table (with columns like `id`, `name`, and `age`) to show you how it works, step by step!
+Hey there, new SQL learner! Imagine organizing a big toy box and making sure no toy gets lost or mixed up. Constraints are like special rules you set for your database tables to keep everything in order. They help stop mistakes, like adding a negative age or leaving a name blank. We’ll use a `students` table (with columns like `id`, `name`, and `age`) to show you how it works, step by step!
 
 ### 📘 What Are Constraints?
 
 Constraints are like guardrails for your data. They are rules you add to columns in a table to:
-- Stop invalid data (e.g., no negative ages like -5).
+- Prevent invalid data (e.g., no negative ages like -5).
 - Make sure some data is unique (e.g., no two students with the same ID).
 - Keep everything consistent across your database.
 
-There are several types of constraints, like NOT NULL, UNIQUE, CHECK, and DEFAULT. Let’s explore each one with easy examples!
+There are several types of constraints, like NOT NULL, UNIQUE, CHECK, and DEFAULT. Let’s explore each type with simple examples!
 
-> **Pro Tip**: Adding constraints when you create a table is a smart way to catch mistakes early—think of it as setting up rules before the game starts!
+> 💡 **Pro Tip**: Add constraints when creating tables to catch mistakes early—like setting the rules before the game begins!
 
 ### 📘 NOT NULL Constraint (No Empty Spots!)
 
@@ -52,7 +52,7 @@ INSERT INTO students (id, name, age) VALUES (1, 'Alice', 20); -- This works!
 </Tabs>
 :::
 
-> **What NOT to Do**: Don’t skip NOT NULL on important columns like names or IDs—leaving them blank can mess up your records and make it hard to find data later!
+> **What NOT to Do**: Always use NOT NULL for critical fields like names or IDs—leaving them blank can mess up your records and make it data harder to track.
 
 ### 🔄 UNIQUE Constraint (No Doubles Allowed!)
 
@@ -112,7 +112,7 @@ INSERT INTO students (id, age) VALUES (1, 20); -- Works!
 </Tabs>
 :::
 
-> **What NOT to Do**: Don’t make the CHECK rule too strict (e.g., age > 100)—you might block real data and frustrate yourself!
+> **What NOT to Do**: Avoid overly strict CHECK rules too (e.g., age > 100)—you might block valid data and frustrate yourself!
 
 ### 🔄 DEFAULT Constraint (Auto-Fill Magic!)
 
