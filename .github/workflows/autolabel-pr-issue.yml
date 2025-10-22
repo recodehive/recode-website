@@ -15,9 +15,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout repository
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Step 2: Extract linked issues from PR
       - name: Extract linked issue(s) from PR
         id: extract-issues
         uses: actions/github-script@v7
@@ -27,8 +29,8 @@ jobs:
             const prNumber = context.payload.pull_request.number;
             const prTitle = context.payload.pull_request.title || '';
             const prBody = context.payload.pull_request.body || '';
-            
-            // Regex patterns for issue references
+
+            // Regex patterns to find linked issues
             const patterns = [
               /(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s+#(\d+)/gi,
               /#(\d+)/g
@@ -42,56 +44,67 @@ jobs:
                 issueNumbers.add(match[1]);
               }
             }
-            
-            // Use core.setOutput instead of return
+
             core.setOutput('issues', JSON.stringify(Array.from(issueNumbers)));
             core.setOutput('pr', prNumber.toString());
 
+      # Step 3: Sync issue metadata to PR safely
       - name: Sync Issue Metadata to PR
-        if: steps.extract-issues.outputs.issues != '[]'
+        if: steps.extract-issues.outputs.issues != '' && steps.extract-issues.outputs.issues != '[]'
         uses: actions/github-script@v7
+        env:
+          ISSUES_JSON: ${{ steps.extract-issues.outputs.issues }}
+          PR_NUMBER: ${{ steps.extract-issues.outputs.pr }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issueNumbers = JSON.parse('${{ steps.extract-issues.outputs.issues }}');
-            const prNumber = parseInt('${{ steps.extract-issues.outputs.pr }}');
-            
-            if (issueNumbers.length === 0) {
-              console.log("No linked issues found");
+            // Read inputs from environment variables to avoid YAML quoting issues
+            const issuesOutput = process.env.ISSUES_JSON || '[]';
+            const prNumber = parseInt(process.env.PR_NUMBER, 10);
+
+            let issues = [];
+            try {
+              issues = JSON.parse(issuesOutput);
+            } catch (e) {
+              // Clean extra quotes/newlines
+              const cleaned = issuesOutput.replace(/^\s*['"]?/, '').replace(/['"]?\s*$/, '');
+              try {
+                issues = JSON.parse(cleaned);
+              } catch (err) {
+                console.error('Failed to parse issues output:', err.message);
+                console.error('Raw issues output:', JSON.stringify(issuesOutput));
+                return;
+              }
+            }
+
+            if (!Array.isArray(issues) || issues.length === 0) {
+              console.log('No linked issues found');
               return;
             }
-            
-            for (const issueNumber of issueNumbers) {
+
+            for (const issueNumber of issues) {
               try {
-                // Fetch issue
+                // Fetch issue details
                 const { data: issue } = await github.rest.issues.get({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
-                  issue_number: parseInt(issueNumber)
+                  issue_number: parseInt(issueNumber, 10)
                 });
                 
                 console.log(`Syncing metadata from Issue #${issueNumber} to PR #${prNumber}`);
-                
-                // --- Sync Labels ---
-                const issueLabels = issue.labels.map(l => l.name);
-                const { data: pr } = await github.rest.pulls.get({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  pull_number: prNumber
-                });
-                const currentPRLabels = pr.labels.map(l => l.name);
-                const combinedLabels = Array.from(new Set([...currentPRLabels, ...issueLabels]));
-                
-                if (combinedLabels.length > 0) {
-                  await github.rest.issues.setLabels({
+
+                // --- Sync Labels safely using addLabels ---
+                const issueLabels = Array.isArray(issue.labels) ? issue.labels.map(l => l.name) : [];
+                if (issueLabels.length > 0) {
+                  await github.rest.issues.addLabels({
                     owner: context.repo.owner,
                     repo: context.repo.repo,
                     issue_number: prNumber,
-                    labels: combinedLabels
+                    labels: issueLabels
                   });
-                  console.log(`Labels applied: ${combinedLabels.join(', ')}`);
+                  console.log(`Labels added from issue: ${issueLabels.join(', ')}`);
                 }
-                
+
                 // --- Sync Milestone ---
                 if (issue.milestone) {
                   await github.rest.issues.update({
@@ -102,8 +115,8 @@ jobs:
                   });
                   console.log(`Milestone synced: ${issue.milestone.title}`);
                 }
-                
-                // --- Add a comment on PR ---
+
+                // --- Add comment on PR ---
                 await github.rest.issues.createComment({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
@@ -111,6 +124,6 @@ jobs:
                   body: `✅ Synchronized metadata from Issue #${issueNumber}:\n- Labels: ${issueLabels.length > 0 ? issueLabels.join(', ') : 'None'}\n- Milestone: ${issue.milestone ? issue.milestone.title : 'None'}`
                 });
               } catch (error) {
-                console.error(`Error syncing issue #${issueNumber} to PR #${prNumber}:`, error.message);
+                console.error(`Error syncing issue #${issueNumber} to PR #${prNumber}:`, error);
               }
             }
