@@ -529,7 +529,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
             </motion.select>
           </div>
           <motion.div
-            className="rounded-xl border border-gray-200 bg-gradient-to-r from-gray-100 to-slate-100 px-6 py-3 text-sm font-bold text-gray-800 shadow-lg dark:border-gray-600 dark:from-gray-700 dark:to-slate-700 dark:text-gray-200"
+            className="rounded-xl bg-blue-100 px-6 py-3 text-sm font-bold text-blue-800 shadow-lg dark:bg-blue-900/30 dark:text-blue-300"
             whileHover={{ scale: 1.05 }}
           >
             <span className="font-black text-blue-600 dark:text-blue-400">
@@ -626,7 +626,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                       {question.difficulty}
                     </motion.span>
                     <motion.div
-                      className="rounded-full border border-gray-200 bg-gradient-to-r from-gray-100 to-slate-100 px-3 py-2 text-xs font-bold text-gray-500 shadow-lg dark:border-gray-600 dark:from-gray-700 dark:to-slate-700 dark:text-gray-400"
+                      className="rounded-full bg-blue-100 px-3 py-2 text-xs font-bold text-blue-800 shadow-lg dark:bg-blue-900/30 dark:text-blue-300"
                       whileHover={{ scale: 1.05 }}
                     >
                       ~{question.estimatedTime}min
@@ -664,7 +664,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
                 {question.category && (
                   <div className="mb-6 flex items-center space-x-3">
                     <span className="text-lg text-gray-400">📂</span>
-                    <span className="rounded-full bg-gray-100 px-3 py-1 text-sm font-bold text-gray-800 dark:bg-gray-700 dark:text-gray-200">
+                    <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-bold text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
                       {question.category}
                     </span>
                   </div>
@@ -1012,7 +1012,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
       </div>
 
       <motion.div
-        className="rounded-3xl border-2 border-gray-200/50 bg-gradient-to-br from-gray-50 via-slate-50 to-gray-100 p-10 shadow-2xl backdrop-blur-sm dark:border-gray-600/50 dark:from-gray-800 dark:via-slate-800 dark:to-gray-700"
+        className="rounded-3xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-10 shadow-2xl backdrop-blur-sm dark:border-indigo-700 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-pink-900/20"
         variants={fadeIn}
       >
         <motion.h3
@@ -1052,13 +1052,21 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
           ].map((feature, index) => (
             <motion.div
               key={index}
-              className="group rounded-2xl border-2 border-gray-200/50 bg-white/80 p-8 text-center shadow-xl backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800/80"
+              className="group rounded-2xl border-2 border-gray-200/50 bg-white/90 p-8 text-center shadow-xl backdrop-blur-sm transition-all duration-500 hover:shadow-2xl dark:border-gray-700/50 dark:bg-gray-800/90"
               whileHover={{ scale: 1.05, y: -5 }}
               variants={scaleIn}
               custom={index}
             >
               <motion.div
-                className={`h-20 w-20 bg-gradient-to-br from-${feature.color}-100 to-${feature.color}-200 dark:from-${feature.color}-900/40 dark:to-${feature.color}-800/50 mx-auto mb-6 flex items-center justify-center rounded-2xl border shadow-lg border-${feature.color}-200 dark:border-${feature.color}-700 transition-transform duration-300 group-hover:scale-110`}
+                className={`mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl shadow-lg transition-transform duration-300 group-hover:scale-110 ${
+                  feature.color === "blue"
+                    ? "border-2 border-blue-200 bg-gradient-to-br from-blue-100 to-blue-200 dark:border-blue-700 dark:from-blue-900/40 dark:to-blue-800/50"
+                    : feature.color === "green"
+                      ? "border-2 border-green-200 bg-gradient-to-br from-green-100 to-green-200 dark:border-green-700 dark:from-green-900/40 dark:to-green-800/50"
+                      : feature.color === "purple"
+                        ? "border-2 border-purple-200 bg-gradient-to-br from-purple-100 to-purple-200 dark:border-purple-700 dark:from-purple-900/40 dark:to-purple-800/50"
+                        : "border-2 border-orange-200 bg-gradient-to-br from-orange-100 to-orange-200 dark:border-orange-700 dark:from-orange-900/40 dark:to-orange-800/50"
+                }`}
                 whileHover={{ rotate: [0, -10, 10, 0] }}
                 transition={{ duration: 0.5 }}
               >
