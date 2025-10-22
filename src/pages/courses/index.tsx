@@ -81,31 +81,31 @@ const testimonials = [
 const courses = [
   {
     number: "01",
-    title: "Python for Data Engineering",
+    title: "Python for Data Engineering (Coming Soon)",
     desc: "Learn to harness the power of Python for transforming and processing data at scale in our hands-on 'Python for Data Engineering' course. Build the skills needed to design robust data pipelines and optimize data workflows effectively.",
     img: "https://dummyimage.com/300x150/222/fff&text=Python+for+DE",
   },
   {
     number: "02",
-    title: "SQL for Data Engineering",
+    title: "SQL for Data Engineering (Coming Soon)",
     desc: "Unlock the potential of data manipulation and management with our 'SQL for Data Engineering' course. Gain proficiency in crafting and optimizing complex queries to build and maintain efficient data pipelines.",
     img: "https://dummyimage.com/300x150/333/fff&text=SQL+for+DE",
   },
   {
     number: "03",
-    title: "Data Warehouse with Snowflake",
+    title: "Data Warehouse with Snowflake (Coming Soon)",
     desc: "Discover the modern approach to data warehousing using Snowflake in our course. Learn to design, implement, and manage a high-performance data warehouse for seamless analytics and insights.",
     img: "https://dummyimage.com/300x150/444/fff&text=Snowflake",
   },
   {
     number: "04",
-    title: "Spark for Data Engineering",
+    title: "Spark for Data Engineering (Coming Soon)",
     desc: "Learn to leverage the power of Apache Spark for efficient and scalable data engineering in our comprehensive course. Master the art of processing and transforming data to build robust pipelines and drive data-centric applications.",
     img: "https://dummyimage.com/300x150/555/fff&text=Spark+for+DE",
   },
   {
     number: "05",
-    title: "Workflow Orchestration (Airflow, Mage, Prefect)",
+    title: "Workflow Orchestration (Coming Soon)",
     desc: "Explore the world of workflow orchestration with our course covering Airflow, Luigi, Mage, and Prefect. Gain expertise in seamlessly coordinating and automating complex data pipelines for enhanced efficiency and productivity.",
     img: "https://dummyimage.com/300x150/666/fff&text=Workflow+Orchestration",
   },
