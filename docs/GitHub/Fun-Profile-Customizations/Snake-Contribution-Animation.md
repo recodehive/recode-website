@@ -1,4 +1,4 @@
-# Snake Contribution Animation 🐍
+# Snake Contribution Animation
 
 The Snake Contribution Animation is a visually unique and engaging way to represent your yearly activity. This feature adds a looping GIF or SVG of a "snake" chasing and consuming your contribution blocks, creating a dynamic element on your profile.
 
@@ -52,9 +52,9 @@ jobs:
 ```
 Once your workflow runs successfully (you can check the Actions tab on GitHub), the generated file will be saved to your repository. Embed the image in your main README.md using the path where the action saved the file:
 
-```markdown
 ## My 2024 GitHub Activity
 
+```markdown
 ![Snake Animation](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_USERNAME/output/github-snake.svg)
 ```
 

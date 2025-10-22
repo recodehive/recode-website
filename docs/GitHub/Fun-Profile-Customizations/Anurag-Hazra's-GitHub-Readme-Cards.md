@@ -11,14 +11,17 @@ This is the foundational tool for dynamic profile statistics. It uses a serverle
 
 To use these cards, you simply embed them as images in your `README.md`. **Replace `YOUR_USERNAME` with your actual GitHub username.** The code below uses the popular `buefy` theme.
 
-```markdown
 ## My GitHub Stats
 
+```markdowm
 [![GitHub Stats](https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=buefy&hide_rank=true)](https://github.com/anuraghazra/github-readme-stats)
+```
 
 ## Top Languages
 
+```markdown
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=YOUR_USERNAME&layout=compact&theme=buefy&exclude_repo=recode-hive-docs,test-repo)](https://github.com/anuraghazra/github-readme-stats)
+```
 
 ### Customization: Themes and Layouts
 
@@ -53,4 +56,4 @@ This parameter is most commonly used for the Top Languages card to optimize spac
 
 ⚠️ **Important Note on Language Calculations:** The Top Languages card calculates language usage from all public repos you own. To ensure the card accurately reflects your coding focus (and not just boilerplate files), it is strongly recommended to use the &exclude_repo= parameter to ignore repositories containing auto-generated documentation or simple configuration.
 
-🔗 Relevant Repo: ![Anurag Hazra's GitHub Readme Stats](https://github.com/anuraghazra/github-readme-stats)
+🔗 Relevant Repo: <a href="https://github.com/anuraghazra/github-readme-stats">Anurag Hazra's GitHub Readme Stats</a>
