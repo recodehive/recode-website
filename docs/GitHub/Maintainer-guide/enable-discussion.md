@@ -7,29 +7,34 @@ tags: [GitHub, GitHub-development, document-structure, GitHub repo,]
 description: In this tutorial, you will learn about the how to create a GitHub repo by Online GUI interface. 
 ---
 
-In the previous post we spoke about commit, fork, clone, in this post we gonna deep dive into the terminology by creating a GitHub Repository from the Scratch. 
-Inorder to create a project and host, the repository is a place where you add all your program code files and other documentation. 
+In the previous post we spoke about commit, fork, clone, in this post we gonna deep dive into the terminology by creating a GitHub Repository from scratch. 
+In order to create a project and host, the repository is a place where you add all your program code files and other documentation. 
 
 ### Prerequisites
 
-- 1. You should have a Github account 
-- 2. Should have a basic understanding of how Git works/ and Git running in your OS.
+- 1. You must have a GitHub account. 
+- 2. You must also have a basic understanding of how Git works and ensure Git is installed and running on your operating system.
 
-### How to create Github Repository
 
-**Step 1:** Go to GitHub page, by default you will be in the Home page as shown below, Step 1 requires you to click on the ``+`` Icon and from the drop down click on the ``New Repository``.
+### How to create GitHub Repository
+
+**Step 1:** Go to the GitHub website. By default, you will be on the Home page as shown below. Click on the ``+`` icon in the top-right corner, and from the dropdown, select ``New Repository``.
 
     <BrowserWindow url="https://github.com/recodehive/recode-website" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/21-discussion-github.png)](https://github.com/recodehive/recode-website)
     </BrowserWindow>
-**Step 2:** Specify the name of the Project, make It public or private, for this tutorial you will make it public, Once the repository is gone private the project admin have to give permission or manually added other GitHub user to collaborate or make it visible. This is usual application in the organisation level. The next step check on the readme file, this allows you to create a ``readme.md`` file along with the repository creation. Then click on ``Create repository`` on the button below.
+**Step 2:** Specify the name of the project and choose whether to make it public or private. For this tutorial, we’ll make it public.
+
+Once a repository is made private, the project admin must manually grant permission to other GitHub users to collaborate or view it. This is a common practice at the organizational level.
+
+Next, check the box to include a README file—this will automatically create a ``README.md`` file along with the repository. Finally, click on ``Create repository`` at the bottom.
 
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/milestones" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/22-success-dashboard.png)](https://github.com/recodehive/recode-website/milestones)
     </BrowserWindow>
 
-Upon creation you will get a screen like this below, the explanation of each elements is mentioned below. 
+Once the repository is created, you’ll see a screen like the one below. The explanation of each elements is mentioned below.
  
     <BrowserWindow url="https://github.com/recodehive/recode-website/milestones" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/23-github-discussion.png)](https://github.com/recodehive/recode-website/milestones)
@@ -47,7 +52,7 @@ Upon creation you will get a screen like this below, the explanation of each ele
 
 ## Changing Readme and Adding more files.
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file
+I'm going to add my resume and add my name as heading to the ``README.md`` file
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/milestones/new" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/24-start-github-discussion.png)](https://github.com/recodehive/recode-website/milestones/new)
@@ -93,13 +98,13 @@ When the above HTML code is rendered in a browser, it will display the following
 
 ## Committing the changes.
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file
+I'm going to add my resume and add my name as heading to the ``README.md`` file
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/milestones?with_issues=no" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/25-start new discussion.png)](https://github.com/recodehive/recode-website/milestones?with_issues=no)
     </BrowserWindow>
 
-Here is the step where they need adding additional comments
+This is the step where you need to add additional comments.
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/milestones?with_issues=no" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/26-final-discussion.png)](https://github.com/recodehive/recode-website/milestones?with_issues=no)
@@ -111,7 +116,7 @@ https://github.com/sanjay-kv/Git-Demo
 
 ### Now let's upload your resume
 
-Im going to add my resume and add my name as heading to the ``readme.md`` file
+I'm going to add my resume and add my name as heading to the ``README.md`` file
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/issues/21" bodyStyle={{padding: 0}}>    
      [![GitHub](./assets/27-announce-github.png)](https://github.com/recodehive/recode-website/issues/21)
@@ -128,4 +133,5 @@ Now you will be able to see the uploaded resume.
 
 ## Conclusion
 
-In this tutorial, you learned about the syntax and structure of HTML. HTML syntax consists of elements, tags, and attributes that define the structure and content of a web page. An HTML document follows a basic structure with elements like `<!DOCTYPE html>`, `<html>`, `<head>`, `<title>`, `<meta>`, and `<body>`. Understanding HTML syntax and structure is essential for creating web pages and applications.
+In this tutorial, you learned about the syntax and structure of HTML. HTML syntax consists of elements, tags, and attributes that define the structure and content of a web page.
+A HTML document follows a basic structure with elements like `<!DOCTYPE html>`, `<html>`, `<head>`, `<title>`, `<meta>`, and `<body>`. Understanding HTML syntax and structure is essential for creating web pages and applications.

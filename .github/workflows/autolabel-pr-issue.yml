@@ -1,7 +1,7 @@
 name: Sync Issue Metadata to PR
 
 on:
-  pull_request_target:
+  pull_request:  # Changed from pull_request_target for testing
     types: [opened, edited, synchronize, reopened]
 
 permissions:
@@ -35,10 +35,10 @@ jobs:
               /(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?)\s+#(\d+)/gi,
               /#(\d+)/g
             ];
-
+            
             const issueNumbers = new Set();
             const text = prTitle + ' ' + prBody;
-
+            
             for (const pattern of patterns) {
               for (const match of text.matchAll(pattern)) {
                 issueNumbers.add(match[1]);
@@ -90,7 +90,7 @@ jobs:
                   repo: context.repo.repo,
                   issue_number: parseInt(issueNumber, 10)
                 });
-
+                
                 console.log(`Syncing metadata from Issue #${issueNumber} to PR #${prNumber}`);
 
                 // --- Sync Labels safely using addLabels ---
@@ -123,7 +123,6 @@ jobs:
                   issue_number: prNumber,
                   body: `✅ Synchronized metadata from Issue #${issueNumber}:\n- Labels: ${issueLabels.length > 0 ? issueLabels.join(', ') : 'None'}\n- Milestone: ${issue.milestone ? issue.milestone.title : 'None'}`
                 });
-
               } catch (error) {
                 console.error(`Error syncing issue #${issueNumber} to PR #${prNumber}:`, error);
               }

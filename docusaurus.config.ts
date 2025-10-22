@@ -11,7 +11,7 @@ const config: Config = {
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
-  url: "https://recodehive.com",
+  url: "https://www.recodehive.com",
   baseUrl: "/",
 
   organizationName: "recodehive",

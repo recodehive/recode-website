@@ -6,7 +6,7 @@ sidebar_position: 3
 tags:
   [
     sql,
-    introduction of sql,
+    introduction to sql,
     what is sql,
     why learn sql,
     setup sql,

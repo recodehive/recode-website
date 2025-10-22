@@ -131,10 +131,9 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
       </motion.div>
 
       <motion.div
-        className="company-blue-border relative mb-16 overflow-hidden rounded-3xl border bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-12 dark:from-slate-900/50 dark:via-blue-900/20 dark:to-indigo-900/20"
+        className="relative mb-16 overflow-hidden rounded-3xl border bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 p-12 dark:from-slate-900/50 dark:via-blue-900/20 dark:to-indigo-900/20"
         variants={fadeIn}
       >
-        {/* Background pattern */}
         <div className="absolute inset-0 opacity-5">
           <div
             className="absolute inset-0"
@@ -165,7 +164,6 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 description:
                   "Google, Amazon, Meta, Apple, Netflix, Microsoft + emerging unicorns",
                 color: "from-blue-500 to-blue-600",
-                bgColor: "bg-blue-500",
                 stats: "6+ Companies",
               },
               {
@@ -174,7 +172,6 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 description:
                   "System Design, Behavioral, Coding, Product Sense, Leadership",
                 color: "from-green-500 to-green-600",
-                bgColor: "bg-green-500",
                 stats: "5 Categories",
               },
               {
@@ -183,7 +180,6 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 description:
                   "Company culture fit, technical excellence, leadership principles",
                 color: "from-purple-500 to-purple-600",
-                bgColor: "bg-purple-500",
                 stats: "95% Success",
               },
               {
@@ -192,47 +188,42 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 description:
                   "Actual questions from recent interviews with detailed answers",
                 color: "from-orange-500 to-orange-600",
-                bgColor: "bg-orange-500",
                 stats: "100+ Questions",
               },
-            ]?.map((item, i) =>
-              item ? (
-                <motion.div
-                  key={i}
-                  className="transform rounded-2xl bg-white p-6 text-center shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-gray-800"
-                  whileHover={{ y: -5 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                className="transform rounded-2xl bg-white p-6 text-center shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl dark:bg-gray-800"
+                whileHover={{ y: -5 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <div
+                  className={`relative mx-auto mb-4 flex h-16 w-16 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br ${item.color} text-2xl font-bold text-white shadow-lg`}
                 >
-                  <div
-                    className={`h-16 w-16 bg-gradient-to-br ${item.color} relative mx-auto mb-4 flex items-center justify-center overflow-hidden rounded-2xl text-2xl font-bold text-white shadow-lg`}
-                  >
-                    <motion.div
-                      className="absolute inset-0 rounded-2xl bg-white opacity-20"
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{
-                        duration: 2,
-                        repeat: Number.POSITIVE_INFINITY,
-                        ease: "easeInOut",
-                      }}
-                    />
-                    <span className="relative z-10 text-inherit">
-                      {item.icon}
-                    </span>
-                  </div>
-                  <h4 className="mb-3 text-lg font-bold text-gray-900 dark:text-white">
-                    {item.title}
-                  </h4>
-                  <p className="mb-3 text-sm leading-relaxed text-gray-700 dark:text-gray-200">
-                    {item.description}
-                  </p>
-                  <div className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-800 dark:bg-gray-700 dark:text-gray-200">
-                    {item.stats}
-                  </div>
-                </motion.div>
-              ) : null,
-            )}
+                  <motion.div
+                    className="absolute inset-0 rounded-2xl bg-white opacity-20"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{
+                      duration: 2,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: "easeInOut",
+                    }}
+                  />
+                  <span className="relative z-10">{item.icon}</span>
+                </div>
+                <h4 className="mb-3 text-lg font-bold text-gray-900 dark:text-white">
+                  {item.title}
+                </h4>
+                <p className="mb-3 text-sm leading-relaxed text-gray-700 dark:text-gray-200">
+                  {item.description}
+                </p>
+                <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
+                  {item.stats}
+                </div>
+              </motion.div>
+            ))}
           </div>
 
           <div className="grid gap-8 rounded-xl md:grid-cols-3">
@@ -255,25 +246,23 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 icon: "👥",
                 color: "text-purple-600",
               },
-            ]?.map((stat, i) =>
-              stat ? (
-                <motion.div
-                  key={i}
-                  className="company-border rounded-xl border bg-white/50 p-6 text-center backdrop-blur-sm dark:bg-gray-800/50"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
-                >
-                  <div className={`text-3xl font-bold ${stat.color} mb-2`}>
-                    {stat.metric}
-                  </div>
-                  <div className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-300">
-                    <span className="text-inherit">{stat.icon}</span>
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ) : null,
-            )}
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                className="rounded-xl border bg-white/50 p-6 text-center backdrop-blur-sm dark:bg-gray-800/50"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
+              >
+                <div className={`mb-2 text-3xl font-bold ${stat.color}`}>
+                  {stat.metric}
+                </div>
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+                  <span>{stat.icon}</span>
+                  {stat.label}
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </motion.div>
@@ -284,12 +273,12 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
       >
         <div className="mb-8 flex flex-col gap-6 md:flex-row">
           <div className="relative flex-1">
-            <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
+            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
             <Input
               placeholder="Search companies, focus areas, technologies, or interview types..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="custom-input h-12 rounded-xl border-gray-200 bg-gray-50 pl-12 text-lg text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+              className="h-12 rounded-xl border-gray-200 bg-gray-50 pl-12 text-lg text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
             />
           </div>
           <div className="flex gap-3">
@@ -339,9 +328,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
           return (
             <motion.div key={companyIndex} variants={fadeIn} className="group">
               <Card className="transform overflow-hidden border-0 shadow-xl transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl">
-                {/* --------- HEADER --------- */}
                 <CardHeader className="relative bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 pb-6 dark:from-gray-800 dark:via-blue-900/20 dark:to-indigo-900/20">
-                  {/* Background pattern */}
                   <div className="absolute inset-0 opacity-5">
                     <div
                       className="absolute inset-0"
@@ -354,7 +341,6 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
 
                   <div className="relative z-10 mt-8">
                     <div className="mb-6 flex items-start gap-6">
-                      {/* logo */}
                       <motion.div
                         className="relative"
                         whileHover={{ scale: 1.1, rotate: 5 }}
@@ -365,21 +351,18 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                           alt={`${company.company} logo`}
                           className="h-20 w-20 rounded-2xl border border-gray-100 bg-white object-contain p-3 shadow-lg"
                         />
-                        <div className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-green-500">
+                        <div className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-green-500">
                           <Award className="h-3 w-3 text-white" />
                         </div>
                       </motion.div>
 
-                      {/* title + focus */}
                       <div className="flex-1">
                         <CardTitle className="mb-3 text-3xl text-gray-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
                           {company.company}
                         </CardTitle>
                         <div className="mb-4 flex items-center gap-2">
-                          <div className="-mt-5">
-                            <Target className="h-5 w-5 flex-shrink-0 text-blue-600" />
-                          </div>
-                          <p className="text-lg leading-tight font-semibold text-blue-600 dark:text-blue-400">
+                          <Target className="h-5 w-5 flex-shrink-0 text-blue-600" />
+                          <p className="text-lg font-semibold leading-tight text-blue-600 dark:text-blue-400">
                             Focus: {company.focus}
                           </p>
                         </div>
@@ -405,7 +388,6 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                         </div>
                       </div>
 
-                      {/* demand + industry */}
                       <div className="text-right">
                         <div className="mb-2 inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-700 dark:bg-green-900/30 dark:text-green-300">
                           <TrendingUp className="mr-1 h-3 w-3" />
@@ -425,14 +407,13 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                           <Badge
                             key={i}
                             variant="outline"
-                            className="company-border rounded-full border-gray-300 px-3 py-1 text-sm dark:border-gray-600"
+                            className="rounded-full border-gray-300 px-3 py-1 text-sm dark:border-gray-600"
                           >
                             {role}
                           </Badge>
                         ))}
                       </span>
 
-                      {/* collapse toggle */}
                       <button
                         onClick={() => toggleCompany(companyIndex)}
                         className="rounded-full p-2 transition hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -448,7 +429,6 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                   </div>
                 </CardHeader>
 
-                {/* --------- COLLAPSIBLE CONTENT --------- */}
                 <motion.div
                   initial={false}
                   animate={{
@@ -460,9 +440,8 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 >
                   <CardContent className="space-y-8 p-8">
                     <div className="grid gap-8 lg:grid-cols-2">
-                      {/* Key Preparation Tips */}
                       <motion.div
-                        className="company-green-border rounded-2xl border border-green-100 bg-gradient-to-br from-green-50 to-emerald-50 p-8 dark:border-green-800 dark:from-green-900/20 dark:to-emerald-900/20"
+                        className="rounded-2xl border border-green-100 bg-gradient-to-br from-green-50 to-emerald-50 p-8 dark:border-green-800 dark:from-green-900/20 dark:to-emerald-900/20"
                         whileHover={{ scale: 1.02 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
@@ -494,9 +473,8 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                         </ul>
                       </motion.div>
 
-                      {/* Common Interview Questions */}
                       <motion.div
-                        className="company-purple-border rounded-2xl border border-purple-100 bg-gradient-to-br from-purple-50 to-indigo-50 p-8 dark:border-purple-800 dark:from-purple-900/20 dark:to-indigo-900/20"
+                        className="rounded-2xl border border-purple-100 bg-gradient-to-br from-purple-50 to-indigo-50 p-8 dark:border-purple-800 dark:from-purple-900/20 dark:to-indigo-900/20"
                         whileHover={{ scale: 1.02 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
@@ -520,24 +498,24 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                                   className="w-full text-left"
                                 >
                                   <motion.div
-                                    className="question-card flex items-start justify-between gap-3 rounded-xl border bg-white p-4 shadow-sm transition-all hover:bg-gray-50 hover:shadow-md dark:bg-gray-800 dark:hover:bg-gray-700"
+                                    className="flex items-start justify-between gap-3 rounded-xl border bg-white p-4 shadow-sm transition-all hover:bg-gray-50 hover:shadow-md dark:bg-gray-800 dark:hover:bg-gray-700"
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                   >
                                     <div className="flex-1">
-                                      <p className="mb-2 text-sm leading-relaxed font-semibold text-gray-900 dark:text-white">
+                                      <p className="mb-2 text-sm font-semibold leading-relaxed text-gray-900 dark:text-white">
                                         "{item.question}"
                                       </p>
                                       <Badge
                                         variant="outline"
                                         className={`rounded-full px-2 py-1 text-xs ${
                                           item.category === "System Design"
-                                            ? "badge-system border-blue-300 bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300"
+                                            ? "border-blue-300 bg-blue-50 text-blue-700 dark:bg-blue-900/20 dark:text-blue-300"
                                             : item.category === "Behavioral"
-                                              ? "badge-behavioral border-green-300 bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300"
+                                              ? "border-green-300 bg-green-50 text-green-700 dark:bg-green-900/20 dark:text-green-300"
                                               : item.category === "Technical"
-                                                ? "badge-technical border-purple-300 bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300"
-                                                : "badge-other border-orange-300 bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300"
+                                                ? "border-purple-300 bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-300"
+                                                : "border-orange-300 bg-orange-50 text-orange-700 dark:bg-orange-900/20 dark:text-orange-300"
                                         }`}
                                       >
                                         {item.category}
@@ -553,7 +531,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                                 </CollapsibleTrigger>
                                 <CollapsibleContent>
                                   <motion.div
-                                    className="company-blue-border mt-3 rounded-xl border-l-4 border-blue-500 bg-gradient-to-r from-blue-50 to-purple-50 p-6 dark:from-blue-900/20 dark:to-purple-900/20"
+                                    className="mt-3 rounded-xl border-l-4 border-blue-500 bg-gradient-to-r from-blue-50 to-purple-50 p-6 dark:from-blue-900/20 dark:to-purple-900/20"
                                     initial={{ opacity: 0, y: -10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.3 }}
@@ -570,15 +548,14 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                       </motion.div>
                     </div>
 
-                    {/* Contributors Section */}
                     <motion.div
                       className="border-t pt-8"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.3 }}
                     >
-                      <div className="technical-inner-success relative overflow-hidden rounded-2xl border-2 border-yellow-200 bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50 p-8 dark:border-yellow-800 dark:from-yellow-900/20 dark:via-orange-900/20 dark:to-red-900/20">
-                        <div className="absolute top-4 right-4 text-4xl opacity-20">
+                      <div className="relative overflow-hidden rounded-2xl border-2 border-yellow-200 bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50 p-8 dark:border-yellow-800 dark:from-yellow-900/20 dark:via-orange-900/20 dark:to-red-900/20">
+                        <div className="absolute right-4 top-4 text-4xl opacity-20">
                           🚀
                         </div>
                         <div className="relative z-10">
@@ -600,28 +577,20 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                             <Button
                               variant="outline"
                               size="sm"
-                              className="technical-inner-success rounded-xl border-orange-200 bg-white px-4 py-2 text-orange-700 hover:bg-orange-50 dark:border-orange-700 dark:bg-orange-900/20 dark:text-orange-300 dark:hover:bg-orange-800"
+                              className="rounded-xl border-orange-200 bg-white px-4 py-2 text-orange-700 hover:bg-orange-50 dark:border-orange-700 dark:bg-orange-900/20 dark:text-orange-300 dark:hover:bg-orange-800"
                             >
                               <Zap className="mr-2 h-4 w-4" />
-                              <Link
-                                to="/community"
-                                className="company-tab-community-link"
-                              >
+                              <Link to="/community">
                                 Share Interview Experience
                               </Link>
                             </Button>
                             <Button
                               variant="outline"
                               size="sm"
-                              className="technical-inner-success rounded-xl border-orange-200 bg-white px-4 py-2 text-orange-700 hover:bg-orange-50 dark:border-orange-700 dark:bg-orange-900/20 dark:text-orange-300 dark:hover:bg-orange-800"
+                              className="rounded-xl border-orange-200 bg-white px-4 py-2 text-orange-700 hover:bg-orange-50 dark:border-orange-700 dark:bg-orange-900/20 dark:text-orange-300 dark:hover:bg-orange-800"
                             >
                               <MessageSquare className="mr-2 h-4 w-4" />
-                              <Link
-                                to="/community"
-                                className="company-tab-community-link"
-                              >
-                                Add Recent Questions
-                              </Link>
+                              <Link to="/community">Add Recent Questions</Link>
                             </Button>
                           </div>
                         </div>
@@ -659,11 +628,10 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
       )}
 
       <motion.div
-        className="company-blue-border relative overflow-hidden rounded-3xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-12 dark:border-indigo-800 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-pink-900/20"
+        className="relative overflow-hidden rounded-3xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-12 dark:border-indigo-800 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-pink-900/20"
         variants={fadeIn}
       >
-        {/* Background elements */}
-        <div className="absolute top-10 right-10 text-6xl opacity-10">🤝</div>
+        <div className="absolute right-10 top-10 text-6xl opacity-10">🤝</div>
         <div className="absolute bottom-10 left-10 text-4xl opacity-10">💡</div>
 
         <div className="relative z-10">
@@ -686,7 +654,6 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 description:
                   "Recent interview questions and experiences from your interviews",
                 color: "from-blue-500 to-blue-600",
-                bgColor: "bg-blue-500",
                 benefit: "Help 1000+ candidates",
               },
               {
@@ -695,7 +662,6 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 description:
                   "Company-specific preparation strategies and insider knowledge",
                 color: "from-green-500 to-green-600",
-                bgColor: "bg-green-500",
                 benefit: "Earn community points",
               },
               {
@@ -704,7 +670,6 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 description:
                   "Request coverage for new companies and emerging startups",
                 color: "from-purple-500 to-purple-600",
-                bgColor: "bg-purple-500",
                 benefit: "Shape our roadmap",
               },
               {
@@ -713,20 +678,19 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 description:
                   "Enhance existing company profiles with updated information",
                 color: "from-orange-500 to-orange-600",
-                bgColor: "bg-orange-500",
                 benefit: "Get featured contributor",
               },
             ].map((item, i) => (
               <motion.div
                 key={i}
-                className="company-border transform rounded-2xl border border-gray-100 bg-white p-8 text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800"
+                className="transform rounded-2xl border border-gray-100 bg-white p-8 text-center transition-all duration-300 hover:scale-105 hover:shadow-2xl dark:border-gray-700 dark:bg-gray-800"
                 whileHover={{ y: -10 }}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
                 <div
-                  className={`h-20 w-20 bg-gradient-to-br ${item.color} relative mx-auto mb-6 flex items-center justify-center overflow-hidden rounded-2xl text-3xl font-bold text-white shadow-lg`}
+                  className={`relative mx-auto mb-6 flex h-20 w-20 items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-br ${item.color} text-3xl font-bold text-white shadow-lg`}
                 >
                   <motion.div
                     className="absolute inset-0 rounded-2xl bg-white opacity-20"
@@ -737,9 +701,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                       ease: "easeInOut",
                     }}
                   />
-                  <span className="relative z-10 text-inherit">
-                    {item.icon}
-                  </span>
+                  <span className="relative z-10">{item.icon}</span>
                 </div>
                 <h4 className="mb-3 text-lg font-bold text-gray-900 dark:text-white">
                   {item.title}
@@ -747,25 +709,24 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                 <p className="mb-4 text-sm leading-relaxed text-gray-700 dark:text-gray-200">
                   {item.description}
                 </p>
-                <div className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-800 dark:bg-gray-700 dark:text-gray-200">
+                <div className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-800 dark:bg-blue-900/30 dark:text-blue-300">
                   {item.benefit}
                 </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-3 text-center">
+          <div className="text-center">
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="company-border"
             >
-              <Button className="text-mdx`x rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 px-12 py-4 text-white shadow-lg hover:from-indigo-700 hover:to-purple-700">
-                <Users className="mr-3 h-5 w-5" />
-                <Link to="/community" className="company-tab-link">
+              <Link to="/community" className="inline-block">
+                <Button className="rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 px-12 py-4 text-lg text-white shadow-lg hover:from-indigo-700 hover:to-purple-700">
+                  <Users className="mr-3 h-5 w-5" />
                   Join Community Discord
-                </Link>
-              </Button>
+                </Button>
+              </Link>
             </motion.div>
             <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
               Join 50,000+ developers preparing for their dream jobs

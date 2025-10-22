@@ -79,13 +79,16 @@ export default function EbookPage(): JSX.Element {
           <p className="ebook-subtitle">
             Read high-quality ebooks on programming, tools, and development.
           </p>
-          <input
-            type="text"
-            className="ebook-search"
-            placeholder="Search ebooks..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          <div className="ebook-search-wrapper">
+            <span className="search-icon">🔍</span>
+            <input
+              type="text"
+              className="ebook-search"
+              placeholder="Search ebooks..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
         </div>
 
         {/* Grid Section */}
