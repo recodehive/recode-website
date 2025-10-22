@@ -2,7 +2,7 @@
 id: sql-transactions-concurrency
 title: SQL Transactions & Concurrency
 sidebar_label: Transactions & Concurrency
-sidebar_position: 12
+sidebar_position: 5
 tags: [sql, transactions, concurrency, database, relational-databases]
 description: In this super beginner-friendly guide, you’ll learn about SQL transactions and concurrency—how to manage data changes safely and handle multiple users accessing the database at once!
 keywords: [sql, transactions, concurrency, ACID, isolation levels, locking, sql tutorial, sql basics, database management, sql for beginners, sql in 2025]
