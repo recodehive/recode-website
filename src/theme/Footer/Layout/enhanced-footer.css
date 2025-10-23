@@ -2096,17 +2096,13 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   }
 }
 
-/* Force solid white for heading and numeric text that use background-clip gradients */
+/* Force solid white for heading text that use background-clip gradients (excluding stat-number) */
 .enhanced-footer h1,
 .enhanced-footer h2,
 .enhanced-footer h3,
 .enhanced-footer h4,
 .enhanced-footer h5,
-.enhanced-footer h6,
-.enhanced-footer .footer-hero-text h1,
-.enhanced-footer .footer-brand-title,
-.enhanced-footer .footer-brand-name,
-.enhanced-footer .stat-number {
+.enhanced-footer h6 {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important; /* Safari/Chrome */
   -webkit-background-clip: unset !important;
