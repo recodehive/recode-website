@@ -127,6 +127,7 @@ const sidebars: SidebarsConfig = {
             "sql/SQL-basics/sql-datatypes",
             "sql/SQL-basics/primary-key-foreign-key",
             "sql/SQL-basics/sql-operators",
+            "sql/SQL-basics/sql-clauses"
           ],
         },
         {
