@@ -2,7 +2,7 @@ name: Sync Issue Metadata to PR
 
 on:
   pull_request_target:
-    types: [opened, edited, synchronize, reopened]
+    types: [opened, synchronize, reopened]
 
 permissions:
   pull-requests: write
@@ -12,19 +12,13 @@ permissions:
 
 jobs:
   sync-pr-metadata:
-    if: |
-      github.event.action != 'edited' ||
-      (
-        github.event.changes.body &&
-        (github.event.changes.body.from || '') != (github.event.pull_request.body || '')
-      )
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout repository
+      # Checkout repository
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Step 2: Extract linked issues from PR
+      # Extract linked issues from PR
       - name: Extract linked issue(s) from PR
         id: extract-issues
         uses: actions/github-script@v7
@@ -53,7 +47,7 @@ jobs:
             core.setOutput('issues', JSON.stringify(Array.from(issueNumbers)));
             core.setOutput('pr', prNumber.toString());
 
-      # Step 3: Sync issue metadata to PR safely
+      # Sync issue metadata to PR safely
       - name: Sync Issue Metadata to PR
         if: steps.extract-issues.outputs.issues != '' && steps.extract-issues.outputs.issues != '[]'
         uses: actions/github-script@v7
