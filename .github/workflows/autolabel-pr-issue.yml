@@ -12,8 +12,13 @@ permissions:
 
 jobs:
   sync-pr-metadata:
+    if: |
+      github.event.action != 'edited' ||
+      (
+        github.event.changes.body &&
+        (github.event.changes.body.from || '') != (github.event.pull_request.body || '')
+      )
     runs-on: ubuntu-latest
-
     steps:
       # Step 1: Checkout repository
       - name: Checkout
