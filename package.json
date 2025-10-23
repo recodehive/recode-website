@@ -28,7 +28,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "^3.9.1",
-    "@docusaurus/plugin-content-docs": "3.9.1",
+    "@docusaurus/plugin-content-docs": "3.9.2",
     "@docusaurus/plugin-google-analytics": "^3.9.1",
     "@docusaurus/plugin-ideal-image": "3.9.1",
     "@docusaurus/preset-classic": "^3.9.1",
@@ -71,12 +71,12 @@
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.9.1",
     "@docusaurus/tsconfig": "^3.9.2",
-    "@docusaurus/types": "^3.9.1",
+    "@docusaurus/types": "^3.9.2",
     "@tailwindcss/postcss": "^4.1.4",
     "@types/canvas-confetti": "^1.9.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
-    "@typescript-eslint/eslint-plugin": "^8.46.1",
+    "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.1",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.38.0",
