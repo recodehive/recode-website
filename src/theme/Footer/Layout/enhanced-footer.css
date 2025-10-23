@@ -1556,7 +1556,6 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   box-shadow:
     0 6px 20px rgba(0, 0, 0, 0.15),
     0 2px 8px rgba(99, 102, 241, 0.2);
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 
 .legal-link:focus {
@@ -1587,6 +1586,78 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   font-size: 0.85rem;
   color: #e53e3e;
 }
+
+/* Ensure footer text is white */
+.enhanced-footer,
+.enhanced-footer .container,
+.enhanced-footer .footer-hero,
+.enhanced-footer .footer-links-section,
+.enhanced-footer .footer-bottom,
+.enhanced-footer .newsletter-column {
+  color: #ffffff;
+}
+
+/* Target common text elements and links inside the footer */
+.enhanced-footer h1,
+.enhanced-footer h2,
+.enhanced-footer h3,
+.enhanced-footer h4,
+.enhanced-footer h5,
+.enhanced-footer h6,
+.enhanced-footer p,
+.enhanced-footer span,
+.enhanced-footer a,
+.enhanced-footer .footer-link,
+.enhanced-footer .quick-link,
+.enhanced-footer .legal-link,
+.enhanced-footer .newsletter-description,
+.enhanced-footer .footer-brand-title,
+.enhanced-footer .footer-trust-badge,
+.enhanced-footer .stat-label,
+.enhanced-footer .stat-number,
+.enhanced-footer .newsletter-stat,
+.enhanced-footer .toast-message,
+.enhanced-footer .error-text {
+  color: #ffffff;
+}
+
+/* ==== REPLACEMENT: narrow white overrides (preserve hero/brand gradients) ==== */
+
+/* Target only UI text that must be solid white */
+.enhanced-footer .stat-label,
+.enhanced-footer .stat-number,
+.enhanced-footer .footer-column-title,
+.enhanced-footer .footer-link,
+.enhanced-footer .quick-link,
+.enhanced-footer .legal-link,
+.enhanced-footer .newsletter-description,
+.enhanced-footer .newsletter-stat,
+.enhanced-footer .newsletter-input,
+.enhanced-footer .newsletter-button,
+.enhanced-footer .footer-copyright,
+.enhanced-footer .social-label {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Ensure SVG/icons follow readable color */
+.enhanced-footer svg {
+  color: #ffffff;
+  fill: currentColor;
+}
+
+/* Preserve headings/brand text gradients by NOT unsetting background-clip or -webkit-text-fill-color */
+.footer-hero-text h1,
+.footer-brand-title,
+.footer-brand-name {
+  /* Intentionally empty — keep their gradient text styles */
+}
+
+/* IMPORTANT: remove or comment out any of these broad rules if present elsewhere in the file:
+   - .enhanced-footer * { color: inherit; }
+   - Any blocks that set -webkit-background-clip: unset or background: none for headings
+   - The duplicated "Ensure footer text is white" / "Force solid white..." blocks
+*/
 
 /* Responsive Design */
 @media (max-width: 1200px) {
@@ -2023,4 +2094,70 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   .toast-content {
     max-width: none;
   }
+}
+
+/* Force solid white for heading and numeric text that use background-clip gradients */
+.enhanced-footer h1,
+.enhanced-footer h2,
+.enhanced-footer h3,
+.enhanced-footer h4,
+.enhanced-footer h5,
+.enhanced-footer h6,
+.enhanced-footer .footer-hero-text h1,
+.enhanced-footer .footer-brand-title,
+.enhanced-footer .footer-brand-name,
+.enhanced-footer .stat-number {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important; /* Safari/Chrome */
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  background-image: none !important;
+  background: none !important;
+  text-shadow: none !important;
+}
+
+/* Ensure regular text and links stay white as well */
+.enhanced-footer,
+.enhanced-footer p,
+.enhanced-footer span,
+.enhanced-footer a,
+.enhanced-footer .stat-label,
+.enhanced-footer .newsletter-description,
+.enhanced-footer .newsletter-stat,
+.enhanced-footer .footer-link,
+.enhanced-footer .quick-link,
+.enhanced-footer .legal-link {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Keep controls/buttons visuals intact by not forcing their backgrounds */
+.enhanced-footer .newsletter-button,
+.enhanced-footer .link-badge,
+.enhanced-footer .stat-icon,
+.enhanced-footer .logo-container,
+.enhanced-footer .social-link {
+  /* preserve existing backgrounds */
+}
+
+/* Restore purple gradient for stat numbers (override white) */
+.enhanced-footer .stat-number {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.12) !important;
+}
+
+/* Restore purple gradient for brand/title (recodehive) */
+.enhanced-footer .footer-brand-name,
+.enhanced-footer .footer-brand-title,
+.enhanced-footer .footer-hero-text h1 {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  text-shadow: 0 4px 12px rgba(118, 75, 162, 0.18) !important;
 }
