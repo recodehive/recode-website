@@ -2,6 +2,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import * as dotenv from "dotenv";
+import giscusInjector from "./src/plugins/giscus-injector";
 dotenv.config();
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -53,6 +54,7 @@ const config: Config = {
           sidebarPath: require.resolve("./sidebars.ts"),
           editUrl: ({ docPath }) =>
             `https://github.com/recodehive/recode-website/tree/main/docs/${docPath}`,
+          remarkPlugins: [giscusInjector],
         },
         blog: {
           showReadingTime: true,
