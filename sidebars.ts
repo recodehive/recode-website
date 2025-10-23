@@ -165,6 +165,7 @@ const sidebars: SidebarsConfig = {
             "sql/SQL-Advance/common-table-expressions",
             "sql/SQL-Advance/window-functions",
             "sql/SQL-Advance/sql-indexes",
+            "sql/SQL-Advance/sql-advanced-analytics",
             "sql/SQL-Advance/sql-procedures-functions-triggers",
           ],
         },
