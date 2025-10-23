@@ -123,6 +123,7 @@ const sidebars: SidebarsConfig = {
             "sql/SQL-basics/filtering-data",
             "sql/SQL-basics/ordering-data",
             "sql/SQL-basics/grouping-data",
+            "sql/SQL-basics/sql-having-vs-group-by",
             "sql/SQL-basics/the-inequality-operator",
             "sql/SQL-basics/sql-datatypes",
             "sql/SQL-basics/primary-key-foreign-key",
