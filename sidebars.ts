@@ -77,8 +77,8 @@ const sidebars: SidebarsConfig = {
             "GitHub/Fun-Profile-Customizations/Anurag-Hazra's-GitHub-Readme-Cards",
             "GitHub/Fun-Profile-Customizations/Trophy-Case-Streaks",
             "GitHub/Fun-Profile-Customizations/Snake-Contribution-Animation",
-          ]
-        }
+          ],
+        },
       ],
     },
     {
@@ -127,7 +127,7 @@ const sidebars: SidebarsConfig = {
             "sql/SQL-basics/sql-datatypes",
             "sql/SQL-basics/primary-key-foreign-key",
             "sql/SQL-basics/sql-operators",
-            "sql/SQL-basics/sql-clauses"
+            "sql/SQL-basics/sql-clauses",
           ],
         },
         {
@@ -164,6 +164,7 @@ const sidebars: SidebarsConfig = {
             "sql/SQL-Advance/common-table-expressions",
             "sql/SQL-Advance/window-functions",
             "sql/SQL-Advance/sql-indexes",
+            "sql/SQL-Advance/sql-procedures-functions-triggers",
           ],
         },
       ],
