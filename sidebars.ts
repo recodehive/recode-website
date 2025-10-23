@@ -70,7 +70,7 @@ const sidebars: SidebarsConfig = {
         },
         {
           type: "category",
-          label: "🎨 Fun Proflie Customizations",
+          label: "Fun Proflie Customizations",
           className: "custom-sidebar-fun",
           items: [
             "GitHub/Fun-Profile-Customizations/Why-Customize",
