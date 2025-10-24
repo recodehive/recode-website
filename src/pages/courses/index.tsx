@@ -3,7 +3,6 @@ import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
 import "./courses.css";
-import downloadLogo from "./images/download.png";
 
 // Animation variants for consistent animations
 const fadeIn = {
