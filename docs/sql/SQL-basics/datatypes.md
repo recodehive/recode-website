@@ -1,192 +1,121 @@
+
+
+
 ---
 id: sql-datatypes
 title: SQL Data Types
 sidebar_label: SQL Data Types
 sidebar_position: 5
-tags: [sql, data-types, database, relational-databases]
+tags:
+  - sql
+  - data-types
+  - database
+  - relational-databases
+  - queries
+  - sql tutorial
+  - sql basics
+  - database management
+  - relational databases
+  - sql data types tutorial
+  - sql for beginners
 description: In this beginner-friendly tutorial, you will learn about SQL data types, which define what kind of data can be stored in a column, making your database organized and efficient.
-keywords: [sql, data types, sql tutorial, sql basics, database management, relational databases, sql data types tutorial, sql for beginners, sql in 2025]
 ---
 
 ## 📙 Welcome to SQL Data Types!
 
-Hey there! If you're new to SQL or just getting started, this module is perfect for you. Data types are like labels that tell your database what kind of information (like numbers, text, or dates) can go into each column of a table. Think of them as rules to keep your data neat and safe! Let’s explore them step by step with easy examples.
+Hey there! If you're new to SQL, data types are a fundamental concept. They are like labels that tell your database what kind of information (like numbers, text, or dates) can go into each column of a table. Think of them as rules to keep your data organized, efficient, and error-free!
 
-### 📘 What Are Data Types?
+## 📘 What Are Data Types?
 
 Data types are super important because they:
-- Decide what kind of data you can store (e.g., numbers or words).
-- Help save space in your database.
-- Prevent mistakes, like putting letters in a number column.
 
-Imagine you’re making a table for a school called `students` with columns like `id`, `name`, and `age`. Data types ensure `id` is a number and `name` is text. Let’s see how!
+* **Enforce Data Integrity:** Decide what kind of data you can store (e.g., numbers only or text only).
+* **Optimize Storage:** Help save space in your database by allocating only what's needed.
+* **Prevent Errors:** Stop you from putting letters in a number column or vice-versa.
 
-Here’s a handy table to get you started (check the image below for more details):
+Imagine a `students` table. Data types ensure the `student_id` is a number, `first_name` is text, and `enrollment_date` is a date.
 
-![SQL Data Types Table](assets/31-datatypes.png)
+Here’s a handy overview to get you started:
 
-> **Pro Tip**: Always pick the right data type to avoid confusion. For example, don’t use a text type for numbers!
 
-### 📘 Numeric Data Types (Numbers Made Simple)
-
-Numeric types are for numbers—whole numbers or decimals. Let’s break them down:
-
-- **TINYINT**: Small numbers, from -128 to 127 (or 0 to 255 if unsigned).
-- **INT**: Bigger numbers, from -2,147,483,648 to 2,147,483,647.
-- **FLOAT**: Decimals with up to 23 digits (e.g., 3.14).
-- **DOUBLE**: Decimals with up to 53 digits (for super precise numbers).
-- **BIGINT**: Huge numbers, from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807.
-
-**Example**:
-    :::info
-<Tabs>
-  <TabItem value="SQL Code" label="SQL Code">
-```sql title="Creating a Table with Numeric Types"
-CREATE TABLE students (
-    id TINYINT,
-    age INT,
-    gpa FLOAT
-);
-INSERT INTO students (id, age, gpa) VALUES (1, 20, 3.75);
-```
-  </TabItem>
-
-  <TabItem value="Output" label="Output">
-| id  | age | gpa  |
-|-----|-----|------|
-| 1   | 20  | 3.75 |
-  </TabItem>
-</Tabs>
+:::tip Pro Tip
+Always pick the smallest, most appropriate data type for your data. For example, don’t use a text type for numbers you want to do math on!
 :::
-
-> **What NOT to Do**: Don’t use FLOAT for money (e.g., $5.99) because it can have tiny rounding errors. Use DECIMAL instead for exact values like `DECIMAL(5,2)` (5 digits total, 2 after the decimal).
-
-### 🔄 String Data Types (Text and More)
-
-String types are for text or characters. Here’s what you need:
-
-- **CHAR(length)**: Fixed length (e.g., CHAR(50) always uses 50 spaces, even if text is shorter).
-- **VARCHAR(length)**: Variable length up to a limit (e.g., VARCHAR(50) uses only what’s needed, up to 50 characters).
-- **BLOB**: For binary data like images or files (up to 65,535 bytes).
-
-**Example**:
-    :::info
-<Tabs>
-  <TabItem value="SQL Code" label="SQL Code">
-```sql title="Creating a Table with String Types"
-CREATE TABLE students (
-    id TINYINT,
-    name VARCHAR(50)
-);
-INSERT INTO students (id, name) VALUES (2, 'Alice');
-```
-  </TabItem>
-
-  <TabItem value="Output" label="Output">
-| id  | name  |
-|-----|-------|
-| 2   | Alice |
-  </TabItem>
-</Tabs>
-:::
-
-> **What NOT to Do**: Avoid using CHAR for names if lengths vary a lot—it wastes space. Use VARCHAR instead!
-
-### 📘 Date and Time Data Types (Tracking Time)
-
-These types help with dates and times:
-
-- **DATE**: Stores dates like '2025-08-14' (from 1000-01-01 to 9999-12-31).
-- **YEAR**: Just the year, from 1901 to 2155 (e.g., 2025).
-
-**Example**:
-    :::info
-<Tabs>
-  <TabItem value="SQL Code" label="SQL Code">
-```sql title="Creating a Table with Date Types"
-CREATE TABLE students (
-    id TINYINT,
-    enrollment_date DATE
-);
-INSERT INTO students (id, enrollment_date) VALUES (3, '2025-08-14');
-```
-  </TabItem>
-
-  <TabItem value="Output" label="Output">
-| id  | enrollment_date |
-|-----|-----------------|
-| 3   | 2025-08-14      |
-  </TabItem>
-</Tabs>
-:::
-
-> **What NOT to Do**: Don’t store dates as VARCHAR (e.g., '08-14-2025')—use DATE to enable date functions like comparisons!
-
-### 🔄 Other Data Types (Special Cases)
-
-- **BOOLEAN**: True (1) or False (0) values.
-- **BIT(x)**: Stores x bits (e.g., BIT(2) for 0 to 3).
-
-**Example**:
-    :::info
-<Tabs>
-  <TabItem value="SQL Code" label="SQL Code">
-```sql title="Creating a Table with BOOLEAN"
-CREATE TABLE users (
-    id TINYINT,
-    is_active BOOLEAN
-);
-INSERT INTO users (id, is_active) VALUES (1, TRUE);
-```
-  </TabItem>
-
-  <TabItem value="Output" label="Output">
-| id  | is_active |
-|-----|-----------|
-| 1   | 1         |
-  </TabItem>
-</Tabs>
-:::
-
-> **What NOT to Do**: Don’t use INT for true/false—BOOLEAN is clearer and safer.
-
-### 🧹 Signed vs. Unsigned (Positive or Negative?)
-
-For numeric types like TINYINT:
-- **Signed**: Allows negative numbers (e.g., -128 to 127).
-- **Unsigned**: Only positive numbers (e.g., 0 to 255).
-
-**Example**:
-    :::info
-<Tabs>
-  <TabItem value="SQL Code" label="SQL Code">
-```sql title="Unsigned Example"
-CREATE TABLE products (
-    stock TINYINT UNSIGNED
-);
-INSERT INTO products (stock) VALUES (200);
-```
-  </TabItem>
-
-  <TabItem value="Output" label="Output">
-| stock |
-|-------|
-| 200   |
-  </TabItem>
-</Tabs>
-:::
-
-> **What NOT to Do**: Don’t use signed TINYINT for quantities (e.g., stock) that can’t be negative—use UNSIGNED to maximize the range.
-
-## ✅ What You’ve Learned
-
-Great job! You’ve explored:
-- **Numeric Types**: TINYINT, INT, FLOAT, DOUBLE, BIGINT.
-- **String Types**: CHAR, VARCHAR, BLOB.
-- **Date/Time Types**: DATE, YEAR.
-- **Other Types**: BOOLEAN, BIT.
-- **Signed vs. Unsigned**: Choosing based on needs.
-
-Try creating a table with these types and inserting data to practice. Avoid the "What NOT to Do" mistakes to keep your database happy!
 
 ---
+
+## ## Example: Building a `students` Table
+
+Instead of looking at types one by one, let's create a single `students` table that uses all the most common data types. This is how you'd build a table in the real world!
+
+**SQL Code:**
+
+```sql
+CREATE TABLE students (
+    student_id INT UNSIGNED,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    gpa DECIMAL(3, 2),
+    enrollment_date DATE,
+    is_active BOOLEAN,
+    last_login TIMESTAMP
+);
+
+INSERT INTO students VALUES 
+(1, 'Alice', 'Johnson', 3.75, '2023-08-14', TRUE, '2025-10-21 09:30:00'),
+(2, 'Bob', 'Smith', 3.20, '2022-08-14', TRUE, '2025-10-20 15:00:00'),
+(3, 'Charlie', 'Brown', 2.50, '2023-08-14', FALSE, NULL);
+
+SELECT * FROM students;
+Now, let's break down the types we used.
+## Numeric Data Types (Numbers)
+Numeric types are for numbers. We used INT, DECIMAL, and BOOLEAN (which stores 0 or 1).
+TINYINT: A very small number (-128 to 127).
+INT (or INTEGER): A standard whole number (approx. -2.1 billion to 2.1 billion). We used INT UNSIGNED for student_id. (More on UNSIGNED later!)
+BIGINT: For huge whole numbers (up to 9 quintillion!).
+DECIMAL(p, s): A fixed-point number, perfect for precision. DECIMAL(3, 2) (used for gpa) means 3 total digits, with 2 after the decimal (e.g., 9.99).
+FLOAT / DOUBLE: "Floating-point" numbers, for scientific calculations where tiny rounding errors are acceptable.
+:::warning What NOT to Do
+Don't use FLOAT or DOUBLE for money or any value that must be exact (like GPA). They can cause small rounding errors. Always use DECIMAL for currency and other precise values.
+:::
+🔄 String Data Types (Text)
+String types are for text. We used VARCHAR.
+CHAR(length): Fixed length. CHAR(10) always uses 10 characters of space, even if you only store "Hi". It pads the rest with spaces. Good for data of a consistent length (e.g., state codes like 'NY', 'CA').
+VARCHAR(length): Variable length. VARCHAR(50) (used for first_name) stores only the characters you insert, up to a max of 50. This is efficient and the most common choice for text.
+TEXT: For long-form text, like blog posts or descriptions (up to 65,535 characters).
+BLOB: For binary data like images or files.
+:::warning What NOT to Do
+Avoid using CHAR for text that varies in length (like names or email addresses)—it wastes space. Use VARCHAR instead!
+:::
+## Date and Time Data Types
+These types are specifically for storing dates and times.
+DATE: Stores a date (Year, Month, Day). We used this for enrollment_date.
+Format: YYYY-MM-DD (e.g., 2025-08-14)
+TIME: Stores a time (Hours, Minutes, Seconds).
+Format: HH:MM:SS (e.g., 14:30:00)
+DATETIME: Stores both date and time.
+Format: YYYY-MM-DD HH:MM:SS
+TIMESTAMP: Also stores date and time. It's special because it's often used to track when a row was last changed and can auto-update. We used this for last_login.
+:::warning What NOT to Do
+Don't store dates as VARCHAR (e.g., '08-14-2025')! Using proper DATE or DATETIME types allows you to perform calculations, like finding all students who enrolled in the last 30 days.
+:::
+🔄 Other Data Types (Special Cases)
+BOOLEAN (or BOOL): Stores TRUE (1) or FALSE (0). We used this for is_active.
+ENUM: Lets you define a list of allowed values (e.g., ENUM('Small', 'Medium', 'Large')).
+BIT(x): Stores a specific number of bits (e.g., BIT(1) is similar to BOOLEAN).
+🧹 Signed vs. Unsigned (Positive or Negative?)
+For numeric types like INT, you have a choice:
+SIGNED (Default): Allows both positive and negative numbers. An INT ranges from approx. -2.1 billion to +2.1 billion.
+UNSIGNED: Allows only positive numbers (and zero). This shifts the range. An INT UNSIGNED ranges from 0 to approx. +4.2 billion.
+In our students table, we used INT UNSIGNED for student_id. This is perfect because a student ID will never be negative, and it effectively doubles our available positive IDs!
+:::tip Pro Tip
+Use UNSIGNED for any number column that can never be negative (like an ID, age, or stock quantity).
+:::
+✅ What You've Learned
+Great job! You’ve explored the most important SQL data types:
+Numeric Types: INT, DECIMAL (for precision), and FLOAT.
+String Types: CHAR (fixed) vs. VARCHAR (variable).
+Date/Time Types: DATE, DATETIME, and TIMESTAMP.
+Other Types: BOOLEAN for true/false values.
+SIGNED vs. UNSIGNED: How to optimize your number ranges.
+You've also seen how to build a single, logical table using a mix of these types. This is the foundation for building any good database!
