@@ -3,6 +3,7 @@ import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
 import "./courses.css";
+import downloadLogo from "./images/download.png";
 
 // Animation variants for consistent animations
 const fadeIn = {
@@ -37,11 +38,11 @@ const techTags = [
 ];
 
 const partnerLogos = [
-  "https://dummyimage.com/80x40/222/fff&text=Samsung",
-  "https://dummyimage.com/80x40/333/fff&text=Oracle",
-  "https://dummyimage.com/80x40/444/fff&text=Segment",
-  "https://dummyimage.com/80x40/555/fff&text=Monday.com",
-  "https://dummyimage.com/80x40/666/fff&text=Protonet",
+  "/img/samsung.png",
+  "/img/oracle.png",
+  "/img/segment.png",
+  "/img/monday.png",
+  "/img/protonet.png",
 ];
 
 const projects = [
