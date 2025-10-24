@@ -1767,7 +1767,7 @@ html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
 /* ================= SECTION 15: AUTHOR PAGE AVATAR OVERLAP FIX ================= */
 /* Fix for author page avatar overlap - working solution */
 .avatar.margin-bottom--sm.author-as-h1_iMAg {
-  width: 400px !important;
+  width: 150px !important;
   height: 150px !important;
   border-radius: 50% !important;
   border: none !important;
