@@ -168,6 +168,7 @@ const sidebars: SidebarsConfig = {
             "sql/SQL-Advance/sql-advanced-analytics",
             "sql/SQL-Advance/sql-procedures-functions-triggers",
             "sql/SQL-Advance/dimensional-modelling",
+            "sql/SQL-Advance/sql-transactions-concurrency",
           ],
         },
       ],
