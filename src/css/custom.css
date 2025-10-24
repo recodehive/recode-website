@@ -1796,6 +1796,6 @@ html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
 }
 
 
-.margin-bottom--xl {
+.blog-page .margin-bottom--xl {
   margin-bottom: 0rem !important;
 }
