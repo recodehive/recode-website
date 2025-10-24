@@ -239,7 +239,7 @@ print(c)  # array('i', [1, 2, 3, 4, 5])
 
 3. **Array Reversal**
 
-   **Q3:**** Write a Python program to reverse an array without using slicing or the reverse() method.
+   **Q3:** Write a Python program to reverse an array without using slicing or the reverse() method.
   
 
 4. **Insertion Operation**

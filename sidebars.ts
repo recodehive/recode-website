@@ -98,12 +98,22 @@ const sidebars: SidebarsConfig = {
         "python/python-tuple",
         "python/python-set",
         "python/python-dictionaries",
-        "python/python-array",
         "python/python-conditional-statements",
         "python/python-loops",
         "python/python-functions",
         "python/python-errors-and-exceptions",
         "python/python-oops",
+        {
+          type: "category",
+          label: "Data Structures",
+          className: "custom-sidebar-data-structures",
+          items: [
+            "GitHub/Data_Structures/python-array",
+            "GitHub/Data_Structures/python-linked-list",
+            "GitHub/Data_Structures/python-stack",
+            "GitHub/Data_Structures/python-queue",
+          ]
+        }
       ],
     },
     {
