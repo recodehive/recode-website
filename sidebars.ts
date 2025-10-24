@@ -29,54 +29,70 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
-      label: "🐙 GitHub",
-      className: "custom-sidebar-github",
+      label: "🐙 Version Control", // ✅ NEW TOP-LEVEL LABEL
+      className: "custom-sidebar-version-control", // Recommended new class name
       items: [
-        "GitHub/intro-github",
-        "GitHub/intro-gitlab",
         {
+          // New nested category wrapping all GitHub content
           type: "category",
-          label: "⚙️ Setup Environment",
-          className: "custom-sidebar-setup",
+          label: "🐙 GitHub",
+          className: "custom-sidebar-github", // Reusing the old class for minimal CSS breakage
           items: [
-            "GitHub/setup-environment/setup-environment",
-            "GitHub/setup-environment/setup-git-on-windows",
-            "GitHub/setup-environment/setup-git-on-mac",
-            "GitHub/setup-environment/git-commands",
+            "GitHub/intro-github",
+            {
+              type: "category",
+              label: "⚙️ Setup Environment",
+              className: "custom-sidebar-setup",
+              items: [
+                "GitHub/setup-environment/setup-environment",
+                "GitHub/setup-environment/setup-git-on-windows",
+                "GitHub/setup-environment/setup-git-on-mac",
+                "GitHub/setup-environment/git-commands",
+              ],
+            },
+            {
+              type: "category",
+              label: "📚 GitHub Basics",
+              className: "custom-sidebar-basics",
+              items: [
+                "GitHub/GitHub-basics/create-github-repo",
+                "GitHub/GitHub-basics/github-repo-command-line",
+                "GitHub/GitHub-basics/how-to-clone-repository",
+                "GitHub/GitHub-basics/how-to-fork",
+                "GitHub/GitHub-basics/first-opensource-code",
+              ],
+            },
+            {
+              type: "category",
+              label: "👨‍💼 Maintainer Guide",
+              className: "custom-sidebar-maintainer",
+              items: [
+                "GitHub/Maintainer-guide/github-labels",
+                "GitHub/Maintainer-guide/milestone",
+                "GitHub/Maintainer-guide/github-project",
+                "GitHub/Maintainer-guide/enable-dicussion",
+              ],
+            },
+            {
+              type: "category",
+              label: "Fun Proflie Customizations",
+              className: "custom-sidebar-fun",
+              items: [
+                "GitHub/Fun-Profile-Customizations/Why-Customize",
+                "GitHub/Fun-Profile-Customizations/Anurag-Hazra's-GitHub-Readme-Cards",
+                "GitHub/Fun-Profile-Customizations/Trophy-Case-Streaks",
+                "GitHub/Fun-Profile-Customizations/Snake-Contribution-Animation",
+              ],
+            },
           ],
         },
         {
+          // New category for GitLab content
           type: "category",
-          label: "📚 GitHub Basics",
-          className: "custom-sidebar-basics",
+          label: "GitLab",
+          className: "custom-sidebar-gitlab",
           items: [
-            "GitHub/GitHub-basics/create-github-repo",
-            "GitHub/GitHub-basics/github-repo-command-line",
-            "GitHub/GitHub-basics/how-to-clone-repository",
-            "GitHub/GitHub-basics/how-to-fork",
-            "GitHub/GitHub-basics/first-opensource-code",
-          ],
-        },
-        {
-          type: "category",
-          label: "👨‍💼 Maintainer Guide",
-          className: "custom-sidebar-maintainer",
-          items: [
-            "GitHub/Maintainer-guide/github-labels",
-            "GitHub/Maintainer-guide/milestone",
-            "GitHub/Maintainer-guide/github-project",
-            "GitHub/Maintainer-guide/enable-dicussion",
-          ],
-        },
-        {
-          type: "category",
-          label: "Fun Proflie Customizations",
-          className: "custom-sidebar-fun",
-          items: [
-            "GitHub/Fun-Profile-Customizations/Why-Customize",
-            "GitHub/Fun-Profile-Customizations/Anurag-Hazra's-GitHub-Readme-Cards",
-            "GitHub/Fun-Profile-Customizations/Trophy-Case-Streaks",
-            "GitHub/Fun-Profile-Customizations/Snake-Contribution-Animation",
+            "GitHub/intro-gitlab", // Moved here from the old top level
           ],
         },
       ],
@@ -167,7 +183,6 @@ const sidebars: SidebarsConfig = {
             "sql/SQL-Advance/sql-indexes",
             "sql/SQL-Advance/sql-advanced-analytics",
             "sql/SQL-Advance/sql-procedures-functions-triggers",
-            "sql/SQL-Advance/dimensional-modelling",
           ],
         },
       ],
