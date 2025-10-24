@@ -1,6 +1,6 @@
 # Queue in Python
 
-A **Queue** is a linear data structure that follows a specific order for all operations. This order is based on the **First-In, Last-Out (FILO)** principle.
+A **Queue** is a linear data structure that follows a specific order for all operations. This order is based on the **First-In, First-Out (FIFO)** principle.
 
 Imagine a ticket line: the first person to join the line is the first person to be served and leave.
 
