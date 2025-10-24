@@ -11,7 +11,7 @@ Imagine a ticket line: the first person to join the line is the first person to 
 Queues have two distinct ends where operations occur: the **Rear** (for insertion) and the **Front** (for removal).
 
 | Operation | Description | Analogy |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | **Enqueue** | Adds an element to the **Rear**. | Joining the back of the line. |
 | **Dequeue** | Removes an element from the **Front**. | Leaving the front of the line. |
 | **Peek** | Returns the front element without removing it. | Looking at the person next in line. |

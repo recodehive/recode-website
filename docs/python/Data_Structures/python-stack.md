@@ -15,7 +15,7 @@ A stack has three primary operations, all of which occur at the **Top** of the s
 3.  `Peek`: **Returns** the element at the top.
 
 | Operation | Description | Analogy |
-| :--- | :--- | :--- | :--- |
+| :--- | :--- | :--- |
 | **Push** | Add element to the **Top** | Placing a plate on top of the stack |
 | **Pop** | Remove element from the **Top** | Taking the top plate off the stack |
 | **Peek** | View the element at the **Top** | Looking at the top plate |
