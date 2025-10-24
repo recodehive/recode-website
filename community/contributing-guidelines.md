@@ -106,7 +106,8 @@ We welcome contributions! Follow these steps to get started.
    This allows you to fetch changes from the main repository to keep your fork up to date.
 
    ```bash
-   git remote add upstream https://github.com/recodehive/recode-website.git   ```
+   git remote add upstream https://github.com/recodehive/recode-website.git
+   ```
 
    Verify the remotes:
 
