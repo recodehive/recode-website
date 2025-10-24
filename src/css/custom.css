@@ -454,7 +454,7 @@ body {
   }
 }
 /* ===== SECTION 11: CRITICAL FIX: TABLET/IPAD NAVBAR BEHAVIOR ===== */
-@media screen and (max-width: 1299px) {
+@media screen and (max-width: 996px) {
   /* Hide TOP navbar items on mobile (not sidebar) */
   .navbar__items .navbar__item:not(.navbar__toggle):not(.navbar__brand) {
     display: none !important;
