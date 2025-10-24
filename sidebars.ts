@@ -108,10 +108,10 @@ const sidebars: SidebarsConfig = {
           label: "Data Structures",
           className: "custom-sidebar-data-structures",
           items: [
-            "GitHub/Data_Structures/python-array",
-            "GitHub/Data_Structures/python-linked-list",
-            "GitHub/Data_Structures/python-stack",
-            "GitHub/Data_Structures/python-queue",
+            "python/Data_Structures/python-array",
+            "python/Data_Structures/python-linked-list",
+            "python/Data_Structures/python-stack",
+            "python/Data_Structures/python-queue",
           ]
         }
       ],
