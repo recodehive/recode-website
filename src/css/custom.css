@@ -4,6 +4,7 @@
 [data-theme="light"] .interview-prep-page div {
   color: inherit;
 }
+
 /* You can override the default Infima variables here. */
 @import "tailwindcss";
 
@@ -51,8 +52,10 @@
 
 /* Force high visibility for active sidebar items - Green Theme */
 .menu__link--active {
-  background-color: #ecfdf5; /* Light green background */
-  color: #2f855a; /* Strong green text */
+  background-color: #ecfdf5;
+  /* Light green background */
+  color: #2f855a;
+  /* Strong green text */
   font-weight: bold;
   position: relative;
   box-shadow: 0 2px 8px rgba(56, 161, 105, 0.2);
@@ -67,7 +70,8 @@
 /* Make active text bold and larger */
 .menu__link--active span {
   font-weight: 700;
-  color: #2f855a; /* Strong green color */
+  color: #2f855a;
+  /* Strong green color */
   font-size: 1.05em;
 }
 
@@ -75,11 +79,13 @@
 
 /* Style the existing dot for active pages */
 a.menu__link.menu__link--active div span:first-child {
-  background-color: #38a169 !important; /* Green dot */
+  background-color: #38a169 !important;
+  /* Green dot */
   opacity: 1 !important;
   width: 8px !important;
   height: 8px !important;
-  box-shadow: 0 0 6px #38a169 !important; /* Add glow effect */
+  box-shadow: 0 0 6px #38a169 !important;
+  /* Add glow effect */
   animation: breatheGreen 2s infinite;
 }
 
@@ -100,10 +106,12 @@ a.menu__link.menu__link--active div span:first-child {
     opacity: 0.7;
     transform: translateY(-50%) scale(1);
   }
+
   50% {
     opacity: 1;
     transform: translateY(-50%) scale(1.2);
   }
+
   100% {
     opacity: 0.7;
     transform: translateY(-50%) scale(1);
@@ -113,7 +121,7 @@ a.menu__link.menu__link--active div span:first-child {
 /* ================= SECTION 4: CUSTOM SIDEBAR CATEGORY THEMES ================= */
 
 /* GitHub theme */
-.custom-sidebar-github > .menu__list-item-collapsible > .menu__link {
+.custom-sidebar-github>.menu__list-item-collapsible>.menu__link {
   background: linear-gradient(135deg, #24292e, #586069);
   color: white;
   border-radius: 8px;
@@ -122,7 +130,7 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* Python theme */
-.custom-sidebar-python > .menu__list-item-collapsible > .menu__link {
+.custom-sidebar-python>.menu__list-item-collapsible>.menu__link {
   background: linear-gradient(135deg, #3776ab, #ffd43b);
   color: white;
   border-radius: 8px;
@@ -131,7 +139,7 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* SQL theme */
-.custom-sidebar-sql > .menu__list-item-collapsible > .menu__link {
+.custom-sidebar-sql>.menu__list-item-collapsible>.menu__link {
   background: linear-gradient(135deg, #336791, #4479a1);
   color: white;
   border-radius: 8px;
@@ -140,7 +148,7 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* Next.js theme */
-.custom-sidebar-nextjs > .menu__list-item-collapsible > .menu__link {
+.custom-sidebar-nextjs>.menu__list-item-collapsible>.menu__link {
   background: linear-gradient(135deg, #000000, #333333);
   color: white;
   border-radius: 8px;
@@ -149,7 +157,7 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* Google Student Ambassador theme */
-.custom-sidebar-gsa > .menu__list-item-collapsible > .menu__link {
+.custom-sidebar-gsa>.menu__list-item-collapsible>.menu__link {
   background: linear-gradient(135deg, #4285f4, #34a853);
   color: white;
   border-radius: 8px;
@@ -158,7 +166,7 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* Technical theme */
-.custom-sidebar-technical > .menu__list-item-collapsible > .menu__link {
+.custom-sidebar-technical>.menu__list-item-collapsible>.menu__link {
   background: linear-gradient(135deg, #ff6b6b, #ee5a24);
   color: white;
   border-radius: 8px;
@@ -167,9 +175,9 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* Custom subcategory styling */
-.custom-sidebar-setup > .menu__list-item-collapsible > .menu__link,
-.custom-sidebar-basics > .menu__list-item-collapsible > .menu__link,
-.custom-sidebar-maintainer > .menu__list-item-collapsible > .menu__link {
+.custom-sidebar-setup>.menu__list-item-collapsible>.menu__link,
+.custom-sidebar-basics>.menu__list-item-collapsible>.menu__link,
+.custom-sidebar-maintainer>.menu__list-item-collapsible>.menu__link {
   background: rgba(36, 41, 46, 0.1);
   border-left: 3px solid #24292e;
   padding-left: 16px;
@@ -177,12 +185,12 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* Hover effects for all custom categories */
-.custom-sidebar-github > .menu__list-item-collapsible > .menu__link:hover,
-.custom-sidebar-python > .menu__list-item-collapsible > .menu__link:hover,
-.custom-sidebar-sql > .menu__list-item-collapsible > .menu__link:hover,
-.custom-sidebar-nextjs > .menu__list-item-collapsible > .menu__link:hover,
-.custom-sidebar-gsa > .menu__list-item-collapsible > .menu__link:hover,
-.custom-sidebar-technical > .menu__list-item-collapsible > .menu__link:hover {
+.custom-sidebar-github>.menu__list-item-collapsible>.menu__link:hover,
+.custom-sidebar-python>.menu__list-item-collapsible>.menu__link:hover,
+.custom-sidebar-sql>.menu__list-item-collapsible>.menu__link:hover,
+.custom-sidebar-nextjs>.menu__list-item-collapsible>.menu__link:hover,
+.custom-sidebar-gsa>.menu__list-item-collapsible>.menu__link:hover,
+.custom-sidebar-technical>.menu__list-item-collapsible>.menu__link:hover {
   transform: translateX(4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -261,7 +269,7 @@ html[data-theme="dark"] .menu__link--active::after {
 }
 
 /* ======== SECTION 7 : Adjust individual navbar items ==========*/
-.navbar__items > .navbar__item {
+.navbar__items>.navbar__item {
   padding: 0.2rem 0.3rem !important;
   margin: 0 !important;
 }
@@ -292,6 +300,7 @@ html[data-theme="dark"] .menu__link--active::after {
 
 /* Ensure dropdowns are visible on big screens */
 @media (min-width: 1300px) {
+
   .navbar__item.dropdown,
   .navbar__item:has(.dropdown-content) {
     position: relative !important;
@@ -418,18 +427,27 @@ body {
 
   /* Global dark theme tokens used across feature pages (courses, broadcasts, sponsors, etc.) */
   /* Backgrounds */
-  --dark-bg-primary: #0b1220; /* base page background (deep navy) */
-  --dark-bg-secondary: #0f172a; /* section alt background */
-  --dark-bg-tertiary: #111827; /* subtle surfaces */
+  --dark-bg-primary: #0b1220;
+  /* base page background (deep navy) */
+  --dark-bg-secondary: #0f172a;
+  /* section alt background */
+  --dark-bg-tertiary: #111827;
+  /* subtle surfaces */
   /* Cards */
-  --dark-card-bg: #111827; /* card background */
-  --dark-card-hover-bg: #0f172a; /* card hover background */
+  --dark-card-bg: #111827;
+  /* card background */
+  --dark-card-hover-bg: #0f172a;
+  /* card hover background */
   /* Text */
-  --dark-text-primary: #e5e7eb; /* gray-200 */
-  --dark-text-secondary: #cbd5e1; /* slate-300 */
-  --dark-text-muted: #94a3b8; /* slate-400 */
+  --dark-text-primary: #e5e7eb;
+  /* gray-200 */
+  --dark-text-secondary: #cbd5e1;
+  /* slate-300 */
+  --dark-text-muted: #94a3b8;
+  /* slate-400 */
   /* Borders */
-  --dark-border: #334155; /* slate-700 */
+  --dark-border: #334155;
+  /* slate-700 */
   /* Shadows */
   --dark-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.4);
   --dark-shadow-lg:
@@ -438,6 +456,7 @@ body {
 
 /* =====  SECTION 10: DESKTOP NAVBAR ENHANCEMENTS ===== */
 @media (min-width: 1300px) {
+
   /* Better spacing for desktop navbar */
   .navbar__inner {
     max-width: 1400px;
@@ -453,8 +472,10 @@ body {
     margin-right: 2rem;
   }
 }
+
 /* ===== SECTION 11: CRITICAL FIX: TABLET/IPAD NAVBAR BEHAVIOR ===== */
 @media screen and (max-width: 1299px) {
+
   /* Hide TOP navbar items on mobile (not sidebar) */
   .navbar__items .navbar__item:not(.navbar__toggle):not(.navbar__brand) {
     display: none !important;
@@ -501,6 +522,7 @@ body {
     display: block !important;
     margin-right: 0.5rem !important;
   }
+
   /* Ensure sidebar is fully functional */
   .navbar-sidebar {
     display: block !important;
@@ -610,10 +632,12 @@ body {
   font-size: 0.8rem !important;
   padding: 0.4rem 0.6rem !important;
 }
+
 .nav__icons {
   color: var(--ifm-font-color-base);
   text-decoration: none;
 }
+
 .nav__icons img {
   width: 35px;
   height: 35px;
@@ -658,9 +682,10 @@ body {
 }
 
 /* Prevent grid content from forcing overflow in the dropdown rows */
-.dropdown__menu .grid > .col-span-2,
-.dropdown-content .grid > .col-span-2 {
-  min-width: 0 !important; /* allow the icon column to shrink inside the 3-col grid */
+.dropdown__menu .grid>.col-span-2,
+.dropdown-content .grid>.col-span-2 {
+  min-width: 0 !important;
+  /* allow the icon column to shrink inside the 3-col grid */
 }
 
 /* Ensure grid rows use full available width for internal layout */
@@ -676,12 +701,13 @@ body {
 /* Add spacing between the individual icons within the 4-col icon grid */
 .dropdown__menu .grid .grid,
 .dropdown-content .grid .grid {
-  gap: 0.6rem !important; /* slightly tighter to reduce big gaps */
+  gap: 0.6rem !important;
+  /* slightly tighter to reduce big gaps */
 }
 
 /* Add breathing room between the left label and the vertical separator */
-.dropdown__menu .grid > .border-r.col-span-1,
-.dropdown-content .grid > .border-r.col-span-1 {
+.dropdown__menu .grid>.border-r.col-span-1,
+.dropdown-content .grid>.border-r.col-span-1 {
   padding-right: 0.5rem !important;
 }
 
@@ -690,7 +716,8 @@ body {
 .dropdown-content .grid .col-span-2 .nav__icons {
   display: inline-flex !important;
   align-items: center !important;
-  padding: 0.2rem 0 !important; /* reduce extra space between Technical & Behavioral */
+  padding: 0.2rem 0 !important;
+  /* reduce extra space between Technical & Behavioral */
 }
 
 .dropdown:hover .dropdown-content,
@@ -718,12 +745,14 @@ body {
 .dropdown {
   position: relative !important;
 }
+
 .dropdown-content a {
   color: var(--ifm-font-color-base);
   transition:
     background 0.2s,
     color 0.2s;
 }
+
 .dropdown-content .border-r,
 .dropdown-content .col-span-1,
 .dropdown-content .col-span-2 {
@@ -735,6 +764,7 @@ body {
   background: var(--ifm-color-emphasis-600);
   border-radius: 8px;
 }
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
@@ -826,7 +856,8 @@ html.theme-light .text-gray-900 {
 [data-theme="light"] .interview-prep-page .technical-inner-success,
 [data-theme="light"] .interview-prep-page .interview-prep-sidebar {
   background-color: #ffffff !important;
-  color: #111827; /* gray-900 */
+  color: #111827;
+  /* gray-900 */
 }
 
 /* Ensure common dark-surface utilities don't leak into light theme in this area */
@@ -837,7 +868,7 @@ html.theme-light .text-gray-900 {
 
 /* Ensure the specific block is forced light in light mode */
 html[data-theme="light"] .interview-prep-page .technical-outer {
-  background-image: linear-gradient(135deg,#eff6ff 0%, #f8fafc 100%) !important;
+  background-image: linear-gradient(135deg, #eff6ff 0%, #f8fafc 100%) !important;
   background-color: #ffffff !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
@@ -858,7 +889,7 @@ html[data-theme="light"] .interview-prep-page .technical-outer {
 }
 
 /* hide the subtle pattern overlay added inside the component */
-[data-theme="light"] .company-outer > .absolute.inset-0,
+[data-theme="light"] .company-outer>.absolute.inset-0,
 [data-theme="light"] .company-outer .absolute.inset-0.opacity-5 {
   display: none !important;
   background: none !important;
@@ -942,14 +973,12 @@ html {
 /* ===== FOOTER BACKGROUND PROTECTION ===== */
 /* Ensure footer maintains its gradient background in dark mode */
 [data-theme="dark"] .enhanced-footer {
-  background: linear-gradient(
-    135deg,
-    #0f0f23 0%,
-    #1a1a2e 25%,
-    #16213e 50%,
-    #0f3460 75%,
-    #533483 100%
-  ) !important;
+  background: linear-gradient(135deg,
+      #0f0f23 0%,
+      #1a1a2e 25%,
+      #16213e 50%,
+      #0f3460 75%,
+      #533483 100%) !important;
   color: #e2e8f0 !important;
 }
 
@@ -965,22 +994,17 @@ html {
 
 /* ===== STEP 6: MAXIMUM SPECIFICITY PROTECTION ===== */
 /* Override the exact problematic global rule with same specificity */
-[data-theme="dark"]
-  body:not(:has(.community-page))
-  .enhanced-footer
-  .container {
+[data-theme="dark"] body:not(:has(.community-page)) .enhanced-footer .container {
   background-color: transparent !important;
 }
 
 [data-theme="dark"] body:not(:has(.community-page)) .enhanced-footer {
-  background: linear-gradient(
-    135deg,
-    #0f0f23 0%,
-    #1a1a2e 25%,
-    #16213e 50%,
-    #0f3460 75%,
-    #533483 100%
-  ) !important;
+  background: linear-gradient(135deg,
+      #0f0f23 0%,
+      #1a1a2e 25%,
+      #16213e 50%,
+      #0f3460 75%,
+      #533483 100%) !important;
   color: #e2e8f0 !important;
 }
 
@@ -1002,15 +1026,14 @@ html {
 
 /* ===== REMOVE THEME TOGGLE FROM MOBILE SIDEBAR AS THERE IS ONE ON THE NAVBAR ===== */
 @media (max-width: 1200px) {
+
   /* Aggressively hide theme toggle in mobile sidebar */
-  .navbar-sidebar__brand
-    button:not(.navbar-sidebar__close):not([class*="close"]),
+  .navbar-sidebar__brand button:not(.navbar-sidebar__close):not([class*="close"]),
   .navbar-sidebar__brand .colorModeToggle,
   .navbar-sidebar .colorModeToggle,
   .navbar-sidebar__brand button[class*="colorModeToggle"],
   .navbar-sidebar button[class*="colorModeToggle"],
-  .navbar-sidebar__brand
-    .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
+  .navbar-sidebar__brand .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
   .navbar-sidebar .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
   .navbar-sidebar__brand [class*="toggle_"]:not(.navbar-sidebar__close),
   .navbar-sidebar [class*="toggle_"]:not(.navbar-sidebar__close),
@@ -1032,6 +1055,7 @@ html {
     left: -9999px !important;
     pointer-events: none !important;
   }
+
   /* Ensure close button is always visible */
   .navbar-sidebar__brand .navbar-sidebar__close,
   .navbar-sidebar__brand button[class*="close"],
@@ -1053,6 +1077,7 @@ html {
     border-top: none !important;
     box-shadow: none !important;
   }
+
   .navbar-sidebar__item:first-child,
   .navbar-sidebar__link:first-child {
     margin-top: 0 !important;
@@ -1060,6 +1085,7 @@ html {
     border-top: none !important;
     box-shadow: none !important;
   }
+
   /* Remove any unwanted hr or divider above dropdowns */
   .navbar-sidebar hr,
   .navbar-sidebar__item hr {
@@ -1068,6 +1094,7 @@ html {
     padding: 0 !important;
     border: none !important;
   }
+
   /* Remove grid gap above dropdowns */
   .navbar-sidebar .grid {
     gap: 0 !important;
@@ -1078,6 +1105,7 @@ html {
 
 /* Mobile-only visibility & spacing fixes for Tutorials icons (320–768px) */
 @media screen and (max-width: 768px) {
+
   /* Ensure the label + icons row inside Docs dropdown uses the full width */
   .navbar-sidebar .grid,
   .navbar-sidebar .dropdown__menu .grid,
@@ -1085,22 +1113,26 @@ html {
     width: 100% !important;
     column-gap: 0.5rem !important;
     row-gap: 0.6rem !important;
-    align-items: center !important; /* align titles with icons vertically */
+    align-items: center !important;
+    /* align titles with icons vertically */
   }
 
   /* So the icon column doesn't get clipped in the 3-col layout */
-  .navbar-sidebar .grid > .col-span-2 {
+  .navbar-sidebar .grid>.col-span-2 {
     min-width: 0 !important;
   }
 
   /* Tighten label space and drop the border on very small screens */
-  .navbar-sidebar .grid > .border-r.col-span-1 {
+  .navbar-sidebar .grid>.border-r.col-span-1 {
     border-right: 0 !important;
     padding-right: 0.25rem !important;
     font-weight: 600;
-    display: flex !important; /* center the title block */
-    align-items: center !important; /* vertically center with icons */
-    line-height: 1.1 !important; /* avoid baseline drift */
+    display: flex !important;
+    /* center the title block */
+    align-items: center !important;
+    /* vertically center with icons */
+    line-height: 1.1 !important;
+    /* avoid baseline drift */
   }
 
   /* The inner icon group for Tutorials/Courses only (have grid-cols-4) */
@@ -1109,7 +1141,8 @@ html {
   .navbar-sidebar .dropdown-content .grid .grid.grid-cols-4 {
     display: grid !important;
     grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    column-gap: 0.5rem !important; /* keep columns tight */
+    column-gap: 0.5rem !important;
+    /* keep columns tight */
     row-gap: 1.5rem !important;
     overflow: visible !important;
   }
@@ -1117,8 +1150,10 @@ html {
   /* Make each Tutorial/Course icon compact while readable */
   .navbar-sidebar .grid .grid.grid-cols-4 .nav__icons {
     padding: 0 !important;
-    margin: 0.4rem 0 !important; /* even more vertical breathing room */
+    margin: 0.4rem 0 !important;
+    /* even more vertical breathing room */
   }
+
   .navbar-sidebar .grid .grid.grid-cols-4 .nav__icons img {
     width: 30px !important;
     height: 30px !important;
@@ -1133,7 +1168,7 @@ html {
   }
 
   /* Add vertical space between Tutorials, Courses, Interview Prep blocks */
-  .navbar-sidebar .dropdown__menu > .grid {
+  .navbar-sidebar .dropdown__menu>.grid {
     padding: 1rem 0 !important;
     margin: 1rem 0 !important;
   }
@@ -1171,7 +1206,8 @@ html {
 [data-theme="light"] .interview-prep-page h5,
 [data-theme="light"] .interview-prep-page h6 {
   /* Use a dark heading color in light mode for readability */
-  color: #111827 !important; /* Tailwind gray-900 */
+  color: #111827 !important;
+  /* Tailwind gray-900 */
 }
 
 .watch-video-btn {
@@ -1225,21 +1261,27 @@ html {
 [data-theme="dark"] .overview-sidebar-blue {
   border-color: #3b82f6;
 }
+
 [data-theme="dark"] .overview-sidebar-green {
   border-color: #22c55e;
 }
+
 [data-theme="dark"] .overview-sidebar-yellow {
   border-color: #eab308;
 }
+
 [data-theme="dark"] .overview-sidebar-purple {
   border-color: #a855f7;
 }
+
 [data-theme="dark"] .technical-outer {
   border-color: #3b82f6;
 }
+
 [data-theme="dark"] .technical-inner {
   border-color: #374151;
 }
+
 [data-theme="dark"] .technical-inner-success {
   border-color: #92400e;
 }
@@ -1247,15 +1289,19 @@ html {
 [data-theme="dark"] .question-bank-purple {
   border-color: #a855f7;
 }
+
 [data-theme="dark"] .question-bank-blue {
   border-color: #3b82f6;
 }
+
 [data-theme="dark"] .question-bank-green {
   border-color: #22c55e;
 }
+
 [data-theme="dark"] .question-bank-orange {
   border-color: #f97316;
 }
+
 .technical-btn {
   color: white;
 }
@@ -1268,37 +1314,44 @@ html {
 
 /* Purple */
 [data-theme="dark"] .question-bank-subtopic-purple {
-  border-color: #a855f7 !important; /* purple-500 */
+  border-color: #a855f7 !important;
+  /* purple-500 */
 }
 
 /* Blue */
 [data-theme="dark"] .question-bank-subtopic-blue {
-  border-color: #3b82f6 !important; /* blue-500 */
+  border-color: #3b82f6 !important;
+  /* blue-500 */
 }
 
 /* Green */
 [data-theme="dark"] .question-bank-subtopic-green {
-  border-color: #22c55e !important; /* green-500 */
+  border-color: #22c55e !important;
+  /* green-500 */
 }
 
 /* Orange */
 [data-theme="dark"] .question-bank-subtopic-orange {
-  border-color: #f97316 !important; /* orange-500 */
+  border-color: #f97316 !important;
+  /* orange-500 */
 }
 
 /* Pink */
 [data-theme="dark"] .question-bank-subtopic-pink {
-  border-color: #ec4899 !important; /* pink-500 */
+  border-color: #ec4899 !important;
+  /* pink-500 */
 }
 
 /* Cyan */
 [data-theme="dark"] .question-bank-subtopic-cyan {
-  border-color: #06b6d4 !important; /* cyan-500 */
+  border-color: #06b6d4 !important;
+  /* cyan-500 */
 }
 
 .explore-btn {
   color: inherit;
 }
+
 [data-theme="dark"] .explore-btn {
   color: white;
 }
@@ -1319,35 +1372,47 @@ html {
 
 /* Make the custom input theme-aware to avoid white text on light backgrounds */
 [data-theme="dark"] .custom-input {
-  background-color: #374151; /* gray-700 */
+  background-color: #374151;
+  /* gray-700 */
   color: #ffffff;
 }
+
 [data-theme="light"] .custom-input {
-  background-color: #f9fafb; /* gray-50 */
-  color: #111827; /* gray-900 */
+  background-color: #f9fafb;
+  /* gray-50 */
+  color: #111827;
+  /* gray-900 */
 }
+
 .company-border {
   border-color: #6b7280;
   margin-bottom: 35px;
 }
+
 [data-theme="dark"] .company-border {
   color: #ffffff;
 }
+
 .company-blue-border {
   border-color: #3b82f6;
 }
+
 .company-green-border {
   border-color: #22c55e;
 }
+
 .company-purple-border {
   border-color: #a855f7;
 }
 
 /* System Design */
 [data-theme="dark"] .badge-system {
-  border-color: #60a5fa; /* dark:border-blue-300 */
-  color: #60a5fa; /* dark:text-blue-300 */
-  background-color: rgba(30, 64, 175, 0.2); /* dark:bg-blue-900/20 */
+  border-color: #60a5fa;
+  /* dark:border-blue-300 */
+  color: #60a5fa;
+  /* dark:text-blue-300 */
+  background-color: rgba(30, 64, 175, 0.2);
+  /* dark:bg-blue-900/20 */
 }
 
 /* Behavioral */
@@ -1372,25 +1437,35 @@ html {
 }
 
 [data-theme="dark"] .question-card {
-  border-color: #1f2937; /* border-gray-800 */
-  background-color: #1f2937; /* bg-gray-800 */
+  border-color: #1f2937;
+  /* border-gray-800 */
+  background-color: #1f2937;
+  /* bg-gray-800 */
 }
+
 [data-theme="dark"] .company-tab-link {
   color: white;
 }
+
 [data-theme="dark"] .company-tab-link:hover {
   color: white;
 }
+
 .company-tab-community-link {
-  color: #9a3412; /* orange-800 for light */
+  color: #9a3412;
+  /* orange-800 for light */
 }
+
 [data-theme="dark"] .company-tab-community-link {
-  color: #fdba74; /* orange-300 in dark */
+  color: #fdba74;
+  /* orange-300 in dark */
 }
+
 .company-tab-community-link:hover {
   color: #fdba74;
   text-decoration: none;
 }
+
 /* Move navbar right items to absolute right corner */
 .navbar .navbar__inner {
   display: flex !important;
@@ -1419,20 +1494,24 @@ html {
   padding-right: var(--ifm-navbar-padding-horizontal) !important;
 }
 
-.navbar > .container,
-.navbar > .container-fluid {
+.navbar>.container,
+.navbar>.container-fluid {
   max-width: none !important;
   width: 100% !important;
   padding: 0 !important;
 }
+
 .practice-tab-link:hover {
   text-decoration: none;
 }
+
 [data-theme="dark"] .practice-tab-link {
   color: white;
 }
+
 [data-theme="light"] .practice-tab-link {
-  color: #1d4ed8; /* blue-700 */
+  color: #1d4ed8;
+  /* blue-700 */
 }
 
 /* ===== SECTION 14: SMOOTH PAGE TRANSITIONS ===== */
@@ -1462,16 +1541,12 @@ main {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(
-      circle at 20% 30%,
+    radial-gradient(circle at 20% 30%,
       rgba(99, 102, 241, 0.08) 0%,
-      transparent 40%
-    ),
-    radial-gradient(
-      circle at 80% 70%,
+      transparent 40%),
+    radial-gradient(circle at 80% 70%,
       rgba(168, 85, 247, 0.06) 0%,
-      transparent 45%
-    );
+      transparent 45%);
   pointer-events: none;
 }
 
@@ -1492,6 +1567,7 @@ a {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -1522,7 +1598,7 @@ a {
 
 /* ================= MISCELLANEOUS ================= */
 /* Fix Home icon alignment with text in breadcrumbs [Docs] */
-.theme-doc-breadcrumbs a.breadcrumbs__link > svg.breadcrumbHomeIcon_YNFT {
+.theme-doc-breadcrumbs a.breadcrumbs__link>svg.breadcrumbHomeIcon_YNFT {
   display: inline-block;
 }
 
@@ -1536,23 +1612,28 @@ a {
 }
 
 [data-theme='light'] .rounded-full.bg-green-100 {
-  background-color: #dcfce7 !important; /* green-100 */
+  background-color: #dcfce7 !important;
+  /* green-100 */
 }
 
 [data-theme='light'] .rounded-full.bg-yellow-100 {
-  background-color: #fef9c3 !important; /* yellow-100 */
+  background-color: #fef9c3 !important;
+  /* yellow-100 */
 }
 
 [data-theme='light'] .rounded-full.bg-red-100 {
-  background-color: #fee2e2 !important; /* red-100 */
+  background-color: #fee2e2 !important;
+  /* red-100 */
 }
 
 [data-theme='light'] .rounded-full.bg-blue-100 {
-  background-color: #dbeafe !important; /* blue-100 */
+  background-color: #dbeafe !important;
+  /* blue-100 */
 }
 
 [data-theme='light'] .rounded.bg-gray-100 {
-  background-color: #f3f4f6 !important; /* gray-100 */
+  background-color: #f3f4f6 !important;
+  /* gray-100 */
 }
 
 /* Dark mode overrides */
@@ -1565,50 +1646,62 @@ a {
 }
 
 [data-theme='dark'] .rounded-full.dark\:bg-green-900 {
-  background-color: #14532d !important; /* green-900 */
+  background-color: #14532d !important;
+  /* green-900 */
 }
 
 [data-theme='dark'] .rounded-full.dark\:bg-yellow-900 {
-  background-color: #713f12 !important; /* yellow-900 */
+  background-color: #713f12 !important;
+  /* yellow-900 */
 }
 
 [data-theme='dark'] .rounded-full.dark\:bg-red-900 {
-  background-color: #7f1d1d !important; /* red-900 */
+  background-color: #7f1d1d !important;
+  /* red-900 */
 }
 
 [data-theme='dark'] .rounded-full.dark\:bg-blue-900 {
-  background-color: #1e3a8a !important; /* blue-900 */
+  background-color: #1e3a8a !important;
+  /* blue-900 */
 }
 
 [data-theme='dark'] .rounded.dark\:bg-gray-700 {
-  background-color: #374151 !important; /* gray-700 */
+  background-color: #374151 !important;
+  /* gray-700 */
 }
 
 /* difficulty badge overrides — ensure readable in light mode and lift above overlays */
 .interview-prep-page .difficulty-badge {
   z-index: 50;
   background-clip: padding-box;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 /* Light mode: explicit background + text for each variant */
 [data-theme="light"] .interview-prep-page .difficulty-badge.bg-green-200 {
-  background-color: #DCFCE7 !important; /* green-200 -> higher contrast */
+  background-color: #DCFCE7 !important;
+  /* green-200 -> higher contrast */
   color: #14532D !important;
 }
+
 [data-theme="light"] .interview-prep-page .difficulty-badge.bg-yellow-200 {
-  background-color: #FEF3C7 !important; /* yellow-200 */
+  background-color: #FEF3C7 !important;
+  /* yellow-200 */
   color: #78350F !important;
 }
+
 [data-theme="light"] .interview-prep-page .difficulty-badge.bg-red-200 {
-  background-color: #FEE2E2 !important; /* red-200 */
+  background-color: #FEE2E2 !important;
+  /* red-200 */
   color: #7F1D1D !important;
 }
 
 /* Keep all duration badges grey in light mode */
 [data-theme="light"] .interview-prep-page .duration-badge {
-  background-color: #f3f4f6 !important; /* gray-100 */
-  color: #1f2937 !important; /* gray-800 */
+  background-color: #f3f4f6 !important;
+  /* gray-100 */
+  color: #1f2937 !important;
+  /* gray-800 */
   z-index: 50;
 }
 
@@ -1620,12 +1713,13 @@ html[data-theme="light"] .bg-gradient-to-r.from-blue-50.to-purple-50 {
 
 /* Companies: force white/near-white surface in light mode for .company-outer */
 html[data-theme="light"] .company-outer {
-  background-image: linear-gradient(135deg,#ffffff 0%, #f8fafc 100%) !important;
+  background-image: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
   background-color: #ffffff !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
   mix-blend-mode: normal !important;
 }
+
 html[data-theme="light"] .company-outer::before,
 html[data-theme="light"] .company-outer::after {
   display: none !important;
@@ -1640,8 +1734,10 @@ html[data-theme="light"] [data-slot="card-header"] .pill-badge,
 html[data-theme="light"] .company-border .pill-badge,
 html[data-theme="light"] .pill-badge[class*="bg-"],
 html[data-theme="light"] span.bg-gray-100.pill-badge {
-  background-color: #f3f4f6 !important; /* gray-100 visible in light mode */
-  color: #1f2937 !important;            /* dark text */
+  background-color: #f3f4f6 !important;
+  /* gray-100 visible in light mode */
+  color: #1f2937 !important;
+  /* dark text */
   mix-blend-mode: normal !important;
   background-clip: padding-box !important;
   z-index: 9999 !important;
@@ -1661,9 +1757,45 @@ html[data-theme="light"] a.company-tab-link {
 /* If any Tailwind gradient utility still applies, remove it for these containers in light mode */
 html[data-theme="light"] .company-outer.bg-gradient-to-br,
 html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
-  background-image: linear-gradient(135deg,#ffffff 0%, #f8fafc 100%) !important;
+  background-image: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
   background-color: #ffffff !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
   mix-blend-mode: normal !important;
+}
+
+/* ================= SECTION 15: AUTHOR PAGE AVATAR OVERLAP FIX ================= */
+/* Fix for author page avatar overlap - working solution */
+.avatar.margin-bottom--sm.author-as-h1_iMAg {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 50% !important;
+  border: none !important;
+}
+
+/* Additional avatar class fix */
+/* .avatar.margin-bottom--sm {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  border: none !important; */
+/* } */
+/* 
+/* Author name styling fix */
+/* .authorName_w5sO {
+  font-size: 1.1rem !important;
+  line-height: 1.1rem !important;
+  display: block !important;
+  flex-direction: column !important;
+} */
+
+.avatar.margin-bottom--sm {
+  width: auto !important;
+  height: auto !important;
+  border: none !important;
+}
+
+
+.blog-page .margin-bottom--xl {
+  margin-bottom: 0rem !important;
 }
