@@ -1,82 +1,91 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "@theme/Layout";
+
+interface SectionProps {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+}
+
+const Section: React.FC<SectionProps> = ({ id, title, children }) => {
+  const [open, setOpen] = useState(true);
+  return (
+    <div id={id} className="mb-6 border-b border-gray-200 pb-4">
+      <button
+        className="w-full text-left text-xl font-bold mb-2 flex justify-between items-center"
+        onClick={() => setOpen(!open)}
+      >
+        {title}
+        <span className="text-gray-500">{open ? "▲" : "▼"}</span>
+      </button>
+      {open && <div className="pl-2 text-justify">{children}</div>}
+    </div>
+  );
+};
 
 const TermsOfService: React.FC = () => {
   return (
     <Layout
-      title={"Terms and condition of recodehive.com"}
-      description="Terms of Service Page for recodehive Learners, and users"
+      title="Terms and Conditions of RecodeHive"
+      description="Terms of Service Page for RecodeHive learners and users"
     >
-      <div className="mx-auto mt-8 mb-8 max-w-3xl rounded-lg p-6 text-justify font-sans text-base leading-relaxed shadow-lg">
-        <h2 className="mb-6 text-center text-2xl font-bold">
-          Terms of Service
-        </h2>
+      <div className="mx-auto mt-8 mb-8 max-w-3xl rounded-lg p-6 font-sans text-base leading-relaxed shadow-lg bg-white dark:bg-gray-100">
+        <h1 className="mb-6 text-center text-3xl font-bold">Terms of Service</h1>
         <p className="mb-6">
-          These Terms of Service govern your use of{" "}
-          <b className="dark:text-gray-900">recodehive</b>, provided by{" "}
-          <strong className="dark:text-gray-900">Sanjay Viswanathan</strong>.
-          Below are the Terms and Conditions for the use of www.recodehive.com.
-          Please read these carefully. If you need to contact us regarding any
-          aspect of the following terms of use of our website, please reach out
-          us at the following email address – sanjay@recodehive.com.
+          Welcome to <b>RecodeHive</b>, operated by <strong>Sanjay Viswanathan</strong>.
+          These Terms of Service govern your use of www.recodehive.com. Please read
+          carefully. If you have any questions, contact us at{" "}
+          <a href="mailto:sanjay@recodehive.com" className="text-blue-600 underline">
+            sanjay@recodehive.com
+          </a>.
         </p>
-        <h3 className="mb-4 text-xl font-bold">Acceptance of Terms</h3>
-        <p className="mb-6">
-          By accessing or using the Service, you acknowledge that you have read,
-          understood, and agree to be bound by these Terms, as well as any
-          additional terms and conditions, policies, and guidelines provided by
-          us. If you do not agree to these Terms, please refrain from using the
-          Service.
-        </p>
-        <h3 className="mb-4 text-xl font-bold">Use of the Service</h3>
-        <ol className="mb-6 list-decimal pl-6">
-          <li className="mb-4">
-            <strong>Usage Instructions:</strong> You agree not to use the
-            website in a way that may impair the performance, corrupt or
-            manipulate the content or information available on the website or
-            reduce the overall functionality of the website.
-          </li>
-          <li className="mb-4">
-            <strong>License:</strong> We grant you a limited, non-exclusive,
-            non-transferable, and revocable license to access and use the
-            Service for your personal or internal business purposes. This
-            license does not permit any resale or commercial use of the Service.
-          </li>
-          <li className="mb-4">
-            <strong>User Conduct:</strong> You agree not to compromise the
-            security of the website or attempt to gain access to secured areas
-            of the website or attempt to access any sensitive information you
-            may believe exist on the website or server where it is hosted.
-          </li>
-        </ol>
-        <h3 className="mb-4 text-xl font-bold">Content</h3>
-        <ol className="mb-6 list-decimal pl-6">
-          <li className="mb-4">
-            <strong>User Content:</strong> You retain ownership of any content
-            you submit or upload to the Service (&quot;User Content&quot;). By
-            submitting User Content, you grant us a worldwide, royalty-free, and
-            non-exclusive license to use, reproduce, modify, adapt, publish,
-            translate, distribute, and display such User Content.
-          </li>
-          <li className="mb-4">
-            <strong>Intellectual Property:</strong> All content, trademarks,
-            service marks, logos, and other intellectual property displayed on
-            or related to the Service are the property of{" "}
-            <strong className="dark:text-gray-900">Sanjay Viswanathan</strong>{" "}
-            or its licensors. You may not use or display any of these without
-            our prior written consent.
-          </li>
-          <li className="mb-4">
-            <strong>Compensation:</strong> You agree to be fully responsible for
-            any claim, expense, losses, liability, costs including legal fees
-            incurred by us arising from any infringement of the terms and
-            conditions of this agreement and to which you will have agreed if
-            you continue to use the website.
-          </li>
-        </ol>
-        <h3 className="mb-4 text-xl font-bold">Privacy</h3>
-        <p className="mb-6">
-          Your privacy is important to us. Please review our{" "}
+
+        <Section id="acceptance" title="Acceptance of Terms">
+          By accessing or using RecodeHive, you agree to comply with these Terms
+          and any other guidelines provided by us. If you do not agree, please
+          refrain from using the Service.
+        </Section>
+
+        <Section id="use-of-service" title="Use of the Service">
+          <ol className="list-decimal pl-6">
+            <li className="mb-4">
+              <strong>Usage Instructions:</strong> Do not use the website in any way
+              that could impair its performance, corrupt content, or reduce overall functionality.
+            </li>
+            <li className="mb-4">
+              <strong>License:</strong> We grant a limited, non-exclusive, non-transferable,
+              revocable license for personal or internal business use only. Commercial use
+              is prohibited without prior consent.
+            </li>
+            <li className="mb-4">
+              <strong>User Conduct:</strong> Do not compromise website security,
+              attempt unauthorized access, or access sensitive information you are
+              not permitted to view.
+            </li>
+          </ol>
+        </Section>
+
+        <Section id="content" title="Content">
+          <ol className="list-decimal pl-6">
+            <li className="mb-4">
+              <strong>User Content:</strong> You retain ownership of content you
+              submit. By submitting, you grant RecodeHive a worldwide, royalty-free,
+              non-exclusive license to use, reproduce, modify, distribute, and display it.
+            </li>
+            <li className="mb-4">
+              <strong>Intellectual Property:</strong> All trademarks, logos, and other
+              intellectual property remain the property of Sanjay Viswanathan or its licensors.
+              Usage requires prior written consent.
+            </li>
+            <li className="mb-4">
+              <strong>Compensation:</strong> You are responsible for any claims, expenses,
+              or legal fees arising from violations of these Terms.
+            </li>
+          </ol>
+        </Section>
+
+        <Section id="privacy" title="Privacy">
+          Please review our{" "}
           <a
             href="/privacy-policy/"
             target="_blank"
@@ -85,41 +94,30 @@ const TermsOfService: React.FC = () => {
           >
             Privacy Policy
           </a>{" "}
-          to understand how we collect, use, and disclose your personal
-          information.
-        </p>
-        <h3 className="mb-4 text-xl font-bold">Termination</h3>
-        <p className="mb-6">
-          We reserve the right to suspend or terminate your access to the
-          Service at any time, with or without cause, and without notice or
-          liability.
-        </p>
+          to understand how your personal information is collected and used.
+        </Section>
 
-        <h3 className="mb-4 text-xl font-bold">Governing Law</h3>
-        <p className="mb-6">
-          These Terms shall be governed by and construed per the laws of India,
-          without regard to its conflict of law principles.
-        </p>
-        <h3 className="mb-4 text-xl font-bold">Changes to the Terms</h3>
-        <p className="mb-6">
-          Though we strive to be entirely accurate in the information that is
-          presented on our site and attempt to keep it as up to date as
-          possible, in some cases, some of the information you find on the
-          website may be slightly outdated. www.recodehive.com reserves the
-          right to make any modifications or corrections to the information you
-          find on the site at any time without notice.
-        </p>
-        <h3 className="mb-4 text-xl font-bold">Contact Us</h3>
-        <p>
-          If you have any questions about these Terms, please contact us at{" "}
-          <a
-            href="mailto:sanjay@recodehive.com"
-            className="text-blue-600 underline"
-          >
+        <Section id="termination" title="Termination">
+          We reserve the right to suspend or terminate access to the Service at any time,
+          with or without cause, and without prior notice or liability.
+        </Section>
+
+        <Section id="governing-law" title="Governing Law">
+          These Terms are governed by the laws of India, without regard to conflicts of law.
+        </Section>
+
+        <Section id="changes-to-terms" title="Changes to the Terms">
+          RecodeHive may update or modify these Terms at any time. Continued use of the
+          Service constitutes acceptance of the updated Terms. Users are responsible for
+          reviewing changes regularly.
+        </Section>
+
+        <Section id="contact" title="Contact Us">
+          If you have any questions regarding these Terms, contact us at{" "}
+          <a href="mailto:sanjay@recodehive.com" className="text-blue-600 underline">
             sanjay@recodehive.com
-          </a>
-          .
-        </p>
+          </a>.
+        </Section>
       </div>
     </Layout>
   );
