@@ -1414,7 +1414,7 @@ html {
   margin-left: auto !important;
   display: flex !important;
   align-items: center !important;
-  gap: 0.5rem !important;
+  /* gap: 0.5rem !important; */
   flex-shrink: 0 !important;
 }
 
@@ -1674,7 +1674,7 @@ html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
 }
 
 @media screen and (max-width: 1110px) {
-  .github-text{
-    display: none !important;
+  .navbar__items{
+    gap: 0.1rem !important;
   }
 }
