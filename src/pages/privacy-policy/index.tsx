@@ -79,7 +79,7 @@ const PrivacyPolicy: React.FC = () => {
               </h2>
               <ul className="privacy-list">
                 <li className="privacy-list-item">
-                  <strong>Comments & Personalization</strong>
+                  <strong>Comments & Personalization:</strong>
                   When visitors leave comments on the site we collect the data
                   shown in the comments form, and also the visitors IP address
                   and browser user agent string to help spam detection. To
@@ -87,7 +87,7 @@ const PrivacyPolicy: React.FC = () => {
                   and resources tailored to your interests and preferences.
                 </li>
                 <li className="privacy-list-item">
-                  <strong>Media & Communication</strong>
+                  <strong>Media & Communication:</strong>
                   If you upload images to the website, you should avoid
                   uploading images with embedded location data (EXIF GPS)
                   included. Visitors to the website can download and extract any
@@ -97,13 +97,13 @@ const PrivacyPolicy: React.FC = () => {
                   materials.
                 </li>
                 <li className="privacy-list-item">
-                  <strong>Cookies & Analytics</strong>
+                  <strong>Cookies & Analytics:</strong>
                   If you leave a comment on our site you may opt-in to save your
                   name, email address and website in cookies. We use third party
-                  app giscuss for this purpose to directly authorise with
-                  Github. If you have an account and you log in to this site, we
-                  will set a temporary cookie to determine if your browser
-                  accepts cookies. This cookie contains no personal data and is
+                  app giscus for this purpose to directly authorize with Github.
+                  If you have an account and you log in to this site, we will
+                  set a temporary cookie to determine if your browser accepts
+                  cookies. This cookie contains no personal data and is
                   discarded when you close your browser. These are for your
                   convenience so that you do not have to fill in your details
                   again when you leave another comment. These cookies will last
@@ -112,17 +112,17 @@ const PrivacyPolicy: React.FC = () => {
                   performance and user experience.
                 </li>
                 <li className="privacy-list-item">
-                  <strong>Security</strong>
+                  <strong>Security:</strong>
                   To protect our website from security threats, fraud, or other
                   malicious activities.
                 </li>
                 <li className="privacy-list-item">
-                  <strong>Legal Compliance</strong>
+                  <strong>Legal Compliance:</strong>
                   To comply with applicable laws, regulations, or legal
                   processes.
                 </li>
                 <li className="privacy-list-item">
-                  <strong>Contact Forms & Marketing</strong>
+                  <strong>Contact Forms & Marketing:</strong>
                   If you contact us we will use your name and email address to
                   reply to your query and we won&apos;t share that information
                   with third party. To promote our services, events, and
@@ -229,7 +229,7 @@ const PrivacyPolicy: React.FC = () => {
               <div className="privacy-section-content">
                 <p>
                   We receive data from Google AdSense and Google Analytics about
-                  the user behaviour. We reserve the right to update or modify
+                  the user behavior. We reserve the right to update or modify
                   this Privacy Policy at any time. We will notify you of any
                   changes by posting the new Privacy Policy on this page. Your
                   continued use of our website after any modifications indicates
