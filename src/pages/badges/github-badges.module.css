@@ -1013,7 +1013,7 @@ table tr:last-child td:last-child {
 }
 
 .certCard:hover .certBadge img {
-  transform: rotate(8deg) scale(1.08);
+  transform: scale(1.08);
   filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.2));
 }
 
@@ -1476,7 +1476,7 @@ table tr:last-child td:last-child {
 }
 
 .achievementsTable .levelImages img:hover {
-  transform: scale(1.2) rotate(8deg);
+  transform: scale(1.2);
   box-shadow:
     0 6px 16px rgba(0, 0, 0, 0.15),
     0 3px 8px rgba(0, 0, 0, 0.1);
