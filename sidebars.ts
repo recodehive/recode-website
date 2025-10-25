@@ -112,8 +112,8 @@ const sidebars: SidebarsConfig = {
             "python/Data_Structures/python-linked-list",
             "python/Data_Structures/python-stack",
             "python/Data_Structures/python-queue",
-          ]
-        }
+          ],
+        },
       ],
     },
     {
