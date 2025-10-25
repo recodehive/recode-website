@@ -94,6 +94,66 @@ The fork is a personal copy of the repo which is already present or uploaded in 
 
 :::
 
+## Troubleshooting & Common Issues
+
+Beginner GitHub users often run into similar problems when setting up or contributing. Here are some common issues and their solutions:
+
+:::info
+
+### 1. Git Command Not Working
+- **Problem:** Running Git commands like `git status` or `git commit` throws an error.
+- **Fix:** Make sure Git is installed on your machine by running `git --version` in the terminal. If it’s not installed, [download Git](https://git-scm.com/).
+- If installed but commands still fail, try restarting your terminal or reinstalling Git.
+
+### 2. Cannot Push to Repository
+- **Problem:** Errors such as “Permission denied” or “Authentication failed” when using `git push`.
+- **Fix:** Set up your Git global configuration:
+          git config --global user.name "Your Name"
+          git config --global user.email "your.email@example.com"
+- Use a Personal Access Token instead of a password for GitHub authentication. Learn how to [set up a token here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+- Confirm you’re pushing to the right repo:
+
+### 3. Merge Conflicts
+- **Problem:** Cannot merge branches; get conflict notifications.
+- **Fix:** Open the files listed by Git, edit them to keep only the correct code, and then mark them as resolved:
+          git add <file>
+          git commit
+- Detailed steps: [Resolving merge conflicts](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts).
+
+### 4. Cannot Install Dependencies
+- **Problem:** Running `npm install` fails due to missing modules or permission errors.
+- **Fix:** Try deleting the existing dependencies and reinstalling:
+          rm -rf node_modules
+          npm install
+
+:::
+
+_For more troubleshooting tips, see the [Beginner Git Guide](https://rogerdudler.github.io/git-guide/) or [GitHub Troubleshooting Docs](https://docs.github.com/en/contributing/setting-up-your-environment-to-work-on-github-docs/troubleshooting-your-environment)._
+
+---
+
+## Real-World Use Cases & Examples
+
+Seeing how GitHub is used in genuine projects makes concepts easier to grasp:
+
+:::info
+### Example 1: Team Collaboration Workflow
+Suppose a team is building an e-commerce platform:
+- Developer 1 codes the men’s section on a separate branch.
+- Developer 2 creates the women’s section in another branch.
+- Developer 3 works on the login feature in a third branch.
+- All changes are pushed to their respective branches, reviewed as pull requests, and merged into the main branch once approved.
+
+### Example 2: Issue Tracking
+- A user spots a bug, opens a GitHub Issue describing the problem.
+- Maintainer labels the issue (“bug”, “good first issue”), assigns it, and links any related pull requests.
+- Once a fix is merged, the issue auto-closes, keeping project history clear.
+
+### Example 3: Open Source Contributions
+- A contributor finds a typo in the documentation.
+- They fork the repo, fix the typo, and open a pull request.
+- Maintainers review and merge, improving the docs for everyone.
+:::
 
 
 ### Watch the video Tutorial
