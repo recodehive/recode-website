@@ -27,7 +27,7 @@
     ]
   },
   "dependencies": {
-    "@docusaurus/core": "^3.9.1",
+    "@docusaurus/core": "^3.9.2",
     "@docusaurus/plugin-content-docs": "3.9.2",
     "@docusaurus/plugin-google-analytics": "^3.9.1",
     "@docusaurus/plugin-ideal-image": "3.9.1",
