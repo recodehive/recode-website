@@ -345,7 +345,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                   <td>
                     <div className={styles.badgeLevels}>
                       <div className={styles.levelText}>
-                        Levels: Default
+                        Level: Default
                       </div>
                       <div className={styles.levelImages}>
                       <img
