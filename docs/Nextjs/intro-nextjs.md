@@ -94,9 +94,7 @@ Imagine you're building an online store. Different pages have different requirem
 
 Next.js empowers you to **mix and match** these strategies within the same application, choosing the optimal approach for each page. This flexibility is what makes Next.js stand out from other frameworks.
 
-<div align="center">
-  <img src="./assets/nextjs-logo.png" alt="Next.js Framework" width="600" />
-</div>
+![Next.js Framework](./assets/nextjs-logo.png)
 
 ## Understanding React and React Frameworks
 
