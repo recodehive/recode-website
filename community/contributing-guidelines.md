@@ -21,13 +21,13 @@ sidebar_position: 2
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/recodehive-website.git
+   git clone https://github.com/your-username/recode-website.git
    ```
 
 2. **Navigate to the project directory:**
 
    ```bash
-   cd recodehive-website
+   cd recode-website
    ```
 
 3. **Install dependencies:**
@@ -97,8 +97,8 @@ We welcome contributions! Follow these steps to get started.
 2. **Clone Your Fork Locally**
 
    ```bash
-   git clone https://github.com/your-username/recodehive-website.git
-   cd recodehive-website
+   git clone https://github.com/your-username/recode-website.git
+   cd recode-website
    ```
 
 3. **Add the Original Repository as Upstream**
@@ -106,7 +106,7 @@ We welcome contributions! Follow these steps to get started.
    This allows you to fetch changes from the main repository to keep your fork up to date.
 
    ```bash
-   git remote add upstream <repo-url>
+   git remote add upstream https://github.com/recodehive/recode-website.git
    ```
 
    Verify the remotes:
@@ -165,19 +165,19 @@ We welcome contributions! Follow these steps to get started.
 
 To ensure consistent code style and catch errors before committing, please follow these steps:
 
-2. **Automatically fix linting issues where possible**:
+1. **Automatically fix linting issues where possible**:
 
    ```bash
    npm run lint:fix
    ```
 
-3. **Format code according to project conventions**:
+2. **Format code according to project conventions**:
 
    ```bash
    npm run format
    ```
 
-4. **Build the project to verify everything compiles correctly**:
+3. **Build the project to verify everything compiles correctly**:
 
    ```bash
    npm run build

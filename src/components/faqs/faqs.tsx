@@ -53,15 +53,30 @@ const FAQs: React.FC = () => {
 
   return (
     <section
-      className={`py-8 transition-colors duration-300 ${
-        isDark ? "bg-[#121212]" : "bg-gray-50"
-      }`}
+      className="relative overflow-hidden py-8 transition-all duration-300"
+      style={{
+        background: isDark
+          ? "linear-gradient(to bottom, #0a0a0a 0%, #0f0f1e 30%, #1a1a2e 60%, #1e1635 85%, #2d1b4e 100%)"
+          : "linear-gradient(to bottom, #f9fafb 0%, #f3f4f6 30%, #e5e7eb 60%, #ddd6fe 85%, #ede9fe 100%)",
+        border: "none",
+        borderTop: "none",
+        boxShadow: "none",
+        outline: "none",
+        margin: "0",
+        padding: "2rem 0",
+      }}
     >
       <div className="mx-auto px-2 sm:px-4 lg:px-6">
         <div className="flex flex-col items-center justify-center gap-x-8 gap-y-12 lg:flex-row lg:justify-between xl:gap-28">
           <div className="w-full">
             <div className="mb-8 lg:mb-16">
-              <h6 className="mb-2 text-center text-lg font-medium text-indigo-600 lg:text-left">
+              <h6
+                className="mb-2 text-center text-lg font-medium lg:text-left"
+                style={{
+                  color: isDark ? "#a78bfa" : "#8b5cf6",
+                  fontWeight: 600,
+                }}
+              >
                 FAQs
               </h6>
               <h2
@@ -91,11 +106,20 @@ const FAQs: React.FC = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <button
-                    className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between text-lg font-medium transition-all duration-300 ${
+                    className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between rounded-lg p-4 text-lg font-medium transition-all duration-300 focus:outline-none ${
                       isDark
-                        ? "bg-gray-800 text-gray-200 hover:text-indigo-400"
-                        : "bg-gray-100 text-gray-700 hover:text-indigo-600"
-                    } rounded-lg p-4 focus:outline-none`}
+                        ? "text-gray-200 hover:text-indigo-400"
+                        : "text-gray-700 hover:text-indigo-600"
+                    }`}
+                    style={{
+                      background: isDark
+                        ? "rgba(30, 27, 75, 0.6)"
+                        : "rgba(237, 233, 254, 0.6)",
+                      border: isDark
+                        ? "1px solid rgba(139, 92, 246, 0.2)"
+                        : "1px solid rgba(139, 92, 246, 0.3)",
+                      backdropFilter: "blur(10px)",
+                    }}
                     onClick={() => toggleAccordion(index)}
                   >
                     {faq.question}
