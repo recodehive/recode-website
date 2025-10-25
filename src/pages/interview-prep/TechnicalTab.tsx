@@ -188,10 +188,7 @@ const TechnicalTab: React.FC<TechnicalTabProps> = ({
                       </h3>
                       <p className="text-blue-100">{category.description}</p>
                       <span className="inline-block rounded-full bg-white/20 px-3 py-1 text-sm font-medium transition hover:bg-white/30">
-                        <Link
-                          to="/docs/category/technical"
-                          className="explore-btn"
-                        >
+                        <Link to="/docs/Technical" className="explore-btn">
                           Explore →
                         </Link>
                       </span>
