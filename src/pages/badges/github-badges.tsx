@@ -410,25 +410,25 @@ const GithubBadgesContent = (): React.ReactElement => {
                       <div className={styles.levelImages}>
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire.png"
-                        alt="Starstruck Default"
+                        alt="Pair Extraordinarie Default"
                         title="Default (1)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Bronze.png"
-                        alt="Starstruck Bronze"
+                        alt="Pair Extraordinarie Bronze"
                         title="Bronze (10)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Silver.png"
-                        alt="Starstruck Silver"
+                        alt="Pair Extraordinarie Silver"
                         title="Silver (24)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Gold.png"
-                        alt="Starstruck Gold"
+                        alt="Pair Extraordinarie Gold"
                         title="Gold (48)"
                         className={styles.badgeImgSmall}
                       />
@@ -485,25 +485,25 @@ const GithubBadgesContent = (): React.ReactElement => {
                       <div className={styles.levelImages}>
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark.png"
-                        alt="Starstruck Default"
+                        alt="Pull Shark Default"
                         title="Default (2)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Bronze.png"
-                        alt="Starstruck Bronze"
+                        alt="Pull Shark Bronze"
                         title="Bronze (16)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Silver.png"
-                        alt="Starstruck Silver"
+                        alt="Pull Shark Silver"
                         title="Silver (128)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Gold.png"
-                        alt="Starstruck Gold"
+                        alt="Pull Shark Gold"
                         title="Gold (1024)"
                         className={styles.badgeImgSmall}
                       />
@@ -560,25 +560,25 @@ const GithubBadgesContent = (): React.ReactElement => {
                       <div className={styles.levelImages}>
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain.png"
-                        alt="Starstruck Default"
+                        alt="Galaxy Brain Default"
                         title="Default (2)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Bronze.png"
-                        alt="Starstruck Bronze"
+                        alt="Galaxy Brain Bronze"
                         title="Bronze (8)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Silver.png"
-                        alt="Starstruck Silver"
+                        alt="Galaxy Brain Silver"
                         title="Silver (16)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Gold.png"
-                        alt="Starstruck Gold"
+                        alt="Galaxy Brain Gold"
                         title="Gold (32)"
                         className={styles.badgeImgSmall}
                       />
@@ -685,7 +685,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                       <div className={styles.levelImages}>
                         <img
                           src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/GitHub-Sponsor/PNG/GitHubSponsorBadge.png"
-                          alt="GitHub Sponsor Default"
+                          alt="Public Sponsor Default"
                           title="Default (1)"
                           className={styles.badgeImgSmall}
                         />
