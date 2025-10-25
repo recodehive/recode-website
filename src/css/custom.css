@@ -474,7 +474,7 @@ body {
 }
 
 /* ===== SECTION 11: CRITICAL FIX: TABLET/IPAD NAVBAR BEHAVIOR ===== */
-@media screen and (max-width: 1299px) {
+@media screen and (max-width: 996px) {
   /* Hide TOP navbar items on mobile (not sidebar) */
 
   /*
@@ -1766,4 +1766,10 @@ html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
   mix-blend-mode: normal !important;
+}
+
+@media screen and (max-width: 1110px) {
+  .navbar__items{
+    gap: 0.1rem !important;
+}
 }
