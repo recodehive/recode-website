@@ -104,7 +104,10 @@ export default function Home(): ReactNode {
             </CommunityStatsProvider>
           </div>
 
-          <div className="m-4">
+          <div
+            className="m-0"
+            style={{ border: "none", boxShadow: "none", outline: "none" }}
+          >
             <FAQs />
           </div>
         </main>
