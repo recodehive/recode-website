@@ -474,10 +474,14 @@ body {
 }
 
 /* ===== SECTION 11: CRITICAL FIX: TABLET/IPAD NAVBAR BEHAVIOR ===== */
-@media screen and (max-width: 1299px) {
-
+@media screen and (max-width: 996px) {
   /* Hide TOP navbar items on mobile (not sidebar) */
-  .navbar__items .navbar__item:not(.navbar__toggle):not(.navbar__brand) {
+
+  /*
+  * This hides all navbar items on small screens, *except* for the
+  * toggle, brand, and the item :has() the GitHub auth button.
+  */
+  .navbar__items .navbar__item:not(.navbar__toggle):not(.navbar__brand):not(:has(#firebase-auth-github-navbar)) {
     display: none !important;
   }
 
@@ -1484,7 +1488,7 @@ html {
   margin-left: auto !important;
   display: flex !important;
   align-items: center !important;
-  gap: 0.5rem !important;
+  /* gap: 0.5rem !important; */
   flex-shrink: 0 !important;
 }
 
@@ -1764,38 +1768,8 @@ html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
   mix-blend-mode: normal !important;
 }
 
-/* ================= SECTION 15: AUTHOR PAGE AVATAR OVERLAP FIX ================= */
-/* Fix for author page avatar overlap - working solution */
-.avatar.margin-bottom--sm.author-as-h1_iMAg {
-  width: 150px !important;
-  height: 150px !important;
-  border-radius: 50% !important;
-  border: none !important;
+@media screen and (max-width: 1110px) {
+  .navbar__items{
+    gap: 0.1rem !important;
 }
-
-/* Additional avatar class fix */
-/* .avatar.margin-bottom--sm {
-  width: 40px !important;
-  height: 40px !important;
-  border-radius: 50% !important;
-  border: none !important; */
-/* } */
-/* 
-/* Author name styling fix */
-/* .authorName_w5sO {
-  font-size: 1.1rem !important;
-  line-height: 1.1rem !important;
-  display: block !important;
-  flex-direction: column !important;
-} */
-
-.avatar.margin-bottom--sm {
-  width: auto !important;
-  height: auto !important;
-  border: none !important;
-}
-
-
-.blog-page .margin-bottom--xl {
-  margin-bottom: 0rem !important;
 }
