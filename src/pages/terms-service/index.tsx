@@ -74,7 +74,7 @@ const TermsOfService: React.FC = () => {
           .
         </p>
 
-        {/* Grammatical mistakes are corrected */}
+        {/* Grammatical mistakes are corrected with more formal language  */}
         <Section id="acceptance" title="Acceptance of Terms">
           By accessing or using RecodeHive, you agree to comply with these Terms
           and any other guidelines provided by us. If you do not agree, please
@@ -84,42 +84,68 @@ const TermsOfService: React.FC = () => {
         <Section id="use-of-service" title="Use of the Service">
           <ol className={styles.list}>
             <li>
-              <strong>Usage Instructions:</strong> Do not use the website in any
-              way that could impair its performance, corrupt content, or reduce
-              overall functionality.
+              <strong>License to Use:</strong> We grant you a limited,
+              non-exclusive, non-transferable, and revocable license to access
+              and use the Service for your personal or internal business
+              purposes, strictly in accordance with these Terms.
             </li>
             <li>
-              <strong>License:</strong> We grant a limited, non-exclusive,
-              non-transferable, revocable license for personal or internal
-              business use only. Commercial use is prohibited without prior
-              consent.
-            </li>
-            <li>
-              <strong>User Conduct:</strong> Do not compromise website security,
-              attempt unauthorized access, or access sensitive information you
-              are not permitted to view.
+              <strong>Prohibited Uses:</strong> You agree not to:
+              {/* Using inline styles for a nested list to avoid CSS conflicts */}
+              <ul
+                style={{
+                  listStyleType: "circle",
+                  paddingLeft: "20px",
+                  marginTop: "12px",
+                }}
+              >
+                <li style={{ marginBottom: "8px" }}>
+                  Use the Service in any manner that could disable, overburden,
+                  damage, or impair the site.
+                </li>
+                <li style={{ marginBottom: "8px" }}>
+                  Attempt to gain unauthorized access to any part of the
+                  Service, or any data, servers, or networks connected to the
+                  Service.
+                </li>
+                <li style={{ marginBottom: "8px" }}>
+                  Compromise the security of the Service or access sensitive
+                  information you are not permitted to view.
+                </li>
+                <li>
+                  Use the Service for any illegal purpose or in violation of any
+                  local, state, national, or international law.
+                </li>
+              </ul>
             </li>
           </ol>
         </Section>
 
-        <Section id="content" title="Content">
+        <Section id="content" title="Content & Intellectual Property">
           <ol className={styles.list}>
             <li>
-              <strong>User Content:</strong> You retain ownership of content you
-              submit. By submitting, you grant RecodeHive a worldwide,
-              royalty-free, non-exclusive license to use, reproduce, modify,
-              distribute, and display it.
+              <strong>User-Generated Content:</strong> You retain all ownership
+              rights to the content you submit ("User Content"). By submitting
+              User Content, you grant RecodeHive a worldwide, royalty-free,
+              non-exclusive, sublicensable license to use, reproduce, modify,
+              adapt, publish, distribute, and display such User Content solely
+              in connection with providing the Service.
             </li>
             <li>
-              <strong>Intellectual Property:</strong> All trademarks, logos, and
-              other intellectual property remain the property of Sanjay
-              Viswanathan or its licensors. Usage requires prior written
-              consent.
+              <strong>Our Intellectual Property:</strong> The Service and its
+              original content (excluding User Content), features, and
+              functionality are and will remain the exclusive property of Sanjay
+              Viswanathan and his licensors. Usage of any trademarks, logos, or
+              service marks requires our prior written consent.
             </li>
             <li>
-              <strong>Indemnification:</strong> You are responsible for any
-              claims, expenses, or legal fees arising from violations of these
-              Terms.
+              <strong>Indemnification:</strong> You agree to defend, indemnify,
+              and hold harmless RecodeHive and Sanjay Viswanathan from and
+              against any and all claims, damages, obligations, losses,
+              liabilities, costs or debt, and expenses (including but not
+              limited to attorney's fees) arising from: (i) your use of and
+              access to the Service; (ii) your violation of any term of these
+              Terms; or (iii) your violation of any third-party right.
             </li>
           </ol>
         </Section>
