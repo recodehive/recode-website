@@ -61,14 +61,14 @@
   border-radius: 12px;
   border: 1px solid var(--ifm-toc-border-color);
   font-size: 1rem;
-  color: var(--ifm-font-color-base);
   background-color: var(--ifm-background-color);
+  color: var(--ifm-heading-color);
   box-shadow: var(--ifm-global-shadow-lw);
   transition: all 0.25s ease;
 }
 
 .ebook-search-wrapper input.ebook-search::placeholder {
-  color: var(--ifm-color-muted); 
+  color: var(--ifm-heading-color);
   opacity: 0.6;
 }
 
