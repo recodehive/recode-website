@@ -254,7 +254,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                       src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png"
                       alt="Starstruck"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13, rotate: -6 }}
+                      whileHover={{ scale: 1.13}}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -322,18 +322,16 @@ const GithubBadgesContent = (): React.ReactElement => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                  }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
+                  whileHover={{ scale: 1.02 }}
+                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.07)" }}
                 >
                   <td>
                     <motion.img
                       src="https://github.githubassets.com/images/modules/profile/achievements/quickdraw-default.png"
                       alt="Quickdraw"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13, rotate: 6 }}
+                      whileHover={{ scale: 1.13}}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -345,13 +343,18 @@ const GithubBadgesContent = (): React.ReactElement => {
                     opening you will unlock this badge
                   </td>
                   <td>
-                    <div className={styles.singleBadge}>
-                      <div className={styles.levelText}>Level: Default</div>
+                    <div className={styles.badgeLevels}>
+                      <div className={styles.levelText}>
+                        Level: Default
+                      </div>
+                      <div className={styles.levelImages}>
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone1.png"
                         alt="Quickdraw Default"
+                        title="Default (1)"
                         className={styles.badgeImgSmall}
                       />
+                      </div>
                       <div className={styles.neededAmount}>Needed: 1</div>
                     </div>
                   </td>
@@ -361,18 +364,16 @@ const GithubBadgesContent = (): React.ReactElement => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.15 }}
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                  }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
+                  whileHover={{ scale: 1.02 }}
+                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.07)" }}
                 >
                   <td>
                     <motion.img
                       src="https://github.githubassets.com/images/modules/profile/achievements/pair-extraordinaire-default.png"
                       alt="Pair Extraordinaire"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13, rotate: -8 }}
+                      whileHover={{ scale: 1.13}}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -402,35 +403,38 @@ const GithubBadgesContent = (): React.ReactElement => {
                     </a>
                   </td>
                   <td>
-                    <b>Needed:</b> 1, 10, 24, 48
-                    <br />
-                    <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                    <div className={styles.badgeLevels}>
+                      <div className={styles.levelText}>
+                        Levels: Default, Bronze, Silver, Gold
+                      </div>
+                      <div className={styles.levelImages}>
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire.png"
-                        alt="Starstruck Default"
-                        title="Default (16)"
+                        alt="Pair Extraordinarie Default"
+                        title="Default (1)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Bronze.png"
-                        alt="Starstruck Bronze"
-                        title="Bronze (128)"
+                        alt="Pair Extraordinarie Bronze"
+                        title="Bronze (10)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Silver.png"
-                        alt="Starstruck Silver"
-                        title="Silver (512)"
+                        alt="Pair Extraordinarie Silver"
+                        title="Silver (24)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Gold.png"
-                        alt="Starstruck Gold"
-                        title="Gold (4096)"
+                        alt="Pair Extraordinarie Gold"
+                        title="Gold (48)"
                         className={styles.badgeImgSmall}
                       />
                     </div>
-                    <b>Levels:</b> Default, Bronze, Silver, Gold
+                    <div className={styles.neededAmount}>Needed: 1, 10, 24, 48</div>
+                  </div>
                   </td>
                 </motion.tr>
                 {/* Pull Shark */}
@@ -438,18 +442,16 @@ const GithubBadgesContent = (): React.ReactElement => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                  }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
+                  whileHover={{ scale: 1.02 }}
+                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.07)" }}
                 >
                   <td>
                     <motion.img
                       src="https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png"
                       alt="Pull Shark"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13, rotate: 6 }}
+                      whileHover={{ scale: 1.13}}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -476,35 +478,38 @@ const GithubBadgesContent = (): React.ReactElement => {
                     </a>
                   </td>
                   <td>
-                    <b>Needed:</b> 2, 16, 128, 1024
-                    <br />
-                    <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                    <div className={styles.badgeLevels}>
+                      <div className={styles.levelText}>
+                        Levels: Default, Bronze, Silver, Gold
+                      </div>
+                      <div className={styles.levelImages}>
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark.png"
-                        alt="Starstruck Default"
-                        title="Default (16)"
+                        alt="Pull Shark Default"
+                        title="Default (2)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Bronze.png"
-                        alt="Starstruck Bronze"
-                        title="Bronze (128)"
+                        alt="Pull Shark Bronze"
+                        title="Bronze (16)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Silver.png"
-                        alt="Starstruck Silver"
-                        title="Silver (512)"
+                        alt="Pull Shark Silver"
+                        title="Silver (128)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Gold.png"
-                        alt="Starstruck Gold"
-                        title="Gold (4096)"
+                        alt="Pull Shark Gold"
+                        title="Gold (1024)"
                         className={styles.badgeImgSmall}
                       />
                     </div>
-                    <b>Levels:</b> Default, Bronze, Silver, Gold
+                    <div className={styles.neededAmount}>Needed: 2, 16, 128, 1024</div>
+                  </div>
                   </td>
                 </motion.tr>
                 {/* Galaxy Brain */}
@@ -512,18 +517,16 @@ const GithubBadgesContent = (): React.ReactElement => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.25 }}
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                  }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
+                  whileHover={{ scale: 1.02 }}
+                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.07)" }}
                 >
                   <td>
                     <motion.img
                       src="https://github.githubassets.com/images/modules/profile/achievements/galaxy-brain-default.png"
                       alt="Galaxy Brain"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13, rotate: -8 }}
+                      whileHover={{ scale: 1.13}}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -550,35 +553,38 @@ const GithubBadgesContent = (): React.ReactElement => {
                     </a>
                   </td>
                   <td>
-                    <b>Needed:</b> 2, 8, 16, 32
-                    <br />
-                    <div style={{ display: "flex", gap: 8, marginTop: 6 }}>
+                    <div className={styles.badgeLevels}>
+                      <div className={styles.levelText}>
+                        Levels: Default, Bronze, Silver, Gold
+                      </div>
+                      <div className={styles.levelImages}>
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain.png"
-                        alt="Starstruck Default"
-                        title="Default (16)"
+                        alt="Galaxy Brain Default"
+                        title="Default (2)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Bronze.png"
-                        alt="Starstruck Bronze"
-                        title="Bronze (128)"
+                        alt="Galaxy Brain Bronze"
+                        title="Bronze (8)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Silver.png"
-                        alt="Starstruck Silver"
-                        title="Silver (512)"
+                        alt="Galaxy Brain Silver"
+                        title="Silver (16)"
                         className={styles.badgeImgSmall}
                       />
                       <img
                         src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Gold.png"
-                        alt="Starstruck Gold"
-                        title="Gold (4096)"
+                        alt="Galaxy Brain Gold"
+                        title="Gold (32)"
                         className={styles.badgeImgSmall}
                       />
                     </div>
-                    <b>Levels:</b> Default, Bronze, Silver, Gold
+                    <div className={styles.neededAmount}>Needed: 2, 8, 16, 32</div>
+                  </div>
                   </td>
                 </motion.tr>
                 {/* YOLO */}
@@ -586,18 +592,16 @@ const GithubBadgesContent = (): React.ReactElement => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                  }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
+                  whileHover={{ scale: 1.02 }}
+                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.07)" }}
                 >
                   <td>
                     <motion.img
                       src="https://github.githubassets.com/images/modules/profile/achievements/yolo-default.png"
                       alt="YOLO"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13, rotate: 8 }}
+                      whileHover={{ scale: 1.13 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -623,14 +627,16 @@ const GithubBadgesContent = (): React.ReactElement => {
                     </a>
                   </td>
                   <td>
-                    <div className={styles.singleBadge}>
+                    <div className={styles.badgeLevels}>
                       <div className={styles.levelText}>Level: Default</div>
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/YOLO/PNG/YOLO_Badge.png"
-                        alt="Starstruck Default"
-                        title="Default (16)"
-                        className={styles.badgeImgSmall}
-                      />
+                      <div className={styles.levelImages}>
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/YOLO/PNG/YOLO_Badge.png"
+                          alt="YOLO Default"
+                          title="Default (1)"
+                          className={styles.badgeImgSmall}
+                        />
+                      </div>
                       <div className={styles.neededAmount}>Needed: 1</div>
                     </div>
                   </td>
@@ -640,18 +646,16 @@ const GithubBadgesContent = (): React.ReactElement => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.35 }}
-                  whileHover={{
-                    scale: 1.02,
-                    boxShadow: "0 4px 20px rgba(0,0,0,0.07)",
-                  }}
+                  transition={{ duration: 0.5, delay: 0.05 }}
+                  whileHover={{ scale: 1.02 }}
+                  style={{ boxShadow: "0 4px 20px rgba(0,0,0,0.07)" }}
                 >
                   <td>
                     <motion.img
                       src="https://github.githubassets.com/images/modules/profile/achievements/public-sponsor-default.png"
                       alt="Public Sponsor"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13, rotate: -6 }}
+                      whileHover={{ scale: 1.13 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -676,14 +680,16 @@ const GithubBadgesContent = (): React.ReactElement => {
                     </a>
                   </td>
                   <td>
-                    <div className={styles.singleBadge}>
+                    <div className={styles.badgeLevels}>
                       <div className={styles.levelText}>Level: Default</div>
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/GitHub-Sponsor/PNG/GitHubSponsorBadge.png"
-                        alt="Starstruck Default"
-                        title="Default (16)"
-                        className={styles.badgeImgSmall}
-                      />
+                      <div className={styles.levelImages}>
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/GitHub-Sponsor/PNG/GitHubSponsorBadge.png"
+                          alt="Public Sponsor Default"
+                          title="Default (1)"
+                          className={styles.badgeImgSmall}
+                        />
+                      </div>
                       <div className={styles.neededAmount}>Needed: 1</div>
                     </div>
                   </td>
