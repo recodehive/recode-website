@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import type { TabType } from "./index";
 
 interface MockQuestion {
   id: string;
@@ -44,7 +45,7 @@ interface PracticeStats {
 
 interface PracticeTabProps {
   mockInterviewQuestions?: MockQuestion[];
-  onTabChange?: (tab: string) => void;
+  onTabChange?: (tab: TabType) => void;
 }
 
 const fadeIn = {
@@ -220,7 +221,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
     });
   };
 
-  const handleTabNavigation = (tab: string) => {
+  const handleTabNavigation = (tab: TabType) => {
     if (onTabChange) {
       onTabChange(tab);
     }
