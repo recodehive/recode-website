@@ -793,6 +793,8 @@ html[data-theme="light"] {
 
 /* No Results */
 .no-results {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   padding: 80px 20px;
   max-width: 400px;
@@ -801,15 +803,14 @@ html[data-theme="light"] {
 
 .no-results-icon {
   font-size: 64px;
-  margin-bottom: 24px;
   opacity: 0.6;
+  margin: 0; /* removes default browser margin */
 }
 
 .no-results h3 {
   font-size: 24px;
   font-weight: 700;
   color: var(--podcast-text-primary);
-  margin-bottom: 12px;
 }
 
 .no-results p {
