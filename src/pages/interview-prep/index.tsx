@@ -27,10 +27,15 @@ const staggerContainer = {
   },
 };
 
+type TabType =
+  | "overview"
+  | "technical"
+  | "behavioral"
+  | "companies"
+  | "practice";
+
 const InterviewPrepPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<
-    "overview" | "technical" | "behavioral" | "companies" | "practice"
-  >("overview");
+  const [activeTab, setActiveTab] = useState<TabType>("overview");
   const [expandedCategories, setExpandedCategories] = useState<{
     [key: string]: boolean;
   }>({});
@@ -1501,11 +1506,7 @@ function InterviewPrepContent({
   mockInterviewQuestions,
 }: {
   activeTab: string;
-  setActiveTab: React.Dispatch<
-    React.SetStateAction<
-      "overview" | "technical" | "behavioral" | "companies" | "practice"
-    >
-  >;
+  setActiveTab: React.Dispatch<React.SetStateAction<TabType>>;
   expandedCategories: { [key: string]: boolean };
   toggleCategory: (categoryIndex: number) => void;
   showTips: { [key: number]: boolean };
@@ -1654,7 +1655,10 @@ function InterviewPrepContent({
 
           {/* Practice Tab */}
           {activeTab === "practice" && (
-            <PracticeTab mockInterviewQuestions={mockInterviewQuestions} />
+            <PracticeTab
+              mockInterviewQuestions={mockInterviewQuestions}
+              onTabChange={setActiveTab}
+            />
           )}
         </div>
 
@@ -1702,3 +1706,4 @@ function InterviewPrepContent({
 }
 
 export default InterviewPrepPage;
+export type { TabType };
