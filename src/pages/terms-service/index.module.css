@@ -1,0 +1,232 @@
+/* ---------------------------------- */
+/* 1. Color Variables                 */
+/* ---------------------------------- */
+
+:root {
+  --page-bg: #eef0f4;
+  --card-bg: #eef0f4;
+  --text-color: #3b4353;
+  --text-color-light: #6e7a91;
+  --accent-color: rgb(105, 81, 161);
+  --accent-gradient-light: linear-gradient(
+    135deg,
+    #5c6c9a 0%,
+    #76698f 50%,
+    #9a6d82 100%
+  );
+
+  --border-color: #d1d9e6;
+  --shadow-light: -8px -8px 16px #ffffff;
+  --shadow-dark: 8px 8px 16px #d1d9e6;
+  --inset-shadow-light: inset 6px 6px 12px #d1d9e6;
+  --inset-shadow-dark: inset -6px -6px 12px #ffffff;
+}
+
+
+[data-theme="dark"] {
+  --page-bg: #1a1a2e;
+  --card-bg: #1a1a2e;
+  --text-color: #ffffff;
+  --text-color-light: #94a3b8;
+  --accent-color: #7b8ab8;
+  --accent-gradient: linear-gradient(
+    135deg,
+    #7b8ab8 0%,
+    #8f7db0 50%,
+    #c4a9d9 100%
+  );
+
+  --border-color: rgba(255, 255, 255, 0.1);
+  --shadow-light: -8px -8px 16px #232342;
+  --shadow-dark: 8px 8px 16px #12121e;
+  --inset-shadow-light: inset 6px 6px 12px #12121e;
+  --inset-shadow-dark: inset -6px -6px 12px #232342;
+}
+
+/* ---------------------------------- */
+/* 2. Main Page Layout                */
+/* ---------------------------------- */
+.pageWrapper {
+  background-color: var(--page-bg);
+  transition: background-color 0.3s ease;
+}
+.pageContainer {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.7;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2.5rem 3rem;
+  border-radius: 20px;
+  box-shadow: var(--shadow-dark), var(--shadow-light);
+  transition: all 0.3s ease;
+}
+
+/* ---------------------------------- */
+/* 3. Typography                      */
+/* ---------------------------------- */
+.mainTitle {
+  text-align: center;
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  letter-spacing: -1px;
+}
+.introText {
+  text-align: center;
+  margin-bottom: 3rem;
+  font-size: 1.1rem;
+  color: var(--text-color-light);
+}
+.link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+.link:hover {
+  text-decoration: underline;
+}
+.list {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+.list li {
+  margin-bottom: 1.25rem;
+}
+.list li::marker {
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+/* ---------------------------------- */
+/* 4. Section Accordion               */
+/* ---------------------------------- */
+.section {
+  margin-bottom: 1.5rem;
+}
+
+.sectionButton {
+  width: 100%;
+  background-color: var(--card-bg);
+  border: none;
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow-dark), var(--shadow-light);
+  transition: all 0.3s ease;
+}
+.sectionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+}
+.sectionButton.open {
+  box-shadow: var(--inset-shadow-light), var(--inset-shadow-dark);
+}
+.sectionButton.open:hover {
+  transform: none;
+  box-shadow: var(--inset-shadow-light), var(--inset-shadow-dark);
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.sectionButton.open .sectionTitle,
+.sectionButton.open .icon {
+  color: var(--accent-color);
+}
+
+.iconContainer {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow-dark), var(--shadow-light);
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sectionButton.open .iconContainer {
+  box-shadow: var(--inset-shadow-light), var(--inset-shadow-dark);
+}
+
+.icon {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-color-light);
+  position: absolute;
+  opacity: 0;
+  transform: rotate(-90deg);
+  transition: all 0.3s ease-in-out;
+}
+
+.iconMinus {
+  position: relative;
+  top: -1px;
+}
+
+.iconVisible {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+/* ---------------------------------- */
+/* 5. Collapsible Content             */
+/* ---------------------------------- */
+.sectionContent {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, opacity 0.3s ease-in,
+    padding 0.3s ease-out;
+  border-radius: 12px;
+  margin-top: 1rem;
+  background-color: var(--card-bg);
+  box-shadow: var(--inset-shadow-light), var(--inset-shadow-dark);
+}
+.sectionContent.open {
+  max-height: 1000px; /* arbitrary large value */
+  opacity: 1;
+}
+.contentInner {
+  padding: 1.5rem 2rem;
+  text-align: left;
+  color: var(--text-color-light);
+}
+
+/* ----------------------------------------- */
+/* 6. Gradient Text for BOTH Modes           */
+/* ----------------------------------------- */
+
+/* This applies the MUTED LIGHT mode gradient */
+.sectionButton.open .sectionTitle,
+.sectionButton.open .icon {
+  background: var(--accent-gradient-light, var(--accent-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Fallback */
+}
+
+/* This OVERRIDES with the MUTED DARK mode gradient */
+[data-theme="dark"] .sectionButton.open .sectionTitle,
+[data-theme="dark"] .sectionButton.open .icon {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Fallback */
+}
