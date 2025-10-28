@@ -74,9 +74,10 @@ Once the data is ready, you can compute summary statistics to get insights about
 
 |Method|Description|
 |:-----|:----------|
-|`df.rename(columns={'old':'new'})`|Renames columns.|
-|`df.drop(columns=['col'])`|Removes one or more columns.|
-|`df.replace(old, new)`|Replaces specific values.|
-|`df.astype('type')`|Changes the data type of a column.|
-|`df.sort_values(by='col')`|Sorts rows by column values.|
-|`df.reset_index(drop=True)`|Resets the DataFrame index.|
+|`df.mean()`|Computes the mean (average) for numeric columns.|
+|`df.std()`|Computes the standard deviation for numeric columns.|
+|`df.min()`|Returns the minimum value for each column.|
+|`df.max()`|Returns the maximum value for each column.|
+|`df.median()`|Computes the median (50th percentile) for numeric columns.|
+|`df.corr()`|Computes pairwise correlation between numeric columns.|
+ No newline at end of file
