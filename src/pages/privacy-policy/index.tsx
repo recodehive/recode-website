@@ -253,7 +253,9 @@ const PrivacyPolicy: React.FC = () => {
                 >
                   sanjay@recodehive.com
                 </a>
-                . Thank you for visiting recodehive!
+                .
+                <br />
+                Thank you for visiting recodehive!
               </p>
             </div>
           </div>
