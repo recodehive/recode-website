@@ -1769,7 +1769,27 @@ html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
 }
 
 @media screen and (max-width: 1110px) {
-  .navbar__items{
+  .navbar__items {
     gap: 0.1rem !important;
+  }
 }
+
+/* Fix for author page avatar overlap - working solution */
+.avatar.margin-bottom--sm.author-as-h1_iMAg {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 50% !important;
+  border: none !important;
+}
+
+
+.avatar.margin-bottom--sm {
+  width: auto !important;
+  height: auto !important;
+  border: none !important;
+}
+
+
+.blog-page .margin-bottom--xl {
+  margin-bottom: 0rem !important;
 }
