@@ -1,4 +1,4 @@
-## Key Data Structures: Series and DataFrame
+# Key Data Structures: Series and DataFrame
 
 Pandas introduces two primary data structures: the Series and the DataFrame. Understanding these is crucial, as they form the basis of nearly all operations in the library.
 

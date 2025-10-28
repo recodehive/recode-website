@@ -6,9 +6,7 @@ Pandas is a powerful, open-source Python library essential for data analysis and
 At its core, Pandas is designed to make working with labeled and relational data (like data found in spreadsheets or SQL tables) both intuitive and fast. It is built on top of the NumPy library and is the standard tool used by data professionals for critical tasks such as:
 
 - Data Cleaning: Handling missing data, filtering, and correcting errors.
-
 - Data Transformation: Grouping, merging, reshaping, and pivoting datasets.
-
 - Data Exploration: Calculating descriptive statistics and inspecting data structure.
 
 ### Installation and Setup 🛠️
@@ -44,5 +42,4 @@ print(pd.__version__)
 It's helpful for users to know that Pandas is deeply integrated with the wider Python data science ecosystem:
 
 - Built on NumPy: Internally, Pandas relies heavily on the NumPy library for fast array-based computation, which is why it performs complex operations so quickly.
-
 - Data Visualization: Pandas data structures work seamlessly with popular visualization libraries like Matplotlib and Seaborn.
