@@ -74,6 +74,13 @@ const config: Config = {
           trackingID: "G-W02Z2VJYCR",
           anonymizeIP: false,
         },
+        sitemap: {
+          lastmod: "date",
+          changefreq: "weekly",
+          priority: 0.5,
+          ignorePatterns: ["/tags/**"],
+          filename: "sitemap.xml",
+        },
       } satisfies Preset.Options,
     ],
   ],
@@ -266,8 +273,71 @@ const config: Config = {
     ],
   ],
 
-  // ✅ Add this customFields object to expose the token to the client-side
+  // Global SEO metadata
   customFields: {
+    metadata: [
+      {
+        name: "keywords",
+        content:
+          "programming, coding, tutorials, open source, developer community, learning, education, tech",
+      },
+      {
+        name: "description",
+        content:
+          "Recode Hive - A community-driven platform for learning programming, coding tutorials, and developer resources.",
+      },
+      { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Recode Hive - Learn Programming and Coding",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Join our community to learn programming, access coding tutorials, and connect with developers worldwide.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Recode Hive" },
+    ],
+    headTags: [
+      // Structured data for rich search results
+      {
+        tagName: "script",
+        attributes: {
+          type: "application/ld+json",
+        },
+        innerHTML: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Recode Hive",
+          url: "https://www.recodehive.com",
+          logo: "https://www.recodehive.com/img/logo.png",
+          sameAs: [
+            "https://github.com/recodehive",
+            "https://www.youtube.com/@recodehive",
+            "https://twitter.com/recodehive",
+          ],
+          description:
+            "A community-driven platform for learning programming, coding tutorials, and developer resources.",
+        }),
+      },
+      // Preconnect to Google Analytics for performance
+      {
+        tagName: "link",
+        attributes: {
+          rel: "preconnect",
+          href: "https://www.google-analytics.com",
+        },
+      },
+      // Preconnect to Google Fonts if used
+      {
+        tagName: "link",
+        attributes: {
+          rel: "preconnect",
+          href: "https://fonts.googleapis.com",
+        },
+      },
+    ],
     gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
     // Shopify credentials for merch store
     SHOPIFY_STORE_DOMAIN:

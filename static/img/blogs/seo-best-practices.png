@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0a192f"/>
+  <text x="600" y="100" font-family="Arial, sans-serif" font-size="48" fill="#64ffda" text-anchor="middle">SEO Best Practices</text>
+  <text x="600" y="180" font-family="Arial, sans-serif" font-size="36" fill="#ccd6f6" text-anchor="middle">For Developers</text>
+  
+  <rect x="200" y="250" width="800" height="280" rx="20" fill="#112240" stroke="#64ffda" stroke-width="2"/>
+  
+  <circle cx="300" cy="320" r="30" fill="#64ffda"/>
+  <text x="300" y="325" font-family="Arial, sans-serif" font-size="24" fill="#0a192f" text-anchor="middle">1</text>
+  <text x="360" y="325" font-family="Arial, sans-serif" font-size="20" fill="#ccd6f6">Meta Tags</text>
+  
+  <circle cx="300" cy="390" r="30" fill="#64ffda"/>
+  <text x="300" y="395" font-family="Arial, sans-serif" font-size="24" fill="#0a192f" text-anchor="middle">2</text>
+  <text x="360" y="395" font-family="Arial, sans-serif" font-size="20" fill="#ccd6f6">Sitemaps</text>
+  
+  <circle cx="300" cy="460" r="30" fill="#64ffda"/>
+  <text x="300" y="465" font-family="Arial, sans-serif" font-size="24" fill="#0a192f" text-anchor="middle">3</text>
+  <text x="360" y="465" font-family="Arial, sans-serif" font-size="20" fill="#ccd6f6">Speed Optimization</text>
+  
+  <text x="800" y="325" font-family="Arial, sans-serif" font-size="20" fill="#ccd6f6">Structured Data</text>
+  <text x="800" y="395" font-family="Arial, sans-serif" font-size="20" fill="#ccd6f6">Mobile Friendly</text>
+  <text x="800" y="465" font-family="Arial, sans-serif" font-size="20" fill="#ccd6f6">Content Quality</text>
+  
+  <text x="600" y="580" font-family="Arial, sans-serif" font-size="24" fill="#8892b0" text-anchor="middle">recode hive - Learn Programming &amp; Coding</text>
+</svg>

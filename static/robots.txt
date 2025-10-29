@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: 
+Sitemap: https://www.recodehive.com/sitemap.xml
+
+# Prevent crawling of specific paths (if needed)
+# Disallow: /admin/
+# Disallow: /private/
+
+# Crawl delay for search engine bots
+# Crawl-delay: 10
+
+# Host directive (optional)
+# Host: www.recodehive.com

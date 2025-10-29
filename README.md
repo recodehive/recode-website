@@ -37,6 +37,7 @@ recode hive is an open-source educational platform built to help developers mast
 - **Merchandise Store** – Exclusive branded merchandise to celebrate your learning milestones
 - **User Dashboard** – Personalized space to monitor your completed tutorials, achievements, and activity
 - **Community & Collaboration** – Engage with other learners, share tips, and collaborate on projects
+- **SEO Optimized Content** – Search engine optimized documentation and blog posts for better discoverability
 
 ## 🚀 Quick Start
 
@@ -125,6 +126,7 @@ recode-website/
 ├── docs/                       # Main documentation
 │   ├── GitHub/
 │   ├── Google-Student-Ambassador/
+│   ├── seo-best-practices.md    # SEO guides and best practices
 │   └── ...
 │
 ├── src/                        # Source code
@@ -146,6 +148,7 @@ recode-website/
 │   ├── icons/
 │   ├── img/
 │   ├── .nojekyll
+│   ├── robots.txt              # Search engine crawling instructions
 │   └── *.png
 │
 ├── .gitignore
@@ -199,84 +202,3 @@ git commit -m "Add: brief description of your changes"
 ```bash
 git push origin feature/your-feature-name
 ```
-
-**Submit a Pull Request** with a detailed description of your changes
-
-### Video Tutorial
-
-<div>
-    <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
-      <p>How to Contribute to this Repo | How to Setup - Watch Video</p>
-    </a>
-    <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
-      <img style="max-width:700px;" src="https://cdn.loom.com/sessions/thumbnails/c8d8d5f0c2534a1f86fc510dcef52ee0-30cac2eeec09a266-full-play.gif">
-    </a>
-</div>
-
-For detailed guidelines, please refer to our [Contributing Guidelines](community/contributing-guidelines.md).
-
-## 📚 Documentation
-
-- [Contributing Guidelines](community/contributing-guidelines.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
-- [Understanding Lint Checks](community/understand-lint-checks.md)
-- [Our Documentation Standards](community/our-documentation.md)
-
-## 💬 Community
-
-Join our community and connect with fellow learners:
-
-[![Discord](https://img.shields.io/badge/Discord-5865F2.svg?style=for-the-badge&logo=Discord&logoColor=white)](https://discord.gg/Yxv9RA3r)
-[![LinkedIn](https://img.shields.io/badge/Follow%20on-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sanjay-k-v/)
-
-## 📊 Project Statistics
-
-![GitHub commit activity (yearly)](https://img.shields.io/github/commit-activity/y/RecodeHive/recode-website)
-![GitHub commit activity (monthly)](https://img.shields.io/github/commit-activity/m/RecodeHive/recode-website)
-![GitHub stars](https://img.shields.io/github/stars/RecodeHive/recode-website)
-![GitHub forks](https://img.shields.io/github/forks/RecodeHive/recode-website)
-![GitHub open issues](https://img.shields.io/github/issues/RecodeHive/recode-website)
-![GitHub open PRs](https://img.shields.io/github/issues-pr/RecodeHive/recode-website)
-![GitHub repo size](https://img.shields.io/github/repo-size/RecodeHive/recode-website)
-![Last commit](https://img.shields.io/github/last-commit/RecodeHive/recode-website)
-
-## 👥 Contributors
-
-We appreciate all contributions to recode hive! Thank you to everyone who has helped make this project better.
-
-<a href="https://github.com/RecodeHive/recode-website/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=RecodeHive/recode-website" />
-</a>
-
-## ⚖️ License
-
-This project is licensed under the [MIT License](LICENSE). See the LICENSE file for details.
-
-## 📬 Stay Connected
-
-Stay up to date with the latest from recode hive:
-
-- **Website:** [recodehive.com](https://recodehive.com/)
-- **Instagram:** [@nomad_brains](https://www.instagram.com/nomad_brains/)
-- **LinkedIn:** [Sanjay K V](https://www.linkedin.com/in/sanjay-k-v/)
-- **Twitter:** [@sanjay*kv*](https://x.com/sanjay_kv_)
-- **YouTube:** [@RecodeHive](https://www.youtube.com/@RecodeHive)
-- **Newsletter:** [Subscribe](https://recodehive.substack.com/)
-
----
-
-<div align="center">
-
-**Happy open-source contributions—here's to your career success! 🎉**
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="600">
-</p>
-
-Made with ❤️ by the recode hive community
-
-<a href="#top">
-  <img src="https://img.shields.io/badge/⬆️-Back%20to%20Top-red?style=for-the-badge" alt="Back to Top"/>
-</a>
-
-</div>
