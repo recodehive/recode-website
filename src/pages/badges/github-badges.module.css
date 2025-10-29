@@ -1604,6 +1604,34 @@ table tr:last-child td:last-child {
     0 3px 6px rgba(59, 130, 246, 0.3);
 }
 
+/* Dark theme overrides for neededAmount */
+[data-theme="dark"] .achievementsTable .neededAmount {
+  color: var(--ifm-color-white) !important;
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-tertiary) 0%,
+    var(--dark-bg-secondary) 100%
+  ) !important;
+  border-color: var(--dark-border) !important;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .achievementsTable .neededAmount::before {
+  /* Adjusts the hover shine effect for dark mode */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  ) !important;
+}
+
+[data-theme="dark"] .achievementsTable .neededAmount:hover {
+  border-color: var(--ifm-color-primary) !important;
+}
+
 /* Enhanced Badge Levels Container */
 .achievementsTable .badgeLevels {
   display: flex;
