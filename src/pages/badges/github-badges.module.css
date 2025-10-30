@@ -1485,6 +1485,53 @@ table tr:last-child td:last-child {
   position: relative;
 }
 
+/* Mirror levelImages styling for skin tone table so skin-tone badges match Public Sponsor theme */
+.skinToneTable .levelImages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 2px solid #e2e8f0;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skinToneTable .levelImages:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  border-color: #c7d2fe;
+}
+
+.skinToneTable .levelImages img {
+  width: clamp(28px, 4vw, 44px);
+  height: clamp(28px, 4vw, 44px);
+  border-radius: 12px;
+  border: 2px solid #e5e7eb;
+  background: white;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.08),
+    0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+
+}
+
+.skinToneTable .levelImages img:hover {
+  transform: scale(1.12);
+  box-shadow:
+    0 6px 16px rgba(0, 0, 0, 0.15),
+    0 3px 8px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+  z-index: 10;
+  position: relative;
+}
+
 /* Enhanced Needed Amount Section */
 .achievementsTable .neededAmount {
   font-weight: 600;
@@ -1557,6 +1604,34 @@ table tr:last-child td:last-child {
   box-shadow:
     0 6px 16px rgba(59, 130, 246, 0.4),
     0 3px 6px rgba(59, 130, 246, 0.3);
+}
+
+/* Dark theme overrides for neededAmount */
+[data-theme="dark"] .achievementsTable .neededAmount {
+  color: var(--ifm-color-white) !important;
+  background: linear-gradient(
+    135deg,
+    var(--dark-bg-tertiary) 0%,
+    var(--dark-bg-secondary) 100%
+  ) !important;
+  border-color: var(--dark-border) !important;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] .achievementsTable .neededAmount::before {
+  /* Adjusts the hover shine effect for dark mode */
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  ) !important;
+}
+
+[data-theme="dark"] .achievementsTable .neededAmount:hover {
+  border-color: var(--ifm-color-primary) !important;
 }
 
 /* Enhanced Badge Levels Container */

@@ -751,45 +751,63 @@ const GithubBadgesContent = (): React.ReactElement => {
                 </td>
                 <td>Starstruck</td>
                 <td>
-                  <img
-                    src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png"
+                      className={styles.badgeImgSmall}
+                      alt="Starstruck Default"
+                    />
+                  </div>
                   👋
                 </td>
                 <td>
-                  <img
-                    src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Star-Struck/PNG/Skin-Tones/StarStruck_SkinTone2.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Star-Struck/PNG/Skin-Tones/StarStruck_SkinTone2.png"
+                      className={styles.badgeImgSmall}
+                      alt="Starstruck Skin Tone 2"
+                    />
+                  </div>
                   👋🏻
                 </td>
                 <td>
-                  <img
-                    src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Star-Struck/PNG/Skin-Tones/StarStruck_SkinTone3.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Star-Struck/PNG/Skin-Tones/StarStruck_SkinTone3.png"
+                      className={styles.badgeImgSmall}
+                      alt="Starstruck Skin Tone 3"
+                    />
+                  </div>
                   👋🏼
                 </td>
                 <td>
-                  <img
-                    src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Star-Struck/PNG/Skin-Tones/StarStruck_SkinTone4.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Star-Struck/PNG/Skin-Tones/StarStruck_SkinTone4.png"
+                      className={styles.badgeImgSmall}
+                      alt="Starstruck Skin Tone 4"
+                    />
+                  </div>
                   👋🏽
                 </td>
                 <td>
-                  <img
-                    src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Star-Struck/PNG/Skin-Tones/StarStruck_SkinTone5.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Star-Struck/PNG/Skin-Tones/StarStruck_SkinTone5.png"
+                      className={styles.badgeImgSmall}
+                      alt="Starstruck Skin Tone 5"
+                    />
+                  </div>
                   👋🏾
                 </td>
                 <td>
-                  <img
-                    src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Star-Struck/PNG/Skin-Tones/StarStruck_SkinTone6.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Star-Struck/PNG/Skin-Tones/StarStruck_SkinTone6.png"
+                      className={styles.badgeImgSmall}
+                      alt="Starstruck Skin Tone 6"
+                    />
+                  </div>
                   👋🏿
                 </td>
               </tr>
@@ -803,45 +821,63 @@ const GithubBadgesContent = (): React.ReactElement => {
                 </td>
                 <td>Quickdraw</td>
                 <td>
-                  <img
-                    src="https://github.githubassets.com/images/modules/profile/achievements/quickdraw-default.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://github.githubassets.com/images/modules/profile/achievements/quickdraw-default.png"
+                      className={styles.badgeImgSmall}
+                      alt="Quickdraw Default"
+                    />
+                  </div>
                   👋
                 </td>
                 <td>
-                  <img
-                    src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone2.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone2.png"
+                      className={styles.badgeImgSmall}
+                      alt="Quickdraw Skin Tone 2"
+                    />
+                  </div>
                   👋🏻
                 </td>
                 <td>
-                  <img
-                    src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone3.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone3.png"
+                      className={styles.badgeImgSmall}
+                      alt="Quickdraw Skin Tone 3"
+                    />
+                  </div>
                   👋🏼
                 </td>
                 <td>
-                  <img
-                    src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone4.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone4.png"
+                      className={styles.badgeImgSmall}
+                      alt="Quickdraw Skin Tone 4"
+                    />
+                  </div>
                   👋🏽
                 </td>
                 <td>
-                  <img
-                    src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone5.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone5.png"
+                      className={styles.badgeImgSmall}
+                      alt="Quickdraw Skin Tone 5"
+                    />
+                  </div>
                   👋🏾
                 </td>
                 <td>
-                  <img
-                    src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone6.png"
-                    className={styles.badgeImgSmall}
-                  />{" "}
+                  <div className={styles.levelImages}>
+                    <img
+                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone6.png"
+                      className={styles.badgeImgSmall}
+                      alt="Quickdraw Skin Tone 6"
+                    />
+                  </div>
                   👋🏿
                 </td>
               </tr>
@@ -991,11 +1027,13 @@ const GithubBadgesContent = (): React.ReactElement => {
                 <td>
                   <div className={styles.neededBox}>
                     <div className={styles.neededLabel}>DEFAULT</div>
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Mars-2020-Contributor/PNG/Mars2020ContributorBadge.png"
-                      alt="Mars 2020 Contributor"
-                      className={styles.badgeImgSmall}
-                    />
+                    <div className={styles.levelImages}>
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Mars-2020-Contributor/PNG/Mars2020ContributorBadge.png"
+                        alt="Mars 2020 Contributor"
+                        className={styles.badgeImgSmall}
+                      />
+                    </div>
                     <div>1</div>
                   </div>
                 </td>
@@ -1022,11 +1060,13 @@ const GithubBadgesContent = (): React.ReactElement => {
                 <td>
                   <div className={styles.neededBox}>
                     <div className={styles.neededLabel}>DEFAULT</div>
-                    <img
-                      src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/2020-Arctic-Code-Vault-Contributor/PNG/2020ArcticCodeVaultBadge.png"
-                      alt="Arctic Code Vault Contributor"
-                      className={styles.badgeImgSmall}
-                    />
+                    <div className={styles.levelImages}>
+                      <img
+                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/2020-Arctic-Code-Vault-Contributor/PNG/2020ArcticCodeVaultBadge.png"
+                        alt="Arctic Code Vault Contributor"
+                        className={styles.badgeImgSmall}
+                      />
+                    </div>
                     <div>1</div>
                   </div>
                 </td>
