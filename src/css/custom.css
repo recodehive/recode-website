@@ -1602,7 +1602,7 @@ a {
 
 /* ================= MISCELLANEOUS ================= */
 /* Fix Home icon alignment with text in breadcrumbs [Docs] */
-.theme-doc-breadcrumbs a.breadcrumbs__link>svg.breadcrumbHomeIcon_YNFT {
+.theme-doc-breadcrumbs a.breadcrumbs__link > svg {
   display: inline-block;
 }
 
