@@ -3,7 +3,14 @@
 /* ---------------------------------- */
 
 :root {
-  --page-bg: #eef0f4;
+  --page-bg: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #e2e8f0 25%,
+    #cbd5e1 50%,
+    #94a3b8 75%,
+    #64748b 100%
+  );
   --card-bg: #eef0f4;
   --text-color: #3b4353;
   --text-color-light: #6e7a91;
@@ -16,15 +23,24 @@
   );
 
   --border-color: #d1d9e6;
-  --shadow-light: -8px -8px 16px #ffffff;
-  --shadow-dark: 8px 8px 16px #d1d9e6;
-  --inset-shadow-light: inset 6px 6px 12px #d1d9e6;
-  --inset-shadow-dark: inset -6px -6px 12px #ffffff;
+  --shadow-light-color: #ffffff;
+  --shadow-dark-color: #d1d9e6;
+  --shadow-light: -8px -8px 12px var(--shadow-light-color);
+  --shadow-dark: 8px 8px 12px var(--shadow-dark-color);
+  --inset-shadow-light: inset 6px 6px 10px var(--shadow-dark-color);
+  --inset-shadow-dark: inset -6px -6px 10px var(--shadow-light-color);
 }
 
 
 [data-theme="dark"] {
-  --page-bg: #1a1a2e;
+  --page-bg: linear-gradient(
+    135deg,
+    #0f0f23 0%,
+    #1a1a2e 25%,
+    #16213e 50%,
+    #0f3460 75%,
+    #533483 100%
+  );
   --card-bg: #1a1a2e;
   --text-color: #ffffff;
   --text-color-light: #94a3b8;
@@ -37,18 +53,86 @@
   );
 
   --border-color: rgba(255, 255, 255, 0.1);
-  --shadow-light: -8px -8px 16px #232342;
-  --shadow-dark: 8px 8px 16px #12121e;
-  --inset-shadow-light: inset 6px 6px 12px #12121e;
-  --inset-shadow-dark: inset -6px -6px 12px #232342;
+  --shadow-light-color: #232342;
+  --shadow-dark-color: #12121e;
+  --shadow-light: -8px -8px 12px var(--shadow-light-color);
+  --shadow-dark: 8px 8px 12px var(--shadow-dark-color);
+  --inset-shadow-light: inset 6px 6px 10px var(--shadow-dark-color);
+  --inset-shadow-dark: inset -6px -6px 10px var(--shadow-light-color);
 }
 
 /* ---------------------------------- */
 /* 2. Main Page Layout                */
 /* ---------------------------------- */
+
+@keyframes backgroundShift {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px) scale(1);
+  }
+  25% {
+    transform: translateX(30px) translateY(-20px) scale(1.02);
+  }
+  50% {
+    transform: translateX(-10px) translateY(30px) scale(0.98);
+  }
+  75% {
+    transform: translateX(-25px) translateY(-15px) scale(1.01);
+  }
+}
+
 .pageWrapper {
-  background-color: var(--page-bg);
-  transition: background-color 0.3s ease;
+  background: var(--page-bg);
+  transition: background 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.pageWrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(120, 119, 198, 0.08) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 119, 198, 0.06) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(120, 219, 255, 0.04) 0%,
+      transparent 60%
+    );
+  animation: backgroundShift 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+[data-theme="light"] .pageWrapper::before {
+  background:
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(79, 70, 229, 0.05) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(124, 58, 237, 0.04) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(236, 72, 153, 0.03) 0%,
+      transparent 60%
+    );
 }
 .pageContainer {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -60,8 +144,10 @@
   margin: 2rem auto;
   padding: 2.5rem 3rem;
   border-radius: 20px;
-  box-shadow: var(--shadow-dark), var(--shadow-light);
+  border: 1px solid var(--border-color); 
   transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
 }
 
 /* ---------------------------------- */
@@ -124,7 +210,8 @@
 }
 .sectionButton:hover {
   transform: translateY(-2px);
-  box-shadow: 10px 10px 20px var(--shadow-dark), -10px -10px 20px var(--shadow-light);
+  box-shadow: 10px 10px 15px var(--shadow-dark-color),
+    -10px -10px 15px var(--shadow-light-color);
 }
 .sectionButton.open {
   box-shadow: var(--inset-shadow-light), var(--inset-shadow-dark);
