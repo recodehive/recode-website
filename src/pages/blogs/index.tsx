@@ -48,9 +48,40 @@ export default function Blogs(): React.JSX.Element {
   return (
     <Layout
       title={`Blogs from ${siteConfig.title}`}
-      description="Welcome to recode hive Blogs. Learn the basics to advanced concepts of web development including HTML, CSS, JavaScript, React, Node.js, DSA, and more."
+      description="Discover comprehensive programming tutorials, web development articles, and tech insights. Learn Python, SQL, GitHub, AI, and more with our expert guides."
     >
       <Head>
+        <meta
+          name="keywords"
+          content="programming tutorials, web development, Python, SQL, GitHub, AI, tech articles, coding guides, open source"
+        />
+        <meta
+          property="og:title"
+          content="Programming Tutorials & Tech Articles - Recode Hive"
+        />
+        <meta
+          property="og:description"
+          content="Discover comprehensive programming tutorials, web development articles, and tech insights. Learn Python, SQL, GitHub, AI, and more with our expert guides."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.recodehive.com/blogs" />
+        <meta
+          property="og:image"
+          content="https://www.recodehive.com/img/docusaurus-social-card.jpg"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="Programming Tutorials & Tech Articles - Recode Hive"
+        />
+        <meta
+          name="twitter:description"
+          content="Discover comprehensive programming tutorials, web development articles, and tech insights. Learn Python, SQL, GitHub, AI, and more with our expert guides."
+        />
+        <meta
+          name="twitter:image"
+          content="https://www.recodehive.com/img/docusaurus-social-card.jpg"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -61,6 +92,23 @@ export default function Blogs(): React.JSX.Element {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
         />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "Recode Hive Blog",
+            description: "Programming tutorials and tech articles",
+            url: "https://www.recodehive.com/blogs",
+            publisher: {
+              "@type": "Organization",
+              name: "Recode Hive",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://www.recodehive.com/img/logo.png",
+              },
+            },
+          })}
+        </script>
       </Head>
 
       <div className="blog-page">

@@ -3,6 +3,8 @@ id: docs
 title: Welcome to the recode hive Tutorial
 sidebar_label: Welcome to recode hive #displays in sidebar
 sidebar_position: 1
+description: Comprehensive open-source learning platform with Python, SQL, GitHub tutorials and real-world projects. Earn while learning through our GitHub sponsorship program.
+keywords: [open source, programming, Python, SQL, GitHub, web development, tech tutorials, earn while learning, open source contribution]
 ---
 
 # Welcome to recode hive Tutorial!

@@ -37,6 +37,7 @@ recode hive is an open-source educational platform built to help developers mast
 - **Merchandise Store** – Exclusive branded merchandise to celebrate your learning milestones
 - **User Dashboard** – Personalized space to monitor your completed tutorials, achievements, and activity
 - **Community & Collaboration** – Engage with other learners, share tips, and collaborate on projects
+- **SEO Optimized Content** – Search engine optimized documentation and blog posts for better discoverability
 
 ## 🚀 Quick Start
 
@@ -125,6 +126,7 @@ recode-website/
 ├── docs/                       # Main documentation
 │   ├── GitHub/
 │   ├── Google-Student-Ambassador/
+│   ├── seo-best-practices.md    # SEO guides and best practices
 │   └── ...
 │
 ├── src/                        # Source code
@@ -146,6 +148,7 @@ recode-website/
 │   ├── icons/
 │   ├── img/
 │   ├── .nojekyll
+│   ├── robots.txt              # Search engine crawling instructions
 │   └── *.png
 │
 ├── .gitignore

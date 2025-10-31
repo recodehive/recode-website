@@ -124,7 +124,7 @@ const sidebars: SidebarsConfig = {
         "Pandas/pd_intro",
         "Pandas/pd_dataframes",
         "Pandas/pd_input_output",
-        "Pandas/pd_data_analysis", 
+        "Pandas/pd_data_analysis",
       ],
     },
     {
@@ -220,6 +220,18 @@ const sidebars: SidebarsConfig = {
       label: "🔧 Technical",
       className: "custom-sidebar-technical",
       items: ["Technical/intro-github"],
+    },
+    {
+      type: "category",
+      label: "📈 SEO & Content",
+      className: "custom-sidebar-seo",
+      items: [
+        "seo-summary",
+        "seo-best-practices",
+        "seo-implementation-guide",
+        "blog-seo-guide",
+        "content-writing-guide",
+      ],
     },
   ],
 };
