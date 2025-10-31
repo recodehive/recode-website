@@ -398,8 +398,6 @@ export default function CommunityPage(): React.ReactElement {
                           <span className="thank-icon">🎉</span>
                           <span className="thank-icon">✨</span>
                         </div>
-                        <h3>Thank You!</h3>
-                        <div className="thank-you-subtitle">You're Amazing</div>
                       </div>
 
                       <div className="thank-you-content">
@@ -416,42 +414,6 @@ export default function CommunityPage(): React.ReactElement {
                           <span className="highlight grow">grow</span> —
                           together. 🌱
                         </p>
-
-                        <div className="thank-you-features">
-                          <div className="feature-item">
-                            <span className="feature-icon">🚀</span>
-                            <a
-                              href="https://github.com/recodehive/recode-website"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{ color: "inherit" }}
-                            >
-                              <span>Build Amazing Projects</span>
-                            </a>
-                          </div>
-                          <div className="feature-item">
-                            <span className="feature-icon">🤝</span>
-                            <a
-                              href="https://github.com/orgs/recodehive/people"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{ color: "inherit" }}
-                            >
-                              <span>Connect with Developers</span>
-                            </a>
-                          </div>
-                          <div className="feature-item">
-                            <span className="feature-icon">📚</span>
-                            <a
-                              href="https://www.recodehive.com/docs"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{ color: "inherit" }}
-                            >
-                              <span>Learn & Share Knowledge</span>
-                            </a>
-                          </div>
-                        </div>
 
                         <blockquote className="thank-you-quote">
                           <div className="quote-icon">🐝</div>
