@@ -8,10 +8,9 @@ interface PodcastData {
   id: string;
   spotifyUrl: string;
   type: "episode" | "show" | "playlist";
-  title?: string; // Add optional title here
+  title?: string;
 }
 
-// Function to extract Spotify ID from URL
 const getSpotifyEmbedId = (url: string): string => {
   const match = url.match(
     /(?:spotify\.com|open\.spotify\.com)\/(episode|show|playlist)\/([a-zA-Z0-9]+)/,
@@ -19,7 +18,6 @@ const getSpotifyEmbedId = (url: string): string => {
   return match ? match[2] : url;
 };
 
-// Function to determine content type from URL
 const getSpotifyContentType = (
   url: string,
 ): "episode" | "show" | "playlist" => {
@@ -29,7 +27,6 @@ const getSpotifyContentType = (
   return (match?.[1] as "episode" | "show" | "playlist") || "show";
 };
 
-// Add your podcasts here
 const podcastUrls: string[] = [
   "https://open.spotify.com/show/6oPJ7ZBlN7y34yiSMguIda?si=729edf3b64a246d7",
   "https://open.spotify.com/episode/1zbmUPmGRjC8o8YIMMx2Z6?si=Q4QAS3IJQVGaQYhYApckdA",
@@ -48,14 +45,12 @@ const podcastUrls: string[] = [
   "https://open.spotify.com/show/1hRuJ14RwtnPtElAxnTEcO?si=7900bc46e9424eef",
 ];
 
-// Initialize podcast data without titles first
 const initialPodcastData: PodcastData[] = podcastUrls.map((url, index) => ({
   id: String(index + 1),
   spotifyUrl: url,
   type: getSpotifyContentType(url),
 }));
 
-// Component to display Spotify title and type badge for each podcast
 const SpotifyTitle: React.FC<{
   title?: string;
   type: "episode" | "show" | "playlist";
@@ -88,7 +83,6 @@ export default function Podcasts(): ReactElement {
   const [podcasts, setPodcasts] = useState<PodcastData[]>(initialPodcastData);
   const podcastsPerPage = 9;
 
-  // Fetch all podcast titles once on mount
   useEffect(() => {
     let cancelled = false;
     Promise.all(
@@ -102,7 +96,6 @@ export default function Podcasts(): ReactElement {
       ),
     ).then((results) => {
       if (!cancelled) {
-        // Merge fetched titles into podcasts state
         setPodcasts((prev) =>
           prev.map((p) => {
             const found = results.find((r) => r.id === p.id);
@@ -116,7 +109,6 @@ export default function Podcasts(): ReactElement {
     };
   }, []);
 
-  // Filter podcasts based on search and filter using title now
   const filteredPodcasts = podcasts.filter((podcast) => {
     const matchesFilter =
       selectedFilter === "all" || podcast.type === selectedFilter;
@@ -127,7 +119,6 @@ export default function Podcasts(): ReactElement {
     return matchesFilter && matchesSearch;
   });
 
-  // Pagination calculations
   const indexOfLastPodcast = currentPage * podcastsPerPage;
   const indexOfFirstPodcast = indexOfLastPodcast - podcastsPerPage;
   const currentPodcasts = filteredPodcasts.slice(
@@ -195,7 +186,6 @@ export default function Podcasts(): ReactElement {
   return (
     <Layout>
       <div className="enhanced-podcast-container">
-        {/* Hero Section */}
         <div className="podcast-hero">
           <div className="podcast-hero-content">
             <div className="hero-badge">
@@ -225,7 +215,6 @@ export default function Podcasts(): ReactElement {
           </div>
         </div>
 
-        {/* Filter Section */}
         <div className="podcast-filters">
           <div className="filter-search">
             <div className="search-icon"></div>
@@ -269,7 +258,6 @@ export default function Podcasts(): ReactElement {
           </div>
         </div>
 
-        {/* Content Grid */}
         <div className="podcast-content-section">
           {currentPodcasts.length > 0 ? (
             <>
@@ -347,17 +335,11 @@ export default function Podcasts(): ReactElement {
                       />
                     </div>
 
-                    <div className="podcast-card-footer">
-                      <button className="listen-button">
-                        <span className="listen-icon">▶️</span>
-                        Listen Now
-                      </button>
-                    </div>
+                    {/* Removed podcast-card-footer section */}
                   </div>
                 ))}
               </div>
 
-              {/* Enhanced Pagination */}
               {totalPages > 1 && (
                 <div className="enhanced-pagination">
                   <button
