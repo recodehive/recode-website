@@ -1,0 +1,411 @@
+:root {
+  /* Dark Theme Variables (Default) */
+  --lic-bg-primary: linear-gradient(
+    135deg,
+    #0f0f23 0%,
+    #1a1a2e 25%,
+    #16213e 50%,
+    #0f3460 75%,
+    #533483 100%
+  );
+  --lic-bg-card: rgba(255, 255, 255, 0.03);
+  --lic-bg-card-hover: rgba(255, 255, 255, 0.08);
+  --lic-bg-secondary: rgba(255, 255, 255, 0.05);
+  --lic-text-primary: #ffffff;
+  --lic-text-secondary: #e2e8f0;
+  --lic-text-muted: #cbd5e1;
+  --lic-text-dim: #94a3b8;
+  --lic-border: rgba(255, 255, 255, 0.1);
+  --lic-border-hover: rgba(102, 126, 234, 0.3);
+  --lic-accent-primary: #667eea;
+  --lic-accent-secondary: #764ba2;
+  --lic-shadow: rgba(0, 0, 0, 0.2);
+  --lic-shadow-hover: rgba(0, 0, 0, 0.3);
+
+  /* This is the dark gradient that will be used in both modes for the contact box */
+  --lic-accent-gradient: linear-gradient(
+    135deg,
+    var(--lic-accent-primary) 0%,
+    var(--lic-accent-secondary) 100%
+  );
+}
+
+/* Light Theme Variables */
+[data-theme="light"] {
+  --lic-bg-primary: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #e2e8f0 25%,
+    #cbd5e1 50%,
+    #94a3b8 75%,
+    #64748b 100%
+  );
+  --lic-bg-card: rgba(255, 255, 255, 0.9);
+  --lic-bg-card-hover: rgba(255, 255, 255, 0.95);
+  --lic-bg-secondary: rgba(255, 255, 255, 0.8);
+  --lic-text-primary: #0f172a;
+  --lic-text-secondary: #1e293b;
+  --lic-text-muted: #334155;
+  --lic-text-dim: #64748b;
+  --lic-border: rgba(0, 0, 0, 0.1);
+  --lic-border-hover: rgba(102, 126, 234, 0.4);
+  /* These accent colors are still needed for links */
+  --lic-accent-primary: #4f46e5;
+  --lic-accent-secondary: #7c3aed;
+  --lic-shadow: rgba(0, 0, 0, 0.1);
+  --lic-shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+/* Force theme variables on specific elements */
+html[data-theme="light"] {
+  --lic-bg-primary: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #e2e8f0 25%,
+    #cbd5e1 50%,
+    #94a3b8 75%,
+    #64748b 100%
+  );
+  --lic-bg-card: rgba(255, 255, 255, 0.9);
+  --lic-bg-card-hover: rgba(255, 255, 255, 0.95);
+  --lic-bg-secondary: rgba(255, 255, 255, 0.8);
+  --lic-text-primary: #0f172a;
+  --lic-text-secondary: #1e293b;
+  --lic-text-muted: #334155;
+  --lic-text-dim: #64748b;
+  --lic-border: rgba(0, 0, 0, 0.1);
+  --lic-border-hover: rgba(102, 126, 234, 0.4);
+  --lic-shadow: rgba(0, 0, 0, 0.1);
+  --lic-shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes backgroundShift {
+  0%,
+  100% {
+    transform: translateX(0px) translateY(0px) scale(1);
+  }
+  25% {
+    transform: translateX(30px) translateY(-20px) scale(1.02);
+  }
+  50% {
+    transform: translateX(-10px) translateY(30px) scale(0.98);
+  }
+  75% {
+    transform: translateX(-25px) translateY(-15px) scale(1.01);
+  }
+}
+
+/* Main Container */
+.lic-container {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  background: var(--lic-bg-primary);
+  color: var(--lic-text-secondary);
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Background Effects */
+.lic-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(120, 119, 198, 0.08) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 119, 198, 0.06) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(120, 219, 255, 0.04) 0%,
+      transparent 60%
+    );
+  animation: backgroundShift 25s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Light theme background effects */
+[data-theme="light"] .lic-container::before {
+  background:
+    radial-gradient(
+      circle at 20% 80%,
+      rgba(79, 70, 229, 0.05) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(124, 58, 237, 0.04) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(236, 72, 153, 0.03) 0%,
+      transparent 60%
+    );
+}
+
+/* Content Wrapper */
+.lic-content-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+/* Header Section */
+.lic-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.lic-title {
+  font-size: 3rem;
+  font-weight: 900;
+  background: linear-gradient(
+    135deg,
+    var(--lic-text-primary) 0%,
+    var(--lic-text-secondary) 30%,
+    var(--lic-text-muted) 60%,
+    var(--lic-text-dim) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.lic-last-updated {
+  font-size: 1rem;
+  color: var(--lic-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.lic-intro {
+  font-size: 1.125rem;
+  color: var(--lic-text-muted);
+  line-height: 1.6;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.lic-intro a {
+  color: var(--lic-accent-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.lic-intro a:hover {
+  color: var(--lic-accent-secondary);
+  text-decoration: underline;
+}
+
+/* Main Content Card */
+.lic-content-card {
+  background: var(--lic-bg-card);
+  border: 1px solid var(--lic-border);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 10px 20px var(--lic-shadow);
+  transition: all 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.lic-content-card:hover {
+  box-shadow: 0 15px 30px var(--lic-shadow-hover);
+}
+
+/* Section Styles */
+.lic-section {
+  margin-bottom: 2.5rem;
+}
+
+.lic-section:last-child {
+  margin-bottom: 0;
+}
+
+.lic-section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--lic-text-primary);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.lic-section-icon {
+  font-size: 1.5rem;
+}
+
+.lic-section-content {
+  color: var(--lic-text-muted);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+.lic-section-content p {
+  margin-bottom: 1rem;
+}
+
+.lic-section-content p:last-child {
+  margin-bottom: 0;
+}
+
+.lic-section-content a {
+  color: var(--lic-accent-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.lic-section-content a:hover {
+  color: var(--lic-accent-secondary);
+  text-decoration: underline;
+}
+
+/* List Styles */
+.lic-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.lic-list-item {
+  background: var(--lic-bg-secondary);
+  border: 1px solid var(--lic-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.lic-list-item:hover {
+  background: var(--lic-bg-card-hover);
+  border-color: var(--lic-border-hover);
+  transform: translateX(4px);
+}
+
+.lic-list-item strong {
+  color: var(--lic-text-primary);
+  font-weight: 600;
+  font-size: 1.125rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Contact Section */
+.lic-contact-section {
+  background: var(--lic-accent-gradient);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
+}
+
+.lic-contact-section:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+}
+
+.lic-contact-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.lic-contact-content {
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.lic-contact-content a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.lic-contact-content a:hover {
+  border-bottom-color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .lic-content-wrapper {
+    padding: 2rem 1rem;
+  }
+
+  .lic-title {
+    font-size: 2rem;
+  }
+
+  .lic-intro {
+    font-size: 1rem;
+  }
+
+  .lic-content-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .lic-section-title {
+    font-size: 1.5rem;
+  }
+
+  .lic-header {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .lic-title {
+    font-size: 1.75rem;
+  }
+
+  .lic-section-title {
+    font-size: 1.25rem;
+  }
+
+  .lic-content-card {
+    padding: 1.5rem 1rem;
+  }
+}
