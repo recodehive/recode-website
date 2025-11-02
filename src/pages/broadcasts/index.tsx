@@ -7,23 +7,20 @@ import "./video.css";
 interface VideoData {
   id: string;
   youtubeUrl: string;
-  type: "video" | "live" | "other"; // Changed type to include 'live' and 'other'
+  type: "video" | "live" | "other";
 }
 
 const getYoutubeVideoId = (url: string): string => {
-  // Handle youtu.be short links
   if (url.includes("youtu.be/")) {
     const match = url.match(/youtu\.be\/([^?&\s]+)/);
     return match ? match[1].split("?")[0] : "";
   }
 
-  // Handle youtube.com/watch?v= links
   if (url.includes("youtube.com/watch")) {
     const match = url.match(/[?&]v=([^&\s]+)/);
     return match ? match[1].split("&")[0] : "";
   }
 
-  // Handle youtube.com/shorts/ links
   if (url.includes("youtube.com/shorts/")) {
     const match = url.match(/shorts\/([^?&\s]+)/);
     return match ? match[1].split("?")[0] : "";
@@ -32,7 +29,6 @@ const getYoutubeVideoId = (url: string): string => {
   return "";
 };
 
-// Updated function to determine video type
 const getYoutubeContentType = (url: string): "video" | "live" | "other" => {
   if (
     url.includes("youtu.be/rbi6XhWp2TU") ||
@@ -42,14 +38,12 @@ const getYoutubeContentType = (url: string): "video" | "live" | "other" => {
   ) {
     return "live";
   } else if (url.includes("/shorts/")) {
-    return "other"; // Changed 'shorts' to 'other'
+    return "other";
   } else {
     return "video";
   }
 };
 
-// Youtube Video URLS
-// List of both videos and shorts which will be handeled by the component
 const videoUrls: string[] = [
   "https://youtu.be/3dnQ2lDNeGI?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
   "https://youtu.be/XWjx-RjmhRM?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63",
@@ -82,15 +76,13 @@ const VideoCard: React.FC<{
   const [thumbnailUrl, setThumbnailUrl] = useState("");
   const videoId = getYoutubeVideoId(video.youtubeUrl);
 
-  // Try different thumbnail qualities in sequence
   const tryThumbnailUrl = (url: string) => {
     if (!videoId) return;
 
     const img = new Image();
-    img.crossOrigin = "anonymous"; // Handle CORS if needed
+    img.crossOrigin = "anonymous";
 
     img.onload = () => {
-      // Only set the URL if it's not an error image
       if (img.width > 0 && img.height > 0) {
         setThumbnailUrl(url);
       } else {
@@ -106,16 +98,12 @@ const VideoCard: React.FC<{
     console.log(`Failed to load thumbnail: ${failedUrl}`);
 
     if (failedUrl.includes("maxresdefault")) {
-      // Try hqdefault if maxresdefault fails
       tryThumbnailUrl(`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`);
     } else if (failedUrl.includes("hqdefault")) {
-      // Try mqdefault if hqdefault fails
       tryThumbnailUrl(`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`);
     } else if (failedUrl.includes("mqdefault")) {
-      // Try default if mqdefault fails
       tryThumbnailUrl(`https://i.ytimg.com/vi/${videoId}/default.jpg`);
     } else {
-      // All options failed, show placeholder
       setThumbnailUrl("");
     }
   };
@@ -123,11 +111,9 @@ const VideoCard: React.FC<{
   useEffect(() => {
     if (!videoId) return;
 
-    // Start with the highest quality thumbnail
     console.log(`Loading thumbnails for video ID: ${videoId}`);
     tryThumbnailUrl(`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`);
 
-    // Also try the first frame as a fallback (sometimes works when others don't)
     const firstFrameUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
     setTimeout(() => {
       if (!thumbnailUrl) {
@@ -136,7 +122,6 @@ const VideoCard: React.FC<{
       }
     }, 1000);
 
-    // Fetch video title
     const fetchVideoTitle = async () => {
       try {
         const response = await fetch(
@@ -171,7 +156,6 @@ const VideoCard: React.FC<{
           >
             {title}
           </div>
-          <div className="video-type"></div>
         </div>
         <div className="video-thumbnail">
           <div className="thumbnail-container">
@@ -185,7 +169,6 @@ const VideoCard: React.FC<{
                 onError={(e) => {
                   const img = e.target as HTMLImageElement;
                   console.log("Image error:", img.src);
-                  // Let the parent component handle the error
                   setThumbnailUrl("");
                 }}
               />
@@ -194,7 +177,6 @@ const VideoCard: React.FC<{
                 <span>Loading thumbnail...</span>
               </div>
             )}
-            {/* Play button removed as per request */}
           </div>
         </div>
       </div>
@@ -253,7 +235,7 @@ const Pagination: React.FC<{
 function BroadcastsPage(): ReactElement {
   const history = useHistory();
   const [currentPage, setCurrentPage] = useState(1);
-  const [activeTab, setActiveTab] = useState<"videos" | "live">("videos"); // Changed 'shorts' to 'live'
+  const [activeTab, setActiveTab] = useState<"videos" | "live">("videos");
   const videosPerPage = 12;
 
   const videoData: VideoData[] = videoUrls.map((url, index) => ({
@@ -263,7 +245,7 @@ function BroadcastsPage(): ReactElement {
   }));
 
   const regularVideos = videoData.filter((video) => video.type === "video");
-  const liveVideos = videoData.filter((video) => video.type === "live"); // Changed 'shorts' to 'live'
+  const liveVideos = videoData.filter((video) => video.type === "live");
   const otherVideos = videoData.filter((video) => video.type === "other");
 
   const indexOfLastVideo = currentPage * videosPerPage;
@@ -276,11 +258,11 @@ function BroadcastsPage(): ReactElement {
   const paginatedLiveVideos = liveVideos.slice(
     indexOfFirstVideo,
     indexOfLastVideo,
-  ); // Changed 'shorts' to 'live'
+  );
   const totalPages = Math.ceil(
     (activeTab === "videos" ? regularVideos.length : liveVideos.length) /
       videosPerPage,
-  ); // Changed 'shorts' to 'live'
+  );
 
   useEffect(() => {
     setCurrentPage(1);
@@ -312,7 +294,7 @@ function BroadcastsPage(): ReactElement {
             🎥 Videos
           </button>
           <button
-            className={`tab-button ${activeTab === "live" ? "active" : ""}`} // Changed 'shorts' to 'live'
+            className={`tab-button ${activeTab === "live" ? "active" : ""}`}
             onClick={() => setActiveTab("live")}
           >
             🔴 Past Live
@@ -334,11 +316,11 @@ function BroadcastsPage(): ReactElement {
           </>
         )}
 
-        {activeTab === "live" && ( // Changed 'shorts' to 'live'
+        {activeTab === "live" && (
           <>
             <VideoSection
               title="Past Live Videos"
-              videos={paginatedLiveVideos} // Changed 'shorts' to 'live'
+              videos={paginatedLiveVideos}
               onClick={handleVideoClick}
             />
             <Pagination
