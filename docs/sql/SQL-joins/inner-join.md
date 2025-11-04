@@ -31,7 +31,7 @@ SQL **INNER JOIN** is the most commonly used join operation that returns only th
 :::
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/inner-join.png)](https://github.com/sanjay-kv)
+     [![Diagram of SQL inner join](./assets/inner-join.png)](https://github.com/sanjay-kv)
     </BrowserWindow>
 
 :::success

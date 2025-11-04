@@ -35,7 +35,7 @@ Key Concepts of SQL Joins:
 :::
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/intro-sql-joins.png)](https://www.learnsqlonline.org/)
+     [![Illustration of different SQL join types](./assets/intro-sql-joins.png)](https://www.learnsqlonline.org/)
     </BrowserWindow>
 
 :::success

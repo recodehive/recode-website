@@ -70,7 +70,7 @@ UX designers bring something **tech can’t replicate**:
 - **Creative problem-solving** 🎨  
 - **Human-centered thinking** 🧑‍🤝‍🧑  
 - 
-![UI-UX Design impact in future](/img/blogs/03-ui-ux.png)
+![Illustration of human qualities that AI cannot replace in UX design](/img/blogs/03-ui-ux.png)
 
 
 

@@ -38,7 +38,7 @@ SQL **Indexes** are special database structures that dramatically speed up data 
 :::
 <!-- 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/indexes-concept.png)](https://www.learnsqlonline.org/)
+     [![Diagram explaining SQL indexes concept](./assets/indexes-concept.png)](https://www.learnsqlonline.org/)
     </BrowserWindow> -->
 
 :::success

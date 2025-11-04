@@ -72,7 +72,7 @@ Unlike traditional AI systems that rely on predefined rules, DeepMind uses **dee
 ## 🧾 The DeepMind Origin Story
 Numerous other AI programs like IBM’s DeepBlue, which crushed Garry Kasparov in chess in 1997, have utilized unequivocal, decide put together frameworks that depend with respect to software engineers to compose the code. Be that as it may, AI empowers PCs to show themselves and set their own guidelines, through which they make expectations.
 
-![Getting Started with React and Vite](/img/blogs/02-deepmind.png)
+![Timeline of DeepMind's origin story and key achievements in AI development](/img/blogs/02-deepmind.png)
 
 In March 2016, DeepMind’s AlphaGo program beat titleholder Lee Sedol in 4 out of 5 rounds of Go, an intricate prepackaged game – a colossal triumph in AI that came significantly sooner than numerous specialists accepted conceivable. It did this through consolidating “Monte-Carlo tree search with profound neural organizations that have been prepared by managed learning, from human master games, and by support gaining from rounds of self-play,” as indicated by Google.
 

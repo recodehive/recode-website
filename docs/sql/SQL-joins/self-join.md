@@ -34,7 +34,7 @@ Key Characteristics of SELF JOIN:
 :::
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/self-join.png)](https://github.com/sanjay-kv)
+     [![Diagram illustrating SQL self join operation](./assets/self-join.png)](https://github.com/sanjay-kv)
     </BrowserWindow>
 
 :::success

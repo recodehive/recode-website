@@ -35,7 +35,7 @@ TCL (Transactional Control Language): Controls transactions using **COMMIT** and
 :::
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/01-sql-intro.png)](https://github.com/sanjay-kv)
+     [![Diagram introducing SQL concepts](./assets/01-sql-intro.png)](https://github.com/sanjay-kv)
     </BrowserWindow>
 
 

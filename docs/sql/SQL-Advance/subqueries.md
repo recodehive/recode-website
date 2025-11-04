@@ -33,7 +33,7 @@ SQL **Subqueries** (also called nested queries or inner queries) are queries pla
 :::
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/subqueries.gif)](https://www.learnsqlonline.org/)
+     [![Animation demonstrating SQL subqueries](./assets/subqueries.gif)](https://www.learnsqlonline.org/)
     </BrowserWindow>
 
 :::success
