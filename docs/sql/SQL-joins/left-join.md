@@ -31,7 +31,7 @@ SQL **LEFT JOIN** (also known as LEFT OUTER JOIN) returns all records from the l
 :::
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/left-outer-join.png)](https://github.com/sanjay-kv)
+     [![Diagram of SQL left outer join](./assets/left-outer-join.png)](https://github.com/sanjay-kv)
     </BrowserWindow>
 
 :::success

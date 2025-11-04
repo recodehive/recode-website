@@ -32,7 +32,7 @@ Inorder to create a project and host, the repository is a place where you add al
 Upon creation you will get a screen like this below, the explanation of each elements is mentioned below. 
  
     <BrowserWindow url="https://github.com/recodehive/recode-website/labels" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/03-label-interface.png)](https://github.com/recodehive/recode-website/labels)
+     [![Screenshot of GitHub repository labels page](./assets/03-label-interface.png)](https://github.com/recodehive/recode-website/labels)
     </BrowserWindow>
 
 - **`<!DOCTYPE html>`**: Declares the document type and version of HTML.
@@ -50,7 +50,7 @@ Upon creation you will get a screen like this below, the explanation of each ele
 Im going to add my resume and add my name as heading to the ``readme.md`` file
 
     <BrowserWindow url="https://github.com/recodehive/recode-website/labels" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/04-label-creation.png)](https://github.com/recodehive/recode-website/labels)
+     [![Screenshot of creating a new label on GitHub](./assets/04-label-creation.png)](https://github.com/recodehive/recode-website/labels)
     </BrowserWindow>
 
 ### Adding Markdown Language

@@ -32,7 +32,7 @@ SQL **FULL OUTER JOIN** (also known as FULL JOIN) returns all records from both 
 :::
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/full-outer-join.gif)](https://www.learnsqlonline.org/)
+     [![Animation of SQL full outer join](./assets/full-outer-join.gif)](https://www.learnsqlonline.org/)
     </BrowserWindow>
 
 :::success

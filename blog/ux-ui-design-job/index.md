@@ -60,7 +60,7 @@ First and foremost, you need to get educated. There are a ton of resources out t
 One great way to get started is by checking out some of the free online courses that are available. Coursera, Udacity, and Skillshare all offer excellent options that will teach you the basics of UI/UX design. Once you have a solid foundation, you can begin to look for paid courses that will help you take your skills to the next level.
 
 
-![UI-UX Design impact in future](/img/blogs/04-ux-job-design.png)
+![Infographic showing career growth and opportunities in UI/UX design](/img/blogs/04-ux-job-design.png)
 ### 🎨 Participate in a Design Hackathon or Online Design Contests
 
 Real-world experience > Theory.

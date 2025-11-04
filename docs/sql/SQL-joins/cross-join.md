@@ -34,7 +34,7 @@ SQL **CROSS JOIN** produces the Cartesian product of two tables, returning all p
 :::
 
     <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/cross-join.gif)](https://www.learnsqlonline.org/)
+     [![Animation demonstrating SQL cross join](./assets/cross-join.gif)](https://www.learnsqlonline.org/)
     </BrowserWindow>
 
 :::success

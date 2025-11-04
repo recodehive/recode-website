@@ -23,7 +23,7 @@ Gather data about who will be using the product and their needs.
 
 To answer these questions, you need to do some research. This involves gathering data about who will be using the product and their needs. You can find this data from surveys, focus groups, interviews, and other forms of market research. Once you have this data, you can start to design a product that meets the needs of your users.
 
-![img1](./images/05-ux-streamline.png)
+![Flowchart illustrating the user research process in UX design](./images/05-ux-streamline.png)
 
 ### 🧩 Define the Problem  
 

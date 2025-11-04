@@ -22,7 +22,7 @@ GitHub bought power of GitHub Copilot coding agent directly to your terminal, wi
 GitHub Copilot CLI is now in `public preview`, and it’s designed to bring AI-powered development right to your command line. You can work locally and synchronously with an AI agent that understands your code and GitHub context no IDE switching required.
 
 
-![Command to start](./images/cover-page-2.png)
+![GitHub Copilot CLI banner and overview image](./images/cover-page-2.png)
 
 ✨**Key features:**
 
@@ -78,7 +78,7 @@ Enter the prompt in the command line.
 npm install -g @github/copilot
 ```
 
-![Command to start](./images/01-GitHub-CLI-start-command.png)
+![Screenshot of npm install command for GitHub Copilot CLI](./images/01-GitHub-CLI-start-command.png)
 
 
 Verify installation: the below command will run the banner start image of GitHub Copilot.
@@ -119,7 +119,7 @@ Each time you submit a prompt to GitHub Copilot CLI, your monthly quota of premi
 
 
 
-![Command to start](./images/02-starting-copilot.png)
+![Splash screen of GitHub Copilot CLI showing navigation options](./images/02-starting-copilot.png)
 
 Launch Copilot CLI in a project folder:
 
@@ -187,7 +187,7 @@ I have linked the offical website repo to log any bugs or do direct PR. [GitHub 
 
 For preview to run enter the following command. 👇🏻
 
-![Command to start](./images/03-try-out-the-usage-of-CLI.png)
+![Example output of running GitHub Copilot CLI suggest command](./images/03-try-out-the-usage-of-CLI.png)
 
 
 ### Documentation

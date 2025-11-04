@@ -26,7 +26,7 @@ Install Python
   1. Go to the [Git Website](https://git-scm.com/) and click on download for windows button.
   
       <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![GitHub](./assets/setupimg1.png)](https://git-scm.com/)
+       [![Screenshot of Git download page](./assets/setupimg1.png)](https://git-scm.com/)
       </BrowserWindow>
   
   
@@ -38,7 +38,7 @@ Install Python
   
        - **Installer:** Get the Installer
       <BrowserWindow url="https://git-scm.com/downloads/win" bodyStyle={{padding: 0}}>    
-       [![GitHub](./assets/setupimg2.png)](https://git-scm.com/downloads/win)
+       [![Screenshot of Git version selection for Windows](./assets/setupimg2.png)](https://git-scm.com/downloads/win)
       </BrowserWindow>
           
   
@@ -46,7 +46,7 @@ Install Python
             
      
       <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![GitHub](./assets/setupimg3.png)](https://git-scm.com/)
+       [![Screenshot of Git installation setup options](./assets/setupimg3.png)](https://git-scm.com/)
       </BrowserWindow>
   
      - 1. On the next screen, click next on Public Licence.
@@ -63,7 +63,7 @@ Install Python
   
        
       <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![GitHub](./assets/setupimg4.png)](https://git-scm.com/)
+       [![Screenshot of Git configuration options during installation](./assets/setupimg4.png)](https://git-scm.com/)
       </BrowserWindow>      
   
      
@@ -73,7 +73,7 @@ Install Python
   
   
       <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![Github](./assets/setupimg5.png)](https://github.com/sanjay-kv)
+       [![Screenshot of Git initial branch configuration](./assets/setupimg5.png)](https://github.com/sanjay-kv)
       </BrowserWindow>
   
      
@@ -82,7 +82,7 @@ Install Python
   This is where we specify the path enviornment of git, just go with the recommended option which is 2.
   
        <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![Github](./assets/setupimg6.png)](https://github.com/sanjay-kv)
+       [![Screenshot of Git path environment configuration](./assets/setupimg6.png)](https://github.com/sanjay-kv)
       </BrowserWindow>
   
   
@@ -95,7 +95,7 @@ Install Python
   7.  ``7`` On the Next Screen, it will ask whether you want to enable expiremental support. Select both options and click Install. 
   
        <BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>    
-       [![Github](./assets/setupimg8.png)](https://github.com/sanjay-kv)
+       [![Screenshot of Git experimental options during installation](./assets/setupimg8.png)](https://github.com/sanjay-kv)
       </BrowserWindow>
   
   Congratulations! The Git setup is now complete and you can launch GitHub.

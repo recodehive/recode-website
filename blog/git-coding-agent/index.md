@@ -123,7 +123,7 @@ We’re inviting early adopters to help shape the future of the GitHub Copilot C
 - The most insightful and actionable feedback will be eligible for a $200 gift card.
 - Help make Copilot Coding Agent more effective for the entire developer community.
 - Get early access to new features and updates.
-    ![UI-UX Design impact in future](/img/blogs/github-copilot/03-reward-copilot.png)
+    ![Promotional banner for GitHub Copilot Coding Agent feedback rewards](/img/blogs/github-copilot/03-reward-copilot.png)
    
 
 
