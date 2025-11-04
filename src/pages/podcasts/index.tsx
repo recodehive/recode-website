@@ -217,7 +217,7 @@ export default function Podcasts(): ReactElement {
 
         <div className="podcast-filters">
           <div className="filter-search">
-            <div className="search-icon"></div>
+            <div className="search-icon">🔍</div>
             <input
               type="text"
               placeholder="Search podcasts..."
