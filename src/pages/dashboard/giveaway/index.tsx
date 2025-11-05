@@ -862,6 +862,9 @@ const GiveawayPage: React.FC = () => {
               </div>
             )}
           </motion.section>
+
+          {/* Kingsumo Giveaway Script */}
+          <script src="https://kingsumo.com/js/embed.js"></script>
         </div>
       </div>
     </Layout>
