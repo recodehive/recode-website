@@ -691,6 +691,81 @@ html[data-theme="light"] {
   animation: detailsFadeIn 0.8s ease-out 0.6s both;
 }
 
+.section-title-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.section-title-container .section-title {
+  margin-bottom: 0;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.search-toggle-button {
+  background: var(--details-bg-card);
+  border: 1px solid var(--details-border);
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--details-text-primary);
+}
+
+.search-toggle-button:hover {
+  background: var(--details-bg-card-hover);
+  border-color: var(--details-border-hover);
+  transform: scale(1.05);
+}
+
+.search-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  animation: detailsFadeIn 0.3s ease-out;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 12px 16px;
+  background: var(--details-bg-card);
+  border: 1px solid var(--details-border);
+  border-radius: 12px;
+  color: var(--details-text-primary);
+  font-size: 16px;
+  backdrop-filter: blur(10px);
+}
+
+.search-bar input:focus {
+  outline: none;
+  border-color: var(--details-accent-primary);
+  box-shadow: 0 0 0 2px var(--details-glow);
+}
+
+.search-bar button {
+  padding: 12px 20px;
+  background: linear-gradient(
+    135deg,
+    var(--details-accent-primary) 0%,
+    var(--details-accent-secondary) 100%
+  );
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-bar button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px var(--details-shadow);
+}
+
 .suggestions-content {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

@@ -99,6 +99,8 @@ export default function PodcastDetails(): ReactElement {
     }
     return [];
   });
+  const [showSearch, setShowSearch] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const isFavorited = podcast ? favorites.includes(podcast.id) : false;
   const toggleFavorite = () => {
     if (!podcast) return;
@@ -354,10 +356,39 @@ export default function PodcastDetails(): ReactElement {
 
           {/* Related Content Suggestions */}
           <div className="suggestions-section">
-            <h2 className="section-title">
-              <span className="title-icon">🚀</span>
-              Explore More Content
-            </h2>
+            <div className="section-title-container">
+              <h2 className="section-title">
+                <span className="title-icon">🚀</span>
+                Explore More Content
+              </h2>
+              <button
+                className="search-toggle-button"
+                onClick={() => setShowSearch(!showSearch)}
+                title="Search podcasts"
+              >
+                🔍
+              </button>
+            </div>
+            {showSearch && (
+              <div className="search-bar">
+                <input
+                  type="text"
+                  placeholder="Search podcasts..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      history.push("/podcasts", { searchTerm });
+                    }
+                  }}
+                />
+                <button
+                  onClick={() => history.push("/podcasts", { searchTerm })}
+                >
+                  Search
+                </button>
+              </div>
+            )}
             <div className="suggestions-content">
               <div className="suggestion-card primary">
                 <div className="suggestion-icon">📻</div>
