@@ -1,9 +1,11 @@
 ---
 title: "7 Steps to Streamline Your UX Design Process"
-sidebar_label: Streamline Your UX Design Process
+sidebar_label: "Streamline UX Design"
 authors: [dharshibalasubramaniyam, sanjay-kv]
-tags: [ui, ux, design]
+tags: [UI, UX, Design, User Experience, Product Design]
 date: 2025-06-05
+description: "Master the UX design process with these 7 essential steps. Learn how to research users, create wireframes, test prototypes, and deliver exceptional user experiences that solve real problems."
+draft: false
 hide_table_of_contents: true
 ---
  <!-- truncate -->

@@ -1,36 +1,12 @@
 ---
 title: "What is Google DeepMind AI?"
 authors: [dharshibalasubramaniyam, sanjay-kv]
-sidebar_label: "Google Deepmind"
-tags:
-  - Google Deepmind
-  - Opensource
-  - AI
-date: 2025-05-30 09:32:00
-description: DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI.
+sidebar_label: "Google DeepMind AI"
+tags: [Google DeepMind, AI, Artificial Intelligence, Machine Learning, Research]
+date: 2025-05-30
+description: "Discover Google DeepMind, the AI research company acquired by Google in 2014. Learn about AlphaGo, their groundbreaking AI achievements, and their mission to advance artificial intelligence for the benefit of humanity."
 draft: false
-canonical_url: 
-# meta:
-#   - name: "robots"
-#     content: "index, follow"
-#   - property: "og:title"
-#     content: "What is Google DeepMind AI?"
-#   - property: "og:description"
-#     content: "DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI called AI"
-#   - property: "og:type"
-#     content: "article"
-#   - property: "og:url"
-#     content: "/blog/getting-started-with-mern"
-#   - property: "og:image"
-#     content: "/assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
-#   - name: "twitter:card"
-#     content: "summary_large_image"
-#   - name: "twitter:title"
-#     content: "What is Google DeepMind AI?"
-#   - name: "twitter:description"
-#     content: "DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI called AI"
-#   - name: "twitter:image"
-#     content: "assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
+---
 
 ---
  <!-- truncate -->

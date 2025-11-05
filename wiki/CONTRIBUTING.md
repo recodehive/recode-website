@@ -8,6 +8,7 @@ Thank you for your interest in contributing to **recode hive**! We're excited to
 
 - [Code of Conduct](#code-of-conduct)
 - [How Can I Contribute?](#how-can-i-contribute)
+- [Blog Writing Guidelines](#blog-writing-guidelines)
 - [Getting Started](#getting-started)
 - [Development Setup](#development-setup)
 - [Making Changes](#making-changes)
@@ -42,6 +43,45 @@ There are many ways to contribute to recode hive:
 ### 💻 Contributing Code
 
 ### 🎨 Design Contributions
+
+### ✍️ Writing Blog Posts
+
+We welcome blog contributions on technology, tutorials, industry insights, and community stories. Our blog helps educate and engage the developer community.
+
+---
+
+## ✍️ Blog Writing Guidelines
+
+Before writing a blog post, please review our [Blog Writing Standards and Guidelines](blog-standards.md) which outlines:
+
+- **Standard frontmatter structure** with required fields
+- **Content organization** and formatting best practices
+- **SEO and accessibility guidelines**
+- **Quality checklist** for publishing
+- **Examples** from successful blog posts
+
+### Blog Post Requirements
+
+- **Original content** or properly attributed if republished
+- **Technical accuracy** with code examples tested
+- **Clear structure** with proper headings and sections
+- **Engaging introduction** with `<!-- truncate -->` separator
+- **SEO optimization** with meta descriptions and keywords
+- **Mobile-responsive** content and images
+
+### Blog Categories
+
+- **Technology Updates**: Latest tools, frameworks, and industry news
+- **Tutorials**: Step-by-step guides and how-tos
+- **Industry Insights**: Trends, analysis, and expert opinions
+- **Community Stories**: Personal experiences and lessons learned
+
+### Getting Started with Blog Writing
+
+1. **Choose a topic** that aligns with our audience
+2. **Review existing blogs** for style and structure reference
+3. **Follow the standards** outlined in our guidelines
+4. **Submit as a PR** with your blog post in the `/blog/` directory
 
 ---
 
