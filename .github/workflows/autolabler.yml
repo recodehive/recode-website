@@ -24,10 +24,10 @@ jobs:
             await github.rest.issues.addLabels({
               ...context.repo,
               issue_number: prNumber,
-              labels: ["recode","hacktoberfest-accepted"]
+              labels: ["recode"]
             });
 
-            console.log(`Added labels [recode, hacktoberfest-accepted] to PR #${prNumber}`);
+            console.log(`Added labels [recode] to PR #${prNumber}`);
 
       - name: Add labels to Issue
         if: github.event_name == 'issues'
@@ -39,10 +39,10 @@ jobs:
             await github.rest.issues.addLabels({
               ...context.repo,
               issue_number: issueNumber,
-              labels: ["recode", "level 1", "hacktoberfest-accepted"]
+              labels: ["recode", "level 1"]
             });
 
-            console.log(`Added labels [recode, level 1, hacktoberfest-accepted] to Issue #${issueNumber}`);
+            console.log(`Added labels [recode, level 1] to Issue #${issueNumber}`);
 
       - name: Set Issue Type to Bug
         if: github.event_name == 'issues'
