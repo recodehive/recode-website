@@ -155,7 +155,7 @@ export default function LeaderBoard(): JSX.Element {
     useState<Contributor | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSelectChanged, setIsSelectChanged] = useState(false);
-  const itemsPerPage = 10;
+  const itemsPerPage = 20;
 
   // Modal handlers
   const handlePRClick = (contributor: Contributor) => {
