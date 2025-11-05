@@ -475,7 +475,11 @@ export default function FooterLayout({
             <div className="footer-bottom-right">
               <div className="footer-copyright">
                 <span>
-                  © {currentYear} recodehive. Made with ❤️ by the Community.
+                  © {currentYear} recodehive. Made with ❤️ by the {" "}
+                  <a href="https://github.com/recodehive/recode-website/graphs/contributors" target="_blank" rel="noopener noreferrer">
+                  the Community
+                  </a>
+                  .
                 </span>
               </div>
             </div>
