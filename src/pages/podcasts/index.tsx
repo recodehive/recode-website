@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "@theme/Layout";
 import type { ReactElement } from "react";
-import { useHistory } from "@docusaurus/router";
+import { useHistory, useLocation } from "@docusaurus/router";
 import "./index.css";
 
 interface PodcastData {
@@ -68,6 +68,7 @@ const SpotifyTitle: React.FC<{
 
 export default function Podcasts(): ReactElement {
   const history = useHistory();
+  const location = useLocation();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFilter, setSelectedFilter] = useState<
@@ -108,6 +109,13 @@ export default function Podcasts(): ReactElement {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    const state = location.state as { searchTerm?: string };
+    if (state && state.searchTerm) {
+      setSearchTerm(state.searchTerm);
+    }
+  }, [location.state]);
 
   const filteredPodcasts = podcasts.filter((podcast) => {
     const matchesFilter =
@@ -217,7 +225,7 @@ export default function Podcasts(): ReactElement {
 
         <div className="podcast-filters">
           <div className="filter-search">
-            <div className="search-icon"></div>
+            <div className="search-icon">🔍</div>
             <input
               type="text"
               placeholder="Search podcasts..."
