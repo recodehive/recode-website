@@ -11,7 +11,7 @@ import { createPortal } from "react-dom";
 interface FooterStats {
   activeUsers: string;
   tutorials: string;
-  successRate: string;
+  peopleSponsored: string;
   supportHours: string;
 }
 
@@ -29,8 +29,8 @@ export default function FooterLayout({
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [stats, setStats] = useState<FooterStats>({
     activeUsers: "50K+",
-    tutorials: "200+",
-    successRate: "95%",
+    tutorials: "70+",
+    peopleSponsored: "45",
     supportHours: "24/7",
   });
   const [email, setEmail] = useState("");
@@ -44,13 +44,13 @@ export default function FooterLayout({
       try {
         // Simulate API call with realistic growth
         const baseUsers = 52000;
-        const baseTutorials = 215;
+        const baseTutorials = 75;
         const randomGrowth = Math.floor(Math.random() * 100);
 
         setStats({
           activeUsers: `${Math.floor((baseUsers + randomGrowth) / 1000)}K+`,
           tutorials: `${baseTutorials + Math.floor(randomGrowth / 10)}+`,
-          successRate: `${95 + Math.floor(Math.random() * 3)}%`,
+          peopleSponsored: `${45 + Math.floor(Math.random() * 5)}`,
           supportHours: "24/7",
         });
       } catch (error) {
@@ -206,9 +206,9 @@ export default function FooterLayout({
               </div>
               <div className="stat-content">
                 <div className="stat-number">
-                  <Counter value={parseInt(stats.successRate)} suffix="%" />
+                  <Counter value={parseInt(stats.peopleSponsored)} suffix="+" />
                 </div>
-                <div className="stat-label">Success Rate</div>
+                <div className="stat-label">People Sponsored</div>
               </div>
             </div>
 
@@ -370,9 +370,8 @@ export default function FooterLayout({
                 />
                 <button
                   type="submit"
-                  className={`newsletter-button ${
-                    isSubscribed ? "subscribed" : ""
-                  }`}
+                  className={`newsletter-button ${isSubscribed ? "subscribed" : ""
+                    }`}
                   disabled={isSubscribed}
                 >
                   {isSubscribed ? "✓ Subscribed!" : "Subscribe Now →"}
@@ -477,7 +476,7 @@ export default function FooterLayout({
                 <span>
                   © {currentYear} recodehive. Made with ❤️ by the {" "}
                   <a href="https://github.com/recodehive/recode-website/graphs/contributors" target="_blank" rel="noopener noreferrer">
-                  the Community
+                    the Community
                   </a>
                   .
                 </span>
