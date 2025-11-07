@@ -77,116 +77,206 @@
   color: #f1f1f1;
 }
 
-.top-title-filter {
+/* Podium Layout */
+.leaderboard-podium {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 240px;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 75px;
+  padding: 50px 20px 20px;
+  margin-bottom: 40px;
 }
 
-.filter-label {
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.light .filter-label {
-  color: #4b5563;
-}
-
-.dark .filter-label {
-  color: #d1d5db;
-}
-
-.top-performers-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
-  justify-items: center;
-  align-items: end;
-}
-
-.top-performer-card {
+.podium-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  width: 200px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s;
   position: relative;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 24px;
-  border-radius: 12px;
-  transition: all 0.3s ease;
+  padding-top: 40px;
+  z-index: 2;
 }
 
-.light .top-performer-card {
+.light .podium-card {
   background: #fff;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
-.dark .top-performer-card {
+.dark .podium-card {
   background: #2b303b;
-  border: 1px solid #444;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-.top-performer-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
+/* Staircase Height Adjustment */
+.first-place { transform: translateY(-60px); }
+.second-place { transform: translateY(-30px); }
+.third-place { transform: translateY(0); }
 
-.top-performer-card .avatar.large {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  margin-bottom: 12px;
-  border: 4px solid #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.dark .top-performer-card .avatar.large {
-  border: 4px solid #23272f;
-}
-
-.rank-overlay {
+/* Reflection Effect */
+.podium-card::after {
+  content: '';
   position: absolute;
-  top: 8px;
-  left: 8px;
+  top: 100%;
+  left: 0;
+  height: 25%;
+  width: 100%;
+  border-radius: 0 0 16px 16px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.3) 25%,
+    rgba(255, 255, 255, 0.1) 75%,
+    rgba(255, 255, 255, 0.0) 100%
+  );
+  transform: scaleY(-1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.dark .podium-card::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(43, 48, 59, 0.4) 0%,
+    rgba(43, 48, 59, 0.3) 25%,
+    rgba(43, 48, 59, 0.1) 75%,
+    rgba(43, 48, 59, 0.0) 100%
+  );
+}
+
+/* Reflection box-shadows */
+.first-place::after { box-shadow: 0 2px 6px rgba(255, 215, 0, 0.1); }
+.second-place::after { box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); }
+.third-place::after { box-shadow: 0 2px 6px rgba(205, 127, 50, 0.1); }
+
+/* User Photo */
+.podium-card .user-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 4px solid #f0f0f0;
+}
+
+.dark .podium-card .user-photo {
+  border-color: #444;
+}
+
+/* Rank Badge */
+.podium-card .rank-badge {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  transform: translate(50%, -50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
   font-weight: bold;
-  color: #fff;
-  border: 2px solid #fff;
+  font-size: 1.2em;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 3px solid white;
 }
 
-.rank-overlay.top-1 {
-  background-color: #f59e0b;
-  border-color: #fde68a;
-  box-shadow: 0 0 10px #fde047;
+.dark .podium-card .rank-badge {
+  border-color: #2b303b;
 }
 
-.rank-overlay.top-2 {
-  background-color: #6b7280;
-  border-color: #d1d5db;
+.first-place .rank-badge { background-color: #FFD700; }
+.second-place .rank-badge { background-color: #555; }
+.third-place .rank-badge { background-color: #CD7F32; }
+
+/* User Details */
+.podium-card .details {
+  width: 100%;
 }
 
-.rank-overlay.top-3 {
-  background-color: #964b00;
-  border-color: #fcd34d;
+.podium-card .username {
+  font-weight: 700;
+  margin: 0 0 5px 0;
+  font-size: 1.1em;
+  color: #4b89e3;
 }
 
-.performer-info {
-  margin-top: 8px;
+.dark .podium-card .username {
+  color: #60a5fa;
 }
 
-.performer-info .username-link {
+.podium-card .stats {
+  display: flex;
+  gap: 8px;
+  margin-top: 5px;
+  justify-content: center;
+}
+
+.podium-card .prs,
+.podium-card .points {
+  font-size: 0.8em;
+  padding: 4px 10px;
+  border-radius: 20px;
   font-weight: bold;
-  font-size: 1.1rem;
-  color: #6366f1;
-  text-decoration: none;
+  background-color: #e6e0f1;
+  color: #6a5acd;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dark .podium-card .prs,
+.dark .podium-card .points {
+  background-color: #374151;
+  color: #8b5cf6;
+}
+
+.podium-card .prs:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effects */
+.podium-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.first-place:hover {
+  transform: translateY(-65px);
+  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.second-place:hover {
+  transform: translateY(-35px);
+  border-color: #C0C0C0;
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.7), 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.third-place:hover {
+  transform: translateY(-5px);
+  border-color: #CD7F32;
+  box-shadow: 0 0 15px rgba(205, 127, 50, 0.7), 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark Mode Hover Effects */
+.dark .first-place:hover {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark .second-place:hover {
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.dark .third-place:hover {
+  box-shadow: 0 0 15px rgba(205, 127, 50, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Stats Grid */
