@@ -115,7 +115,7 @@
 
 /* Staircase Height Adjustment */
 .first-place { transform: translateY(-60px); }
-.second-place { transform: translateY(-30px); }
+.second-place { transform: translateY(0px); }
 .third-place { transform: translateY(0); }
 
 /* Reflection Effect */
