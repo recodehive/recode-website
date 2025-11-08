@@ -176,7 +176,7 @@ html[data-theme="light"] {
 .lic-content-wrapper {
   position: relative;
   z-index: 1;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 4rem 1.5rem;
   animation: fadeInUp 0.8s ease-out;
