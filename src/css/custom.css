@@ -1602,7 +1602,7 @@ a {
 
 /* ================= MISCELLANEOUS ================= */
 /* Fix Home icon alignment with text in breadcrumbs [Docs] */
-.theme-doc-breadcrumbs a.breadcrumbs__link > svg {
+.theme-doc-breadcrumbs a.breadcrumbs__link>svg {
   display: inline-block;
 }
 
@@ -1798,7 +1798,7 @@ html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
 /* Issue #980: Fix inconsistent padding and margins across sections */
 
 /* Standard section spacing: 2rem vertical, 1.5rem horizontal on smaller screens */
-main > div:not(.m-0) {
+main>div:not(.m-0) {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
@@ -1810,7 +1810,7 @@ main > div:not(.m-0) {
 
 /* Responsive: reduce spacing on mobile devices */
 @media (max-width: 768px) {
-  main > div:not(.m-0) {
+  main>div:not(.m-0) {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -1842,4 +1842,3 @@ h3:first-child {
   margin-top: 0;
   margin-bottom: 1rem;
 }
-
