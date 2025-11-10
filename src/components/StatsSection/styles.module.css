@@ -1,7 +1,8 @@
 /* Stats Section */
 .section {
   width: 100%;
-  padding: 4rem 1rem;
+  padding: 3rem 1rem;
+  margin: 2rem 0;
   background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
   position: relative;
   overflow: hidden;
@@ -143,21 +144,25 @@
 
 /* Animation keyframes */
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
   }
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(1.05);
     opacity: 0.8;
@@ -168,9 +173,11 @@
   0% {
     box-shadow: 0 0 5px rgba(79, 70, 229, 0.5);
   }
+
   50% {
     box-shadow: 0 0 20px rgba(79, 70, 229, 0.8);
   }
+
   100% {
     box-shadow: 0 0 5px rgba(79, 70, 229, 0.5);
   }
