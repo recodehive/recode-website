@@ -340,6 +340,11 @@
   margin-top: 2rem;
 }
 
+.sponsors-section h3 {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
 .support-links {
   margin-top: 5rem;
   display: flex;
