@@ -508,15 +508,11 @@ html[data-theme="light"] {
 .card-actions {
   display: flex;
   gap: 8px;
-  opacity: 0;
+  opacity: 1 !important;
   transition: opacity 0.3s ease;
   position: relative;
   z-index: 10;
-  pointer-events: auto;
-}
-
-.enhanced-ebook-card:hover .card-actions {
-  opacity: 1;
+  pointer-events: auto !important;
 }
 
 .action-btn.share {
@@ -687,14 +683,8 @@ html[data-theme="light"] {
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  opacity: 0;
   transform: translateY(10px);
   align-self: flex-start;
-}
-
-.enhanced-ebook-card:hover .ebook-read-button {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .ebook-read-button:hover {
