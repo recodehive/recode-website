@@ -1,14 +1,10 @@
 "use client";
 import * as React from "react";
-import { useState } from "react";
-import { motion } from "framer-motion";
 import Link from "@docusaurus/Link";
 import { Card, CardContent } from "../ui/card";
 import { getAuthorNames } from "../../utils/authors";
 
 const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
   if (!id || !type) {
     return <div>data not fetched properly, imageId and entryId not found</div>;
   }
@@ -36,19 +32,7 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
   const category = getCategory(title);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      whileHover={{
-        y: -8,
-        scale: 1.02,
-        transition: { duration: 0.4, ease: "easeOut" },
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="relative h-full overflow-hidden transition-all duration-300"
-    >
+    <div className="relative h-full overflow-hidden">
       <Link
         to={`/blog/${id}`}
         className="text-decoration-none block h-full"
@@ -87,7 +71,7 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
           </div>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 };
 
