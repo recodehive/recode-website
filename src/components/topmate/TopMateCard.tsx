@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Clock } from "lucide-react";
-import { useColorMode } from "@docusaurus/theme-common";
+import { useSafeColorMode } from "../../utils/useSafeColorMode";
 
 interface TopMateCardProps {
   title: string;
@@ -20,8 +20,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
   username,
   setShowTopmate,
 }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { colorMode, isDark } = useSafeColorMode();
 
   return (
     <motion.div

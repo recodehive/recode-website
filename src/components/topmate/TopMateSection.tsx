@@ -1,9 +1,9 @@
 import React from "react";
 import TopMateCard from "./TopMateCard";
-import { useColorMode } from "@docusaurus/theme-common";
+import { useSafeColorMode } from "../../utils/useSafeColorMode";
 
 const TopMateSection = ({ setShowTopmate }) => {
-  const { colorMode } = useColorMode(); // Get current theme: 'light' or 'dark'
+  const { colorMode } = useSafeColorMode(); // Get current theme: 'light' or 'dark'
 
   const profileData = {
     title: "1:1 Mentorship Call",

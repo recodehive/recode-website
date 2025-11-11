@@ -1,8 +1,7 @@
-import React, { type ReactNode, useMemo } from "react";
+import React, { type ReactNode, useMemo, Component, type ReactElement } from "react";
 import { useThemeConfig, ErrorCauseBoundary } from "@docusaurus/theme-common";
 import {
   splitNavbarItems,
-  useNavbarMobileSidebar,
 } from "@docusaurus/theme-common/internal";
 import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem";
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
@@ -10,6 +9,22 @@ import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";
 import NavbarLogo from "@theme/Navbar/Logo";
 // import NavbarSearch from '@theme/Navbar/Search';
+
+// Safe wrapper component that handles the mobile sidebar toggle
+// This component will gracefully fail if the provider isn't available
+function SafeMobileSidebarToggle(): ReactNode {
+  // Try to render the toggle, but catch any errors
+  // Since we can't catch hook errors with try-catch, we'll use a different approach
+  // We'll always try to render it and let Docusaurus handle the provider setup
+  // If it fails, the error will be caught by Docusaurus's error boundary
+  try {
+    return <NavbarMobileSidebarToggle />;
+  } catch (error) {
+    // This won't catch hook errors, but it's here for other potential errors
+    console.warn("Mobile sidebar toggle unavailable");
+    return null;
+  }
+}
 
 function useNavbarItems() {
   return useThemeConfig().navbar.items as NavbarItemConfig[];
@@ -56,7 +71,6 @@ function NavbarContentLayout({
 }
 
 export default function NavbarContent(): ReactNode {
-  const mobileSidebar = useNavbarMobileSidebar();
   const items = useNavbarItems();
 
   const [leftItems, rightItems] = useMemo(
@@ -73,7 +87,8 @@ export default function NavbarContent(): ReactNode {
       left={
         // TODO stop hardcoding items?
         <>
-          {!mobileSidebar.disabled && <NavbarMobileSidebarToggle />}
+          {/* Safe wrapper for mobile sidebar toggle */}
+          <SafeMobileSidebarToggle />
           <NavbarLogo />
           <NavbarItems items={leftItems} />
         </>

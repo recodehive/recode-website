@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-import { useColorMode } from "@docusaurus/theme-common";
+import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
 import { useCommunityStatsContext } from "../../../lib/statsProvider";
 
 interface PRDetails {
@@ -34,8 +34,7 @@ export default function PRListModal({
   isOpen,
   onClose,
 }: PRListModalProps): JSX.Element | null {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useSafeColorMode();
 
   // Get filtered PRs from context
   const { getFilteredPRsForContributor, currentTimeFilter } =

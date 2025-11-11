@@ -1,7 +1,7 @@
 import React, { type ReactNode, useState, useEffect } from "react";
 import Link from "@docusaurus/Link";
 import type { Props } from "@theme/Footer/Layout";
-import { useColorMode } from "@docusaurus/theme-common";
+import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
 import clsx from "clsx";
 import "./enhanced-footer.css";
 import Counter from "./Counter";
@@ -23,8 +23,7 @@ export default function FooterLayout({
   logo,
   copyright,
 }: Props): ReactNode {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { colorMode, isDark } = useSafeColorMode();
 
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [stats, setStats] = useState<FooterStats>({

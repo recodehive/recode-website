@@ -1,8 +1,22 @@
 import React from "react";
-import { useColorMode } from "@docusaurus/theme-common";
+import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
+import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 export default function ColorModeToggle(): JSX.Element {
-  const { colorMode, setColorMode } = useColorMode();
+  const { colorMode } = useSafeColorMode();
+  
+  // Safe setColorMode that works with DOM
+  const setColorMode = (mode: "light" | "dark") => {
+    if (!ExecutionEnvironment.canUseDOM) return;
+    document.documentElement.setAttribute("data-theme", mode);
+    // Also trigger Docusaurus's internal theme change if available
+    try {
+      const { setColorMode: docusaurusSetColorMode } = require("@docusaurus/theme-common");
+      docusaurusSetColorMode(mode);
+    } catch (e) {
+      // Fallback: just set the DOM attribute
+    }
+  };
 
   const toggleColorMode = () => {
     const newMode = colorMode === "dark" ? "light" : "dark";
