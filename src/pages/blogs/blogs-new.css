@@ -5,7 +5,9 @@
 
 /* Main Container */
 .github-blog-page {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica,
+    Arial, sans-serif;
   background: #ffffff;
   min-height: 100vh;
 }

@@ -370,8 +370,9 @@ export default function FooterLayout({
                 />
                 <button
                   type="submit"
-                  className={`newsletter-button ${isSubscribed ? "subscribed" : ""
-                    }`}
+                  className={`newsletter-button ${
+                    isSubscribed ? "subscribed" : ""
+                  }`}
                   disabled={isSubscribed}
                 >
                   {isSubscribed ? "✓ Subscribed!" : "Subscribe Now →"}
@@ -474,8 +475,12 @@ export default function FooterLayout({
             <div className="footer-bottom-right">
               <div className="footer-copyright">
                 <span>
-                  © {currentYear} recodehive. Made with ❤️ by the {" "}
-                  <a href="https://github.com/recodehive/recode-website/graphs/contributors" target="_blank" rel="noopener noreferrer">
+                  © {currentYear} recodehive. Made with ❤️ by the{" "}
+                  <a
+                    href="https://github.com/recodehive/recode-website/graphs/contributors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     the Community
                   </a>
                   .
