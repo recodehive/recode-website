@@ -1,0 +1,108 @@
+/* Base styles for the toast container */
+.toastContainer {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  border: 1px solid oklch(0.69 0 0);
+  border-radius: 8px; /* Docusaurus --radius var is often 8px */
+  padding: 12px 16px;
+  font-size: 15px;
+  font-weight: 500;
+  z-index: 2147483647;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 380px;
+  line-height: 1.4;
+  backdrop-filter: blur(8px);
+  animation: slideDownFadeOut 10s ease-in-out forwards;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Light theme specific styles */
+.toastLight {
+  background: oklch(0.145 0 0 / 0.85); /* Added transparency for blur */
+  color: oklch(0.985 0 0);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* Dark theme specific styles */
+.toastDark {
+  background: oklch(0.985 0 0 / 0.85); /* Added transparency for blur */
+  color: oklch(0.145 0 0);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Style for the link inside the toast */
+.toastLink {
+  text-decoration: underline;
+  font-weight: 600;
+}
+.toastLight .toastLink {
+  color: oklch(0.985 0 0); /* White in light mode */
+}
+.toastDark .toastLink {
+  color: oklch(0.205 0 0); /* Dark in dark mode */
+}
+
+/* Styles for the content area */
+.toastContent {
+  flex-grow: 1; /* Allow content to fill space */
+}
+
+/* Styles for the new icon */
+.toastIcon {
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  /* Match icon color to text color */
+  color: currentColor;
+  opacity: 0.8;
+}
+
+/* Minimalist close button */
+.toastCloseButton {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 4px;
+  margin: -4px; /* Offset padding to align */
+  line-height: 1;
+  font-size: 20px;
+  font-weight: 600;
+  color: currentColor;
+  opacity: 0.5;
+  cursor: pointer;
+  border-radius: 4px;
+  transition:
+    opacity 0.2s ease,
+    background 0.2s ease;
+}
+
+.toastCloseButton:hover {
+  opacity: 1;
+}
+.toastLight .toastCloseButton:hover {
+  background: oklch(1 0 0 / 0.1); /* Faint white bg on hover */
+}
+.toastDark .toastCloseButton:hover {
+  background: oklch(0 0 0 / 0.1); /* Faint black bg on hover */
+}
+
+/* Animation keyframes with a subtle scale for "pop" */
+@keyframes slideDownFadeOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+}

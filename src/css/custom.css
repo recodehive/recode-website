@@ -1602,7 +1602,7 @@ a {
 
 /* ================= MISCELLANEOUS ================= */
 /* Fix Home icon alignment with text in breadcrumbs [Docs] */
-.theme-doc-breadcrumbs a.breadcrumbs__link > svg {
+.theme-doc-breadcrumbs a.breadcrumbs__link>svg {
   display: inline-block;
 }
 
@@ -1792,4 +1792,53 @@ html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
 
 .blog-page .margin-bottom--xl {
   margin-bottom: 0rem !important;
+}
+
+/* ===== CONSISTENT SPACING SYSTEM FOR ALL SECTIONS ===== */
+/* Issue #980: Fix inconsistent padding and margins across sections */
+
+/* Standard section spacing: 2rem vertical, 1.5rem horizontal on smaller screens */
+main>div:not(.m-0) {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.blog-carousel-section {
+  padding: 2rem 0 !important;
+  margin: 2rem 0 !important;
+}
+
+/* Responsive: reduce spacing on mobile devices */
+@media (max-width: 768px) {
+  main>div:not(.m-0) {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .blog-carousel-section {
+    padding: 1.5rem 0 !important;
+    margin: 1.5rem 0 !important;
+  }
+
+  /* Reduce section padding on mobile */
+  section,
+  [role="region"] {
+    padding: 1.5rem 0;
+    margin: 1.5rem 0;
+  }
+}
+
+/* Typography spacing for consistency */
+h1:not(:first-child),
+h2:not(:first-child),
+h3:not(:first-child) {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+h1:first-child,
+h2:first-child,
+h3:first-child {
+  margin-top: 0;
+  margin-bottom: 1rem;
 }
