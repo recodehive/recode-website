@@ -1,13 +1,11 @@
 :root {
   /* Dark Theme Variables (Default) */
-  --podcast-bg-primary: linear-gradient(
-    135deg,
-    #0f0f23 0%,
-    #1a1a2e 25%,
-    #16213e 50%,
-    #0f3460 75%,
-    #533483 100%
-  );
+  --podcast-bg-primary: linear-gradient(135deg,
+      #0f0f23 0%,
+      #1a1a2e 25%,
+      #16213e 50%,
+      #0f3460 75%,
+      #533483 100%);
   --podcast-bg-card: rgba(255, 255, 255, 0.03);
   --podcast-bg-card-hover: rgba(255, 255, 255, 0.08);
   --podcast-bg-blur: rgba(255, 255, 255, 0.05);
@@ -29,14 +27,12 @@
 
 /* Light Theme Variables */
 [data-theme="light"] {
-  --podcast-bg-primary: linear-gradient(
-    135deg,
-    #f8fafc 0%,
-    #e2e8f0 25%,
-    #cbd5e1 50%,
-    #94a3b8 75%,
-    #64748b 100%
-  );
+  --podcast-bg-primary: linear-gradient(135deg,
+      #f8fafc 0%,
+      #e2e8f0 25%,
+      #cbd5e1 50%,
+      #94a3b8 75%,
+      #64748b 100%);
   --podcast-bg-card: rgba(255, 255, 255, 0.9);
   --podcast-bg-card-hover: rgba(255, 255, 255, 0.95);
   --podcast-bg-blur: rgba(255, 255, 255, 0.8);
@@ -58,14 +54,12 @@
 
 /* Force theme variables on specific elements */
 html[data-theme="light"] {
-  --podcast-bg-primary: linear-gradient(
-    135deg,
-    #f8fafc 0%,
-    #e2e8f0 25%,
-    #cbd5e1 50%,
-    #94a3b8 75%,
-    #64748b 100%
-  );
+  --podcast-bg-primary: linear-gradient(135deg,
+      #f8fafc 0%,
+      #e2e8f0 25%,
+      #cbd5e1 50%,
+      #94a3b8 75%,
+      #64748b 100%);
   --podcast-bg-card: rgba(255, 255, 255, 0.9);
   --podcast-bg-card-hover: rgba(255, 255, 255, 0.95);
   --podcast-bg-blur: rgba(255, 255, 255, 0.8);
@@ -104,6 +98,7 @@ html[data-theme="light"] {
 }
 
 @keyframes pulseGlow {
+
   0%,
   100% {
     box-shadow: 0 0 0 0 var(--podcast-glow);
@@ -115,6 +110,7 @@ html[data-theme="light"] {
 }
 
 @keyframes bounce {
+
   0%,
   100% {
     transform: translateY(0);
@@ -126,6 +122,7 @@ html[data-theme="light"] {
 }
 
 @keyframes backgroundShift {
+
   0%,
   100% {
     transform: translateX(0px) translateY(0px) scale(1);
@@ -170,21 +167,15 @@ html[data-theme="light"] {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(
-      circle at 20% 80%,
+    radial-gradient(circle at 20% 80%,
       rgba(120, 119, 198, 0.08) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
+      transparent 60%),
+    radial-gradient(circle at 80% 20%,
       rgba(255, 119, 198, 0.06) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at 40% 40%,
+      transparent 60%),
+    radial-gradient(circle at 40% 40%,
       rgba(120, 219, 255, 0.04) 0%,
-      transparent 60%
-    );
+      transparent 60%);
   animation: backgroundShift 25s ease-in-out infinite;
   pointer-events: none;
 }
@@ -192,21 +183,15 @@ html[data-theme="light"] {
 /* Light theme background effects */
 [data-theme="light"] .enhanced-podcast-container::before {
   background:
-    radial-gradient(
-      circle at 20% 80%,
+    radial-gradient(circle at 20% 80%,
       rgba(79, 70, 229, 0.05) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
+      transparent 60%),
+    radial-gradient(circle at 80% 20%,
       rgba(124, 58, 237, 0.04) 0%,
-      transparent 60%
-    ),
-    radial-gradient(
-      circle at 40% 40%,
+      transparent 60%),
+    radial-gradient(circle at 40% 40%,
       rgba(236, 72, 153, 0.03) 0%,
-      transparent 60%
-    );
+      transparent 60%);
 }
 
 /* Hero Section */
@@ -246,13 +231,11 @@ html[data-theme="light"] {
 .podcast-hero-title {
   font-size: 48px;
   font-weight: 900;
-  background: linear-gradient(
-    135deg,
-    var(--podcast-text-primary) 0%,
-    var(--podcast-text-secondary) 30%,
-    var(--podcast-text-muted) 60%,
-    var(--podcast-text-dim) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--podcast-text-primary) 0%,
+      var(--podcast-text-secondary) 30%,
+      var(--podcast-text-muted) 60%,
+      var(--podcast-text-dim) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -284,12 +267,10 @@ html[data-theme="light"] {
 .stat-number {
   font-size: 32px;
   font-weight: 900;
-  background: linear-gradient(
-    135deg,
-    var(--podcast-accent-primary) 0%,
-    var(--podcast-accent-secondary) 50%,
-    var(--podcast-accent-tertiary) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--podcast-accent-primary) 0%,
+      var(--podcast-accent-secondary) 50%,
+      var(--podcast-accent-tertiary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -298,13 +279,11 @@ html[data-theme="light"] {
 
 .stat-label {
   font-size: 14px;
-  background: linear-gradient(
-    135deg,
-    var(--podcast-text-primary) 0%,
-    var(--podcast-text-secondary) 30%,
-    var(--podcast-text-muted) 60%,
-    var(--podcast-text-dim) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--podcast-text-primary) 0%,
+      var(--podcast-text-secondary) 30%,
+      var(--podcast-text-muted) 60%,
+      var(--podcast-text-dim) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -400,12 +379,10 @@ html[data-theme="light"] {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(102, 126, 234, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(102, 126, 234, 0.2),
+      transparent);
   transition: left 0.6s ease;
 }
 
@@ -421,12 +398,10 @@ html[data-theme="light"] {
 }
 
 .filter-tab.active {
-  background: linear-gradient(
-    135deg,
-    var(--podcast-accent-primary) 0%,
-    var(--podcast-accent-secondary) 50%,
-    var(--podcast-accent-tertiary) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--podcast-accent-primary) 0%,
+      var(--podcast-accent-secondary) 50%,
+      var(--podcast-accent-tertiary) 100%);
   border-color: transparent;
   color: #ffffff;
   transform: translateY(-2px);
@@ -474,21 +449,17 @@ html[data-theme="light"] {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(102, 126, 234, 0.02) 0%,
-    rgba(240, 147, 251, 0.02) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(102, 126, 234, 0.02) 0%,
+      rgba(240, 147, 251, 0.02) 100%);
   opacity: 0;
   transition: opacity 0.4s ease;
 }
 
 [data-theme="light"] .enhanced-podcast-card::before {
-  background: linear-gradient(
-    135deg,
-    rgba(79, 70, 229, 0.03) 0%,
-    rgba(236, 72, 153, 0.03) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(79, 70, 229, 0.03) 0%,
+      rgba(236, 72, 153, 0.03) 100%);
 }
 
 .enhanced-podcast-card:hover::before {
@@ -526,7 +497,10 @@ html[data-theme="light"] {
 }
 
 .action-btn.share {
-  background-color: rgba(123, 124, 128, 0.15);
+  background-color: rgba(123,
+      124,
+      128,
+      0.15);
   /* same subtle bg as unfavorited */
   border: 1px solid rgba(123, 124, 128, 0.3);
   /* same border */
@@ -606,11 +580,9 @@ html[data-theme="light"] {
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  background: linear-gradient(
-    135deg,
-    var(--podcast-accent-primary) 0%,
-    var(--podcast-accent-secondary) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--podcast-accent-primary) 0%,
+      var(--podcast-accent-secondary) 100%);
   border-radius: 20px;
   font-size: 12px;
   font-weight: 600;
@@ -641,12 +613,10 @@ html[data-theme="light"] {
 
 .skeleton-line {
   height: 12px;
-  background: linear-gradient(
-    90deg,
-    var(--podcast-bg-card) 25%,
-    var(--podcast-bg-card-hover) 50%,
-    var(--podcast-bg-card) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--podcast-bg-card) 25%,
+      var(--podcast-bg-card-hover) 50%,
+      var(--podcast-bg-card) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
   border-radius: 6px;
@@ -690,11 +660,9 @@ html[data-theme="light"] {
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: linear-gradient(
-    135deg,
-    var(--podcast-spotify) 0%,
-    var(--podcast-spotify-hover) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--podcast-spotify) 0%,
+      var(--podcast-spotify-hover) 100%);
   color: white;
   border: none;
   border-radius: 25px;
@@ -711,11 +679,9 @@ html[data-theme="light"] {
 }
 
 .listen-button:hover {
-  background: linear-gradient(
-    135deg,
-    var(--podcast-spotify-hover) 0%,
-    var(--podcast-spotify) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--podcast-spotify-hover) 0%,
+      var(--podcast-spotify) 100%);
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 8px 20px rgba(29, 185, 84, 0.4);
 }
@@ -790,11 +756,9 @@ html[data-theme="light"] {
 }
 
 .pagination-number.active {
-  background: linear-gradient(
-    135deg,
-    var(--podcast-accent-primary) 0%,
-    var(--podcast-accent-secondary) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--podcast-accent-primary) 0%,
+      var(--podcast-accent-secondary) 100%);
   border-color: transparent;
   color: white;
   transform: translateY(-2px);

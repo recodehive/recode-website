@@ -31,6 +31,7 @@
   --inset-shadow-dark: inset -6px -6px 10px var(--shadow-light-color);
 }
 
+
 [data-theme="dark"] {
   --page-bg: linear-gradient(
     135deg,
@@ -134,9 +135,8 @@
     );
 }
 .pageContainer {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
-    Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
   line-height: 1.7;
   background-color: var(--card-bg);
   color: var(--text-color);
@@ -144,7 +144,7 @@
   margin: 2rem auto;
   padding: 2.5rem 3rem;
   border-radius: 20px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color); 
   transition: all 0.3s ease;
   position: relative;
   z-index: 2;
@@ -210,8 +210,7 @@
 }
 .sectionButton:hover {
   transform: translateY(-2px);
-  box-shadow:
-    10px 10px 15px var(--shadow-dark-color),
+  box-shadow: 10px 10px 15px var(--shadow-dark-color),
     -10px -10px 15px var(--shadow-light-color);
 }
 .sectionButton.open {
@@ -278,9 +277,7 @@
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition:
-    max-height 0.4s ease-out,
-    opacity 0.3s ease-in,
+  transition: max-height 0.4s ease-out, opacity 0.3s ease-in,
     padding 0.3s ease-out;
   border-radius: 12px;
   margin-top: 1rem;

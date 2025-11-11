@@ -144,6 +144,7 @@
 
 /* Animation keyframes */
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0);
@@ -155,6 +156,7 @@
 }
 
 @keyframes pulse {
+
   0%,
   100% {
     transform: scale(1);

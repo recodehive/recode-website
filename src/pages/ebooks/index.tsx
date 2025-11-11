@@ -18,11 +18,7 @@ interface EbookData {
 const getCategory = (title: string): string => {
   if (title.toLowerCase().includes("python")) return "Programming";
   if (title.toLowerCase().includes("java")) return "Programming";
-  if (
-    title.toLowerCase().includes("c++") ||
-    title.toLowerCase().includes("cpp")
-  )
-    return "Programming";
+  if (title.toLowerCase().includes("c++") || title.toLowerCase().includes("cpp")) return "Programming";
   if (title.toLowerCase().includes("c ")) return "Programming";
   return "Programming";
 };
@@ -167,7 +163,7 @@ export default function Ebooks(): ReactElement {
             </div>
             <h1 className="ebook-hero-title">Explore Ebooks</h1>
             <p className="ebook-hero-description">
-              Read high-quality ebooks on programming, tools, and development.
+            Read high-quality ebooks on programming, tools, and development.
               Dive into comprehensive guides that inspire, educate, and help you
               master new skills.
             </p>
@@ -214,8 +210,7 @@ export default function Ebooks(): ReactElement {
                 onClick={() => setSelectedFilter(category as any)}
               >
                 <span className="tab-icon">📚</span>
-                {category} (
-                {ebooks.filter((e) => e.category === category).length})
+                {category} ({ebooks.filter((e) => e.category === category).length})
               </button>
             ))}
           </div>
@@ -224,7 +219,7 @@ export default function Ebooks(): ReactElement {
         <div className="ebook-content-section">
           {currentEbooks.length > 0 ? (
             <>
-              <div className="ebook-grid">
+        <div className="ebook-grid">
                 {currentEbooks.map((ebook, index) => (
                   <div
                     key={ebook.id}
@@ -240,10 +235,7 @@ export default function Ebooks(): ReactElement {
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     <div className="ebook-card-header">
-                      <EbookTitle
-                        title={ebook.title}
-                        category={ebook.category || "Programming"}
-                      />
+                      <EbookTitle title={ebook.title} category={ebook.category || "Programming"} />
                       <div
                         className="card-actions"
                         onClick={(e) => {

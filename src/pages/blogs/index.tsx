@@ -80,14 +80,7 @@ export default function Blogs(): React.JSX.Element {
     return "Resources";
   };
 
-  const categories = [
-    "All",
-    "Design",
-    "AI & Tech",
-    "Development",
-    "Engineering",
-    "Resources",
-  ];
+  const categories = ["All", "Design", "AI & Tech", "Development", "Engineering", "Resources"];
 
   return (
     <Layout
@@ -113,8 +106,7 @@ export default function Blogs(): React.JSX.Element {
           <div className="github-hero-content">
             <h1 className="github-hero-title">The recode hive Blog</h1>
             <p className="github-hero-subtitle">
-              Insights, updates, and best practices from the recode hive
-              community
+              Insights, updates, and best practices from the recode hive community
             </p>
           </div>
         </section>
@@ -125,14 +117,10 @@ export default function Blogs(): React.JSX.Element {
           <aside className="github-sidebar">
             <div className="sidebar-sticky">
               <h3 className="sidebar-title">All articles</h3>
-
+              
               {/* Search in Sidebar */}
               <div className="sidebar-search">
-                <svg
-                  className="sidebar-search-icon"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                >
+                <svg className="sidebar-search-icon" viewBox="0 0 16 16" fill="currentColor">
                   <path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.5 4.5 0 1 0-8.997.001A4.5 4.5 0 0 0 11.5 7Z"></path>
                 </svg>
                 <input
@@ -156,11 +144,9 @@ export default function Blogs(): React.JSX.Element {
                       >
                         {category}
                         <span className="category-count">
-                          {category === "All"
-                            ? blogs.length
-                            : blogs.filter(
-                                (b) => getCategory(b.title) === category,
-                              ).length}
+                          {category === "All" 
+                            ? blogs.length 
+                            : blogs.filter(b => getCategory(b.title) === category).length}
                         </span>
                       </button>
                     </li>
@@ -174,10 +160,7 @@ export default function Blogs(): React.JSX.Element {
                 <ul className="sidebar-toc-list">
                   {filteredBlogs.slice(0, 8).map((blog) => (
                     <li key={blog.id}>
-                      <Link
-                        to={`/blog/${blog.slug}`}
-                        className="sidebar-toc-link"
-                      >
+                      <Link to={`/blog/${blog.slug}`} className="sidebar-toc-link">
                         {blog.title}
                       </Link>
                     </li>
@@ -202,11 +185,7 @@ export default function Blogs(): React.JSX.Element {
             <div className="github-blog-grid">
               {filteredBlogs.length > 0 ? (
                 filteredBlogs.map((blog) => (
-                  <BlogCard
-                    key={blog.id}
-                    blog={blog}
-                    getCategory={getCategory}
-                  />
+                  <BlogCard key={blog.id} blog={blog} getCategory={getCategory} />
                 ))
               ) : (
                 <div className="github-no-results">

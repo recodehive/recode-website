@@ -376,9 +376,7 @@ export default function LeaderBoard(): JSX.Element {
                       className="user-photo"
                     />
                     <div className="details">
-                      <p className="username">
-                        {filteredContributors[1].username}
-                      </p>
+                      <p className="username">{filteredContributors[1].username}</p>
                       <div className="stats">
                         <button
                           className="prs"
@@ -387,9 +385,7 @@ export default function LeaderBoard(): JSX.Element {
                         >
                           {filteredContributors[1].prs} PRs
                         </button>
-                        <span className="points">
-                          {filteredContributors[1].points} Points
-                        </span>
+                        <span className="points">{filteredContributors[1].points} Points</span>
                       </div>
                     </div>
                   </div>
@@ -405,9 +401,7 @@ export default function LeaderBoard(): JSX.Element {
                       className="user-photo"
                     />
                     <div className="details">
-                      <p className="username">
-                        {filteredContributors[0].username}
-                      </p>
+                      <p className="username">{filteredContributors[0].username}</p>
                       <div className="stats">
                         <button
                           className="prs"
@@ -416,9 +410,7 @@ export default function LeaderBoard(): JSX.Element {
                         >
                           {filteredContributors[0].prs} PRs
                         </button>
-                        <span className="points">
-                          {filteredContributors[0].points} Points
-                        </span>
+                        <span className="points">{filteredContributors[0].points} Points</span>
                       </div>
                     </div>
                   </div>
@@ -434,9 +426,7 @@ export default function LeaderBoard(): JSX.Element {
                       className="user-photo"
                     />
                     <div className="details">
-                      <p className="username">
-                        {filteredContributors[2].username}
-                      </p>
+                      <p className="username">{filteredContributors[2].username}</p>
                       <div className="stats">
                         <button
                           className="prs"
@@ -445,9 +435,7 @@ export default function LeaderBoard(): JSX.Element {
                         >
                           {filteredContributors[2].prs} PRs
                         </button>
-                        <span className="points">
-                          {filteredContributors[2].points} Points
-                        </span>
+                        <span className="points">{filteredContributors[2].points} Points</span>
                       </div>
                     </div>
                   </div>

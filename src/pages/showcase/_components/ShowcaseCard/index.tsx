@@ -47,15 +47,29 @@ function ShowcaseCardTag({ tags }: { tags: TagType[] }) {
 }
 
 function ShowcaseCard({ user }: { user: User }) {
+  const handleCardClick = () => {
+    window.open(user.website, "_blank");
+  };
+
+  const handleSourceClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    // The link will handle the navigation
+  };
+
   return (
-    <li key={user.title} className="card shadow--md">
+    <li key={user.title} className={clsx("card shadow--md", styles.card)}>
+      <div className={styles.cardLink} onClick={handleCardClick} />
       <div className={clsx("card__image", styles.showcaseCardImage)}>
         <IdealImage img={user.preview} alt={user.title} />
       </div>
       <div className="card__body">
-        <div className={clsx(styles.showcaseCardHeader)}>
+        <div className={styles.showcaseCardHeader}>
           <h4 className={styles.showcaseCardTitle}>
-            <Link href={user.website} className={styles.showcaseCardLink}>
+            <Link
+              href={user.website}
+              className={styles.showcaseCardLink}
+              target="_blank"
+            >
               {user.title}
             </Link>
           </h4>
@@ -69,6 +83,9 @@ function ShowcaseCard({ user }: { user: User }) {
                 "button button--secondary button--sm",
                 styles.showcaseCardSrcBtn,
               )}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={handleSourceClick}
             >
               <Translate id="showcase.card.sourceLink">source</Translate>
             </Link>

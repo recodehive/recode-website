@@ -92,10 +92,7 @@
   padding: 20px;
   border-radius: 16px;
   width: 200px;
-  transition:
-    transform 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out,
-    border 0.3s;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border 0.3s;
   position: relative;
   cursor: pointer;
   display: flex;
@@ -117,19 +114,13 @@
 }
 
 /* Staircase Height Adjustment */
-.first-place {
-  transform: translateY(-60px);
-}
-.second-place {
-  transform: translateY(0px);
-}
-.third-place {
-  transform: translateY(0);
-}
+.first-place { transform: translateY(-60px); }
+.second-place { transform: translateY(0px); }
+.third-place { transform: translateY(0); }
 
 /* Reflection Effect */
 .podium-card::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 0;
@@ -141,7 +132,7 @@
     rgba(255, 255, 255, 0.4) 0%,
     rgba(255, 255, 255, 0.3) 25%,
     rgba(255, 255, 255, 0.1) 75%,
-    rgba(255, 255, 255, 0) 100%
+    rgba(255, 255, 255, 0.0) 100%
   );
   transform: scaleY(-1);
   z-index: 1;
@@ -154,20 +145,14 @@
     rgba(43, 48, 59, 0.4) 0%,
     rgba(43, 48, 59, 0.3) 25%,
     rgba(43, 48, 59, 0.1) 75%,
-    rgba(43, 48, 59, 0) 100%
+    rgba(43, 48, 59, 0.0) 100%
   );
 }
 
 /* Reflection box-shadows */
-.first-place::after {
-  box-shadow: 0 2px 6px rgba(255, 215, 0, 0.1);
-}
-.second-place::after {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-}
-.third-place::after {
-  box-shadow: 0 2px 6px rgba(205, 127, 50, 0.1);
-}
+.first-place::after { box-shadow: 0 2px 6px rgba(255, 215, 0, 0.1); }
+.second-place::after { box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); }
+.third-place::after { box-shadow: 0 2px 6px rgba(205, 127, 50, 0.1); }
 
 /* User Photo */
 .podium-card .user-photo {
@@ -207,15 +192,9 @@
   border-color: #2b303b;
 }
 
-.first-place .rank-badge {
-  background-color: #ffd700;
-}
-.second-place .rank-badge {
-  background-color: #555;
-}
-.third-place .rank-badge {
-  background-color: #cd7f32;
-}
+.first-place .rank-badge { background-color: #FFD700; }
+.second-place .rank-badge { background-color: #555; }
+.third-place .rank-badge { background-color: #CD7F32; }
 
 /* User Details */
 .podium-card .details {
@@ -271,45 +250,33 @@
 
 .first-place:hover {
   transform: translateY(-65px);
-  border-color: #ffd700;
-  box-shadow:
-    0 0 15px rgba(255, 215, 0, 0.7),
-    0 10px 30px rgba(0, 0, 0, 0.15);
+  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .second-place:hover {
   transform: translateY(-35px);
-  border-color: #c0c0c0;
-  box-shadow:
-    0 0 15px rgba(192, 192, 192, 0.7),
-    0 10px 30px rgba(0, 0, 0, 0.15);
+  border-color: #C0C0C0;
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.7), 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .third-place:hover {
   transform: translateY(-5px);
-  border-color: #cd7f32;
-  box-shadow:
-    0 0 15px rgba(205, 127, 50, 0.7),
-    0 10px 30px rgba(0, 0, 0, 0.15);
+  border-color: #CD7F32;
+  box-shadow: 0 0 15px rgba(205, 127, 50, 0.7), 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 /* Dark Mode Hover Effects */
 .dark .first-place:hover {
-  box-shadow:
-    0 0 15px rgba(255, 215, 0, 0.3),
-    0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .dark .second-place:hover {
-  box-shadow:
-    0 0 15px rgba(192, 192, 192, 0.3),
-    0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 15px rgba(192, 192, 192, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .dark .third-place:hover {
-  box-shadow:
-    0 0 15px rgba(205, 127, 50, 0.3),
-    0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 15px rgba(205, 127, 50, 0.3), 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* Stats Grid */

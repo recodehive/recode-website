@@ -2,6 +2,7 @@
   overflow: hidden;
   height: 150px;
   border-bottom: 2px solid var(--ifm-color-emphasis-200);
+  transition: transform var(--ifm-transition-fast) ease;
 }
 
 .showcaseCardHeader {
@@ -22,11 +23,14 @@
       var(--ifm-color-primary)
     )
     0% 100% / 0% 1px no-repeat;
-  transition: background-size ease-out 200ms;
+  transition: all var(--ifm-transition-fast) ease;
+  position: relative;
+  z-index: 2;
 }
 
 .showcaseCardTitle a:not(:focus):hover {
   background-size: 100% 1px;
+  color: var(--ifm-link-hover-color);
 }
 
 .showcaseCardTitle,
@@ -66,6 +70,8 @@
 .cardFooter {
   display: flex;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
 }
 
 .tag {
@@ -89,4 +95,246 @@
   border-radius: 50%;
   margin-left: 6px;
   margin-right: 6px;
+}
+
+/* Card Styles */
+.card {
+  --card-scale: 1;
+  --card-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
+  --card-border: 1px solid var(--ifm-color-emphasis-200);
+
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: var(--card-border);
+  border-radius: 8px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background: var(--ifm-card-background-color);
+  transform: scale(var(--card-scale)) translateZ(0);
+  will-change: transform, box-shadow, border-color;
+}
+
+.card:hover {
+  --card-scale: 1.02;
+  --card-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.15);
+  --card-border: 1px solid var(--ifm-color-primary);
+  transform: translateY(-6px) scale(var(--card-scale)) translateZ(0);
+  box-shadow: var(--card-shadow);
+  border-color: var(--ifm-color-primary);
+}
+
+/* Card clickable overlay */
+.cardLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  opacity: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(var(--ifm-color-primary-rgb), 0.1) 0%,
+    rgba(var(--ifm-color-primary-rgb), 0) 100%
+  );
+  transition: opacity 0.3s ease;
+}
+
+.card:hover .cardLink {
+  opacity: 1;
+}
+
+/* Card content */
+.card__body {
+  position: relative;
+  z-index: 2;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  padding: 1.5rem 1.5rem 0.5rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .card__body {
+  transform: translateY(-4px);
+}
+
+.card__body > * {
+  pointer-events: auto;
+}
+
+.card__footer {
+  position: relative;
+  z-index: 2;
+  padding: 0.5rem 1.5rem 1.5rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .card__footer {
+  transform: translateY(4px);
+}
+
+/* Source button */
+.showcaseCardSrcBtn {
+  position: relative;
+  z-index: 3;
+  pointer-events: auto;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(2px);
+  opacity: 0.9;
+  border-radius: 20px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: var(--ifm-color-primary);
+  color: white !important;
+  border: none;
+}
+
+.showcaseCardSrcBtn:hover {
+  transform: translateY(-1px) scale(1.03);
+  opacity: 1;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  background: var(--ifm-color-primary-dark);
+}
+
+.showcaseCardSrcBtn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Title styles */
+.showcaseCardTitle {
+  position: relative;
+  display: inline-block;
+  margin: 0;
+}
+
+.showcaseCardTitle a {
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+  text-decoration: none;
+  background: linear-gradient(
+      var(--ifm-color-primary),
+      var(--ifm-color-primary)
+    )
+    0% 100% / 0% 2px no-repeat;
+  padding-bottom: 2px;
+}
+
+.showcaseCardTitle a:hover {
+  background-size: 100% 2px;
+  color: var(--ifm-color-primary);
+}
+
+/* Image hover effect */
+.card__image,
+.showcaseCardImage {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+
+.showcaseCardImage img {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+  will-change: transform;
+}
+
+.card:hover .showcaseCardImage img {
+  transform: scale(1.05);
+}
+
+.showcaseCardImage::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.2) 100%
+  );
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: multiply;
+}
+
+.card:hover .showcaseCardImage::after {
+  opacity: 0.8;
+}
+
+/* Tag styles */
+.tag {
+  --tag-scale: 1;
+  --tag-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(var(--tag-scale)) translateZ(0);
+  will-change: transform, box-shadow;
+  border-radius: 12px;
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-200);
+  box-shadow: var(--tag-shadow);
+}
+
+.tag:hover {
+  --tag-scale: 1.05;
+  --tag-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px) scale(var(--tag-scale)) translateZ(0);
+  z-index: 1;
+}
+
+.tag::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%) skewX(-20deg);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.tag:hover::before {
+  transform: translateX(200%) skewX(-20deg);
+}
+
+/* Favorite icon animation */
+.svgIconFavorite {
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.card:hover .svgIconFavorite {
+  transform: scale(1.2) rotate(8deg);
+  filter: drop-shadow(0 2px 4px rgba(255, 0, 0, 0.3));
+}
+
+/* Card description */
+.showcaseCardBody {
+  transition: all 0.3s ease;
+  opacity: 0.9;
+}
+
+.card:hover .showcaseCardBody {
+  opacity: 1;
 }
