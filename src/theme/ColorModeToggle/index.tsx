@@ -4,14 +4,16 @@ import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 export default function ColorModeToggle(): JSX.Element {
   const { colorMode } = useSafeColorMode();
-  
+
   // Safe setColorMode that works with DOM
   const setColorMode = (mode: "light" | "dark") => {
     if (!ExecutionEnvironment.canUseDOM) return;
     document.documentElement.setAttribute("data-theme", mode);
     // Also trigger Docusaurus's internal theme change if available
     try {
-      const { setColorMode: docusaurusSetColorMode } = require("@docusaurus/theme-common");
+      const {
+        setColorMode: docusaurusSetColorMode,
+      } = require("@docusaurus/theme-common");
       docusaurusSetColorMode(mode);
     } catch (e) {
       // Fallback: just set the DOM attribute

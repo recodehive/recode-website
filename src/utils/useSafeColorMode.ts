@@ -4,7 +4,7 @@ import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 /**
  * Safe hook for color mode that handles SSR and avoids ColorModeProvider issues.
  * This hook reads the theme directly from the DOM instead of relying on Docusaurus context.
- * 
+ *
  * @returns {Object} Object containing colorMode, isDark, and mounted state
  */
 export function useSafeColorMode() {
@@ -42,4 +42,3 @@ export function useSafeColorMode() {
 
   return { colorMode, isDark, mounted };
 }
-

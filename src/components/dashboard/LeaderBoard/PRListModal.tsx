@@ -1,5 +1,5 @@
 // src/components/dashboard/LeaderBoard/PRListModal.tsx
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
@@ -43,10 +43,16 @@ export default function PRListModal({
   if (!contributor) return null;
 
   // Get filtered PRs instead of using contributor.prDetails
-  const filteredPRs = getFilteredPRsForContributor(contributor.username);
+  // Use useMemo to prevent infinite loops
+  const filteredPRs = useMemo(() => {
+    if (!contributor) return [];
+    return getFilteredPRsForContributor(contributor.username);
+  }, [contributor?.username, getFilteredPRsForContributor, currentTimeFilter]);
 
   // Calculate total points from filtered PRs
-  const totalPoints = filteredPRs.reduce((sum, pr) => sum + pr.points, 0);
+  const totalPoints = useMemo(() => {
+    return filteredPRs.reduce((sum, pr) => sum + pr.points, 0);
+  }, [filteredPRs]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -100,7 +106,7 @@ export default function PRListModal({
     return () => {
       window.removeEventListener("keydown", handleEsc);
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   return (
     <AnimatePresence>

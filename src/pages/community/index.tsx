@@ -273,14 +273,15 @@ export default function CommunityPage(): React.ReactElement {
                     <motion.div
                       key={section.id}
                       id={section.id}
-                      className={`contribution-section ${(
+                      className={`contribution-section ${
+                        (
                           isMobile
                             ? activeSections.includes(section.id)
                             : selectedSection === section.id
                         )
                           ? "selected"
                           : ""
-                        }`}
+                      }`}
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: 0.1 * index }}

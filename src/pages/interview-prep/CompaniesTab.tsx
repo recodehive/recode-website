@@ -273,7 +273,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
       >
         <div className="mb-8 flex flex-col gap-6 md:flex-row">
           <div className="relative flex-1">
-            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
+            <Search className="absolute top-1/2 left-4 h-5 w-5 -translate-y-1/2 transform text-gray-400" />
             <Input
               placeholder="Search companies, focus areas, technologies, or interview types..."
               value={searchTerm}
@@ -351,7 +351,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                           alt={`${company.company} logo`}
                           className="h-20 w-20 rounded-2xl border border-gray-100 bg-white object-contain p-3 shadow-lg"
                         />
-                        <div className="absolute -right-2 -top-2 flex h-6 w-6 items-center justify-center rounded-full bg-green-500">
+                        <div className="absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-green-500">
                           <Award className="h-3 w-3 text-white" />
                         </div>
                       </motion.div>
@@ -362,7 +362,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                         </CardTitle>
                         <div className="mb-4 flex items-center gap-2">
                           <Target className="h-5 w-5 flex-shrink-0 text-blue-600" />
-                          <p className="text-lg font-semibold leading-tight text-blue-600 dark:text-blue-400">
+                          <p className="text-lg leading-tight font-semibold text-blue-600 dark:text-blue-400">
                             Focus: {company.focus}
                           </p>
                         </div>
@@ -503,7 +503,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                                     whileTap={{ scale: 0.98 }}
                                   >
                                     <div className="flex-1">
-                                      <p className="mb-2 text-sm font-semibold leading-relaxed text-gray-900 dark:text-white">
+                                      <p className="mb-2 text-sm leading-relaxed font-semibold text-gray-900 dark:text-white">
                                         "{item.question}"
                                       </p>
                                       <Badge
@@ -555,7 +555,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
                       transition={{ duration: 0.5, delay: 0.3 }}
                     >
                       <div className="relative overflow-hidden rounded-2xl border-2 border-yellow-200 bg-gradient-to-br from-yellow-50 via-orange-50 to-red-50 p-8 dark:border-yellow-800 dark:from-yellow-900/20 dark:via-orange-900/20 dark:to-red-900/20">
-                        <div className="absolute right-4 top-4 text-4xl opacity-20">
+                        <div className="absolute top-4 right-4 text-4xl opacity-20">
                           🚀
                         </div>
                         <div className="relative z-10">
@@ -631,7 +631,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
         className="relative overflow-hidden rounded-3xl border-2 border-indigo-200 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 p-12 dark:border-indigo-800 dark:from-indigo-900/20 dark:via-purple-900/20 dark:to-pink-900/20"
         variants={fadeIn}
       >
-        <div className="absolute right-10 top-10 text-6xl opacity-10">🤝</div>
+        <div className="absolute top-10 right-10 text-6xl opacity-10">🤝</div>
         <div className="absolute bottom-10 left-10 text-4xl opacity-10">💡</div>
 
         <div className="relative z-10">
@@ -717,10 +717,7 @@ const CompaniesTab: React.FC<CompaniesTabProps> = ({ companyTips = [] }) => {
           </div>
 
           <div className="text-center">
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link to="/community" className="inline-block">
                 <Button className="rounded-2xl bg-gradient-to-r from-indigo-600 to-purple-600 px-12 py-4 text-lg text-white shadow-lg hover:from-indigo-700 hover:to-purple-700">
                   <Users className="mr-3 h-5 w-5" />

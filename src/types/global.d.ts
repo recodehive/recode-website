@@ -19,7 +19,7 @@ declare module "*.json" {
 
 // JSX namespace declaration
 declare namespace JSX {
-  interface Element extends React.ReactElement<any, any> { }
+  interface Element extends React.ReactElement<any, any> {}
   interface IntrinsicElements {
     [elemName: string]: any;
   }

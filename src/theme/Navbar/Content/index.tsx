@@ -1,8 +1,11 @@
-import React, { type ReactNode, useMemo, Component, type ReactElement } from "react";
+import React, {
+  type ReactNode,
+  useMemo,
+  Component,
+  type ReactElement,
+} from "react";
 import { useThemeConfig, ErrorCauseBoundary } from "@docusaurus/theme-common";
-import {
-  splitNavbarItems,
-} from "@docusaurus/theme-common/internal";
+import { splitNavbarItems } from "@docusaurus/theme-common/internal";
 import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem";
 import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 // import SearchBar from '@theme/SearchBar';
