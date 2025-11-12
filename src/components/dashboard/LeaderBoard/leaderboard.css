@@ -114,7 +114,7 @@
 }
 
 /* Staircase Height Adjustment */
-.first-place { transform: translateY(-60px); }
+.first-place { transform: translateY(-30px); }
 .second-place { transform: translateY(0px); }
 .third-place { transform: translateY(0px); }
 
@@ -249,7 +249,7 @@
 }
 
 .first-place:hover {
-  transform: translateY(-65px);
+  transform: translateY(-35px);
   border-color: #FFD700;
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.7), 0 10px 30px rgba(0, 0, 0, 0.15);
 }
