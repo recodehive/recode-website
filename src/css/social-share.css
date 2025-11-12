@@ -1,0 +1,136 @@
+/* Social Share Component Styles */
+.social-share {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  background: var(--ifm-color-emphasis-50);
+}
+
+.social-share-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: var(--ifm-color-emphasis-900);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-share-title::before {
+  content: '📢';
+  font-size: 1.2rem;
+}
+
+.social-share-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.social-share-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  min-height: 36px;
+}
+
+.social-share-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.social-share-button:active {
+  transform: translateY(0);
+}
+
+/* Twitter Button */
+.social-share-button.twitter {
+  background: linear-gradient(135deg, #1da1f2, #1991db);
+  color: white;
+}
+
+.social-share-button.twitter:hover {
+  background: linear-gradient(135deg, #1991db, #1681c2);
+}
+
+/* LinkedIn Button */
+.social-share-button.linkedin {
+  background: linear-gradient(135deg, #0077b5, #005885);
+  color: white;
+}
+
+.social-share-button.linkedin:hover {
+  background: linear-gradient(135deg, #005885, #004471);
+}
+
+/* Facebook Button */
+.social-share-button.facebook {
+  background: linear-gradient(135deg, #1877f2, #166fe5);
+  color: white;
+}
+
+.social-share-button.facebook:hover {
+  background: linear-gradient(135deg, #166fe5, #145fd0);
+}
+
+/* Native Share Button */
+.social-share-button.native {
+  background: linear-gradient(135deg, #6c757d, #5a6268);
+  color: white;
+}
+
+.social-share-button.native:hover {
+  background: linear-gradient(135deg, #5a6268, #495057);
+}
+
+/* Dark theme adjustments */
+[data-theme='dark'] .social-share {
+  background: var(--ifm-color-emphasis-100);
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .social-share-title {
+  color: var(--ifm-color-emphasis-0);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .social-share {
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .social-share-buttons {
+    gap: 0.5rem;
+  }
+
+  .social-share-button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    min-height: 32px;
+  }
+
+  .social-share-button span {
+    display: none; /* Hide text on mobile, show only icons */
+  }
+
+  .social-share-button {
+    min-width: 36px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .social-share-buttons {
+    justify-content: center;
+  }
+}
