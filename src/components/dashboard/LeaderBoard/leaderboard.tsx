@@ -364,21 +364,83 @@ export default function LeaderBoard(): JSX.Element {
               </div>
             </div>
             <div className="top-performers-grid">
-              <TopPerformerCard
-                contributor={filteredContributors[1]}
-                rank={2}
-                onPRClick={handlePRClick}
-              />
-              <TopPerformerCard
-                contributor={filteredContributors[0]}
-                rank={1}
-                onPRClick={handlePRClick}
-              />
-              <TopPerformerCard
-                contributor={filteredContributors[2]}
-                rank={3}
-                onPRClick={handlePRClick}
-              />
+              {/* Podium-style top performers — adapted from index.html's leaderboard-podium */}
+              <div className="leaderboard-podium">
+                {/* Second place */}
+                {filteredContributors[1] && (
+                  <div className="podium-card second-place">
+                    <span className="rank-badge">2</span>
+                    <img
+                      src={filteredContributors[1].avatar}
+                      alt={filteredContributors[1].username}
+                      className="user-photo"
+                    />
+                    <div className="details">
+                      <p className="username">{filteredContributors[1].username}</p>
+                      <div className="stats">
+                        <button
+                          className="prs"
+                          onClick={() => handlePRClick(filteredContributors[1])}
+                          aria-label={`View PRs for ${filteredContributors[1].username}`}
+                        >
+                          {filteredContributors[1].prs} PRs
+                        </button>
+                        <span className="points">{filteredContributors[1].points} Points</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* First place */}
+                {filteredContributors[0] && (
+                  <div className="podium-card first-place">
+                    <span className="rank-badge">1</span>
+                    <img
+                      src={filteredContributors[0].avatar}
+                      alt={filteredContributors[0].username}
+                      className="user-photo"
+                    />
+                    <div className="details">
+                      <p className="username">{filteredContributors[0].username}</p>
+                      <div className="stats">
+                        <button
+                          className="prs"
+                          onClick={() => handlePRClick(filteredContributors[0])}
+                          aria-label={`View PRs for ${filteredContributors[0].username}`}
+                        >
+                          {filteredContributors[0].prs} PRs
+                        </button>
+                        <span className="points">{filteredContributors[0].points} Points</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Third place */}
+                {filteredContributors[2] && (
+                  <div className="podium-card third-place">
+                    <span className="rank-badge">3</span>
+                    <img
+                      src={filteredContributors[2].avatar}
+                      alt={filteredContributors[2].username}
+                      className="user-photo"
+                    />
+                    <div className="details">
+                      <p className="username">{filteredContributors[2].username}</p>
+                      <div className="stats">
+                        <button
+                          className="prs"
+                          onClick={() => handlePRClick(filteredContributors[2])}
+                          aria-label={`View PRs for ${filteredContributors[2].username}`}
+                        >
+                          {filteredContributors[2].prs} PRs
+                        </button>
+                        <span className="points">{filteredContributors[2].points} Points</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         )}

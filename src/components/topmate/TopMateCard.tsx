@@ -28,9 +28,8 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`hover:shadow-3xl relative mx-auto w-full max-w-md transform overflow-hidden rounded-3xl shadow-2xl transition-all duration-300 hover:-translate-y-1 ${
-        isDark ? "bg-[#1a1a1a] text-white" : "bg-white text-black"
-      }`}
+      className={`hover:shadow-3xl relative mx-auto w-full max-w-md transform overflow-hidden rounded-3xl shadow-2xl transition-all duration-300 hover:-translate-y-1 ${isDark ? "bg-[#1a1a1a] text-white" : "bg-white text-black"
+        }`}
     >
       {/* Decorative Arrows */}
       <div className="absolute -top-4 -left-4 flex gap-2">
@@ -53,27 +52,24 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         <div className="mb-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span
-              className={`text-sm font-medium ${
-                isDark ? "text-gray-300" : "text-gray-600"
-              }`}
+              className={`text-sm font-medium ${isDark ? "text-gray-300" : "text-gray-600"
+                }`}
             >
               1:1 CALL
             </span>
             <div
-              className={`flex items-center gap-1 ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}
+              className={`flex items-center gap-1 ${isDark ? "text-gray-400" : "text-gray-500"
+                }`}
             >
               <Clock size={16} />
               <span className="text-sm">{duration}</span>
             </div>
           </div>
           <button
-            className={`text-xl font-semibold ${
-              isDark
+            className={`text-xl font-semibold ${isDark
                 ? "text-gray-500 hover:text-gray-300"
                 : "text-gray-400 hover:text-gray-600"
-            }`}
+              }`}
             onClick={() => setShowTopmate(false)}
           >
             <span className="sr-only">Close</span>×
@@ -82,9 +78,8 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
 
         {/* Title */}
         <h2
-          className={`mb-4 text-2xl font-bold ${
-            isDark ? "text-white" : "text-gray-900"
-          }`}
+          className={`mb-4 text-2xl font-bold ${isDark ? "text-white" : "text-gray-900"
+            }`}
         >
           {title}
         </h2>
@@ -104,9 +99,8 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
             />
             <div className="flex flex-col">
               <span
-                className={`text-sm ${
-                  isDark ? "text-gray-300" : "text-gray-600"
-                }`}
+                className={`text-sm ${isDark ? "text-gray-300" : "text-gray-600"
+                  }`}
               >
                 Book a slot at
               </span>
@@ -132,9 +126,8 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
             </div>
             {/* Theme-aware text to ensure readability on dark backgrounds */}
             <span
-              className={`shrink-0 text-sm font-semibold ${
-                isDark ? "text-gray-200" : "text-gray-700"
-              }`}
+              className={`shrink-0 text-sm font-semibold ${isDark ? "text-gray-200" : "text-gray-700"
+                }`}
             >
               topmate
             </span>
