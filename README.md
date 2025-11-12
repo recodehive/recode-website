@@ -16,6 +16,8 @@
 [![Contributors](https://img.shields.io/github/contributors/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/graphs/contributors)
 [![License Badge](https://img.shields.io/github/license/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/LICENSE)
 
+<h2 align="center">Collaboration 1st , code 2nd.</h2>
+
 **Your all-in-one resource for learning Git, GitHub, Python, and Next.js through comprehensive tutorials and hands-on projects.**
 
 [Website](https://recodehive.com/) • [Documentation](https://recodehive.com/docs) • [Contributing](community/contributing-guidelines.md) • [Discord](https://discord.gg/Yxv9RA3r)
@@ -30,7 +32,7 @@ recode hive is an open-source educational platform built to help developers mast
 
 ## ✨ Features
 
-- **Comprehensive Tutorials** – Step-by-step guides for Git, GitHub, Python, and Next.js, suitable for beginners and advanced users
+- **Comprehensive Tutorials** – Step-by-step guides for Git, GitHub, Python, Pandas and Next.js, suitable for beginners and advanced users
 - **Hands-On Setup Guides** – Practical walkthroughs for setting up projects, repositories, and development environments
 - **Leaderboards & Challenges** – Track your progress, earn points, and compete with others to stay motivated
 - **Documentation Hub** – Centralized docs for quick reference, best practices, and deep dives into concepts
