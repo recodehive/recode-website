@@ -5,6 +5,8 @@ interface Blog {
   description: string;
   slug: string;
   authors: string[];
+  category: string;
+  tags?: string[];
 }
 
 const blogs: Blog[] = [
@@ -16,6 +18,8 @@ const blogs: Blog[] = [
       "User experience design can be overwhelming because of the number of factors that influence what a product should look like and how it should function.",
     slug: "streamline-ux-ui",
     authors: ["dharshibalasubramaniyam", "sanjay-kv"],
+    category: "Design",
+    tags: ["UX", "UI", "Design", "User Experience"],
   },
 
   {
@@ -26,6 +30,8 @@ const blogs: Blog[] = [
       " Are you passionate about design and dreaming of a career in it? Or maybe you are already in the design space and looking to pivot into UI/UX? ",
     slug: "ux-ui-design-job",
     authors: ["dharshibalasubramaniyam", "sanjay-kv"],
+    category: "Design",
+    tags: ["UX", "UI", "Career", "Job"],
   },
   {
     id: 3,
@@ -35,6 +41,8 @@ const blogs: Blog[] = [
       "The impact of technology on UX design is undeniable. Automation and artificial intelligence are making it easier to identify user needs and create tailored experiences.",
     slug: "ux-designers-ai",
     authors: ["dharshibalasubramaniyam", "sanjay-kv"],
+    category: "AI & Tech",
+    tags: ["AI", "UX", "Design", "Technology"],
   },
   {
     id: 4,
@@ -44,6 +52,8 @@ const blogs: Blog[] = [
       "DeepMind is an auxiliary of Google that centers around man-made brainpower. It utilizes a part of AI called AI",
     slug: "google-deepmind",
     authors: ["dharshibalasubramaniyam", "sanjay-kv"],
+    category: "AI & Tech",
+    tags: ["AI", "Google", "DeepMind", "Machine Learning"],
   },
   {
     id: 5,
@@ -53,6 +63,8 @@ const blogs: Blog[] = [
       "An SEO backlink is created when one website links to another, and they're extremely important for SEO. ",
     slug: "google-backlinks",
     authors: ["sanjay-kv"],
+    category: "Resources",
+    tags: ["SEO", "Marketing", "Backlinks", "Web Development"],
   },
 
   {
@@ -63,6 +75,8 @@ const blogs: Blog[] = [
       "The GitHub Copilot Coding Agent is an asynchronous software engineering agent that assists developers by suggesting code snippets",
     slug: "git-coding-agent",
     authors: ["sanjay-kv"],
+    category: "Development",
+    tags: ["GitHub", "AI", "Coding", "Tools"],
   },
   {
     id: 7,
@@ -72,6 +86,8 @@ const blogs: Blog[] = [
       "Apache Spark is a fast, open-source big data framework that leverages in-memory computing for high performance. Its architecture powers scalable distributed processing across clusters, making it essential for analytics and machine learning.",
     slug: "spark-architecture",
     authors: ["Aditya-Singh-Rathore", "sanjay-kv"],
+    category: "Development",
+    tags: ["Apache Spark", "Big Data", "Data Engineering", "Architecture"],
   },
   {
     id: 8,
@@ -81,6 +97,8 @@ const blogs: Blog[] = [
       "N8N is an open-source workflow automation tool that enables users to connect various apps and services to automate tasks without extensive coding knowledge.",
     slug: "n8n-workflow-automation",
     authors: ["Aditya-Singh-Rathore"],
+    category: "Development",
+    tags: ["Automation", "Workflow", "N8N", "Tools"],
   },
   {
     id: 9,
@@ -90,6 +108,8 @@ const blogs: Blog[] = [
       "OpenAI AgentKit is a framework that simplifies the process of building AI agents, allowing developers to create intelligent applications without getting bogged down in the underlying complexities.",
     slug: "open-ai-agent-builder",
     authors: ["Aditya-Singh-Rathore"],
+    category: "AI & Tech",
+    tags: ["AI", "OpenAI", "Development", "Agents"],
   },
 ];
 
