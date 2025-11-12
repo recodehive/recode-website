@@ -54,7 +54,7 @@ body:
       options:
         - label: "I have read the Contributing Guidelines"
           required: true
-        - label: "Are you a GSSOC'25 contributor"
+        - label: "Are you a WSOC'25 contributor"
           required: false
         - label: "I want to work on this issue"
           required: false
