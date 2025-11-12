@@ -966,6 +966,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   border-radius: 12px;
   z-index: 1;
+  text-decoration: none;
 }
 
 .footer-link:hover::before {
@@ -986,6 +987,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
     0 4px 15px rgba(102, 126, 234, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
+  text-decoration: none;
 }
 
 .footer-link:hover span:not(.link-icon):not(.link-badge) {
@@ -1027,6 +1029,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   filter: grayscale(0) brightness(1.2) saturate(1.1);
   transform: scale(1.15) rotate(8deg) translateZ(0);
   text-shadow: 0 0 6px rgba(102, 126, 234, 0.3);
+  text-decoration: none;
 }
 
 .link-badge {
@@ -1369,6 +1372,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   box-shadow:
     0 8px 25px rgba(0, 0, 0, 0.2),
     0 4px 12px rgba(102, 126, 234, 0.15);
+  text-decoration: none;
 }
 
 .quick-link-icon {
@@ -1473,7 +1477,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .social-link:hover svg {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.1);
 }
 
 .social-link.github:hover {
@@ -1515,7 +1519,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 
 .legal-link {
   color: #94a3b8;
-  text-decoration: none;
+  text-decoration: none !important;
   font-size: 14px;
   font-weight: 500;
   padding: 10px 16px;
@@ -1556,6 +1560,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   box-shadow:
     0 6px 20px rgba(0, 0, 0, 0.15),
     0 2px 8px rgba(99, 102, 241, 0.2);
+  text-decoration: none;
 }
 
 .legal-link:focus {
@@ -1774,6 +1779,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
     border-radius: 10px;
     margin: 0;
     white-space: nowrap; /* mobile-friendly single line; content fits */
+    text-decoration: none;
   }
 
   .footer-link:hover {
