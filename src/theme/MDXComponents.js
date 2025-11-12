@@ -5,6 +5,7 @@ import Tabs from "@theme/Tabs";
 import Comming from "../components/Comming";
 import Image from "@theme/IdealImage";
 import GiscusComments from "../components/giscus";
+import PythonCodeEditor from "../components/PythonCodeEditor";
 
 export default {
   ...MDXComponents,
@@ -14,4 +15,5 @@ export default {
   Comming,
   Image,
   GiscusComments,
+  PythonCodeEditor,
 };

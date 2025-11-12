@@ -45,7 +45,7 @@ Here is a simple Python program that prints "Hello, World!":
 
 ```python
 print("Hello, World!")
-````
+```
 
  Output:
 
@@ -54,6 +54,27 @@ Hello, World!
 ```
 
 You can run this code in any Python interpreter, and it will display the message on the screen.
+
+### Try Python Interactive Code Editor
+
+Try running Python code directly in your browser! Edit the code below and click "Run" to see the output:
+
+<PythonCodeEditor code={`# Try editing this Python code!
+print("Hello, World!")
+print("Welcome to Python!")
+
+# You can also try:
+name = "Python Learner"
+print(f"Hello, {name}!")
+
+# Mathematical operations
+result = 2 + 3 * 4
+print(f"2 + 3 * 4 = {result}")
+
+# Lists and loops
+fruits = ["apple", "banana", "orange"]
+for fruit in fruits:
+    print(f"I like {fruit}s")`} />
 
 
 ### Good to know

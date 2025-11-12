@@ -6,6 +6,7 @@
 }
 
 @import "./social-share.css";
+@import "./interactive-code-editor.css";
 
 /* You can override the default Infima variables here. */
 @import "tailwindcss";
