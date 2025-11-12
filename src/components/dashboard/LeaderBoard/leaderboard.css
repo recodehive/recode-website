@@ -116,7 +116,7 @@
 /* Staircase Height Adjustment */
 .first-place { transform: translateY(-60px); }
 .second-place { transform: translateY(0px); }
-.third-place { transform: translateY(0); }
+.third-place { transform: translateY(0px); }
 
 /* Reflection Effect */
 .podium-card::after {
@@ -255,7 +255,7 @@
 }
 
 .second-place:hover {
-  transform: translateY(-35px);
+  transform: translateY(-5px);
   border-color: #C0C0C0;
   box-shadow: 0 0 15px rgba(192, 192, 192, 0.7), 0 10px 30px rgba(0, 0, 0, 0.15);
 }
