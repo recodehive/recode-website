@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Editor from '@monaco-editor/react';
 import { Play, RotateCcw, Copy, Check } from 'lucide-react';
 
@@ -9,9 +9,13 @@ interface InteractiveCodeEditorProps {
   className?: string;
 }
 
+interface PyodideInstance {
+  runPythonAsync: (code: string) => Promise<any>;
+}
+
 declare global {
   interface Window {
-    loadPyodide: (config?: any) => Promise<any>;
+    loadPyodide: (config?: any) => Promise<PyodideInstance>;
   }
 }
 
@@ -24,43 +28,56 @@ const InteractiveCodeEditor: React.FC<InteractiveCodeEditorProps> = ({
   const [code, setCode] = useState(initialCode);
   const [output, setOutput] = useState('');
   const [isRunning, setIsRunning] = useState(false);
-  const [pyodide, setPyodide] = useState<any>(null);
+  const [pyodide, setPyodide] = useState<PyodideInstance | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [copied, setCopied] = useState(false);
-  const pyodideRef = useRef<any>(null);
+  const pyodideRef = useRef<PyodideInstance | null>(null);
 
   // Load Pyodide
   useEffect(() => {
     const loadPyodideScript = async () => {
       try {
+        // Check if Pyodide is already loaded
+        if (window.loadPyodide) {
+          await initializePyodide();
+          return;
+        }
+
         // Load Pyodide script
         const script = document.createElement('script');
         script.src = 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js';
-        script.onload = async () => {
-          try {
-            const pyodideInstance = await window.loadPyodide({
-              indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/'
-            });
-            pyodideRef.current = pyodideInstance;
-            setPyodide(pyodideInstance);
-            setIsLoading(false);
+        script.onload = initializePyodide;
+        script.onerror = () => {
+          console.error('Failed to load Pyodide script');
+          setOutput('Error: Failed to load Python runtime. Please check your internet connection.');
+          setIsLoading(false);
+        };
+        document.head.appendChild(script);
+      } catch (error) {
+        console.error('Failed to initialize Pyodide:', error);
+        setOutput('Error: Failed to initialize Python runtime');
+        setIsLoading(false);
+      }
+    };
 
-            // Initialize with some basic setup
-            await pyodideInstance.runPythonAsync(`
+    const initializePyodide = async () => {
+      try {
+        const pyodideInstance = await window.loadPyodide({
+          indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.24.1/full/'
+        });
+        pyodideRef.current = pyodideInstance;
+        setPyodide(pyodideInstance);
+
+        // Initialize with basic setup
+        await pyodideInstance.runPythonAsync(`
 import sys
 from io import StringIO
 import traceback
 `);
-          } catch (error) {
-            console.error('Failed to load Pyodide:', error);
-            setOutput('Error: Failed to load Python runtime');
-            setIsLoading(false);
-          }
-        };
-        document.head.appendChild(script);
+        setIsLoading(false);
       } catch (error) {
-        console.error('Failed to load Pyodide script:', error);
-        setOutput('Error: Failed to load Python runtime');
+        console.error('Failed to initialize Pyodide:', error);
+        setOutput('Error: Failed to initialize Python runtime');
         setIsLoading(false);
       }
     };
@@ -68,7 +85,7 @@ import traceback
     loadPyodideScript();
   }, []);
 
-  const runCode = async () => {
+  const runCode = useCallback(async () => {
     if (!pyodide || isRunning) return;
 
     setIsRunning(true);
@@ -97,38 +114,55 @@ sys.stdout = captured_output = StringIO()
       // Display results
       let finalOutput = capturedOutput;
       if (result !== undefined && result !== null) {
-        finalOutput += (finalOutput ? '\n' : '') + result.toString();
+        finalOutput += (finalOutput ? '\n' : '') + String(result);
       }
 
       setOutput(finalOutput || 'Code executed successfully (no output)');
 
-    } catch (error: any) {
-      // Handle Python errors
-      const errorMessage = error.message || 'An error occurred while running the code';
+    } catch (error) {
+      // Handle Python errors with better formatting
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
       setOutput(`Error: ${errorMessage}`);
     } finally {
       setIsRunning(false);
     }
-  };
+  }, [pyodide, isRunning, code]);
 
-  const resetCode = () => {
+  const resetCode = useCallback(() => {
     setCode(initialCode);
     setOutput('');
-  };
+  }, [initialCode]);
 
-  const copyCode = async () => {
+  const copyCode = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (error) {
       console.error('Failed to copy code:', error);
+      // Fallback for browsers that don't support clipboard API
+      const textArea = document.createElement('textarea');
+      textArea.value = code;
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (fallbackError) {
+        console.error('Fallback copy failed:', fallbackError);
+      }
+      document.body.removeChild(textArea);
     }
-  };
+  }, [code]);
 
-  const handleEditorChange = (value: string | undefined) => {
+  const handleEditorChange = useCallback((value: string | undefined) => {
     setCode(value || '');
-  };
+  }, []);
+
+  const clearOutput = useCallback(() => {
+    setOutput('');
+  }, []);
 
   return (
     <div className={`interactive-code-editor ${className}`}>
@@ -203,7 +237,7 @@ sys.stdout = captured_output = StringIO()
             {output && (
               <button
                 className="clear-output-btn"
-                onClick={() => setOutput('')}
+                onClick={clearOutput}
                 title="Clear output"
               >
                 ✕

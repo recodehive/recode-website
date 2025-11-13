@@ -1,5 +1,5 @@
 import React from 'react';
-import InteractiveCodeEditor from '../components/InteractiveCodeEditor';
+import InteractiveCodeEditor from './InteractiveCodeEditor';
 
 interface PythonCodeEditorProps {
   code?: string;

@@ -40,6 +40,7 @@
   gap: 0.5rem;
 }
 
+/* Button Base Styles */
 .editor-btn {
   display: flex;
   align-items: center;
@@ -70,6 +71,7 @@
   transform: none;
 }
 
+/* Button Variants */
 .copy-btn {
   background: var(--ifm-color-emphasis-200);
   color: var(--ifm-color-emphasis-800);
@@ -103,8 +105,12 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .editor-container {
@@ -144,8 +150,13 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .output-panel {
@@ -262,7 +273,8 @@
   }
 
   .editor-btn span {
-    display: none; /* Hide text on mobile, show only icons */
+    display: none;
+    /* Hide text on mobile, show only icons */
   }
 
   .editor-btn {
