@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import { useColorMode } from "@docusaurus/theme-common";
+import { useSafeColorMode } from "../../utils/useSafeColorMode";
 
 interface TestimonialCardProps {
   name: string;
@@ -20,8 +20,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   avatar,
   link,
 }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { colorMode, isDark } = useSafeColorMode();
 
   // Function to format the link display
   const formatLinkDisplay = (url: string) => {

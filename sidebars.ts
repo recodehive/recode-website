@@ -124,7 +124,7 @@ const sidebars: SidebarsConfig = {
         "Pandas/pd_intro",
         "Pandas/pd_dataframes",
         "Pandas/pd_input_output",
-        "Pandas/pd_data_analysis", 
+        "Pandas/pd_data_analysis",
       ],
     },
     {

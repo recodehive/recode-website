@@ -1,8 +1,8 @@
 // src/components/dashboard/LeaderBoard/PRListModal.tsx
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaTimes, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-import { useColorMode } from "@docusaurus/theme-common";
+import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
 import { useCommunityStatsContext } from "../../../lib/statsProvider";
 
 interface PRDetails {
@@ -34,20 +34,43 @@ export default function PRListModal({
   isOpen,
   onClose,
 }: PRListModalProps): JSX.Element | null {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useSafeColorMode();
 
   // Get filtered PRs from context
   const { getFilteredPRsForContributor, currentTimeFilter } =
     useCommunityStatsContext();
 
-  if (!contributor) return null;
-
   // Get filtered PRs instead of using contributor.prDetails
-  const filteredPRs = getFilteredPRsForContributor(contributor.username);
+  // Use useMemo to prevent infinite loops
+  // IMPORTANT: All hooks must be called before any early returns
+  const filteredPRs = useMemo(() => {
+    if (!contributor) return [];
+    return getFilteredPRsForContributor(contributor.username);
+  }, [contributor?.username, getFilteredPRsForContributor, currentTimeFilter]);
 
   // Calculate total points from filtered PRs
-  const totalPoints = filteredPRs.reduce((sum, pr) => sum + pr.points, 0);
+  const totalPoints = useMemo(() => {
+    return filteredPRs.reduce((sum, pr) => sum + pr.points, 0);
+  }, [filteredPRs]);
+
+  // Close modal on Escape key press
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, [isOpen, onClose]);
+
+  // Early return AFTER all hooks
+  // Only return null if contributor is missing (not if isOpen is false, to allow exit animations)
+  if (!contributor) return null;
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -87,21 +110,6 @@ export default function PRListModal({
     if (points >= 10) return "#3b82f6"; // Blue for Level 1
     return "#6b7280"; // Gray for no points
   };
-
-  // Close modal on Escape key press
-  useEffect(() => {
-    if (!isOpen) return;
-    const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-
-    window.addEventListener("keydown", handleEsc);
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-    };
-  }, [isOpen]);
 
   return (
     <AnimatePresence>

@@ -4,7 +4,7 @@ import { ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import React from "react";
-import { useColorMode } from "@docusaurus/theme-common";
+import { useSafeColorMode } from "../utils/useSafeColorMode";
 // Mobile-specific overrides for very small screens (<768px and <320px)
 import "./ourProjects.mobile.css";
 // Import projects data and types
@@ -51,8 +51,7 @@ export interface OurProjectsProps {
 const OurProjects: React.FC<OurProjectsProps> = ({
   OurProjectsData: legacyData,
 }) => {
-  const { colorMode } = useColorMode(); // light or dark
-  const isDark = colorMode === "dark";
+  const { colorMode, isDark } = useSafeColorMode();
 
   // Use JSON data by default, fallback to legacy props for backward compatibility
   // Convert legacy data to new format if needed

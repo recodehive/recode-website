@@ -1,11 +1,12 @@
 // src/components/dashboard/LeaderBoard/leaderboard.tsx
-import React, { JSX, useState } from "react";
+import React, { JSX, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { FaStar, FaCode, FaUsers, FaGithub, FaSearch } from "react-icons/fa";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import { useColorMode } from "@docusaurus/theme-common";
+import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
 import { useCommunityStatsContext } from "@site/src/lib/statsProvider";
 import PRListModal from "./PRListModal";
+import BadgeModal from "./BadgeModal";
 import { mockContributors } from "./mockData";
 import "./leaderboard.css";
 
@@ -20,6 +21,7 @@ interface PRDetails {
   mergedAt: string;
   repoName: string;
   number: number;
+  points: number;
 }
 
 interface Contributor {
@@ -29,12 +31,128 @@ interface Contributor {
   points: number;
   prs: number;
   prDetails?: PRDetails[];
+  badges?: string[]; // Array of badge image paths
 }
 
 interface Stats {
   flooredTotalPRs: number;
   totalContributors: number;
   flooredTotalPoints: number;
+}
+
+// Badge configuration - maps badge numbers to achievement criteria
+const BADGE_CONFIG = [
+  {
+    image: "/badges/1.png",
+    name: "First Contribution",
+    criteria: (prs: number) => prs >= 1,
+  },
+  {
+    image: "/badges/2.png",
+    name: "Bronze Contributor",
+    criteria: (prs: number) => prs >= 5,
+  },
+  {
+    image: "/badges/3.png",
+    name: "Silver Contributor",
+    criteria: (prs: number) => prs >= 10,
+  },
+  {
+    image: "/badges/4.png",
+    name: "Gold Contributor",
+    criteria: (prs: number) => prs >= 25,
+  },
+  {
+    image: "/badges/5.png",
+    name: "Platinum Contributor",
+    criteria: (prs: number) => prs >= 50,
+  },
+  {
+    image: "/badges/6.png",
+    name: "Diamond Contributor",
+    criteria: (prs: number) => prs >= 100,
+  },
+  {
+    image: "/badges/7.png",
+    name: "Points Master",
+    criteria: (_: number, points: number) => points >= 500,
+  },
+  {
+    image: "/badges/8.png",
+    name: "Elite Contributor",
+    criteria: (prs: number) => prs >= 200,
+  },
+  {
+    image: "/badges/9.png",
+    name: "Legendary Contributor",
+    criteria: (prs: number) => prs >= 500,
+  },
+  {
+    image: "/badges/10.png",
+    name: "Hall of Fame",
+    criteria: (prs: number, points: number) => prs >= 1000 || points >= 5000,
+  },
+];
+
+/**
+ * Determines which badges a contributor should have based on their stats
+ */
+function getContributorBadges(
+  contributor: Contributor,
+  rank: number,
+): string[] {
+  const badges: string[] = [];
+
+  // Special rank-based badges
+  if (rank === 1) {
+    badges.push("/badges/10.png"); // Hall of Fame for #1
+  } else if (rank === 2) {
+    badges.push("/badges/9.png"); // Legendary for #2
+  } else if (rank === 3) {
+    badges.push("/badges/8.png"); // Elite for #3
+  }
+
+  // Achievement-based badges
+  BADGE_CONFIG.forEach((badge) => {
+    if (badge.criteria(contributor.prs, contributor.points)) {
+      // Avoid duplicates
+      if (!badges.includes(badge.image)) {
+        badges.push(badge.image);
+      }
+    }
+  });
+
+  return badges;
+}
+
+/**
+ * Badge display component
+ */
+function ContributorBadges({
+  badges,
+  onClick,
+}: {
+  badges: string[];
+  onClick?: () => void;
+}) {
+  if (!badges || badges.length === 0) return null;
+
+  return (
+    <div className="contributor-badges" onClick={onClick}>
+      {badges.map((badge, index) => (
+        <img
+          key={index}
+          src={badge}
+          alt={`Badge ${index + 1}`}
+          className="contributor-badge-icon"
+          title={
+            BADGE_CONFIG.find((b) => b.image === badge)?.name ||
+            "Achievement Badge"
+          }
+        />
+      ))}
+    </div>
+  );
 }
 
 function Badge({
@@ -88,14 +206,16 @@ function TopPerformerCard({
   contributor,
   rank,
   onPRClick,
+  onBadgeClick,
 }: {
   contributor: Contributor;
   rank: number;
   onPRClick: (contributor: Contributor) => void;
+  onBadgeClick?: (contributor: Contributor) => void;
 }) {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useSafeColorMode();
   const rankClass = rank === 1 ? "top-1" : rank === 2 ? "top-2" : "top-3";
+  const badges = getContributorBadges(contributor, rank);
 
   return (
     <div className={`top-performer-card ${isDark ? "dark" : "light"}`}>
@@ -116,6 +236,10 @@ function TopPerformerCard({
         >
           {contributor.username}
         </a>
+        <ContributorBadges
+          badges={badges}
+          onClick={() => onBadgeClick?.(contributor)}
+        />
         <div className="badges-container">
           <Badge
             count={contributor.prs}
@@ -146,14 +270,16 @@ export default function LeaderBoard(): JSX.Element {
     setTimeFilter,
   } = useCommunityStatsContext();
 
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useSafeColorMode();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedContributor, setSelectedContributor] =
     useState<Contributor | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [badgeModalContributor, setBadgeModalContributor] =
+    useState<Contributor | null>(null);
+  const [isBadgeModalOpen, setIsBadgeModalOpen] = useState(false);
   const [isSelectChanged, setIsSelectChanged] = useState(false);
   const itemsPerPage = 20;
 
@@ -163,10 +289,24 @@ export default function LeaderBoard(): JSX.Element {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = useCallback(() => {
     setIsModalOpen(false);
     setSelectedContributor(null);
-  };
+  }, []);
+
+  // Badge modal handlers
+  const handleBadgeClick = useCallback(
+    (contributor: Contributor) => {
+      setBadgeModalContributor(contributor);
+      setIsBadgeModalOpen(true);
+    },
+    [],
+  );
+
+  const handleCloseBadgeModal = useCallback(() => {
+    setIsBadgeModalOpen(false);
+    setBadgeModalContributor(null);
+  }, []);
 
   // Use mock data only in development mode when there's an error or no contributors
   const displayContributors =
@@ -376,7 +516,16 @@ export default function LeaderBoard(): JSX.Element {
                       className="user-photo"
                     />
                     <div className="details">
-                      <p className="username">{filteredContributors[1].username}</p>
+                      <p className="username">
+                        {filteredContributors[1].username}
+                      </p>
+                      <ContributorBadges
+                        badges={getContributorBadges(
+                          filteredContributors[1],
+                          2,
+                        )}
+                        onClick={() => handleBadgeClick(filteredContributors[1])}
+                      />
                       <div className="stats">
                         <button
                           className="prs"
@@ -385,7 +534,9 @@ export default function LeaderBoard(): JSX.Element {
                         >
                           {filteredContributors[1].prs} PRs
                         </button>
-                        <span className="points">{filteredContributors[1].points} Points</span>
+                        <span className="points">
+                          {filteredContributors[1].points} Points
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -401,7 +552,16 @@ export default function LeaderBoard(): JSX.Element {
                       className="user-photo"
                     />
                     <div className="details">
-                      <p className="username">{filteredContributors[0].username}</p>
+                      <p className="username">
+                        {filteredContributors[0].username}
+                      </p>
+                      <ContributorBadges
+                        badges={getContributorBadges(
+                          filteredContributors[0],
+                          1,
+                        )}
+                        onClick={() => handleBadgeClick(filteredContributors[0])}
+                      />
                       <div className="stats">
                         <button
                           className="prs"
@@ -410,7 +570,9 @@ export default function LeaderBoard(): JSX.Element {
                         >
                           {filteredContributors[0].prs} PRs
                         </button>
-                        <span className="points">{filteredContributors[0].points} Points</span>
+                        <span className="points">
+                          {filteredContributors[0].points} Points
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -426,7 +588,16 @@ export default function LeaderBoard(): JSX.Element {
                       className="user-photo"
                     />
                     <div className="details">
-                      <p className="username">{filteredContributors[2].username}</p>
+                      <p className="username">
+                        {filteredContributors[2].username}
+                      </p>
+                      <ContributorBadges
+                        badges={getContributorBadges(
+                          filteredContributors[2],
+                          3,
+                        )}
+                        onClick={() => handleBadgeClick(filteredContributors[2])}
+                      />
                       <div className="stats">
                         <button
                           className="prs"
@@ -435,7 +606,9 @@ export default function LeaderBoard(): JSX.Element {
                         >
                           {filteredContributors[2].prs} PRs
                         </button>
-                        <span className="points">{filteredContributors[2].points} Points</span>
+                        <span className="points">
+                          {filteredContributors[2].points} Points
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -574,6 +747,7 @@ export default function LeaderBoard(): JSX.Element {
               <div className="contributor-cell username-cell">User</div>
               <div className="contributor-cell prs-cell">PRs</div>
               <div className="contributor-cell points-cell">Points</div>
+              <div className="contributor-cell badges-cell">Badges</div>
             </div>
             {currentItems.map((contributor, index) => (
               <motion.div
@@ -629,6 +803,15 @@ export default function LeaderBoard(): JSX.Element {
                     color={{ background: "#ede9fe", color: "#7c3aed" }}
                   />
                 </div>
+                <div className="contributor-cell badges-cell">
+                  <ContributorBadges
+                    badges={getContributorBadges(
+                      contributor,
+                      indexOfFirst + index + 1,
+                    )}
+                    onClick={() => handleBadgeClick(contributor)}
+                  />
+                </div>
               </motion.div>
             ))}
 
@@ -682,6 +865,22 @@ export default function LeaderBoard(): JSX.Element {
         isOpen={isModalOpen}
         onClose={handleCloseModal}
       />
+
+      {/* Badge Modal */}
+      {badgeModalContributor && (
+        <BadgeModal
+          isOpen={isBadgeModalOpen}
+          onClose={handleCloseBadgeModal}
+          earnedBadges={getContributorBadges(
+            badgeModalContributor,
+            filteredContributors.findIndex(
+              (c) => c.username === badgeModalContributor.username,
+            ) + 1,
+          )}
+          allBadges={BADGE_CONFIG}
+          contributorName={badgeModalContributor.username}
+        />
+      )}
     </div>
   );
 }

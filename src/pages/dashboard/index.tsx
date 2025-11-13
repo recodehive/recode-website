@@ -559,22 +559,25 @@ const DashboardContent: React.FC = () => {
               <div className="discussion-tabs">
                 <button
                   onClick={() => handleDiscussionTabChange("discussions")}
-                  className={`tab-button ${activeDiscussionTab === "discussions" ? "active" : ""
-                    }`}
+                  className={`tab-button ${
+                    activeDiscussionTab === "discussions" ? "active" : ""
+                  }`}
                 >
                   <MessageCircle size={18} /> All Discussions
                 </button>
                 <button
                   onClick={() => handleDiscussionTabChange("trending")}
-                  className={`tab-button ${activeDiscussionTab === "trending" ? "active" : ""
-                    }`}
+                  className={`tab-button ${
+                    activeDiscussionTab === "trending" ? "active" : ""
+                  }`}
                 >
                   <TrendingUp size={18} /> Trending
                 </button>
                 <button
                   onClick={() => handleDiscussionTabChange("unanswered")}
-                  className={`tab-button ${activeDiscussionTab === "unanswered" ? "active" : ""
-                    }`}
+                  className={`tab-button ${
+                    activeDiscussionTab === "unanswered" ? "active" : ""
+                  }`}
                 >
                   <HelpCircle size={18} /> Unanswered
                 </button>

@@ -47,7 +47,10 @@
   gap: 1rem;
 }
 
-.landing-community .landing-community__content .landing-community__stats .landing-community__stat-item {
+.landing-community
+  .landing-community__content
+  .landing-community__stats
+  .landing-community__stat-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,28 +63,47 @@
   position: relative;
 }
 
-.landing-community .landing-community__content .landing-community__stats .landing-community__stat-item.clickable {
+.landing-community
+  .landing-community__content
+  .landing-community__stats
+  .landing-community__stat-item.clickable {
   cursor: pointer;
 }
 
-.landing-community .landing-community__content .landing-community__stats .landing-community__stat-item.clickable:hover,
-.landing-community .landing-community__content .landing-community__stats .landing-community__stat-item.clickable:focus {
+.landing-community
+  .landing-community__content
+  .landing-community__stats
+  .landing-community__stat-item.clickable:hover,
+.landing-community
+  .landing-community__content
+  .landing-community__stats
+  .landing-community__stat-item.clickable:focus {
   transform: scale(1.02);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   outline: none;
 }
 
-.landing-community .landing-community__content .landing-community__stats .landing-community__stat-item.loading {
+.landing-community
+  .landing-community__content
+  .landing-community__stats
+  .landing-community__stat-item.loading {
   opacity: 0.7;
 }
 
-.landing-community .landing-community__content .landing-community__stats .landing-community__stat-item:hover {
+.landing-community
+  .landing-community__content
+  .landing-community__stats
+  .landing-community__stat-item:hover {
   cursor: pointer;
   transform: scale(1.01);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-.landing-community .landing-community__content .landing-community__stats .landing-community__stat-item .landing-community__stat-value {
+.landing-community
+  .landing-community__content
+  .landing-community__stats
+  .landing-community__stat-item
+  .landing-community__stat-value {
   font-size: 3.5rem;
   font-weight: 600;
   color: var(--ifm-color-primary);
@@ -105,7 +127,11 @@
   text-shadow: inherit;
 }
 
-.landing-community .landing-community__content .landing-community__stats .landing-community__stat-item .landing-community__loading {
+.landing-community
+  .landing-community__content
+  .landing-community__stats
+  .landing-community__stat-item
+  .landing-community__loading {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,11 +159,19 @@
   transition: opacity 0.2s ease;
 }
 
-.landing-community .landing-community__content .landing-community__stats .landing-community__stat-item.clickable:hover .external-link-icon {
+.landing-community
+  .landing-community__content
+  .landing-community__stats
+  .landing-community__stat-item.clickable:hover
+  .external-link-icon {
   opacity: 1;
 }
 
-.landing-community .landing-community__content .landing-community__stats .landing-community__stat-item .landing-community__stat-description {
+.landing-community
+  .landing-community__content
+  .landing-community__stats
+  .landing-community__stat-item
+  .landing-community__stat-description {
   font-size: 1rem;
   text-shadow: 0 0 1px var(--ifm-color-primary);
 }
@@ -152,38 +186,58 @@
   position: relative;
 }
 
-.landing-community .landing-community__content .landing-community__info.clickable {
+.landing-community
+  .landing-community__content
+  .landing-community__info.clickable {
   cursor: pointer;
 }
 
-.landing-community .landing-community__content .landing-community__info.clickable:hover,
-.landing-community .landing-community__content .landing-community__info.clickable:focus {
+.landing-community
+  .landing-community__content
+  .landing-community__info.clickable:hover,
+.landing-community
+  .landing-community__content
+  .landing-community__info.clickable:focus {
   transform: scale(1.01);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   outline: none;
 }
 
-.landing-community .landing-community__content .landing-community__info .landing-community__image {
+.landing-community
+  .landing-community__content
+  .landing-community__info
+  .landing-community__image {
   width: 100%;
   object-fit: cover;
   border-radius: 1rem;
 }
 
-.landing-community .landing-community__content .landing-community__info .landing-community__info-text {
+.landing-community
+  .landing-community__content
+  .landing-community__info
+  .landing-community__info-text {
   margin-top: 1rem;
   padding: 0;
   font-size: 1rem;
   text-shadow: 0 0 1px var(--ifm-color-primary);
 }
 
-.landing-community .landing-community__content .landing-community__info .landing-community__info-text .landing-community__link {
+.landing-community
+  .landing-community__content
+  .landing-community__info
+  .landing-community__info-text
+  .landing-community__link {
   color: var(--ifm-color-primary);
   text-shadow: 0 0 1px var(--ifm-color-primary);
   text-decoration: none;
   font-weight: 600;
 }
 
-.landing-community .landing-community__content .landing-community__info .landing-community__info-text .landing-community__link:hover {
+.landing-community
+  .landing-community__content
+  .landing-community__info
+  .landing-community__info-text
+  .landing-community__link:hover {
   text-decoration: underline;
 }
 
@@ -197,7 +251,10 @@
   transition: opacity 0.2s ease;
 }
 
-.landing-community .landing-community__content .landing-community__info.clickable:hover .external-link-indicator {
+.landing-community
+  .landing-community__content
+  .landing-community__info.clickable:hover
+  .external-link-indicator {
   opacity: 1;
 }
 
@@ -214,11 +271,17 @@
     width: 100%;
   }
 
-  .landing-community .landing-community__content .landing-community__info .landing-community__image {
+  .landing-community
+    .landing-community__content
+    .landing-community__info
+    .landing-community__image {
     width: 100%;
   }
 
-  .landing-community .landing-community__content .landing-community__info .landing-community__info-text {
+  .landing-community
+    .landing-community__content
+    .landing-community__info
+    .landing-community__info-text {
     margin-top: 1rem;
     padding: 0;
     font-size: 1rem;

@@ -254,7 +254,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                       src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png"
                       alt="Starstruck"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13}}
+                      whileHover={{ scale: 1.13 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -331,7 +331,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                       src="https://github.githubassets.com/images/modules/profile/achievements/quickdraw-default.png"
                       alt="Quickdraw"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13}}
+                      whileHover={{ scale: 1.13 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -344,16 +344,14 @@ const GithubBadgesContent = (): React.ReactElement => {
                   </td>
                   <td>
                     <div className={styles.badgeLevels}>
-                      <div className={styles.levelText}>
-                        Level: Default
-                      </div>
+                      <div className={styles.levelText}>Level: Default</div>
                       <div className={styles.levelImages}>
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone1.png"
-                        alt="Quickdraw Default"
-                        title="Default (1)"
-                        className={styles.badgeImgSmall}
-                      />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Quick-Draw/PNG/Skin-Tones/QuickDraw_SkinTone1.png"
+                          alt="Quickdraw Default"
+                          title="Default (1)"
+                          className={styles.badgeImgSmall}
+                        />
                       </div>
                       <div className={styles.neededAmount}>Needed: 1</div>
                     </div>
@@ -373,7 +371,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                       src="https://github.githubassets.com/images/modules/profile/achievements/pair-extraordinaire-default.png"
                       alt="Pair Extraordinaire"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13}}
+                      whileHover={{ scale: 1.13 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -408,33 +406,35 @@ const GithubBadgesContent = (): React.ReactElement => {
                         Levels: Default, Bronze, Silver, Gold
                       </div>
                       <div className={styles.levelImages}>
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire.png"
-                        alt="Pair Extraordinarie Default"
-                        title="Default (1)"
-                        className={styles.badgeImgSmall}
-                      />
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Bronze.png"
-                        alt="Pair Extraordinarie Bronze"
-                        title="Bronze (10)"
-                        className={styles.badgeImgSmall}
-                      />
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Silver.png"
-                        alt="Pair Extraordinarie Silver"
-                        title="Silver (24)"
-                        className={styles.badgeImgSmall}
-                      />
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Gold.png"
-                        alt="Pair Extraordinarie Gold"
-                        title="Gold (48)"
-                        className={styles.badgeImgSmall}
-                      />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire.png"
+                          alt="Pair Extraordinarie Default"
+                          title="Default (1)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Bronze.png"
+                          alt="Pair Extraordinarie Bronze"
+                          title="Bronze (10)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Silver.png"
+                          alt="Pair Extraordinarie Silver"
+                          title="Silver (24)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pair-Extraordinaire/PNG/PairExtraordinaire_Gold.png"
+                          alt="Pair Extraordinarie Gold"
+                          title="Gold (48)"
+                          className={styles.badgeImgSmall}
+                        />
+                      </div>
+                      <div className={styles.neededAmount}>
+                        Needed: 1, 10, 24, 48
+                      </div>
                     </div>
-                    <div className={styles.neededAmount}>Needed: 1, 10, 24, 48</div>
-                  </div>
                   </td>
                 </motion.tr>
                 {/* Pull Shark */}
@@ -451,7 +451,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                       src="https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png"
                       alt="Pull Shark"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13}}
+                      whileHover={{ scale: 1.13 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -483,33 +483,35 @@ const GithubBadgesContent = (): React.ReactElement => {
                         Levels: Default, Bronze, Silver, Gold
                       </div>
                       <div className={styles.levelImages}>
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark.png"
-                        alt="Pull Shark Default"
-                        title="Default (2)"
-                        className={styles.badgeImgSmall}
-                      />
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Bronze.png"
-                        alt="Pull Shark Bronze"
-                        title="Bronze (16)"
-                        className={styles.badgeImgSmall}
-                      />
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Silver.png"
-                        alt="Pull Shark Silver"
-                        title="Silver (128)"
-                        className={styles.badgeImgSmall}
-                      />
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Gold.png"
-                        alt="Pull Shark Gold"
-                        title="Gold (1024)"
-                        className={styles.badgeImgSmall}
-                      />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark.png"
+                          alt="Pull Shark Default"
+                          title="Default (2)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Bronze.png"
+                          alt="Pull Shark Bronze"
+                          title="Bronze (16)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Silver.png"
+                          alt="Pull Shark Silver"
+                          title="Silver (128)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Pull-Shark/PNG/PullShark_Gold.png"
+                          alt="Pull Shark Gold"
+                          title="Gold (1024)"
+                          className={styles.badgeImgSmall}
+                        />
+                      </div>
+                      <div className={styles.neededAmount}>
+                        Needed: 2, 16, 128, 1024
+                      </div>
                     </div>
-                    <div className={styles.neededAmount}>Needed: 2, 16, 128, 1024</div>
-                  </div>
                   </td>
                 </motion.tr>
                 {/* Galaxy Brain */}
@@ -526,7 +528,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                       src="https://github.githubassets.com/images/modules/profile/achievements/galaxy-brain-default.png"
                       alt="Galaxy Brain"
                       className={styles.badgeImgSmall}
-                      whileHover={{ scale: 1.13}}
+                      whileHover={{ scale: 1.13 }}
                       transition={{ type: "spring", stiffness: 300 }}
                     />
                   </td>
@@ -558,33 +560,35 @@ const GithubBadgesContent = (): React.ReactElement => {
                         Levels: Default, Bronze, Silver, Gold
                       </div>
                       <div className={styles.levelImages}>
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain.png"
-                        alt="Galaxy Brain Default"
-                        title="Default (2)"
-                        className={styles.badgeImgSmall}
-                      />
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Bronze.png"
-                        alt="Galaxy Brain Bronze"
-                        title="Bronze (8)"
-                        className={styles.badgeImgSmall}
-                      />
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Silver.png"
-                        alt="Galaxy Brain Silver"
-                        title="Silver (16)"
-                        className={styles.badgeImgSmall}
-                      />
-                      <img
-                        src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Gold.png"
-                        alt="Galaxy Brain Gold"
-                        title="Gold (32)"
-                        className={styles.badgeImgSmall}
-                      />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain.png"
+                          alt="Galaxy Brain Default"
+                          title="Default (2)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Bronze.png"
+                          alt="Galaxy Brain Bronze"
+                          title="Bronze (8)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Silver.png"
+                          alt="Galaxy Brain Silver"
+                          title="Silver (16)"
+                          className={styles.badgeImgSmall}
+                        />
+                        <img
+                          src="https://raw.githubusercontent.com/recodehive/awesome-github-profiles/main/assets/Badges/Galaxy-Brain/PNG/GalaxyBrain_Gold.png"
+                          alt="Galaxy Brain Gold"
+                          title="Gold (32)"
+                          className={styles.badgeImgSmall}
+                        />
+                      </div>
+                      <div className={styles.neededAmount}>
+                        Needed: 2, 8, 16, 32
+                      </div>
                     </div>
-                    <div className={styles.neededAmount}>Needed: 2, 8, 16, 32</div>
-                  </div>
                   </td>
                 </motion.tr>
                 {/* YOLO */}

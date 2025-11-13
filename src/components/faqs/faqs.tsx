@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { motion } from "framer-motion";
-import { useColorMode } from "@docusaurus/theme-common"; // Docusaurus theme detection
+import { useSafeColorMode } from "../../utils/useSafeColorMode";
 
 const faqData = [
   {
@@ -44,8 +44,7 @@ const faqData = [
 
 const FAQs: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { colorMode, isDark } = useSafeColorMode();
 
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
