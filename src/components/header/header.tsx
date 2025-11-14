@@ -37,7 +37,7 @@ const HeaderContent = () => {
       >
         <strong>recode hive</strong> helps you get started with open-source
         contributions. We’ve built an inclusive community with people from
-        around the world. Join us to earn while learning —{" "}
+        around the world. Join us to earn while learning .<br />
         <span style={{ color: "#e44d26", fontWeight: "bold" }}>
           everything made simpler and more practical.
         </span>
