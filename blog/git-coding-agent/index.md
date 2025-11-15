@@ -7,29 +7,6 @@ date: 2025-07-04
 
 description: An overview of the GitHub Copilot Coding Agent, an AI-powered tool that automates software engineering tasks by taking GitHub Issues as input to write code, run tests, and create pull requests.
 draft: false
-canonical_url: 
-# meta:
-#   - name: "robots"
-#     content: "index, follow"
-#   - property: "og:title"
-#     content: "Introduction to the GitHub Copilot Coding Agent"
-#   - property: "og:description"
-#     content: "Learn how the GitHub Copilot Coding Agent works asynchronously within GitHub Actions to improve developer productivity."
-#   - property: "og:type"
-#     content: "article"
-#   - property: "og:url"
-#     content: "/blog/getting-copilot-coding-agent"
-#   - property: "og:image"
-#     content: "/assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
-#   - name: "twitter:card"
-#     content: "summary_large_image"
-#   - name: "twitter:title"
-#     content: "A Comprehensive Guide to Get You Started with MERN Stack"
-#   - name: "twitter:description"
-#     content: "DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI called AI"
-#   - name: "twitter:image"
-#     content: "assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
-
 ---
  <!-- truncate -->
 In the fast-evolving world of software development, AI-powered tools are changing the game. GitHub is at the forefront with its latest innovation: the **GitHub Copilot Coding Agent**. More than just an in-editor assistant, this powerful new agent works asynchronously to handle entire engineering tasks on its own. Let's dive into what it is, how it works, and how you can leverage it to automate your workflow.

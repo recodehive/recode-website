@@ -8,29 +8,6 @@ date: 2025-09-17
 description: N8N revolutionizes automation by integrating AI capabilities into visual workflows. Learn how to build intelligent automation pipelines that can process data, make decisions, and interact with multiple services seamlessly.
 
 draft: false
-canonical_url:
-# meta:
-#   - name: "robots"
-#     content: "index, follow"
-#   - property: "og:title"
-#     content: "Building Intelligent Automation: N8N AI Workflows Explained"
-#   - property: "og:description"
-#     content: "N8N revolutionizes automation by integrating AI capabilities into visual workflows. Learn how to build intelligent automation pipelines that can process data, make decisions, and interact with multiple services seamlessly."
-#   - property: "og:type"
-#     content: "article"
-#   - property: "og:url"
-#     content: "/blog/n8n-ai-automation-workflows"
-#   - property: "og:image"
-#     content: "/assets/images/n8n-ai-automation.jpg"
-#   - name: "twitter:card"
-#     content: "summary_large_image"
-#   - name: "twitter:title"
-#     content: "Building Intelligent Automation: N8N AI Workflows Explained"
-#   - name: "twitter:description"
-#     content: "N8N revolutionizes automation by integrating AI capabilities into visual workflows. Learn how to build intelligent automation pipelines that can process data, make decisions, and interact with multiple services seamlessly."
-#   - name: "twitter:image"
-#     content: "assets/images/n8n-ai-automation.jpg"
-
 ---
 
 # Building Intelligent Automation: N8N AI Workflows Explained
