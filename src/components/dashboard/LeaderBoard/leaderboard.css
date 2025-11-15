@@ -670,6 +670,7 @@
   cursor: pointer;
   background: rgba(255, 255, 255, 0.1);
   padding: 0;
+  margin: 0;
 }
 
 .contributor-badge-icon:hover {
@@ -696,7 +697,7 @@
 
 /* Badge display in top performer cards */
 .top-performer-card .contributor-badges {
-  margin-top: 4px;
+  margin-top: 0;
   justify-content: center;
 }
 
@@ -714,7 +715,7 @@
 }
 
 .podium-card .contributor-badges {
-  margin-top: 4px;
+  margin-top: 0;
   justify-content: center;
 }
 
@@ -772,12 +773,13 @@
 .badges-container {
   display: flex;
   gap: 4px;
-  margin-top: 4px;
+  margin-top: 0;
 }
 
 .badge {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 0;
+  margin: 0;
   border-radius: 9999px;
   font-size: 12px;
   font-weight: bold;
