@@ -1,19 +1,23 @@
-/* THIS CSS IS ONLY FOR " OUR PROJECT "  as the width available for embeded page is extremly small */
+/* THIS CSS IS ONLY FOR " OUR PROJECT "  as the width available for embeded page is extremely small */
 
 /* Responsive overrides for embedded preview on small screens */
 
-/* For widths below 768px: give the card extra height and reduce chrome */
+/* Base mobile styles - for all mobile devices */
 @media (max-width: 767px) {
   .ourprojects-embed-container {
-    min-height: 82vh !important;
+    min-height: 400px !important;
+    padding: 0.5rem !important;
   }
+  
   .ourprojects-embed-card {
-    height: 82vh !important;
-    border-radius: 1.25rem !important; /* smaller radius to fit */
+    min-height: 380px !important;
+    border-radius: 0.5rem !important;
   }
+  
   .ourprojects-iframe {
-    height: 220% !important; /* more scrollable viewport */
+    height: 220% !important;
   }
+  
   /* Improve readability on dark previews */
   .ourprojects-overlay {
     background: linear-gradient(
@@ -23,40 +27,85 @@
       transparent
     ) !important;
   }
+  
+  /* Show indicator but make it smaller on mobile */
   .ourprojects-live-indicator {
-    display: none !important; /* avoid overlapping text, see red arrow in screenshot */
+    font-size: 0.5625rem !important;
+    padding: 0.25rem 0.5rem !important;
+    right: 0.5rem !important;
+    bottom: 0.5rem !important;
+  }
+}
+
+/* Small mobile devices (480px and below) */
+@media (max-width: 480px) {
+  .ourprojects-embed-container {
+    min-height: 350px !important;
+    padding: 0.5rem !important;
+  }
+  
+  .ourprojects-embed-card {
+    min-height: 330px !important;
+    border-radius: 0.5rem !important;
+  }
+  
+  .ourprojects-iframe {
+    height: 230% !important;
   }
 }
 
 /* For ultra small widths below 360px (covers 320px phones) */
 @media (max-width: 360px) {
   .ourprojects-embed-container {
-    min-height: 88vh !important;
+    min-height: 320px !important;
+    padding: 0.375rem !important;
   }
+  
   .ourprojects-embed-card {
-    height: 88vh !important;
+    min-height: 300px !important;
+    border-radius: 0.5rem !important;
   }
+  
   .ourprojects-iframe {
     height: 250% !important;
   }
+  
   .ourprojects-live-indicator {
-    display: none !important;
+    font-size: 0.5rem !important;
+    padding: 0.25rem 0.375rem !important;
   }
 }
 
 /* Safety for <320px specifically if needed */
 @media (max-width: 320px) {
   .ourprojects-embed-container {
-    min-height: 92vh !important;
+    min-height: 300px !important;
+    padding: 0.375rem !important;
   }
+  
   .ourprojects-embed-card {
-    height: 92vh !important;
+    min-height: 280px !important;
+    border-radius: 0.5rem !important;
   }
+  
   .ourprojects-iframe {
     height: 280% !important;
   }
+  
   .ourprojects-live-indicator {
-    display: none !important;
+    font-size: 0.5rem !important;
+    padding: 0.25rem !important;
+  }
+}
+
+/* Tablet adjustments (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .ourprojects-embed-container {
+    min-height: 500px !important;
+  }
+  
+  .ourprojects-embed-card {
+    min-height: 480px !important;
   }
 }
 
@@ -64,4 +113,28 @@
    Note: This only affects overlay/indicators we own, not cross-origin iframe content */
 .ourprojects-embed-card .text-shadow-soft {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 767px) {
+  .ourprojects-embed-card {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Smooth scrolling for project list on mobile */
+@media (max-width: 767px) {
+  .no-scrollbar {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
