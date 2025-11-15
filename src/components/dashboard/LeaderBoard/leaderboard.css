@@ -644,7 +644,7 @@
 .contributor-badges {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   flex-wrap: wrap;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -691,12 +691,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 8px;
+  padding: 4px;
 }
 
 /* Badge display in top performer cards */
 .top-performer-card .contributor-badges {
-  margin-top: 8px;
+  margin-top: 4px;
   justify-content: center;
 }
 
@@ -771,8 +771,8 @@
 /* Badges */
 .badges-container {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 4px;
+  margin-top: 4px;
 }
 
 .badge {
@@ -1288,7 +1288,7 @@
 
 .skeleton-badges {
   display: flex;
-  gap: 8px;
+  gap: 4px;
 }
 
 .skeleton-badge {
