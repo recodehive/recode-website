@@ -1,32 +1,74 @@
-.interactive-py-editor { 
+.interactive-py-editor {
   border: 1px solid var(--ifm-color-emphasis-200, #e6e6e6);
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
+  background: var(--ifm-background-color, #fff);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   font-family: var(--ifm-font-family-base, Inter, Roboto, system-ui, -apple-system, 'Segoe UI');
 }
+
 .ipe-toolbar {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   align-items: center;
-  padding: 8px;
+  padding: 12px 16px;
   background: var(--ifm-color-emphasis-0, #fafafa);
   border-bottom: 1px solid var(--ifm-color-emphasis-200, #e6e6e6);
 }
-.ipe-btn {
-  padding: 6px 10px;
-  border-radius: 4px;
-  border: 1px solid rgba(0,0,0,0.08);
-  background: white;
-  cursor: pointer;
-}
-.ipe-btn:disabled { opacity: 0.6; cursor: default }
-.ipe-status { margin-left: auto; color: #666; font-size: 13px }
-.ipe-main { display: flex; gap: 8px; padding: 12px }
-.ipe-textarea { flex: 1 1 50%; font-family: monospace; font-size: 13px; padding: 10px; border: 1px solid var(--ifm-color-emphasis-200, #e6e6e6); border-radius: 4px; resize: vertical; }
-.ipe-preview { flex: 1 1 50%; overflow: auto; background: #f7f7f7; border-radius: 4px; padding: 10px; border: 1px solid var(--ifm-color-emphasis-200, #e6e6e6) }
-.ipe-output { border-top: 1px solid var(--ifm-color-emphasis-200, #e6e6e6); background: #fff; padding: 10px }
-.ipe-output-header { font-weight: 600; margin-bottom: 6px }
-.ipe-output-body { background: #111; color: #fff; padding: 10px; border-radius: 4px; min-height: 80px; overflow: auto }
 
-/* Ensure Prism code block wraps nicely */
-.language-python { white-space: pre-wrap; word-break: break-word; }
+.ipe-btn {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--ifm-color-primary, #007acc);
+  background: var(--ifm-color-primary, #007acc);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.ipe-btn:hover:not(:disabled) {
+  background: var(--ifm-color-primary-dark, #005a9e);
+}
+
+.ipe-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ipe-status {
+  margin-left: auto;
+  color: var(--ifm-color-emphasis-600, #666);
+  font-size: 13px;
+  font-style: italic;
+}
+
+.ipe-editor {
+  border-bottom: 1px solid var(--ifm-color-emphasis-200, #e6e6e6);
+}
+
+.ipe-output {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 16px;
+}
+
+.ipe-output-header {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.ipe-output-body {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 12px;
+  border-radius: 4px;
+  min-height: 100px;
+  overflow: auto;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}

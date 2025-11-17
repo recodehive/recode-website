@@ -1,4 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useState} from 'react';
+import Editor from '@monaco-editor/react';
 import './styles.css';
 
 declare global {
@@ -8,11 +9,13 @@ declare global {
   }
 }
 
-const DEFAULT_CODE = `print("Hello from Pyodide!")\nfor i in range(3):\n    print('Line', i+1)`;
+const DEFAULT_CODE = `print("Hello from Pyodide!")
+for i in range(3):
+    print('Line', i+1)`;
 
 export default function InteractivePythonEditor({
   initialCode = DEFAULT_CODE,
-  height = 260,
+  height = 400,
 }: {
   initialCode?: string;
   height?: number | string;
@@ -21,36 +24,6 @@ export default function InteractivePythonEditor({
   const [output, setOutput] = useState('');
   const [loading, setLoading] = useState(false);
   const [pyodideReady, setPyodideReady] = useState(false);
-  const preRef = useRef<HTMLPreElement | null>(null);
-
-  useEffect(() => {
-    // Load Prism for highlighting (CSS + script)
-    if (!document.querySelector('link[data-prism]')) {
-      const link = document.createElement('link');
-      link.setAttribute('data-prism', '');
-      link.rel = 'stylesheet';
-      link.href = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.css';
-      document.head.appendChild(link);
-    }
-    if (!(window as any).Prism) {
-      const s = document.createElement('script');
-      s.src = 'https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js';
-      s.async = true;
-      document.head.appendChild(s);
-    }
-  }, []);
-
-  useEffect(() => {
-    // Highlight when code or Prism loads
-    const highlight = () => {
-      if ((window as any).Prism && preRef.current) {
-        (window as any).Prism.highlightElement(preRef.current);
-      }
-    };
-    highlight();
-    const id = setTimeout(highlight, 50);
-    return () => clearTimeout(id);
-  }, [code]);
 
   async function ensurePyodide() {
     if (pyodideReady) return window.pyodide;
@@ -118,18 +91,22 @@ export default function InteractivePythonEditor({
         <div className="ipe-status">{pyodideReady ? 'Pyodide ready' : (loading ? 'Loading...' : 'Pyodide not loaded')}</div>
       </div>
 
-      <div className="ipe-main">
-        <textarea
-          className="ipe-textarea"
+      <div className="ipe-editor">
+        <Editor
+          height={height}
+          language="python"
           value={code}
-          onChange={(e) => setCode(e.target.value)}
-          style={{height}}
-          spellCheck={false}
+          onChange={(value) => setCode(value || '')}
+          theme="light"
+          options={{
+            minimap: { enabled: false },
+            fontSize: 14,
+            lineNumbers: 'on',
+            roundedSelection: false,
+            scrollBeyondLastLine: false,
+            automaticLayout: true,
+          }}
         />
-
-        <div className="ipe-preview" style={{height}}>
-          <pre ref={preRef} className="language-python"><code>{code}</code></pre>
-        </div>
       </div>
 
       <div className="ipe-output">
