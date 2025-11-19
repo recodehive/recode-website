@@ -33,6 +33,30 @@
   color: #6366f1;
 }
 
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 32px;
+  }
+  
+  .title {
+    font-size: 24px;
+  }
+  
+  .subtitle {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 20px;
+  }
+  
+  .subtitle {
+    font-size: 14px;
+  }
+}
+
 .subtitle {
   font-size: 17px;
   max-width: 600px;
@@ -63,6 +87,17 @@
   margin-bottom: 24px;
 }
 
+@media (max-width: 768px) {
+  .title-filter-container {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .top-performers-title {
+    font-size: 20px;
+  }
+}
+
 .top-performers-title {
   font-size: 24px;
   font-weight: 700;
@@ -85,6 +120,40 @@
   gap: 75px;
   padding: 50px 20px 20px;
   margin-bottom: 40px;
+}
+
+@media (max-width: 1024px) {
+  .leaderboard-podium {
+    gap: 40px;
+    padding: 40px 15px 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .leaderboard-podium {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 10px;
+  }
+  
+  .podium-card {
+    width: 100%;
+    max-width: 280px;
+    transform: none !important;
+  }
+  
+  .first-place,
+  .second-place,
+  .third-place {
+    transform: none !important;
+  }
+  
+  .first-place:hover,
+  .second-place:hover,
+  .third-place:hover {
+    transform: translateY(-5px) !important;
+  }
 }
 
 .podium-card {
@@ -173,6 +242,22 @@
   border: 4px solid #f0f0f0;
 }
 
+@media (max-width: 768px) {
+  .podium-card .user-photo {
+    width: 70px;
+    height: 70px;
+    border: 3px solid #f0f0f0;
+  }
+}
+
+@media (max-width: 480px) {
+  .podium-card .user-photo {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #f0f0f0;
+  }
+}
+
 .dark .podium-card .user-photo {
   border-color: #444;
 }
@@ -232,6 +317,19 @@
   gap: 8px;
   margin-top: 5px;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .podium-card .stats {
+    gap: 6px;
+  }
+  
+  .podium-card .prs,
+  .podium-card .points {
+    font-size: 0.75em;
+    padding: 3px 8px;
+  }
 }
 
 .podium-card .prs,
@@ -648,6 +746,8 @@
   flex-wrap: wrap;
   cursor: pointer;
   transition: all 0.2s ease;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .contributor-badges:hover {
@@ -669,8 +769,8 @@
     box-shadow 0.2s ease;
   cursor: pointer;
   background: rgba(255, 255, 255, 0.1);
-  padding: 0;
-  margin: 0;
+  padding: 2px;
+  flex-shrink: 0;
 }
 
 .contributor-badge-icon:hover {
@@ -678,6 +778,36 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   z-index: 10;
   position: relative;
+}
+
+@media (max-width: 1024px) {
+  .contributor-badge-icon {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contributor-badge-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .contributor-badges {
+    gap: 6px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contributor-badge-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .contributor-badges {
+    gap: 4px;
+  }
 }
 
 .username-with-badges {
@@ -693,17 +823,47 @@
   align-items: center;
   justify-content: flex-start;
   padding: 4px;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .contributor-cell.badges-cell {
+    justify-content: center;
+    padding: 8px 0;
+    width: 100%;
+  }
 }
 
 /* Badge display in top performer cards */
 .top-performer-card .contributor-badges {
   margin-top: 0;
   justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .top-performer-card .contributor-badge-icon {
   width: 36px;
   height: 36px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .top-performer-card .contributor-badge-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .top-performer-card .contributor-badges {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-performer-card .contributor-badge-icon {
+    width: 28px;
+    height: 28px;
+  }
 }
 
 /* Badge display in podium cards */
@@ -717,11 +877,33 @@
 .podium-card .contributor-badges {
   margin-top: 0;
   justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .podium-card .contributor-badge-icon {
   width: 32px;
   height: 32px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .podium-card .contributor-badge-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .podium-card .contributor-badges {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .podium-card .contributor-badge-icon {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 /* Position the badge inside the cell */
@@ -1088,10 +1270,11 @@
 
   .contributor-row {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
     padding: 16px;
     margin-bottom: 12px;
     border-radius: 8px;
+    position: relative;
   }
 
   .contributor-cell {
@@ -1102,19 +1285,66 @@
     position: absolute;
     top: 8px;
     left: 8px;
+    z-index: 1;
   }
 
   .avatar-cell {
     justify-self: center;
+    margin-top: 8px;
   }
 
   .username-cell {
     text-align: center;
+    margin-top: 4px;
   }
 
   .prs-cell,
   .points-cell {
     justify-self: center;
+    margin: 4px 0;
+  }
+  
+  .badges-cell {
+    justify-self: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 8px 0;
+    margin-top: 4px;
+    overflow: visible;
+  }
+  
+  .contributor-badges {
+    justify-content: center;
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .contributor-badge-icon {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contributor-row {
+    padding: 12px;
+    gap: 10px;
+  }
+  
+  .contributor-badge-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .contributor-badges {
+    gap: 4px;
+  }
+  
+  .podium-card {
+    max-width: 100%;
+    padding: 16px;
   }
 }
 
@@ -1169,6 +1399,20 @@
   .contributors-container .pagination .pagination-btn,
   .contributors-container .pagination-ellipsis {
     margin: 0 2px;
+  }
+  
+  .contributor-badge-icon {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .podium-card .contributor-badge-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .contributor-badges {
+    gap: 3px;
   }
 }
 
@@ -2129,3 +2373,4 @@
     font-size: 14px;
   }
 }
+
