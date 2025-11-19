@@ -22,7 +22,7 @@ const PROJECT_URLS: Record<string, string> = {
     "https://recodehive.github.io/awesome-github-profiles/",
   "Machine Learning Repository": "https://machine-learning-repos.vercel.app/",
   "Stack overflow Analysis": "https://github.com/recodehive/Stackoverflow-Analysis",
-  "Scrape ML Project": "https://github.com/recodehive/Scrape-ML-Project",
+  "Scrape ML Project": "https://github.com/recodehive/Scrape-ML",
   "Opensource Project": "https://github.com/recodehive/Opensource-practice",
 };
 
