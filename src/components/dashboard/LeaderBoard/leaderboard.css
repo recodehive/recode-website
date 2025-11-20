@@ -368,7 +368,7 @@
 }
 
 .second-place:hover {
-  transform: translateY(-35px);
+  transform: translateY(-5px);
   border-color: #c0c0c0;
   box-shadow:
     0 0 15px rgba(192, 192, 192, 0.7),
@@ -742,7 +742,7 @@
 .contributor-badges {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   flex-wrap: wrap;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -754,11 +754,16 @@
   transform: translateY(-2px);
 }
 
+.contributor-badges:hover .contributor-badge-icon:not(:hover) {
+  transform: none;
+  box-shadow: none;
+}
+
 .contributor-badge-icon {
   width: 44px;
   height: 44px;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 50%;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -817,7 +822,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  padding: 8px;
+  padding: 4px;
   overflow: hidden;
 }
 
@@ -831,7 +836,7 @@
 
 /* Badge display in top performer cards */
 .top-performer-card .contributor-badges {
-  margin-top: 8px;
+  margin-top: 0;
   justify-content: center;
   max-width: 100%;
   overflow: hidden;
@@ -870,7 +875,7 @@
 }
 
 .podium-card .contributor-badges {
-  margin-top: 4px;
+  margin-top: 0;
   justify-content: center;
   max-width: 100%;
   overflow: hidden;
@@ -949,13 +954,14 @@
 /* Badges */
 .badges-container {
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
+  gap: 4px;
+  margin-top: 0;
 }
 
 .badge {
   display: inline-block;
-  padding: 4px 10px;
+  padding: 0;
+  margin: 0;
   border-radius: 9999px;
   font-size: 12px;
   font-weight: bold;
@@ -1528,7 +1534,7 @@
 
 .skeleton-badges {
   display: flex;
-  gap: 8px;
+  gap: 4px;
 }
 
 .skeleton-badge {
