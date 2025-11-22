@@ -449,7 +449,7 @@ function CoursesContent() {
           `}
         </style>
       </Head>
-      <main className="courses-page min-h-screen transition-all duration-500">
+      <main className="courses-page min-h-screen transition-all duration-500 "  data-theme="">
         {/* Modal */}
         {modal.open && (
           <div className="bg-opacity-60 courses-fade-in fixed inset-0 z-50 flex items-center justify-center bg-black p-4">
