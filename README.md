@@ -18,7 +18,7 @@
 
 <h2 align="center">Collaboration 1st , code 2nd.</h2>
 
-**Your all-in-one resource for learning Git, GitHub, Python, and Next.js through comprehensive tutorials and hands-on projects.**
+**Your all-in-one resource for learning Git, GitHub, Python through comprehensive tutorials and hands-on projects.**
 
 [Website](https://recodehive.com/) • [Documentation](https://recodehive.com/docs) • [Contributing](community/contributing-guidelines.md) • [Discord](https://discord.gg/Yxv9RA3r)
 
@@ -29,18 +29,6 @@
 ## 📖 About
 
 recode hive is an open-source educational platform built to help developers master essential technologies through interactive tutorials, practical guides, and community-driven learning. Whether you're a beginner taking your first steps in programming or an advanced developer looking to sharpen your skills, recode hive provides the resources you need.
-
-## ✨ Features
-
-- **Comprehensive Tutorials** – Step-by-step guides for Git, GitHub, Python, Pandas and Next.js, suitable for beginners and advanced users
-- **Hands-On Setup Guides** – Practical walkthroughs for setting up projects, repositories, and development environments
-- **Leaderboards & Challenges** – Track your progress, earn points, and compete with others to stay motivated
-- **Documentation Hub** – Centralized docs for quick reference, best practices, and deep dives into concepts
-- **Merchandise Store** – Exclusive branded merchandise to celebrate your learning milestones
-- **User Dashboard** – Personalized space to monitor your completed tutorials, achievements, and activity
-- **Community & Collaboration** – Engage with other learners, share tips, and collaborate on projects
-
-## 🚀 Quick Start
 
 ### Prerequisites
 
