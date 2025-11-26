@@ -156,10 +156,69 @@ const sponsors: Sponsor[] = [
   },
 
   {
+    name: "Kriti Raj",
+    image: "https://avatars.githubusercontent.com/u/62815511?v=4",
+    description: "Full Stack Developer",
+    github: "https://github.com/kriti-raj",
+    isPastSponsor: true,
+  },
+  {
+    name: "Judar",
+    image: "https://avatars.githubusercontent.com/u/75671199?v=4",
+    description: "Student ",
+    github: "https://github.com/trongphuhappy",
+    twitter: "https://x.com/Judar_Clitus",
+    isPastSponsor: true,
+  },
+  {
+    name: "Jisha TR",
+    image: "https://avatars.githubusercontent.com/u/82383735?v=4",
+    description: "Student ",
+    github: "https://github.com/Jisha-tr",
+    isPastSponsor: true,
+  },
+  {
+    name: "Aryan Jaiswal",
+    image: "https://avatars.githubusercontent.com/u/72207299?v=4",
+    description: "Student ",
+    github: "hhttps://github.com/Aryanjstar",
+    isPastSponsor: true,
+  },
+  {
+    name: "The Sting",
+    image: "https://avatars.githubusercontent.com/u/163915232?v=4",
+    description: "Cybersecurity",
+    github: "https://github.com/TheStingR",
+    isPastSponsor: true,
+  },
+  {
+    name: "Kmanci",
+    image: "https://avatars.githubusercontent.com/u/40892999?v=4",
+    description: "Kazım",
+    github: "https://github.com/jhealerbb",
+    isPastSponsor: true,
+  },
+  {
+    name: "Happy mdev",
+    image: "https://avatars.githubusercontent.com/u/68038057?v=4",
+    description: "Software Engineer",
+    github: "https://github.com/0xhappydev",
+    isPastSponsor: true,
+  },
+  {
+    name: "Ateeq ur Rehman",
+    image: "https://avatars.githubusercontent.com/u/76849373?v=4",
+    description: "AI Engineer",
+    github: "https://github.com/ateeq-mughal",
+    isPastSponsor: true,
+  },
+
+  {
     name: "Austin Jian",
     image: "https://avatars.githubusercontent.com/u/135089334?v=4",
     description: "Student ",
     github: "https://github.com/austinjiann",
+    isPastSponsor: true,
   },
 
   {
@@ -169,6 +228,7 @@ const sponsors: Sponsor[] = [
     github: "https://github.com/Ayokanmi-Adejola",
     linkedin: "https://www.linkedin.com/in/ayokanmiadejola/",
     twitter: "https://x.com/AyoAdejola100",
+    isPastSponsor: true,
   },
 
   {
@@ -176,24 +236,28 @@ const sponsors: Sponsor[] = [
     image: "http://avatars.githubusercontent.com/u/22086460?v=4",
     description: "Student",
     github: "https://github.com/MatheusFarias8",
+    isPastSponsor: true,
   },
   {
     name: "superdevp",
     image: "https://avatars.githubusercontent.com/u/202645405?v=4",
     description: "Web Developer",
     github: "https://github.com/superdevp",
+    isPastSponsor: true,
   },
   {
     name: "MeeTy HA",
     image: "https://avatars.githubusercontent.com/u/196355500?v=4",
     description: "Student ",
     github: "https://github.com/MeeTyHA",
+    isPastSponsor: true,
   },
   {
     name: "milos matovicup",
     image: "https://avatars.githubusercontent.com/u/184030535?v=4",
     description: "Student",
     github: "https://github.com/milosmatovicup",
+    isPastSponsor: true,
   },
   {
     name: "Tirth Patel",
@@ -202,6 +266,7 @@ const sponsors: Sponsor[] = [
     github: "https://github.com/TirthWillLearn",
     linkedin: "https://www.linkedin.com/in/tirth-k-patel/",
     twitter: "https://x.com/codewithtirth",
+    isPastSponsor: true,
   },
 
   {
