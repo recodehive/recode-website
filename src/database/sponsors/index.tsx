@@ -11,6 +11,77 @@ export interface Sponsor {
 }
 
 const sponsors: Sponsor[] = [
+  
+  {
+    name: "CodyOnGit",
+    image: "https://avatars.githubusercontent.com/u/56834721?v=4",
+    description: "Fullstack developer",
+    github: "https://github.com/CodyOnGit",
+  },
+
+  {
+    name: "CodyOnGit",
+    image: "https://avatars.githubusercontent.com/u/56834721?v=4",
+    description: "Fullstack developer",
+    github: "https://github.com/CodyOnGit",
+  },
+
+  {
+    name: "CodyOnGit",
+    image: "https://avatars.githubusercontent.com/u/56834721?v=4",
+    description: "Fullstack developer",
+    github: "https://github.com/Nsracer",
+  },
+
+  {
+    name: "phil1 px",
+    image: "https://avatars.githubusercontent.com/u/12487735?v=4",
+    description: "Fullstack developer",
+    github: "https://github.com/phil1px",
+  },
+
+  {
+    name: "Yupsecous",
+    image: "https://avatars.githubusercontent.com/u/13575761?v=4",
+    description: "Software Engineer",
+    github: "https://github.com/Yupsecous",
+  },
+
+  {
+    name: "Logic Mason",
+    image: "https://avatars.githubusercontent.com/u/33540416?v=4",
+    description: "Fullstack developer",
+    github: "https://github.com/LogicMason5",
+  },
+
+  {
+    name: "Meta core",
+    image: "https://avatars.githubusercontent.com/u/34447785?v=4",
+    description: "Fullstack developer",
+    github: "https://github.com/metacore-stack",
+  },
+
+  {
+    name: "UC-techie",
+    image: "https://avatars.githubusercontent.com/u/46532433?v=4",
+    description: "Python Developer",
+    github: "https://github.com/UC-techie",
+  },
+
+  {
+    name: "Helious Matt",
+    image: "https://avatars.githubusercontent.com/u/47945257?v=4",
+    description: "Blockchain developer",
+    github: "https://github.com/helious225",
+  },
+  
+  {
+    name: "CodyOnGit",
+    image: "https://avatars.githubusercontent.com/u/56834721?v=4",
+    description: "Fullstack developer",
+    github: "https://github.com/CodyOnGit",
+  },
+  
   {
     name: "DevXavier",
     image: "https://avatars.githubusercontent.com/u/192259212?v=4",
@@ -479,7 +550,7 @@ const sponsors: Sponsor[] = [
   {
     name: "Swarnendu Bhandari",
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQExzsjM2S4ojA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1724809628060?e=1762387200&v=beta&t=Q96VKNyWLZHrS65vuF3QtDEAXaZDFL4AmArlYMoRngM",
+      "https://avatars.githubusercontent.com/u/56834721?v=4",
     description: "Student at IIT Kharagpur",
     github: "https://github.com/swrno",
     twitter: "https://x.com/Swarnendu___",
@@ -514,7 +585,7 @@ const sponsors: Sponsor[] = [
   {
     name: "Dinesh Talwadker",
     image:
-      "https://media.licdn.com/dms/image/v2/D4D35AQEPaJ17Vq2zMw/profile-framedphoto-shrink_400_400/B4DZgO2PCnHAAg-/0/1752595755516?e=1760011200&v=beta&t=kpZQ9KX3shXtE3RKyYCaz1Q4GioffR1nE5nbDxQ16R0",
+      "https://avatars.githubusercontent.com/u/12487735?v=4",
     description: "Co-Founder at Sanity Esports",
     github: "https://github.com/dinxsh",
     linkedin: "https://www.linkedin.com/in/dineshtalwadker/",
