@@ -11,24 +11,90 @@ export interface Sponsor {
 }
 
 const sponsors: Sponsor[] = [
-  
   {
-    name: "CodyOnGit",
-    image: "https://avatars.githubusercontent.com/u/56834721?v=4",
+    name: "Hideo",
+    image: "https://avatars.githubusercontent.com/u/27260158?v=4",
     description: "Fullstack developer",
-    github: "https://github.com/CodyOnGit",
+    github: "https://github.com/hideo0106",
+  },
+  {
+    name: "Tyros625",
+    image: "https://avatars.githubusercontent.com/u/208297512?v=4",
+    description: "Opensource developer",
+    github: "https://github.com/Tyros625",
+  },
+  {
+    name: "Rat spott",
+    image: "https://avatars.githubusercontent.com/u/4381687?v=4",
+    description: "Opensource developer",
+    github: "https://github.com/ratspott",
+    twitter: "https://x.com/tomas.photo",
+  },
+  {
+    name: "Tupui",
+    image: "https://avatars.githubusercontent.com/u/2808342?v=4",
+    description: "Senior full stack",
+    github: "https://github.com/creative-tupui",
+  },
+  {
+    name: "Aqua Commander",
+    image: "https://avatars.githubusercontent.com/u/7747717?v=4",
+    description: "Blockchain Engineer",
+    github: "https://github.com/aquacommander",
+  },
+  {
+    name: "Bluesora dev ",
+    image: "https://avatars.githubusercontent.com/u/8726178?v=4",
+    description: "Opensource developer",
+    github: "https://github.com/bluesoradev",
+  },
+  {
+    name: "Toptal dev",
+    image: "https://avatars.githubusercontent.com/u/19962154?v=4",
+    description: "Opensource developer",
+    github: "https://github.com/toptaldev5",
+  },
+  {
+    name: "Alpha",
+    image: "https://avatars.githubusercontent.com/u/41268896?v=4",
+    description: "Opensource developer",
+    github: "https://github.com/FIFA0313",
+  },
+  {
+    name: "Tenosia",
+    image: "https://avatars.githubusercontent.com/u/45573545?v=4",
+    description: "Opensource developer",
+    github: "https://github.com/Tenosia",
+  },
+  {
+    name: " Timothy Strebing",
+    image: "https://avatars.githubusercontent.com/u/45822735?v=4",
+    description: "Opensource developer",
+    github: "https://github.com/tstrebing",
+  },
+  {
+    name: " Pragmaj Upit",
+    image: "https://avatars.githubusercontent.com/u/46350287?v=4",
+    description: "Fullstack developer",
+    github: "https://github.com/pragmajupit",
+  },
+  {
+    name: " Blockchain Developer",
+    image: "https://avatars.githubusercontent.com/u/50129289?v=4",
+    description: "Opensource developer",
+    github: "https://github.com/FIFA0313",
   },
 
   {
-    name: "CodyOnGit",
-    image: "https://avatars.githubusercontent.com/u/56834721?v=4",
+    name: "Zephyr",
+    image: "https://avatars.githubusercontent.com/u/55862076?v=4",
     description: "Fullstack developer",
-    github: "https://github.com/CodyOnGit",
+    github: "https://github.com/Zephyr3311",
   },
 
   {
-    name: "CodyOnGit",
-    image: "https://avatars.githubusercontent.com/u/56834721?v=4",
+    name: "Nsracer",
+    image: "https://avatars.githubusercontent.com/u/59646019?v=4",
     description: "Fullstack developer",
     github: "https://github.com/Nsracer",
   },
