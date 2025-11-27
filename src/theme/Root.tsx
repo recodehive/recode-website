@@ -3,6 +3,7 @@ import Link from "@docusaurus/Link";
 import { Analytics } from "@vercel/analytics/react";
 import clsx from "clsx"; // Import clsx for conditional classes
 import styles from "./Root.module.css"; // Import the CSS module
+import { useLocation } from "@docusaurus/router";
 
 // A simple Trophy SVG icon component
 function TrophyIcon() {
@@ -33,6 +34,11 @@ export default function Root({ children }: { children: React.ReactNode }) {
   const [showToast, setShowToast] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const location = useLocation();
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  
+  // Check if current page is sponsors page
+  const isSponsorsPage = location.pathname === '/our-sponsors/' || location.pathname === '/our-sponsors';
 
   // Theme detection logic
   useEffect(() => {
@@ -50,17 +56,47 @@ export default function Root({ children }: { children: React.ReactNode }) {
       attributeFilter: ["data-theme", "class"],
     });
 
-    // Show toast and set timer
-    setShowToast(true);
-    timerRef.current = setTimeout(() => setShowToast(false), 10000);
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  // Show toast on initial load for all pages
+  useEffect(() => {
+    if (isInitialLoad) {
+      setShowToast(true);
+      timerRef.current = setTimeout(() => setShowToast(false), 10000);
+      setIsInitialLoad(false);
+    }
 
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
-      observer.disconnect();
     };
-  }, []);
+  }, [isInitialLoad]);
+
+  // Show toast on navigation only for sponsors page
+  useEffect(() => {
+    if (!isInitialLoad && isSponsorsPage) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+      
+      setShowToast(false);
+      const showTimer = setTimeout(() => {
+        setShowToast(true);
+        timerRef.current = setTimeout(() => setShowToast(false), 10000);
+      }, 200);
+
+      return () => {
+        clearTimeout(showTimer);
+        if (timerRef.current) {
+          clearTimeout(timerRef.current);
+        }
+      };
+    }
+  }, [location.pathname, isInitialLoad]);
 
   // Handle manual close
   const handleCloseToast = () => {
@@ -84,11 +120,23 @@ export default function Root({ children }: { children: React.ReactNode }) {
         >
           <TrophyIcon />
           <div className={styles.toastContent}>
-            Check out our latest{" "}
-            <Link to="/dashboard#leaderboard" className={styles.toastLink}>
-              leaderboard
-            </Link>
-            !
+            {isSponsorsPage ? (
+              <>
+                Do u want to get{" "}
+                <Link to="/dashboard#leaderboard" className={styles.toastLink}>
+                  sponsored
+                </Link>
+                ?
+              </>
+            ) : (
+              <>
+                Check out our latest{" "}
+                <Link to="/dashboard#leaderboard" className={styles.toastLink}>
+                  leaderboard
+                </Link>
+                !
+              </>
+            )}
           </div>
           <button
             onClick={handleCloseToast}
