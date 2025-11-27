@@ -467,6 +467,48 @@ const sponsors: Sponsor[] = [
   },
 
   {
+    name: "Aditya Singh",
+    image: "https://avatars.githubusercontent.com/u/148507838?v=4",
+    description: "Software Developer",
+    github: "https://github.com/singh-odyssey",
+    linkedin: "linkedin.com/m/in/aditya-singh-6297242a5",
+    isWeSponsor: true,
+  },
+  {
+    name: "GSSoC24",
+    image: "https://avatars.githubusercontent.com/u/166525102?s=200&v=4",
+    description: "Open Source Community",
+    github: "https://github.com/GSSoC24",
+    isWeSponsor: true,
+  },
+  {
+    name: "Kanishka Panwar",
+    image: "https://avatars.githubusercontent.com/u/172115852?v=4",
+    description: "MERN Developer",
+    github: "https://github.com/kanishka-commits",
+    linkedin: "https://www.linkedin.com/in/kanishka03p/",
+    twitter: "https://x.com/kanishka03p",
+    isWeSponsor: true,
+  },
+  {
+    name: "Suryansh Mishra",
+    image: "https://avatars.githubusercontent.com/u/180032733?v=4",
+    description: "MERN Developer",
+    github: "https://github.com/smirk-dev",
+    linkedin: "https://www.linkedin.com/in/connectwithsuryanshmishra/",
+    isWeSponsor: true,
+  },
+  {
+    name: "Anuj Kulkarni",
+    image: "https://avatars.githubusercontent.com/u/192874339?v=4",
+    description: "MERN Developer",
+    github: "https://github.com/steam-bell-92",
+    linkedin: "https://www.linkedin.com/in/anuj-chandrakant-kulkarni/",
+    twitter: "https://x.com/AnujKulkarni040",
+    isWeSponsor: true,
+  },
+
+  {
     name: "Sonal Yadav",
     image: "https://avatars.githubusercontent.com/u/169170929?v=4",
     description: "Web & App Developer",
