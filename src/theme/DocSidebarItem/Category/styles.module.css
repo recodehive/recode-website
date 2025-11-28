@@ -74,6 +74,10 @@
   color: #68d391;
 }
 
+.dockerIcon {
+  color: #2196f3;
+}
+
 .technicalIcon {
   color: #9ae6b4;
 }
@@ -184,6 +188,7 @@
 .custom-sidebar-sql .categoryLink,
 .custom-sidebar-nextjs .categoryLink,
 .custom-sidebar-gsa .categoryLink,
+.custom-sidebar-docker .categoryLink,
 .custom-sidebar-technical .categoryLink {
   background-color: rgba(72, 187, 120, 0.05);
   /* border-radius: 8px; */
@@ -194,6 +199,7 @@
 .custom-sidebar-sql .categoryLink:hover,
 .custom-sidebar-nextjs .categoryLink:hover,
 .custom-sidebar-gsa .categoryLink:hover,
+.custom-sidebar-docker .categoryLink:hover,
 .custom-sidebar-technical .categoryLink:hover {
   background-color: rgba(72, 187, 120, 0.1);
   box-shadow: 0 2px 6px rgba(72, 187, 120, 0.1);
@@ -218,6 +224,10 @@
 
 .custom-sidebar-gsa .categoryLink .categoryIcon {
   color: #68d391;
+}
+
+.custom-sidebar-docker .categoryLink .categoryIcon {
+  color: #2196f3;
 }
 
 .custom-sidebar-technical .categoryLink .categoryIcon {
