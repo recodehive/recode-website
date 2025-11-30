@@ -1,6 +1,21 @@
+---
+id: intro
+title: Introduction to Docker
+sidebar_label: Introduction to Docker
+sidebar_position: 1
+tags:
+  [
+    docker,
+    containers,
+    introduction,
+    containerization
+  ]
+description: Learn Docker fundamentals - what containers are, why use Docker, core concepts like images and containers, and get started with essential Docker commands.
+---
+
 <div align="center">
 
-# 🐳 Introduction to Docker
+# Introduction to Docker
 </div>
 
 Welcome! Docker helps you package and run applications in containers—think of them as lightweight, portable boxes that contain everything your app needs to run.
@@ -77,53 +92,13 @@ docker logs my-app
 
 That's it! Your app is now running in a container.
 
-## Essential Commands
-
-```bash
-# Build an image
-docker build -t myapp:1.0 .
-
-# Run a container
-docker run -d --name myapp -p 8080:80 myapp:1.0
-
-# List running containers
-docker ps
-
-# View logs
-docker logs myapp
-
-# Stop a container
-docker stop myapp
-
-# Remove a container
-docker rm myapp
-
-# List images
-docker images
-
-# Remove an image
-docker rmi myapp:1.0
-```
-
-
-## Best Practices
-
-✅ **Use official base images** - `node:18-alpine`, `python:3.11-slim`  
-✅ **Use specific tags** - Avoid `:latest` in production  
-✅ **Keep images small** - Use Alpine or slim variants  
-✅ **Add .dockerignore** - Exclude `node_modules`, `.git`, logs  
-✅ **Don't run as root** - Create a non-privileged user  
-✅ **Use volumes for data** - Never store important data in containers  
-✅ **One process per container** - Keep it simple and focused  
-
-
 ## Next Steps
 
 1. **Install Docker** - Get Docker Desktop (Mac/Windows) or Docker Engine (Linux)
-2. **Try the examples** - Build and run the sample Dockerfiles above
-3. **Learn Docker Compose** - Manage multi-container apps easily
-4. **Explore Docker Hub** - Find pre-built images for databases, web servers, etc.
-5. **Read the docs** - https://docs.docker.com/
+2. **Learn Docker Commands** - Master essential CLI commands
+3. **Create Dockerfiles** - Build custom images
+4. **Try Docker Compose** - Manage multi-container apps
+5. **Explore Docker Hub** - Find pre-built images
 
 ## Key Takeaways
 
@@ -133,4 +108,55 @@ docker rmi myapp:1.0
 - **Docker Compose** manages multiple containers together
 - Docker makes development, testing, and deployment much easier
 
-Ready to containerize your first app? Start with a simple Dockerfile and experiment! 🚀
+## What Can You Do with Docker?
+
+- **Web Development** - Containerize Node.js, Python, PHP applications
+- **Microservices** - Build and deploy scalable service architectures  
+- **Development Environment** - Consistent dev setups across teams
+- **CI/CD Pipelines** - Automated testing and deployment
+- **Database Management** - Run isolated database instances
+- **Cloud Deployment** - Deploy anywhere with container orchestration
+
+---
+
+### Docker vs Virtual Machines
+
+| Feature | Docker Containers | Virtual Machines |
+|---------|-------------------|------------------|
+| **Resource Usage** | Lightweight, shares OS kernel | Heavy, full OS per VM |
+| **Startup Time** | Seconds | Minutes |
+| **Isolation** | Process-level | Hardware-level |
+| **Portability** | High | Medium |
+| **Performance** | Near-native | Overhead from hypervisor |
+
+### Good to Know
+
+1. Docker containers share the host OS kernel, making them much more efficient than VMs
+2. Container images are built in layers, enabling efficient storage and transfer
+3. You can run multiple containers from the same image
+4. Containers are **stateless** by default - use volumes for persistent data
+5. Docker works on **Windows**, **macOS**, and **Linux**
+
+### Why is Docker so Popular?
+
+Docker has revolutionized software development and deployment because:
+
+* **"It Works on My Machine" Problem Solved**
+  Docker ensures your application runs the same way everywhere, eliminating environment-related bugs.
+
+* **Faster Development Cycles**
+  Developers can quickly spin up consistent environments without complex setup procedures.
+
+* **Efficient Resource Utilization**
+  Containers use fewer resources than virtual machines while providing similar isolation benefits.
+
+* **Simplified Deployment**
+  Package your application with all dependencies into a single, portable container image.
+
+* **Scalability**
+  Easily scale applications up or down by running multiple container instances.
+
+* **DevOps Integration**
+  Perfect fit for CI/CD pipelines, enabling automated testing and deployment workflows.
+
+Ready to dive deeper? Let's explore Docker installation and setup in the next section! 🚀

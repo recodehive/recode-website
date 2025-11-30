@@ -27,6 +27,7 @@ import {
   Code2,
   School,
   Zap,
+  Container,
   ChevronDown,
   ChevronUp,
   ChevronRight,
@@ -74,6 +75,8 @@ const getIcon = (
     className?.includes("gsa")
   ) {
     return <School className={`${styles.categoryIcon} ${styles.gsaIcon}`} />;
+  } else if (label.includes("Docker") || className?.includes("docker")) {
+    return <Container className={`${styles.categoryIcon} ${styles.dockerIcon}`} />;
   } else if (label.includes("Technical") || className?.includes("technical")) {
     return (
       <PanelRight
@@ -171,6 +174,8 @@ function DocSidebarItemCategory({
       className?.includes("gsa")
     ) {
       return "custom-sidebar-gsa";
+    } else if (label.includes("Docker") || className?.includes("docker")) {
+      return "custom-sidebar-docker";
     } else if (
       label.includes("Technical") ||
       className?.includes("technical")

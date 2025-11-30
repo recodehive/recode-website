@@ -206,6 +206,29 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "category",
+      label: "Docker",
+      className: "custom-sidebar-docker",
+      customProps: {
+        icon: "/icons/docker.svg"
+      },
+      items: [
+        "Docker/intro",
+        "Docker/setup-environment",
+        "Docker/docker-commands",
+        "Docker/dockerfile-guide",
+        {
+          type: "category",
+          label: "Docker Compose",
+          className: "custom-sidebar-docker-compose",
+          items: [
+            "Docker/docker-compose",
+            "Docker/docker-compose-advanced",
+          ],
+        },
+      ],
+    },
+    {
+      type: "category",
       label: "🎓 Google Student Ambassador",
       className: "custom-sidebar-gsa",
       items: [
