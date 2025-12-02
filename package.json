@@ -55,7 +55,7 @@
     "embla-carousel-react": "^8.6.0",
     "firebase": "^9.22.2",
     "firebaseui": "6.1.0",
-    "framer-motion": "^12.7.5",
+    "framer-motion": "^12.23.25",
     "lucide-react": "^0.503.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.3.1",
