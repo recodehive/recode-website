@@ -229,62 +229,64 @@ export default function MerchPage(): ReactNode {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="merch-hero-title" style={{ color: "#1a1a1a" }}>
-              <ShoppingBag className="mr-3 inline-block" size={48} />
-              Official Recode Merch
-            </h1>
-            <p className="merch-hero-description">
-              Wear your code pride! Premium quality apparel and accessories for
-              developers who love open source.
-            </p>
-            <div className="merch-hero-stats">
-              <div className="stat-item">
-                <span className="stat-number" style={{ color: "#1a1a1a" }}>
-                  100%
-                </span>
-                <span className="stat-label">Quality</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number" style={{ color: "#1a1a1a" }}>
-                  🌍
-                </span>
-                <span className="stat-label">Worldwide Shipping</span>
-              </div>
-              <div className="stat-item">
-                <span className="stat-number" style={{ color: "#1a1a1a" }}>
-                  💚
-                </span>
-                <span className="stat-label">Eco-Friendly</span>
+            <div className="hero-left">
+              <h1 className="merch-hero-title">
+                Official Recode Merch
+              </h1>
+              <p className="merch-hero-description">
+                Wear your code pride! Premium quality apparel and accessories for
+                developers who love open source.
+              </p>
+            </div>
+            <div className="hero-right">
+              <div className="merch-hero-stats">
+                <div className="stat-item stat-item-highlighted">
+                  <span className="stat-number">100%</span>
+                  <span className="stat-label">Quality</span>
+                </div>
+                <div className="stat-item stat-item-highlighted">
+                  <span className="stat-number">🌍</span>
+                  <span className="stat-label">Worldwide Shipping</span>
+                </div>
+                <div className="stat-item stat-item-highlighted">
+                  <span className="stat-number">🌱</span>
+                  <span className="stat-label">Eco-Friendly</span>
+                </div>
               </div>
             </div>
           </motion.div>
         </section>
 
-        {/* Filter Bar */}
-        <FilterBar
-          selectedCategory={selectedCategory}
-          onCategoryChange={setSelectedCategory}
-          sortBy={sortBy}
-          onSortChange={setSortBy}
-        />
+        {/* Main Content Area with Sidebar */}
+        <div className="merch-main-content">
+          {/* Sidebar with Filters */}
+          <aside className="merch-sidebar">
+            <FilterBar
+              selectedCategory={selectedCategory}
+              onCategoryChange={setSelectedCategory}
+              sortBy={sortBy}
+              onSortChange={setSortBy}
+            />
+          </aside>
 
-        {/* Products Grid */}
-        <section className="merch-products-section">
-          {loading ? (
-            <div style={{ textAlign: "center", padding: "4rem 0" }}>
-              <p
-                style={{
-                  fontSize: "1.2rem",
-                  color: "var(--ifm-color-primary)",
-                }}
-              >
-                Loading products...
-              </p>
-            </div>
-          ) : (
-            <ProductGrid products={filteredProducts} onAddToCart={addToCart} />
-          )}
-        </section>
+          {/* Products Grid */}
+          <section className="merch-products-section">
+            {loading ? (
+              <div style={{ textAlign: "center", padding: "4rem 0" }}>
+                <p
+                  style={{
+                    fontSize: "1.2rem",
+                    color: "var(--ifm-color-primary)",
+                  }}
+                >
+                  Loading products...
+                </p>
+              </div>
+            ) : (
+              <ProductGrid products={filteredProducts} onAddToCart={addToCart} />
+            )}
+          </section>
+        </div>
 
         {/* Shopping Cart */}
         <ShoppingCart
@@ -311,7 +313,7 @@ export default function MerchPage(): ReactNode {
         <section className="merch-info-section">
           <div className="info-grid">
             <motion.div
-              className="info-card"
+              className="info-card info-card-highlighted"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -321,7 +323,7 @@ export default function MerchPage(): ReactNode {
               <p>Free shipping on orders over $50</p>
             </motion.div>
             <motion.div
-              className="info-card"
+              className="info-card info-card-highlighted"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -331,7 +333,7 @@ export default function MerchPage(): ReactNode {
               <p>30-day return policy, no questions asked</p>
             </motion.div>
             <motion.div
-              className="info-card"
+              className="info-card info-card-highlighted"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -341,7 +343,7 @@ export default function MerchPage(): ReactNode {
               <p>Eco-friendly materials and ethical production</p>
             </motion.div>
             <motion.div
-              className="info-card"
+              className="info-card info-card-highlighted"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}

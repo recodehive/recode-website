@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ShoppingCart, Heart, Eye } from "lucide-react";
 import type { Product } from "../../pages/merch";
+import ProductImageViewer from "./ProductImageViewer";
 import "./ProductCard.css";
 
 interface ProductCardProps {
@@ -12,6 +13,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [viewerOpen, setViewerOpen] = useState(false);
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -23,8 +25,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
     setIsLiked(!isLiked);
   };
 
+  const openViewer = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setViewerOpen(true);
+  };
+
   return (
-    <motion.div
+    <>
+      <motion.div
       className="product-card"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
       onHoverEnd={() => setIsHovered(false)}
     >
       <div className="product-card-image-wrapper">
-        <div className="product-card-image">
+        <div className="product-card-image" onClick={openViewer} style={{ cursor: 'pointer' }}>
           <img src={product.image} alt={product.title} loading="lazy" />
           {isHovered && (
             <motion.div
@@ -43,7 +51,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <button className="overlay-button" aria-label="Quick view">
+              <button 
+                className="overlay-button" 
+                aria-label="Quick view"
+                onClick={openViewer}
+              >
                 <Eye size={20} />
               </button>
             </motion.div>
@@ -103,6 +115,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
         </div>
       </div>
     </motion.div>
+
+    <ProductImageViewer
+      isOpen={viewerOpen}
+      onClose={() => setViewerOpen(false)}
+      imageUrl={product.image}
+      title={product.title}
+    />
+    </>
   );
 };
 
