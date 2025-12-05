@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useSafeColorMode } from "../../utils/useSafeColorMode";
+import { ExternalLink, Quote } from "lucide-react";
 
 interface TestimonialCardProps {
   name: string;
@@ -22,90 +23,118 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 }) => {
   const { colorMode, isDark } = useSafeColorMode();
 
-  // Function to format the link display
   const formatLinkDisplay = (url: string) => {
     try {
       const urlObj = new URL(url);
       return urlObj.hostname + urlObj.pathname;
     } catch {
-      // If URL parsing fails, return the original link
       return url;
     }
   };
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className={`flex h-[250px] flex-col justify-between rounded-2xl p-6 shadow-lg transition-shadow duration-300 hover:shadow-xl ${
-        isDark ? "bg-[#1a1a1a] text-white" : "bg-white text-gray-900"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.3 }}
+      className={`group relative h-full overflow-hidden rounded-2xl border backdrop-blur-sm transition-all duration-300 hover:shadow-2xl ${
+        isDark 
+          ? "border-gray-700/50 bg-gray-900/80 shadow-xl" 
+          : "border-gray-200/50 bg-white/90 shadow-lg"
       }`}
     >
-      {/* Header with Avatar and Name */}
-      <div className="flex items-center gap-4">
-        <Avatar className="h-24 w-24 rounded-full">
-          <AvatarImage src={avatar} className="object-contain" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
-        <div>
-          <h3
-            className={`text-lg font-semibold ${isDark ? "text-white" : "text-gray-900"}`}
-          >
-            {name}
-          </h3>
-          <p
-            className={`text-sm ${isDark ? "text-gray-400" : "text-gray-500"}`}
-          >
-            @{username}
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-blue-500/5 to-pink-500/5" />
+      
+      {/* Quote Icon */}
+      <div className="absolute top-4 right-4 opacity-20">
+        <Quote size={32} className="text-purple-500" />
+      </div>
+
+      <div className="relative flex h-full flex-col p-6">
+        {/* Header */}
+        <div className="mb-6 flex items-center gap-4">
+          <div className="relative">
+            <Avatar className="h-16 w-16 border-2 border-gradient-to-r from-purple-500 to-pink-500">
+              <AvatarImage src={avatar} className="object-contain" />
+              <AvatarFallback className="bg-gradient-to-br from-purple-500 to-pink-500 text-white font-semibold">
+                {name.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
+            <div className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-green-500 border-2 border-white" />
+          </div>
+          <div className="flex-1">
+            <h3 className={`text-lg font-bold ${
+              isDark ? "text-white" : "text-gray-900"
+            }`}>
+              {name}
+            </h3>
+            <p className={`text-sm ${
+              isDark ? "text-gray-400" : "text-gray-500"
+            }`}>
+              @{username}
+            </p>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1">
+          <p className={`text-base leading-relaxed ${
+            isDark ? "text-gray-300" : "text-gray-700"
+          }`}>
+            {content.replace(/#\w+/g, '').trim()}
           </p>
         </div>
-      </div>
 
-      {/* Content */}
-      <p
-        className={`my-4 line-clamp-3 flex-grow ${isDark ? "text-gray-300" : "text-gray-700"}`}
-      >
-        {content}
-      </p>
+        {/* Footer */}
+        <div className={`mt-6 space-y-4 border-t pt-4 ${
+          isDark ? "border-gray-700/50" : "border-gray-200/50"
+        }`}>
+          {/* Hashtags */}
+          <div className="flex flex-wrap gap-2">
+            {content.match(/#\w+/g)?.map((hashtag, index) => (
+              <span
+                key={index}
+                className={`rounded-full px-3 py-1 text-xs font-medium transition-colors hover:scale-105 ${
+                  isDark
+                    ? "bg-blue-500/20 text-blue-400 hover:bg-blue-500/30"
+                    : "bg-blue-100 text-blue-600 hover:bg-blue-200"
+                }`}
+              >
+                {hashtag}
+              </span>
+            ))}
+          </div>
 
-      {/* Footer with Hashtags and Date */}
-      <div
-        className={`flex flex-col gap-2 border-t pt-2 text-sm ${
-          isDark ? "border-gray-700" : "border-gray-100"
-        }`}
-      >
-        {/* Hashtags */}
-        <div className="flex flex-wrap gap-2">
-          {content.match(/#\w+/g)?.map((hashtag, index) => (
-            <span
-              key={index}
-              className="cursor-pointer text-blue-500 hover:text-blue-600"
+          {/* Link and Date */}
+          <div className="flex items-center justify-between">
+            <a
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group/link flex items-center gap-2 text-sm font-medium transition-colors ${
+                isDark
+                  ? "text-purple-400 hover:text-purple-300"
+                  : "text-purple-600 hover:text-purple-700"
+              }`}
             >
-              {hashtag}
+              <span className="truncate">{formatLinkDisplay(link)}</span>
+              <ExternalLink size={14} className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+            </a>
+            <span className={`text-xs ${
+              isDark ? "text-gray-500" : "text-gray-400"
+            }`}>
+              {date}
             </span>
-          ))}
-        </div>
-
-        {/* Link and Date Row */}
-        <div className="flex items-center justify-between">
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`cursor-pointer hover:underline ${
-              isDark
-                ? "text-blue-400 hover:text-blue-300"
-                : "text-blue-600 hover:text-blue-700"
-            }`}
-          >
-            {formatLinkDisplay(link)}
-          </a>
-          <span className={isDark ? "text-gray-500" : "text-gray-400"}>
-            {date}
-          </span>
+          </div>
         </div>
       </div>
+
+      {/* Hover Effect Border */}
+      <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" 
+           style={{ mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', maskComposite: 'xor' }} />
     </motion.div>
   );
 };
