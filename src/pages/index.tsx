@@ -87,13 +87,13 @@ export default function Home(): ReactNode {
             <OurProjects />
           </div>
 
-          <div className="m-4 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
+          <div className="m-4 grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8 items-start">
             {showTopmate && (
-              <div className="col-span-1">
+              <div className="lg:col-span-1">
                 <TopMateSection setShowTopmate={setShowTopmate} />
               </div>
             )}
-            <div className={showTopmate ? `col-span-2` : `col-span-3`}>
+            <div className={showTopmate ? `lg:col-span-2` : `lg:col-span-3`}>
               <TestimonialCarousel />
             </div>
           </div>
