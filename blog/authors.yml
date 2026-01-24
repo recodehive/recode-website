@@ -6,7 +6,7 @@ ajay-dhangar:
   email: ajaydhangar49@gmail.com
   page: true # Turns the feature on
   description: >
-    A passionate developer who loves to code and build new things. I am a Full Stack Developer and a Cyber Security, ML & AI  Enthusiast. I am also a Technical Content Writer and a Speaker. I love to share my knowledge with the community. I am the Founder of CodeHarborHub. I am also a Technical Content Writer at GeeksforGeeks. I am a Girl Script Summer of Code 2024 Project Manager (PA).    
+    A passionate developer who loves to code and build new things. I am a Full Stack Developer and a Cyber Security, ML & AI  Enthusiast. I am also a Technical Content Writer and a Speaker. I love to share my knowledge with the community. I am the Founder of CodeHarborHub. I am also a Technical Content Writer at GeeksforGeeks. I am a Girl Script Summer of Code 2024 Project Manager (PA).
 
 sanjay-kv:
   name: Sanjay Viswanthan
@@ -16,7 +16,7 @@ sanjay-kv:
   email: sanjay@recodehive.com
   page: true # Turns the feature on
   description: >
-    I'm a Software Engineer turned into a Data Engineer and Program Manager🚀, 🏆 Google ML Facilitator & Ex- GitHub CE who delivered 100+ talks on ML and open source and developer advocacy at various events and platforms.    
+    I'm a Software Engineer turned into a Data Engineer and Program Manager🚀, 🏆 Google ML Facilitator & Ex- GitHub CE who delivered 100+ talks on ML and open source and developer advocacy at various events and platforms.
 
   socials:
     x: https://x.com/sanjay_kv_
@@ -26,18 +26,18 @@ sanjay-kv:
     instagram: nomad_brains
     newsletter: https://recodehive.substack.com
     bluesky: sanjaykv.bsky.social
-    
+
 hitesh-gahanolia:
   name: Hitesh Gahanolia
   tile: Final Year Student At MNNIT ALLAHABAD
   url: https://github.com/Hitesh4278
   image_url: https://avatars.githubusercontent.com/u/97452642?v=4
 
-dharshibalasubramaniyam:
-  name: Sowmiya Venketashan.
-  tile: MBA Student
-  url: https://github.com/dharshibalasubramaniyam
-  image_url: https://avatars.githubusercontent.com/u/139672976?s=400&v=4
+sowmiya-v:
+  name: Sowmiya Venkatesan
+  tile:  Business Strategy & Operations Manager 
+  url: https://github.com/sowmiyeh
+  image_url: https://avatars.githubusercontent.com/u/74345706?v=4
 
 abhijith-m-s:
   name: Abhijith M S
@@ -75,8 +75,6 @@ santhosh-siddhardha:
   url: "https://github.com/Santhosh-Siddhardha"
   image_url: https://avatars.githubusercontent.com/u/103999924?v=4
 
-
-
 akshitha-chiluka:
   name: Akshitha Chiluka
   title: Software Engineering Undergraduate
@@ -91,7 +89,7 @@ Aditya-Singh-Rathore:
   email: rathoreadityasingh30@gmail.com
   page: true # Turns the feature on
   description: >
-    I'm a Self Learned Fabric Certified Data Engineer & an Open Source Contributor 🏆 
+    I'm a Self Learned Fabric Certified Data Engineer & an Open Source Contributor 🏆
 
   socials:
     linkedin: aditya-singh-rathore0017
@@ -99,4 +97,3 @@ Aditya-Singh-Rathore:
     instagram: _aaditya_.017
     bluesky: adez017.bsky.social
     x: https://x.com/Adez017
-    

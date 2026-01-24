@@ -2,7 +2,7 @@ export const authorsMap = {
   "ajay-dhangar": "Ajay Dhangar",
   "sanjay-kv": "Sanjay Viswanthan",
   "hitesh-gahanolia": "Hitesh Gahanolia",
-  dharshibalasubramaniyam: "Sowmiya Venketashan",
+  "sowmiya-v": "Sowmiya Venkatesan",
   "abhijith-m-s": "Abhijith M S",
   "khushi-kalra": "Khushi Kalra",
   nayanikamukherjee: "Nayanika Mukherjee",

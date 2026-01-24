@@ -17,7 +17,7 @@ const blogs: Blog[] = [
     description:
       "User experience design can be overwhelming because of the number of factors that influence what a product should look like and how it should function.",
     slug: "streamline-ux-ui",
-    authors: ["dharshibalasubramaniyam", "sanjay-kv"],
+    authors: ["sowmiya-v", "sanjay-kv"],
     category: "Design",
     tags: ["UX", "UI", "Design", "User Experience"],
   },
@@ -29,7 +29,7 @@ const blogs: Blog[] = [
     description:
       " Are you passionate about design and dreaming of a career in it? Or maybe you are already in the design space and looking to pivot into UI/UX? ",
     slug: "ux-ui-design-job",
-    authors: ["dharshibalasubramaniyam", "sanjay-kv"],
+    authors: ["sowmiya-v", "sanjay-kv"],
     category: "Design",
     tags: ["UX", "UI", "Career", "Job"],
   },
@@ -40,7 +40,7 @@ const blogs: Blog[] = [
     description:
       "The impact of technology on UX design is undeniable. Automation and artificial intelligence are making it easier to identify user needs and create tailored experiences.",
     slug: "ux-designers-ai",
-    authors: ["dharshibalasubramaniyam", "sanjay-kv"],
+    authors: ["sowmiya-v", "sanjay-kv"],
     category: "AI & Tech",
     tags: ["AI", "UX", "Design", "Technology"],
   },
@@ -51,7 +51,7 @@ const blogs: Blog[] = [
     description:
       "DeepMind is an auxiliary of Google that centers around man-made brainpower. It utilizes a part of AI called AI",
     slug: "google-deepmind",
-    authors: ["dharshibalasubramaniyam", "sanjay-kv"],
+    authors: ["sowmiya-v", "sanjay-kv"],
     category: "AI & Tech",
     tags: ["AI", "Google", "DeepMind", "Machine Learning"],
   },

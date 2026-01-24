@@ -1,6 +1,6 @@
 ---
 title: "10 Steps to Land a Job in UI/UX Design"
-authors: [dharshibalasubramaniyam, sanjay-kv]
+authors: [sowmiya-v, sanjay-kv]
 tags:
   - UX Designer
   - Desgin

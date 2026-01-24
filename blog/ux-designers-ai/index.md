@@ -1,6 +1,6 @@
 ---
 title: "UX Designers Future with AI"
-authors: [dharshibalasubramaniyam, sanjay-kv]
+authors: [sowmiya-v, sanjay-kv]
 sidebar_label: "UX designer and AI"
 tags:
   - UX Designer
