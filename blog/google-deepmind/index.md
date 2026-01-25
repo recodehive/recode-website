@@ -1,6 +1,6 @@
 ---
 title: "What is Google DeepMind AI?"
-authors: [dharshibalasubramaniyam, sanjay-kv]
+authors: [sowmiya-v, sanjay-kv]
 sidebar_label: "Google Deepmind"
 tags:
   - Google Deepmind

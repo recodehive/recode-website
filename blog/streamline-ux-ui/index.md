@@ -1,7 +1,7 @@
 ---
 title: "7 Steps to Streamline Your UX Design Process"
 sidebar_label: Streamline Your UX Design Process
-authors: [dharshibalasubramaniyam, sanjay-kv]
+authors: [sowmiya-v, sanjay-kv]
 tags: [ui, ux, design]
 date: 2025-06-05
 hide_table_of_contents: true
