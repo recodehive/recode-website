@@ -64,7 +64,7 @@
     "react-slot-counter": "^3.3.1",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
-    "styled-components": "^6.1.18",
+    "styled-components": "^6.3.8",
     "tailwind-merge": "^3.2.0",
     "tw-animate-css": "^1.2.8",
     "vanilla-tilt": "^1.8.1"
