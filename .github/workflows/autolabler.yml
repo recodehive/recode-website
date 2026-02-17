@@ -39,10 +39,10 @@ jobs:
             await github.rest.issues.addLabels({
               ...context.repo,
               issue_number: issueNumber,
-              labels: ["recode", "level 1", "wcos"]
+              labels: ["recode", "level 1"]
             });
 
-            console.log(`Added labels [recode, level 1, wcos] to Issue #${issueNumber}`);
+            console.log(`Added labels [recode, level 1] to Issue #${issueNumber}`);
 
       - name: Set Issue Type to Bug
         if: github.event_name == 'issues'
