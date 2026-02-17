@@ -56,24 +56,24 @@ const projects = [
 
 const testimonials = [
   {
-    img: "https://dummyimage.com/80x80/222/fff&text=S",
-    name: "Sachin",
+    img: "https://dummyimage.com/80x80/222/fff&text=A",
+    name: "Anonymous",
     review:
-      "Sanjay has been a great support in knowing various career paths and upcoming tech. The call was very crisp but valueable at the same time. For sure I am gonna schedule a call probably next month to give him updates. Thanks a ton Sanjay :)",
+      "The resources for learning statistics were really useful . Also I liked the summary of each field given out there .",
     stars: 5,
   },
   {
-    img: "https://dummyimage.com/80x80/333/fff&text=KP",
-    name: "Kumar Priyanshu",
+    img: "https://dummyimage.com/80x80/333/fff&text=AQ",
+    name: "Ayesha Qureshi",
     review:
-      "I was thoroughly impressed by his clear, engaging communication and deep understanding of my issue. He listened attentively and offered valuable insights and solutions, leaving me extremely satisfied and confident in the guidance I received.",
+      "The entire session was incredibly valuable. Sir's detailed explanations of every aspect were exceptionally insightful and deepened my understanding",
     stars: 5,
   },
   {
-    img: "https://dummyimage.com/80x80/444/fff&text=AV",
-    name: "Aman Vohra",
+    img: "https://dummyimage.com/80x80/444/fff&text=JS",
+    name: "Jatan Sanghvi",
     review:
-      "It was an amazing session with you. And i can't thank you enough for your time and the great and valuable insights you have given me. Thank you so much🙌🏻",
+      "Amazing experience and worth the time",
     stars: 5,
   },
 ];
@@ -449,7 +449,7 @@ function CoursesContent() {
           `}
         </style>
       </Head>
-      <main className="courses-page min-h-screen transition-all duration-500 "  data-theme="">
+      <main className="courses-page min-h-screen transition-all duration-500 " data-theme="">
         {/* Modal */}
         {modal.open && (
           <div className="bg-opacity-60 courses-fade-in fixed inset-0 z-50 flex items-center justify-center bg-black p-4">
@@ -647,9 +647,8 @@ function CoursesContent() {
                 {projects.map((_, idx) => (
                   <button
                     key={idx}
-                    className={`courses-carousel-indicator ${
-                      idx === activeProjectIndex ? "active" : ""
-                    }`}
+                    className={`courses-carousel-indicator ${idx === activeProjectIndex ? "active" : ""
+                      }`}
                     onClick={() => goToProjectSlide(idx)}
                   />
                 ))}
