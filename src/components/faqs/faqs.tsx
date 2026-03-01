@@ -65,12 +65,12 @@ const FAQs: React.FC = () => {
         padding: "2rem 0",
       }}
     >
-      <div className="mx-auto px-2 sm:px-4 lg:px-6">
+      <div className="mx-auto px-2 sm:px-4 lg:max-w-6xl lg:px-10 xl:max-w-7xl xl:px-14">
         <div className="flex flex-col items-center justify-center gap-x-8 gap-y-12 lg:flex-row lg:justify-between xl:gap-28">
           <div className="w-full">
-            <div className="mb-8 lg:mb-16">
+            <div className="mb-8 text-center lg:mb-16">
               <h6
-                className="mb-2 text-center text-lg font-medium lg:text-left"
+                className="mb-2 text-center text-lg font-medium"
                 style={{
                   color: isDark ? "#a78bfa" : "#8b5cf6",
                   fontWeight: 600,
@@ -79,7 +79,7 @@ const FAQs: React.FC = () => {
                 FAQs
               </h6>
               <h2
-                className={`text-center text-4xl font-bold lg:text-left ${
+                className={`text-center text-4xl font-bold ${
                   isDark ? "text-gray-100" : "text-gray-900"
                 } leading-snug`}
               >
@@ -88,7 +88,7 @@ const FAQs: React.FC = () => {
               <p
                 className={`${
                   isDark ? "text-gray-400" : "text-gray-600"
-                } text-center lg:text-left`}
+                } mx-auto text-center`}
               >
                 Find answers to the most common questions about recode hive.
               </p>
@@ -99,25 +99,49 @@ const FAQs: React.FC = () => {
               {faqData.map((faq, index) => (
                 <motion.div
                   key={index}
-                  className="accordion mb-4 h-fit break-inside-avoid border-gray-200 pb-4 dark:border-gray-700"
+                  className="accordion mb-4 h-fit break-inside-avoid overflow-hidden rounded-xl border pb-0 shadow-sm transition-all duration-300 dark:border-gray-700"
+                  style={{
+                    background: isDark
+                      ? "rgba(30, 27, 75, 0.55)"
+                      : "rgba(237, 233, 254, 0.7)",
+                    borderColor: isDark
+                      ? "rgba(139, 92, 246, 0.25)"
+                      : "rgba(139, 92, 246, 0.28)",
+                    backdropFilter: "blur(12px)",
+                  }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.3 }}
                 >
                   <button
-                    className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between rounded-lg p-4 text-lg font-medium transition-all duration-300 focus:outline-none ${
+                    className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between p-4 text-left text-lg font-medium transition-all duration-300 focus:outline-none ${
                       isDark
-                        ? "text-gray-200 hover:text-indigo-400"
-                        : "text-gray-700 hover:text-indigo-600"
+                        ? "text-gray-200 hover:text-indigo-300"
+                        : "text-gray-700 hover:text-indigo-700"
                     }`}
                     style={{
-                      background: isDark
-                        ? "rgba(30, 27, 75, 0.6)"
-                        : "rgba(237, 233, 254, 0.6)",
-                      border: isDark
-                        ? "1px solid rgba(139, 92, 246, 0.2)"
-                        : "1px solid rgba(139, 92, 246, 0.3)",
-                      backdropFilter: "blur(10px)",
+                      background:
+                        activeIndex === index
+                          ? isDark
+                            ? "linear-gradient(135deg, rgba(99,102,241,0.24), rgba(139,92,246,0.16))"
+                            : "linear-gradient(135deg, rgba(224,231,255,0.95), rgba(237,233,254,0.92))"
+                          : isDark
+                            ? "linear-gradient(135deg, rgba(67,56,202,0.18), rgba(76,29,149,0.1))"
+                            : "linear-gradient(135deg, rgba(238,242,255,0.85), rgba(243,232,255,0.78))",
+                      boxShadow:
+                        activeIndex === index
+                          ? isDark
+                            ? "inset 0 1px 0 rgba(255,255,255,0.12), 0 8px 24px -16px rgba(99,102,241,0.7)"
+                            : "inset 0 1px 0 rgba(255,255,255,0.95), 0 10px 26px -18px rgba(99,102,241,0.55)"
+                          : isDark
+                            ? "inset 0 1px 0 rgba(255,255,255,0.08)"
+                            : "inset 0 1px 0 rgba(255,255,255,0.8)",
+                      borderBottom:
+                        activeIndex === index
+                          ? isDark
+                            ? "1px solid rgba(139, 92, 246, 0.35)"
+                            : "1px solid rgba(139, 92, 246, 0.3)"
+                          : "1px solid transparent",
                     }}
                     onClick={() => toggleAccordion(index)}
                   >
@@ -139,10 +163,13 @@ const FAQs: React.FC = () => {
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   >
                     <div
-                      className={`mt-2 text-base transition-colors duration-200 ${
+                      className={`border-t px-4 pb-4 pt-3 text-base transition-colors duration-200 ${
                         isDark ? "text-gray-300" : "text-gray-900"
                       }`}
                       style={{
+                        borderColor: isDark
+                          ? "rgba(139, 92, 246, 0.22)"
+                          : "rgba(139, 92, 246, 0.24)",
                         color: isDark ? "#d1d5db" : "#111827",
                       }}
                       dangerouslySetInnerHTML={{
