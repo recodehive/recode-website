@@ -21,7 +21,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   avatar,
   link,
 }) => {
-  const { colorMode, isDark } = useSafeColorMode();
+  const { isDark } = useSafeColorMode();
 
   const formatLinkDisplay = (url: string) => {
     try {
