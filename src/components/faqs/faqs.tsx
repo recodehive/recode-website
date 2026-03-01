@@ -96,97 +96,105 @@ const FAQs: React.FC = () => {
 
             {/* Accordion Masonry Columns to prevent sibling expansion */}
             <div className="columns-1 md:columns-2 md:gap-x-6">
-              {faqData.map((faq, index) => (
-                <motion.div
-                  key={index}
-                  className="accordion mb-4 h-fit break-inside-avoid overflow-hidden rounded-xl border pb-0 shadow-sm transition-all duration-300 dark:border-gray-700"
-                  style={{
-                    background: isDark
-                      ? "rgba(30, 27, 75, 0.55)"
-                      : "rgba(237, 233, 254, 0.7)",
-                    borderColor: isDark
-                      ? "rgba(139, 92, 246, 0.25)"
-                      : "rgba(139, 92, 246, 0.28)",
-                    backdropFilter: "blur(12px)",
-                  }}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <button
-                    className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between p-4 text-left text-lg font-medium transition-all duration-300 focus:outline-none ${
-                      isDark
-                        ? "text-gray-200 hover:text-indigo-300"
-                        : "text-gray-700 hover:text-indigo-700"
-                    }`}
+              {faqData.map((faq, index) => {
+                const isExpanded = activeIndex === index;
+                const panelId = `faq-panel-${index}`;
+                const triggerId = `faq-trigger-${index}`;
+
+                return (
+                  <motion.div
+                    key={index}
+                    className="accordion mb-4 h-fit break-inside-avoid overflow-hidden rounded-xl border pb-0 shadow-sm transition-all duration-300 dark:border-gray-700"
                     style={{
-                      background:
-                        activeIndex === index
+                      background: isDark
+                        ? "rgba(30, 27, 75, 0.55)"
+                        : "rgba(237, 233, 254, 0.7)",
+                      borderColor: isDark
+                        ? "rgba(139, 92, 246, 0.25)"
+                        : "rgba(139, 92, 246, 0.28)",
+                      backdropFilter: "blur(12px)",
+                    }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <button
+                      id={triggerId}
+                      aria-expanded={isExpanded}
+                      aria-controls={panelId}
+                      className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between p-4 text-left text-lg font-medium transition-all duration-300 focus:outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-indigo-400 dark:focus-visible:ring-offset-gray-900 ${
+                        isDark
+                          ? "text-gray-200 hover:text-indigo-300"
+                          : "text-gray-700 hover:text-indigo-700"
+                      }`}
+                      style={{
+                        background: isExpanded
                           ? isDark
                             ? "linear-gradient(135deg, rgba(99,102,241,0.24), rgba(139,92,246,0.16))"
                             : "linear-gradient(135deg, rgba(224,231,255,0.95), rgba(237,233,254,0.92))"
                           : isDark
                             ? "linear-gradient(135deg, rgba(67,56,202,0.18), rgba(76,29,149,0.1))"
                             : "linear-gradient(135deg, rgba(238,242,255,0.85), rgba(243,232,255,0.78))",
-                      boxShadow:
-                        activeIndex === index
+                        boxShadow: isExpanded
                           ? isDark
                             ? "inset 0 1px 0 rgba(255,255,255,0.12), 0 8px 24px -16px rgba(99,102,241,0.7)"
                             : "inset 0 1px 0 rgba(255,255,255,0.95), 0 10px 26px -18px rgba(99,102,241,0.55)"
                           : isDark
                             ? "inset 0 1px 0 rgba(255,255,255,0.08)"
                             : "inset 0 1px 0 rgba(255,255,255,0.8)",
-                      borderBottom:
-                        activeIndex === index
+                        borderBottom: isExpanded
                           ? isDark
                             ? "1px solid rgba(139, 92, 246, 0.35)"
                             : "1px solid rgba(139, 92, 246, 0.3)"
                           : "1px solid transparent",
-                    }}
-                    onClick={() => toggleAccordion(index)}
-                  >
-                    {faq.question}
-                    <motion.span
-                      className="transform transition-transform duration-300"
-                      animate={{ rotate: activeIndex === index ? 180 : 0 }}
+                      }}
+                      onClick={() => toggleAccordion(index)}
                     >
-                      <FiChevronDown size={22} />
-                    </motion.span>
-                  </button>
-                  <motion.div
-                    className="accordion-content overflow-hidden"
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{
-                      height: activeIndex === index ? "auto" : 0,
-                      opacity: activeIndex === index ? 1 : 0,
-                    }}
-                    transition={{ duration: 0.3, ease: "easeInOut" }}
-                  >
-                    <div
-                      className={`border-t px-4 pb-4 pt-3 text-base transition-colors duration-200 ${
-                        isDark ? "text-gray-300" : "text-gray-900"
-                      }`}
-                      style={{
-                        borderColor: isDark
-                          ? "rgba(139, 92, 246, 0.22)"
-                          : "rgba(139, 92, 246, 0.24)",
-                        color: isDark ? "#d1d5db" : "#111827",
+                      {faq.question}
+                      <motion.span
+                        className="transform transition-transform duration-300"
+                        animate={{ rotate: isExpanded ? 180 : 0 }}
+                      >
+                        <FiChevronDown size={22} />
+                      </motion.span>
+                    </button>
+                    <motion.div
+                      id={panelId}
+                      aria-labelledby={triggerId}
+                      className="accordion-content overflow-hidden"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{
+                        height: isExpanded ? "auto" : 0,
+                        opacity: isExpanded ? 1 : 0,
                       }}
-                      dangerouslySetInnerHTML={{
-                        __html: faq.answer
-                          .replace(
-                            /<strong>/g,
-                            `<strong style="color: ${isDark ? "#f3f4f6" : "#000000"}; font-weight: 600;">`,
-                          )
-                          .replace(
-                            /<a /g,
-                            `<a style="color: ${isDark ? "#818cf8" : "#4f46e5"};" `,
-                          ),
-                      }}
-                    />
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <div
+                        className={`border-t px-4 pb-4 pt-3 text-base transition-colors duration-200 ${
+                          isDark ? "text-gray-300" : "text-gray-900"
+                        }`}
+                        style={{
+                          borderColor: isDark
+                            ? "rgba(139, 92, 246, 0.22)"
+                            : "rgba(139, 92, 246, 0.24)",
+                          color: isDark ? "#d1d5db" : "#111827",
+                        }}
+                        dangerouslySetInnerHTML={{
+                          __html: faq.answer
+                            .replace(
+                              /<strong>/g,
+                              `<strong style="color: ${isDark ? "#f3f4f6" : "#000000"}; font-weight: 600;">`,
+                            )
+                            .replace(
+                              /<a /g,
+                              `<a style="color: ${isDark ? "#818cf8" : "#4f46e5"};" `,
+                            ),
+                        }}
+                      />
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

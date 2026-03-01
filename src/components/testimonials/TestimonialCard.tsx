@@ -59,7 +59,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           <div className="relative">
             <div className="pointer-events-none absolute -inset-1 rounded-full bg-gradient-to-br from-purple-500/35 via-fuchsia-500/25 to-blue-500/35 blur-md" />
             <Avatar className="relative z-10 h-20 w-20 overflow-hidden border border-white/70 bg-white/70 shadow-[0_10px_30px_-12px_rgba(147,51,234,0.7)] ring-2 ring-purple-300/50">
-              <AvatarImage src={avatar} className="h-full w-full scale-300 object-cover object-center" />
+              <AvatarImage src={avatar} alt={`${name}'s avatar`} className="h-full w-full scale-[3] object-cover object-center" />
               <AvatarFallback className="bg-gradient-to-br from-purple-500 to-pink-500 text-white font-semibold">
                 {name.charAt(0)}
               </AvatarFallback>
