@@ -102,14 +102,14 @@ const OurSponsors: React.FC = () => {
               className={`tab-button ${activeTab === "current" ? "active" : ""}`}
               onClick={() => handleTabChange("current")}
             >
-              Current Sponsors
+              <span className="tab-label">Current Sponsors</span>
               <span className="tab-badge">{currentSponsors.length}</span>
             </button>
             <button
               className={`tab-button ${activeTab === "past" ? "active" : ""}`}
               onClick={() => handleTabChange("past")}
             >
-              People We Sponsored
+              <span className="tab-label">People We Sponsored</span>
               {weSponsorPeople.length > 0 && (
                 <span className="tab-badge">{weSponsorPeople.length}</span>
               )}
@@ -120,9 +120,6 @@ const OurSponsors: React.FC = () => {
             className={`tab-content ${activeTab === "current" ? "active" : ""}`}
           >
             <div className="sponsors-section">
-              <h3 className="mt-2 mb-4 text-xl font-semibold text-gray-800">
-                Current Sponsors
-              </h3>
               <div className="sponsors-list">
                 {currentSponsors.length > 0 ? (
                   currentSponsors.map((sponsor) => (

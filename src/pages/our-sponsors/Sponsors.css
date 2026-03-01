@@ -18,11 +18,17 @@
   margin-top: 1rem;
   background: linear-gradient(
     90deg,
-    rgb(152 0 255) 0%,
-    rgb(246 41 41) 50%,
-    rgb(255 169 8) 100%
+    #4f46e5 0%,
+    #7c3aed 25%,
+    #4f46e5 52%,
+    #059669 74%,
+    #16a34a 100%
   );
+  display: inline-block;
+  background-size: 100% 100%;
+  background-position: center;
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -56,6 +62,10 @@
   gap: 8px;
 }
 
+.tab-label {
+  display: inline-block;
+}
+
 [data-theme="dark"] .tab-button {
   color: var(--dark-text-secondary);
 }
@@ -83,6 +93,97 @@
 .tab-button.active .tab-badge {
   background-color: #4f46e5;
   color: white;
+}
+
+.sponsor-page .tabs {
+  justify-content: center !important;
+  gap: 0.65rem;
+  margin: 0 auto 2rem;
+  padding: 0.42rem;
+  width: fit-content;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow:
+    0 8px 24px rgba(15, 23, 42, 0.06),
+    0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="dark"] .sponsor-page .tabs {
+  border-color: var(--dark-border);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--dark-card-bg) 90%, white 10%) 0%,
+    var(--dark-card-bg) 100%
+  );
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.sponsor-page .tab-button {
+  margin: 0;
+  min-height: 46px;
+  padding: 0.72rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background: transparent;
+  color: #475569;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+.sponsor-page .tab-button::after {
+  display: none;
+}
+
+.sponsor-page .tab-button:not(.active):hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+  color: #3730a3;
+  transform: translateY(-1px);
+}
+
+[data-theme="dark"] .sponsor-page .tab-button:not(.active):hover {
+  background: rgba(99, 102, 241, 0.18);
+  border-color: rgba(165, 180, 252, 0.36);
+  color: #e0e7ff;
+}
+
+.sponsor-page .tab-button.active {
+  color: #ffffff;
+  border-color: transparent;
+  background: linear-gradient(135deg, #059669 0%, #16a34a 100%);
+  box-shadow:
+    0 10px 20px rgba(22, 163, 74, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.22);
+}
+
+[data-theme="dark"] .sponsor-page .tab-button.active {
+  box-shadow:
+    0 14px 24px rgba(22, 163, 74, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.sponsor-page .tab-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.sponsor-page .tab-badge {
+  background-color: #e2e8f0;
+  color: #334155;
+}
+
+.sponsor-page .tab-button.active .tab-badge {
+  background-color: rgba(255, 255, 255, 0.24);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .sponsor-page .tab-badge {
+  background-color: rgba(148, 163, 184, 0.25);
+  color: #e2e8f0;
 }
 
 .no-sponsors {
@@ -436,5 +537,372 @@
 @media (max-width: 600px) {
   .sponsor-card {
     width: 100%;
+  }
+}
+
+@media (max-width: 968px) {
+  .sponsor-page {
+    padding: 1rem;
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+
+  .sponsor-page .sponsor-header {
+    margin-bottom: 1.5rem;
+  }
+
+  .TitleText {
+    margin-top: 0.5rem;
+    font-size: clamp(1.9rem, 3.8vw, 2.4rem);
+    line-height: 1.15;
+  }
+
+  .sponsor-page .sponsor-header p {
+    font-size: clamp(0.98rem, 1.7vw, 1.08rem);
+    line-height: 1.7;
+    margin: 0 auto;
+    max-width: 90%;
+  }
+
+  .sponsors-section {
+    margin-top: 1.5rem;
+  }
+
+  .sponsor-page .tabs {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-auto-flow: column;
+    flex-wrap: nowrap !important;
+    gap: 0.5rem;
+    justify-content: initial !important;
+    align-items: stretch;
+    padding-bottom: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-align: initial !important;
+  }
+
+  .sponsor-page .tab-button {
+    margin: 0 !important;
+    padding: 0.65rem 1rem;
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.24rem;
+    font-size: clamp(0.72rem, 1.4vw, 0.86rem);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    line-height: 1.25;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    text-align: center !important;
+  }
+
+  .sponsor-page .tab-label {
+    display: block;
+    width: 100%;
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    text-wrap: balance;
+  }
+
+  .sponsor-page .tab-badge {
+    font-size: 0.65rem;
+    min-width: 22px;
+    padding: 1px 6px;
+  }
+
+  .tab-button::after {
+    bottom: -0.75rem;
+  }
+
+  .sponsor-page .sponsors-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .sponsor-page .sponsors-list > * {
+    min-width: 0;
+  }
+
+  .sponsor-page .sponsor-card {
+    padding: 16px;
+    border-radius: 10px;
+    min-width: 0;
+  }
+
+  .sponsor-page .sponsor-card .avatar-wrapper {
+    width: 92px;
+    height: 92px;
+  }
+
+  .sponsor-page .sponsor-card .sponsor-name {
+    font-size: 1.05rem;
+  }
+
+  .sponsor-page .sponsor-card .sponsor-desc {
+    font-size: 0.9rem;
+    line-height: 1.45;
+  }
+
+  .sponsor-page .sponsor-card .social-links a {
+    width: 34px;
+    height: 34px;
+  }
+
+  .sponsor-page .sponsor-card.empty-card {
+    min-height: 170px;
+    padding: 28px 16px;
+  }
+
+  .sponsor-page .sponsor-card.empty-card h3 {
+    font-size: 1rem;
+  }
+
+  .no-sponsors {
+    padding: 1.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .scanner-popup {
+    padding: 1rem;
+  }
+
+  .scanner-content {
+    width: 100%;
+    max-width: min(400px, calc(100vw - 2rem));
+    box-sizing: border-box;
+    padding: 1.5rem 1rem;
+  }
+
+  .scanner-button {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .support-links {
+    margin-top: 3rem;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 640px) {
+  .sponsor-page {
+    padding: 0.85rem;
+    overflow-x: hidden;
+  }
+
+  .TitleText {
+    font-size: clamp(1.65rem, 7vw, 2.05rem);
+    line-height: 1.2;
+  }
+
+  .sponsor-page .sponsor-header p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 100%;
+  }
+
+  .sponsor-page .tabs {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.4rem;
+    justify-content: initial !important;
+    overflow: hidden;
+    text-align: initial !important;
+  }
+
+  .sponsor-page .tab-button {
+    width: 100%;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.22rem;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    padding: 0.65rem 0.85rem;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    text-align: center !important;
+  }
+
+  .sponsor-page .tab-label {
+    display: block;
+    width: 100%;
+    line-height: 1.18;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    text-wrap: balance;
+  }
+
+  .tab-button::after {
+    bottom: -0.6rem;
+  }
+
+  .sponsor-page .sponsors-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+  }
+
+  .sponsor-page .sponsor-card {
+    padding: 12px;
+  }
+
+  .sponsor-page .sponsor-card .avatar-wrapper {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 8px;
+  }
+
+  .sponsor-page .sponsor-card .sponsor-name {
+    font-size: 0.92rem;
+    line-height: 1.2;
+  }
+
+  .sponsor-page .sponsor-card .sponsor-desc {
+    font-size: 0.78rem;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  .sponsor-page .sponsor-card .social-links {
+    gap: 6px;
+  }
+
+  .sponsor-page .sponsor-card .social-links a {
+    width: 28px;
+    height: 28px;
+  }
+
+  .scanner-content {
+    padding: 1.25rem 0.85rem;
+  }
+
+  .scanner-content .TitleText {
+    font-size: 1.45rem;
+  }
+
+  .scanner-button {
+    font-size: 0.92rem;
+    padding: 11px 20px;
+    min-width: 0;
+  }
+
+  .support-links {
+    margin-top: 2.25rem;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .sponsor-page {
+    padding: 0.75rem;
+    overflow-x: hidden;
+  }
+
+  .TitleText {
+    font-size: 1.5rem;
+  }
+
+  .sponsor-page .sponsor-header p {
+    font-size: 0.9rem;
+  }
+
+  .sponsor-page .tab-button {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    padding: 0.55rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    line-height: 1.25;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    text-align: center !important;
+  }
+
+  .sponsor-page .tab-label {
+    display: block;
+    width: 100%;
+    line-height: 1.16;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    text-wrap: balance;
+  }
+
+  .sponsor-page .tab-badge {
+    font-size: 0.6rem;
+    min-width: 20px;
+    padding: 1px 6px;
+  }
+
+  .sponsor-page .sponsors-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .sponsor-page .sponsor-card {
+    padding: 10px;
+  }
+
+  .sponsor-page .sponsor-card .avatar-wrapper {
+    width: 62px;
+    height: 62px;
+    margin-bottom: 7px;
+  }
+
+  .sponsor-page .sponsor-card .sponsor-name {
+    font-size: 0.84rem;
+  }
+
+  .sponsor-page .sponsor-card .sponsor-desc {
+    font-size: 0.72rem;
+    line-height: 1.3;
+    margin-bottom: 5px;
+  }
+
+  .sponsor-page .sponsor-card .social-links a {
+    width: 24px;
+    height: 24px;
+  }
+
+  .sponsor-page .sponsor-card.empty-card {
+    min-height: 150px;
+    padding: 22px 12px;
+  }
+
+  .sponsor-page .sponsor-card.empty-card h3 {
+    font-size: 0.95rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 996px) {
+  .sponsor-page {
+    padding-top: calc(var(--ifm-navbar-height, 60px) + 1rem);
   }
 }
