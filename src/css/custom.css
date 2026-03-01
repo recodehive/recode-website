@@ -473,6 +473,29 @@ body {
 
 /* ===== SECTION 11: CRITICAL FIX: TABLET/IPAD NAVBAR BEHAVIOR ===== */
 @media screen and (max-width: 996px) {
+  :root {
+    --ifm-navbar-top-offset: 0px;
+  }
+
+  .theme-announcement-bar,
+  [class*="announcementBar"] {
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .navbar--fixed-top {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+    transform: none !important;
+  }
+
   /* Hide TOP navbar items on mobile (not sidebar) */
 
   /*
@@ -495,6 +518,7 @@ body {
 
   /* Clean mobile navbar layout - prevent overflow */
   .navbar {
+
     padding: 0.5rem 0.5rem !important;
     height: 56px !important;
   }
