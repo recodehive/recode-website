@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import type { ReactNode } from "react";
-
-import Head from "@docusaurus/Head";
-import Header from "../components/header/header";
+import Hero from "../components/hero/hero";
 import ScrollBottomToTop from "../components/scroll/bottom-to-top";
 
 import { BlogCarousel } from "../components/blogCarousel/blogCarousel";
@@ -41,14 +39,6 @@ export default function Home(): ReactNode {
       title={`${siteConfig.title}`}
       description="Welcome to recode hive. Learn the basics to advanced concepts of web development. sql, python, Cloud, GitHub and more."
     >
-      <Head>
-        <script
-          async
-          custom-element="amp-auto-ads"
-          src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
-        />
-      </Head>
-
       {/* ✅ Wrap in solid background to fix light mode */}
       <div
         className="transition-colors duration-300"
@@ -64,8 +54,8 @@ export default function Home(): ReactNode {
             color: "var(--ifm-font-color-base)",
           }}
         >
-          <div className="m-4">
-            <Header />
+          <div className="mx-4 mb-4 mt-0 md:m-4">
+            <Hero />
           </div>
 
           <div className="blog-carousel-section">

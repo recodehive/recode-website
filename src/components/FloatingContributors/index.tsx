@@ -100,11 +100,11 @@ interface ContributorActivity {
 }
 
 interface FloatingContributorsProps {
-  headerEmbedded?: boolean;
+  heroEmbedded?: boolean;
 }
 
 const FloatingContributors: React.FC<FloatingContributorsProps> = ({
-  headerEmbedded = false,
+  heroEmbedded = false,
 }) => {
   const [contributors, setContributors] = useState<Contributor[]>([]);
   const [activities, setActivities] = useState<ContributorActivity[]>([]);
@@ -491,11 +491,11 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
     <AnimatePresence>
       {isVisible && (
         <motion.div
-          className={`floating-contributors-container ${headerEmbedded ? "header-embedded" : ""}`}
+          className={`floating-contributors-container ${heroEmbedded ? "header-embedded" : ""}`}
           initial={{
             opacity: 0,
-            y: headerEmbedded ? 0 : 50,
-            scale: headerEmbedded ? 1 : 0.9,
+            y: heroEmbedded ? 0 : 50,
+            scale: heroEmbedded ? 1 : 0.9,
           }}
           animate={{
             opacity: 1,
@@ -504,11 +504,11 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
           }}
           exit={{
             opacity: 0,
-            y: headerEmbedded ? 0 : 50,
-            scale: headerEmbedded ? 1 : 0.9,
+            y: heroEmbedded ? 0 : 50,
+            scale: heroEmbedded ? 1 : 0.9,
           }}
           transition={{
-            duration: headerEmbedded ? 0.8 : 0.6,
+            duration: heroEmbedded ? 0.8 : 0.6,
             ease: [0.4, 0, 0.2, 1],
           }}
         >
@@ -516,14 +516,14 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
           <motion.div
             className="floating-contributors-card"
             animate={
-              headerEmbedded
+              heroEmbedded
                 ? {}
                 : {
                     y: [0, -8, 0],
                   }
             }
             transition={
-              headerEmbedded
+              heroEmbedded
                 ? {}
                 : {
                     duration: 4,

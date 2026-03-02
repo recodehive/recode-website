@@ -1,13 +1,24 @@
 import React from "react";
-import "./header.css";
 import Link from "@docusaurus/Link";
-import { motion } from "framer-motion";
+import * as FramerMotion from "framer-motion";
 import ParticlesComponent from "../particle";
 import FloatingContributors from "../FloatingContributors";
+import "./hero.css";
 
-const HeaderContent = () => {
+type MotionPrimitive = React.ComponentType<Record<string, unknown>>;
+type MotionProxy = {
+  h1: MotionPrimitive;
+  p: MotionPrimitive;
+  div: MotionPrimitive;
+};
+
+const motion = (FramerMotion as unknown as Record<string, unknown>)[
+  "motion"
+] as MotionProxy;
+
+const HeroContent = () => {
   return (
-    <div className="chh__header-content">
+    <div className="chh__hero-content">
       <motion.h1
         initial={{ opacity: 0, x: -10 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -45,7 +56,7 @@ const HeaderContent = () => {
         <br></br>
       </motion.p>
 
-      <div className="chh__header-content__input">
+      <div className="chh__hero-content__input">
         <motion.div
           initial={{ opacity: 0, x: -10 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -60,7 +71,7 @@ const HeaderContent = () => {
         >
           <Link
             to="/get-started/"
-            className="chh__header-content__input--button"
+            className="chh__hero-content__input--button"
           >
             Get Started
           </Link>
@@ -78,7 +89,7 @@ const HeaderContent = () => {
           }}
           style={{ flex: 1 }}
         >
-          <Link to="/courses" className="chh__header-content__input--button">
+          <Link to="/courses" className="chh__hero-content__input--button">
             Courses
           </Link>
         </motion.div>
@@ -87,7 +98,7 @@ const HeaderContent = () => {
   );
 };
 
-const HeaderToaster = () => {
+const HeroToaster = () => {
   return (
     <motion.div
       initial={{ scale: 0, x: 10 }}
@@ -99,7 +110,7 @@ const HeaderToaster = () => {
         stiffness: 100,
         delay: 0.3,
       }}
-      className="chh__header-image"
+      className="chh__hero-image"
       style={{
         position: "relative",
         display: "flex",
@@ -109,28 +120,28 @@ const HeaderToaster = () => {
         width: "100%",
       }}
     >
-      {/* Render the FloatingContributors component as the header toaster */}
+      {/* Render the FloatingContributors component as the hero toaster */}
       <div
         style={{
           position: "relative",
           zIndex: 1,
         }}
       >
-        <FloatingContributors headerEmbedded={true} />
+        <FloatingContributors heroEmbedded={true} />
       </div>
     </motion.div>
   );
 };
 
-const Header: React.FC = () => {
+const Hero: React.FC = () => {
   return (
-    <div className="chh__header--body">
-      <div className="chh__header">
-        <HeaderContent />
-        <HeaderToaster />
+    <div className="chh__hero--body">
+      <div className="chh__hero">
+        <HeroContent />
+        <HeroToaster />
       </div>
     </div>
   );
 };
 
-export default Header;
+export default Hero;

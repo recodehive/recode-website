@@ -79,7 +79,7 @@ The `FloatingContributors` component is a dynamic React component that displays 
 
 2. Use it in your application:
    ```tsx
-   <FloatingContributors headerEmbedded={false} />
+   <FloatingContributors heroEmbedded={false} />
    ```
 
 ---
