@@ -114,17 +114,17 @@ const sidebars: SidebarsConfig = {
             "python/Data_Structures/python-queue",
           ],
         },
-      ],
-    },
-    {
-      type: "category",
-      label: "Pandas",
-      className: "custom-sidebar-pandas",
-      items: [
-        "Pandas/pd_intro",
-        "Pandas/pd_dataframes",
-        "Pandas/pd_input_output",
-        "Pandas/pd_data_analysis",
+        {
+          type: "category",
+          label: "Pandas",
+          className: "custom-sidebar-pandas",
+          items: [
+            "Pandas/pd_intro",
+            "Pandas/pd_dataframes",
+            "Pandas/pd_input_output",
+            "Pandas/pd_data_analysis",
+          ],
+        },
       ],
     },
     {
