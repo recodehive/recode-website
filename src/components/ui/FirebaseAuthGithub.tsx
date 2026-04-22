@@ -1,30 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { auth } from "../../lib/firebase";
-import { GithubAuthProvider, signInWithPopup, User } from "firebase/auth";
-
-const uiConfig = {
-  signInFlow: "popup",
-  signInOptions: [
-    {
-      provider: GithubAuthProvider.PROVIDER_ID,
-      // You can add scopes and custom parameters here if needed
-    },
-  ],
-  callbacks: {
-    signInSuccessWithAuthResult: () => false, // Prevents redirect
-  },
-};
+import {
+  GithubAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
+  User,
+} from "firebase/auth";
 
 const FirebaseAuthGithub: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [githubText, setGithubText] = useState("Sign in with GitHub"); // ✅ new state
+  const [githubText, setGithubText] = useState("Sign in with GitHub");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unregisterAuthObserver = auth.onAuthStateChanged((user) =>
-      setUser(user as User),
-    );
+    // Handle redirect result (returned after signInWithRedirect flow).
+    // onAuthStateChanged will fire afterwards and clear the loading state.
+    getRedirectResult(auth).catch((error) => {
+      console.error("GitHub redirect sign-in error:", error);
+    });
 
-    // ✅ new effect to change text on resize
+    // onAuthStateChanged fires once on mount (and after every auth change),
+    // so it is the single place we clear the loading state.
+    const unregisterAuthObserver = auth.onAuthStateChanged((firebaseUser) => {
+      setUser(firebaseUser as User);
+      setLoading(false);
+    });
+
     const handleResize = () => {
       if (window.innerWidth <= 1110) {
         setGithubText("Sign in");
@@ -33,7 +35,7 @@ const FirebaseAuthGithub: React.FC = () => {
       }
     };
 
-    handleResize(); // initial call
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => {
@@ -41,6 +43,36 @@ const FirebaseAuthGithub: React.FC = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const handleGithubSignIn = async () => {
+    const provider = new GithubAuthProvider();
+    try {
+      // Try popup first; fall back to redirect if the popup is blocked
+      await signInWithPopup(auth, provider);
+    } catch (error: unknown) {
+      const code =
+        error && typeof error === "object" && "code" in error
+          ? (error as { code: string }).code
+          : "";
+      if (
+        code === "auth/popup-blocked" ||
+        code === "auth/popup-closed-by-user" ||
+        code === "auth/cancelled-popup-request"
+      ) {
+        try {
+          await signInWithRedirect(auth, provider);
+        } catch (redirectError) {
+          console.error("GitHub redirect sign-in error:", redirectError);
+        }
+      } else {
+        console.error("GitHub sign-in error:", error);
+      }
+    }
+  };
+
+  if (loading) {
+    return null;
+  }
 
   if (user) {
     return (
@@ -78,15 +110,6 @@ const FirebaseAuthGithub: React.FC = () => {
     );
   }
 
-  const handleGithubSignIn = async () => {
-    const provider = new GithubAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-    } catch (error) {
-      console.error("GitHub sign-in error:", error);
-    }
-  };
-
   return (
     <div
       style={{ textAlign: "center" }}
@@ -105,7 +128,6 @@ const FirebaseAuthGithub: React.FC = () => {
         >
           <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.65 7.65 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
         </svg>
-        {/* ✅ dynamic text */}
         <span className="github-text">{githubText}</span>
       </button>
     </div>

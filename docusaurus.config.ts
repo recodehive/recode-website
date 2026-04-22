@@ -276,6 +276,27 @@ const config: Config = {
     SHOPIFY_STOREFRONT_ACCESS_TOKEN:
       process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN ||
       "2503dfbf93132b42e627e7d53b3ba3e9",
+    // Firebase configuration — override via environment variables in production
+    FIREBASE_API_KEY:
+      process.env.FIREBASE_API_KEY || "AIzaSyBSiO9d5tHuyyAeUCt37pxDWTT7jPSigaU",
+    FIREBASE_AUTH_DOMAIN:
+      process.env.FIREBASE_AUTH_DOMAIN ||
+      "awesome-github-profiles.firebaseapp.com",
+    FIREBASE_DATABASE_URL:
+      process.env.FIREBASE_DATABASE_URL ||
+      "https://awesome-github-profiles-default-rtdb.firebaseio.com",
+    FIREBASE_PROJECT_ID:
+      process.env.FIREBASE_PROJECT_ID || "awesome-github-profiles",
+    FIREBASE_STORAGE_BUCKET:
+      process.env.FIREBASE_STORAGE_BUCKET ||
+      "awesome-github-profiles.firebasestorage.app",
+    FIREBASE_MESSAGING_SENDER_ID:
+      process.env.FIREBASE_MESSAGING_SENDER_ID || "490821849262",
+    FIREBASE_APP_ID:
+      process.env.FIREBASE_APP_ID ||
+      "1:490821849262:web:7e97984d98f578b81f9d3f",
+    FIREBASE_MEASUREMENT_ID:
+      process.env.FIREBASE_MEASUREMENT_ID || "G-WM33JZYEV0",
     hooks: {
       onBrokenMarkdownLinks: "warn",
     },
