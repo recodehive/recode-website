@@ -24,3 +24,4 @@ yarn-error.log*
 
 # Temporary files
 /tmp/
+tsconfig.tsbuildinfo
