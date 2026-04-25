@@ -1,0 +1,16 @@
+.authorPhoto {
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 2px solid var(--ifm-color-emphasis-200);
+  padding: 2px;
+  background: var(--ifm-background-color);
+  transition: border-color 0.2s ease;
+}
+
+.authorPhoto:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+[data-theme='dark'] .authorPhoto {
+  border-color: var(--ifm-color-emphasis-300);
+}

@@ -4,6 +4,9 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import blogs from "../../database/blogs/index";
 import Head from "@docusaurus/Head";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
+import { authorsMap } from "../../utils/authors";
 
 import "./blogs-new.css";
 
@@ -269,12 +272,52 @@ export default function Blogs(): React.JSX.Element {
 
 const BlogCard = ({ blog, index }) => {
   // Get authors for this blog post
-  const getAuthors = (slug) => {
-    const authors = authorMapping[slug] || ["recode hive Team"];
-    return authors.length > 1 ? authors.join(" & ") : authors[0];
+  const getAuthorsData = (slug: string) => {
+    // Some blogs might have multiple authors
+    const authorIds = blog.authors || [];
+    return authorIds.map((id) => ({
+      id,
+      ...authorsMap[id],
+    }));
   };
 
-  const authorName = getAuthors(blog.slug);
+  const authors = getAuthorsData(blog.slug);
+
+  const renderSocialIcons = (author) => {
+    if (!author.socials) return null;
+
+    return (
+      <div className="author-social-links">
+        {author.socials.github && (
+          <Link
+            href={`https://github.com/${author.socials.github}`}
+            className="author-social-link github"
+            title="GitHub"
+          >
+            <FaGithub />
+          </Link>
+        )}
+        {author.socials.linkedin && (
+          <Link
+            href={`https://www.linkedin.com/in/${author.socials.linkedin}`}
+            className="author-social-link linkedin"
+            title="LinkedIn"
+          >
+            <FaLinkedin />
+          </Link>
+        )}
+        {author.socials.x && (
+          <Link
+            href={`https://x.com/${author.socials.x}`}
+            className="author-social-link x"
+            title="X"
+          >
+            <FaXTwitter />
+          </Link>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="article-card">
@@ -286,11 +329,25 @@ const BlogCard = ({ blog, index }) => {
         <h3 className="card-title">{blog.title}</h3>
         <p className="card-description">{blog.description}</p>
         <div className="card-meta">
-          <div className="card-author">
-            <span className="author-avatar">👤</span>
-            <span className="author-name" data-full-name={authorName}>
-              {authorName}
-            </span>
+          <div className="card-authors-container">
+            {authors.map((author, idx) => (
+              <div key={author.id} className="card-author">
+                <span className="author-avatar">
+                  <img 
+                    src={author.id ? `https://github.com/${author.socials?.github || author.id}.png` : ""} 
+                    alt={author.name}
+                    className="author-img"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'%3E%3C/path%3E%3Ccircle cx='12' cy='7' r='4'%3E%3C/circle%3E%3C/svg%3E";
+                    }}
+                  />
+                </span>
+                <div className="author-info">
+                  <span className="author-name">{author.name || "recode hive Team"}</span>
+                  {renderSocialIcons(author)}
+                </div>
+              </div>
+            ))}
           </div>
           <span className="card-read-time">5 min read</span>
         </div>
