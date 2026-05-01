@@ -159,9 +159,19 @@ export default async function handler(
         })
       });
 
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(
+          `GitHub GraphQL PR query failed: ${response.status} ${response.statusText}${errorText ? ` - ${errorText}` : ''}`
+        );
+      }
+
       const result: any = await response.json();
-      if (result.errors) {
+      if (result.errors?.length) {
         throw new Error(result.errors[0].message);
+      }
+      if (!result.data?.search) {
+        throw new Error('GitHub GraphQL PR query returned no search data.');
       }
 
       const searchData = result.data.search;
