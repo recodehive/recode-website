@@ -283,6 +283,7 @@ const config: Config = {
         disableInDev: false,
       },
     ],
+    "./plugins/leaderboard-api.js",
   ],
 
   // ✅ Add this customFields object to expose the token to the client-side

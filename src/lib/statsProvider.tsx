@@ -7,8 +7,6 @@ import React, {
   useState,
   type ReactNode,
 } from "react";
-import { githubService, type GitHubOrgStats } from "../services/githubService";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 // Time filter types
 export type TimeFilter = "week" | "month" | "year" | "all";
@@ -56,7 +54,7 @@ interface Contributor {
   profile: string;
   points: number;
   prs: number;
-  prDetails?: PRDetails[];
+  allPRDetails: PRDetails[];
 }
 
 interface Stats {
@@ -65,24 +63,12 @@ interface Stats {
   flooredTotalPoints: number;
 }
 
-interface PullRequestItem {
-  user: {
-    login: string;
-    avatar_url: string;
-    html_url: string;
-  };
-  merged_at?: string | null;
-  title?: string;
-  html_url?: string;
-  number?: number;
-  labels?: Array<{ name: string }>;
-}
-
-// Enhanced contributor type for internal processing (stores all PRs)
-interface FullContributor extends Omit<Contributor, "points" | "prs"> {
-  allPRDetails: PRDetails[]; // All PRs regardless of filter
-  points: number; // Filtered points
-  prs: number; // Filtered PR count
+interface OrgStats {
+  totalStars: number;
+  totalForks: number;
+  publicRepositories: number;
+  totalContributors: number;
+  discussionsCount: number;
 }
 
 export const CommunityStatsContext = createContext<
@@ -93,40 +79,7 @@ interface CommunityStatsProviderProps {
   children: ReactNode;
 }
 
-const GITHUB_ORG = "recodehive";
-const POINTS_PER_PR = 10;
-const MAX_CONCURRENT_REQUESTS = 15;
 const CACHE_DURATION = 20 * 60 * 1000; // 20 minutes cache
-const MAX_PAGES_PER_REPO = 10;
-
-// Function to calculate points based on PR labels
-const calculatePointsForPR = (labels?: Array<{ name: string }>): number => {
-  if (!labels || labels.length === 0) {
-    return 0; // No points if no labels
-  }
-
-  const labelNames = labels.map((label) => label.name.toLowerCase());
-
-  // Check if PR has the "recode" label
-  if (!labelNames.includes("recode")) {
-    return 0; // No points if "recode" label is missing
-  }
-
-  // Check for level labels and assign points accordingly with new point system
-  const levelPointsMap: { [key: string]: number } = {
-    "level 1": 10,
-    "level 2": 30,
-    "level 3": 50,
-  };
-  const matchedLevel = labelNames.find((label) =>
-    levelPointsMap.hasOwnProperty(label),
-  );
-  if (matchedLevel) {
-    return levelPointsMap[matchedLevel];
-  }
-
-  return 0; // No points if no level label
-};
 
 // Time filter utility functions
 const getTimeFilterDate = (filter: TimeFilter): Date | null => {
@@ -160,17 +113,12 @@ const isPRInTimeRange = (mergedAt: string, filter: TimeFilter): boolean => {
 export function CommunityStatsProvider({
   children,
 }: CommunityStatsProviderProps) {
-  const {
-    siteConfig: { customFields },
-  } = useDocusaurusContext();
-  const token = customFields?.gitToken || "";
-
-  const [loading, setLoading] = useState(false); // Start with false to avoid hourglass
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [githubStarCount, setGithubStarCount] = useState(984); // Placeholder value - updated to match production
-  const [githubContributorsCount, setGithubContributorsCount] = useState(467); // Placeholder value - updated to match production
-  const [githubForksCount, setGithubForksCount] = useState(1107); // Placeholder value - updated to match production
-  const [githubReposCount, setGithubReposCount] = useState(10); // Placeholder value - updated to match production
+  const [githubStarCount, setGithubStarCount] = useState(0);
+  const [githubContributorsCount, setGithubContributorsCount] = useState(0);
+  const [githubForksCount, setGithubForksCount] = useState(0);
+  const [githubReposCount, setGithubReposCount] = useState(0);
   const [githubDiscussionsCount, setGithubDiscussionsCount] = useState(0);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
@@ -178,15 +126,16 @@ export function CommunityStatsProvider({
   const [currentTimeFilter, setCurrentTimeFilter] =
     useState<TimeFilter>("week");
 
-  // Enhanced state for leaderboard data (stores all contributors with full PR history)
-  const [allContributors, setAllContributors] = useState<FullContributor[]>([]);
-  const [stats, setStats] = useState<Stats | null>(null);
+  // State for raw backend data
+  const [allContributors, setAllContributors] = useState<Contributor[]>([]);
+  const [backendStats, setBackendStats] = useState<Stats | null>(null);
 
-  // Cache state (stores raw data without filters)
+  // Cache state
   const [cache, setCache] = useState<{
     data: {
-      contributors: FullContributor[];
-      rawStats: { totalPRs: number };
+      contributors: Contributor[];
+      stats: Stats;
+      orgStats: OrgStats;
     } | null;
     timestamp: number;
   }>({ data: null, timestamp: 0 });
@@ -195,42 +144,36 @@ export function CommunityStatsProvider({
   const contributors = useMemo(() => {
     if (!allContributors.length) return [];
 
-    const filteredContributors = allContributors
+    return allContributors
       .map((contributor) => {
         const filteredPRs = contributor.allPRDetails.filter((pr) =>
           isPRInTimeRange(pr.mergedAt, currentTimeFilter),
         );
 
-        // Calculate total points from all filtered PRs
         const totalPoints = filteredPRs.reduce((sum, pr) => sum + pr.points, 0);
 
         return {
-          username: contributor.username,
-          avatar: contributor.avatar,
-          profile: contributor.profile,
+          ...contributor,
           points: totalPoints,
           prs: filteredPRs.length,
-          prDetails: filteredPRs, // For backward compatibility, though we'll use the new function
+          prDetails: filteredPRs,
         };
       })
-      .filter((contributor) => contributor.prs > 0) // Only show contributors with PRs in the time range
+      .filter((contributor) => contributor.prs > 0)
       .sort((a, b) => b.points - a.points || b.prs - a.prs);
-
-    return filteredContributors;
   }, [allContributors, currentTimeFilter]);
 
-  // Update stats when contributors change
-  useEffect(() => {
-    if (contributors.length > 0) {
-      setStats({
-        flooredTotalPRs: contributors.reduce((sum, c) => sum + c.prs, 0),
-        totalContributors: contributors.length,
-        flooredTotalPoints: contributors.reduce((sum, c) => sum + c.points, 0),
-      });
-    }
-  }, [contributors]);
+  // Computed stats based on filtered contributors
+  const stats = useMemo(() => {
+    if (contributors.length === 0) return backendStats;
+    
+    return {
+      flooredTotalPRs: contributors.reduce((sum, c) => sum + c.prs, 0),
+      totalContributors: contributors.length,
+      flooredTotalPoints: contributors.reduce((sum, c) => sum + c.points, 0),
+    };
+  }, [contributors, backendStats]);
 
-  // Function to get filtered PRs for a specific contributor (for PR view modal)
   const getFilteredPRsForContributor = useCallback(
     (username: string): PRDetails[] => {
       const contributor = allContributors.find((c) => c.username === username);
@@ -241,267 +184,100 @@ export function CommunityStatsProvider({
         .sort(
           (a, b) =>
             new Date(b.mergedAt).getTime() - new Date(a.mergedAt).getTime(),
-        ); // Sort by newest first
+        );
     },
     [allContributors, currentTimeFilter],
   );
 
-  // Time filter setter function
   const setTimeFilter = useCallback((filter: TimeFilter) => {
     setCurrentTimeFilter(filter);
   }, []);
 
-  const fetchAllOrgRepos = useCallback(
-    async (headers: Record<string, string>) => {
-      const repos: any[] = [];
-      let page = 1;
-      while (true) {
-        const resp = await fetch(
-          `https://api.github.com/orgs/${GITHUB_ORG}/repos?type=public&per_page=100&page=${page}`,
-          {
-            headers,
-          },
-        );
-        if (!resp.ok) {
-          throw new Error(
-            `Failed to fetch org repos: ${resp.status} ${resp.statusText}`,
-          );
-        }
-        const data = await resp.json();
-        repos.push(...data);
-        if (!Array.isArray(data) || data.length < 100) break;
-        page++;
-      }
-      return repos;
-    },
-    [],
-  );
-
-  const fetchMergedPRsForRepo = useCallback(
-    async (repoName: string, headers: Record<string, string>) => {
-      const mergedPRs: PullRequestItem[] = [];
-
-      // First, get the first page to estimate total pages
-      const firstResp = await fetch(
-        `https://api.github.com/repos/${GITHUB_ORG}/${repoName}/pulls?state=closed&per_page=100&page=1`,
-        { headers },
-      );
-
-      if (!firstResp.ok) {
-        console.warn(
-          `Failed to fetch PRs for ${repoName}: ${firstResp.status} ${firstResp.statusText}`,
-        );
-        return [];
-      }
-
-      const firstPRs: PullRequestItem[] = await firstResp.json();
-      if (!Array.isArray(firstPRs) || firstPRs.length === 0) return [];
-
-      const firstPageMerged = firstPRs.filter((pr) => Boolean(pr.merged_at));
-      mergedPRs.push(...firstPageMerged);
-
-      // If we got less than 100, that's all there is
-      if (firstPRs.length < 100) return mergedPRs;
-
-      // Create parallel requests for remaining pages
-      const pagePromises: Promise<PullRequestItem[]>[] = [];
-      const maxPages = Math.min(MAX_PAGES_PER_REPO, 10);
-
-      for (let i = 2; i <= maxPages; i++) {
-        pagePromises.push(
-          fetch(
-            `https://api.github.com/repos/${GITHUB_ORG}/${repoName}/pulls?state=closed&per_page=100&page=${i}`,
-            { headers },
-          )
-            .then(async (resp) => {
-              if (!resp.ok) return [];
-              const prs: PullRequestItem[] = await resp.json();
-              if (!Array.isArray(prs)) return [];
-              return prs.filter((pr) => Boolean(pr.merged_at));
-            })
-            .catch(() => []),
-        );
-      }
-
-      // Wait for all pages in parallel
-      const remainingPages = await Promise.all(pagePromises);
-      remainingPages.forEach((pagePRs) => {
-        if (pagePRs.length > 0) mergedPRs.push(...pagePRs);
-      });
-
-      return mergedPRs;
-    },
-    [],
-  );
-
-  // Enhanced processing function that stores only valid PRs with points
-  const processBatch = useCallback(
-    async (
-      repos: any[],
-      headers: Record<string, string>,
-    ): Promise<{
-      contributorMap: Map<string, FullContributor>;
-      totalMergedPRs: number;
-    }> => {
-      const contributorMap = new Map<string, FullContributor>();
-      let totalMergedPRs = 0;
-
-      // Process repos in batches to control concurrency
-      for (let i = 0; i < repos.length; i += MAX_CONCURRENT_REQUESTS) {
-        const batch = repos.slice(i, i + MAX_CONCURRENT_REQUESTS);
-
-        const promises = batch.map(async (repo) => {
-          if (repo.archived) return { mergedPRs: [], repoName: repo.name };
-
-          try {
-            const mergedPRs = await fetchMergedPRsForRepo(repo.name, headers);
-            return { mergedPRs, repoName: repo.name };
-          } catch (error) {
-            console.warn(`Skipping repo ${repo.name} due to error:`, error);
-            return { mergedPRs: [], repoName: repo.name };
-          }
-        });
-
-        // Wait for current batch to complete
-        const results = await Promise.all(promises);
-
-        // Process results from this batch
-        results.forEach(({ mergedPRs, repoName }) => {
-          mergedPRs.forEach((pr) => {
-            // Calculate points for this PR based on labels
-            const prPoints = calculatePointsForPR(pr.labels);
-
-            // ONLY store PRs that have points (i.e., have "recode" label and a level label)
-            if (prPoints > 0) {
-              totalMergedPRs++;
-
-              const username = pr.user.login;
-              if (!contributorMap.has(username)) {
-                contributorMap.set(username, {
-                  username,
-                  avatar: pr.user.avatar_url,
-                  profile: pr.user.html_url,
-                  points: 0, // Will be calculated later based on filter
-                  prs: 0, // Will be calculated later based on filter
-                  allPRDetails: [], // Store only valid PRs here
-                });
-              }
-              const contributor = contributorMap.get(username)!;
-
-              // Add detailed PR information only if it has all required fields
-              if (pr.title && pr.html_url && pr.merged_at && pr.number) {
-                contributor.allPRDetails.push({
-                  title: pr.title,
-                  url: pr.html_url,
-                  mergedAt: pr.merged_at,
-                  repoName,
-                  number: pr.number,
-                  points: prPoints,
-                });
-              }
-            }
-          });
-        });
-      }
-
-      return { contributorMap, totalMergedPRs };
-    },
-    [fetchMergedPRsForRepo],
-  );
-
   const fetchAllStats = useCallback(
     async (signal: AbortSignal) => {
-      // Check cache first and load it immediately without showing loading state
       const now = Date.now();
       const isCacheValid = cache.data && now - cache.timestamp < CACHE_DURATION;
 
       if (isCacheValid) {
-        // Use cached data immediately
-        setAllContributors(cache.data.contributors);
+        const { contributors: c, stats: s, orgStats: os } = cache.data!;
+        setAllContributors(c);
+        setBackendStats(s);
+        setGithubStarCount(os.totalStars);
+        setGithubContributorsCount(os.totalContributors);
+        setGithubForksCount(os.totalForks);
+        setGithubReposCount(os.publicRepositories);
+        setGithubDiscussionsCount(os.discussionsCount);
         setLoading(false);
         return;
       }
 
-      // If cache is expired or empty, show cached data anyway but fetch fresh data
-      // This provides immediate content while updating in the background
       if (cache.data) {
         setAllContributors(cache.data.contributors);
-        setLoading(false); // Don't show loading state for background refresh
+        setLoading(false);
       } else {
-        setLoading(true); // Only show loading on first load
+        setLoading(true);
       }
 
       setError(null);
 
-      if (!token) {
-        setError(
-          "GitHub token not found. Please set customFields.gitToken in docusaurus.config.js.",
-        );
-        setLoading(false);
-        return;
-      }
-
       try {
-        const headers: Record<string, string> = {
-          Authorization: `token ${token}`,
-          Accept: "application/vnd.github.v3+json",
-        };
+        // Fetch from our new backend API
+        // This is served by either Vercel (production) or our Docusaurus plugin (development)
+        const apiPath = "/api/leaderboard";
+        const resp = await fetch(apiPath, { signal });
 
-        // Fetch both org stats and repos in parallel
-        const [orgStats, repos] = await Promise.all([
-          githubService.fetchOrganizationStats(signal),
-          fetchAllOrgRepos(headers),
-        ]);
+        if (!resp.ok) {
+          throw new Error(`API Error: ${resp.status} ${resp.statusText}`);
+        }
 
-        // Set org stats immediately
-        setGithubStarCount(orgStats.totalStars);
-        setGithubContributorsCount(orgStats.totalContributors);
-        setGithubForksCount(orgStats.totalForks);
-        setGithubReposCount(orgStats.publicRepositories);
-        setGithubDiscussionsCount(orgStats.discussionsCount);
-        setLastUpdated(new Date(orgStats.lastUpdated));
+        // Verify we got JSON back (not an HTML error page)
+        const contentType = resp.headers.get("content-type");
+        if (!contentType || !contentType.includes("application/json")) {
+          throw new Error("Received invalid data format (HTML). Please restart your dev server (npm start).");
+        }
 
-        // Process leaderboard data with concurrent processing
-        const { contributorMap, totalMergedPRs } = await processBatch(
-          repos,
-          headers,
-        );
+        const result = await resp.json();
 
-        const contributorsArray = Array.from(contributorMap.values());
+        if (result.success) {
+          setAllContributors(result.contributors);
+          setBackendStats(result.stats);
+          setLastUpdated(new Date(result.updatedAt));
 
-        setAllContributors(contributorsArray);
+          // Set org stats directly from backend response
+          const os = result.orgStats;
+          setGithubStarCount(os.totalStars);
+          setGithubContributorsCount(os.totalContributors);
+          setGithubForksCount(os.totalForks);
+          setGithubReposCount(os.publicRepositories);
+          setGithubDiscussionsCount(os.discussionsCount);
 
-        // Cache the results (raw data without filtering)
-        setCache({
-          data: {
-            contributors: contributorsArray,
-            rawStats: { totalPRs: totalMergedPRs },
-          },
-          timestamp: now,
-        });
+          setCache({
+            data: {
+              contributors: result.contributors,
+              stats: result.stats,
+              orgStats: result.orgStats
+            },
+            timestamp: now,
+          });
+        } else {
+          throw new Error(result.error || "Failed to fetch leaderboard");
+        }
+
       } catch (err: any) {
         if (err.name !== "AbortError") {
-          console.error("Error fetching GitHub organization stats:", err);
+          console.error("Error fetching leaderboard data:", err);
           setError(
-            err instanceof Error ? err.message : "Failed to fetch GitHub stats",
+            err instanceof Error ? err.message : "Failed to fetch leaderboard data",
           );
-
-          // Set fallback values on error
-          setGithubStarCount(0);
-          setGithubContributorsCount(140);
-          setGithubForksCount(0);
-          setGithubReposCount(20);
-          setGithubDiscussionsCount(0);
         }
       } finally {
         setLoading(false);
       }
     },
-    [token, fetchAllOrgRepos, processBatch, cache],
+    [cache],
   );
 
   const clearCache = useCallback(() => {
-    githubService.clearCache();
     setCache({ data: null, timestamp: 0 });
     const abortController = new AbortController();
     fetchAllStats(abortController.signal);

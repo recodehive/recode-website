@@ -3,6 +3,9 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "baseUrl": ".",
+    "paths": {
+      "@site/*": ["./*"]
+    },
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "bundler",
