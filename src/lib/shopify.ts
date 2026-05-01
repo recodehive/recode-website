@@ -17,10 +17,8 @@ import siteConfig from "@generated/docusaurus.config";
 function getShopifyConfig() {
   const domain =
     (siteConfig.customFields?.SHOPIFY_STORE_DOMAIN as string) || "";
-  const token =
-    (siteConfig.customFields?.SHOPIFY_STOREFRONT_ACCESS_TOKEN as string) || "";
 
-  return { domain, token };
+  return { domain };
 }
 
 const SHOPIFY_GRAPHQL_URL = (domain: string) =>
@@ -99,22 +97,22 @@ interface ShopifyCheckout {
 async function shopifyFetch<T>(query: string, variables = {}): Promise<T> {
   const config = getShopifyConfig();
 
-  if (!config.domain || !config.token) {
-    console.warn("Shopify credentials not configured. Using mock data.");
+  if (!config.domain) {
+    console.warn("Shopify configuration missing. Using mock data.");
     throw new Error("Shopify not configured");
   }
 
-  const response = await fetch(SHOPIFY_GRAPHQL_URL(config.domain), {
+  // Use the local API proxy to avoid exposing the token
+  const response = await fetch("/api/merch", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-Shopify-Storefront-Access-Token": config.token,
     },
     body: JSON.stringify({ query, variables }),
   });
 
   if (!response.ok) {
-    throw new Error(`Shopify API error: ${response.statusText}`);
+    throw new Error(`Merch API error: ${response.statusText}`);
   }
 
   const json = await response.json();
@@ -489,7 +487,7 @@ export async function removeFromCheckout(
  */
 export function isShopifyConfigured(): boolean {
   const config = getShopifyConfig();
-  return Boolean(config.domain && config.token);
+  return Boolean(config.domain);
 }
 
 export type { ShopifyProduct, ShopifyCheckout };

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import ProductGrid from "../../components/merch/ProductGrid";
 import FilterBar from "../../components/merch/FilterBar";
 import ShoppingCart from "../../components/merch/ShoppingCart";
-import { ShoppingBag } from "lucide-react";
+import { ShoppingBag, Truck, RotateCcw, Leaf, ShieldCheck, Sparkles, Globe, Award } from "lucide-react";
 import { getProducts, isShopifyConfigured } from "../../lib/shopify";
 import "./merch.css";
 
@@ -240,17 +240,20 @@ export default function MerchPage(): ReactNode {
             </div>
             <div className="hero-right">
               <div className="merch-hero-stats">
-                <div className="stat-item stat-item-highlighted">
+                <div className="stat-item-highlighted">
+                  <Award className="text-[var(--merch-primary)] mb-2" size={32} />
                   <span className="stat-number">100%</span>
                   <span className="stat-label">Quality</span>
                 </div>
-                <div className="stat-item stat-item-highlighted">
-                  <span className="stat-number">🌍</span>
-                  <span className="stat-label">Worldwide Shipping</span>
+                <div className="stat-item-highlighted">
+                  <Globe className="text-[var(--merch-primary)] mb-2" size={32} />
+                  <span className="stat-number">Global</span>
+                  <span className="stat-label">Shipping</span>
                 </div>
-                <div className="stat-item stat-item-highlighted">
-                  <span className="stat-number">🌱</span>
-                  <span className="stat-label">Eco-Friendly</span>
+                <div className="stat-item-highlighted">
+                  <Leaf className="text-[var(--merch-primary)] mb-2" size={32} />
+                  <span className="stat-number">Eco</span>
+                  <span className="stat-label">Friendly</span>
                 </div>
               </div>
             </div>
@@ -313,43 +316,43 @@ export default function MerchPage(): ReactNode {
         <section className="merch-info-section">
           <div className="info-grid">
             <motion.div
-              className="info-card info-card-highlighted"
+              className="info-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <h3>🚚 Free Shipping</h3>
+              <h3><Truck size={24} /> Free Shipping</h3>
               <p>Free shipping on orders over $50</p>
             </motion.div>
             <motion.div
-              className="info-card info-card-highlighted"
+              className="info-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <h3>🔄 Easy Returns</h3>
+              <h3><RotateCcw size={24} /> Easy Returns</h3>
               <p>30-day return policy, no questions asked</p>
             </motion.div>
             <motion.div
-              className="info-card info-card-highlighted"
+              className="info-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
             >
-              <h3>🌱 Sustainable</h3>
+              <h3><Leaf size={24} /> Sustainable</h3>
               <p>Eco-friendly materials and ethical production</p>
             </motion.div>
             <motion.div
-              className="info-card info-card-highlighted"
+              className="info-card"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.4 }}
             >
-              <h3>💯 Quality Guarantee</h3>
+              <h3><ShieldCheck size={24} /> Quality Guarantee</h3>
               <p>Premium materials, built to last</p>
             </motion.div>
           </div>

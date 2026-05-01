@@ -1,5 +1,5 @@
 import React from "react";
-import { X, Plus, Minus, ShoppingBag, ArrowRight } from "lucide-react";
+import { X, Plus, Minus, ShoppingBag, ArrowRight, Lock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Product } from "../../pages/merch";
 import "./ShoppingCart.css";
@@ -185,7 +185,7 @@ const ShoppingCart: React.FC<ShoppingCartProps> = ({
                     </button>
 
                     <p className="cart-secure-text">
-                      🔒 Secure checkout powered by Shopify
+                      <Lock size={14} /> Secure checkout powered by Shopify
                     </p>
                   </div>
                 </>

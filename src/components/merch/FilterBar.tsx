@@ -1,5 +1,5 @@
 import React from "react";
-import { Filter, SlidersHorizontal } from "lucide-react";
+import { Filter, SlidersHorizontal, LayoutGrid, Shirt, Scissors, Package } from "lucide-react";
 import "./FilterBar.css";
 
 interface FilterBarProps {
@@ -10,10 +10,10 @@ interface FilterBarProps {
 }
 
 const categories = [
-  { id: "all", label: "All Products", icon: "🛍️" },
-  { id: "t-shirts", label: "T-Shirts", icon: "👕" },
-  { id: "hoodies", label: "Hoodies", icon: "🧥" },
-  { id: "accessories", label: "Accessories", icon: "🎒" },
+  { id: "all", label: "All Products", icon: <LayoutGrid size={18} /> },
+  { id: "t-shirts", label: "T-Shirts", icon: <Shirt size={18} /> },
+  { id: "hoodies", label: "Hoodies", icon: <Scissors size={18} /> }, // Using Scissors as a proxy for apparel/tailoring, or we can use Shirt
+  { id: "accessories", label: "Accessories", icon: <Package size={18} /> },
 ];
 
 const sortOptions = [
