@@ -285,15 +285,15 @@ const config: Config = {
     ],
   ],
 
-  // ✅ Add this customFields object to expose the token to the client-side
+  // Expose only non-secret config to the client-side bundle via customFields.
+  // NEVER add hardcoded secret fallbacks here — this object is shipped in the JS bundle.
+  // Store all secrets exclusively in .env (which is git-ignored).
   customFields: {
-    gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
-    // Shopify credentials for merch store
-    SHOPIFY_STORE_DOMAIN:
-      process.env.SHOPIFY_STORE_DOMAIN || "junh9v-gw.myshopify.com",
+    gitToken: process.env.DOCUSAURUS_GIT_TOKEN || "",
+    // Shopify Storefront credentials (read-only public token — no hardcoded fallbacks)
+    SHOPIFY_STORE_DOMAIN: process.env.SHOPIFY_STORE_DOMAIN || "",
     SHOPIFY_STOREFRONT_ACCESS_TOKEN:
-      process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN ||
-      "2503dfbf93132b42e627e7d53b3ba3e9",
+      process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || "",
     hooks: {
       onBrokenMarkdownLinks: "warn",
     },
