@@ -81,10 +81,26 @@
 .title-filter-container {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px;
   margin-bottom: 24px;
+}
+
+.filter-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  text-align: right;
+}
+
+.light .filter-label {
+  color: #555;
+}
+
+.dark .filter-label {
+  color: #aaa;
 }
 
 @media (max-width: 768px) {
