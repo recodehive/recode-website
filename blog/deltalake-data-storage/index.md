@@ -33,6 +33,7 @@ canonical_url:
 
 ---
  <!-- truncate -->
+ <!-- sample change -->
 ## There Is Something Wrong With Your Data Lake
 
 Imagine this: your firm receives hundreds of records per hour, be it users signing up for an account, making purchases, or using your mobile application. You store all these records in a data lake, which is hosted on the cloud. Got it?
