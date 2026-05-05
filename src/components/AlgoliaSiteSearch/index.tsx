@@ -23,6 +23,7 @@ declare global {
         applicationId: string;
         apiKey: string;
         indexName: string;
+        insights?: boolean;
         attributes: {
           primaryText: string;
           secondaryText: string;
@@ -32,6 +33,7 @@ declare global {
         };
         darkMode: boolean;
       }) => void;
+      destroy?: (container: string) => void;
     };
   }
 }
@@ -115,6 +117,7 @@ export default function AlgoliaSiteSearch(): React.ReactElement | null {
           applicationId,
           apiKey,
           indexName,
+          insights: false,
           attributes: {
             primaryText: "title",
             secondaryText: "description",
@@ -131,6 +134,7 @@ export default function AlgoliaSiteSearch(): React.ReactElement | null {
 
     return () => {
       cancelled = true;
+      window.SiteSearch?.destroy?.(`#${containerId}`);
     };
   }, [apiKey, applicationId, indexName, isConfigured]);
 

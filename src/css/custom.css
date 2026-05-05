@@ -1388,6 +1388,59 @@ html {
   box-sizing: border-box !important;
 }
 
+.algolia-sitesearch-navbar {
+  display: flex !important;
+  align-items: center !important;
+  padding: 0.2rem 0.3rem !important;
+}
+
+.algolia-sitesearch-navbar #algolia-sitesearch-navbar {
+  display: flex;
+  align-items: center;
+}
+
+.algolia-sitesearch-navbar .sitesearch-button {
+  display: flex !important;
+  align-items: center !important;
+  height: 36px !important;
+  min-width: 250px;
+  padding: 0.5rem 0.75rem !important;
+  gap: 0.5rem !important;
+  transform: none !important;
+}
+
+.algolia-sitesearch-navbar .sitesearch-button:hover {
+  transform: none !important;
+}
+
+.algolia-sitesearch-navbar .sitesearch-button .search-icon {
+  position: static !important;
+  inset: auto !important;
+  display: inline-flex !important;
+  align-self: center !important;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin: 0 !important;
+  line-height: 0 !important;
+  pointer-events: none;
+}
+
+.algolia-sitesearch-navbar .sitesearch-button .search-icon svg {
+  display: block;
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 !important;
+}
+
+.algolia-sitesearch-navbar .sitesearch-button .button-text {
+  min-width: 0;
+}
+
+.algolia-sitesearch-navbar .sitesearch-button .keyboard-shortcut {
+  flex-shrink: 0;
+}
+
 [data-theme="dark"] .explore-btn:hover {
   color: white;
 }
