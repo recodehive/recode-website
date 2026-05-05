@@ -72,7 +72,7 @@
   },
   "devDependencies": {
     "@docusaurus/module-type-aliases": "^3.10.0",
-    "@docusaurus/tsconfig": "^3.9.2",
+    "@docusaurus/tsconfig": "^3.10.1",
     "@docusaurus/types": "^3.10.1",
     "@tailwindcss/postcss": "^4.2.4",
     "@types/canvas-confetti": "^1.9.0",
