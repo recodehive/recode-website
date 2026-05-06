@@ -133,6 +133,18 @@ const blogs: Blog[] = [
     category: "data engineering",
     tags: ["Netflix", "Data Processing", "Big Data", "Scalability", "Event Handling", "Technology", "Architecture", "Data Engineering"],
   },
+  {
+    id: 12,
+    title: "Azure Storage & ADLS Gen2: Where Does Your Data Actually Live?",
+    image: "/img/blogs/azure-storage-cover.png",
+    description:
+      "Azure Storage and Azure Data Lake Storage Gen2 (ADLS Gen2) are two different storage solutions offered by Microsoft Azure. Azure Storage is a general-purpose storage service that provides various types of storage, including blobs, files, queues, and tables. ADLS Gen2, on the other hand, is a specialized storage solution designed for big data analytics workloads, offering features like hierarchical namespace and optimized performance for analytics.",
+    slug: "azure-storage-options",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Azure", "Storage", "Data Lake", "ADLS Gen2", "Big Data", "Scalability", "Event Handling", "Technology", "Architecture", "Data Engineering"],
+  },
+
 ];
 
 export default blogs;
