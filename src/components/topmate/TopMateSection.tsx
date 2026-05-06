@@ -16,12 +16,6 @@ const TopMateSection = ({ setShowTopmate }) => {
 
   return (
     <div className="relative px-4 pt-0 pb-20">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-gradient-to-br from-blue-400/10 to-purple-600/10 blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-gradient-to-tr from-green-400/10 to-blue-600/10 blur-3xl" />
-      </div>
-      
       <div className="relative mx-auto max-w-6xl">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
