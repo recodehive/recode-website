@@ -185,7 +185,7 @@ Every time you see `abfss://container@storageaccount.dfs.core.windows.net/` in a
 
 ### Fine-grained access control with POSIX ACLs
 
-Regular Blob Storage gives you Role-Based Access Control (RBAC) at the container level. ADLS Gen2 goes further with **POSIX-style Access Control Lists (ACLs)**, the same permission model used in Linux file systems.
+Regular Blob Storage gives you Role-Based Access Control (RBAC) at the container level. ADLS Gen2 goes further with [**POSIX-style Access Control Lists (ACLs)**](https://www.komprise.com/glossary_terms/posix-acls/), the same permission model used in Linux file systems.
 
 This means you can grant a data science team read access to only the `silver/` directory, without exposing `bronze/` (raw, potentially sensitive data) or `gold/` (business metrics). Fine-grained, at the folder and file level.
 
