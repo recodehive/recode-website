@@ -89,6 +89,8 @@ There's no schema enforcement, no type checking. You put a file in, you get it b
 
 Depending on how your data is written, you'll use one of three blob types:
 
+![blob_types](./img/blob_types.png)
+
 - **Block Blob :** Upload a file all at once. This covers 95% of data engineering use cases, your CSVs, Parquet files, JSON exports all go here.
 - **Append Blob :** Add data continuously without modifying what's already there. Perfect for log files that grow over time.
 - **Page Blob :** Optimised for random read/write operations. Used mainly for VM disks. You'll rarely touch this directly.
@@ -114,24 +116,20 @@ Plain Blob Storage works perfectly for general file storage. But for big data an
 
 ## The Problem with Plain Blob Storage at Scale
 
-In standard Blob Storage, **folders don't actually exist.**
+Here's something I found out the hard way six months into working with Azure pipelines.
 
-What looks like a folder structure:
-```
-raw/2024/jan/sales.csv
-raw/2024/feb/sales.csv
-raw/2024/mar/sales.csv
-```
+I had a container full of raw sales data — about 40,000 Parquet files organised under a path that looked like `raw/2024/`. My team decided to rename it to `bronze/2024/` to match our Medallion Architecture convention. Simple enough, right?
 
-...is actually just flat key names. The `/` characters are part of the key string, not real directory separators. There are no real folders underneath.
+It took **47 minutes**.
 
-This creates a serious problem when your data grows:
+Not because Azure was slow. Because what looked like a folder called `raw/` was never actually a folder. In plain Blob Storage, everything lives at the same flat level, the slashes in a path like 
+`raw/2024/jan/file.parquet` are just characters in a key name, the same way a filename on your desktop could technically be called `raw-2024-jan-file.parquet` with dashes instead. 
 
-Imagine you need to rename the `raw/2024/` "folder" to `bronze/2024/`. In regular Blob Storage, Azure has to copy each file to the new key name and delete the old one, **one file at a time**. With a thousand files, that's a thousand individual operations. With ten million files, you're waiting hours.
+There is no directory underneath. So renaming means Azure copies each file to the new key name and deletes the old one,one file at a time, 40,000 times in a row.
 
-At big data scale, this is a dealbreaker.
+At big data scale where you're managing millions of files across Bronze, Silver, and Gold layers that's not a minor inconvenience. It's a pipeline blocker.
 
-This is the exact problem that **Azure Data Lake Storage Gen2** was built to solve.
+This is the exact problem **ADLS Gen2** was built to fix.
 
 
 
