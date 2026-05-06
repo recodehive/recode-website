@@ -222,6 +222,8 @@ They're not glamorous. But remove them from a production pipeline and things fal
 
 Queue Storage stores **messages**, small packets of information passed between services asynchronously.
 
+![queue_storage](./img/queue_storage.png)
+
 In a data pipeline context, Queue Storage is typically used as a **trigger mechanism**. When a new file lands in ADLS Gen2, Azure Blob Storage can emit an event that drops a message into a Queue. Azure Data Factory (or an Azure Function) listens to that Queue and kicks off the pipeline automatically.
 
 ```
