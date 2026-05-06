@@ -33,12 +33,15 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
           : "border-gray-200/50 bg-white/80 shadow-lg"
       }`}
     >
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5" />
-      
-      {/* Floating Elements */}
-      <div className="absolute -top-2 -right-2 h-20 w-20 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-600/20 blur-xl" />
-      <div className="absolute -bottom-2 -left-2 h-16 w-16 rounded-full bg-gradient-to-tr from-green-400/20 to-blue-600/20 blur-xl" />
+      {/* Gradient Background (hidden in dark mode) */}
+      {!isDark && (
+        <>
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5" />
+          {/* Floating Elements */}
+          <div className="absolute -top-2 -right-2 h-20 w-20 rounded-full bg-gradient-to-br from-blue-400/20 to-purple-600/20 blur-xl" />
+          <div className="absolute -bottom-2 -left-2 h-16 w-16 rounded-full bg-gradient-to-tr from-green-400/20 to-blue-600/20 blur-xl" />
+        </>
+      )}
 
       <div className="relative p-8">
         {/* Header Badge */}

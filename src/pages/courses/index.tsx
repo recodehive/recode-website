@@ -463,7 +463,7 @@ function CoursesContent() {
             >
               Transform Your Career
               <br className="hidden md:block" />
-              <span className="block md:inline">in Data Engineering</span>
+              <span className="block md:inline">in Engineering</span>
             </motion.h1>
             <div className="flex w-full justify-center">
               <motion.p
@@ -503,12 +503,14 @@ function CoursesContent() {
                   </svg>
                 </span>
               </a>
-              <button
+              <a
+                href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="courses-button-secondary group relative overflow-hidden rounded-2xl px-8 py-3 text-base font-bold shadow-2xl transition-all duration-300 hover:scale-105 md:px-10 md:py-4 md:text-lg"
-                onClick={() => handleAction("curriculum")}
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
-                  View Curriculum
+                  Postman Certification
                   <svg
                     className="h-4 w-4 transition-transform group-hover:translate-x-1 md:h-5 md:w-5"
                     fill="none"
@@ -523,7 +525,7 @@ function CoursesContent() {
                     />
                   </svg>
                 </span>
-              </button>
+              </a>
             </motion.div>
           </div>
 
@@ -785,9 +787,11 @@ function CoursesContent() {
                     </motion.div>
                   </React.Fragment>
                 ))}
-                <motion.button
+                <motion.a
+                  href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="courses-button-primary relative z-10 mt-8 transform rounded-2xl px-8 py-3 shadow-2xl transition-all duration-300 hover:scale-110 xl:mt-12 xl:px-10 xl:py-4"
-                  onClick={() => handleAction("enroll")}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -795,8 +799,8 @@ function CoursesContent() {
                   whileHover={{ y: -5 }}
                   whileTap={{ y: 0 }}
                 >
-                  Enroll now
-                </motion.button>
+                  Learn now
+                </motion.a>
               </div>
               {/* Right column */}
               <div className="flex flex-1 flex-col gap-6 lg:gap-8">
