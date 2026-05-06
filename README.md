@@ -247,9 +247,8 @@ This project is licensed under the [MIT License](LICENSE). See the LICENSE file 
 Stay up to date with the latest from recode hive:
 
 - **Website:** [recodehive.com](https://recodehive.com/)
-- **Instagram:** [@nomad_brains](https://www.instagram.com/nomad_brains/)
-- **LinkedIn:** [Sanjay K V](https://www.linkedin.com/in/sanjay-k-v/)
-- **Twitter:** [@sanjay*kv*](https://x.com/sanjay_kv_)
+- **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/sanjay-k-v/)
+- **Twitter:** [X](https://x.com/sanjay_kv_)
 - **YouTube:** [@RecodeHive](https://www.youtube.com/@RecodeHive)
 - **Newsletter:** [Subscribe](https://recodehive.substack.com/)
 
