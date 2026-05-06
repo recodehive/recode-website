@@ -59,7 +59,7 @@ const HeaderContent = () => {
           style={{ flex: 1 }}
         >
           <Link
-            to="/get-started/"
+            href="https://www.recodehive.com/docs/"
             className="chh__header-content__input--button"
           >
             Get Started
