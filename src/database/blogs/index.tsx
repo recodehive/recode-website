@@ -154,6 +154,17 @@ const blogs: Blog[] = [
     authors: ["Aditya-Singh-Rathore"],
     category: "data engineering",
     tags: ["Azure", "Storage", "Data Lake", "ADLS Gen2", "Big Data", "Scalability", "Event Handling", "Technology", "Architecture", "Data Engineering"],
+   },
+  {
+    id: 14,
+    title: "Medallion Architecture: How to Stop Your Data Pipeline from Becoming a Nightmare",
+    image: "/img/blogs/medallion_architecture.png",
+    description:
+      "The Medallion Architecture is a data management approach that organizes data into different layers (Bronze, Silver, Gold) to improve data quality, governance, and scalability in data pipelines. It helps prevent data pipelines from becoming unmanageable by providing a structured framework for data processing and storage.",
+    slug: "medallion-architecture",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Medallion Architecture", "Data Pipeline", "Data Management", "Data Quality", "Data Governance", "Scalability", "Data Engineering"],
   },
 
 ];
