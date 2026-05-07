@@ -350,8 +350,8 @@ Set up Azure Monitor alerts for pipeline failures. You shouldn't find out a pipe
 - [Microsoft Docs - ADF Tutorial: Copy data using Azure portal](https://learn.microsoft.com/en-us/azure/data-factory/tutorial-copy-data-portal)
 - [Microsoft Docs: Mapping Data Flows](https://learn.microsoft.com/en-us/azure/data-factory/concepts-data-flow-overview)
 - [Microsoft Docs: Triggers in ADF](https://learn.microsoft.com/en-us/azure/data-factory/concepts-pipeline-execution-triggers)
-- [RecodeHive - Azure Storage & ADLS Gen2: Where Does Your Data Actually Live?](https://www.recodehive.com/blog/azure-storage-adls-gen2-complete-guide)
-- [RecodeHive - Microsoft Fabric: One Platform, One Lake]([https://www.recodehive.com/blog/microsoft-fabric-one-platform-one-lake-every-data-workload](https://www.recodehive.com/blog/microsoft-fabric-explained))
+- [RecodeHive - Azure Storage & ADLS Gen2: Where Does Your Data Actually Live?](https://www.recodehive.com/blog/azure-storage-options)
+- [RecodeHive - Microsoft Fabric: One Platform, One Lake](https://www.recodehive.com/blog/microsoft-fabric-explained)
 
 
 ## About the Author
