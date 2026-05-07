@@ -326,7 +326,7 @@ This is the exact structure we adopted after the revenue incident. Bronze preser
 
 - [Databricks - Medallion Architecture](https://www.databricks.com/glossary/medallion-architecture)
 - [Microsoft Learn - Medallion Lakehouse Architecture](https://learn.microsoft.com/en-us/azure/databricks/lakehouse/medallion)
-- [Delta Lake - What is Delta Lake?](https://delta.io/learn/what-is-delta-lake/)
+- [Delta Lake - What is Delta Lake?](https://docs.delta.io/)
 - [RecodeHive - Lakehouse vs Data Warehouse](https://www.recodehive.com/blog/lakehouse-vs-warehouse)
 - [RecodeHive - Microsoft Fabric: One Platform, One Lake](https://www.recodehive.com/blog/microsoft-fabric-explained)
 - [RecodeHive - Azure Storage & ADLS Gen2](https://www.recodehive.com/blog/azure-storage-options)
