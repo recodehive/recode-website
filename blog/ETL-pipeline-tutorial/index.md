@@ -81,6 +81,16 @@ Think of it as the key to a door. Before ADF can read from your Blob Storage or 
 
 You create a Linked Service once, then reuse it across as many datasets and pipelines as you need.
 
+<iframe
+  width="100%"
+  height="400"
+  src="https://www.youtube.com/embed/EpDkxTHAhOs"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
+
 **Examples:**
 - `AzureStorageLinkedService` → connects to your ADLS Gen2 account
 - `AzureSqlLinkedService` → connects to your Azure SQL Database
