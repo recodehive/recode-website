@@ -13,7 +13,7 @@ import "./leaderboard.css";
 const GITHUB_ORG = "recodehive";
 
 // Users to exclude from the leaderboard
-const EXCLUDED_USERS = ["sanjay-kv", "allcontributors", "allcontributors[bot]","dependabot[bot]"];
+const EXCLUDED_USERS = ["sanjay-kv", "allcontributors", "allcontributors[bot]", "dependabot[bot]"];
 
 interface PRDetails {
   title: string;
@@ -482,7 +482,6 @@ export default function LeaderBoard(): JSX.Element {
               </h2>
               <div className="time-filter-wrapper top-title-filter">
                 <label htmlFor="time-period-filter" className="filter-label">
-                  Time Period:
                 </label>
                 <select
                   id="time-period-filter"
