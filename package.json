@@ -54,7 +54,7 @@
     "dotenv": "^17.4.2",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
-    "firebase": "^9.22.2",
+    "firebase": "^12.13.0",
     "firebaseui": "6.1.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^0.503.0",
