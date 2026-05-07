@@ -1,7 +1,7 @@
 ---
-title: "How SSO Actually Works"
+title: "How SSO Works - Case Study"
 authors: [Aditya-Singh-Rathore, sanjay-kv]
-sidebar_label: "How SSO Actually Works"
+sidebar_label: "How SSO Works - Case Study"
 tags: [sso, single-sign-on, authentication, identity-provider, oauth, openid-connect, saml, security, web]
 date: 2026-05-04
  
