@@ -3,7 +3,7 @@ title: "Medallion Architecture: How to Stop Your Data Pipeline from Becoming a N
 authors: [Aditya-Singh-Rathore]
 sidebar_label: "Medallion Architecture Explained"
 tags: [medallion-architecture, data-engineering, bronze-silver-gold, data-pipeline, delta-lake, spark, databricks, microsoft-fabric, data-quality]
-date: 2026-05-06
+date: 2026-05-07
 
 description: Most data pipelines don't fail because of bad technology. They fail because raw data flows directly into reports with no checkpoints, no validation, and no clear ownership. Medallion Architecture fixes exactly this — here's how it works, why it matters, and how to implement it in practice.
 
