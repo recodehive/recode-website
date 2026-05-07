@@ -45,13 +45,11 @@ const partnerLogos = [
 ];
 
 const projects = [
-  "https://dummyimage.com/200x120/222/fff&text=Project+1",
-  "https://dummyimage.com/200x120/333/fff&text=Project+2",
-  "https://dummyimage.com/200x120/444/fff&text=Project+3",
-  "https://dummyimage.com/200x120/555/fff&text=Project+4",
-  "https://dummyimage.com/200x120/555/fff&text=Project+5",
-  "https://dummyimage.com/200x120/555/fff&text=Project+6",
-  "https://dummyimage.com/200x120/555/fff&text=Project+7",
+  "/img/blogs/awesome-project.png",
+  "/img/blogs/machine-learning-project.png",
+  "/img/blogs/Stackoverflow-analysis.png",
+  "/img/blogs/Scrape-ml-project.png",
+  "/img/blogs/opesource-project.png",
 ];
 
 const testimonials = [
