@@ -75,8 +75,6 @@ None of these is "better." They serve different stages of the same pipeline. The
 
 Let's walk through them in the order they matter for a real data engineering workflow.
 
-
-
 ## Blob Storage: The Foundation of Everything
 
 When data arrives in Azure, it almost always lands in **Blob Storage** first.
