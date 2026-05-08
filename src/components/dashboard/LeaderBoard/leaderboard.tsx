@@ -13,7 +13,17 @@ import "./leaderboard.css";
 const GITHUB_ORG = "recodehive";
 
 // Users to exclude from the leaderboard
-const EXCLUDED_USERS = ["sanjay-kv", "allcontributors", "allcontributors[bot]", "dependabot[bot]"];
+const EXCLUDED_USERS = [
+  "sanjay-kv",
+  "allcontributors",
+  "allcontributors[bot]",
+  "dependabot[bot]",
+  "copilot",
+  "copilot[bot]",
+  "github-actions[bot]",
+  "renovate[bot]",
+  "dependabot-preview[bot]",
+];
 
 interface PRDetails {
   title: string;
