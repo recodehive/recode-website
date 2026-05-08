@@ -22,7 +22,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/azure-data-factory-build-first-etl"
   - property: "og:image"
-    content: "./img/adf-cover_image.png"
+    content: "/img/blogs/adf-cover_image.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -30,7 +30,7 @@ meta:
   - name: "twitter:description"
     content: "Azure Data Factory is Microsoft's cloud-native ETL service. Here's how to build your first real pipeline in under 10 minutes."
   - name: "twitter:image"
-    content: "./img/adf-cover_image.png"
+    content: "/img/blogs/adf-cover_image.png"
 
 ---
 
@@ -66,7 +66,7 @@ Under the hood, it handles:
 
 Think of it as the **orchestration layer** of your Azure data stack, the thing that decides what data moves where, when, and how.
 
-![Azure Data Factory pipeline canvas showing a Copy Activity connected from Blob Storage source to ADLS Gen2 sink, with linked services and datasets illustrated](./img/adf-pipeline-overview.png)
+![Azure Data Factory pipeline canvas showing a Copy Activity connected from Blob Storage source to ADLS Gen2 sink, with linked services and datasets illustrated](./Img/adf-pipeline-overview.png)
 
 
 ## The 4 Concepts You Need to Know First
@@ -127,7 +127,7 @@ Your pipeline might have three activities: a Copy Activity to land raw data, a D
 
 Here's how all four concepts connect in a real pipeline:
 
-![End-to-end ADF ETL flow showing: REST API source → Linked Service → Dataset → Copy Activity → Dataset → Linked Service → ADLS Gen2 sink. Below the flow: Trigger icon labeled "Scheduled: daily 2am". All inside a Pipeline box.](./img/adf-elt-flow.png)
+![End-to-end ADF ETL flow showing: REST API source → Linked Service → Dataset → Copy Activity → Dataset → Linked Service → ADLS Gen2 sink. Below the flow: Trigger icon labeled "Scheduled: daily 2am". All inside a Pipeline box.](./Img/adf-elt-flow.png)
 
 
 <img src={require('./Img/pipeline.png').default} width="500" height="50" />
@@ -173,7 +173,7 @@ You're now in **ADF Studio**, the visual authoring environment.
 5. Click **Test Connection** — you should see ✅ Connection successful
 6. Click **Create**!
 
-![ADF Studio Linked Service creation screen showing ADLS Gen2 selected with connection test successful](./img/adf-linked-service.png)
+![ADF Studio Linked Service creation screen showing ADLS Gen2 selected with connection test successful](./Img/adf-linked-service.png)
 
 
 
@@ -231,7 +231,7 @@ This dataset points to where the file should land, your `bronze/` folder.
 5. Click **Validate** (toolbar) - you should see no errors
 6. Click **Debug** - this runs the pipeline immediately without publishing
 
-![ADF pipeline canvas showing Copy Activity with Source and Sink configured, Debug button highlighted in toolbar](./img/adf-pipeline-debug.png)
+![ADF pipeline canvas showing Copy Activity with Source and Sink configured, Debug button highlighted in toolbar](./Img/adf-pipeline-debug.png)
 
 
 ### Step 6: Publish and Add a Trigger
@@ -258,7 +258,7 @@ Your pipeline now runs automatically every night at 2am, copying new sales data 
 3. Click any run to see activity-level details
 4. If something fails, click the error icon to see exactly which activity failed and why
 
-![ADF Monitor tab showing pipeline run history with status, duration, and rows copied columns](./img/adf-monitor.png)
+![ADF Monitor tab showing pipeline run history with status, duration, and rows copied columns](./Img/adf-monitor.png)
 
 
 
