@@ -22,7 +22,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/azure-data-factory-build-first-etl"
   - property: "og:image"
-    content: "./img/adf-etl-cover.png"
+    content: "./img/adf-cover_image.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -30,7 +30,7 @@ meta:
   - name: "twitter:description"
     content: "Azure Data Factory is Microsoft's cloud-native ETL service. Here's how to build your first real pipeline in under 10 minutes."
   - name: "twitter:image"
-    content: "./img/adf-etl-cover.png"
+    content: "./img/adf-cover_image.png"
 
 ---
 
@@ -86,9 +86,9 @@ You create a Linked Service once, then reuse it across as many datasets and pipe
   height="400"
   src="https://www.youtube.com/embed/EpDkxTHAhOs"
   title="YouTube video player"
-  frameborder="0"
+  frameBorder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen>
+  allowFullScreen>
 </iframe>
 
 **Examples:**
