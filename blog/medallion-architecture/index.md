@@ -61,7 +61,7 @@ The architecture divides your data journey into three layers:
 
 Each layer has one job. Each layer makes the data a little more trustworthy. By the time data reaches the end, it's reliable, consistent, and ready to power real business decisions.
 
-<!-- ![Three-layer Medallion Architecture flow diagram](./img/medallion-architecture-flow.png) -->
+![Three-layer Medallion Architecture flow diagram](./img/medallion-architecture-flow.png) 
 
 
 ## 🥉 Bronze: The "Keep Everything" Layer
@@ -276,7 +276,7 @@ In practice, teams often extend the model:
 - **Feature layer** — prepared datasets for ML model training, maintained by data science teams on top of Silver
 - **Semantic layer** — business-friendly models sitting between Gold and end users for self-serve BI
 
-<!--![Extended Medallion Architecture with optional Landing, Feature, and Semantic layers](./img/medallion-extended-layers.png) -->
+![Extended Medallion Architecture with optional Landing, Feature, and Semantic layers](./img/medallion-extended-layers.png) 
 
 The three-tier model is a starting point, not a ceiling. The right number of layers is whatever your team actually needs.
 
