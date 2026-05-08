@@ -2,6 +2,8 @@ services:
   recodehive:
     build:
       context: .
+    env_file:
+      - .env
     ports:
       - "3000:3000"
     volumes:
@@ -12,3 +14,5 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
+      - DOCUSAURUS_GIT_TOKEN=${DOCUSAURUS_GIT_TOKEN}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}

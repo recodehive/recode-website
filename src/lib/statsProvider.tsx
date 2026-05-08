@@ -163,7 +163,13 @@ export function CommunityStatsProvider({
   const {
     siteConfig: { customFields },
   } = useDocusaurusContext();
-  const token = customFields?.gitToken || "";
+  const token = (customFields?.gitToken as string) || "";
+
+  useEffect(() => {
+    if (token) {
+      githubService.setToken(token);
+    }
+  }, [token]);
 
   const [loading, setLoading] = useState(false); // Start with false to avoid hourglass
   const [error, setError] = useState<string | null>(null);
@@ -435,7 +441,7 @@ export function CommunityStatsProvider({
 
       if (!token) {
         setError(
-          "GitHub token not found. Please set customFields.gitToken in docusaurus.config.js.",
+          "GitHub token not found. Set DOCUSAURUS_GIT_TOKEN or GITHUB_TOKEN in .env so customFields.gitToken is available in docusaurus.config.ts.",
         );
         setLoading(false);
         return;

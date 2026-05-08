@@ -283,7 +283,7 @@ const config: Config = {
 
   // ✅ Add this customFields object to expose the token to the client-side
   customFields: {
-    gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
+    gitToken: process.env.DOCUSAURUS_GIT_TOKEN || process.env.GITHUB_TOKEN,
     // Shopify credentials for merch store
     SHOPIFY_STORE_DOMAIN:
       process.env.SHOPIFY_STORE_DOMAIN || "junh9v-gw.myshopify.com",
