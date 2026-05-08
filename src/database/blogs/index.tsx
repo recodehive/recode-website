@@ -145,6 +145,17 @@ const blogs: Blog[] = [
     tags: ["Azure", "Storage", "Data Lake", "ADLS Gen2", "Big Data", "Scalability", "Event Handling", "Technology", "Architecture", "Data Engineering"],
   },
   {
+    id: 13,
+    title: "Azure Data Factory Pipeline: Build Your First ETL in 10 Minutes",
+    image: "/img/blogs/adf-cover_image.png",
+    description:
+      "Azure Data Factory Pipeline is a cloud-based data integration service that allows you to create data-driven workflows for orchestrating and automating data movement and transformation tasks. This article will guide you through the process of building your first ETL pipeline in Azure Data Factory.",
+    slug: "ETL-pipeline-tutorial",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Azure", "Storage", "Data Lake", "ADLS Gen2", "Big Data", "Scalability", "Event Handling", "Technology", "Architecture", "Data Engineering"],
+   },
+  {
     id: 14,
     title: "Medallion Architecture: How to Stop Your Data Pipeline from Becoming a Nightmare",
     image: "/img/blogs/medallion_architecture.png",
