@@ -564,21 +564,13 @@ const GiveawayPage: React.FC = () => {
   }> = ({ icon, title, valueText, description }) => (
     <motion.div
       className="dashboard-stat-card"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
       whileHover={{ scale: 1.02 }}
     >
       <div className="dashboard-stat-icon">{icon}</div>
       <div className="dashboard-stat-content">
         <h3 className="dashboard-stat-title">{title}</h3>
         <div className="dashboard-stat-value">
-          <SlotCounter
-            value={valueText}
-            autoAnimationStart={true}
-            duration={1}
-          />
+          <SlotCounter value={valueText} duration={1} />
         </div>
         <p className="dashboard-stat-description">{description}</p>
       </div>
@@ -725,12 +717,7 @@ const GiveawayPage: React.FC = () => {
         </div>
 
         <div className="dashboard-main-content">
-          <motion.section
-            className="dashboard-hero"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <section className="dashboard-hero">
             <div className="hero-content">
               <h1 className="dashboard-title">
                 🎁 <span className="highlight">Giveaway</span>
@@ -739,16 +726,10 @@ const GiveawayPage: React.FC = () => {
                 Participate in exclusive giveaways and win exciting prizes!
               </p>
             </div>
-          </motion.section>
+          </section>
 
           {/* Giveaway Stats Grid */}
-          <motion.section
-            className="dashboard-stats-section grid grid-cols-1 md:grid-cols-3 gap-4 flex-wrap"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <section className="dashboard-stats-section grid grid-cols-1 md:grid-cols-3 gap-4 flex-wrap">
             <StatCard
               icon="⏳"
               title="Next Giveaway"
@@ -767,16 +748,10 @@ const GiveawayPage: React.FC = () => {
               valueText="3"
               description="Winners per giveaway"
             />
-          </motion.section>
+          </section>
 
           {/* Giveaway Leaderboard */}
-          <motion.section
-            className="giveaway-leaderboard-section"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
+          <section className="giveaway-leaderboard-section">
             <div className="giveaway-leaderboard-header">
               <h2 className="giveaway-leaderboard-title">
                 🎁 Giveaway <span className="highlight">Leaderboard</span>
@@ -796,9 +771,6 @@ const GiveawayPage: React.FC = () => {
                   <motion.div
                     key={entry.rank}
                     className={`giveaway-leaderboard-card rank-${entry.rank <= 3 ? entry.rank : "other"}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
                     whileHover={{ scale: 1.02, y: -5 }}
                   >
                     <div className="giveaway-rank-badge">
@@ -850,7 +822,7 @@ const GiveawayPage: React.FC = () => {
                 ))}
               </div>
             )}
-          </motion.section>
+          </section>
         </div>
       </div>
     </Layout>
