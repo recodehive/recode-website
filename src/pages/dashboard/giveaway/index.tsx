@@ -785,12 +785,7 @@ const GiveawayPage: React.FC = () => {
                 Top contributors competing for amazing prizes!
               </p>
             </div>
-
-            {loading ? (
-              <div className="giveaway-loading">
-                <p>Fetching leaderboard data...</p>
-              </div>
-            ) : (
+            
               <div className="giveaway-leaderboard-grid">
                 {leaderboard.map((entry, index) => (
                   <motion.div
