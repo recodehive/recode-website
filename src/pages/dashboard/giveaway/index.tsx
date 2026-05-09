@@ -788,7 +788,6 @@ const GiveawayPage: React.FC = () => {
 
             {loading ? (
               <div className="giveaway-loading">
-                <div className="loading-spinner">Loading...</div>
                 <p>Fetching leaderboard data...</p>
               </div>
             ) : (
