@@ -90,9 +90,20 @@ The trade-off: you pay for the provisioned DWUs whether you're running queries o
 
 ### 2. Serverless SQL Pool: Query Without Loading
 
-Serverless SQL Pool is one of Synapse's most underrated features — and the one that surprised me most when I first used it.
+Serverless SQL Pool is probably one of the most practical and underrated capabilities inside Azure Synapse.
 
-Serverless SQL pools utilize a Distributed Query Processing engine to optimize and orchestrate the execution of user queries by splitting them into smaller tasks that run in parallel on compute nodes. Users are charged based on the amount of data processed by each query, making it a cost-effective option for ad-hoc data analysis, data exploration, or for querying data infrequently.
+What makes it interesting is how quickly you can start querying data directly from your data lake without provisioning dedicated infrastructure upfront. Instead of maintaining a constantly running cluster, the engine dynamically allocates compute only when a query is executed.
+
+Under the hood, queries are distributed across multiple compute resources and processed in parallel, which makes it surprisingly efficient for exploratory analysis and lightweight analytical workloads.
+
+The pricing model is also very different from traditional warehouses. Since billing is based on the amount of data scanned per query, it works particularly well for:
+- ad-hoc analysis
+- one-time investigations
+- querying historical files
+- lightweight reporting workloads
+- infrequently accessed datasets
+
+The first time I used it, the biggest surprise was how quickly I could run SQL directly on files sitting in ADLS without setting up ingestion pipelines or persistent compute.
 
 In practice: you can write a SQL query directly against Parquet, CSV, or Delta files sitting in ADLS Gen2 **without loading them into any database first**.
 
