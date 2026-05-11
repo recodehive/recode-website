@@ -200,21 +200,6 @@ In Synapse, Spark can write a Delta table that the SQL pool reads, and SQL resul
 Synapse has mature support for managed virtual networks and private endpoints. For teams in finance, healthcare, or government where strict data residency and network isolation are non-negotiable requirements, Synapse's mature networking controls are a significant advantage over Fabric, whose networking story is still evolving.
 
 
-## The Elephant in the Room: Microsoft Fabric
-
-Here's what I'd be doing you a disservice not to address directly.
-
-If you're starting net-new analytics development today, build on Microsoft Fabric. The OneLake architecture, the Power BI integration, and Microsoft's clear investment trajectory all point in that direction.
-
-Microsoft Fabric has surpassed a $2 billion annual revenue run rate, serves more than 31,000 customers, and is growing revenue at 60% year over year, making it the fastest-growing analytics platform in the market.
-
-Microsoft is clearly betting on Fabric as the future. New features are going into Fabric first. The migration tooling from Synapse to Fabric is getting better every month. Azure Synapse Analytics Data Explorer was retired on October 7, 2025 a signal that parts of Synapse are actively being wound down in favor of Fabric equivalents.
-
-So where does that leave Synapse?
-
-![Decision flowchart: "Should I use Synapse or Fabric?" — branching on questions about existing investment, T-SQL dependency, network isolation needs, and greenfield vs. existing workloads](./img/synapse-vs-fabric-decision.png)
-
-
 ## Synapse vs Fabric: The Honest Comparison
 
 Azure Synapse Analytics is a platform-as-a-service (PaaS) solution that provides modular components giving fine-grained control over data workflows. Microsoft Fabric represents a software-as-a-service (SaaS) approach bringing everything together into a single unified platform with shared governance, compute, and storage through OneLake.
