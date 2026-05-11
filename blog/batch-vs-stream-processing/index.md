@@ -1,7 +1,7 @@
 ---
-title: "The Hidden Cost of Streaming Pipelines Nobody Talks About"
+title: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Months"
 authors: [Aditya-Singh-Rathore]
-sidebar_label: "Hidden Cost of Streaming Pipelines"
+sidebar_label: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Monthss"
 tags: [batch-processing, stream-processing, data-engineering, apache-kafka, apache-flink, apache-spark, data-pipeline, real-time, azure, medallion-architecture, data-architecture]
 date: 2026-05-06
 
