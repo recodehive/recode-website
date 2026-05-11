@@ -58,10 +58,7 @@ const HeaderContent = () => {
           }}
           style={{ flex: 1 }}
         >
-          <Link
-            to="/get-started/"
-            className="chh__header-content__input--button"
-          >
+          <Link to="/docs/" className="chh__header-content__input--button">
             Get Started
           </Link>
         </motion.div>
