@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
@@ -39,6 +39,23 @@ const InterviewPrepPage: React.FC = () => {
   const [expandedCategories, setExpandedCategories] = useState<{
     [key: string]: boolean;
   }>({});
+
+  // Handle URL-based tab navigation
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const tabParam = params.get("tab");
+      if (
+        tabParam &&
+        ["overview", "technical", "behavioral", "companies", "practice"].includes(
+          tabParam
+        )
+      ) {
+        setActiveTab(tabParam as TabType);
+      }
+    }
+  }, []);
+
   const toggleCategory = (categoryIndex: number) => {
     setExpandedCategories((prev) => ({
       ...prev,
