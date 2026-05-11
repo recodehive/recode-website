@@ -168,7 +168,7 @@ const blogs: Blog[] = [
   },
   {
     id: 16,
-    title: "The Hidden Cost of Streaming Pipelines Nobody Talks About",
+    title: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Months",
     image: "/img/blogs/batch-vs-stream-cover.png",
     description:
       "Streaming pipelines are powerful for real-time data processing, but they come with hidden costs that are often overlooked. These costs include increased complexity, higher resource consumption, and potential challenges in maintaining data consistency and reliability. This article explores these hidden costs and provides insights on how to mitigate them.",
