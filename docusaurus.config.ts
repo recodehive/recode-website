@@ -154,7 +154,7 @@ const config: Config = {
                    <a href="/interview-prep/?tab=technical" target="_self" class="nav__icons"> 🧩Technical </a>
                    <a href="/interview-prep/?tab=behavioral" target="_self" class="nav__icons"> 💡Behavioral </a>
                    <a href="/interview-prep/?tab=companies" target="_self" class="nav__icons"> 🏢Companies </a>
-                   <a href="/interview-prep/?tab=practice" target="_self" class="nav__icons"> 🎯Projects </a>
+                   <a href="/interview-prep/?tab=practice" target="_self" class="nav__icons"> 🎯Practice </a>
                  </div>
                </div>`,
             },
