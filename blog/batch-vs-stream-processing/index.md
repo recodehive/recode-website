@@ -53,23 +53,6 @@ Six months later, I had learned more about the real cost of streaming than any b
 This is that story — and the honest breakdown I wish someone had given me before I started.
 
 
-## What Nobody Tells You Before You Go Streaming
-
-The conversation around streaming pipelines almost always focuses on the benefits:
-
-- 1.  Real-time insights
-- 2.  Millisecond latency
-- 3.  Event-driven reactions
-- 4.  Live personalization
-- 5.  Fraud detection before transactions complete
-
-All of that is true. Streaming genuinely enables things batch never could.
-
-But the conversation stops there. Nobody walks you through what you're signing up for on the other side of that decision.
-
-Let me do that.
-
-
 ## What We Had Before (And Why It Worked)
 
 Our original order pipeline was batch. It ran every night at 2am via Azure Data Factory, pulled 24 hours of orders from our SQL database, ran a Spark transformation job, and wrote clean Delta tables to ADLS Gen2.
