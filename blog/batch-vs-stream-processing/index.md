@@ -123,24 +123,30 @@ In batch, this doesn't exist as a problem. In streaming, it's a constant enginee
 
 
 ## Hidden Cost #3 - Exactly-Once Is Harder Than It Sounds
+Handling failures in batch pipelines is usually predictable.  
+If a batch job fails, you typically resolve the issue and rerun the pipeline from the beginning. Since the processing happens on bounded data, recovery is relatively straightforward.
 
-In a batch pipeline, if a job fails, you rerun it. Simple.
+Streaming systems work very differently.
 
-In a streaming pipeline, failure recovery is a distributed systems problem.
+In platforms like Kafka and Flink, data is continuously flowing through the system. If a streaming job crashes midway through processing, recovery becomes much more complex than simply restarting the job.
 
-Say your Flink job crashes halfway through processing a Kafka topic partition. When it restarts, does it reprocess events it already processed? Does it skip events it hadn't gotten to yet? Does it process some events twice?
+For example, after recovery:
+- Should previously processed events be replayed?
+- Could some records get skipped unintentionally?
+- Is there a possibility that certain events are processed more than once?
 
-This is the **exactly-once semantics** problem ensuring each event is processed exactly once, not zero times, not twice.
+This challenge is commonly addressed through **exactly-once processing guarantees**, where the goal is to ensure that every event affects the system exactly one time even during failures and restarts.
 
-Getting this right requires:
-- Kafka consumer offset management
-- Flink checkpoint configuration
-- Idempotent writes to your output store
-- Careful handling of state during recovery
+Achieving reliable exactly-once behavior usually depends on several components working together correctly:
 
-We had a production incident in our first month where a Flink job restart caused approximately 2,000 order events to be processed twice. Customers received duplicate status update notifications. Support tickets spiked. It took us two days to identify, patch, and backfill the correct state.
+- Proper Kafka offset management
+- Reliable Flink checkpointing and state recovery
+- Idempotent writes to downstream systems
+- Consistent state synchronization during failover scenarios
 
-A batch job that fails leaves your data unchanged. You fix it, rerun, done. A streaming job that fails mid-stream can leave your data in a partially-updated state that's genuinely difficult to reason about.
+In practice, recovery bugs in streaming systems can have real operational impact. A single restart issue can lead to duplicate event processing, inconsistent downstream data, repeated customer notifications, or inaccurate analytics until the state is corrected.
+
+Unlike batch systems, where failures often leave datasets untouched until rerun, streaming failures can leave systems in partially updated states that are significantly harder to debug and recover from.
 
 
 ## Hidden Cost #4 - Testing Is a Different Discipline
