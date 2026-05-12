@@ -177,6 +177,15 @@ const blogs: Blog[] = [
     category: "data engineering",
     tags: ["Streaming Pipelines", "Real-Time Data Processing", "Data Consistency", "Data Reliability", "Resource Consumption", "Complexity", "Data Engineering"],
 
+    id: 15,
+    title: "Azure Synapse Analytics: When to Use It (And When to Choose Fabric Instead)",
+    image: "/img/blogs/azure-synapse-cover.png",
+    description:
+      "Azure Synapse Analytics is a unified analytics service that combines big data and data warehousing capabilities. This article explores when to use Azure Synapse Analytics and when to choose Fabric instead.",
+    slug: "azure-synapse-analytics",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Azure", "Synapse Analytics", "Data Warehousing", "Big Data", "Unified Analytics", "Fabric", "Data Engineering"],
   },
 
 ];

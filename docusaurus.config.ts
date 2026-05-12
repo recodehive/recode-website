@@ -151,8 +151,10 @@ const config: Config = {
               value: `<div class="grid grid-cols-3 gap-4">
                  <a class="border-r col-span-1" href="/interview-prep/" target="_self">Interview Prep</a>
                  <div class="grid grid-cols-1 col-span-2">
-                   <a href="/interview-prep/" target="_self" class="nav__icons"> 🧩Technical </a>
-                   <a href="/interview-prep/" target="_self" class="nav__icons"> 💡Behavioral </a>
+                   <a href="/interview-prep/?tab=technical" target="_self" class="nav__icons"> 🧩Technical </a>
+                   <a href="/interview-prep/?tab=behavioral" target="_self" class="nav__icons"> 💡Behavioral </a>
+                   <a href="/interview-prep/?tab=companies" target="_self" class="nav__icons"> 🏢Companies </a>
+                   <a href="/interview-prep/?tab=practice" target="_self" class="nav__icons"> 🎯Practice </a>
                  </div>
                </div>`,
             },
