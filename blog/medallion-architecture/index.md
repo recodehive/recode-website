@@ -61,7 +61,7 @@ The architecture divides your data journey into three layers:
 
 Each layer has one job. Each layer makes the data a little more trustworthy. By the time data reaches the end, it's reliable, consistent, and ready to power real business decisions.
 
-<!-- ![Three-layer Medallion Architecture flow diagram](./img/medallion-architecture-flow.png) -->
+![Three-layer Medallion Architecture flow diagram](./Img/medallion-architecture-flow.png)
 
 
 ## 🥉 Bronze: The "Keep Everything" Layer
@@ -121,6 +121,7 @@ Most of the heavy lifting in a data pipeline lives here. It's not glamorous work
 ### What Silver looks like in practice
 
 Here's a simple PySpark transformation from Bronze to Silver:
+- [Reference code](https://oneuptime.com/blog/post/2026-02-17-how-to-build-a-data-lakehouse-architecture-on-gcp-using-cloud-storage-dataproc-and-bigquery/view)
 
 ```python
 from pyspark.sql import SparkSession
@@ -276,7 +277,7 @@ In practice, teams often extend the model:
 - **Feature layer** — prepared datasets for ML model training, maintained by data science teams on top of Silver
 - **Semantic layer** — business-friendly models sitting between Gold and end users for self-serve BI
 
-<!--![Extended Medallion Architecture with optional Landing, Feature, and Semantic layers](./img/medallion-extended-layers.png) -->
+![Extended Medallion Architecture with optional Landing, Feature, and Semantic layers](./Img/medallion-extended-layers.png)
 
 The three-tier model is a starting point, not a ceiling. The right number of layers is whatever your team actually needs.
 
@@ -330,6 +331,7 @@ This is the exact structure we adopted after the revenue incident. Bronze preser
 - [RecodeHive - Lakehouse vs Data Warehouse](https://www.recodehive.com/blog/lakehouse-vs-warehouse)
 - [RecodeHive - Microsoft Fabric: One Platform, One Lake](https://www.recodehive.com/blog/microsoft-fabric-explained)
 - [RecodeHive - Azure Storage & ADLS Gen2](https://www.recodehive.com/blog/azure-storage-options)
+- [OneUptime - Build a Data Lakehouse on GCP](https://oneuptime.com/blog/post/2026-02-17-how-to-build-a-data-lakehouse-architecture-on-gcp-using-cloud-storage-dataproc-and-bigquery/view)
 
 ## About the Author
 
