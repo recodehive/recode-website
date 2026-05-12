@@ -121,6 +121,7 @@ Most of the heavy lifting in a data pipeline lives here. It's not glamorous work
 ### What Silver looks like in practice
 
 Here's a simple PySpark transformation from Bronze to Silver:
+- [Reference code](https://oneuptime.com/blog/post/2026-02-17-how-to-build-a-data-lakehouse-architecture-on-gcp-using-cloud-storage-dataproc-and-bigquery/view)
 
 ```python
 from pyspark.sql import SparkSession
@@ -330,6 +331,7 @@ This is the exact structure we adopted after the revenue incident. Bronze preser
 - [RecodeHive - Lakehouse vs Data Warehouse](https://www.recodehive.com/blog/lakehouse-vs-warehouse)
 - [RecodeHive - Microsoft Fabric: One Platform, One Lake](https://www.recodehive.com/blog/microsoft-fabric-explained)
 - [RecodeHive - Azure Storage & ADLS Gen2](https://www.recodehive.com/blog/azure-storage-options)
+- [OneUptime - Build a Data Lakehouse on GCP](https://oneuptime.com/blog/post/2026-02-17-how-to-build-a-data-lakehouse-architecture-on-gcp-using-cloud-storage-dataproc-and-bigquery/view)
 
 ## About the Author
 
