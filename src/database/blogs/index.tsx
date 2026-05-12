@@ -154,7 +154,7 @@ const blogs: Blog[] = [
     authors: ["Aditya-Singh-Rathore"],
     category: "data engineering",
     tags: ["Azure", "Storage", "Data Lake", "ADLS Gen2", "Big Data", "Scalability", "Event Handling", "Technology", "Architecture", "Data Engineering"],
-   },
+  },
   {
     id: 14,
     title: "Medallion Architecture: How to Stop Your Data Pipeline from Becoming a Nightmare",
@@ -167,6 +167,16 @@ const blogs: Blog[] = [
     tags: ["Medallion Architecture", "Data Pipeline", "Data Management", "Data Quality", "Data Governance", "Scalability", "Data Engineering"],
   },
   {
+    id: 16,
+    title: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Months",
+    image: "/img/blogs/batch-vs-stream-cover.png",
+    description:
+      "Streaming pipelines are powerful for real-time data processing, but they come with hidden costs that are often overlooked. These costs include increased complexity, higher resource consumption, and potential challenges in maintaining data consistency and reliability. This article explores these hidden costs and provides insights on how to mitigate them.",
+    slug: "batch-vs-stream-processing",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Streaming Pipelines", "Real-Time Data Processing", "Data Consistency", "Data Reliability", "Resource Consumption", "Complexity", "Data Engineering"],
+
     id: 15,
     title: "Azure Synapse Analytics: When to Use It (And When to Choose Fabric Instead)",
     image: "/img/blogs/azure-synapse-cover.png",
