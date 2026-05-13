@@ -36,9 +36,11 @@ export default function Root({ children }: { children: React.ReactNode }) {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const location = useLocation();
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  
+
   // Check if current page is sponsors page
-  const isSponsorsPage = location.pathname === '/our-sponsors/' || location.pathname === '/our-sponsors';
+  const isSponsorsPage =
+    location.pathname === "/our-sponsors/" ||
+    location.pathname === "/our-sponsors";
 
   // Theme detection logic
   useEffect(() => {
@@ -63,18 +65,20 @@ export default function Root({ children }: { children: React.ReactNode }) {
 
   // Show toast on initial load for all pages
   useEffect(() => {
-    if (isInitialLoad) {
-      setShowToast(true);
-      timerRef.current = setTimeout(() => setShowToast(false), 10000);
-      setIsInitialLoad(false);
-    }
+    setShowToast(true);
+    timerRef.current = setTimeout(() => {
+      setShowToast(false);
+      timerRef.current = null;
+    }, 10000);
+    setIsInitialLoad(false);
 
     return () => {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
+        timerRef.current = null;
       }
     };
-  }, [isInitialLoad]);
+  }, []);
 
   // Show toast on navigation only for sponsors page
   useEffect(() => {
@@ -82,7 +86,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
       if (timerRef.current) {
         clearTimeout(timerRef.current);
       }
-      
+
       setShowToast(false);
       const showTimer = setTimeout(() => {
         setShowToast(true);
