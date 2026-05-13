@@ -50,5 +50,5 @@ body:
           required: true
         - label: "I want to work on this issue"
           required: false
-        - label: "I am a part of gssoc25"
+        - label: "I am a part of gssoc26"
           required: true
