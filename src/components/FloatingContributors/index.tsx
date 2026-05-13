@@ -668,7 +668,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
             {/* Footer */}
             <div className="floating-contributors-footer">
               <motion.a
-                href="https://github.com/recodehive/recode-website"
+                href="https://github.com/recodehive"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contributors-cta"
@@ -677,7 +677,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
                 aria-label="View repository on GitHub and join the community"
               >
                 <span className="cta-icon">🚀</span>
-                <span>View Repository on GitHub</span>
+                <span>View Repositories on GitHub</span>
                 <span className="cta-arrow">↗</span>
               </motion.a>
             </div>
