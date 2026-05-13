@@ -147,9 +147,6 @@ a.menu__link.menu__link--active div span:first-child {
   font-weight: 600;
 }
 
-
-
-
 /* Technical theme */
 .custom-sidebar-technical > .menu__list-item-collapsible > .menu__link {
   background: linear-gradient(135deg, #ff6b6b, #ee5a24);
@@ -407,7 +404,9 @@ body {
   padding: 6px;
   border-radius: 6px;
   color: var(--ifm-navbar-link-color);
-  transition: color 0.2s ease, background-color 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .navbar-social-icon:hover {
@@ -1450,8 +1449,32 @@ html {
 }
 
 .algolia-sitesearch-navbar .sitesearch-button .keyboard-shortcut {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 3px !important;
+  height: 20px;
   margin-left: 10px;
+  padding: 0 6px !important;
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  border-radius: 5px !important;
+  background: var(--ifm-color-emphasis-100) !important;
+  color: var(--ifm-color-emphasis-700) !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
   flex-shrink: 0;
+}
+
+.algolia-sitesearch-navbar .sitesearch-button .keyboard-shortcut > * {
+  min-width: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+  font: inherit !important;
+  line-height: inherit !important;
 }
 
 [data-theme="dark"] .explore-btn:hover {
