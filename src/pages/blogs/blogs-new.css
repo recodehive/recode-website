@@ -1676,7 +1676,7 @@
   text-decoration: none;
 }
 
-.author-avatar-wrapper {
+/* .author-avatar-wrapper {
   position: relative;
   width: 32px;
   height: 32px;
@@ -1714,7 +1714,7 @@
   font-weight: 600;
   box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
   transition: all 0.3s ease;
-}
+} */
 
 .author-avatar-fallback:hover {
   transform: scale(1.1);
