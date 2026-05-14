@@ -275,7 +275,48 @@ const BlogCard = ({ blog, index }) => {
         <p className="card-description">{blog.description}</p>
         <div className="card-meta">
           <div className="card-author">
-            <span className="author-avatar">👤</span>
+            {/* Stacked Author Avatars */}
+            {authors.length > 0 && (
+              (() => {
+                const max = 3;
+                const visible = authors.slice(0, max);
+                const extra = Math.max(0, authors.length - max);
+                return (
+                  <div className="author-stack" aria-hidden>
+                    {visible.map((a, i) => (
+                      <div
+                        key={a.id}
+                        className="author-stack-item"
+                        style={{ zIndex: max - i }}
+                      >
+                        {a.imageUrl ? (
+                          <img
+                            src={a.imageUrl}
+                            alt={a.name}
+                            className="author-stack-avatar"
+                            onError={(e) => {
+                              const target = e.currentTarget;
+                              target.style.display = "none";
+                              const fallback = target.nextElementSibling;
+                              if (fallback) fallback.style.display = "flex";
+                            }}
+                          />
+                        ) : (
+                          <span className="author-stack-fallback">
+                            {a.name.charAt(0).toUpperCase()}
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                    {extra > 0 && (
+                      <div className="author-stack-more">+{extra}</div>
+                    )}
+                  </div>
+                );
+              })()
+            )}
+
+            {/* Author Names */}
             <div className="author-name-group">
                 {authors.map((author, authorIndex) => (
                   <span key={author.id} className="author-item">
