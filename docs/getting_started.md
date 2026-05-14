@@ -306,15 +306,26 @@ Key Features of GitLab:
 Plain Markdown tables are left-aligned by default in Docusaurus. Wrap your table in an `:::info` block to center it:
 
 ```md
-:::info
+:::
 
-| Command | Description          |
-|---------|----------------------|
-| `git init` | Initialize a repo |
-| `git clone` | Clone a repo     |
+| Command     | Description       |
+|-------------|-------------------|
+| `git init`  | Initialize a repo |
+| `git clone` | Clone a repo      |
 
 :::
 ```
+
+### Rendered Output
+
+:::info
+
+| Command     | Description       |
+|-------------|-------------------|
+| `git init`  | Initialize a repo |
+| `git clone` | Clone a repo      |
+
+:::
 
 ---
 
@@ -434,11 +445,11 @@ git push origin blog/your-blog-title
 
 ## Step 12: Open a Pull Request
 
-1. Go to your fork on GitHub — you will see a **"Compare & pull request"** banner. Click it.
-2. Set the **base repository** to `recodehive/recode-website` and **base branch** to `main`.
-3. Write a clear PR title, e.g. `blog: Add post on Your Blog Title`.
-4. In the description, briefly summarize what the post covers.
-5. Click **Create pull request**.
+- 1. Go to your fork on GitHub — you will see a **"Compare & pull request"** banner. Click it.
+- 2. Set the **base repository** to `recodehive/recode-website` and **base branch** to `main`.
+- 3. Write a clear PR title, e.g. `blog: Add post on Your Blog Title`.
+- 4. In the description, briefly summarize what the post covers.
+- 5. Click **Create pull request**.
 
 A maintainer will review and merge your post. You may be asked to make small edits before it is approved.
 
@@ -461,24 +472,24 @@ git push origin main
 
 Before submitting your PR, go through this checklist:
 
-- [ ] Blog folder created at `blog/your-blog-title/index.md`
-- [ ] Frontmatter is complete (title, authors, tags, date, description, draft: false)
-- [ ] Author entry exists in `blog/authors.yml`
-- [ ] `<!-- truncate -->` comment placed after the intro paragraph
-- [ ] **Bulleted summary section** included near the top of the post
-- [ ] **FAQ section** included at the bottom of the post
-- [ ] No generic content — article is high-depth and technical with images
-- [ ] 5 external backlinks to supporting websites
-- [ ] 5 internal backlinks to other recodehive articles
-- [ ] Text is more than code — long code blocks link to GitHub instead
-- [ ] Code blocks use filename labels — e.g., opening fence followed by `python title="app.py"`
-- [ ] Query + output pairs use Tabs blocks
-- [ ] Tables are wrapped in `:::info` for center alignment
-- [ ] Tips, notes, and cautions use the correct Docusaurus admonition
-- [ ] All images are in `blog/your-blog-title/images/` with SEO-friendly names
-- [ ] Cover image is 1200 × 630 px; step screenshots are no wider than 1280 px
-- [ ] Image file sizes are under 500 KB each
-- [ ] Post previews correctly at `localhost:3000/blog`
-- [ ] Database entry added in `\database\blogs\index.tsx`
-- [ ] Committed on a feature branch (not `main`)
-- [ ] Pull request targets `recodehive/recode-website` `main` branch
+- 1. [ ] Blog folder created at `blog/your-blog-title/index.md`
+- 2. [ ] Frontmatter is complete (title, authors, tags, date, description, draft: false)
+- 3. [ ] Author entry exists in `blog/authors.yml`
+- 4. [ ] `<!-- truncate -->` comment placed after the intro paragraph
+- 5. [ ] **Bulleted summary section** included near the top of the post
+- 6. [ ] **FAQ section** included at the bottom of the post
+- 7. [ ] No generic content — article is high-depth and technical with images
+- 8. [ ] 5 external backlinks to supporting websites
+- 9. [ ] 5 internal backlinks to other recodehive articles
+- 10. [ ] Text is more than code — long code blocks link to GitHub instead
+- 11. [ ] Code blocks use filename labels — e.g., opening fence followed by `python title="app.py"`
+- 12. [ ] Query + output pairs use Tabs blocks
+- 14. [ ] Tables are wrapped in `:::info` for center alignment
+- 15. [ ] Tips, notes, and cautions use the correct Docusaurus admonition
+- 16. [ ] All images are in `blog/your-blog-title/images/` with SEO-friendly names
+- 17. [ ] Cover image is 1200 × 630 px; step screenshots are no wider than 1280 px
+- 18. [ ] Image file sizes are under 500 KB each
+- 19. [ ] Post previews correctly at `localhost:3000/blog`
+- 20. [ ] Database entry added in `\database\blogs\index.tsx`
+- 21. [ ] Committed on a feature branch (not `main`)
+- 22. [ ] Pull request targets `recodehive/recode-website` `main` branch

@@ -38,7 +38,7 @@ const config: Config = {
 
   onBrokenLinks: "throw",
   // onBrokenMarkdownLinks moved to markdown.hooks
-
+  
   // Google Analytics and Theme Scripts
   scripts: [
     {
@@ -298,10 +298,10 @@ const config: Config = {
     EMAILJS_TEMPLATE_ID: process.env.EMAILJS_TEMPLATE_ID || "",
     algoliaSiteSearch: hasAlgoliaSiteSearch
       ? {
-          applicationId: algoliaAppId,
-          apiKey: algoliaSearchApiKey,
-          indexName: algoliaIndexName,
-        }
+        applicationId: algoliaAppId,
+        apiKey: algoliaSearchApiKey,
+        indexName: algoliaIndexName,
+      }
       : null,
     hooks: {
       onBrokenMarkdownLinks: "warn",
