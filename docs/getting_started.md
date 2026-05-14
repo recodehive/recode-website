@@ -61,6 +61,28 @@ Use a short, descriptive name — for example `blog/intro-to-docker` or `blog/re
 
 ---
 
+:::tip Blog Quality Checklist
+Before starting any development, make sure your blog meets **all** of the following criteria. Your blog can be **rejected** if any requirement is not fulfilled:
+
+- 1. 5 backlinks to different external websites to support our documentation.
+- 2. 5 internal backlinks to other articles on recodehive.
+
+- 3. **No generic content** — avoid surface-level topics like "what is Azure" or "difference between X and Y". Write pure, high-depth technical articles with images. See [this example](https://www.recodehive.com/docs/GitHub/Maintainer-guide/milestone) for the standard we aim for. (Tip: tools like [Snagit](https://www.techsmith.com/screen-capture.html) help produce great annotated screenshots.)
+
+- 4. Image filenames must be descriptive and SEO-friendly — no random names like `screenshot123.png`.
+- 5. **Content-to-code ratio**: text should be more than code. Adsense flags pages at 60% code / 40% text - keep it the opposite. If code is long, link to GitHub and reference it in comments instead.
+
+- 6. Include a **bulleted summary section** at the top of the blog post.
+- 7. Include a **FAQ section** at the bottom.
+- 8. Use Docusaurus admonitions (`:::tip`, `:::info`, `:::note`) for callouts, tips, and cautions (see formatting guidelines below).
+- 9. Tables must be **center-aligned** - wrap them in an `:::info` block to achieve this in Docusaurus.
+- 10. Use **named code blocks** with a filename label when showing code (e.g., ` ```java title="Sample.java" `).
+- 11. When showing a query and its output together, use a **Tabs** block with separate "Query" and "Output" tabs.
+- 12. Screenshots must follow the naming convention and size guidelines below.
+:::
+
+---
+
 ## Step 4: Create the Blog Folder and File
 
 All blog posts live inside the `blog/` directory. Each post gets its own folder.
@@ -149,7 +171,7 @@ After the closing `---` of your frontmatter, add the `<!-- truncate -->` comment
 ...frontmatter...
 ---
 
- <!-- truncate -->
+<!-- truncate -->
 
 Your introduction paragraph goes here. This will appear as the preview on the blog index page.
 
@@ -158,18 +180,157 @@ Your introduction paragraph goes here. This will appear as the preview on the bl
 Body content continues here...
 ```
 
-### Formatting Tips
+### Formatting Guidelines
 
-- Use `##` and `###` headings to structure your content.
-- Use fenced code blocks with the language name for syntax highlighting:
+Use `##` and `###` headings to structure your content.
 
-  ````md
-  ```python
-  print("Hello, world!")
+---
+
+#### Bulleted Summary Section (Required)
+
+Every blog must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
+
+```md
+**What you'll learn in this post:**
+- How to set up X from scratch
+- How to configure Y for production
+- Common pitfalls and how to avoid them
+```
+
+---
+
+#### Named Code Blocks (Required)
+
+Always label code blocks with a filename so readers know exactly what file they are editing:
+
+````md
+```java title="Sample.java"
+public class Hello {
+    public static void main(String[] args) {
+        System.out.println("Hello, world!");
+    }
+}
+```
+````
+
+---
+
+#### Query + Output: Use Tabs (Required)
+
+When showing a database query alongside its output, use a Tabs block so both fit in a single window.
+
+First, import the components at the top of your `index.md` (after frontmatter, before any content):
+
+```md
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+```
+
+Then structure your query + output like this:
+
+````md
+<Tabs>
+  <TabItem value="Query">
+
+  ```sql
+  -- Create the table
+  CREATE TABLE friends (
+    id INT PRIMARY KEY,
+    name VARCHAR(100),
+    username VARCHAR(100)
+  );
+
+  -- Insert data
+  INSERT INTO friends (id, name, username) VALUES
+  (1, 'John Doe', 'johndoe'),
+  (2, 'Jane Smith', 'janesmith'),
+  (3, 'Bob Johnson', 'bobjohnson');
   ```
-  ````
 
-- Use `>` for callout blockquotes and `---` for horizontal dividers between sections.
+  </TabItem>
+  <TabItem value="Output">
+
+  | id | name        | username    |
+  |----|-------------|-------------|
+  | 1  | John Doe    | johndoe     |
+  | 2  | Jane Smith  | janesmith   |
+  | 3  | Bob Johnson | bobjohnson  |
+
+  </TabItem>
+</Tabs>
+````
+
+:::tip
+You can add as many `<TabItem>` tabs as needed — for example separate tabs per subquery type, or one tab per language variant.
+:::
+
+---
+
+#### Admonitions: Tips, Notes, Info, and Cautions
+
+Use Docusaurus admonitions to highlight important information. Don't overuse them — only where they add real value.
+
+**For tips and helpful extras:**
+
+```md
+:::tip Need Git Commands?
+Check out our [comprehensive Git Commands Cheatsheet](../GitHub/setup-environment/git-commands.md)
+with 50 essential Git commands and examples.
+:::
+```
+
+**For extra context or caution:**
+
+```md
+:::info
+In the picture below, Developer 1 handles the men's shopping section, Developer 2
+deals with the women's section, and Developer 3 works on the login feature.
+:::
+```
+
+**For key feature callouts:**
+
+```md
+:::note
+Key Features of GitLab:
+- GitLab provides **built-in CI/CD pipelines**.
+- Unlike GitHub, GitLab can be **self-hosted** or used on the cloud (GitLab.com).
+- GitLab offers [Premium Plans](https://about.gitlab.com/pricing/) with advanced CI/CD and security features.
+:::
+```
+
+---
+
+#### Tables: Center Alignment via `:::info`
+
+Plain Markdown tables are left-aligned by default in Docusaurus. Wrap your table in an `:::info` block to center it:
+
+```md
+:::info
+
+| Command | Description          |
+|---------|----------------------|
+| `git init` | Initialize a repo |
+| `git clone` | Clone a repo     |
+
+:::
+```
+
+---
+
+#### FAQ Section (Required)
+
+Every blog post must end with a FAQ section before the conclusion. Use questions your readers are likely to have:
+
+```md
+## Frequently Asked Questions
+
+**Q: Do I need to know X before starting this guide?**
+A: Basic familiarity with Y is helpful, but the guide covers everything step by step.
+
+**Q: Will this work on Windows?**
+A: Yes, the steps are cross-platform. Windows-specific commands are noted where they differ.
+```
 
 ---
 
@@ -188,7 +349,7 @@ Use **PNG** for UI screenshots (crisp text) and **JPEG/WebP** for photos.
 
 ### Naming Convention
 
-Use lowercase, hyphen-separated, numbered filenames so they sort correctly:
+Use lowercase, hyphen-separated, numbered filenames so they sort correctly and are SEO-friendly. **Never use random or auto-generated names.**
 
 ```
 images/
@@ -208,20 +369,52 @@ Reference images relative to `index.md`:
 
 Always write descriptive alt text — it improves accessibility and SEO.
 
+:::tip Screenshot Tool Recommendation
+Tools like [Snagit](https://www.techsmith.com/screen-capture.html) make it easy to produce annotated, professional-quality screenshots. See [this article](https://www.recodehive.com/docs/GitHub/Maintainer-guide/milestone) as a reference for the image quality standard we aim for.
+:::
+
 ---
 
-## Step 9: Preview Your Post
+## Step 9: Update the Database
+
+All blog data is linked in the database folder (`\database\blogs\index.tsx`). Update it with the following details:
+
+```json
+{
+  id: sequence_wise,
+  title: "Title of the post",
+  image: "relative path of the cover image for the blog post",
+  description: "A short (2-3) lines of description of the post",
+  slug: "The name of the blog folder (keep it exact)",
+  authors: ["your-author-id"],
+  category: "The category the blog belongs to",
+  tags: ["tags or topics the blog is related to (tools or technologies)"],
+}
+```
+
+:::note
+All details are necessary for correctly rendering the blog card on the blogs page. Take a close look and make sure everything is filled in.
+:::
+
+---
+
+## Step 10: Preview Your Post
 
 Make sure your dev server is still running (`npm start`), then navigate to [http://localhost:3000/blog](http://localhost:3000/blog) to see your post in the listing and click into it to read the full content. Verify:
 
 - The frontmatter title, date, and author show correctly.
 - The truncate preview looks right on the blog index.
+- The bulleted summary section appears near the top.
 - All images load and are properly sized.
-- Code blocks are syntax-highlighted.
+- Code blocks are syntax-highlighted and have filename labels.
+- Query/output pairs use Tabs.
+- Tables are center-aligned inside `:::info` blocks.
+- Tips and notes use the correct admonition type.
+- The FAQ section is present at the bottom.
 
 ---
 
-## Step 10: Commit and Push Your Changes
+## Step 11: Commit and Push Your Changes
 
 Once you are happy with the preview, stage and commit your files:
 
@@ -239,7 +432,7 @@ git push origin blog/your-blog-title
 
 ---
 
-## Step 11: Open a Pull Request
+## Step 12: Open a Pull Request
 
 1. Go to your fork on GitHub — you will see a **"Compare & pull request"** banner. Click it.
 2. Set the **base repository** to `recodehive/recode-website` and **base branch** to `main`.
@@ -272,9 +465,20 @@ Before submitting your PR, go through this checklist:
 - [ ] Frontmatter is complete (title, authors, tags, date, description, draft: false)
 - [ ] Author entry exists in `blog/authors.yml`
 - [ ] `<!-- truncate -->` comment placed after the intro paragraph
-- [ ] All images are in `blog/your-blog-title/images/` and named with the convention
+- [ ] **Bulleted summary section** included near the top of the post
+- [ ] **FAQ section** included at the bottom of the post
+- [ ] No generic content — article is high-depth and technical with images
+- [ ] 5 external backlinks to supporting websites
+- [ ] 5 internal backlinks to other recodehive articles
+- [ ] Text is more than code — long code blocks link to GitHub instead
+- [ ] Code blocks use filename labels — e.g., opening fence followed by `python title="app.py"`
+- [ ] Query + output pairs use Tabs blocks
+- [ ] Tables are wrapped in `:::info` for center alignment
+- [ ] Tips, notes, and cautions use the correct Docusaurus admonition
+- [ ] All images are in `blog/your-blog-title/images/` with SEO-friendly names
 - [ ] Cover image is 1200 × 630 px; step screenshots are no wider than 1280 px
 - [ ] Image file sizes are under 500 KB each
 - [ ] Post previews correctly at `localhost:3000/blog`
+- [ ] Database entry added in `\database\blogs\index.tsx`
 - [ ] Committed on a feature branch (not `main`)
 - [ ] Pull request targets `recodehive/recode-website` `main` branch
