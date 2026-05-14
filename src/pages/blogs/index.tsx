@@ -229,7 +229,7 @@ export default function Blogs() {
               <div className="articles-grid">
                 {filteredBlogs.length > 0 ? (
                   filteredBlogs.map((blog, index) => (
-                    <BlogCard blog={blog} index={index} />
+                    <BlogCard key={blog.id ?? blog.slug} blog={blog} index={index} />
                   ))
                 ) : (
                   <div className="no-results">
