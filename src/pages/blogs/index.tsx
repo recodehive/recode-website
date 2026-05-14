@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from "react";
+declare const require: any;
+const React = require("react");
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import blogs from "../../database/blogs/index";
 import Head from "@docusaurus/Head";
+import { getAuthorProfiles, getAuthorTooltip } from "../../utils/authors";
 
 import "./blogs-new.css";
-
-// Author mapping based on actual blog posts
-const authorMapping = {
-  "streamline-ux-ui": ["Sowmiya Venketashan", "Sanjay Viswanthan"],
-  "ux-ui-design-job": ["Sowmiya Venketashan", "Sanjay Viswanthan"],
-  "ux-designers-ai": ["Sowmiya Venketashan", "Sanjay Viswanthan"],
-  "git-coding-agent": ["Sanjay Viswanthan"],
-  "spark-architecture": ["Aditya Singh Rathore", "Sanjay Viswanthan"],
-  "n8n-workflow-automation": ["Aditya Singh Rathore"],
-};
 
 // Get unique categories from blogs
 const getUniqueCategories = () => {
@@ -23,16 +15,16 @@ const getUniqueCategories = () => {
   return Array.from(new Set(categories)).sort();
 };
 
-export default function Blogs(): React.JSX.Element {
+export default function Blogs() {
   const { siteConfig } = useDocusaurusContext();
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [filteredBlogs, setFilteredBlogs] = useState(blogs);
+  const [searchTerm, setSearchTerm] = React.useState("");
+  const [selectedCategory, setSelectedCategory] = React.useState("All");
+  const [filteredBlogs, setFilteredBlogs] = React.useState(blogs);
 
   const categories = ["All", ...getUniqueCategories()];
 
   // Filter blogs based on search term and category
-  useEffect(() => {
+  React.useEffect(() => {
     let filtered = blogs;
 
     // Filter by category
@@ -55,7 +47,7 @@ export default function Blogs(): React.JSX.Element {
     setFilteredBlogs(filtered);
   }, [searchTerm, selectedCategory]);
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: any) => {
     setSearchTerm(e.target.value);
   };
 
@@ -237,7 +229,7 @@ export default function Blogs(): React.JSX.Element {
               <div className="articles-grid">
                 {filteredBlogs.length > 0 ? (
                   filteredBlogs.map((blog, index) => (
-                    <BlogCard key={blog.id} blog={blog} index={index} />
+                    <BlogCard blog={blog} index={index} />
                   ))
                 ) : (
                   <div className="no-results">
@@ -266,13 +258,7 @@ export default function Blogs(): React.JSX.Element {
 }
 
 const BlogCard = ({ blog, index }) => {
-  // Get authors for this blog post
-  const getAuthors = (slug) => {
-    const authors = authorMapping[slug] || ["recode hive Team"];
-    return authors.length > 1 ? authors.join(" & ") : authors[0];
-  };
-
-  const authorName = getAuthors(blog.slug);
+  const authors = getAuthorProfiles(blog.authors || []);
 
   return (
     <div className="article-card">
@@ -281,14 +267,34 @@ const BlogCard = ({ blog, index }) => {
         <img src={blog.image} alt={blog.title} />
       </div>
       <div className="card-content">
-        <h3 className="card-title">{blog.title}</h3>
+        <h3 className="card-title">
+          <Link to={`/blog/${blog.slug}`} className="card-title-link">
+            {blog.title}
+          </Link>
+        </h3>
         <p className="card-description">{blog.description}</p>
         <div className="card-meta">
           <div className="card-author">
             <span className="author-avatar">👤</span>
-            <span className="author-name" data-full-name={authorName}>
-              {authorName}
-            </span>
+            <div className="author-name-group">
+                {authors.map((author, authorIndex) => (
+                  <span key={author.id} className="author-item">
+                    {authorIndex > 0 && (
+                      <span className="author-separator">&</span>
+                    )}
+                    <Link
+                      href={author.githubUrl}
+                      className="author-name author-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-author-tooltip={getAuthorTooltip(author.id)}
+                      aria-label={`Open ${author.name} on GitHub`}
+                    >
+                      {author.name}
+                    </Link>
+                  </span>
+                ))}
+            </div>
           </div>
           <span className="card-read-time">5 min read</span>
         </div>

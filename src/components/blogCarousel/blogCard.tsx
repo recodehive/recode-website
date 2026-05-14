@@ -1,13 +1,14 @@
 "use client";
-import * as React from "react";
-import { useState } from "react";
-import { motion } from "framer-motion";
 import Link from "@docusaurus/Link";
 import { Card, CardContent } from "../ui/card";
-import { getAuthorNames } from "../../utils/authors";
+import { getAuthorProfiles, getAuthorTooltip } from "../../utils/authors";
+
+declare const require: any;
+const React = require("react");
 
 const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = React.useState(false);
+  const authorProfiles = getAuthorProfiles(authors || []);
 
   if (!id || !type) {
     return <div>data not fetched properly, imageId and entryId not found</div>;
@@ -36,58 +37,63 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
   const category = getCategory(title);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      whileHover={{
-        y: -8,
-        scale: 1.02,
-        transition: { duration: 0.4, ease: "easeOut" },
-      }}
+    <div
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="relative h-full overflow-hidden transition-all duration-300"
     >
-      <Link
-        to={`/blog/${id}`}
-        className="text-decoration-none block h-full"
-        style={{ textDecoration: "none" }}
-      >
-        <div className="article-card h-full">
-          {/* Category Badge */}
-          <div className="card-category">{category}</div>
+      <div className="article-card h-full">
+        {/* Category Badge */}
+        <div className="card-category">{category}</div>
 
-          {/* Card Image */}
-          <div className="card-image">
-            <img src={imageUrl} alt={title} />
-          </div>
-
-          {/* Card Content */}
-          <div className="card-content">
-            <h3 className="card-title">{title}</h3>
-            <p className="card-description">{content}</p>
-
-            {/* Card Meta */}
-            <div className="card-meta">
-              <div className="card-author">
-                <span className="author-avatar">👤</span>
-                <span
-                  className="author-name"
-                  data-full-name={getAuthorNames(authors || [])}
-                >
-                  {getAuthorNames(authors || [])}
-                </span>
-              </div>
-              <span className="card-read-time">5 min read</span>
-            </div>
-
-            {/* Read More Button */}
-            <div className="card-read-more">Read Article →</div>
-          </div>
+        {/* Card Image */}
+        <div className="card-image">
+          <img src={imageUrl} alt={title} />
         </div>
-      </Link>
-    </motion.div>
+
+        {/* Card Content */}
+        <div className="card-content">
+          <h3 className="card-title">
+            <Link to={`/blog/${id}`} className="card-title-link">
+              {title}
+            </Link>
+          </h3>
+          <p className="card-description">{content}</p>
+
+          {/* Card Meta */}
+          <div className="card-meta">
+            <div className="card-author">
+              <span className="author-avatar">👤</span>
+              <div className="author-name-group">
+                {authorProfiles.map((author, authorIndex) => (
+                  <span key={author.id} className="author-item">
+                    {authorIndex > 0 && (
+                      <span className="author-separator">&</span>
+                    )}
+                    <Link
+                      href={author.githubUrl}
+                      className="author-name author-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      data-author-tooltip={getAuthorTooltip(author.id)}
+                      aria-label={`Open ${author.name} on GitHub`}
+                    >
+                      {author.name}
+                    </Link>
+                  </span>
+                ))}
+              </div>
+            </div>
+            <span className="card-read-time">5 min read</span>
+          </div>
+
+          {/* Read More Button */}
+          <Link to={`/blog/${id}`} className="card-read-more">
+            Read Article →
+          </Link>
+        </div>
+      </div>
+    </div>
   );
 };
 

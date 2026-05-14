@@ -1590,6 +1590,20 @@
     margin-bottom: 12px;
   }
 
+
+  .card-title-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .card-title-link:hover {
+    color: #6366f1;
+  }
+
+  [data-theme="dark"] .card-title-link:hover {
+    color: #a78bfa;
+  }
   .card-description {
     font-size: 14px;
     margin-bottom: 20px;
@@ -1633,6 +1647,33 @@
   gap: 10px;
   flex: 1;
   min-width: 0; /* Allow text to shrink */
+}
+
+.author-name-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+}
+
+.author-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.author-separator {
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.author-link {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  text-decoration: none;
 }
 
 .author-avatar {
@@ -1683,7 +1724,7 @@
 
 /* Tooltip for author names */
 .author-name::after {
-  content: attr(data-full-name);
+  content: attr(data-author-tooltip);
   position: absolute;
   bottom: 100%;
   left: 50%;
@@ -1693,7 +1734,9 @@
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 12px;
-  white-space: nowrap;
+  white-space: pre-line;
+  max-width: 240px;
+  text-align: center;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
