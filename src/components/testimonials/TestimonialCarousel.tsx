@@ -7,7 +7,6 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "../ui/carousel";
-import { Button } from "../ui/button";
 import TestimonialCard from "./TestimonialCard";
 import Autoplay from "embla-carousel-autoplay";
 import { motion } from "framer-motion";
@@ -15,31 +14,54 @@ import { useSafeColorMode } from "../../utils/useSafeColorMode";
 
 const baseTestimonials = [
   {
-    name: "Rashi Chouhan",
-    username: "RashiChouhan",
+    name: "Ethan Trang",
+    username: "EthanTrang",
     content:
-      "Valuable insights shared, productive discussions, and actionable outcomes. Looking forward to implementing the strategies discussed.! #TechCommunity #WomenInTech",
+      "The Recode Hive team are amazing to work with, very responsive. I'm a newbie to AI and they stepped us through the process",
     date: "May 18, 2024",
-    avatar: "/icons/adobe.png",
-    link: "https://topmate.io/sanjaykv",
+    avatar: "/icons/ethan.png",
+    gradient: "bg-pink-100",
+    borderColor: "border-pink-200",
   },
   {
-    name: "Namith",
-    username: "namith",
+    name: "Vivien Chen",
+    username: "VivienChen",
     content:
-      "Gave remarkable insights on parts i have to improve and gave me new opportunities . cheers~! #TechCommunity #Grateful",
+      "The tech talent in Recode Hive is unparalleled. We worked with consultants who work in companies like Palantir, OpenAI, Relevance AI and more",
     date: "April 21, 2023",
-    avatar: "/icons/google.png",
-    link: "https://topmate.io/sanjaykv",
+    avatar: "/icons/vivien.png",
+    gradient: "bg-purple-100",
+    borderColor: "border-purple-200",
   },
   {
-    name: "Rajdeep Chakraborty",
-    username: "RajdeepChakraborty",
+    name: "Daniel Han",
+    username: "DanielHan",
     content:
-      "I appreciate Sanjay sir's insights on open source and his suggestions for improving my GitHub profile. I'm excited to hear more and discuss open source further.! #OpenSource #TechCommunity",
+      "We were able to get our project scoped, matched and kicked off in one day. MagicalOur invoicing is now 10x faster, thanks to Recode Hive's automation.",
     date: "Oct 18, 2024",
-    avatar: "/icons/amazon.png",
-    link: "https://topmate.io/sanjaykv",
+    avatar: "/icons/daniel.png",
+    gradient: "bg-cyan-100",
+    borderColor: "border-cyan-200",
+  },
+  {
+    name: "Aryan Gupta",
+    username: "AryanGupta",
+    content:
+      "you're constantly inspiring me to get applying for jobs and help me to improve my resume for 90+ ats score and improve my LinkedIn profile. you provided me detailed document analysis of my resume and video for me",
+    date: "Sept 17, 2024",
+    avatar: "/icons/aryan.png",
+    gradient: "bg-pink-100",
+    borderColor: "border-pink-200",
+  },
+  {
+    name: "Donald Anyamba",
+    username: "DonaldAnyamba",
+    content:
+      "Pointing out that my contributions all points back to my personal projects is an eye opener, especially now that I want to start building towards open source.",
+    date: "May 4, 2026",
+    avatar: "/icons/donald.png",
+    gradient: "bg-purple-100",
+    borderColor: "border-purple-200",
   },
 ];
 
@@ -65,35 +87,37 @@ export function TestimonialCarousel() {
   }, [api]);
 
   return (
-    <div className="relative w-full py-20">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-10 h-64 w-64 rounded-full bg-gradient-to-br from-purple-400/10 to-pink-600/10 blur-3xl" />
-        <div className="absolute bottom-20 left-10 h-64 w-64 rounded-full bg-gradient-to-tr from-blue-400/10 to-cyan-600/10 blur-3xl" />
+    <div className="relative w-full py-20 overflow-hidden">
+      {/* Dotted Grid Background Pattern */}
+      <div
+        className="absolute inset-0 opacity-20 pointer-events-none"
+        style={{
+          backgroundImage: 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
+          backgroundSize: '2rem 2rem',
+        }}
+      />
+
+      {/* Animated Gradient Orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 right-10 h-72 w-72 rounded-full bg-gradient-to-br from-pink-400/15 to-purple-400/10 blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 left-10 h-80 w-80 rounded-full bg-gradient-to-tr from-cyan-400/15 to-blue-400/10 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-purple-400/10 to-pink-300/10 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4">
-        <motion.div 
+      <div className="relative mx-auto max-w-7xl px-4 z-10">
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
         >
-          <div className="mb-4">
-            <span className={`inline-block rounded-full px-4 py-2 text-sm font-medium ${
-              colorMode === "dark" 
-                ? "bg-purple-500/10 text-purple-400 border border-purple-500/20" 
-                : "bg-purple-50 text-purple-600 border border-purple-200"
+          <h2 className={`mb-6 text-5xl md:text-6xl font-bold leading-tight ${colorMode === "dark" ? "text-white" : "text-gray-900"
             }`}>
-              ⭐ Client Testimonials
-            </span>
-          </div>
-          <h2 className={`mb-6 text-5xl font-bold leading-tight ${
-            colorMode === "dark" ? "text-white" : "text-gray-900"
-          }`}>
-            Loved by <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Many Users</span>
+            Builders <span className="mx-3">❤️</span> <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Recode Hive</span>
           </h2>
-
+          <p className={`text-xl font-medium ${colorMode === "dark" ? "text-gray-300" : "text-gray-600"}`}>
+            Our builders go on to do incredible things from working at OpenAI to becoming AI engineers and founders.
+          </p>
         </motion.div>
 
         <motion.div
@@ -116,7 +140,7 @@ export function TestimonialCarousel() {
               }),
             ]}
           >
-            <CarouselContent className="my-8 -ml-2 md:-ml-4 flex items-stretch">
+            <CarouselContent className="my-12 -ml-2 md:-ml-4 flex items-stretch">
               {testimonials.map((testimonial, index) => (
                 <CarouselItem
                   key={index}
@@ -129,34 +153,31 @@ export function TestimonialCarousel() {
 
             {/* Navigation */}
             <div className="mt-12 flex items-center justify-center gap-6">
-              <CarouselPrevious className={`static translate-y-0 h-12 w-12 ${
-                colorMode === "dark" 
-                  ? "border-gray-700 bg-gray-800 hover:bg-gray-700" 
-                  : "border-gray-200 bg-white hover:bg-gray-50"
-              }`} />
-              
+              <CarouselPrevious className={`static translate-y-0 h-12 w-12 ${colorMode === "dark"
+                ? "border-gray-700 bg-gray-800 hover:bg-gray-700"
+                : "border-gray-200 bg-white hover:bg-gray-50"
+                }`} />
+
               {/* Dots Indicator */}
               <div className="flex gap-2">
                 {Array.from({ length: count }).map((_, index) => (
                   <button
                     key={index}
                     onClick={() => api?.scrollTo(index)}
-                    className={`h-3 w-3 rounded-full transition-all duration-300 ${
-                      current === index + 1
-                        ? "bg-gradient-to-r from-purple-600 to-pink-600 scale-125"
-                        : colorMode === "dark"
+                    className={`h-3 w-3 rounded-full transition-all duration-300 ${current === index + 1
+                      ? "bg-gradient-to-r from-purple-600 to-pink-600 scale-125"
+                      : colorMode === "dark"
                         ? "bg-gray-600 hover:bg-gray-500"
                         : "bg-gray-300 hover:bg-gray-400"
-                    }`}
+                      }`}
                   />
                 ))}
               </div>
-              
-              <CarouselNext className={`static translate-y-0 h-12 w-12 ${
-                colorMode === "dark" 
-                  ? "border-gray-700 bg-gray-800 hover:bg-gray-700" 
-                  : "border-gray-200 bg-white hover:bg-gray-50"
-              }`} />
+
+              <CarouselNext className={`static translate-y-0 h-12 w-12 ${colorMode === "dark"
+                ? "border-gray-700 bg-gray-800 hover:bg-gray-700"
+                : "border-gray-200 bg-white hover:bg-gray-50"
+                }`} />
             </div>
           </Carousel>
         </motion.div>

@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useSafeColorMode } from "../../utils/useSafeColorMode";
-import { ExternalLink, Quote } from "lucide-react";
+
 
 interface TestimonialCardProps {
   name: string;
@@ -10,7 +10,8 @@ interface TestimonialCardProps {
   content: string;
   date: string;
   avatar: string;
-  link: string;
+  gradient?: string;
+  borderColor?: string;
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
@@ -19,17 +20,38 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   content,
   date,
   avatar,
-  link,
+  gradient,
+  borderColor,
 }) => {
   const { colorMode, isDark } = useSafeColorMode();
 
-  const formatLinkDisplay = (url: string) => {
-    try {
-      const urlObj = new URL(url);
-      return urlObj.hostname + urlObj.pathname;
-    } catch {
-      return url;
+  const getBackgroundStyle = () => {
+    let colorStop = "";
+    if (gradient === "bg-pink-100") {
+      colorStop = "rgba(244, 194, 214, 0.35)"; // Pink
+    } else if (gradient === "bg-purple-100") {
+      colorStop = "rgba(191, 190, 255, 0.35)"; // Blue/Lavender
+    } else {
+      colorStop = "rgba(165, 243, 252, 0.35)"; // Cyan
     }
+
+    return {
+      background: `
+        radial-gradient(
+          ellipse 600px 500px at 10% 85%,
+          ${colorStop} 0%,
+          rgba(255, 255, 255, 0) 70%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.95) 0%,
+          rgba(255, 255, 255, 0.9) 100%
+        )
+      `,
+      backdropFilter: "blur(4px)",
+      WebkitBackdropFilter: "blur(4px)",
+      border: "1px solid rgba(200, 200, 220, 0.4)",
+    };
   };
 
   return (
@@ -37,104 +59,60 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
-      whileHover={{ y: -5 }}
+      whileHover={{ y: -8 }}
       transition={{ duration: 0.3 }}
-      className={`group relative h-full overflow-hidden rounded-2xl border backdrop-blur-sm transition-all duration-300 hover:shadow-2xl ${
-        isDark 
-          ? "border-gray-700/50 bg-gray-900/80 shadow-xl" 
-          : "border-gray-200/50 bg-white/90 shadow-lg"
-      }`}
+      className={`group relative h-full w-full overflow-hidden rounded-3xl min-h-[550px] flex flex-col justify-between p-8`}
+      style={getBackgroundStyle()}
     >
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-blue-500/5 to-pink-500/5" />
-      
-      {/* Quote Icon */}
-      <div className="absolute top-4 right-4 opacity-20">
-        <Quote size={32} className="text-purple-500" />
-      </div>
+      {/* Subtle glossy overlay */}
+      <div
+        className="absolute inset-0 rounded-3xl pointer-events-none"
+        style={{
+          background: `linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 40%, transparent 70%)`,
+        }}
+      />
 
-      <div className="relative flex h-full flex-col p-6">
-        {/* Header */}
-        <div className="mb-6 flex items-center gap-4">
-          <div className="relative shrink-0">
-            <Avatar className="h-16 w-16 overflow-hidden border-2 border-gradient-to-r from-purple-500 to-pink-500 bg-white/90 shadow-md">
-              <AvatarImage src={avatar} className="h-full w-full scale-[2.3] object-cover transition-transform duration-500" />
-              <AvatarFallback className="bg-gradient-to-br from-purple-500 to-pink-500 text-white font-semibold">
-                {name.charAt(0)}
-              </AvatarFallback>
-            </Avatar>
-            <div className="absolute bottom-0 right-0 h-4 w-4 rounded-full border-2 border-white bg-green-500 shadow-sm" />
-          </div>
-          <div className="flex-1">
-            <h3 className={`text-lg font-bold ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}>
-              {name}
-            </h3>
-            <p className={`text-sm ${
-              isDark ? "text-gray-400" : "text-gray-500"
-            }`}>
-              @{username}
-            </p>
-          </div>
-        </div>
+      {/* Soft shadow */}
+      <div className="absolute inset-0 rounded-3xl pointer-events-none shadow-lg shadow-black/5" />
 
-        {/* Content */}
-        <div className="flex-1">
-          <p className={`text-base leading-relaxed ${
-            isDark ? "text-gray-300" : "text-gray-700"
-          }`}>
-            {content.replace(/#\w+/g, '').trim()}
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Testimonial Quote - Top Section */}
+        <div className="mb-12">
+          <p className="text-2xl leading-relaxed font-semibold text-gray-900 tracking-tight">
+            "{content.replace(/#\w+/g, '').trim()}"
           </p>
         </div>
 
-        {/* Footer */}
-        <div className={`mt-6 space-y-4 border-t pt-4 ${
-          isDark ? "border-gray-700/50" : "border-gray-200/50"
-        }`}>
-          {/* Hashtags */}
-          <div className="flex flex-wrap gap-2">
-            {content.match(/#\w+/g)?.map((hashtag, index) => (
-              <span
-                key={index}
-                className={`rounded-full px-3 py-1 text-xs font-medium transition-colors hover:scale-105 ${
-                  isDark
-                    ? "bg-blue-500/20 text-blue-400 hover:bg-blue-500/30"
-                    : "bg-blue-100 text-blue-600 hover:bg-blue-200"
-                }`}
-              >
-                {hashtag}
-              </span>
-            ))}
-          </div>
+        {/* Avatar and Info - Bottom Section */}
+        <div className="mt-auto">
+          <div className="flex items-center gap-6">
+            {/* Large Avatar with White Background */}
+            <Avatar className="h-20 w-20 overflow-hidden rounded-full border-3 border-white shadow-md flex-shrink-0 bg-white">
+              <AvatarImage src={avatar} className="h-full w-full object-cover scale-125" />
+              <AvatarFallback className="text-white font-bold text-lg bg-gradient-to-br from-purple-400 to-pink-400">
+                {name.charAt(0)}
+              </AvatarFallback>
+            </Avatar>
 
-          {/* Link and Date */}
-          <div className="flex items-center justify-between">
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group/link flex items-center gap-2 text-sm font-medium transition-colors ${
-                isDark
-                  ? "text-purple-400 hover:text-purple-300"
-                  : "text-purple-600 hover:text-purple-700"
-              }`}
-            >
-              <span className="truncate">{formatLinkDisplay(link)}</span>
-              <ExternalLink size={14} className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-            </a>
-            <span className={`text-xs ${
-              isDark ? "text-gray-500" : "text-gray-400"
-            }`}>
-              {date}
-            </span>
+            <div className="flex-1">
+              <h3 className="text-xl font-bold text-gray-900 mb-1 tracking-tight">
+                {name}
+              </h3>
+              {username !== "AryanGupta" && username !== "DonaldAnyamba" && (
+                <p className="text-sm text-gray-700 font-medium mb-3">
+                  {username === "VivienChen" ? "Founder @ Toastie (BC Y24)" :
+                    username === "DanielHan" ? "Founder @ Unsloth AI (YC W24, BC Y24)" :
+                      "AI Engineer @ Relevance AI"}
+                </p>
+              )}
+
+              <div className="flex items-center gap-3 text-xs text-gray-700">
+                <span className="font-medium">{date}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Hover Effect Border */}
-      <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" 
-           style={{ mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', maskComposite: 'xor' }} />
     </motion.div>
   );
 };
