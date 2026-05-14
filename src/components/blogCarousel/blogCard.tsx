@@ -48,7 +48,7 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
 
         {/* Card Image */}
         <div className="card-image">
-          <img src={imageUrl} alt={title} />git a
+          <img src={imageUrl} alt={title} />
         </div>
 
         {/* Card Content */}
