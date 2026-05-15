@@ -1,0 +1,56 @@
+name: Issue Completeness Check
+
+on:
+  issues:
+    types: [opened, edited, reopened]
+
+permissions:
+  contents: read
+  issues: write
+  models: read
+
+jobs:
+  check-completeness:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Analyze issue details
+        id: ai
+        uses: actions/ai-inference@v1
+        with:
+          model: openai/gpt-4o-mini
+          temperature: 0.2
+          system-prompt: |
+            You help open-source maintainers triage GitHub issues.
+            Review the issue for actionable completeness.
+            If it is missing reproduction steps, environment or version details, screenshots/logs for UI bugs, or expected versus actual behavior, return one concise and friendly Markdown comment asking only for the missing details.
+            If the issue is already complete enough to investigate, return an empty response.
+          prompt: |
+            Analyze this GitHub issue for completeness.
+
+            Title:
+            ${{ github.event.issue.title }}
+
+            Body:
+            ${{ github.event.issue.body }}
+
+      - name: Request missing issue details
+        if: ${{ steps.ai.outputs.response != '' }}
+        uses: actions/github-script@v7
+        env:
+          AI_RESPONSE: ${{ steps.ai.outputs.response }}
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const body = process.env.AI_RESPONSE?.trim();
+            if (!body) {
+              core.info("Issue is complete enough; no comment needed.");
+              return;
+            }
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body,
+            });
