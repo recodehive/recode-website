@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, ThumbsUp, Calendar, Tag, User } from "lucide-react";
+import { MessageCircle, ThumbsUp, Calendar, Tag } from "lucide-react";
 
 export interface Discussion {
   id: string;

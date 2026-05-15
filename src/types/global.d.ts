@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Global type declarations for better TypeScript compatibility
 
 // CSS modules and side-effect imports

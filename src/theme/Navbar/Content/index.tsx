@@ -1,9 +1,4 @@
-import React, {
-  type ReactNode,
-  useMemo,
-  Component,
-  type ReactElement,
-} from "react";
+import React, { type ReactNode, useMemo } from "react";
 import { useThemeConfig, ErrorCauseBoundary } from "@docusaurus/theme-common";
 import { splitNavbarItems } from "@docusaurus/theme-common/internal";
 import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem";
@@ -23,7 +18,7 @@ function SafeMobileSidebarToggle(): ReactNode {
   // If it fails, the error will be caught by Docusaurus's error boundary
   try {
     return <NavbarMobileSidebarToggle />;
-  } catch (error) {
+  } catch {
     // This won't catch hook errors, but it's here for other potential errors
     console.warn("Mobile sidebar toggle unavailable");
     return null;
