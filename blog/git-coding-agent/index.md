@@ -140,7 +140,7 @@ The GitHub Copilot Coding Agent represents a significant step forward in develop
 
 Check out this video walkthrough of the GitHub Copilot Coding Agent in action:
 
-<iframe width="100%" height="400" src="https://www.youtube.com/embed/6AmzJDAOHJ8" title="GitHub Copilot Coding Agent Demo" frameborder="0" allowfullscreen></iframe>
+<iframe width="100%" height="400" src="https://www.youtube.com/embed/6AmzJDAOHJ8" title="GitHub Copilot Coding Agent Demo" style={{ border: "none" }} allowfullscreen></iframe>
 
 ---
 <GiscusComments/>

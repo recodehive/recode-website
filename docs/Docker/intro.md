@@ -13,7 +13,7 @@ tags:
 description: Learn Docker fundamentals - what containers are, why use Docker, core concepts like images and containers, and get started with essential Docker commands.
 ---
 
-<div align="center">
+<div style={{ textAlign: "center" }}>
 
 # Introduction to Docker
 </div>
