@@ -37,7 +37,7 @@ const baseTestimonials = [
     name: "Daniel Han",
     username: "DanielHan",
     content:
-      "We were able to get our project scoped, matched and kicked off in one day. MagicalOur invoicing is now 10x faster, thanks to Recode Hive's automation.",
+      "We were able to get our project scoped, matched and kicked off in one day.Our invoicing is now 10x faster, thanks to Recode Hive's automation.",
     date: "Oct 18, 2024",
     avatar: "/icons/daniel.png",
     gradient: "bg-cyan-100",
