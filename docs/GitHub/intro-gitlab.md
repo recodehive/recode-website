@@ -83,7 +83,7 @@ To get started with GitLab, here are the recommended steps and prerequisites:
 ---
 
 ### Watch the video Tutorial
-<iframe width="880" height="480" src="https://www.youtube.com/embed/HSV-Kky9N5E" title="GitLab Beginner Tutorial | How to start with GitLab in 2024" style="border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="880" height="480" src="https://www.youtube.com/embed/HSV-Kky9N5E" title="GitLab Beginner Tutorial | How to start with GitLab in 2024" style={{ border: "none" }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
 

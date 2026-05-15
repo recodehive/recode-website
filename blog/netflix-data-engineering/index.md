@@ -105,7 +105,7 @@ Before diving into individual tools, watch this first. Flink Forward's breakdown
   height="400"
   src="https://www.youtube.com/embed/lC0d3gAPXaI"
   title="Netflix Data Engineering with Apache Flink"
-  style="border: none;"
+  style={{ border: "none" }}
   allowfullscreen>
 </iframe>
 

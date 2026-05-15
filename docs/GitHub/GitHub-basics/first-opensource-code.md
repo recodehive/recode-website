@@ -49,7 +49,7 @@ This is a beginner-friendly repository designed for practicing open source contr
 
 <BrowserWindow url="https://github.com/sanjay-kv/Open-source-Practice" bodyStyle={{padding: 0}}>
   [![GitHub](./assets/23-opensource.png)](https://github.com/sanjay-kv/Open-source-Practice)
-  <div style="text-align: center"><small>Step 1: Repository Home Page</small></div>
+  <div style={{ textAlign: "center" }}><small>Step 1: Repository Home Page</small></div>
 </BrowserWindow>
 
 Take a moment to:
@@ -68,12 +68,12 @@ Forking creates your own copy of the repository where you can make changes witho
 
 <BrowserWindow url="https://github.com/sanjay-kv/Learn-GitHub/fork" bodyStyle={{padding: 0}}>
   [![GitHub](./assets/21-final-fork.png)](https://github.com/sanjay-kv/Learn-GitHub/fork)
-  <div style="text-align: center"><small>Step 2: Forking the Repository</small></div>
+  <div style={{ textAlign: "center" }}><small>Step 2: Forking the Repository</small></div>
 </BrowserWindow>
 
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
   [![GitHub](./assets/24-opensource-fork.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style="text-align: center"><small>Step 3: Fork Button Location</small></div>
+  <div style={{ textAlign: "center" }}><small>Step 3: Fork Button Location</small></div>
 </BrowserWindow>
 
 Once the fork is complete, you'll see:
@@ -82,7 +82,7 @@ Once the fork is complete, you'll see:
 
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
   [![GitHub](./assets/25-opensource-done.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style="text-align: center"><small>Step 4: Fork Complete</small></div>
+  <div style={{ textAlign: "center" }}><small>Step 4: Fork Complete</small></div>
 </BrowserWindow>
 
 ## Step 3: Edit files directly on GitHub
@@ -101,7 +101,7 @@ For this practice repository, you'll typically add your name to a contributors l
 
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
   [![GitHub](./assets/26-add-name.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style="text-align: center"><small>Step 5: Add Your Name</small></div>
+  <div style={{ textAlign: "center" }}><small>Step 5: Add Your Name</small></div>
 </BrowserWindow>
 
 Common first contributions include:
@@ -113,7 +113,7 @@ Common first contributions include:
 
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
   [![GitHub](./assets/27-added-git-line.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style="text-align: center"><small>Step 6: Changes Made</small></div>
+  <div style={{ textAlign: "center" }}><small>Step 6: Changes Made</small></div>
 </BrowserWindow>
 
 :::tip Best Practices for Making Changes
@@ -140,7 +140,7 @@ After making your edits, you need to commit them. A commit is like saving a snap
 
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
   [![GitHub](./assets/28-opensource-commit.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style="text-align: center"><small>Step 7: Commit Changes</small></div>
+  <div style={{ textAlign: "center" }}><small>Step 7: Commit Changes</small></div>
 </BrowserWindow>
 
 **Good commit message examples:**
@@ -155,7 +155,7 @@ After making your edits, you need to commit them. A commit is like saving a snap
 
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
   [![GitHub](./assets/29-git-final-commit.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style="text-align: center"><small>Step 8: Final Commit Review</small></div>
+  <div style={{ textAlign: "center" }}><small>Step 8: Final Commit Review</small></div>
 </BrowserWindow>
 
 ## Step 5: Create a Pull Request
@@ -188,7 +188,7 @@ A Pull Request is a way to propose changes to a repository. It allows:
 
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
   [![GitHub](./assets/30-opensource-final-check.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style="text-align: center"><small>Step 9: Create Pull Request</small></div>
+  <div style={{ textAlign: "center" }}><small>Step 9: Create Pull Request</small></div>
 </BrowserWindow>
 
 ### Writing a Good Pull Request Description
@@ -281,7 +281,7 @@ After creating your pull request:
 
 For a visual walkthrough of the entire process, watch this helpful video:
 
-<iframe width="883" height="480" src="https://www.youtube.com/embed/R7NReLBCT_8?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="How to do your first opensource on GitHub" style="border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="883" height="480" src="https://www.youtube.com/embed/R7NReLBCT_8?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="How to do your first opensource on GitHub" style={{ border: "none" }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Finding Projects to Contribute To
 

@@ -86,7 +86,7 @@ You create a Linked Service once, then reuse it across as many datasets and pipe
   height="400"
   src="https://www.youtube.com/embed/EpDkxTHAhOs"
   title="YouTube video player"
-  style="border: none;"
+  style={{ border: "none" }}
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
   allowFullScreen>
 </iframe>

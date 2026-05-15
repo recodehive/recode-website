@@ -110,7 +110,7 @@ git config --global user.name "Github username"
 
 
 
-<iframe width="880" height="480" src="https://www.youtube.com/embed/DO38CZcw5pg?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="Github create repo using command line" style="border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="880" height="480" src="https://www.youtube.com/embed/DO38CZcw5pg?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="Github create repo using command line" style={{ border: "none" }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Conclusion
 

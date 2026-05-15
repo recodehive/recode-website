@@ -182,7 +182,7 @@ git push -u origin main #Push changes to remote repository and remember the bran
 </Tabs>
     :::
 
-<iframe width="880" height="480" src="https://www.youtube.com/embed/jE8nqWSbUQs?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="Understanding the GitHub Flow" style="border: none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="880" height="480" src="https://www.youtube.com/embed/jE8nqWSbUQs?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="Understanding the GitHub Flow" style={{ border: "none" }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Practice Git Interactively
 
