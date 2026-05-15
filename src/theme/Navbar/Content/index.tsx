@@ -38,18 +38,24 @@ function NavbarItems({ items }: { items: NavbarItemConfig[] }): ReactNode {
   return (
     <>
       {items.map((item, i) => {
-        const key = `${item.label || item.to || item.href || "item"}-${i}`;
+        const itemKey =
+          ("label" in item && item.label) ||
+          ("to" in item && item.to) ||
+          ("href" in item && item.href) ||
+          "item";
+        const key = `${itemKey}-${i}`;
         return (
           <ErrorCauseBoundary
             key={key}
-            onError={(error) =>
-              new Error(
+            onError={(error) => {
+              const boundaryError = new Error(
                 `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
 ${JSON.stringify(item, null, 2)}`,
-                { cause: error },
-              )
-            }
+              );
+              (boundaryError as Error & { cause?: unknown }).cause = error;
+              return boundaryError;
+            }}
           >
             <NavbarItem {...item} />
           </ErrorCauseBoundary>

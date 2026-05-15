@@ -297,7 +297,8 @@ const BlogCard = ({ blog, index }) => {
                             onError={(e) => {
                               const target = e.currentTarget;
                               target.style.display = "none";
-                              const fallback = target.nextElementSibling;
+                              const fallback =
+                                target.nextElementSibling as HTMLElement | null;
                               if (fallback) fallback.style.display = "flex";
                             }}
                           />
