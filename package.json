@@ -82,7 +82,7 @@
     "@typescript-eslint/eslint-plugin": "^8.59.3",
     "@typescript-eslint/parser": "^8.59.3",
     "autoprefixer": "^10.5.0",
-    "eslint": "^9.38.0",
+    "eslint": "^10.4.0",
     "eslint-plugin-react": "^7.37.5",
     "husky": "^9.1.7",
     "lint-staged": "^16.0.0",
