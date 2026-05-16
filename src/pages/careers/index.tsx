@@ -233,10 +233,10 @@ function CareersContent() {
               className="flex flex-col justify-center gap-4 sm:flex-row"
               variants={fadeIn}
             >
-              <Link className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50">
+              <Link to="#openings" className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50">
                 View Open Positions
               </Link>
-              <Link className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50">
+              <Link to="#culture" className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50">
                 Learn About Our Culture
               </Link>
             </motion.div>
