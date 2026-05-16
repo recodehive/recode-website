@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { MessageCircle, ThumbsUp, Calendar, Tag, User } from "lucide-react";
+import { MessageCircle, ThumbsUp, Calendar, Tag } from "lucide-react";
 
 export interface Discussion {
   id: string;
@@ -129,7 +129,8 @@ export default function DiscussionCard({
               onError={(e) => {
                 const target = e.currentTarget;
                 target.style.display = "none";
-                const fallback = target.nextElementSibling;
+                const fallback =
+                  target.nextElementSibling as HTMLElement | null;
                 if (fallback) fallback.style.display = "flex";
               }}
             />
