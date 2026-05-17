@@ -80,6 +80,19 @@ const GithubBadgesContent = (): React.ReactElement => {
           isDark ? "dark-bg-primary dark-text-primary" : "bg-white text-black"
         }`}
       >
+        <div
+          id="progressBar"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            height: "4px",
+            background: "linear-gradient(90deg, #fbbf24, #f59e0b)",
+            zIndex: 9999,
+            transition: "width 0.2s ease",
+            width: "0%",
+          }}
+        ></div>
         {/* Hero section */}
         <Head>
           <title>GitHub Achievements Guide - recode hive</title>
@@ -1321,6 +1334,32 @@ const GithubBadgesContent = (): React.ReactElement => {
             </div>{" "}
           </motion.div>
         </div>
+        <button
+          id="scrollToTop"
+          onClick={handleScrollToTop}
+          title="Go to top"
+          style={{
+            position: "fixed",
+            bottom: "30px",
+            right: "30px",
+            zIndex: 999,
+            padding: "15px",
+            borderRadius: "50%",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "50px",
+            height: "50px",
+          }}
+        >
+          <span
+            className="arrow-icon"
+            style={{ fontSize: "20px", fontWeight: "bold" }}
+          >
+            ↑
+          </span>
+        </button>
       </div>
     </Layout>
   );
