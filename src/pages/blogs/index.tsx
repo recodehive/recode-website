@@ -339,7 +339,9 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
               ))}
             </div>
           </div>
-          <span className="card-read-time">5 min read</span>
+          <span className="card-read-time">
+  🕒 {Math.max(1, Math.ceil((item.content || "").split(" ").length / 200))} min read
+</span>
         </div>
         <Link to={`/blog/${blog.slug}`} className="card-read-more">
           Read Article →
