@@ -5,6 +5,19 @@ import { motion } from "framer-motion";
 import Link from "@docusaurus/Link";
 // removed useColorMode import to avoid provider + SSR issues
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import {
+  Home,
+  CircleDollarSign,
+  GraduationCap,
+  HeartPulse,
+  Palmtree,
+  Rocket,
+  User,
+  Zap,
+  Users,
+  BrainCircuit,
+  ArrowRight
+} from "lucide-react";
 
 // Safe hook for color mode that handles SSR
 function useSafeColorMode() {
@@ -61,37 +74,37 @@ const staggerContainer = {
 // Sample data for the careers page
 const perks = [
   {
-    icon: "🏠",
+    icon: <Home className="w-8 h-8 text-blue-500" />,
     title: "Remote First",
     description:
       "Work from anywhere in the world with flexible hours that suit your lifestyle.",
   },
   {
-    icon: "💰",
+    icon: <CircleDollarSign className="w-8 h-8 text-green-500" />,
     title: "Competitive Salary",
     description:
       "We offer competitive compensation packages with equity options.",
   },
   {
-    icon: "🎓",
+    icon: <GraduationCap className="w-8 h-8 text-purple-500" />,
     title: "Learning & Development",
     description:
       "Annual learning budget and conference allowances to grow your skills.",
   },
   {
-    icon: "🏥",
+    icon: <HeartPulse className="w-8 h-8 text-red-500" />,
     title: "Health & Wellness",
     description:
       "Comprehensive health insurance and wellness programs for you and your family.",
   },
   {
-    icon: "🌴",
+    icon: <Palmtree className="w-8 h-8 text-teal-500" />,
     title: "Unlimited PTO",
     description:
       "Take the time you need to recharge and maintain work-life balance.",
   },
   {
-    icon: "🚀",
+    icon: <Rocket className="w-8 h-8 text-indigo-500" />,
     title: "Career Growth",
     description:
       "Clear career progression paths with mentorship and leadership opportunities.",
@@ -103,19 +116,19 @@ const cultureValues = [
     title: "Innovation First",
     description:
       "We embrace new technologies and creative solutions to solve complex problems.",
-    image: "/img/culture-innovation.jpg",
+    icon: <Zap className="w-16 h-16 text-white" />,
   },
   {
     title: "Collaboration",
     description:
       "We believe in the power of teamwork and diverse perspectives.",
-    image: "/img/culture-collaboration.jpg",
+    icon: <Users className="w-16 h-16 text-white" />,
   },
   {
     title: "Growth Mindset",
     description:
       "We're committed to continuous learning and personal development.",
-    image: "/img/culture-growth.jpg",
+    icon: <BrainCircuit className="w-16 h-16 text-white" />,
   },
 ];
 
@@ -233,10 +246,17 @@ function CareersContent() {
               className="flex flex-col justify-center gap-4 sm:flex-row"
               variants={fadeIn}
             >
-              <Link className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50">
+              <Link
+                to="#openings"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-blue-50"
+              >
                 View Open Positions
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
-              <Link className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50">
+              <Link
+                to="#culture"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-transparent border-2 border-white px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-white/10"
+              >
                 Learn About Our Culture
               </Link>
             </motion.div>
@@ -292,14 +312,18 @@ function CareersContent() {
               {cultureValues.map((value, index) => (
                 <motion.div
                   key={index}
-                  className="culture-card transform rounded-xl p-8 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className="culture-card group transform rounded-xl p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border border-transparent"
                   style={{
                     backgroundColor: isDark ? "#0f172a" : "#ffffff",
+                    borderColor: isDark ? "rgba(59, 130, 246, 0.1)" : "rgba(59, 130, 246, 0.05)",
                   }}
                   variants={fadeIn}
                 >
-                  <div className="mb-6 flex h-48 items-center justify-center rounded-lg bg-gradient-to-br from-blue-400 to-purple-500">
-                    <span className="text-6xl">🚀</span>
+                  <div className="mb-6 flex h-48 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 to-purple-500 overflow-hidden relative">
+                    <div className="absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                      {value.icon}
+                    </div>
                   </div>
                   <h3
                     className="mb-4 text-2xl font-bold"
@@ -369,13 +393,15 @@ function CareersContent() {
               {perks.map((perk, index) => (
                 <motion.div
                   key={index}
-                  className="perk-card transform rounded-xl p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className="perk-card group transform rounded-xl p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border border-transparent hover:border-blue-500/30"
                   style={{
                     backgroundColor: isDark ? "#1f2937" : "#ffffff",
                   }}
                   variants={fadeIn}
                 >
-                  <div className="mb-4 text-4xl">{perk.icon}</div>
+                  <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 ${isDark ? 'bg-gray-800' : 'bg-blue-50'}`}>
+                    {perk.icon}
+                  </div>
                   <h3
                     className="mb-3 text-xl font-bold"
                     style={{
@@ -435,13 +461,14 @@ function CareersContent() {
               {jobOpenings.map((job, index) => (
                 <motion.div
                   key={index}
-                  className="job-card rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
+                  className="job-card group rounded-xl p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-transparent hover:border-blue-500/30 relative overflow-hidden"
                   style={{
                     backgroundColor: isDark ? "#1f2937" : "#ffffff",
                   }}
                   variants={fadeIn}
                 >
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <div className={`absolute left-0 top-0 h-full w-1 transform transition-all duration-300 group-hover:scale-y-100 scale-y-0 ${isDark ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between pl-2">
                     <div className="flex-1">
                       <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-center">
                         <h3
@@ -494,13 +521,14 @@ function CareersContent() {
                     <div className="md:ml-6">
                       <Link
                         to="/contact-us"
-                        className="inline-block transform rounded-lg bg-blue-600 px-6 py-3 font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-700"
+                        className="inline-flex items-center gap-2 transform rounded-lg bg-blue-600 px-6 py-3 font-semibold shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         style={{
                           color: "#ffffff",
                           textDecoration: "none",
                         }}
                       >
                         Apply Now
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                       </Link>
                     </div>
                   </div>
@@ -550,8 +578,8 @@ function CareersContent() {
               variants={fadeIn}
             >
               <div className="testimonial-content text-center">
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500">
-                  <span className="text-2xl">👤</span>
+                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-inner">
+                  <User className="h-10 w-10 text-white" />
                 </div>
                 <blockquote
                   className="mb-6 text-lg italic md:text-xl"
@@ -624,13 +652,14 @@ function CareersContent() {
             >
               <Link
                 to="/contact-us"
-                className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-blue-50"
               >
                 Get In Touch
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/community"
-                className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-transparent border-2 border-white px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-white/10"
               >
                 Join Our Community
               </Link>
