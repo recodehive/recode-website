@@ -219,7 +219,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
 
         // Fetch repository events from GitHub API
         const eventsResponse = await fetch(
-          "https://api.github.com/repos/Live GitHub Contributions/events?per_page=30",
+          "https://api.github.com/repos/recodehive/recode-website/events?per_page=30",
         );
 
         if (!eventsResponse.ok) {
@@ -545,7 +545,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
             <div className="floating-contributors-header">
               <div className="floating-contributors-title">
                 <span className="title-icon">👥</span>
-                <span>Open Source Contributors</span>
+                <span>Live Activity</span>
               </div>
               <div className="floating-contributors-subtitle">
                 recodehive/recode-website
@@ -677,7 +677,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
                 aria-label="View repository on GitHub and join the community"
               >
                 <span className="cta-icon">🚀</span>
-                <span>Join Our Open Source Community</span>
+                <span>View Repositories on GitHub</span>
                 <span className="cta-arrow">↗</span>
               </motion.a>
             </div>
