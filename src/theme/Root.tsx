@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import Link from "@docusaurus/Link";
 import { Analytics } from "@vercel/analytics/react";
+import { ClerkProvider } from "@clerk/react";
 import clsx from "clsx"; // Import clsx for conditional classes
 import styles from "./Root.module.css"; // Import the CSS module
 import { useLocation } from "@docusaurus/router";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 // A simple Trophy SVG icon component
 function TrophyIcon() {
@@ -31,11 +33,86 @@ function TrophyIcon() {
 }
 
 export default function Root({ children }: { children: React.ReactNode }) {
+  const {
+    siteConfig: { customFields },
+  } = useDocusaurusContext();
   const [showToast, setShowToast] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const location = useLocation();
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const clerkPublishableKey = customFields?.clerkPublishableKey as
+    | string
+    | undefined;
+  const clerkAppearance = {
+    variables: {
+      colorPrimary: "var(--ifm-color-primary)",
+      colorBackground: "var(--ifm-background-surface-color)",
+      colorForeground: "var(--ifm-color-content)",
+      colorMutedForeground: "var(--ifm-color-content-secondary)",
+      colorInputBackground: "var(--ifm-background-color)",
+      colorInputForeground: "var(--ifm-color-content)",
+      colorRing: "rgba(56, 161, 105, 0.24)",
+      colorModalBackdrop: "rgba(15, 23, 42, 0.62)",
+      borderRadius: "0.75rem",
+      fontFamily: "var(--ifm-font-family-base)",
+    },
+    layout: {
+      logoImageUrl: "/img/logo.png",
+      socialButtonsPlacement: "top" as const,
+      socialButtonsVariant: "blockButton" as const,
+    },
+    elements: {
+      cardBox: {
+        border: "1px solid var(--ifm-color-emphasis-200)",
+        boxShadow: "0 24px 80px rgba(15, 23, 42, 0.24)",
+      },
+      card: {
+        backgroundColor: "var(--ifm-background-surface-color)",
+      },
+      logoBox: {
+        marginBottom: "0.75rem",
+      },
+      logoImage: {
+        height: "2rem",
+      },
+      headerTitle: {
+        color: "var(--ifm-color-content)",
+        fontWeight: 700,
+        letterSpacing: "0",
+      },
+      headerSubtitle: {
+        color: "var(--ifm-color-content-secondary)",
+      },
+      socialButtonsBlockButton: {
+        border: "1px solid var(--ifm-color-emphasis-300)",
+        backgroundColor: "var(--ifm-background-color)",
+        color: "var(--ifm-color-content)",
+        boxShadow: "none",
+        "&:hover, &:focus, &:active": {
+          backgroundColor: "var(--ifm-color-emphasis-100)",
+          borderColor: "var(--ifm-color-primary)",
+        },
+      },
+      socialButtonsBlockButtonText: {
+        fontWeight: 600,
+      },
+      footer: {
+        borderTop: "1px solid var(--ifm-color-emphasis-200)",
+        backgroundColor: "var(--ifm-background-surface-color)",
+      },
+      footerActionText: {
+        color: "var(--ifm-color-content-secondary)",
+      },
+      footerActionLink: {
+        color: "var(--ifm-color-primary)",
+        fontWeight: 600,
+      },
+      modalBackdrop: {
+        backdropFilter: "blur(4px)",
+      },
+    },
+  };
 
   // Check if current page is sponsors page
   const isSponsorsPage =
@@ -110,7 +187,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
     }
   };
 
-  return (
+  const content = (
     <>
       {children}
 
@@ -154,5 +231,19 @@ export default function Root({ children }: { children: React.ReactNode }) {
 
       {process.env.NODE_ENV === "production" && <Analytics />}
     </>
+  );
+
+  if (!clerkPublishableKey) {
+    return content;
+  }
+
+  return (
+    <ClerkProvider
+      publishableKey={clerkPublishableKey}
+      afterSignOutUrl="/"
+      appearance={clerkAppearance}
+    >
+      {content}
+    </ClerkProvider>
   );
 }

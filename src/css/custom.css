@@ -477,12 +477,12 @@ body {
   /* Hide TOP navbar items on mobile (not sidebar) */
 
   /*
-  * This hides all navbar items on small screens, *except* for the
-  * toggle, brand, and the item :has() the GitHub auth button.
+  * Hide all navbar items on small screens except the toggle, brand,
+  * and the Clerk auth control.
   */
   .navbar__items
     .navbar__item:not(.navbar__toggle):not(.navbar__brand):not(
-      :has(#firebase-auth-github-navbar)
+      :has(#clerk-auth-navbar)
     ) {
     display: none !important;
   }
@@ -1378,13 +1378,38 @@ html {
 }
 
 .DocSearch-Button,
-#firebase-auth-github-navbar button,
+#clerk-auth-navbar button,
 .colorModeToggle {
   height: 36px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   box-sizing: border-box !important;
+}
+
+.clerk-navbar-auth {
+  display: flex;
+  align-items: center;
+}
+
+.clerk-navbar-sign-in {
+  border: 0;
+  border-radius: 6px;
+  background: var(--ifm-color-primary);
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0 0.8rem;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.clerk-navbar-sign-in:hover {
+  background: var(--ifm-color-primary-dark);
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(46, 133, 85, 0.24);
 }
 
 .algolia-sitesearch-navbar {

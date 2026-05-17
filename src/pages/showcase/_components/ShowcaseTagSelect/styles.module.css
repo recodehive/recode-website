@@ -36,3 +36,16 @@ input:checked + .checkboxLabel:hover {
   opacity: 0.75;
   box-shadow: 0 0 2px 1px var(--ifm-color-primary-dark);
 }
+input[type="checkbox"] + .checkboxLabel {
+  color: var(--ifm-color-content);
+}
+
+[data-theme="dark"] input[type="checkbox"] + .checkboxLabel {
+  color: #ffffff;
+  border-color: #555555;
+}
+
+[data-theme="light"] input[type="checkbox"] + .checkboxLabel {
+  color: #000000;
+  border-color: var(--ifm-color-secondary-darkest);
+}

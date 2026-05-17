@@ -188,6 +188,17 @@ const blogs: Blog[] = [
     category: "data engineering",
     tags: ["Azure", "Synapse Analytics", "Data Warehousing", "Big Data", "Unified Analytics", "Fabric", "Data Engineering"],
   },
+  {
+    id: 17,
+    title: "Azure Data Pipeline Cost Optimization: How We Cut a $4,200 Bill by 73%",
+    image: "/img/blogs/cost_optimzation_cover.png",
+    description:
+      "Azure Data Pipeline can be a powerful tool for data processing and analytics, but it can also lead to unexpectedly high costs if not managed properly. In this article, we share our experience of optimizing our Azure Data Pipeline costs, which resulted in a 73% reduction in our monthly bill, saving us $3,066. We discuss the strategies we implemented to achieve this significant cost reduction while maintaining the performance and reliability of our data pipeline.",
+    slug: "azure-cost-optimization",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Azure", "Data Pipeline", "Cost Optimization", "Data Engineering"],
+  },
 
 ];
 

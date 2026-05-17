@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // Global type declarations for better TypeScript compatibility
 
 // CSS modules and side-effect imports
@@ -34,7 +35,7 @@ declare module "@docusaurus/theme-common" {
 
   export function useThemeConfig(): any;
   export function usePluralForm(): any;
-  export function isMultiColumnFooterLinks(): any;
+  export function isMultiColumnFooterLinks(links: any): any;
   export const ThemeClassNames: any;
   export const ErrorCauseBoundary: any;
 }
@@ -90,7 +91,10 @@ declare module "@site/src/lib/utils" {
 }
 
 declare module "@site/src/utils/jsUtils" {
-  export function sortBy(array: any[], key: string): any[];
+  export function sortBy<T>(
+    array: T[],
+    getter: (item: T) => string | number | boolean,
+  ): T[];
 }
 
 declare module "@site/src/services/github" {
@@ -98,6 +102,24 @@ declare module "@site/src/services/github" {
   export interface GitHubDiscussion {
     [key: string]: any;
   }
+}
+
+declare module "@site/src/services/githubService" {
+  export const githubService: {
+    setToken(token: string): void;
+    fetchDiscussions(limit?: number, signal?: AbortSignal): Promise<any[]>;
+  };
+  export interface GitHubDiscussion {
+    [key: string]: any;
+  }
+}
+
+declare module "@site/src/utils/useSafeColorMode" {
+  export function useSafeColorMode(): {
+    colorMode: "light" | "dark";
+    isDark: boolean;
+    mounted: boolean;
+  };
 }
 
 declare module "@site/src/components/ui/button" {
@@ -108,25 +130,17 @@ declare module "@site/src/database/sponsors" {
   export interface Sponsor {
     [key: string]: any;
   }
+  const sponsors: Sponsor[];
+  export default sponsors;
 }
 
 declare module "@site/src/data/users" {
-  export interface Tag {
-    [key: string]: any;
-  }
-  export interface TagList {
-    [key: string]: any;
-  }
-  export interface Tags {
-    [key: string]: any;
-  }
-  export interface TagType {
-    [key: string]: any;
-  }
-  export interface User {
-    [key: string]: any;
-  }
-  export const sortedUsers: any;
+  export type Tag = import("../data/users").Tag;
+  export type TagType = import("../data/users").TagType;
+  export type User = import("../data/users").User;
+  export const Tags: { [type in TagType]: Tag };
+  export const TagList: TagType[];
+  export const sortedUsers: User[];
 }
 
 // Catch-all for any missing modules

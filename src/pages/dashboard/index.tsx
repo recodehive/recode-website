@@ -1,7 +1,8 @@
-import React, { JSX, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import BrowserOnly from "@docusaurus/BrowserOnly";
+import { SignInButton, useAuth } from "@clerk/react";
 import { motion } from "framer-motion";
 import {
   useCommunityStatsContext,
@@ -54,12 +55,35 @@ const categories: Category[] = [
   "general",
 ];
 
+const LeaderboardAuthGate: React.FC = () => {
+  const { isLoaded, isSignedIn } = useAuth();
+
+  if (!isLoaded) {
+    return <div className="leaderboard-auth-state">Loading leaderboard...</div>;
+  }
+
+  if (!isSignedIn) {
+    return (
+      <div className="leaderboard-auth-state">
+        <h1>Leaderboard</h1>
+        <p>Sign in to view the leaderboard.</p>
+        <SignInButton mode="modal">
+          <button className="leaderboard-auth-button">Sign in</button>
+        </SignInButton>
+      </div>
+    );
+  }
+
+  return <LeaderBoard />;
+};
+
 const DashboardContent: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
   const {
     siteConfig: { customFields },
   } = useDocusaurusContext();
+  const isClerkConfigured = Boolean(customFields?.clerkPublishableKey);
   const [activeTab, setActiveTab] = useState<
     "home" | "discuss" | "giveaway" | "contributors"
   >("home");
@@ -653,7 +677,14 @@ const DashboardContent: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <LeaderBoard />
+            {isClerkConfigured ? (
+              <LeaderboardAuthGate />
+            ) : (
+              <div className="leaderboard-auth-state">
+                <h1>Leaderboard</h1>
+                <p>Leaderboard access is unavailable right now.</p>
+              </div>
+            )}
           </motion.div>
         )}
 
