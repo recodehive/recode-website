@@ -30,10 +30,11 @@
   font-size: 0.8rem;
   margin-top: 0.5rem;
   margin-right: 0.5rem;
+  color: var(--ifm-color-content);
 }
 
 [data-theme="dark"] .checkboxListItem {
-  color: var(--dark-text-primary);
+  color: var(--ifm-color-content);
 }
 
 .checkboxListItem:last-child {
@@ -49,6 +50,8 @@
   border-radius: 15px;
   padding: 10px;
   border: 1px solid gray;
+  color: var(--ifm-color-content);
+  background: var(--ifm-background-color);
 }
 
 [data-theme="dark"] .searchContainer input {
@@ -110,4 +113,46 @@
   );
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+[data-theme="dark"] .filterCheckbox {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .checkboxList {
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .checkboxListItem {
+  color: #ffffff !important;
+  border-color: #444444 !important;
+}
+
+[data-theme="light"] .checkboxListItem {
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .showcaseFavorite {
+  background-color: #1a1a1a !important;
+}
+[data-theme="dark"] .filterCheckbox {
+  background-color: transparent !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .checkboxList {
+  background-color: transparent !important;
+}
+
+[data-theme="dark"] .checkboxListItem {
+  color: #ffffff !important;
+  border-color: #444444 !important;
+}
+
+[data-theme="light"] .checkboxListItem {
+  color: #000000 !important;
+}
+
+[data-theme="dark"] .showcaseFavorite {
+  background-color: #1a1a1a !important;
 }
