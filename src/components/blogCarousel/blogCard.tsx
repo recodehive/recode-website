@@ -1,13 +1,13 @@
 "use client";
 import * as React from "react";
-import { useState } from "react";
+
 import { motion } from "framer-motion";
 import Link from "@docusaurus/Link";
-import { Card, CardContent } from "../ui/card";
+
 import { getAuthorNames } from "../../utils/authors";
 
 const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  
 
   if (!id || !type) {
     return <div>data not fetched properly, imageId and entryId not found</div>;
@@ -45,16 +45,16 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
         scale: 1.02,
         transition: { duration: 0.4, ease: "easeOut" },
       }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+     
       className="relative h-full overflow-hidden transition-all duration-300"
     >
       <Link
-        to={`/blog/${id}`}
-        className="text-decoration-none block h-full"
-        style={{ textDecoration: "none" }}
-      >
-        <div className="article-card h-full">
+  to={`/blog/${id}`}
+  className="block h-full"
+  style={{ textDecoration: "none" }}
+  aria-label={`Read article: ${title}`}   // ← add this
+>
+        <div className="article-card h-full" style={{ cursor: "pointer"}}>
           {/* Category Badge */}
           <div className="card-category">{category}</div>
 
@@ -83,7 +83,9 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
             </div>
 
             {/* Read More Button */}
-            <div className="card-read-more">Read Article →</div>
+            <span className="card-read-more">
+              <span>Read Article →</span>
+            </span>
           </div>
         </div>
       </Link>
