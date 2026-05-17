@@ -115,6 +115,7 @@ const config: Config = {
           type: "dropdown",
           html: '<span class="nav-emoji">📚</span> Docs',
           position: "left",
+          to: "/docs/",
           items: [
             {
               type: "html",
