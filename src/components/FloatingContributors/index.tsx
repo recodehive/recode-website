@@ -87,13 +87,13 @@ interface ContributorActivity {
     html_url: string;
   };
   action:
-    | "pushed"
-    | "created"
-    | "merged"
-    | "opened"
-    | "commented"
-    | "closed"
-    | "other";
+  | "pushed"
+  | "created"
+  | "merged"
+  | "opened"
+  | "commented"
+  | "closed"
+  | "other";
   message?: string;
   timestamp: Date;
   timeAgo: string;
@@ -219,7 +219,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
 
         // Fetch repository events from GitHub API
         const eventsResponse = await fetch(
-          "https://api.github.com/repos/recodehive/recode-website/events?per_page=30",
+          "https://api.github.com/repos/Live GitHub Contributions/events?per_page=30",
         );
 
         if (!eventsResponse.ok) {
@@ -519,17 +519,17 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
               headerEmbedded
                 ? {}
                 : {
-                    y: [0, -8, 0],
-                  }
+                  y: [0, -8, 0],
+                }
             }
             transition={
               headerEmbedded
                 ? {}
                 : {
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }
             }
           >
             {/* Close button */}
@@ -545,7 +545,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
             <div className="floating-contributors-header">
               <div className="floating-contributors-title">
                 <span className="title-icon">👥</span>
-                <span>Live Activity</span>
+                <span>Open Source Contributors</span>
               </div>
               <div className="floating-contributors-subtitle">
                 recodehive/recode-website
@@ -677,7 +677,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
                 aria-label="View repository on GitHub and join the community"
               >
                 <span className="cta-icon">🚀</span>
-                <span>View Repositories on GitHub</span>
+                <span>Join Our Open Source Community</span>
                 <span className="cta-arrow">↗</span>
               </motion.a>
             </div>
