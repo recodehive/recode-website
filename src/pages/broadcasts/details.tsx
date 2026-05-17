@@ -105,7 +105,7 @@ export default function VideoDetails(): ReactElement {
             <div className="video-embed-large">
               <iframe
                 src={`https://www.youtube.com/embed/${getYoutubeVideoId(video.youtubeUrl)}${video.type === "shorts" ? "?loop=1" : ""}`}
-                frameBorder="0"
+                style={{ border: "none" }}
                 allowFullScreen
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 loading="eager"

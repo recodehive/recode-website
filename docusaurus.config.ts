@@ -3,6 +3,7 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import * as dotenv from "dotenv";
 import giscusInjector from "./src/plugins/giscus-injector";
+dotenv.config({ path: ".env.local" });
 dotenv.config();
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -247,7 +248,7 @@ const config: Config = {
         {
           type: "html",
           position: "right",
-          value: '<div id="firebase-auth-github-navbar"></div>',
+          value: '<div id="clerk-auth-navbar"></div>',
         },
       ],
     },
@@ -286,6 +287,7 @@ const config: Config = {
   // ✅ Add this customFields object to expose the token to the client-side
   customFields: {
     gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
+    clerkPublishableKey: process.env.VITE_CLERK_PUBLISHABLE_KEY || "",
     // Shopify credentials for merch store
     SHOPIFY_STORE_DOMAIN:
       process.env.SHOPIFY_STORE_DOMAIN || "junh9v-gw.myshopify.com",

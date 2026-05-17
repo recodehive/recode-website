@@ -26,7 +26,7 @@ import {
   type TagType,
 } from "@site/src/data/users";
 import FavoriteIcon from "@site/src/components/svgIcons/FavoriteIcon";
-import { useColorMode } from "@docusaurus/theme-common";
+
 
 const TITLE =
   "recode hive: Framing all the opensource projects built by our community members";
@@ -185,11 +185,11 @@ function useSiteCountPlural() {
     );
 }
 
-function ShowcaseFilters() {
+function ShowcaseFilters({ isDark = false }: { isDark?: boolean }) {
   const filteredUsers = useFilteredUsers();
   const siteCountPlural = useSiteCountPlural();
   return (
-    <section className="margin-top--l margin-bottom--lg container">
+       <section className="margin-top--l margin-bottom--lg container">
       <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
         <div>
           <motion.h2
@@ -456,16 +456,9 @@ export default function Showcase(): JSX.Element {
 }
 
 function ShowcaseContent() {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
 
   return (
-    <main
-      className={clsx(
-        "",
-        isDark ? "bg-[#121212] text-white" : "bg-white text-black",
-      )}
-    >
+    <main className={styles.showcaseContainer}>
       <Head>
         <script
           async

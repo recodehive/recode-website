@@ -6,8 +6,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { useSafeColorMode } from "../utils/useSafeColorMode";
 // Mobile-specific overrides for very small screens (<768px and <320px)
-import "./ourProjects.mobile.css";
-// Import projects data and types
+import "./ourProjects.mobile.css";// Import projects data and types
 import projectsData from "../data/projects.json";
 import type { ProjectsData, ProjectItem } from "../data/types";
 
@@ -15,7 +14,7 @@ import type { ProjectsData, ProjectItem } from "../data/types";
  * Legacy interface for backward compatibility
  * @deprecated Use ProjectsData from types.ts instead
  */
-export interface OurProjectsData {
+export interface Data {
   tag: string;
   title: string;
   description: string;
@@ -29,12 +28,12 @@ export interface OurProjectsData {
  * Legacy props interface for backward compatibility
  * @deprecated Component now imports data directly
  */
-export interface OurProjectsProps {
-  OurProjectsData?: OurProjectsData;
+export interface Props {
+  Data?: Data;
 }
 
 /**
- * OurProjects Component
+ *  Component
  *
  * Displays a showcase of RecodeHive projects with interactive previews.
  * Now uses data-driven approach with JSON configuration for better maintainability.
@@ -48,8 +47,8 @@ export interface OurProjectsProps {
  *
  * @param props - Optional props for backward compatibility
  */
-const OurProjects: React.FC<OurProjectsProps> = ({
-  OurProjectsData: legacyData,
+const ShowcasePage: React.FC<Props> = ({
+  Data: legacyData,
 }) => {
   const { colorMode, isDark } = useSafeColorMode();
 
@@ -211,7 +210,7 @@ const SelectComponent = ({
       </div>
 
       <div
-        className={`ourprojects-embed-container relative col-span-1 min-h-[50vh] overflow-hidden p-4 md:col-span-8 md:min-h-[70vh] md:p-8`}
+        className={`-embed-container relative col-span-1 min-h-[50vh] overflow-hidden p-4 md:col-span-8 md:min-h-[70vh] md:p-8`}
       >
         {/* Animated Mesh Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-blue-600/30 via-cyan-500/30 to-emerald-500/30">
@@ -288,7 +287,7 @@ const SelectComponent = ({
           className="perspective-1000 relative z-10"
         >
           <div
-            className={`md:hover:rotateY-5 group ourprojects-embed-card h-[45vh] transform overflow-hidden rounded-2xl border-2 shadow-2xl backdrop-blur-md transition-all duration-700 hover:scale-105 sm:h-[50vh] sm:rounded-3xl md:h-[65vh] ${
+            className={`md:hover:rotateY-5 group -embed-card h-[45vh] transform overflow-hidden rounded-2xl border-2 shadow-2xl backdrop-blur-md transition-all duration-700 hover:scale-105 sm:h-[50vh] sm:rounded-3xl md:h-[65vh] ${
               isDark
                 ? "border-purple-500/50 bg-gray-900/95 shadow-purple-500/25"
                 : "border-blue-400/50 bg-white/95 shadow-blue-500/25"
@@ -398,7 +397,7 @@ const SelectComponent = ({
                       src={
                         PROJECT_URLS[items[activeItem].title] || "about:blank"
                       }
-                      className="ourprojects-iframe pointer-events-none h-[220%] w-full origin-top border-0 sm:h-[200%]"
+                      className="-iframe pointer-events-none h-[220%] w-full origin-top border-0 sm:h-[200%]"
                       initial={{ opacity: 0, y: 0 }}
                       animate={{
                         opacity: 1,
@@ -448,7 +447,7 @@ const SelectComponent = ({
 
                 {/* Dynamic Indicator */}
                 <motion.div
-                  className={`ourprojects-live-indicator absolute right-4 bottom-4 flex items-center rounded-full px-3 py-2 text-xs font-medium text-white backdrop-blur-sm ${
+                  className={`-live-indicator absolute right-4 bottom-4 flex items-center rounded-full px-3 py-2 text-xs font-medium text-white backdrop-blur-sm ${
                     items[activeItem].title === "Awesome GitHub Profile" ||
                     items[activeItem].title === "Machine Learning Repository"
                       ? "bg-green-600/90"
@@ -469,7 +468,7 @@ const SelectComponent = ({
                 </motion.div>
 
                 {/* Holographic Overlay */}
-                <div className="ourprojects-overlay pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent">
+                <div className="-overlay pointer-events-none absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent">
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-cyan-500/10"></div>
                 </div>
               </motion.div>
@@ -581,4 +580,4 @@ const SelectComponent = ({
   );
 };
 
-export default OurProjects;
+export default ShowcasePage;

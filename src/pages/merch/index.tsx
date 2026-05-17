@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import Layout from "@theme/Layout";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import ProductGrid from "../../components/merch/ProductGrid";
 import FilterBar from "../../components/merch/FilterBar";
 import ShoppingCart from "../../components/merch/ShoppingCart";
@@ -83,7 +83,7 @@ const sampleProducts: Product[] = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
@@ -91,7 +91,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };

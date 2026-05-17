@@ -234,13 +234,13 @@ int main() {
 
 ```md title="Example Apple Style Window"
  <BrowserWindow minHeight={300}>
-    <img src="https://github.com/Ajay-Dhangar.png" width="150" /> <br />
+   <img src="https://github.com/Ajay-Dhangar.png" alt="Ajay Dhangar avatar" width="150" /> <br />
     <button onClick={() => alert('Hello, world!')}>Click Me</button>
  </BrowserWindow>
 ```
 
  <BrowserWindow minHeight={300}>
-    <img src="https://github.com/Ajay-Dhangar.png" width="150" /> <br />
+   <img src="https://github.com/Ajay-Dhangar.png" alt="Ajay Dhangar avatar" width="150" /> <br />
     <button onClick={() => alert('Hello, world!')}>Click Me</button>
  </BrowserWindow>
 
