@@ -1,13 +1,26 @@
 "use client";
+import React from "react";
 import Link from "@docusaurus/Link";
-import { Card, CardContent } from "../ui/card";
 import { getAuthorProfiles, getAuthorTooltip } from "../../utils/authors";
 
-declare const require: any;
-const React = require("react");
+interface BlogCardProps {
+  type: string;
+  date?: string;
+  title: string;
+  content: string;
+  imageUrl: string;
+  id: string;
+  authors?: string[];
+}
 
-const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
-  const [isHovered, setIsHovered] = React.useState(false);
+const BlogCard = ({
+  type,
+  title,
+  content,
+  imageUrl,
+  id,
+  authors,
+}: BlogCardProps) => {
   const authorProfiles = getAuthorProfiles(authors || []);
 
   if (!id || !type) {
@@ -37,11 +50,7 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
   const category = getCategory(title);
 
   return (
-    <div
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="relative h-full overflow-hidden transition-all duration-300"
-    >
+    <div className="relative h-full overflow-hidden transition-all duration-300">
       <div className="article-card h-full">
         {/* Category Badge */}
         <div className="card-category">{category}</div>
@@ -64,7 +73,7 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
           <div className="card-meta">
             <div className="card-author">
               {/* Stacked Author Avatars */}
-              {authorProfiles.length > 0 && (
+              {authorProfiles.length > 0 &&
                 (() => {
                   const max = 3;
                   const visible = authorProfiles.slice(0, max);
@@ -85,7 +94,8 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
                               onError={(e) => {
                                 const target = e.currentTarget;
                                 target.style.display = "none";
-                                const fallback = target.nextElementSibling;
+                                const fallback =
+                                  target.nextElementSibling as HTMLElement | null;
                                 if (fallback) fallback.style.display = "flex";
                               }}
                             />
@@ -101,8 +111,7 @@ const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
                       )}
                     </div>
                   );
-                })()
-              )}
+                })()}
 
               {/* Author Names */}
               <div className="author-name-group">

@@ -1,5 +1,4 @@
-declare const require: any;
-const React = require("react");
+import React, { type ChangeEvent } from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
@@ -47,7 +46,7 @@ export default function Blogs() {
     setFilteredBlogs(filtered);
   }, [searchTerm, selectedCategory]);
 
-  const handleSearchChange = (e: any) => {
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
@@ -146,7 +145,11 @@ export default function Blogs() {
                       onClick={() => setSearchTerm("")}
                       aria-label="Clear search"
                     >
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                      >
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                       </svg>
@@ -219,8 +222,7 @@ export default function Blogs() {
                     {filteredBlogs.length > 0
                       ? `Found ${filteredBlogs.length} article${filteredBlogs.length !== 1 ? "s" : ""}`
                       : `No articles found`}
-                    {selectedCategory !== "All" &&
-                      ` in ${selectedCategory}`}
+                    {selectedCategory !== "All" && ` in ${selectedCategory}`}
                     {searchTerm && ` for "${searchTerm}"`}
                   </p>
                 </div>
@@ -228,8 +230,8 @@ export default function Blogs() {
 
               <div className="articles-grid">
                 {filteredBlogs.length > 0 ? (
-                  filteredBlogs.map((blog, index) => (
-                    <BlogCard key={blog.id ?? blog.slug} blog={blog} index={index} />
+                  filteredBlogs.map((blog) => (
+                    <BlogCard key={blog.id ?? blog.slug} blog={blog} />
                   ))
                 ) : (
                   <div className="no-results">
@@ -257,7 +259,7 @@ export default function Blogs() {
   );
 }
 
-const BlogCard = ({ blog, index }) => {
+const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
   const authors = getAuthorProfiles(blog.authors || []);
 
   return (
@@ -276,7 +278,7 @@ const BlogCard = ({ blog, index }) => {
         <div className="card-meta">
           <div className="card-author">
             {/* Stacked Author Avatars */}
-            {authors.length > 0 && (
+            {authors.length > 0 &&
               (() => {
                 const max = 3;
                 const visible = authors.slice(0, max);
@@ -297,7 +299,8 @@ const BlogCard = ({ blog, index }) => {
                             onError={(e) => {
                               const target = e.currentTarget;
                               target.style.display = "none";
-                              const fallback = target.nextElementSibling;
+                              const fallback =
+                                target.nextElementSibling as HTMLElement | null;
                               if (fallback) fallback.style.display = "flex";
                             }}
                           />
@@ -313,28 +316,27 @@ const BlogCard = ({ blog, index }) => {
                     )}
                   </div>
                 );
-              })()
-            )}
+              })()}
 
             {/* Author Names */}
             <div className="author-name-group">
-                {authors.map((author, authorIndex) => (
-                  <span key={author.id} className="author-item">
-                    {authorIndex > 0 && (
-                      <span className="author-separator">&</span>
-                    )}
-                    <Link
-                      href={author.githubUrl}
-                      className="author-name author-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      data-author-tooltip={getAuthorTooltip(author.id)}
-                      aria-label={`Open ${author.name} on GitHub`}
-                    >
-                      {author.name}
-                    </Link>
-                  </span>
-                ))}
+              {authors.map((author, authorIndex) => (
+                <span key={author.id} className="author-item">
+                  {authorIndex > 0 && (
+                    <span className="author-separator">&</span>
+                  )}
+                  <Link
+                    href={author.githubUrl}
+                    className="author-name author-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-author-tooltip={getAuthorTooltip(author.id)}
+                    aria-label={`Open ${author.name} on GitHub`}
+                  >
+                    {author.name}
+                  </Link>
+                </span>
+              ))}
             </div>
           </div>
           <span className="card-read-time">5 min read</span>
