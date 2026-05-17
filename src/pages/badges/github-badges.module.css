@@ -536,8 +536,7 @@
 .tableWrapper {
   overflow-x: auto;
   margin-bottom: 32px;
-  display: flex;
-  justify-content: center;
+  width: 100%;
 }
 
 .achievementsTable,
