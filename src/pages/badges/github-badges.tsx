@@ -76,9 +76,8 @@ const GithubBadgesContent = (): React.ReactElement => {
       description="Complete guide to GitHub achievements and badges. Learn how to unlock and showcase your GitHub contributions with the recode hive community."
     >
       <div
-        className={`${styles["github-badges-page"]} transition-colors duration-300 ${
-          isDark ? "dark-bg-primary dark-text-primary" : "bg-white text-black"
-        }`}
+        className={`${styles["github-badges-page"]} transition-colors duration-300 ${isDark ? "dark-bg-primary dark-text-primary" : "bg-white text-black"
+          }`}
       >
         {/* Hero section */}
         <Head>
@@ -1319,6 +1318,36 @@ const GithubBadgesContent = (): React.ReactElement => {
                 style={{ borderRadius: "50px" }}
               />
             </div>{" "}
+          </motion.div>
+
+          <motion.div
+            className={`${styles.certCard}`}
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            <div className={styles.certBadge}>
+              <img
+                src="/img/agentic-badge.png"
+                alt="GitHub Agentic AI Developer Badge"
+                style={{ borderRadius: "50px" }}
+              />
+            </div>
+            <div className={styles.cardContent}>
+              <h2>GitHub Agentic AI Developer</h2>
+              <p>
+                The GitHub Certified: Agentic AI Developer certification validates your expertise in creating intelligent automated workflows, building AI-powered agents, and extending GitHub's capabilities.
+              </p>
+              <a
+                href="https://learn.github.com/certification/AGENTIC"
+                className={styles.certLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Prepare for the GitHub Agentic AI Developer exam
+              </a>
+            </div>
           </motion.div>
         </div>
       </div>
