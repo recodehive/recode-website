@@ -29,7 +29,7 @@ Click the link below to download MySQL Workbench:
 - ✅ Choose your OS (Windows, macOS, or Linux)
 - ✅ Follow the installation instructions
 
-<iframe width="853" height="480" src="https://www.youtube.com/embed/u96rVINbAUI" title="How To Install MySQL (Server and Workbench)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="853" height="480" src="https://www.youtube.com/embed/u96rVINbAUI" title="How To Install MySQL (Server and Workbench)" style={{ border: "none" }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
 

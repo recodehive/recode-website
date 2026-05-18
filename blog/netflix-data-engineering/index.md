@@ -105,7 +105,7 @@ Before diving into individual tools, watch this first. Flink Forward's breakdown
   height="400"
   src="https://www.youtube.com/embed/lC0d3gAPXaI"
   title="Netflix Data Engineering with Apache Flink"
-  frameborder="0"
+  style={{ border: "none" }}
   allowfullscreen>
 </iframe>
 
@@ -134,7 +134,7 @@ The full pipeline architecture:
 ### Layer 1: Event Capture: Suro and the API Gateway
 
 When a Netflix microservice emits an event, it has two paths into Kafka:
-
+    style="border: none;"
 1. **Direct Kafka write** via a Java client library, for high-throughput services that need maximum speed
 2. **HTTP POST via Suro :**  Netflix's internal event collection proxy for services in Python or other languages
 
