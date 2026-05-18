@@ -1984,3 +1984,51 @@ h3:first-child {
   margin-top: 0;
   margin-bottom: 1rem;
 }
+
+/* --- CUSTOM MODERN SCROLLBAR --- */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+}
+
+/* --- LIGHT THEME --- */
+html[data-theme="light"] ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background-color: #944A8C;
+  border: 2px solid var(--ifm-background-color);
+  border-radius: 10px;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background-color: #60226E;
+}
+
+/* --- DARK THEME --- */
+html[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background-color: #944A8C;
+  border: 2px solid var(--ifm-background-color);
+  border-radius: 10px;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background-color: #60226E;
+}
+
+/* --- FIREFOX FALLBACKS --- */
+html[data-theme="light"] * {
+  scrollbar-width: thin;
+  scrollbar-color: #944A8C transparent;
+}
+
+html[data-theme="dark"] * {
+  scrollbar-width: thin;
+  scrollbar-color: #944A8C transparent;
+}
