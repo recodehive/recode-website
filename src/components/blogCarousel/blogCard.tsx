@@ -1,4 +1,13 @@
 "use client";
+import * as React from "react";
+
+import { motion } from "framer-motion";
+import Link from "@docusaurus/Link";
+
+import { getAuthorNames } from "../../utils/authors";
+
+const BlogCard = ({ type, date, title, content, imageUrl, id, authors }) => {
+  
 import React from "react";
 import Link from "@docusaurus/Link";
 import { getAuthorProfiles, getAuthorTooltip } from "../../utils/authors";
@@ -50,6 +59,27 @@ const BlogCard = ({
   const category = getCategory(title);
 
   return (
+    <motion.div
+      initial={{ opacity: 0, y: 40, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      whileHover={{
+        y: -8,
+        scale: 1.02,
+        transition: { duration: 0.4, ease: "easeOut" },
+      }}
+     
+      className="relative h-full overflow-hidden transition-all duration-300"
+    >
+      <Link
+  to={`/blog/${id}`}
+  className="block h-full"
+  style={{ textDecoration: "none" }}
+  aria-label={`Read article: ${title}`}   // ← add this
+>
+        <div className="article-card h-full" style={{ cursor: "pointer"}}>
+          {/* Category Badge */}
+          <div className="card-category">{category}</div>
     <div className="relative h-full overflow-hidden transition-all duration-300">
       <div className="article-card h-full">
         {/* Category Badge */}
@@ -134,6 +164,11 @@ const BlogCard = ({
                 ))}
               </div>
             </div>
+
+            {/* Read More Button */}
+            <span className="card-read-more">
+              <span>Read Article →</span>
+            </span>
             <span className="card-read-time">5 min read</span>
           </div>
 
