@@ -76,9 +76,8 @@ const GithubBadgesContent = (): React.ReactElement => {
       description="Complete guide to GitHub achievements and badges. Learn how to unlock and showcase your GitHub contributions with the recode hive community."
     >
       <div
-        className={`${styles["github-badges-page"]} transition-colors duration-300 ${
-          isDark ? "dark-bg-primary dark-text-primary" : "bg-white text-black"
-        }`}
+        className={`${styles["github-badges-page"]} transition-colors duration-300 ${isDark ? "dark-bg-primary dark-text-primary" : "bg-white text-black"
+          }`}
       >
         {/* Hero section */}
         <Head>
@@ -1330,13 +1329,13 @@ const GithubBadgesContent = (): React.ReactElement => {
           >
             <div className={styles.certBadge}>
               <img
-                src="https://images.ctfassets.net/wfutmusr1t3h/KdVTNopvz0GZy60xzXCq0/86148a36ddf27ea1d22226f0113b8711/admin-river-image__1_.png?w=1280&q=75"
-                alt="GitHub Agents Badge"
+                src="/img/agentic-badge.png"
+                alt="GitHub Agentic AI Developer Badge"
                 style={{ borderRadius: "50px" }}
               />
             </div>
             <div className={styles.cardContent}>
-              <h2>GitHub Agents</h2>
+              <h2>GitHub Agentic AI Developer</h2>
               <p>
                 The GitHub Certified: Agentic AI Developer certification validates your expertise in creating intelligent automated workflows, building AI-powered agents, and extending GitHub's capabilities.
               </p>
@@ -1346,7 +1345,7 @@ const GithubBadgesContent = (): React.ReactElement => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Prepare for the GitHub Agents exam
+                Prepare for the GitHub Agentic AI Developer exam
               </a>
             </div>
           </motion.div>
