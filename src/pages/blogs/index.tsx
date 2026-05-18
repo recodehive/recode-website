@@ -22,16 +22,13 @@ export default function Blogs() {
 
   const categories = ["All", ...getUniqueCategories()];
 
-  // Filter blogs based on search term and category
   React.useEffect(() => {
     let filtered = blogs;
 
-    // Filter by category
     if (selectedCategory !== "All") {
       filtered = filtered.filter((blog) => blog.category === selectedCategory);
     }
 
-    // Filter by search term
     if (searchTerm.trim() !== "") {
       filtered = filtered.filter(
         (blog) =>
@@ -78,7 +75,6 @@ export default function Blogs() {
       </Head>
 
       <div className="blog-page">
-        {/* Background Geometric Shapes */}
         <div className="bg-shapes">
           <div className="bg-shape bg-shape-1"></div>
           <div className="bg-shape bg-shape-2"></div>
@@ -87,7 +83,6 @@ export default function Blogs() {
           <div className="bg-shape bg-shape-5"></div>
         </div>
 
-        {/* Hero Section */}
         <section className="blog-hero-section">
           <div className="floating-particles">
             <div className="particle particle-1"></div>
@@ -113,10 +108,8 @@ export default function Blogs() {
           </div>
         </section>
 
-        {/* Latest Articles Section */}
         <section className="latest-articles-section">
           <div className="articles-container-wrapper">
-            {/* Sidebar */}
             <aside className="blog-sidebar">
               <div className="sidebar-section">
                 <h3 className="sidebar-title">
@@ -213,9 +206,7 @@ export default function Blogs() {
               )}
             </aside>
 
-            {/* Main Content */}
             <div className="articles-main-content">
-              {/* Search Results Counter */}
               {(searchTerm || selectedCategory !== "All") && (
                 <div className="search-results-info">
                   <p>
@@ -277,7 +268,6 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
         <p className="card-description">{blog.description}</p>
         <div className="card-meta">
           <div className="card-author">
-            {/* Stacked Author Avatars */}
             {authors.length > 0 &&
               (() => {
                 const max = 3;
@@ -318,7 +308,6 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
                 );
               })()}
 
-            {/* Author Names */}
             <div className="author-name-group">
               {authors.map((author, authorIndex) => (
                 <span key={author.id} className="author-item">
@@ -340,10 +329,8 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
             </div>
           </div>
           <span className="card-read-time">
-  <span className="card-read-time">
-  🕒 {Math.max(1, Math.ceil((blog.content || "").split(" ").length / 200))} min read
-</span>
-</span>
+            🕒 {Math.max(1, Math.ceil((blog.content || "").split(" ").length / 200))} min read
+          </span>
         </div>
         <Link to={`/blog/${blog.slug}`} className="card-read-more">
           Read Article →
