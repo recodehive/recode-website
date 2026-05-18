@@ -335,7 +335,7 @@ export default function Podcasts(): ReactElement {
                         src={`https://open.spotify.com/embed/${podcast.type}/${getSpotifyEmbedId(podcast.spotifyUrl)}`}
                         width="100%"
                         height="352"
-                        frameBorder="0"
+                        style={{ border: "none" }}
                         allowFullScreen
                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                         loading="lazy"

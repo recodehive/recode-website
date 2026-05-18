@@ -285,14 +285,14 @@ By contributing to recode hive, you agree that your contributions will be licens
 
 ---
 
-<div align="center">
+<div style="text-align: center">
 
 **Thank you for contributing to recode hive! 🎉**
 
 Together, we're building a platform that empowers developers worldwide. Every contribution matters, and we're grateful for yours.
 
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="600">
+<p style="text-align: center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="600" alt="recode hive showcase">
 </p>
 
 **Happy Contributing! 💻✨**
