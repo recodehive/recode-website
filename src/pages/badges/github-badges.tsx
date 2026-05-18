@@ -1320,6 +1320,36 @@ const GithubBadgesContent = (): React.ReactElement => {
               />
             </div>{" "}
           </motion.div>
+
+          <motion.div
+            className={`${styles.certCard}`}
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
+            <div className={styles.certBadge}>
+              <img
+                src="https://images.ctfassets.net/wfutmusr1t3h/KdVTNopvz0GZy60xzXCq0/86148a36ddf27ea1d22226f0113b8711/admin-river-image__1_.png?w=1280&q=75"
+                alt="GitHub Agents Badge"
+                style={{ borderRadius: "50px" }}
+              />
+            </div>
+            <div className={styles.cardContent}>
+              <h2>GitHub Agents</h2>
+              <p>
+                The GitHub Certified: Agentic AI Developer certification validates your expertise in creating intelligent automated workflows, building AI-powered agents, and extending GitHub's capabilities.
+              </p>
+              <a
+                href="https://learn.github.com/certification/AGENTIC"
+                className={styles.certLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Prepare for the GitHub Agents exam
+              </a>
+            </div>
+          </motion.div>
         </div>
       </div>
     </Layout>
