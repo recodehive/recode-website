@@ -1988,47 +1988,41 @@ h3:first-child {
 /* --- CUSTOM MODERN SCROLLBAR --- */
 
 ::-webkit-scrollbar {
-  width: 10px !important;
-  height: 10px !important;
+  width: 6px !important;
+  height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
 }
 
 /* --- LIGHT THEME --- */
-html[data-theme="light"] ::-webkit-scrollbar-track {
-  background: #f1f5f9 !important; 
-}
-
 html[data-theme="light"] ::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1 !important; 
-  border: 2px solid #f1f5f9 !important;
+  background-color: rgba(203, 213, 225, 1) !important;
   border-radius: 10px !important;
 }
 
 html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
-  background-color: #94a3b8 !important;
+  background-color: rgba(148, 163, 184, 1) !important;
 }
 
 /* --- DARK THEME --- */
-html[data-theme="dark"] ::-webkit-scrollbar-track {
-  background: #0f172a !important; /* Fixed: Giving it a solid dark background so it doesn't disappear */
-}
-
 html[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background-color: #334155 !important; /* Fixed: Clear contrast slate grey thumb */
-  border: 2px solid #0f172a !important; 
+  background-color: rgba(51, 65, 85, 0.8) !important;
   border-radius: 10px !important;
 }
 
 html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
-  background-color: #06b6d4 !important; /* Pops cyan on hover */
+  background-color: #06b6d4 !important;
 }
 
-/* --- FIREFOX FALLBACKS --- */
-html[data-theme="light"] * {
+/* --- FIREFOX CORRECTIONS --- */
+html[data-theme="light"] {
   scrollbar-width: thin !important;
-  scrollbar-color: #cbd5e1 #f1f5f9 !important;
+  scrollbar-color: #cbd5e1 transparent !important;
 }
 
-html[data-theme="dark"] * {
+html[data-theme="dark"] {
   scrollbar-width: thin !important;
-  scrollbar-color: #334155 #0f172a !important;
+  scrollbar-color: #334155 transparent !important;
 }
