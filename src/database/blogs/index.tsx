@@ -90,17 +90,6 @@ const blogs: Blog[] = [
     tags: ["Microsoft", "Azure", "Data Engineering", "Certification"],
   },
   {
-    id: 9,
-    title: "How SSO Actually Works",
-    image: "/img/blogs/sso_cover.png",
-    description:
-      "SSO lets you log into dozens of apps with a single set of credentials. But how does it actually work under the hood? A beginner-friendly walkthrough of the full flow — from clicking 'Sign in with Google' to getting access — step by step.",
-    slug: "single-sign-on",
-    authors: ["Aditya-Singh-Rathore", "sanjay-kv"],
-    category: "security",
-    tags: ["SSO", "Authentication", "Security", "OAuth", "OpenID Connect", "SAML"],
-  },
-  {
     id: 8,
     title: "Microsoft Fabric: One Platform, One Lake, Every Data Workload",
     image: "/img/blogs/microsoft-farbic-blog-image.png",
@@ -110,6 +99,17 @@ const blogs: Blog[] = [
     authors: ["Aditya-Singh-Rathore"],
     category: "data engineering",
     tags: ["Microsoft", "Azure", "Data Engineering", "Certification", "Fabric", "OneLake", "Data Workloads", "Unified Analytics"],
+  },
+  {
+    id: 9,
+    title: "How SSO Actually Works",
+    image: "/img/blogs/sso_cover.png",
+    description:
+      "SSO lets you log into dozens of apps with a single set of credentials. But how does it actually work under the hood? A beginner-friendly walkthrough of the full flow — from clicking 'Sign in with Google' to getting access — step by step.",
+    slug: "single-sign-on",
+    authors: ["Aditya-Singh-Rathore", "sanjay-kv"],
+    category: "security",
+    tags: ["SSO", "Authentication", "Security", "OAuth", "OpenID Connect", "SAML"],
   },
   {
     id: 10,
@@ -167,17 +167,6 @@ const blogs: Blog[] = [
     tags: ["Medallion Architecture", "Data Pipeline", "Data Management", "Data Quality", "Data Governance", "Scalability", "Data Engineering"],
   },
   {
-    id: 16,
-    title: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Months",
-    image: "/img/blogs/batch-vs-stream-cover.png",
-    description:
-      "Streaming pipelines are powerful for real-time data processing, but they come with hidden costs that are often overlooked. These costs include increased complexity, higher resource consumption, and potential challenges in maintaining data consistency and reliability. This article explores these hidden costs and provides insights on how to mitigate them.",
-    slug: "batch-vs-stream-processing",
-    authors: ["Aditya-Singh-Rathore"],
-    category: "data engineering",
-    tags: ["Streaming Pipelines", "Real-Time Data Processing", "Data Consistency", "Data Reliability", "Resource Consumption", "Complexity", "Data Engineering"],
-  },
-  {
     id: 15,
     title: "Azure Synapse Analytics: When to Use It (And When to Choose Fabric Instead)",
     image: "/img/blogs/azure-synapse-cover.png",
@@ -189,6 +178,18 @@ const blogs: Blog[] = [
     tags: ["Azure", "Synapse Analytics", "Data Warehousing", "Big Data", "Unified Analytics", "Fabric", "Data Engineering"],
   },
   {
+    id: 16,
+    title: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Months",
+    image: "/img/blogs/batch-vs-stream-cover.png",
+    description:
+      "Streaming pipelines are powerful for real-time data processing, but they come with hidden costs that are often overlooked. These costs include increased complexity, higher resource consumption, and potential challenges in maintaining data consistency and reliability. This article explores these hidden costs and provides insights on how to mitigate them.",
+    slug: "batch-vs-stream-processing",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Streaming Pipelines", "Real-Time Data Processing", "Data Consistency", "Data Reliability", "Resource Consumption", "Complexity", "Data Engineering"],
+  },
+
+  {
     id: 17,
     title: "Azure Data Pipeline Cost Optimization: How We Cut a $4,200 Bill by 73%",
     image: "/img/blogs/cost_optimzation_cover.png",
@@ -198,6 +199,17 @@ const blogs: Blog[] = [
     authors: ["Aditya-Singh-Rathore"],
     category: "data engineering",
     tags: ["Azure", "Data Pipeline", "Cost Optimization", "Data Engineering"],
+  },
+  {
+    id: 18,
+    title: "PySpark Optimization Techniques: 6 Mistakes That Slow Down Every Beginner's Pipeline",
+    image: "/img/blogs/pyspark_optimization_cover.png",
+    description:
+      "PySpark is a powerful tool for big data processing, but it can be challenging to optimize for performance. In this article, we discuss six common mistakes that beginners make when optimizing their PySpark pipelines, which can lead to slow performance and increased costs. We provide practical tips and techniques to help you avoid these pitfalls and improve the efficiency of your PySpark applications.",
+    slug: "spark-performance-optimizations",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["PySpark", "Optimization", "Big Data", "Performance", "Data Engineering"],
   },
 
 ];
