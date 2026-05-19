@@ -211,6 +211,17 @@ const blogs: Blog[] = [
     category: "data engineering",
     tags: ["PySpark", "Optimization", "Big Data", "Performance", "Data Engineering"],
   },
+  {
+    id: 19,
+    title: "Why Data Engineers Make Better Business Analysts Than MBAs Do",
+    image: "/img/blogs/ba_data_cover_image.png",
+    description: "Data Engineers have a unique skill set that combines technical expertise with a deep understanding of data and its applications. This makes them well-suited for roles in business analysis, as they can leverage their knowledge of data to provide valuable insights and drive informed decision-making. In this article, we explore why Data Engineers often make better Business Analysts than MBAs, highlighting the advantages of their technical background and data-driven approach.",
+    slug: "ba-vs-data-engineering",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Data Engineering", "Business Analysis", "MBAs", "Data-Driven Decision Making", "Technical Expertise"],
+
+  },
 
 ];
 
