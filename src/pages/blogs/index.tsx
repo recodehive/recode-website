@@ -90,9 +90,7 @@ export default function Blogs() {
               <h1 className="blog-main-title">
                 Engineering <span className="gradient-text">uptime</span>{" "}
               </h1>
-              <p className="blog-main-subtitle">
-                blog by recode community.
-              </p>
+              <p className="blog-main-subtitle">blog by recode community.</p>
             </div>
           </div>
         </section>
@@ -251,7 +249,7 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
               {authors.map((author, authorIndex) => (
                 <span key={author.id} className="author-item">
                   {authorIndex > 0 && (
-                    <span className="author-separator">&</span>
+                    <span className="author-separator">,</span>
                   )}
                   <Link
                     href={author.githubUrl}
