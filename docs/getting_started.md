@@ -17,42 +17,34 @@ This guide walks you through everything you need to write and publish a blog pos
 :::
 ---
 
-## Step 1: Raise a New issue 
+## Step 1: Raise a New issue on GitHub
 
 Head to the the GitHub issue on this [repository](https://github.com/recodehive/recode-website/issues)
-     <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+    :::info
+<Tabs>
+  <TabItem value="Step 1" label="Step 1">
+    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
      [![Github](assets\blog-01-new-issue.png)](https://github.com/recodehive/recode-website/issues)
     </BrowserWindow>
+  </TabItem>
 
+<TabItem value="Step 2" label="Step 2">
+     <BrowserWindow url="https://github.com/recodehive/recode-website/documentation" bodyStyle={{padding: 0}}>    
+     [![Github](assets\blog-02-new-issue.png)](https://github.com/recodehive/recode-website/documentations)
+    </BrowserWindow>
 
-## Step 1: Fork and Clone the Repository
+  </TabItem>
+    
+  <TabItem value="Step 3" label="Step 3">
+      <BrowserWindow url="https://github.com/recodehive/recode-website/documentation" bodyStyle={{padding: 0}}>    
+     [![Github](assets\blog-03-new-issue.png)](https://github.com/recodehive/recode-website/documentations)
+    </BrowserWindow>
+    </TabItem>
+</Tabs>
 
-1. Go to [https://github.com/recodehive/recode-website](https://github.com/recodehive/recode-website) and click **Fork** (top-right corner).
+:::
 
-2. Clone your fork to your local machine:
-
-   ```bash
-   git clone https://github.com/your-username/recode-website.git
-   cd recode-website
-   ```
-
-3. Add the upstream remote so you can stay in sync:
-
-   ```bash
-   git remote add upstream https://github.com/recodehive/recode-website.git
-   ```
-
----
-
-## Step 2: Install Dependencies and Run Locally
-
-```bash
-npm install
-npm start
-```
-
-This starts a local development server. Open [http://localhost:3000](http://localhost:3000) in your browser to preview the site live. Changes you make to files will hot-reload automatically.
-
+#### Just follow the steps on forking the repositories and installing the dependencies on your local repository, if you dont know refer the steps 2 to 6 on [welcome page](https://www.recodehive.com/docs/).
 ---
 
 ## Step 3: Create a New Branch
