@@ -88,14 +88,10 @@ export default function Blogs() {
           <div className="blog-hero-container">
             <div className="hero-content">
               <h1 className="blog-main-title">
-                Welcome to <span className="gradient-text">recode hive</span>{" "}
-                Blogs
+                Engineering <span className="gradient-text">uptime</span>{" "}
               </h1>
               <p className="blog-main-subtitle">
-                Discover comprehensive web development articles, tutorials, and
-                insights covering everything from HTML & CSS fundamentals to
-                advanced JavaScript, React, Node.js, Data Structures &
-                Algorithms, and cutting-edge technologies.
+                blog by recode community.
               </p>
             </div>
           </div>
