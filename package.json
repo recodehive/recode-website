@@ -27,7 +27,7 @@
     ]
   },
   "dependencies": {
-    "@clerk/react": "^6.6.3",
+    "@clerk/react": "^6.6.6",
     "@docusaurus/core": "^3.9.1",
     "@docusaurus/plugin-content-docs": "3.10.1",
     "@docusaurus/plugin-google-analytics": "^3.10.0",
@@ -46,12 +46,12 @@
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-slot": "^1.2.3",
     "@tsparticles/react": "^3.0.0",
-    "@tsparticles/slim": "^4.0.0",
+    "@tsparticles/slim": "^4.0.4",
     "@vercel/analytics": "^1.5.0",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "date-fns": "^4.1.0",
+    "date-fns": "^4.2.1",
     "dotenv": "^17.4.2",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
