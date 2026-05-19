@@ -87,13 +87,13 @@ interface ContributorActivity {
     html_url: string;
   };
   action:
-    | "pushed"
-    | "created"
-    | "merged"
-    | "opened"
-    | "commented"
-    | "closed"
-    | "other";
+  | "pushed"
+  | "created"
+  | "merged"
+  | "opened"
+  | "commented"
+  | "closed"
+  | "other";
   message?: string;
   timestamp: Date;
   timeAgo: string;
@@ -519,17 +519,17 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
               headerEmbedded
                 ? {}
                 : {
-                    y: [0, -8, 0],
-                  }
+                  y: [0, -8, 0],
+                }
             }
             transition={
               headerEmbedded
                 ? {}
                 : {
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }
             }
           >
             {/* Close button */}
