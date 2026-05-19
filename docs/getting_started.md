@@ -17,6 +17,14 @@ This guide walks you through everything you need to write and publish a blog pos
 :::
 ---
 
+## Step 1: Raise a New issue 
+
+Head to the the GitHub issue on this [repository](https://github.com/recodehive/recode-website/issues)
+     <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets\blog-01-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+
+
 ## Step 1: Fork and Clone the Repository
 
 1. Go to [https://github.com/recodehive/recode-website](https://github.com/recodehive/recode-website) and click **Fork** (top-right corner).
