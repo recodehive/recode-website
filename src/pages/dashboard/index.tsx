@@ -68,7 +68,13 @@ const LeaderboardAuthGate: React.FC = () => {
         <h1>Leaderboard</h1>
         <p>Sign in to view the leaderboard.</p>
         <SignInButton mode="modal">
-          <button className="leaderboard-auth-button">Sign in</button>
+          <button
+            type="button"
+            className="leaderboard-auth-button"
+            aria-label="Sign in to view the leaderboard"
+          >
+            Sign in
+          </button>
         </SignInButton>
       </div>
     );
