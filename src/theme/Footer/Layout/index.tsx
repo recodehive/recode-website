@@ -1,6 +1,5 @@
 import React, { type ReactNode, useState, useEffect } from "react";
 import Link from "@docusaurus/Link";
-import type { Props } from "@theme/Footer/Layout";
 import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
 import clsx from "clsx";
 import "./enhanced-footer.css";
@@ -17,15 +16,10 @@ interface FooterStats {
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export default function FooterLayout({
-  style,
-  links,
-  logo,
-  copyright,
-}: Props): ReactNode {
-  const { colorMode, isDark } = useSafeColorMode();
+export default function FooterLayout(): ReactNode {
+  const { isDark } = useSafeColorMode();
 
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const currentYear = new Date().getFullYear();
   const [stats, setStats] = useState<FooterStats>({
     activeUsers: "50K+",
     tutorials: "70+",
@@ -52,7 +46,7 @@ export default function FooterLayout({
           peopleSponsored: `${45 + Math.floor(Math.random() * 5)}`,
           supportHours: "24/7",
         });
-      } catch (error) {
+      } catch {
         console.log("Using fallback stats");
       }
     };

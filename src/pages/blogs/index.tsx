@@ -8,55 +8,43 @@ import { getAuthorProfiles, getAuthorTooltip } from "../../utils/authors";
 
 import "./blogs-new.css";
 
-// Get unique categories from blogs
-const getUniqueCategories = () => {
-  const categories = blogs.map((blog) => blog.category);
-  return Array.from(new Set(categories)).sort();
-};
-
 export default function Blogs() {
   const { siteConfig } = useDocusaurusContext();
+  const [searchInput, setSearchInput] = React.useState("");
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [selectedCategory, setSelectedCategory] = React.useState("All");
   const [filteredBlogs, setFilteredBlogs] = React.useState(blogs);
 
-  const categories = ["All", ...getUniqueCategories()];
-
-  // Filter blogs based on search term and category
+  // Filter blogs after the user submits the blog search form.
   React.useEffect(() => {
     let filtered = blogs;
 
-    // Filter by category
-    if (selectedCategory !== "All") {
-      filtered = filtered.filter((blog) => blog.category === selectedCategory);
-    }
-
-    // Filter by search term
     if (searchTerm.trim() !== "") {
+      const normalizedSearch = searchTerm.trim().toLowerCase();
       filtered = filtered.filter(
         (blog) =>
-          blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          blog.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          blog.title.toLowerCase().includes(normalizedSearch) ||
+          blog.description.toLowerCase().includes(normalizedSearch) ||
           blog.tags?.some((tag) =>
-            tag.toLowerCase().includes(searchTerm.toLowerCase()),
+            tag.toLowerCase().includes(normalizedSearch),
           ),
       );
     }
 
     setFilteredBlogs(filtered);
-  }, [searchTerm, selectedCategory]);
+  }, [searchTerm]);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+    setSearchInput(e.target.value);
   };
 
-  const handleCategoryClick = (category: string) => {
-    setSelectedCategory(category);
+  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSearchTerm(searchInput.trim());
   };
 
   const handleClearFilters = () => {
+    setSearchInput("");
     setSearchTerm("");
-    setSelectedCategory("All");
   };
 
   return (
@@ -100,11 +88,14 @@ export default function Blogs() {
           <div className="blog-hero-container">
             <div className="hero-content">
               <h1 className="blog-main-title">
-                Engineering uptime
+                Welcome to <span className="gradient-text">recode hive</span>{" "}
+                Blogs
               </h1>
-
               <p className="blog-main-subtitle">
-                blog by recode community
+                Discover comprehensive web development articles, tutorials, and
+                insights covering everything from HTML & CSS fundamentals to
+                advanced JavaScript, React, Node.js, Data Structures &
+                Algorithms, and cutting-edge technologies.
               </p>
             </div>
           </div>
@@ -113,114 +104,58 @@ export default function Blogs() {
         {/* Latest Articles Section */}
         <section className="latest-articles-section">
           <div className="articles-container-wrapper">
-            {/* Sidebar */}
-            <aside className="blog-sidebar">
-              <div className="sidebar-section">
-                <h3 className="sidebar-title">
-                  <svg
-                    className="sidebar-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                  </svg>
-                  Search
-                </h3>
-                <div className="sidebar-search-wrapper">
-                  <input
-                    type="text"
-                    placeholder="Search articles..."
-                    className="sidebar-search-input"
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                  />
-                  {searchTerm && (
-                    <button
-                      className="sidebar-clear-btn"
-                      onClick={() => setSearchTerm("")}
-                      aria-label="Clear search"
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                      >
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                      </svg>
-                    </button>
-                  )}
-                </div>
-              </div>
-
-              <div className="sidebar-section">
-                <h3 className="sidebar-title">
-                  <svg
-                    className="sidebar-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <rect x="3" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="14" width="7" height="7"></rect>
-                    <rect x="3" y="14" width="7" height="7"></rect>
-                  </svg>
-                  Categories
-                </h3>
-                <div className="category-list">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      className={`category-item ${selectedCategory === category ? "active" : ""}`}
-                      onClick={() => handleCategoryClick(category)}
-                    >
-                      <span className="category-name">{category}</span>
-                      <span className="category-count">
-                        {category === "All"
-                          ? blogs.length
-                          : blogs.filter((blog) => blog.category === category)
-                            .length}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {(searchTerm || selectedCategory !== "All") && (
-                <div className="sidebar-section">
-                  <button
-                    className="clear-filters-btn"
-                    onClick={handleClearFilters}
-                  >
+            <div className="articles-main-content">
+              <div className="blog-search-panel">
+                <p className="blog-search-eyebrow">Explore articles</p>
+                <h2 className="blog-search-title">Find the right guide</h2>
+                <form
+                  className="blog-search-form"
+                  onSubmit={handleSearchSubmit}
+                >
+                  <label className="blog-search-field">
+                    <span className="blog-search-visually-hidden">
+                      Search blog articles
+                    </span>
                     <svg
+                      className="blog-search-submit-icon"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
-                      className="clear-icon"
+                      aria-hidden="true"
                     >
-                      <line x1="18" y1="6" x2="6" y2="18"></line>
-                      <line x1="6" y1="6" x2="18" y2="18"></line>
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <path d="m21 21-4.35-4.35"></path>
                     </svg>
-                    Clear All Filters
+                    <input
+                      type="search"
+                      placeholder="Search tutorials, tools, or technologies"
+                      value={searchInput}
+                      onChange={handleSearchChange}
+                    />
+                  </label>
+                  <button className="blog-search-button" type="submit">
+                    Search
                   </button>
-                </div>
-              )}
-            </aside>
+                  {searchTerm && (
+                    <button
+                      className="blog-search-clear-button"
+                      type="button"
+                      onClick={handleClearFilters}
+                    >
+                      Clear
+                    </button>
+                  )}
+                </form>
+              </div>
 
-            {/* Main Content */}
-            <div className="articles-main-content">
               {/* Search Results Counter */}
-              {(searchTerm || selectedCategory !== "All") && (
+              {searchTerm && (
                 <div className="search-results-info">
                   <p>
                     {filteredBlogs.length > 0
                       ? `Found ${filteredBlogs.length} article${filteredBlogs.length !== 1 ? "s" : ""}`
                       : `No articles found`}
-                    {selectedCategory !== "All" && ` in ${selectedCategory}`}
-                    {searchTerm && ` for "${searchTerm}"`}
+                    {` for "${searchTerm}"`}
                   </p>
                 </div>
               )}
