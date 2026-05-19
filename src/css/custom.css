@@ -482,14 +482,7 @@ body {
   * Hide all navbar items on small screens except the toggle, brand,
   * and the Clerk auth control.
   */
-<<<<<<< HEAD
   .navbar__items .navbar__item:not(.navbar__toggle):not(.navbar__brand):not( :has(#firebase-auth-github-navbar)) {
-=======
-  .navbar__items
-    .navbar__item:not(.navbar__toggle):not(.navbar__brand):not(
-      :has(#clerk-auth-navbar)
-    ) {
->>>>>>> upstream/main
     display: none !important;
   }
 
@@ -1970,4 +1963,46 @@ h2:first-child,
 h3:first-child {
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+/* --- CUSTOM MODERN SCROLLBAR --- */
+
+::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+/* --- LIGHT THEME --- */
+html[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background-color: rgba(203, 213, 225, 1) !important;
+  border-radius: 10px !important;
+}
+
+html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(148, 163, 184, 1) !important;
+}
+
+/* --- DARK THEME --- */
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background-color: rgba(51, 65, 85, 0.8) !important;
+  border-radius: 10px !important;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background-color: #06b6d4 !important;
+}
+
+/* --- FIREFOX CORRECTIONS --- */
+html[data-theme="light"] {
+  scrollbar-width: thin !important;
+  scrollbar-color: #cbd5e1 transparent !important;
+}
+
+html[data-theme="dark"] {
+  scrollbar-width: thin !important;
+  scrollbar-color: #334155 transparent !important;
 }
