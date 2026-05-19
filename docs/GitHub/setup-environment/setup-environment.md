@@ -14,7 +14,7 @@ tags:
 description: In this tutorial, you will learn how to set up your development environment for Git And GitHub.
 ---
 
-GitHub is a code hosting platform built on top of Git. It was founded in 2008 and acquired by Microsoft in 2018. If you are just getting started, the setup is simple — you create a free account on GitHub's website, install Git on your machine, and link the two together so your local changes can be pushed to the cloud.
+GitHub is a code hosting platform built on top of Git. It was founded in 2008 and acquired by Microsoft in 2018. If you are just getting started, the setup is simple, you create a free account on GitHub's website, install Git on your machine, and link the two together so your local changes can be pushed to the cloud.
 
 ### Step 1: Let's create a GitHub Account
 
@@ -26,7 +26,7 @@ To create a GitHub account, go to the [GitHub Website](https://github.com/) and 
 
 ### Step 2: Finishing the account creation
 
-Pick a username that is easy to read and remember — think of it the same way you would choose a professional username on LinkedIn. Once you complete the signup form, GitHub will ask you to solve a quick puzzle to confirm you are human.
+Pick a username that is easy to read and remember, think of it the same way you would choose a professional username on LinkedIn. Once you complete the signup form, GitHub will ask you to solve a quick puzzle to confirm you are human.
 
 **Live Server:** GitHub signup screen  
    <BrowserWindow url="https://github.com/" bodyStyle={{padding: 0}}>
