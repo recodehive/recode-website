@@ -88,11 +88,14 @@ export default function Blogs() {
           <div className="blog-hero-container">
             <div className="hero-content">
               <h1 className="blog-main-title">
-                Engineering uptime
+                Welcome to <span className="gradient-text">recode hive</span>{" "}
+                Blogs
               </h1>
-
               <p className="blog-main-subtitle">
-                blog by recode community
+                Discover comprehensive web development articles, tutorials, and
+                insights covering everything from HTML & CSS fundamentals to
+                advanced JavaScript, React, Node.js, Data Structures &
+                Algorithms, and cutting-edge technologies.
               </p>
             </div>
           </div>
@@ -101,94 +104,49 @@ export default function Blogs() {
         {/* Latest Articles Section */}
         <section className="latest-articles-section">
           <div className="articles-container-wrapper">
-            {/* Sidebar */}
-            <aside className="blog-sidebar">
-              <div className="sidebar-section">
-                <h3 className="sidebar-title">
-                  <svg
-                    className="sidebar-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                  </svg>
-                  Search
-                </h3>
-                <div className="sidebar-search-wrapper">
-                  <input
-                    type="text"
-                    placeholder="Search articles..."
-                    className="sidebar-search-input"
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                  />
+            <div className="articles-main-content">
+              <div className="blog-search-panel">
+                <p className="blog-search-eyebrow">Explore articles</p>
+                <h2 className="blog-search-title">Find the right guide</h2>
+                <form
+                  className="blog-search-form"
+                  onSubmit={handleSearchSubmit}
+                >
+                  <label className="blog-search-field">
+                    <span className="blog-search-visually-hidden">
+                      Search blog articles
+                    </span>
+                    <svg
+                      className="blog-search-submit-icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input
+                      type="search"
+                      placeholder="Search tutorials, tools, or technologies"
+                      value={searchInput}
+                      onChange={handleSearchChange}
+                    />
+                  </label>
+                  <button className="blog-search-button" type="submit">
+                    Search
+                  </button>
                   {searchTerm && (
                     <button
-                      className="sidebar-clear-btn"
-                      onClick={() => setSearchTerm("")}
-                      aria-label="Clear search"
+                      className="blog-search-clear-button"
+                      type="button"
+                      onClick={handleClearFilters}
                     >
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                      >
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                      </svg>
+                      Clear
                     </button>
                   )}
-                </div>
+                </form>
               </div>
-
-              <div className="sidebar-section">
-                <h3 className="sidebar-title">
-                  <svg
-                    className="sidebar-icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                  >
-                    <rect x="3" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="3" width="7" height="7"></rect>
-                    <rect x="14" y="14" width="7" height="7"></rect>
-                    <rect x="3" y="14" width="7" height="7"></rect>
-                  </svg>
-                  Categories
-                </h3>
-                <div className="category-list">
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      className={`category-item ${selectedCategory === category ? "active" : ""}`}
-                      onClick={() => handleCategoryClick(category)}
-                    >
-                      <span className="category-name">{category}</span>
-                      <span className="category-count">
-                        {category === "All"
-                          ? blogs.length
-                          : blogs.filter((blog) => blog.category === category)
-                            .length}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {(searchTerm || selectedCategory !== "All") && (
-                <div className="sidebar-section">
-                  <button
-                    className="clear-filters-btn"
-                    onClick={handleClearFilters}
-                    type="button"
-                  >
-                    Clear Filters
-                  </button>
-                </div>
-              )}
-            </aside>
 
               {/* Search Results Counter */}
               {searchTerm && (
@@ -225,6 +183,7 @@ export default function Blogs() {
                   </div>
                 )}
               </div>
+            </div>
           </div>
         </section>
       </div>
@@ -321,5 +280,3 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
     </div>
   );
 };
-
-
