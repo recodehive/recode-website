@@ -5,18 +5,16 @@ sidebar_label: How to Contribute to Blogs
 sidebar_position: 2
 ---
 
-This guide walks you through everything you need to write and publish a blog post on recode hive — from setting up the project locally to pushing your changes as a pull request.
+This guide walks you through everything you need to write and publish a blog post on recode hive, heads-up for you there is a lot of steps, our idea is not about <b>quantity</b>, lets focus on quality on the article you write the best one will be eligible for [GitHub Sponsorship](http://localhost:3000/our-sponsors/).
 
 ---
 
-## Prerequisites
-
-Before you start, make sure you have the following installed:
-
-- [Node.js](https://nodejs.org/) (v18 or later)
-- [Git](https://git-scm.com/)
-- A code editor (e.g., [VS Code](https://code.visualstudio.com/))
-
+:::info Prerequisites
+- 📦 [Node.js](https://nodejs.org/) (v18 or later)
+- 🔧 [Git](https://git-scm.com/)
+- 💻 [VS Code](https://code.visualstudio.com/) or your preferred editor
+- Refer the welcome page to install and setup the repository in your local system. [Check here](http://localhost:3000/docs/)
+:::
 ---
 
 ## Step 1: Fork and Clone the Repository
