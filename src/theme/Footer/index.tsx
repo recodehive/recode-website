@@ -4,7 +4,6 @@ import FooterLayout from "@theme/Footer/Layout";
 import FooterCopyright from "@theme/Footer/Copyright";
 import FooterLogo from "@theme/Footer/Logo";
 import FooterLinks from "@theme/Footer/Links";
-import type { Props } from "@theme/Footer";
 
 function Footer(): JSX.Element | null {
   const { footer } = useThemeConfig();

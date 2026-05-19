@@ -182,38 +182,13 @@ export default function Blogs() {
                   <button
                     className="clear-filters-btn"
                     onClick={handleClearFilters}
+                    type="button"
                   >
-                    <svg
-                      className="blog-search-submit-icon"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                    <input
-                      type="search"
-                      placeholder="Search tutorials, tools, or technologies"
-                      value={searchInput}
-                      onChange={handleSearchChange}
-                    />
-                  </label>
-                  <button className="blog-search-button" type="submit">
-                    Search
+                    Clear Filters
                   </button>
-                  {searchTerm && (
-                    <button
-                      className="blog-search-clear-button"
-                      type="button"
-                      onClick={handleClearFilters}
-                    >
-                      Clear
-                    </button>
-                  )}
-                </form>
-              </div>
+                </div>
+              )}
+            </aside>
 
               {/* Search Results Counter */}
               {searchTerm && (
@@ -250,7 +225,6 @@ export default function Blogs() {
                   </div>
                 )}
               </div>
-            </div>
           </div>
         </section>
       </div>
@@ -347,3 +321,5 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
     </div>
   );
 };
+
+
