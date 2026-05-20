@@ -1,18 +1,9 @@
 import * as React from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { useEffect, useMemo, useState } from "react";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { useMemo } from "react";
 import { loadSlim } from "@tsparticles/slim";
 
 const ParticlesComponent = (props) => {
-  const [init, setInit] = useState(false);
-
-  useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
-  }, []);
 
   const particlesLoaded = (container) => {
     console.log(container);
@@ -96,19 +87,21 @@ const ParticlesComponent = (props) => {
   );
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        width: "100vw",
-        height: "100vh",
-        top: 0,
-        left: 0,
-        zIndex: -1, // Critical: ensures it's in the background
-        pointerEvents: "none", // Ensures it doesn't block clicks
-      }}
-    >
-      <Particles id={props.id} options={options} />
-    </div>
+    <ParticlesProvider init={loadSlim}>
+      <div
+        style={{
+          position: "fixed",
+          width: "100vw",
+          height: "100vh",
+          top: 0,
+          left: 0,
+          zIndex: -1, // Critical: ensures it's in the background
+          pointerEvents: "none", // Ensures it doesn't block clicks
+        }}
+      >
+        <Particles id={props.id} options={options} />
+      </div>
+    </ParticlesProvider>
   );
 };
 
