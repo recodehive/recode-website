@@ -55,7 +55,7 @@
 
 /* Hero Section */
 .blog-hero-section {
-  padding: 80px 20px 60px;
+  padding: 48px 40px;
   text-align: center;
   background: linear-gradient(
     135deg,
@@ -66,7 +66,7 @@
   );
   position: relative;
   overflow: hidden;
-  min-height: 50vh;
+  min-height: 150px;
   display: flex;
   align-items: center;
   margin-top: -10px;
