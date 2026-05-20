@@ -118,7 +118,7 @@ const BlogCard = ({
                 {authorProfiles.map((author, authorIndex) => (
                   <span key={author.id} className="author-item">
                     {authorIndex > 0 && (
-                      <span className="author-separator">&</span>
+                      <span className="author-separator">,</span>
                     )}
                     <Link
                       href={author.githubUrl}
