@@ -31,6 +31,7 @@ export default function ScrollBottomToTop() {
     <div className="scroll-to-top">
       {isVisible && (
         <button
+         aria-label="Scroll to top"
           onClick={scrollToTop}
           className="fixed right-5 bottom-5 z-50 cursor-pointer rounded-full border-none bg-gray-700 p-3 text-white shadow-lg transition-opacity duration-300 hover:bg-gray-800 dark:bg-gray-600 dark:hover:bg-gray-700"
           style={{ backgroundColor: "var(--ifm-color-primary)" }}
