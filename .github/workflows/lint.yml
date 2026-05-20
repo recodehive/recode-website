@@ -9,5 +9,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: npm ci || npm install
+      - run: npm ci --legacy-peer-deps || npm install --legacy-peer-deps
       - run: npm run lint
