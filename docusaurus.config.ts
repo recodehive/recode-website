@@ -38,6 +38,7 @@ const config: Config = {
   projectName: "recode-website",
 
   onBrokenLinks: "throw",
+  onBrokenAnchors: "ignore",
   // onBrokenMarkdownLinks moved to markdown.hooks
 
   // Google Analytics and Theme Scripts
