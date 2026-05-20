@@ -8,7 +8,13 @@ const NavbarClerkAuthContent: React.FC = () => {
     <div className="clerk-navbar-auth">
       <Show when="signed-out">
         <SignInButton mode="modal">
-          <button className="clerk-navbar-sign-in">Sign in</button>
+          <button
+            type="button"
+            className="clerk-navbar-sign-in"
+            aria-label="Sign in to recode hive"
+          >
+            Sign in
+          </button>
         </SignInButton>
       </Show>
       <Show when="signed-in">

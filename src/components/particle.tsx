@@ -2,15 +2,12 @@ import * as React from "react";
 import Particles, { ParticlesProvider } from "@tsparticles/react";
 import { useCallback, useMemo } from "react";
 import { loadSlim } from "@tsparticles/slim";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
-const ParticlesComponent = (props) => {
+const ParticlesInner = (props) => {
   const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
   }, []);
-
-  const particlesLoaded = (container) => {
-    console.log(container);
-  };
 
   const options = useMemo(
     () => ({
@@ -98,14 +95,18 @@ const ParticlesComponent = (props) => {
           height: "100vh",
           top: 0,
           left: 0,
-          zIndex: -1, // Critical: ensures it's in the background
-          pointerEvents: "none", // Ensures it doesn't block clicks
+          zIndex: -1,
+          pointerEvents: "none",
         }}
       >
-        <Particles id={props.id} options={options} particlesLoaded={particlesLoaded} />
+        <Particles id={props.id} options={options} />
       </div>
     </ParticlesProvider>
   );
 };
+
+const ParticlesComponent = (props) => (
+  <BrowserOnly>{() => <ParticlesInner {...props} />}</BrowserOnly>
+);
 
 export default ParticlesComponent;
