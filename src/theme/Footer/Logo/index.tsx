@@ -31,6 +31,7 @@ export default function FooterLogo({ logo }: Props): ReactNode {
       href={logo.href}
       className={styles.footerLogoLink}
       target={logo.target}
+      aria-label={logo.alt}
     >
       <LogoImage logo={logo} />
     </Link>

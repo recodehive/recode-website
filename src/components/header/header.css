@@ -44,17 +44,17 @@
   background: linear-gradient(
     90deg,
     #e44d26 0%,
-    /* orange */ #f16529 30%,
-    /* lighter orange */ #d16ba5 60%,
-    /* pink */ #6a5acd 100% /* purple */
+    #f16529 30%,
+    #d16ba5 60%,
+    #6a5acd 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: background 0.3s ease-in-out;
-  text-align: center; /* Center the heading text */
-  width: 100%; /* Ensure it takes full width for proper centering */
-  margin-top: 2rem; /* Push heading down for better spacing */
+  text-align: center;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 [data-theme="dark"] .chh__header-content h1 {
@@ -65,17 +65,17 @@
   background: linear-gradient(
     135deg,
     #a1c4fd 0%,
-    /* soft sky blue (pops gently) */ #c2e9fb 25%,
-    /* pastel cyan */ #d4a5f9 60%,
-    /* muted lavender */ #fbc2eb 100% /* soft rose pink */
+    #c2e9fb 25%,
+    #d4a5f9 60%,
+    #fbc2eb 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: background 0.3s ease-in-out;
-  text-align: center; /* Center the heading text */
-  width: 100%; /* Ensure it takes full width for proper centering */
-  margin-top: 2rem; /* Push heading down for better spacing */
+  text-align: center;
+  width: 100%;
+  margin-top: 2rem;
 }
 
 .chh__header-content p {
@@ -85,13 +85,12 @@
   text-align: justify;
   line-height: 30px;
   margin-top: 1.5rem;
-  color: #333; /* Light mode text */
+  color: #333;
   transition: color 0.3s ease-in-out;
 }
 
-/* Override paragraph color in dark mode */
 [data-theme="dark"] .chh__header-content p {
-  color: #ccc; /* Softer white for dark mode */
+  color: #ccc;
 }
 
 html.theme-dark .chh__header-content p {
@@ -128,6 +127,12 @@ html.theme-dark .chh__header-content p {
   justify-content: center;
 }
 
+/* ✅ ADDED ONLY ACCESSIBILITY FIX */
+.chh__header-content__input--button:focus-visible {
+  outline: 2px solid #4c9ffe;
+  outline-offset: 3px;
+}
+
 .chh__header-content__input--button::after {
   content: "";
   position: absolute;
@@ -151,7 +156,7 @@ html.theme-dark .chh__header-content p {
 }
 
 .chh__header-content__input--button:hover {
-  transform: scale(1.03); /* very subtle lift */
+  transform: scale(1.03);
   text-decoration: none;
 }
 
