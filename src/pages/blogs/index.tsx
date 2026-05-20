@@ -13,6 +13,8 @@ export default function Blogs() {
   const [searchInput, setSearchInput] = React.useState("");
   const [searchTerm, setSearchTerm] = React.useState("");
   const [filteredBlogs, setFilteredBlogs] = React.useState(blogs);
+  const POSTS_PER_PAGE = 8;
+  const [currentPage, setCurrentPage] = React.useState(1);
 
   // Filter blogs after the user submits the blog search form.
   React.useEffect(() => {
@@ -31,7 +33,27 @@ export default function Blogs() {
     }
 
     setFilteredBlogs(filtered);
+    setCurrentPage(1);
   }, [searchTerm]);
+
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [currentPage]);
+
+  const totalPages = Math.ceil(filteredBlogs.length / POSTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * POSTS_PER_PAGE;
+  const endIndex = startIndex + POSTS_PER_PAGE;
+  const currentBlogs = filteredBlogs.slice(startIndex, endIndex);
+  const visiblePages = Array.from(
+    { length: Math.min(totalPages, 5) },
+    (_, index) => index + 1,
+  );
+  const showLastPage = totalPages > 5;
+  const showingStart = filteredBlogs.length === 0 ? 0 : startIndex + 1;
+  const showingEnd = Math.min(endIndex, filteredBlogs.length);
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value);
@@ -156,7 +178,7 @@ export default function Blogs() {
 
               <div className="articles-grid">
                 {filteredBlogs.length > 0 ? (
-                  filteredBlogs.map((blog) => (
+                  currentBlogs.map((blog) => (
                     <BlogCard key={blog.id ?? blog.slug} blog={blog} />
                   ))
                 ) : (
@@ -177,6 +199,62 @@ export default function Blogs() {
                   </div>
                 )}
               </div>
+
+              {filteredBlogs.length > POSTS_PER_PAGE && (
+                <div className="pagination-wrapper">
+                  <div className="pagination-container">
+                    <button
+                      className="pagination-btn"
+                      disabled={currentPage === 1}
+                      aria-label="Go to previous page"
+                      onClick={() => setCurrentPage((prev) => prev - 1)}
+                    >
+                      Previous
+                    </button>
+
+                    <div className="pagination-pages">
+                      {visiblePages.map((page) => (
+                        <button
+                          key={page}
+                          className={`pagination-number ${currentPage === page ? "active-page" : ""
+                            }`}
+                          aria-label={`Go to page ${page}`}
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </button>
+                      ))}
+
+                      {showLastPage && (
+                        <>
+                          <span className="pagination-ellipsis">...</span>
+                          <button
+                            className={`pagination-number ${currentPage === totalPages ? "active-page" : ""
+                              }`}
+                            aria-label={`Go to page ${totalPages}`}
+                            onClick={() => setCurrentPage(totalPages)}
+                          >
+                            {totalPages}
+                          </button>
+                        </>
+                      )}
+                    </div>
+
+                    <button
+                      className="pagination-btn"
+                      disabled={currentPage === totalPages}
+                      aria-label="Go to next page"
+                      onClick={() => setCurrentPage((prev) => prev + 1)}
+                    >
+                      Next
+                    </button>
+                  </div>
+                  <p className="pagination-summary">
+                    Showing {showingStart} - {showingEnd} of{" "}
+                    {filteredBlogs.length} posts
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </section>
