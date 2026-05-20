@@ -1,7 +1,7 @@
 import * as React from "react";
-import Particles, { ParticlesProvider } from "@tsparticles/react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { Engine } from "@tsparticles/engine";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
 
 const initParticles = async (engine: Engine) => {
@@ -9,6 +9,14 @@ const initParticles = async (engine: Engine) => {
 };
 
 const ParticlesComponent = (props) => {
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(initParticles).then(() => {
+      setInit(true);
+    });
+  }, []);
+
   const options = useMemo(
     () => ({
       fullScreen: {
@@ -86,22 +94,24 @@ const ParticlesComponent = (props) => {
     [],
   );
 
+  if (!init) {
+    return null;
+  }
+
   return (
-    <ParticlesProvider init={initParticles}>
-      <div
-        style={{
-          position: "fixed",
-          width: "100vw",
-          height: "100vh",
-          top: 0,
-          left: 0,
-          zIndex: -1, // Critical: ensures it's in the background
-          pointerEvents: "none", // Ensures it doesn't block clicks
-        }}
-      >
-        <Particles id={props.id} options={options} />
-      </div>
-    </ParticlesProvider>
+    <div
+      style={{
+        position: "fixed",
+        width: "100vw",
+        height: "100vh",
+        top: 0,
+        left: 0,
+        zIndex: -1, // Critical: ensures it's in the background
+        pointerEvents: "none", // Ensures it doesn't block clicks
+      }}
+    >
+      <Particles id={props.id} options={options} />
+    </div>
   );
 };
 
