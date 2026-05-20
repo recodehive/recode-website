@@ -19,8 +19,13 @@ This guide walks you through everything you need to write and publish a blog pos
 
 ## Step 1: Raise a New issue on GitHub
 
-Head to the the GitHub issue on this [repository](https://github.com/recodehive/recode-website/issues)
+Head to the the GitHub issue on this [repository](https://github.com/recodehive/recode-website/issues), raise an new issue under documentation update. 
     :::info
+    * Few things to remember, don't raise random generic topics.
+    * Write from real experience, try to include real dashboard pictures, no copy paste articles.
+    * You can generate AI pictures, but need to be edited any tools like Canva.
+    * Your article must teach something offical documentation doesnot. Means no Intro to X or What is X.
+    * Start working on Issue When its assigned to you by @sanjay-kv or any Maintainer. ref step 4.
 <Tabs>
   <TabItem value="Step 1" label="Step 1">
     <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
@@ -36,10 +41,17 @@ Head to the the GitHub issue on this [repository](https://github.com/recodehive/
   </TabItem>
     
   <TabItem value="Step 3" label="Step 3">
-      <BrowserWindow url="https://github.com/recodehive/recode-website/documentation" bodyStyle={{padding: 0}}>    
-     [![Github](assets\blog-03-new-issue.png)](https://github.com/recodehive/recode-website/documentations)
+      <BrowserWindow url="https://github.com/recodehive/recode-website/issues/1586" bodyStyle={{padding: 0}}>    
+     [![Github](assets\blog-03-new-issue.png)](https://github.com/recodehive/recode-website/issues/1577)
     </BrowserWindow>
     </TabItem>
+
+  <TabItem value="Step 4" label="Step 4">
+      <BrowserWindow url="https://github.com/recodehive/recode-website/issues/1577" bodyStyle={{padding: 0}}>    
+     [![Github](assets\blog-04-new-issue.png)](https://github.com/recodehive/recode-website/issues/1577)
+    </BrowserWindow>
+    </TabItem>
+  
 </Tabs>
 
 :::
