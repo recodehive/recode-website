@@ -85,17 +85,21 @@ export default function Root({ children }: { children: React.ReactNode }) {
         color: "var(--ifm-color-content-secondary)",
       },
       socialButtonsBlockButton: {
-        border: "1px solid var(--ifm-color-emphasis-300)",
-        backgroundColor: "var(--ifm-background-color)",
-        color: "var(--ifm-color-content)",
-        boxShadow: "none",
+        border: "1px solid var(--recode-auth-button-border)",
+        backgroundColor: "var(--recode-auth-button-bg)",
+        color: "var(--recode-auth-button-text)",
+        boxShadow: "var(--recode-auth-button-shadow)",
+        transition:
+          "background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease",
         "&:hover, &:focus, &:active": {
-          backgroundColor: "var(--ifm-color-emphasis-100)",
-          borderColor: "var(--ifm-color-primary)",
+          backgroundColor: "var(--recode-auth-button-hover-bg)",
+          borderColor: "var(--recode-auth-button-hover-border)",
+          color: "var(--recode-auth-button-hover-text)",
+          boxShadow: "var(--recode-auth-button-hover-shadow)",
         },
       },
       socialButtonsBlockButtonText: {
-        fontWeight: 600,
+        fontWeight: 700,
       },
       footer: {
         borderTop: "1px solid var(--ifm-color-emphasis-200)",

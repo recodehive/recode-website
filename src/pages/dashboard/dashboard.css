@@ -607,17 +607,35 @@
 }
 
 .leaderboard-auth-button {
-  border: 0;
-  border-radius: 8px;
-  background: var(--dashboard-accent);
-  color: #ffffff;
+  border: 1px solid var(--recode-auth-button-border);
+  border-radius: 999px;
+  background: var(--recode-auth-button-bg);
+  color: var(--recode-auth-button-text);
   cursor: pointer;
-  font-weight: 600;
-  padding: 10px 18px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 10px 22px;
+  box-shadow: var(--recode-auth-button-shadow);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
-.leaderboard-auth-button:hover {
-  background: var(--dashboard-accent-dark);
+.leaderboard-auth-button:hover,
+.leaderboard-auth-button:focus-visible {
+  background: var(--recode-auth-button-hover-bg);
+  border-color: var(--recode-auth-button-hover-border);
+  color: var(--recode-auth-button-hover-text);
+  box-shadow: var(--recode-auth-button-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.leaderboard-auth-button:focus-visible {
+  outline: 2px solid var(--dashboard-accent);
+  outline-offset: 3px;
 }
 
 /* Giveaway Section */
