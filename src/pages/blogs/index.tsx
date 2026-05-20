@@ -1,43 +1,56 @@
-import React, { type ChangeEvent } from "react";
+import React from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import blogs from "../../database/blogs/index";
 import Head from "@docusaurus/Head";
 import { getAuthorProfiles, getAuthorTooltip } from "../../utils/authors";
+import { filterBlogsBySearchTerm } from "../../utils/blogFilters";
 
 import "./blogs-new.css";
+
+const POSTS_PER_PAGE = 12;
 
 export default function Blogs() {
   const { siteConfig } = useDocusaurusContext();
   const [searchInput, setSearchInput] = React.useState("");
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [filteredBlogs, setFilteredBlogs] = React.useState(blogs);
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const filteredBlogs = React.useMemo(
+    () => filterBlogsBySearchTerm(blogs, searchTerm),
+    [searchTerm],
+  );
 
-  // Filter blogs after the user submits the blog search form.
   React.useEffect(() => {
-    let filtered = blogs;
-
-    if (searchTerm.trim() !== "") {
-      const normalizedSearch = searchTerm.trim().toLowerCase();
-      filtered = filtered.filter(
-        (blog) =>
-          blog.title.toLowerCase().includes(normalizedSearch) ||
-          blog.description.toLowerCase().includes(normalizedSearch) ||
-          blog.tags?.some((tag) =>
-            tag.toLowerCase().includes(normalizedSearch),
-          ),
-      );
-    }
-
-    setFilteredBlogs(filtered);
+    setCurrentPage(1);
   }, [searchTerm]);
 
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const totalPages = Math.max(1, Math.ceil(filteredBlogs.length / POSTS_PER_PAGE));
+  const showingStart = filteredBlogs.length === 0 ? 0 : (currentPage - 1) * POSTS_PER_PAGE + 1;
+  const showingEnd = Math.min(currentPage * POSTS_PER_PAGE, filteredBlogs.length);
+  const paginatedBlogs = filteredBlogs.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE,
+  );
+  const visiblePages = (() => {
+    const pages: number[] = [];
+    const maxVisible = 5;
+    let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let end = start + maxVisible - 1;
+    if (end > totalPages) {
+      end = totalPages;
+      start = Math.max(1, end - maxVisible + 1);
+    }
+    for (let i = start; i <= end; i++) pages.push(i);
+    return pages;
+  })();
+  const showLastPage = visiblePages[visiblePages.length - 1] < totalPages;
+
+  const handleSearchChange = (e: { target: { value: string } }) => {
     setSearchInput(e.target.value);
   };
 
-  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSearchSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setSearchTerm(searchInput.trim());
   };
@@ -155,9 +168,11 @@ export default function Blogs() {
               )}
 
               <div className="articles-grid">
-                {filteredBlogs.length > 0 ? (
-                  filteredBlogs.map((blog) => (
-                    <BlogCard key={blog.id ?? blog.slug} blog={blog} />
+                {paginatedBlogs.length > 0 ? (
+                  paginatedBlogs.map((blog) => (
+                    <React.Fragment key={blog.id ?? blog.slug}>
+                      <BlogCard blog={blog} />
+                    </React.Fragment>
                   ))
                 ) : (
                   <div className="no-results">
@@ -177,6 +192,62 @@ export default function Blogs() {
                   </div>
                 )}
               </div>
+
+              {filteredBlogs.length > POSTS_PER_PAGE && (
+                <div className="pagination-wrapper">
+                  <div className="pagination-container">
+                    <button
+                      className="pagination-btn"
+                      disabled={currentPage === 1}
+                      aria-label="Go to previous page"
+                      onClick={() => setCurrentPage((prev) => prev - 1)}
+                    >
+                      Previous
+                    </button>
+
+                    <div className="pagination-pages">
+                      {visiblePages.map((page) => (
+                        <button
+                          key={page}
+                          className={`pagination-number ${currentPage === page ? "active-page" : ""
+                            }`}
+                          aria-label={`Go to page ${page}`}
+                          onClick={() => setCurrentPage(page)}
+                        >
+                          {page}
+                        </button>
+                      ))}
+
+                      {showLastPage && (
+                        <>
+                          <span className="pagination-ellipsis">...</span>
+                          <button
+                            className={`pagination-number ${currentPage === totalPages ? "active-page" : ""
+                              }`}
+                            aria-label={`Go to page ${totalPages}`}
+                            onClick={() => setCurrentPage(totalPages)}
+                          >
+                            {totalPages}
+                          </button>
+                        </>
+                      )}
+                    </div>
+
+                    <button
+                      className="pagination-btn"
+                      disabled={currentPage === totalPages}
+                      aria-label="Go to next page"
+                      onClick={() => setCurrentPage((prev) => prev + 1)}
+                    >
+                      Next
+                    </button>
+                  </div>
+                  <p className="pagination-summary">
+                    Showing {showingStart} - {showingEnd} of{" "}
+                    {filteredBlogs.length} posts
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </section>

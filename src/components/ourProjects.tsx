@@ -139,8 +139,10 @@ const HeadingComponent = ({
         className={`${
           isDark ? "text-gray-300" : "text-gray-700"
         } flex h-full items-center justify-center text-justify text-base leading-relaxed sm:text-lg md:pr-10`}
-      >
-        {description}
+      ><motion.p className="text-center md:text-left gap-2 md:gap-6">
+          {description}
+        </motion.p>
+     
       </motion.div>
     </div>
   );

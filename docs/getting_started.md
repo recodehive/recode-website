@@ -29,26 +29,26 @@ Head to the the GitHub issue on this [repository](https://github.com/recodehive/
 <Tabs>
   <TabItem value="Step 1" label="Step 1">
     <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-     [![Github](assets\blog-01-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+     [![Github](assets/blog-01-new-issue.png)](https://github.com/recodehive/recode-website/issues)
     </BrowserWindow>
   </TabItem>
 
 <TabItem value="Step 2" label="Step 2">
      <BrowserWindow url="https://github.com/recodehive/recode-website/documentation" bodyStyle={{padding: 0}}>    
-     [![Github](assets\blog-02-new-issue.png)](https://github.com/recodehive/recode-website/documentations)
+     [![Github](assets/blog-02-new-issue.png)](https://github.com/recodehive/recode-website/documentations)
     </BrowserWindow>
 
   </TabItem>
     
   <TabItem value="Step 3" label="Step 3">
       <BrowserWindow url="https://github.com/recodehive/recode-website/issues/1586" bodyStyle={{padding: 0}}>    
-     [![Github](assets\blog-03-new-issue.png)](https://github.com/recodehive/recode-website/issues/1577)
+     [![Github](assets/blog-03-new-issue.png)](https://github.com/recodehive/recode-website/issues/1577)
     </BrowserWindow>
     </TabItem>
 
   <TabItem value="Step 4" label="Step 4">
       <BrowserWindow url="https://github.com/recodehive/recode-website/issues/1577" bodyStyle={{padding: 0}}>    
-     [![Github](assets\blog-04-new-issue.png)](https://github.com/recodehive/recode-website/issues/1577)
+     [![Github](assets/blog-04-new-issue.png)](https://github.com/recodehive/recode-website/issues/1577)
     </BrowserWindow>
     </TabItem>
   
@@ -61,7 +61,7 @@ Head to the the GitHub issue on this [repository](https://github.com/recodehive/
 
 ## Step 3: Create a New Branch
 
-Never commit directly to `main`. Create a dedicated branch for your blog post:
+Never commit directly to `main`. Create a dedicated branch for your blog post: test
 
 ```bash
 git checkout -b blog/your-blog-title
