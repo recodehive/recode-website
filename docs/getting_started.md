@@ -59,17 +59,90 @@ Head to the the GitHub issue on this [repository](https://github.com/recodehive/
 #### Just follow the steps on forking the repositories and installing the dependencies on your local repository, if you dont know refer the steps 2 to 6 on [welcome page](https://www.recodehive.com/docs/).
 ---
 
-## Step 3: Create a New Branch
+## Step 5: Create a New Branch
 
-Never commit directly to `main`. Create a dedicated branch for your blog post: test
+Open your code editor and head into terminal and check current branch
+Never commit directly to `main`. Create a dedicated branch for your blog post:
+
 
 ```bash
 git checkout -b blog/your-blog-title
 ```
 
-Use a short, descriptive name — for example `blog/intro-to-docker` or `blog/react-hooks-guide`.
+<BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+    [![Github](assets/blog-05-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+  </BrowserWindow>
+
+    :::info
+the best practice, Use a short, descriptive name  for example `blog/intro-to-docker` or `blog/react-hooks-guide`.
+:::
+
 
 ---
+
+## Step 6: Add your name to Author list : optional
+:::info
+If you are first time contributing to blog section, add yourself as author, this gives you good visibility on Google search and better career opportunities.
+:::
+Open your code editor and head into sidebar and expand the `blog` folder
+and open the file `authors.yml`. Refer the below image and copy paste the code into the yml as shown.
+Replace my name with your name and respective website links of yours.
+
+```bash
+sanjay-kv:
+  name: Sanjay Viswanthan
+  title: Founder at recode hive
+  url: www.sanjaykv.com
+  image_url: https://avatars.githubusercontent.com/u/30715153?v=4
+  email: sanjay@recodehive.com
+  page: true # Turns the feature on
+  description: >
+    I'm a Software Engineer turned into a Data Engineer and Program Manager🚀, 🏆 Google ML Facilitator & Ex- GitHub CE who delivered 100+ talks on ML and open source and developer advocacy at various events and platforms.
+
+  socials:
+    x: https://x.com/sanjay_kv_
+    linkedin: sanjay-k-v
+    github: sanjay-kv
+    stackoverflow: 8332327
+    instagram: nomad_brains
+    newsletter: https://recodehive.substack.com
+    bluesky: sanjaykv.bsky.social
+```
+
+<BrowserWindow url="vs-code-terminal" bodyStyle={{padding: 0}}>    
+    [![Github](assets/blog-06-new-issue.png)](vs-code-terminal)
+  </BrowserWindow>
+
+
+---
+
+## Step 7: Create the Blog Folder and File
+
+All blog posts live inside the `blog/` directory. Each post gets its own folder.
+
+**Folder structure:**
+
+```
+blog/
+└── your-blog-title/
+    ├── index.md          ← your blog content
+    └── assets/           ← screenshots and images (optional png or jpeg)
+        ├── cover.png
+        └── step-01.png
+```
+
+Create the folder and file:
+
+```bash
+mkdir -p blog/your-blog-title/images
+touch blog/your-blog-title/index.md
+```
+
+---
+
+
+
+
 
 :::tip Blog Quality Checklist
 Before starting any development, make sure your blog meets **all** of the following criteria. Your blog can be **rejected** if any requirement is not fulfilled:
@@ -91,31 +164,7 @@ Before starting any development, make sure your blog meets **all** of the follow
 - 12. Screenshots must follow the naming convention and size guidelines below.
 :::
 
----
 
-## Step 4: Create the Blog Folder and File
-
-All blog posts live inside the `blog/` directory. Each post gets its own folder.
-
-**Folder structure:**
-
-```
-blog/
-└── your-blog-title/
-    ├── index.md          ← your blog content
-    └── images/           ← screenshots and images (optional)
-        ├── cover.png
-        └── step-01.png
-```
-
-Create the folder and file:
-
-```bash
-mkdir -p blog/your-blog-title/images
-touch blog/your-blog-title/index.md
-```
-
----
 
 ## Step 5: Write the Frontmatter
 
