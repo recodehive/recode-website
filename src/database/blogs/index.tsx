@@ -211,6 +211,17 @@ const blogs: Blog[] = [
     category: "data engineering",
     tags: ["PySpark", "Optimization", "Big Data", "Performance", "Data Engineering"],
   },
+  {
+    id: 19,
+    title: "Why Data Engineers Make Better Business Analysts Than MBAs Do",
+    image: "/img/blogs/ba_de_cover_image.png",
+    description:
+      "Data engineers often have a deeper understanding of data and its implications for business decisions than MBAs, who may focus more on theory and strategy. This article explores why data engineers can make better business analysts than MBAs, highlighting their technical expertise, problem-solving skills, and ability to derive insights from data to drive informed business decisions.",
+    slug: "data-engineers-vs-mbas",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Data Engineers", "Business Analysts", "MBAs", "Data Understanding", "Business Decisions"],
+  },
 
 ];
 

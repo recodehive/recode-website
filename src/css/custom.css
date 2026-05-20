@@ -1375,29 +1375,63 @@ html {
   box-sizing: border-box !important;
 }
 
+:root {
+  --recode-auth-button-bg: #111827;
+  --recode-auth-button-text: #ffffff;
+  --recode-auth-button-border: #111827;
+  --recode-auth-button-shadow: 0 8px 22px rgba(17, 24, 39, 0.16);
+  --recode-auth-button-hover-bg: #ffffff;
+  --recode-auth-button-hover-text: #111827;
+  --recode-auth-button-hover-border: #111827;
+  --recode-auth-button-hover-shadow: 0 10px 26px rgba(17, 24, 39, 0.22);
+}
+
+[data-theme="dark"] {
+  --recode-auth-button-bg: #ffffff;
+  --recode-auth-button-text: #0f172a;
+  --recode-auth-button-border: #ffffff;
+  --recode-auth-button-shadow: 0 8px 22px rgba(255, 255, 255, 0.12);
+  --recode-auth-button-hover-bg: #0f172a;
+  --recode-auth-button-hover-text: #ffffff;
+  --recode-auth-button-hover-border: #ffffff;
+  --recode-auth-button-hover-shadow: 0 10px 26px rgba(255, 255, 255, 0.18);
+}
+
 .clerk-navbar-auth {
   display: flex;
   align-items: center;
 }
 
 .clerk-navbar-sign-in {
-  border: 0;
-  border-radius: 6px;
-  background: var(--ifm-color-primary);
-  color: #ffffff;
+  border: 1px solid var(--recode-auth-button-border);
+  border-radius: 999px;
+  background: var(--recode-auth-button-bg);
+  color: var(--recode-auth-button-text);
   cursor: pointer;
-  font-weight: 600;
-  padding: 0 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 0 0.95rem;
+  box-shadow: var(--recode-auth-button-shadow);
   transition:
     background-color 0.2s ease,
+    border-color 0.2s ease,
     color 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
 
-.clerk-navbar-sign-in:hover {
-  background: var(--ifm-color-primary-dark);
-  color: #ffffff;
-  box-shadow: 0 6px 18px rgba(46, 133, 85, 0.24);
+.clerk-navbar-sign-in:hover,
+.clerk-navbar-sign-in:focus-visible {
+  background: var(--recode-auth-button-hover-bg);
+  border-color: var(--recode-auth-button-hover-border);
+  color: var(--recode-auth-button-hover-text);
+  box-shadow: var(--recode-auth-button-hover-shadow);
+  transform: translateY(-1px);
+}
+
+.clerk-navbar-sign-in:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
 }
 
 .algolia-sitesearch-navbar {

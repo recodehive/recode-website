@@ -35,8 +35,9 @@ export default function NavbarIcon(props: NavbarIconProps) {
   // Handle dashboard usage
   if (isDashboardProps(props)) {
     const { icon, text, active, onClick } = props;
+
     return (
-      <div
+      <button
         className={`navbar-icon-item ${active ? "active" : ""}`}
         onClick={onClick}
         role="button"
@@ -49,7 +50,7 @@ export default function NavbarIcon(props: NavbarIconProps) {
       >
         <span className="navbar-icon">{icon}</span>
         <span className="navbar-text">{text}</span>
-      </div>
+      </button>
     );
   }
 
