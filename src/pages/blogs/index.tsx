@@ -9,14 +9,42 @@ import { filterBlogsBySearchTerm } from "../../utils/blogFilters";
 
 import "./blogs-new.css";
 
+const POSTS_PER_PAGE = 12;
+
 export default function Blogs() {
   const { siteConfig } = useDocusaurusContext();
   const [searchInput, setSearchInput] = React.useState("");
   const [searchTerm, setSearchTerm] = React.useState("");
+  const [currentPage, setCurrentPage] = React.useState(1);
   const filteredBlogs = React.useMemo(
     () => filterBlogsBySearchTerm(blogs, searchTerm),
     [searchTerm],
   );
+
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredBlogs.length / POSTS_PER_PAGE));
+  const showingStart = filteredBlogs.length === 0 ? 0 : (currentPage - 1) * POSTS_PER_PAGE + 1;
+  const showingEnd = Math.min(currentPage * POSTS_PER_PAGE, filteredBlogs.length);
+  const paginatedBlogs = filteredBlogs.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE,
+  );
+  const visiblePages = (() => {
+    const pages: number[] = [];
+    const maxVisible = 5;
+    let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
+    let end = start + maxVisible - 1;
+    if (end > totalPages) {
+      end = totalPages;
+      start = Math.max(1, end - maxVisible + 1);
+    }
+    for (let i = start; i <= end; i++) pages.push(i);
+    return pages;
+  })();
+  const showLastPage = visiblePages[visiblePages.length - 1] < totalPages;
 
   const handleSearchChange = (e: { target: { value: string } }) => {
     setSearchInput(e.target.value);
@@ -140,8 +168,8 @@ export default function Blogs() {
               )}
 
               <div className="articles-grid">
-                {filteredBlogs.length > 0 ? (
-                  filteredBlogs.map((blog) => (
+                {paginatedBlogs.length > 0 ? (
+                  paginatedBlogs.map((blog) => (
                     <React.Fragment key={blog.id ?? blog.slug}>
                       <BlogCard blog={blog} />
                     </React.Fragment>
