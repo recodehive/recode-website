@@ -61,7 +61,7 @@ Head to the the GitHub issue on this [repository](https://github.com/recodehive/
 
 ## Step 3: Create a New Branch
 
-Never commit directly to `main`. Create a dedicated branch for your blog post:
+Never commit directly to `main`. Create a dedicated branch for your blog post: test
 
 ```bash
 git checkout -b blog/your-blog-title
