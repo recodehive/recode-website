@@ -1,10 +1,11 @@
-import React, { type ChangeEvent } from "react";
+import React from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import blogs from "../../database/blogs/index";
 import Head from "@docusaurus/Head";
 import { getAuthorProfiles, getAuthorTooltip } from "../../utils/authors";
+import { filterBlogsBySearchTerm } from "../../utils/blogFilters";
 
 import "./blogs-new.css";
 
@@ -12,32 +13,16 @@ export default function Blogs() {
   const { siteConfig } = useDocusaurusContext();
   const [searchInput, setSearchInput] = React.useState("");
   const [searchTerm, setSearchTerm] = React.useState("");
-  const [filteredBlogs, setFilteredBlogs] = React.useState(blogs);
+  const filteredBlogs = React.useMemo(
+    () => filterBlogsBySearchTerm(blogs, searchTerm),
+    [searchTerm],
+  );
 
-  // Filter blogs after the user submits the blog search form.
-  React.useEffect(() => {
-    let filtered = blogs;
-
-    if (searchTerm.trim() !== "") {
-      const normalizedSearch = searchTerm.trim().toLowerCase();
-      filtered = filtered.filter(
-        (blog) =>
-          blog.title.toLowerCase().includes(normalizedSearch) ||
-          blog.description.toLowerCase().includes(normalizedSearch) ||
-          blog.tags?.some((tag) =>
-            tag.toLowerCase().includes(normalizedSearch),
-          ),
-      );
-    }
-
-    setFilteredBlogs(filtered);
-  }, [searchTerm]);
-
-  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleSearchChange = (e: { target: { value: string } }) => {
     setSearchInput(e.target.value);
   };
 
-  const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSearchSubmit = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     setSearchTerm(searchInput.trim());
   };
@@ -157,7 +142,9 @@ export default function Blogs() {
               <div className="articles-grid">
                 {filteredBlogs.length > 0 ? (
                   filteredBlogs.map((blog) => (
-                    <BlogCard key={blog.id ?? blog.slug} blog={blog} />
+                    <React.Fragment key={blog.id ?? blog.slug}>
+                      <BlogCard blog={blog} />
+                    </React.Fragment>
                   ))
                 ) : (
                   <div className="no-results">
