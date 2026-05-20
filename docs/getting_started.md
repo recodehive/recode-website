@@ -88,7 +88,7 @@ Open your code editor and head into sidebar and expand the `blog` folder
 and open the file `authors.yml`. Refer the below image and copy paste the code into the yml as shown.
 Replace my name with your name and respective website links of yours.
 
-```bash
+```yaml
 sanjay-kv:
   name: Sanjay Viswanthan
   title: Founder at recode hive
@@ -113,6 +113,7 @@ sanjay-kv:
     [![Github](assets/blog-06-new-issue.png)](vs-code-terminal)
   </BrowserWindow>
 
+The `your-author-id` value must exactly match what you put in the `authors` field of your frontmatter.
 
 ---
 
@@ -131,63 +132,110 @@ blog/
         └── step-01.png
 ```
 
-Create the folder and file:
+you can manually Create the folder and file or use below code:
 
 ```bash
 mkdir -p blog/your-blog-title/images
 touch blog/your-blog-title/index.md
 ```
+<Tabs>
+  <TabItem value="Step 7" label="Step 7">
+    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-07-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>
 
+<TabItem value="Step 8" label="Step 8">
+     <BrowserWindow url="https://github.com/recodehive/recode-website/documentation" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-08-new-issue.png)](https://github.com/recodehive/recode-website/documentations)
+    </BrowserWindow>
+
+  </TabItem>
+    
+</Tabs>
 ---
 
 
-
-
-
 :::tip Blog Quality Checklist
-Before starting any development, make sure your blog meets **all** of the following criteria. Your blog can be **rejected** if any requirement is not fulfilled:
-
-- 1. 5 backlinks to different external websites to support our documentation.
-- 2. 5 internal backlinks to other articles on recodehive.
-
-- 3. **No generic content** — avoid surface-level topics like "what is Azure" or "difference between X and Y". Write pure, high-depth technical articles with images. See [this example](https://www.recodehive.com/docs/GitHub/Maintainer-guide/milestone) for the standard we aim for. (Tip: tools like [Snagit](https://www.techsmith.com/screen-capture.html) help produce great annotated screenshots.)
-
-- 4. Image filenames must be descriptive and SEO-friendly — no random names like `screenshot123.png`.
-- 5. **Content-to-code ratio**: text should be more than code. Adsense flags pages at 60% code / 40% text - keep it the opposite. If code is long, link to GitHub and reference it in comments instead.
-
-- 6. Include a **bulleted summary section** at the top of the blog post.
-- 7. Include a **FAQ section** at the bottom.
-- 8. Use Docusaurus admonitions (`:::tip`, `:::info`, `:::note`) for callouts, tips, and cautions (see formatting guidelines below).
-- 9. Tables must be **center-aligned** - wrap them in an `:::info` block to achieve this in Docusaurus.
-- 10. Use **named code blocks** with a filename label when showing code (e.g., ` ```java title="Sample.java" `).
-- 11. When showing a query and its output together, use a **Tabs** block with separate "Query" and "Output" tabs.
-- 12. Screenshots must follow the naming convention and size guidelines below.
+Let's start write article
 :::
-
 
 
 ## Step 5: Write the Frontmatter
 
 Open `blog/your-blog-title/index.md` and add the following frontmatter at the very top of the file:
 
-```md
----
-title: "Your Blog Post Title"
-authors: [your-author-id]
-sidebar_label: "Your Blog Post Title"
-tags: [tag1, tag2, tag3]
-date: 2026-04-30
+```yaml
+title: "Google Changed Workspace Icon after 6 years"
+authors: [sanjay-kv]
+sidebar_label: "Google Changed Workspace Icon after 6 years"
+tags: [google, icons]
+date: 2026-05-21
 
-description: A one or two sentence summary of what this blog post covers.
+description: Google Changed Workspace Icon after 6 years, What Changed, What Did Not, and Why It Took Six Years
 
 draft: false
-canonical_url:
+canonical_url: https://www.recodehive.com/blog/google-icon-update
+
+meta:
+  - name: "robots"
+    content: "index, follow"
+  - property: "og:title"
+    content: "Google Changed Workspace Icon after 6 years"
+  - property: "og:description"
+    content: "Google Just Changed Every Workspace Icon: What Actually Changed and Why It Took Six Years."
+  - property: "og:type"
+    content: "article"
+  - property: "og:url"
+    content: "https://www.recodehive.com/blog/google-icon-update"
+  - property: "og:image"
+    content: "./images/cover.png"
+  - name: "twitter:card"
+    content: "summary_large_image"
+  - name: "twitter:title"
+    content: "Google Just Changed Every Workspace Icon: What Actually Changed and Why It Took Six Years"
+  - name: "twitter:description"
+    content: "Google Changed Workspace Icon after 6 years"
+  - name: "twitter:image"
+    content: "./images/cover.png"
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<!-- truncate -->
 ---
+Last week I clicked Google Meet when I meant to click Google Calendar. Again.
+---
+## The Problem That Started in 2020
+To understand why this redesign matters, you have to go back to October 2020 when Google rebranded G Suite to Google Workspace.
+---
+## What Changed in 2026
+The new icons do one thing that the 2020 redesign refused to do: they let each app look different from the others.
+---
+## Why Google Is Doing This Now
+Two reasons. One practical, one strategic.
+---
+## What the Internet Actually Thinks
+Reactions are split, which is predictable and honestly fair.
+---
+## Does It Actually Solve the Problem?
+Yes. Partially.
+---
+## What to Watch Next
+The rollout is live but incomplete as of today. Google I/O 2026 this week is the most likely venue for a formal announcement with a full rollout timeline. If you are not seeing the new icons in your web launcher yet, they are coming within days based on current reports.
+---
+## The Bigger Picture
+Google changing its icons is a small thing in isolation. But it is interesting as a signal.
+---
+**About the Author**
+Sanjay is a Data Engineer focused on building modern data platforms and writing about technology at RecodeHive. He writes about data engineering, cloud architecture, and the tech decisions that actually affect people's daily work.
 ```
+
+:::info
 
 | Field | Description |
 |---|---|
-| `title` | The full title displayed at the top of the post and in search results |
+| `title` | The full title displayed at the top of the post and in search results, Make sure you do research and SEO analysis before proceeding with title|
 | `authors` | Your author ID from `blog/authors.yml` (see Step 6) |
 | `sidebar_label` | Short label shown in navigation sidebars |
 | `tags` | Comma-separated list of relevant topic tags |
@@ -196,32 +244,12 @@ canonical_url:
 | `draft` | Set to `true` to hide the post; `false` to publish |
 | `canonical_url` | Leave blank unless cross-posting from another site |
 
----
+:::
 
-## Step 6: Register Yourself as an Author
-
-Open `blog/authors.yml` and add an entry for yourself if you are not already listed:
-
-```yaml
-your-author-id:
-  name: Your Full Name
-  title: Your Role or Title
-  url: https://github.com/your-username
-  image_url: https://avatars.githubusercontent.com/u/YOUR_GITHUB_USER_ID?v=4
-  page: true
-  description: >
-    A short bio about yourself (2–3 sentences).
-  socials:
-    github: your-username
-    linkedin: your-linkedin-handle   # optional
-    x: your-twitter-handle           # optional
-```
-
-The `your-author-id` value must exactly match what you put in the `authors` field of your frontmatter.
 
 ---
 
-## Step 7: Write Your Blog Content
+## Step 7: Write Your Blog Content : resume
 
 After the closing `---` of your frontmatter, add the `<!-- truncate -->` comment. Everything **above** this comment becomes the preview shown on the blog listing page; everything below is the full post.
 
@@ -257,7 +285,25 @@ Every blog must begin with a bulleted summary right after the intro paragraph. T
 ```
 
 ---
+:::tip Blog Quality Checklist
+Before starting any development, make sure your blog meets **all** of the following criteria. Your blog can be **rejected** if any requirement is not fulfilled:
 
+- 1. 5 backlinks to different external websites to support our documentation.
+- 2. 5 internal backlinks to other articles on recodehive.
+
+- 3. **No generic content** — avoid surface-level topics like "what is Azure" or "difference between X and Y". Write pure, high-depth technical articles with images. See [this example](https://www.recodehive.com/docs/GitHub/Maintainer-guide/milestone) for the standard we aim for. (Tip: tools like [Snagit](https://www.techsmith.com/screen-capture.html) help produce great annotated screenshots.)
+
+- 4. Image filenames must be descriptive and SEO-friendly — no random names like `screenshot123.png`.
+- 5. **Content-to-code ratio**: text should be more than code. Adsense flags pages at 60% code / 40% text - keep it the opposite. If code is long, link to GitHub and reference it in comments instead.
+
+- 6. Include a **bulleted summary section** at the top of the blog post.
+- 7. Include a **FAQ section** at the bottom.
+- 8. Use Docusaurus admonitions (`:::tip`, `:::info`, `:::note`) for callouts, tips, and cautions (see formatting guidelines below).
+- 9. Tables must be **center-aligned** - wrap them in an `:::info` block to achieve this in Docusaurus.
+- 10. Use **named code blocks** with a filename label when showing code (e.g., ` ```java title="Sample.java" `).
+- 11. When showing a query and its output together, use a **Tabs** block with separate "Query" and "Output" tabs.
+- 12. Screenshots must follow the naming convention and size guidelines below.
+:::
 #### Named Code Blocks (Required)
 
 Always label code blocks with a filename so readers know exactly what file they are editing:
