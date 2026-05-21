@@ -136,9 +136,11 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
           whileTap={{ scale: 0.98 }}
           className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:from-blue-700 hover:to-purple-700"
         >
-          <Calendar size={18} />
-          <span>Schedule Now</span>
-          <ArrowUpRight size={18} />
+          <Calendar size={18} className="text-white" />
+          <span className="text-white font-semibold tracking-wide">
+            Schedule Now
+          </span>
+          <ArrowUpRight size={18} className="text-white" />
         </motion.a>
       </div>
     </motion.div>
