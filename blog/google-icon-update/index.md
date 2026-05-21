@@ -42,6 +42,10 @@ import TabItem from '@theme/TabItem';
 
 Last week I clicked Google Meet when I meant to click Google Calendar. Again.
 
+**What you'll learn in this post:**
+- How to set up X from scratch
+- How to configure Y for production
+- Common pitfalls and how to avoid them
 
 ---
 

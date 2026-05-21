@@ -34,8 +34,8 @@ Head to the the GitHub issue on this [repository](https://github.com/recodehive/
   </TabItem>
 
 <TabItem value="Step 2" label="Step 2">
-     <BrowserWindow url="https://github.com/recodehive/recode-website/documentation" bodyStyle={{padding: 0}}>    
-     [![Github](assets/blog-02-new-issue.png)](https://github.com/recodehive/recode-website/documentations)
+     <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-02-new-issue.png)](https://github.com/recodehive/recode-website/issues)
     </BrowserWindow>
 
   </TabItem>
@@ -109,8 +109,8 @@ sanjay-kv:
     bluesky: sanjaykv.bsky.social
 ```
 
-<BrowserWindow url="vs-code-terminal" bodyStyle={{padding: 0}}>    
-    [![Github](assets/blog-06-new-issue.png)](vs-code-terminal)
+<BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+    [![Github](assets/blog-06-new-issue.png)](https://github.com/recodehive/recode-website/issues)
   </BrowserWindow>
 
 The `your-author-id` value must exactly match what you put in the `authors` field of your frontmatter.
@@ -135,7 +135,7 @@ blog/
 you can manually Create the folder and file or use below code:
 
 ```bash
-mkdir -p blog/your-blog-title/images
+mkdir -p blog/your-blog-title/assets
 touch blog/your-blog-title/index.md
 ```
 <Tabs>
@@ -146,8 +146,8 @@ touch blog/your-blog-title/index.md
   </TabItem>
 
 <TabItem value="Step 8" label="Step 8">
-     <BrowserWindow url="https://github.com/recodehive/recode-website/documentation" bodyStyle={{padding: 0}}>    
-     [![Github](assets/blog-08-new-issue.png)](https://github.com/recodehive/recode-website/documentations)
+     <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-08-new-issue.png)](https://github.com/recodehive/recode-website/issues)
     </BrowserWindow>
 
   </TabItem>
@@ -156,15 +156,51 @@ touch blog/your-blog-title/index.md
 ---
 
 
-:::tip Blog Quality Checklist
-Let's start write article
-:::
 
 
-## Step 5: Write the Frontmatter
+## Step 9: Write the Frontmatter
 
 Open `blog/your-blog-title/index.md` and add the following frontmatter at the very top of the file:
 
+:::tip Blog Quality Checklist
+Copy paste the below code into your index.md file you created, then before writing we slowly change the title and details over here. first thing you need to match the author ID same as you created in authors.yaml file.
+:::
+<Tabs>
+  <TabItem value="Step 9" label="Step 9">
+  Don't change whatever in the highlighted red area, change the link same as folder name, so it will be easy to edit.
+    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-09-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>
+
+<TabItem value="Step 10" label="Step 10">
+     Do `npm run build` and complete the build to see everything works fine.
+     <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>
+
+  <TabItem value="Step 11" label="Step 11">
+   Do `npm run serve` or `npm start` and open local host to see the local changes you made.
+    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-11-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>
+
+  <TabItem value="Step 12" label="Step 12">
+   Do search this in local host `http://localhost:3000/your-blog-canonical-url` 
+    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-12-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>  
+
+  <TabItem value="Step 13" label="Step 13">
+   Do search this in local host `http://localhost:3000/your-blog-canonical-url` 
+    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-13-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>  
+</Tabs>
 ```yaml
 title: "Google Changed Workspace Icon after 6 years"
 authors: [sanjay-kv]
@@ -205,6 +241,11 @@ import TabItem from '@theme/TabItem';
 <!-- truncate -->
 ---
 Last week I clicked Google Meet when I meant to click Google Calendar. Again.
+
+**What you'll learn in this post:**
+- How to set up X from scratch
+- How to configure Y for production
+- Common pitfalls and how to avoid them
 ---
 ## The Problem That Started in 2020
 To understand why this redesign matters, you have to go back to October 2020 when Google rebranded G Suite to Google Workspace.
@@ -249,9 +290,18 @@ Sanjay is a Data Engineer focused on building modern data platforms and writing 
 
 ---
 
-## Step 7: Write Your Blog Content : resume
+## Step 10: Write Your Blog Content : Guidelines
 
-After the closing `---` of your frontmatter, add the `<!-- truncate -->` comment. Everything **above** this comment becomes the preview shown on the blog listing page; everything below is the full post.
+:::tip Blog Quality Checklist
+Now here comes the crutial part, it doesnt matter how it get start, but you gotta finish it as good quality work.
+Open the below taps to find most common errors and guidelines for beautification
+
+<Tabs>
+  <TabItem value="Formatting Guidelines" label="Formatting Guidelines">
+  
+  You have already copied this code before, im just explaining what it is. So you know what you doing 🥑.
+
+  After the closing `---` of your frontmatter, add the `<!-- truncate -->` comment. Everything **above** this comment becomes the preview shown on the blog listing page; everything below is the full post.
 
 ```md
 ---
@@ -284,27 +334,13 @@ Every blog must begin with a bulleted summary right after the intro paragraph. T
 - Common pitfalls and how to avoid them
 ```
 
----
-:::tip Blog Quality Checklist
-Before starting any development, make sure your blog meets **all** of the following criteria. Your blog can be **rejected** if any requirement is not fulfilled:
+    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-09-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>
 
-- 1. 5 backlinks to different external websites to support our documentation.
-- 2. 5 internal backlinks to other articles on recodehive.
-
-- 3. **No generic content** — avoid surface-level topics like "what is Azure" or "difference between X and Y". Write pure, high-depth technical articles with images. See [this example](https://www.recodehive.com/docs/GitHub/Maintainer-guide/milestone) for the standard we aim for. (Tip: tools like [Snagit](https://www.techsmith.com/screen-capture.html) help produce great annotated screenshots.)
-
-- 4. Image filenames must be descriptive and SEO-friendly — no random names like `screenshot123.png`.
-- 5. **Content-to-code ratio**: text should be more than code. Adsense flags pages at 60% code / 40% text - keep it the opposite. If code is long, link to GitHub and reference it in comments instead.
-
-- 6. Include a **bulleted summary section** at the top of the blog post.
-- 7. Include a **FAQ section** at the bottom.
-- 8. Use Docusaurus admonitions (`:::tip`, `:::info`, `:::note`) for callouts, tips, and cautions (see formatting guidelines below).
-- 9. Tables must be **center-aligned** - wrap them in an `:::info` block to achieve this in Docusaurus.
-- 10. Use **named code blocks** with a filename label when showing code (e.g., ` ```java title="Sample.java" `).
-- 11. When showing a query and its output together, use a **Tabs** block with separate "Query" and "Output" tabs.
-- 12. Screenshots must follow the naming convention and size guidelines below.
-:::
-#### Named Code Blocks (Required)
+<TabItem value="Add code blocks" label="Add code blocks">
+     #### Named Code Blocks (Required)
 
 Always label code blocks with a filename so readers know exactly what file they are editing:
 
@@ -317,10 +353,13 @@ public class Hello {
 }
 ```
 ````
+  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>
 
----
-
-#### Query + Output: Use Tabs (Required)
+  <TabItem value="Query + Output: Use Tabs" label="Query + Output: Use Tabs">
+     #### Named Code Blocks (Required when writing technical articles)
 
 When showing a database query alongside its output, use a Tabs block so both fit in a single window.
 
@@ -364,12 +403,118 @@ Then structure your query + output like this:
   </TabItem>
 </Tabs>
 ````
+  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>
+
+</Tabs>
+
+:::
+
+
+
+---
+
+
 
 :::tip
-You can add as many `<TabItem>` tabs as needed — for example separate tabs per subquery type, or one tab per language variant.
+You can add as many `<TabItem>` tabs as needed for example separate tabs per subquery type, or one tab per language variant. 
+Just check the code base on `getting_started.md`
 :::
 
 ---
+
+:::info
+Again a reminder, dont copy from the AI, the whole purpose of we writing this to give some step by step guidelines which AI can't do.
+Especially from an experienced engineers, it will be easy for new genertion coders to start easy with reference ss of every step.
+:::
+
+
+## Step 11: Add Screenshots and Images
+
+### Recommended Screenshot Dimensions
+
+| Use Case | Recommended Size |
+|---|---|
+| Cover / hero image | **1200 × 630 px** (16:9 ratio, also ideal for social sharing)  refer the image blocks attached below for samples|
+| Full-width step screenshots | **1280 × 720 px** or **1280 × 800 px** |
+| UI close-ups / partial screenshots | **800 × 450 px** |
+| Maximum file size | **500 KB** per image (compress with [Squoosh](https://squoosh.app) or [TinyPNG](https://tinypng.com)) |
+
+Use **PNG** for UI screenshots (crisp text) and **JPEG/WebP** for photos.
+
+### Naming Convention
+
+Use lowercase, hyphen-separated, numbered filenames so they sort correctly and are SEO-friendly. **Never use random or auto-generated names.**
+
+```
+assets/
+├── cover.png
+├── 01-open-settings.png
+├── 02-navigate-to-plugins.png
+└── 03-final-result.png
+```
+<Tabs>
+
+<TabItem value="Step 101" label="Step 101">
+     Do `npm run build` and complete the build to see everything works fine.
+     <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>
+
+  <TabItem value="Step 111" label="Step 111">
+   Do `npm run serve` or `npm start` and open local host to see the local changes you made.
+    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](assets/blog-11-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+    </BrowserWindow>
+  </TabItem>
+
+ 
+</Tabs>
+### Embedding Images in Markdown
+
+Reference images relative to `index.md`:
+
+```md
+![Alt text describing the image](./images/01-open-settings.png)
+```
+
+Always write descriptive alt text — it improves accessibility and SEO.
+
+:::tip Screenshot Tool Recommendation
+Tools like [Snagit](https://www.techsmith.com/screen-capture.html) make it easy to produce annotated, professional-quality screenshots. See [this article](https://www.recodehive.com/docs/GitHub/Maintainer-guide/milestone) as a reference for the image quality standard we aim for.
+:::
+
+---
+
+## Step 12: Update the Database
+
+All blog data is linked in the database folder (`\database\blogs\index.tsx`). Update it with the following details:
+
+```json
+{
+  id: sequence_wise,
+  title: "Title of the post",
+  image: "relative path of the cover image for the blog post",
+  description: "A short (2-3) lines of description of the post",
+  slug: "The name of the blog folder (keep it exact)",
+  authors: ["your-author-id"],
+  category: "The category the blog belongs to",
+  tags: ["tags or topics the blog is related to (tools or technologies)"],
+}
+```
+
+:::note
+All details are necessary for correctly rendering the blog card on the blogs page. Take a close look and make sure everything is filled in.
+:::
+
+---
+
+
+
+
 
 #### Admonitions: Tips, Notes, Info, and Cautions
 
@@ -450,69 +595,26 @@ A: Yes, the steps are cross-platform. Windows-specific commands are noted where 
 
 ---
 
-## Step 8: Add Screenshots and Images
+:::tip Blog Quality Checklist
+Before starting any development, make sure your blog meets **all** of the following criteria. Your blog can be **rejected** if any requirement is not fulfilled:
 
-### Recommended Screenshot Dimensions
+- 1. 5 backlinks to different external websites to support our documentation.
+- 2. 5 internal backlinks to other articles on recodehive.
 
-| Use Case | Recommended Size |
-|---|---|
-| Cover / hero image | **1200 × 630 px** (16:9 ratio, also ideal for social sharing) |
-| Full-width step screenshots | **1280 × 720 px** or **1280 × 800 px** |
-| UI close-ups / partial screenshots | **800 × 450 px** |
-| Maximum file size | **500 KB** per image (compress with [Squoosh](https://squoosh.app) or [TinyPNG](https://tinypng.com)) |
+- 3. **No generic content** — avoid surface-level topics like "what is Azure" or "difference between X and Y". Write pure, high-depth technical articles with images. See [this example](https://www.recodehive.com/docs/GitHub/Maintainer-guide/milestone) for the standard we aim for. (Tip: tools like [Snagit](https://www.techsmith.com/screen-capture.html) help produce great annotated screenshots.)
 
-Use **PNG** for UI screenshots (crisp text) and **JPEG/WebP** for photos.
+- 4. Image filenames must be descriptive and SEO-friendly — no random names like `screenshot123.png`.
+- 5. **Content-to-code ratio**: text should be more than code. Adsense flags pages at 60% code / 40% text - keep it the opposite. If code is long, link to GitHub and reference it in comments instead.
 
-### Naming Convention
-
-Use lowercase, hyphen-separated, numbered filenames so they sort correctly and are SEO-friendly. **Never use random or auto-generated names.**
-
-```
-images/
-├── cover.png
-├── 01-open-settings.png
-├── 02-navigate-to-plugins.png
-└── 03-final-result.png
-```
-
-### Embedding Images in Markdown
-
-Reference images relative to `index.md`:
-
-```md
-![Alt text describing the image](./images/01-open-settings.png)
-```
-
-Always write descriptive alt text — it improves accessibility and SEO.
-
-:::tip Screenshot Tool Recommendation
-Tools like [Snagit](https://www.techsmith.com/screen-capture.html) make it easy to produce annotated, professional-quality screenshots. See [this article](https://www.recodehive.com/docs/GitHub/Maintainer-guide/milestone) as a reference for the image quality standard we aim for.
+- 6. Include a **bulleted summary section** at the top of the blog post.
+- 7. Include a **FAQ section** at the bottom.
+- 8. Use Docusaurus admonitions (`:::tip`, `:::info`, `:::note`) for callouts, tips, and cautions (see formatting guidelines below).
+- 9. Tables must be **center-aligned** - wrap them in an `:::info` block to achieve this in Docusaurus.
+- 10. Use **named code blocks** with a filename label when showing code (e.g., ` ```java title="Sample.java" `).
+- 11. When showing a query and its output together, use a **Tabs** block with separate "Query" and "Output" tabs.
+- 12. Screenshots must follow the naming convention and size guidelines below.
 :::
 
----
-
-## Step 9: Update the Database
-
-All blog data is linked in the database folder (`\database\blogs\index.tsx`). Update it with the following details:
-
-```json
-{
-  id: sequence_wise,
-  title: "Title of the post",
-  image: "relative path of the cover image for the blog post",
-  description: "A short (2-3) lines of description of the post",
-  slug: "The name of the blog folder (keep it exact)",
-  authors: ["your-author-id"],
-  category: "The category the blog belongs to",
-  tags: ["tags or topics the blog is related to (tools or technologies)"],
-}
-```
-
-:::note
-All details are necessary for correctly rendering the blog card on the blogs page. Take a close look and make sure everything is filled in.
-:::
-
----
 
 ## Step 10: Preview Your Post
 
