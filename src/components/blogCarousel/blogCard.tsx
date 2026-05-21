@@ -135,7 +135,7 @@ const BlogCard = ({
               </div>
             </div>
             <span className="card-read-time">
-  🕒 {Math.max(1, Math.ceil(content.split(" ").length / 200))} min read
+            {Math.max(1, Math.ceil(content.split(" ").length / 200))} min read
 </span>
           </div>
 
