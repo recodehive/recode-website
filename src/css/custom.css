@@ -2040,3 +2040,16 @@ html[data-theme="dark"] {
   scrollbar-width: thin !important;
   scrollbar-color: #334155 transparent !important;
 }
+
+/* ===== SECTION 15: TABLE OF CONTENTS COLOR ===== */
+/* Issue #1593: Change TOC link color to match theme */
+.table-of-contents__link:hover,
+.table-of-contents__link--active,
+.table-of-contents__link--active:hover {
+  color: #B1E2C5;
+}
+
+[data-theme="dark"] .table-of-contents__link:hover,
+[data-theme="dark"] .table-of-contents__link--active {
+  color: #B1E2C5;
+}
