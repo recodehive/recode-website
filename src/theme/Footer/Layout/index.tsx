@@ -2,6 +2,30 @@ import React, { type ReactNode, useState, useEffect } from "react";
 import Link from "@docusaurus/Link";
 import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
 import clsx from "clsx";
+import {
+  Award,
+  BarChart3,
+  BookOpen,
+  BookText,
+  BriefcaseBusiness,
+  Building2,
+  CheckCircle2,
+  Handshake,
+  LayoutDashboard,
+  LifeBuoy,
+  Link2,
+  Mail,
+  type LucideIcon,
+  MessageCircleQuestion,
+  Mic2,
+  MonitorPlay,
+  Newspaper,
+  Puzzle,
+  Rocket,
+  Sparkles,
+  Users,
+  Video,
+} from "lucide-react";
 import "./enhanced-footer.css";
 import Counter from "./Counter";
 import { createPortal } from "react-dom";
@@ -15,6 +39,19 @@ interface FooterStats {
 }
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+type FooterIconProps = {
+  icon: LucideIcon;
+  className?: string;
+};
+
+function FooterIcon({ icon: Icon, className }: FooterIconProps) {
+  return (
+    <span className={clsx("footer-icon", className)} aria-hidden="true">
+      <Icon strokeWidth={2} />
+    </span>
+  );
+}
 
 export default function FooterLayout(): ReactNode {
   const { isDark } = useSafeColorMode();
@@ -95,7 +132,7 @@ export default function FooterLayout(): ReactNode {
         createPortal(
           <div className="newsletter-toast">
             <div className="toast-content">
-              <span className="toast-icon">🎉</span>
+              <FooterIcon icon={CheckCircle2} className="toast-icon" />
               <div className="toast-message">
                 <h4>Successfully Subscribed!</h4>
                 <p>Thank you for joining our newsletter.</p>
@@ -105,11 +142,11 @@ export default function FooterLayout(): ReactNode {
                 onClick={() => setShowToast(false)}
                 aria-label="Close notification"
               >
-                ×
+                x
               </button>
             </div>
           </div>,
-          document.body, // 👈 mounts toast directly to <body>, outside footer
+          document.body, // mounts toast directly to <body>, outside footer
         )}
 
       {/* Hero Section */}
@@ -230,40 +267,42 @@ export default function FooterLayout(): ReactNode {
             {/* Learning Column */}
             <div className="footer-column">
               <h3 className="footer-column-title">
-                <div className="column-icon resources-icon">📚</div>
+                <div className="column-icon resources-icon">
+                  <FooterIcon icon={BookOpen} />
+                </div>
                 Learning
               </h3>
               <ul className="footer-links">
                 <li>
                   <Link to="/docs" className="footer-link">
-                    <span className="link-icon">📖</span>
+                    <FooterIcon icon={BookText} className="link-icon" />
                     Documentation
                     <span className="link-badge popular">Popular</span>
                   </Link>
                 </li>
                 <li>
                   <Link to="/courses" className="footer-link">
-                    <span className="link-icon">🎥</span>
+                    <FooterIcon icon={Video} className="link-icon" />
                     Video Courses
                     <span className="link-badge new">New</span>
                   </Link>
                 </li>
                 <li>
                   <Link to="/get-started" className="footer-link">
-                    <span className="link-icon">🚀</span>
+                    <FooterIcon icon={Rocket} className="link-icon" />
                     Get Started
                   </Link>
                 </li>
                 <li>
                   <Link to="/interview-prep" className="footer-link">
-                    <span className="link-icon">🧩</span>
+                    <FooterIcon icon={Puzzle} className="link-icon" />
                     Interview Prep
                     <span className="link-badge hot">Hot</span>
                   </Link>
                 </li>
                 <li>
                   <Link to="/badges/github-badges" className="footer-link">
-                    <span className="link-icon">🏆</span>
+                    <FooterIcon icon={Award} className="link-icon" />
                     GitHub Badges
                   </Link>
                 </li>
@@ -273,38 +312,43 @@ export default function FooterLayout(): ReactNode {
             {/* Company Column */}
             <div className="footer-column">
               <h3 className="footer-column-title">
-                <div className="column-icon company-icon">🏢</div>
+                <div className="column-icon company-icon">
+                  <FooterIcon icon={Building2} />
+                </div>
                 Company
               </h3>
               <ul className="footer-links">
                 <li>
                   <Link to="/community" className="footer-link">
-                    <span className="link-icon">👥</span>
+                    <FooterIcon icon={Users} className="link-icon" />
                     Community
                   </Link>
                 </li>
                 <li>
                   <Link to="/blogs" className="footer-link">
-                    <span className="link-icon">📰</span>
+                    <FooterIcon icon={Newspaper} className="link-icon" />
                     Our Blog
                   </Link>
                 </li>
                 <li>
                   <Link to="/careers" className="footer-link">
-                    <span className="link-icon">💼</span>
+                    <FooterIcon
+                      icon={BriefcaseBusiness}
+                      className="link-icon"
+                    />
                     Careers
                     <span className="link-badge hiring">We're Hiring!</span>
                   </Link>
                 </li>
                 <li>
                   <Link to="/our-sponsors" className="footer-link">
-                    <span className="link-icon">🤝</span>
+                    <FooterIcon icon={Handshake} className="link-icon" />
                     Our Sponsors
                   </Link>
                 </li>
                 <li>
                   <Link to="/showcase" className="footer-link">
-                    <span className="link-icon">🌟</span>
+                    <FooterIcon icon={Sparkles} className="link-icon" />
                     Showcase
                   </Link>
                 </li>
@@ -314,25 +358,30 @@ export default function FooterLayout(): ReactNode {
             {/* Support Column */}
             <div className="footer-column">
               <h3 className="footer-column-title">
-                <div className="column-icon support-icon">🛠️</div>
+                <div className="column-icon support-icon">
+                  <FooterIcon icon={LifeBuoy} />
+                </div>
                 Support
               </h3>
               <ul className="footer-links">
                 <li>
                   <Link to="/contact-us" className="footer-link">
-                    <span className="link-icon">❓</span>
+                    <FooterIcon
+                      icon={MessageCircleQuestion}
+                      className="link-icon"
+                    />
                     Contact Us
                   </Link>
                 </li>
                 <li>
                   <Link to="/broadcasts" className="footer-link">
-                    <span className="link-icon">📺</span>
+                    <FooterIcon icon={MonitorPlay} className="link-icon" />
                     Broadcasts
                   </Link>
                 </li>
                 <li>
                   <Link to="/podcasts" className="footer-link">
-                    <span className="link-icon">🎙️</span>
+                    <FooterIcon icon={Mic2} className="link-icon" />
                     Podcasts
                   </Link>
                 </li>
@@ -342,7 +391,9 @@ export default function FooterLayout(): ReactNode {
             {/* Newsletter Column with Quick Links below */}
             <div className="footer-column newsletter-column">
               <h3 className="footer-column-title">
-                <div className="column-icon newsletter-icon">📧</div>
+                <div className="column-icon newsletter-icon">
+                  <FooterIcon icon={Mail} />
+                </div>
                 Stay in the Loop
               </h3>
               <p className="newsletter-description">
@@ -368,28 +419,32 @@ export default function FooterLayout(): ReactNode {
                   }`}
                   disabled={isSubscribed}
                 >
-                  {isSubscribed ? "✓ Subscribed!" : "Subscribe Now →"}
+                  {isSubscribed ? "Subscribed!" : "Subscribe Now"}
                 </button>
                 {error && <p className="error-text">{error}</p>}
               </form>
               <div className="newsletter-stats">
                 <span className="newsletter-stat">
-                  📊 1.2K+ developers joined this week
+                  <FooterIcon icon={BarChart3} className="newsletter-stat-icon" />
+                  1.2K+ developers joined this week
                 </span>
               </div>
               {/* Quick Links Section moved below subscription */}
               <div className="quick-links-section newsletter-quick-links">
                 <h4 className="quick-links-title">
-                  <span className="links-icon">🔗</span>
+                  <FooterIcon icon={Link2} className="links-icon" />
                   QUICK LINKS
                 </h4>
                 <div className="quick-links-list">
                   <Link to="/get-started" className="quick-link">
-                    <span className="quick-link-icon">🚀</span>
+                    <FooterIcon icon={Rocket} className="quick-link-icon" />
                     Get Started
                   </Link>
                   <Link to="/dashboard" className="quick-link">
-                    <span className="quick-link-icon">📊</span>
+                    <FooterIcon
+                      icon={LayoutDashboard}
+                      className="quick-link-icon"
+                    />
                     Dashboard
                   </Link>
                 </div>
