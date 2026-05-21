@@ -1,0 +1,120 @@
+.authorCard {
+  position: relative;
+  width: 100%;
+  margin-top: 1.25rem;
+  padding: 1rem;
+  padding-bottom: 3.75rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--ifm-background-surface-color);
+  box-sizing: border-box;
+}
+
+.authorLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.authorAvatar,
+.authorAvatarFallback {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.authorAvatar {
+  object-fit: cover;
+  border: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.authorAvatarFallback {
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--ifm-color-primary-darkest);
+  background: var(--ifm-color-emphasis-200);
+}
+
+.authorIdentity {
+  min-width: 0;
+}
+
+.authorName {
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.authorDate {
+  margin: 0.25rem 0 0;
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.9rem;
+}
+
+.authorSummary {
+  margin: 0.45rem 0 0;
+  color: var(--ifm-color-emphasis-800);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  max-width: 56ch;
+}
+
+.authorRight {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  text-align: right;
+}
+
+.readTime {
+  margin: 0;
+  color: var(--ifm-color-emphasis-700);
+  font-weight: 600;
+}
+
+.githubButton {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.githubButton:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 640px) {
+  .authorCard {
+    padding-bottom: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .authorRight {
+    width: 100%;
+    margin-left: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .githubButton {
+    position: static;
+  }
+}
