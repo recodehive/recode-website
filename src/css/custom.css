@@ -370,21 +370,67 @@ html[data-theme="dark"] .menu__link--active::after {
 }
 
 /* ======= SECTION 9 :Smooth theme transitions ========== */
+
+/* Global smooth theme transitions for all color-related properties */
 html,
-body {
+body,
+.navbar,
+.navbar__inner,
+.navbar__brand,
+.navbar__link,
+.navbar__item,
+.footer,
+.footer__link,
+.sidebar,
+.sidebar__link,
+.main-wrapper,
+.theme-doc-sidebar-container,
+.theme-doc-toc-desktop,
+.theme-doc-sidebar-item,
+.article-card,
+.blog-card,
+.card,
+.menu__link,
+.menu__caret,
+.pagination,
+.pagination__item,
+.breadcrumbs,
+[class*="breadcrumb"],
+[class*="button"],
+[class*="btn"],
+.badge,
+.pill,
+.tag,
+.button-group,
+.admonition,
+.alert,
+.docusaurus-highlight-code-line,
+pre,
+code,
+input,
+textarea,
+select,
+[role="button"] {
   transition:
-    background-color 150ms ease,
-    color 150ms ease;
+    background-color 300ms ease-in-out,
+    color 300ms ease-in-out,
+    border-color 300ms ease-in-out,
+    box-shadow 300ms ease-in-out,
+    fill 300ms ease-in-out,
+    stroke 300ms ease-in-out,
+    opacity 300ms ease-in-out !important;
 }
 
-.navbar,
-.footer,
-.sidebar,
-.main-wrapper {
+/* SVG and icon transitions */
+svg,
+i,
+[class*="icon"] {
   transition:
-    background-color 150ms ease,
-    color 150ms ease,
-    border-color 150ms ease;
+    fill 300ms ease-in-out,
+    stroke 300ms ease-in-out,
+    color 300ms ease-in-out,
+    filter 300ms ease-in-out,
+    opacity 300ms ease-in-out !important;
 }
 
 /* Navbar icon styling */
@@ -395,6 +441,7 @@ body {
   margin-right: 4px;
   min-width: 18px;
   min-height: 18px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Navbar social icon styles */
@@ -406,8 +453,45 @@ body {
   border-radius: 6px;
   color: var(--ifm-navbar-link-color);
   transition:
-    color 0.2s ease,
-    background-color 0.2s ease;
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    filter 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Form elements smooth transitions */
+input,
+textarea,
+select,
+button,
+[role="button"] {
+  transition:
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Code block transitions */
+code,
+pre,
+.code-block,
+.highlight,
+[class*="hljs"] {
+  transition:
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Icon transitions */
+svg,
+i,
+[class*="icon"] {
+  transition:
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    filter 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-social-icon:hover {
