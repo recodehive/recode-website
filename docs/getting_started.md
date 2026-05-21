@@ -325,7 +325,7 @@ Use `##` and `###` headings to structure your content.
 
 #### Bulleted Summary Section (Required)
 
-Every blog must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
+Every techincal explanation blog must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
 
 ```md
 **What you'll learn in this post:**
@@ -457,7 +457,7 @@ assets/
 ```
 <Tabs>
 
-<TabItem value="Step 101" label="Step 101">
+<TabItem value="Cover page Image" label="Index page Banner">
      Do `npm run build` and complete the build to see everything works fine.
      <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
      [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
@@ -480,6 +480,9 @@ Reference images relative to `index.md`:
 ```md
 ![Alt text describing the image](./images/01-open-settings.png)
 ```
+<BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+    [![Github](assets/blog-05-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+  </BrowserWindow>
 
 Always write descriptive alt text — it improves accessibility and SEO.
 
@@ -617,7 +620,7 @@ Before starting any development, make sure your blog meets **all** of the follow
 
 
 ## Step 10: Preview Your Post
-
+Do lint check and then build before push
 Make sure your dev server is still running (`npm start`), then navigate to [http://localhost:3000/blog](http://localhost:3000/blog) to see your post in the listing and click into it to read the full content. Verify:
 
 - The frontmatter title, date, and author show correctly.
