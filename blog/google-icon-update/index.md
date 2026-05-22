@@ -35,20 +35,38 @@ meta:
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import ZoomImage from '@site/src/components/ZoomImage';
 
 <!-- truncate -->
 
 ---
 
-Last week I clicked Google Meet when I meant to click Google Calendar. Again.
+Last week I clicked Google Meet when I meant to click Google Calendar.
 
-It has been happening for five years. The four icons sit in my browser tab bar looking almost identical: same four colors, same flat shapes, same overall vibe. My brain processes them as one visual blob rather than four separate apps. I once spent 30 seconds in a Google Meet waiting room before realizing I had joined my own meeting instead of opening my calendar to check the time.
+Have you experienced the simillar issue? let's decode the new icon Changes from Google. Rather than judging the new icons and feeling hesistant to new changes, Let's look at the old icons and the problems. When you stare at a grid of identical shapes outlined in the exact same colors, your brain hits a speed bump. 
 
-    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-     [![Github](./assets/01-New-Google-icon-Design.jpg)](https://github.com/recodehive/recode-website/issues)
+:::info
+It's a phenomenon called cognitive friction. You have to stop searching for a recognizable silhouette and start reading the tiny text underneath.
+:::
+
+   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](./assets/05-google-new-logo.png)]()
     </BrowserWindow>
 
-If that sounds familiar, Google finally heard you. And me. And apparently everyone who has ever stared at a browser tab bar wondering which shade of blue-red-yellow-green meant Calendar versus Drive.
+<span style={{color: 'red'}}>So From when the issue started happening?</span>
+This specific daily annoyance traces back to 2020, when Google retired G Suite and rolled out Google Workspace. They erased the unique shapes of their most popular apps and replaced them with uniform outlines. 
+
+So lets look at Gsuite Icons. 👇🏻
+<ZoomImage src={require('./assets/03-google-old-gsuite-logo.png').default} alt="Google old GSuite logo" />
+   <span style={{color: 'red'}}> The problem</span>
+It has been happening for five years. The four icons sit in my browser tab bar looking almost identical: same four colors, same flat shapes, same overall vibe. My brain processes them as one visual blob rather than four separate apps. I once spent 30 seconds in a Google Meet waiting room before realizing I had joined my own meeting instead of opening my calendar to check the time.
+
+<span style={{color: 'green'}}> **The Solution**</span> If that sounds familiar, Google finally heard you. And me. And apparently everyone who has ever stared at a browser tab bar wondering which shade of blue-red-yellow-green meant Calendar versus Drive.
+  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](./assets/01-New-Google-icon-Design.jpg)]()
+    </BrowserWindow>
+
+
 
 This week, Google started rolling out a complete redesign of its Workspace app icons across Gmail, Drive, Docs, Sheets, Slides, Calendar, Meet, Chat, Forms, Keep, Voice, and Tasks. The rollout is live right now in the web app launcher and Chrome's New Tab page. Here is what actually changed, why it took this long, and whether the new design actually solves the problem.
 
@@ -58,13 +76,41 @@ This week, Google started rolling out a complete redesign of its Workspace app i
 ## The Problem That Started in 2020
 
 To understand why this redesign matters, you have to go back to October 2020 when Google rebranded G Suite to Google Workspace.
-To understand why this redesign matters, you have to go back to October 2020 when Google rebranded G Suite to Google Workspace.
 
 At the time, the rebrand looked clean on paper. Google unified its entire app suite under one design language: every icon would use all four company colors, blue, red, yellow, and green, in the same flat style. The thinking was brand consistency. The result was visual chaos.
 
+
+<div className="img-zoom">
+
+ [![Github](./assets/03-google-old-apps-logo.png)]()
+
+</div>
+
 Within hours of the 2020 announcement, the internet responded with a very specific complaint: all the icons now look the same. The new Gmail icon was the most mocked. The classic envelope with a red M that everyone recognized was replaced with a four-color M that looked like a child's art project. People struggled to tell Calendar from Drive, Drive from Docs, and Meet from everything else at a glance.
+  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](./assets/04-google-old-outline-logo.png)]()
+    </BrowserWindow>
 
 The complaint was not just aesthetic. It was functional. When apps share the same four colors and similar shapes, your brain cannot build distinct visual shortcuts for each one. You have to read the icon rather than recognize it. That adds cognitive friction dozens of times a day. Multiply that across 3 billion Google Workspace users and the accumulated frustration becomes significant.
+
+<ZoomImage src={require('./assets/06-googleworkspace-new-logo.png').default} alt="Google old GSuite logo" />
+
+
+<span style={{color: 'red'}}> **Thought process behind Google**</span>? In 2020
+millions of employees were suddenly forced out of physical offices and onto their laptops at kitchen tables. Google needed to convince these remote teams that separate productivity tools like Docs, Sheets, and Meet were actually one single, highly integrated cloud ecosystem.
+
+---
+
+## Why Google Is Doing This Now
+
+Two reasons. One practical, one strategic.
+Two reasons. One practical, one strategic.
+
+The practical reason is simple: they finally ran out of excuses not to fix it. The 2020 design was criticized immediately and consistently for five years. Every redesign rumor that surfaced got user hopes up. Fixing the icon confusion was low-hanging fruit with a clear user benefit and Google had no strong argument for keeping the broken version.
+
+The strategic reason is more interesting. Look at which Google products got gradient icons first before this Workspace rollout: the Google G logo, Gemini, Google Photos, Google Maps. Every product associated with Google's AI push got gradients first. Applying the same design language to Workspace now visually ties the entire productivity suite to the AI narrative.
+
+Google I/O 2026 is happening this week. The timing of this rollout is not accidental. Google is walking into its biggest annual developer event with a refreshed product suite that looks modern, AI-adjacent, and ready for the next phase of Workspace. The icon redesign is as much a marketing signal as a usability fix.
 
 ---
 
@@ -92,18 +138,7 @@ The icons are also physically larger in the launcher. Google removed the Workspa
 
 ---
 
-## Why Google Is Doing This Now
 
-Two reasons. One practical, one strategic.
-Two reasons. One practical, one strategic.
-
-The practical reason is simple: they finally ran out of excuses not to fix it. The 2020 design was criticized immediately and consistently for five years. Every redesign rumor that surfaced got user hopes up. Fixing the icon confusion was low-hanging fruit with a clear user benefit and Google had no strong argument for keeping the broken version.
-
-The strategic reason is more interesting. Look at which Google products got gradient icons first before this Workspace rollout: the Google G logo, Gemini, Google Photos, Google Maps. Every product associated with Google's AI push got gradients first. Applying the same design language to Workspace now visually ties the entire productivity suite to the AI narrative.
-
-Google I/O 2026 is happening this week. The timing of this rollout is not accidental. Google is walking into its biggest annual developer event with a refreshed product suite that looks modern, AI-adjacent, and ready for the next phase of Workspace. The icon redesign is as much a marketing signal as a usability fix.
-
----
 
 ## What the Internet Actually Thinks
 

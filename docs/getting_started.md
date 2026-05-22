@@ -83,6 +83,7 @@ the best practice, Use a short, descriptive name  for example `blog/intro-to-doc
 ## Step 6: Add your name to Author list : optional
 :::info
 If you are first time contributing to blog section, add yourself as author, this gives you good visibility on Google search and better career opportunities.
+We use [docusaurus](https://docusaurus.io/docs) for documentation.
 :::
 Open your code editor and head into sidebar and expand the `blog` folder
 and open the file `authors.yml`. Refer the below image and copy paste the code into the yml as shown.
@@ -154,9 +155,6 @@ touch blog/your-blog-title/index.md
     
 </Tabs>
 ---
-
-
-
 
 ## Step 9: Write the Frontmatter
 
@@ -447,7 +445,7 @@ Use **PNG** for UI screenshots (crisp text) and **JPEG/WebP** for photos.
 ### Naming Convention
 
 Use lowercase, hyphen-separated, numbered filenames so they sort correctly and are SEO-friendly. **Never use random or auto-generated names.**
-
+also never leave space on naming, it should be connected with hypen.
 ```
 assets/
 ├── cover.png
