@@ -12,7 +12,6 @@ interface TestimonialCardProps {
   date: string;
   avatar: string;
   gradient?: string;
-  borderColor?: string;
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
@@ -22,7 +21,6 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   date,
   avatar,
   gradient,
-  borderColor,
 }) => {
   const { isDark } = useSafeColorMode();
 

@@ -2,8 +2,9 @@ import React from "react";
 import TopMateCard from "./TopMateCard";
 import { useSafeColorMode } from "../../utils/useSafeColorMode";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
-const revealVariants = {
+const revealVariants: Variants = {
   hidden: { opacity: 0, y: 16, filter: "blur(6px)" },
   visible: (i: number) => ({
     opacity: 1,
@@ -15,7 +16,7 @@ const revealVariants = {
       ease: [0.215, 0.61, 0.355, 1],
     },
   }),
-} as any;
+};
 
 const TopMateSection = ({ setShowTopmate }) => {
   const { isDark } = useSafeColorMode();
