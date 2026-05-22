@@ -95,7 +95,7 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
 
   return (
     <>
-      <BlogPostItemFooterOriginal {...props} />
+      {!isBlogPostPage && <BlogPostItemFooterOriginal {...props} />}
       {isBlogPostPage && (
         <SocialShare permalink={metadata.permalink} title={metadata.title} />
       )}
