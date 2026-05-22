@@ -118,7 +118,9 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out !important;
   }
 }

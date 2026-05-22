@@ -27,11 +27,10 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
       initial={{ opacity: 0, y: 30, scale: 0.95 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-      className={`group relative mx-auto w-full max-w-lg overflow-hidden rounded-2xl border backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl ${
-        isDark 
-          ? "border-gray-700/50 bg-gray-900/80 shadow-xl" 
+      className={`group relative mx-auto w-full max-w-lg overflow-hidden rounded-2xl border backdrop-blur-sm transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl ${isDark
+          ? "border-gray-700/50 bg-gray-900/80 shadow-xl"
           : "border-gray-200/50 bg-white/80 shadow-lg"
-      }`}
+        }`}
     >
       {/* Gradient Background (hidden in dark mode) */}
       {!isDark && (
@@ -46,13 +45,11 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
       <div className="relative p-8">
         {/* Header Badge */}
         <div className="mb-6 flex items-center justify-between">
-          <div className={`flex items-center gap-3 rounded-full px-4 py-2 ${
-            isDark ? "bg-blue-500/10 border border-blue-500/20" : "bg-blue-50 border border-blue-200"
-          }`}>
-            <Calendar size={16} className="text-blue-500" />
-            <span className={`text-sm font-medium ${
-              isDark ? "text-blue-400" : "text-blue-600"
+          <div className={`flex items-center gap-3 rounded-full px-4 py-2 ${isDark ? "bg-blue-500/10 border border-blue-500/20" : "bg-blue-50 border border-blue-200"
             }`}>
+            <Calendar size={16} className="text-blue-500" />
+            <span className={`text-sm font-medium ${isDark ? "text-blue-400" : "text-blue-600"
+              }`}>
               1:1 MENTORSHIP
             </span>
             <div className="flex items-center gap-1 text-amber-500">
@@ -62,35 +59,31 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
           </div>
           <button
             onClick={() => setShowTopmate(false)}
-            className={`rounded-full p-2 transition-colors ${
-              isDark 
-                ? "hover:bg-gray-700 text-gray-400 hover:text-gray-200" 
+            className={`rounded-full p-2 transition-colors ${isDark
+                ? "hover:bg-gray-700 text-gray-400 hover:text-gray-200"
                 : "hover:bg-gray-100 text-gray-500 hover:text-gray-700"
-            }`}
+              }`}
           >
             <ArrowUpRight size={18} className="rotate-45" />
           </button>
         </div>
 
         {/* Title */}
-        <h2 className={`mb-4 text-3xl font-bold leading-tight ${
-          isDark ? "text-white" : "text-gray-900"
-        }`}>
+        <h2 className={`mb-4 text-3xl font-bold leading-tight ${isDark ? "text-white" : "text-gray-900"
+          }`}>
           {title}
         </h2>
 
         {/* Description */}
-        <p className={`mb-8 text-lg leading-relaxed ${
-          isDark ? "text-gray-300" : "text-gray-600"
-        }`}>
+        <p className={`mb-8 text-lg leading-relaxed ${isDark ? "text-gray-300" : "text-gray-600"
+          }`}>
           {description}
         </p>
 
         {/* Profile Section */}
-        <div className={`rounded-xl border p-4 ${
-          isDark ? "border-gray-700/50 bg-gray-800/30" : "border-gray-200/50 bg-gray-50/50"
-        }`}>
-          <div className="flex items-center justify-between">
+        <div className={`rounded-xl border p-6 overflow-hidden w-full ${isDark ? "border-gray-700/50 bg-gray-800/30" : "border-gray-200/50 bg-gray-50/50"
+          }`}>
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between w-full min-w-0">
             <div className="flex items-center gap-4">
               <div className="relative">
                 <img
@@ -103,9 +96,8 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
                 </div>
               </div>
               <div>
-                <p className={`text-sm font-medium ${
-                  isDark ? "text-gray-400" : "text-gray-500"
-                }`}>
+                <p className={`text-sm font-medium ${isDark ? "text-gray-400" : "text-gray-500"
+                  }`}>
                   Book your session at
                 </p>
                 <a
@@ -119,17 +111,16 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
                 </a>
               </div>
             </div>
-            
+
             {/* Rating */}
-            <div className="flex flex-col items-end">
-              <div className="flex items-center gap-1">
+            <div className="flex flex-col items-start gap-1 sm:items-end min-w-0">
+              <div className="flex items-center gap-1 flex-wrap justify-start sm:justify-end">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={14} className="fill-amber-400 text-amber-400" />
+                  <Star key={i} size={14} className="fill-amber-400 text-amber-400 flex-shrink-0" />
                 ))}
               </div>
-              <span className={`text-xs ${
-                isDark ? "text-gray-400" : "text-gray-500"
-              }`}>
+              <span className={`text-xs ${isDark ? "text-gray-400" : "text-gray-500"
+                }`}>
                 5.0 rating
               </span>
             </div>
@@ -145,9 +136,11 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
           whileTap={{ scale: 0.98 }}
           className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl hover:from-blue-700 hover:to-purple-700"
         >
-          <Calendar size={18} />
-          <span>Schedule Now</span>
-          <ArrowUpRight size={18} />
+          <Calendar size={18} className="text-white" />
+          <span className="text-white font-semibold tracking-wide">
+            Schedule Now
+          </span>
+          <ArrowUpRight size={18} className="text-white" />
         </motion.a>
       </div>
     </motion.div>
