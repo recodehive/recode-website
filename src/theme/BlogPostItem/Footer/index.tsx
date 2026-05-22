@@ -29,7 +29,6 @@ function getGitHubUrl(author: {
 function getGitHubHandle(author: {
   key?: string;
   url?: string;
-  name?: string;
 }): string | undefined {
   if (author.url && /github\.com\//i.test(author.url)) {
     const matched = author.url.match(/github\.com\/([^/?#]+)/i);
@@ -40,10 +39,6 @@ function getGitHubHandle(author: {
 
   if (author.key) {
     return `@${author.key}`;
-  }
-
-  if (author.name) {
-    return `@${author.name.toLowerCase().replace(/\s+/g, "")}`;
   }
 
   return undefined;
@@ -72,7 +67,6 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
   const authorHandle = primaryAuthor
     ? getGitHubHandle({
         key: primaryAuthor.key,
-        name: primaryAuthor.name,
         url: primaryAuthor.url,
       })
     : undefined;
@@ -83,11 +77,11 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
     profile?.title;
   const blogDate =
     metadata.date &&
-    new Date(metadata.date).toLocaleDateString("en-US", {
+    new Intl.DateTimeFormat(undefined, {
       year: "numeric",
       month: "short",
       day: "numeric",
-    });
+    }).format(new Date(metadata.date));
   const metaItems = [authorHandle, blogDate, readTimeText].filter(Boolean).join(" • ");
 
   const showAuthorCard = Boolean(isBlogPostPage && primaryAuthor && authorName);
