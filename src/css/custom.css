@@ -232,8 +232,22 @@ html[data-theme="dark"] .menu__link--active::after {
 }
 
 .navbar__logo {
+  width: 2.2rem;
   height: 2.2rem;
   margin-right: 0.5rem;
+  transition: all 300ms ease-in-out;
+}
+
+[data-theme="light"] .navbar__logo img {
+  display: block !important;
+  filter: none;
+  transition: filter 300ms ease-in-out;
+}
+
+[data-theme="dark"] .navbar__logo img {
+  display: block !important;
+  filter: invert(1);
+  transition: filter 300ms ease-in-out;
 }
 
 .navbar__title {
@@ -599,6 +613,7 @@ i,
   }
 
   .navbar__logo {
+    width: 32px !important;
     height: 32px !important;
   }
 
