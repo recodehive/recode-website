@@ -6,6 +6,9 @@ import { FaXTwitter } from "react-icons/fa6";
 import "./SocialShare.css";
 
 const COPY_RESET_DELAY_MS = 2000;
+const COPY_DEFAULT_LABEL = "Copy link";
+const COPY_SUCCESS_LABEL = "Link copied";
+const COPY_ERROR_LABEL = "Unable to copy link";
 
 type SocialShareProps = {
   permalink?: string;
@@ -17,17 +20,17 @@ export default function SocialShare({
   title,
 }: SocialShareProps): JSX.Element | null {
   const { siteConfig } = useDocusaurusContext();
-  const [copied, setCopied] = useState(false);
+  const [copyState, setCopyState] = useState<"idle" | "copied" | "error">("idle");
 
   useEffect(() => {
-    if (!copied) {
+    if (copyState === "idle") {
       return undefined;
     }
 
-    const timeout = window.setTimeout(() => setCopied(false), COPY_RESET_DELAY_MS);
+    const timeout = window.setTimeout(() => setCopyState("idle"), COPY_RESET_DELAY_MS);
 
     return () => window.clearTimeout(timeout);
-  }, [copied]);
+  }, [copyState]);
 
   if (!permalink || !title) {
     return null;
@@ -61,12 +64,24 @@ export default function SocialShare({
 
   const handleCopyLink = async () => {
     if (typeof navigator === "undefined" || !navigator.clipboard) {
+      setCopyState("error");
       return;
     }
 
-    await navigator.clipboard.writeText(blogUrl);
-    setCopied(true);
+    try {
+      await navigator.clipboard.writeText(blogUrl);
+      setCopyState("copied");
+    } catch {
+      setCopyState("error");
+    }
   };
+
+  const copyLabel =
+    copyState === "copied"
+      ? COPY_SUCCESS_LABEL
+      : copyState === "error"
+        ? COPY_ERROR_LABEL
+        : COPY_DEFAULT_LABEL;
 
   return (
     <section className="blog-post-share-section" aria-label="Share this post">
@@ -87,12 +102,12 @@ export default function SocialShare({
         ))}
         <button
           type="button"
-          className={`share-btn-circle copy${copied ? " copied" : ""}`}
+          className={`share-btn-circle copy${copyState === "copied" ? " copied" : ""}${copyState === "error" ? " copy-error" : ""}`}
           onClick={() => {
             void handleCopyLink();
           }}
-          title={copied ? "Link copied" : "Copy link"}
-          aria-label={copied ? "Link copied" : "Copy link"}
+          title={copyLabel}
+          aria-label={copyLabel}
         >
           <FaLink aria-hidden="true" />
         </button>

@@ -25,6 +25,7 @@
   width: 3.25rem;
   height: 3.25rem;
   border-radius: 999px;
+  border: 1px solid var(--ifm-color-emphasis-300);
   border: 1px solid color-mix(in srgb, var(--ifm-color-primary) 18%, var(--ifm-color-emphasis-300));
   background: var(--ifm-background-surface-color);
   color: var(--ifm-font-color-base) !important;
@@ -73,6 +74,11 @@
 .share-btn-circle.copy.copied {
   border-color: var(--ifm-color-primary);
   color: var(--ifm-color-primary) !important;
+}
+
+.share-btn-circle.copy.copy-error {
+  border-color: var(--ifm-color-danger);
+  color: var(--ifm-color-danger) !important;
 }
 
 @media (max-width: 576px) {
