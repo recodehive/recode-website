@@ -70,11 +70,24 @@
 // export default GiscusComments;
 
 import React, { useEffect, useRef } from "react";
+import { useLocation } from "@docusaurus/router";
 import { useColorMode } from "@docusaurus/theme-common";
 
-const GiscusComments: React.FC = () => {
+type GiscusCommentsProps = {
+  forceRender?: boolean;
+};
+
+const GiscusComments: React.FC<GiscusCommentsProps> = ({
+  forceRender = false,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
+  const { pathname } = useLocation();
   const { colorMode } = useColorMode(); // colorMode is 'light' or 'dark'
+  const isBlogPostPage = pathname.startsWith("/blog/");
+
+  if (isBlogPostPage && !forceRender) {
+    return null;
+  }
 
   // 1. This useEffect handles the initial script loading ONCE.
   useEffect(() => {

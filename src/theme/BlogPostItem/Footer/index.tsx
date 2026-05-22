@@ -5,6 +5,7 @@ import { useBlogPost } from "@docusaurus/plugin-content-blog/client";
 import BlogPostItemFooterOriginal from "@theme-original/BlogPostItem/Footer";
 import type BlogPostItemFooterType from "@theme/BlogPostItem/Footer";
 import type { WrapperProps } from "@docusaurus/types";
+import GiscusComments from "../../../components/giscus";
 import SocialShare from "../../../components/SocialShare";
 import { getAuthorProfile } from "../../../utils/authors";
 
@@ -149,6 +150,7 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
           </div>
         </section>
       )}
+      {isBlogPostPage && <GiscusComments forceRender />}
     </>
   );
 }
