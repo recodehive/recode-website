@@ -3,6 +3,7 @@
 .metaSection {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.65rem;
   margin-top: 0.75rem;
   margin-bottom: 1.25rem;
@@ -14,6 +15,7 @@
 .metaRow {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 0.45rem;
   font-size: 0.9rem;
@@ -71,14 +73,21 @@
 .readTime {
   display: inline-flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.35rem;
+  padding: 3px 10px 3px 8px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: var(--ifm-color-emphasis-700);
+  background: var(--ifm-color-emphasis-100);
+  border: 1px solid var(--ifm-color-emphasis-300);
 }
 
 /* ── Tag pills ── */
 .tagsRow {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 0.45rem;
 }
 
