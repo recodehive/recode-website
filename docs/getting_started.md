@@ -83,6 +83,7 @@ the best practice, Use a short, descriptive name  for example `blog/intro-to-doc
 ## Step 6: Add your name to Author list : optional
 :::info
 If you are first time contributing to blog section, add yourself as author, this gives you good visibility on Google search and better career opportunities.
+We use [docusaurus](https://docusaurus.io/docs) for documentation.
 :::
 Open your code editor and head into sidebar and expand the `blog` folder
 and open the file `authors.yml`. Refer the below image and copy paste the code into the yml as shown.
@@ -154,9 +155,6 @@ touch blog/your-blog-title/index.md
     
 </Tabs>
 ---
-
-
-
 
 ## Step 9: Write the Frontmatter
 
@@ -325,7 +323,7 @@ Use `##` and `###` headings to structure your content.
 
 #### Bulleted Summary Section (Required)
 
-Every blog must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
+Every techincal explanation blog must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
 
 ```md
 **What you'll learn in this post:**
@@ -447,7 +445,7 @@ Use **PNG** for UI screenshots (crisp text) and **JPEG/WebP** for photos.
 ### Naming Convention
 
 Use lowercase, hyphen-separated, numbered filenames so they sort correctly and are SEO-friendly. **Never use random or auto-generated names.**
-
+also never leave space on naming, it should be connected with hypen.
 ```
 assets/
 ├── cover.png
@@ -457,7 +455,7 @@ assets/
 ```
 <Tabs>
 
-<TabItem value="Step 101" label="Step 101">
+<TabItem value="Cover page Image" label="Index page Banner">
      Do `npm run build` and complete the build to see everything works fine.
      <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
      [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
@@ -480,6 +478,9 @@ Reference images relative to `index.md`:
 ```md
 ![Alt text describing the image](./images/01-open-settings.png)
 ```
+<BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+    [![Github](assets/blog-05-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+  </BrowserWindow>
 
 Always write descriptive alt text — it improves accessibility and SEO.
 
@@ -617,7 +618,7 @@ Before starting any development, make sure your blog meets **all** of the follow
 
 
 ## Step 10: Preview Your Post
-
+Do lint check and then build before push
 Make sure your dev server is still running (`npm start`), then navigate to [http://localhost:3000/blog](http://localhost:3000/blog) to see your post in the listing and click into it to read the full content. Verify:
 
 - The frontmatter title, date, and author show correctly.

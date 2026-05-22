@@ -2208,6 +2208,25 @@ main>div:not(.m-0) {
   }
 }
 
+/* ===== HOVER ZOOM FOR BLOG IMAGES ===== */
+.img-zoom {
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.img-zoom img {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: zoom-in;
+  display: block;
+  width: 100%;
+}
+
+.img-zoom img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
 /* =====================================================
    END SECTION 15
    ===================================================== */
