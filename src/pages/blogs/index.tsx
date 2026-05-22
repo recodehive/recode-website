@@ -6,6 +6,7 @@ import blogs from "../../database/blogs/index";
 import Head from "@docusaurus/Head";
 import { getAuthorProfiles } from "../../utils/authors";
 import { filterBlogsBySearchTerm } from "../../utils/blogFilters";
+import BlogSearch from "../../components/BlogSearch";
 
 import "./blogs-new.css";
 
@@ -43,7 +44,6 @@ function formatDate(dateStr?: string) {
 
 export default function Blogs() {
   const { siteConfig } = useDocusaurusContext();
-  const [searchInput, setSearchInput] = React.useState("");
   const [searchTerm, setSearchTerm] = React.useState("");
   const [currentPage, setCurrentPage] = React.useState(1);
 
@@ -79,17 +79,7 @@ export default function Blogs() {
 
   const showLastPage = visiblePages[visiblePages.length - 1] < totalPages;
 
-  const handleSearchChange = (e: { target: { value: string } }) => {
-    setSearchInput(e.target.value);
-  };
-
-  const handleSearchSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    setSearchTerm(searchInput.trim());
-  };
-
   const handleClearFilters = () => {
-    setSearchInput("");
     setSearchTerm("");
   };
 
@@ -133,6 +123,9 @@ export default function Blogs() {
                 Engineering <span className="gradient-text">uptime</span>{" "}
               </h1>
               <p className="blog-main-subtitle">blog by recode community.</p>
+              <div style={{ width: "100%", marginTop: "24px" }}>
+                <BlogSearch initialSearchTerm={searchTerm} onSearchSubmit={setSearchTerm} />
+              </div>
             </div>
           </div>
         </section>
@@ -141,40 +134,9 @@ export default function Blogs() {
         <section className="latest-articles-section">
           <div className="articles-container-wrapper">
             <div className="articles-main-content">
-              <div className="blog-search-panel">
+              <div className="blog-search-panel" style={{ padding: '0 0 24px 0', background: 'transparent', border: 'none', boxShadow: 'none' }}>
                 <p className="blog-search-eyebrow">Explore articles</p>
                 <h2 className="blog-search-title">Find the right guide</h2>
-                <form className="blog-search-form" onSubmit={handleSearchSubmit}>
-                  <label className="blog-search-field">
-                    <span className="blog-search-visually-hidden">Search blog articles</span>
-                    <svg
-                      className="blog-search-submit-icon"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                    <input
-                      type="search"
-                      placeholder="Search tutorials, tools, or technologies"
-                      value={searchInput}
-                      onChange={handleSearchChange}
-                    />
-                  </label>
-                  <button className="blog-search-button" type="submit">Search</button>
-                  {searchTerm && (
-                    <button
-                      className="blog-search-clear-button"
-                      type="button"
-                      onClick={handleClearFilters}
-                    >
-                      Clear
-                    </button>
-                  )}
-                </form>
               </div>
 
               {searchTerm && (
