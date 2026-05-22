@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Quote } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useSafeColorMode } from "../../utils/useSafeColorMode";
 
@@ -23,107 +24,145 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   gradient,
   borderColor,
 }) => {
-  const { colorMode, isDark } = useSafeColorMode();
+  const { isDark } = useSafeColorMode();
 
-  const getBackgroundStyle = () => {
-    let colorStop = "";
-    if (gradient === "bg-pink-100") {
-      colorStop = "rgba(244, 194, 214, 0.35)"; // Pink
-    } else if (gradient === "bg-purple-100") {
-      colorStop = "rgba(191, 190, 255, 0.35)"; // Blue/Lavender
-    } else {
-      colorStop = "rgba(165, 243, 252, 0.35)"; // Cyan
-    }
+  // Map gradient prop to card visual variant
+  const isAccent = gradient === "bg-purple-100";
+  const isFeatured = gradient === "bg-pink-100";
 
-    return {
-      background: `
-        radial-gradient(
-          ellipse 600px 500px at 10% 85%,
-          ${colorStop} 0%,
-          rgba(255, 255, 255, 0) 70%
-        ),
-        linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.95) 0%,
-          rgba(255, 255, 255, 0.9) 100%
-        )
-      `,
-      backdropFilter: "blur(4px)",
-      WebkitBackdropFilter: "blur(4px)",
-      border: "1px solid rgba(200, 200, 220, 0.4)",
-    };
+  const getRole = () => {
+    if (username === "VivienChen") return "Founder @ Toastie (BC Y24)";
+    if (username === "DanielHan") return "Founder @ Unsloth AI (YC W24, BC Y24)";
+    if (username === "EthanTrang") return "AI Engineer @ Relevance AI";
+    return null;
   };
 
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const role = getRole();
+
+  // Card colors by variant
+  const cardBg = isAccent
+    ? "linear-gradient(135deg, #4338ca 0%, #6d28d9 100%)"
+    : isDark
+      ? "#0a0a0a"
+      : "#ffffff";
+
+  const isInverted = isAccent || isDark;
+  const textClr = isInverted ? "rgba(255,255,255,0.85)" : "rgba(17,24,39,0.78)";
+  const nameClr = isInverted ? "#f1f5f9" : "#0f172a";
+  const mutedClr = isAccent
+    ? "rgba(255,255,255,0.50)"
+    : isDark
+      ? "rgba(148,163,184,0.55)"
+      : "rgba(100,116,139,0.65)";
+  const borderClr = isAccent
+    ? "rgba(255,255,255,0.10)"
+    : isDark
+      ? "rgba(255,255,255,0.06)"
+      : "rgba(0,0,0,0.07)";
+  const quoteClr = isAccent
+    ? "rgba(255,255,255,0.12)"
+    : isDark
+      ? "rgba(99,102,241,0.12)"
+      : "rgba(99,102,241,0.08)";
 
   return (
     <motion.div
-      initial={mounted ? { opacity: 0, y: 20 } : false}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.3 }}
-      className={`group relative h-full w-full overflow-hidden rounded-3xl min-h-[550px] flex flex-col justify-between p-8`}
-      style={getBackgroundStyle()}
+      whileHover={{ scale: 1.035, y: -3 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      className="relative flex flex-col justify-between overflow-hidden rounded-2xl p-5 flex-shrink-0 cursor-default select-none"
+      style={{
+        width: 320,
+        minHeight: 180,
+        background: cardBg,
+        border: `1px solid ${borderClr}`,
+        boxShadow: isDark
+          ? "0 2px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.03)"
+          : "0 2px 20px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",
+      }}
     >
-      {/* Subtle glossy overlay */}
-      <div
-        className="absolute inset-0 rounded-3xl pointer-events-none"
+      {/* Grid pattern overlay for featured cards */}
+      {isFeatured && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(79,79,79,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(79,79,79,0.14) 1px, transparent 1px)",
+            backgroundSize: "44px 48px",
+            maskImage:
+              "radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 110%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 110%)",
+          }}
+        />
+      )}
+
+      {/* Quote icon top-right */}
+      <div className="absolute top-5 right-5 pointer-events-none">
+        <Quote
+          size={28}
+          style={{ color: quoteClr }}
+          className="rotate-180"
+        />
+      </div>
+
+      {/* Quote content */}
+      <p
+        className="relative z-10 text-[13px] leading-[1.65] flex-1 pr-8"
         style={{
-          background: `linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.2) 40%, transparent 70%)`,
+          color: textClr,
+          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
         }}
-      />
+      >
+        &ldquo;{content.replace(/#\w+/g, "").trim()}&rdquo;
+      </p>
 
-      {/* Soft shadow */}
-      <div className="absolute inset-0 rounded-3xl pointer-events-none shadow-lg shadow-black/5" />
-
-      <div className="relative z-10 flex flex-col h-full">
-        {/* Testimonial Quote - Top Section */}
-        <div className="mb-12">
-          <p className="text-2xl leading-relaxed font-semibold text-gray-900 tracking-tight">
-            "{content.replace(/#\w+/g, '').trim()}"
-          </p>
+      {/* Author row */}
+      <div
+        className="relative z-10 flex items-center justify-between mt-3 pt-3"
+        style={{ borderTop: `1px solid ${borderClr}` }}
+      >
+        <div className="min-w-0 flex-1 mr-3">
+          <h3
+            className="font-semibold text-[14px] leading-tight truncate"
+            style={{
+              color: nameClr,
+              fontFamily: "'Inter', -apple-system, sans-serif",
+            }}
+          >
+            {name}
+          </h3>
+          {role && (
+            <p
+              className="text-[12px] mt-0.5 truncate"
+              style={{ color: mutedClr }}
+            >
+              {role}
+            </p>
+          )}
+          <span
+            className="text-[11px] mt-0.5 inline-block"
+            style={{ color: mutedClr }}
+          >
+            {date}
+          </span>
         </div>
-
-        {/* Avatar and Info - Bottom Section */}
-        <div className="mt-auto">
-          <div className="flex items-center gap-6">
-            {/* Large Avatar with White Background */}
-            <Avatar className="h-20 w-20 overflow-hidden rounded-full border-3 border-white shadow-md flex-shrink-0 bg-white">
-              <AvatarImage src={avatar} className="h-full w-full object-cover scale-125" />
-              <AvatarFallback className="text-white font-bold text-lg bg-gradient-to-br from-purple-400 to-pink-400">
-                {name.charAt(0)}
-              </AvatarFallback>
-            </Avatar>
-
-            <div className="flex-1">
-              <h3
-                className="testimonial-author-name mb-1 text-xl font-bold leading-tight tracking-tight"
-                style={{ color: "#111827", opacity: 1, WebkitTextFillColor: "#111827" }}
-              >
-                {name}
-              </h3>
-              {username !== "AryanGupta" && username !== "DonaldAnyamba" && (
-                <p
-                  className="testimonial-author-role mb-3 text-sm font-medium"
-                  style={{ color: "#334155", opacity: 1, WebkitTextFillColor: "#334155" }}
-                >
-                  {username === "VivienChen" ? "Founder @ Toastie (BC Y24)" :
-                    username === "DanielHan" ? "Founder @ Unsloth AI (YC W24, BC Y24)" :
-                      "AI Engineer @ Relevance AI"}
-                </p>
-              )}
-
-              <div
-                className="flex items-center gap-3 text-xs"
-                style={{ color: "#334155", opacity: 1, WebkitTextFillColor: "#334155" }}
-              >
-                <span className="font-medium">{date}</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Avatar
+          className="h-9 w-9 rounded-lg overflow-hidden flex-shrink-0"
+          style={{ border: `2px solid ${borderClr}` }}
+        >
+          <AvatarImage
+            src={avatar}
+            className="h-full w-full object-cover"
+          />
+          <AvatarFallback
+            className="text-white font-semibold text-sm rounded-xl"
+            style={{
+              background: "linear-gradient(135deg, #6366f1, #a855f7)",
+            }}
+          >
+            {name.charAt(0)}
+          </AvatarFallback>
+        </Avatar>
       </div>
     </motion.div>
   );
