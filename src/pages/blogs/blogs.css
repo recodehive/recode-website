@@ -43,17 +43,19 @@
 
 /* Dark Mode Variables - Using standardized colors */
 [data-theme="dark"] {
-  --blog-text-primary: var(--dark-text-primary);
-  --blog-text-secondary: var(--dark-text-secondary);
-  --blog-text-muted: var(--dark-text-muted);
-  --blog-bg-primary: var(--dark-bg-primary);
-  --blog-bg-secondary: var(--dark-bg-secondary);
-  --blog-bg-card: var(--dark-card-bg);
-  --blog-border: var(--dark-border);
-  --blog-shadow: var(--dark-shadow);
-  --blog-shadow-lg: var(--dark-shadow-lg);
+   --blog-text-primary: var(--dark-text-primary, #f7fafc);
+  --blog-text-secondary: var(--dark-text-secondary, #cbd5e0);
+  --blog-text-muted: var(--dark-text-muted, #a0aec0);
+
+  --blog-bg-primary: var(--dark-bg-primary, #0f172a);
+  --blog-bg-secondary: var(--dark-bg-secondary, #111827);
+  --blog-bg-card: var(--dark-card-bg, #1f2937);
+
+  --blog-border: var(--dark-border, #2d3748);
+
+  --blog-shadow: var(--dark-shadow, 0 4px 6px rgba(0,0,0,0.4));
+  --blog-shadow-lg: var(--dark-shadow-lg, 0 20px 25px rgba(0,0,0,0.5));
   --blog-shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-}
 
 /* Global Styles */
 * {
@@ -604,13 +606,15 @@ body {
 }
 
 .blog-card-inner {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   border-radius: var(--blog-radius-xl);
   overflow: hidden;
   background: var(--blog-bg-card);
   border: 1px solid var(--blog-border);
   transition: var(--blog-transition);
-  position: relative;
+  
 }
 
 .blog-card:hover .blog-card-inner {
@@ -630,6 +634,7 @@ body {
   position: relative;
   height: 240px;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .blog-card-image {
@@ -693,6 +698,7 @@ body {
   height: calc(100% - 240px);
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .blog-card-category {
