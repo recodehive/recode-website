@@ -5,6 +5,7 @@ import { useBlogPost } from "@docusaurus/plugin-content-blog/client";
 import BlogPostItemFooterOriginal from "@theme-original/BlogPostItem/Footer";
 import type BlogPostItemFooterType from "@theme/BlogPostItem/Footer";
 import type { WrapperProps } from "@docusaurus/types";
+import SocialShare from "../../../components/SocialShare";
 import { getAuthorProfile } from "../../../utils/authors";
 
 import styles from "./styles.module.css";
@@ -94,6 +95,9 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
   return (
     <>
       <BlogPostItemFooterOriginal {...props} />
+      {isBlogPostPage && (
+        <SocialShare permalink={metadata.permalink} title={metadata.title} />
+      )}
       {showAuthorCard && (
         <section className={styles.authorCard} aria-label="Post author details">
           <div className={styles.authorBody}>
