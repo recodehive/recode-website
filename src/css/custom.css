@@ -232,8 +232,22 @@ html[data-theme="dark"] .menu__link--active::after {
 }
 
 .navbar__logo {
+  width: 2.2rem;
   height: 2.2rem;
   margin-right: 0.5rem;
+  transition: all 300ms ease-in-out;
+}
+
+[data-theme="light"] .navbar__logo img {
+  display: block !important;
+  filter: none;
+  transition: filter 300ms ease-in-out;
+}
+
+[data-theme="dark"] .navbar__logo img {
+  display: block !important;
+  filter: invert(1);
+  transition: filter 300ms ease-in-out;
 }
 
 .navbar__title {
@@ -370,21 +384,67 @@ html[data-theme="dark"] .menu__link--active::after {
 }
 
 /* ======= SECTION 9 :Smooth theme transitions ========== */
+
+/* Global smooth theme transitions for all color-related properties */
 html,
-body {
+body,
+.navbar,
+.navbar__inner,
+.navbar__brand,
+.navbar__link,
+.navbar__item,
+.footer,
+.footer__link,
+.sidebar,
+.sidebar__link,
+.main-wrapper,
+.theme-doc-sidebar-container,
+.theme-doc-toc-desktop,
+.theme-doc-sidebar-item,
+.article-card,
+.blog-card,
+.card,
+.menu__link,
+.menu__caret,
+.pagination,
+.pagination__item,
+.breadcrumbs,
+[class*="breadcrumb"],
+[class*="button"],
+[class*="btn"],
+.badge,
+.pill,
+.tag,
+.button-group,
+.admonition,
+.alert,
+.docusaurus-highlight-code-line,
+pre,
+code,
+input,
+textarea,
+select,
+[role="button"] {
   transition:
-    background-color 150ms ease,
-    color 150ms ease;
+    background-color 300ms ease-in-out,
+    color 300ms ease-in-out,
+    border-color 300ms ease-in-out,
+    box-shadow 300ms ease-in-out,
+    fill 300ms ease-in-out,
+    stroke 300ms ease-in-out,
+    opacity 300ms ease-in-out !important;
 }
 
-.navbar,
-.footer,
-.sidebar,
-.main-wrapper {
+/* SVG and icon transitions */
+svg,
+i,
+[class*="icon"] {
   transition:
-    background-color 150ms ease,
-    color 150ms ease,
-    border-color 150ms ease;
+    fill 300ms ease-in-out,
+    stroke 300ms ease-in-out,
+    color 300ms ease-in-out,
+    filter 300ms ease-in-out,
+    opacity 300ms ease-in-out !important;
 }
 
 /* Navbar icon styling */
@@ -395,6 +455,7 @@ body {
   margin-right: 4px;
   min-width: 18px;
   min-height: 18px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Navbar social icon styles */
@@ -406,8 +467,45 @@ body {
   border-radius: 6px;
   color: var(--ifm-navbar-link-color);
   transition:
-    color 0.2s ease,
-    background-color 0.2s ease;
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    filter 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Form elements smooth transitions */
+input,
+textarea,
+select,
+button,
+[role="button"] {
+  transition:
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Code block transitions */
+code,
+pre,
+.code-block,
+.highlight,
+[class*="hljs"] {
+  transition:
+    background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Icon transitions */
+svg,
+i,
+[class*="icon"] {
+  transition:
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    stroke 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    filter 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar-social-icon:hover {
@@ -515,6 +613,7 @@ body {
   }
 
   .navbar__logo {
+    width: 32px !important;
     height: 32px !important;
   }
 
@@ -1970,75 +2069,143 @@ main>div:not(.m-0) {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
+}
 
-  .blog-carousel-section {
-    padding: 1.5rem 0 !important;
-    margin: 1.5rem 0 !important;
+/* =====================================================
+   SECTION 15: BLOG POST PAGE — CENTER + TOC FIX
+   
+   SAFE: Only targets .blog-wrapper (individual post page)
+   Remove any previous SECTION 15 block before adding this.
+   ===================================================== */
+
+/* Full width container — no artificial max-width cutting space */
+.blog-wrapper .container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Row: full width flex, no gaps, sidebars hug the edges */
+.blog-wrapper .container>.row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* LEFT sidebar — Recent Posts, fixed width, left edge */
+.blog-wrapper .container>.row>.col.col--3 {
+  flex: 0 0 240px !important;
+  width: 240px !important;
+  max-width: 240px !important;
+  padding-left: 0.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* CENTER content — takes all remaining space between sidebars */
+.blog-wrapper .container>.row>.col:not(.col--2):not(.col--3) {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  /* Center the text content within this column */
+  padding-left: 3rem !important;
+  padding-right: 3rem !important;
+}
+
+/* RIGHT sidebar — TOC, wider so text is readable, right edge */
+.blog-wrapper .container>.row>.col.col--2 {
+  flex: 0 0 280px !important;
+  /* ← expanded from ~220px to 280px */
+  width: 280px !important;
+  max-width: 280px !important;
+  padding-left: 1rem !important;
+  padding-right: 0.5rem !important;
+}
+
+/* TOC links: allow text to wrap properly instead of squishing */
+.blog-wrapper .table-of-contents__link {
+  white-space: normal !important;
+  word-break: break-word !important;
+  line-height: 1.4 !important;
+  display: block !important;
+  padding: 2px 0 !important;
+  font-size: 0.85rem !important;
+}
+
+/* TOC heading items — slightly bolder for hierarchy */
+.blog-wrapper .table-of-contents li>.table-of-contents__link {
+  font-size: 0.875rem !important;
+}
+
+/* Comfortable reading styles */
+.blog-post-page .markdown {
+  max-width: 100% !important;
+  line-height: 1.8 !important;
+}
+
+/* ── Large desktop (≥1400px) ── */
+@media (min-width: 1400px) {
+  .blog-wrapper .container>.row>.col.col--3 {
+    flex: 0 0 260px !important;
+    width: 260px !important;
+    max-width: 260px !important;
   }
 
-  /* Reduce section padding on mobile */
-  section,
-  [role="region"] {
-    padding: 1.5rem 0;
-    margin: 1.5rem 0;
+  .blog-wrapper .container>.row>.col.col--2 {
+    flex: 0 0 300px !important;
+    width: 300px !important;
+    max-width: 300px !important;
+  }
+
+  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3) {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
   }
 }
 
-/* Typography spacing for consistency */
-h1:not(:first-child),
-h2:not(:first-child),
-h3:not(:first-child) {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+/* ── Tablet (997px–1199px) ── */
+@media (max-width: 1199px) and (min-width: 997px) {
+  .blog-wrapper .container>.row>.col.col--3 {
+    flex: 0 0 200px !important;
+    width: 200px !important;
+    max-width: 200px !important;
+  }
+
+  .blog-wrapper .container>.row>.col.col--2 {
+    flex: 0 0 220px !important;
+    width: 220px !important;
+    max-width: 220px !important;
+  }
+
+  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3) {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
 }
 
-h1:first-child,
-h2:first-child,
-h3:first-child {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
+/* ── Mobile (≤996px): stack columns naturally ── */
+@media (max-width: 996px) {
+  .blog-wrapper .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 
-/* --- CUSTOM MODERN SCROLLBAR --- */
+  .blog-wrapper .container>.row {
+    flex-direction: column !important;
+  }
 
-::-webkit-scrollbar {
-  width: 6px !important;
-  height: 6px !important;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent !important;
-}
-
-/* --- LIGHT THEME --- */
-html[data-theme="light"] ::-webkit-scrollbar-thumb {
-  background-color: rgba(203, 213, 225, 1) !important;
-  border-radius: 10px !important;
-}
-
-html[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(148, 163, 184, 1) !important;
-}
-
-/* --- DARK THEME --- */
-html[data-theme="dark"] ::-webkit-scrollbar-thumb {
-  background-color: rgba(51, 65, 85, 0.8) !important;
-  border-radius: 10px !important;
-}
-
-html[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
-  background-color: #06b6d4 !important;
-}
-
-/* --- FIREFOX CORRECTIONS --- */
-html[data-theme="light"] {
-  scrollbar-width: thin !important;
-  scrollbar-color: #cbd5e1 transparent !important;
-}
-
-html[data-theme="dark"] {
-  scrollbar-width: thin !important;
-  scrollbar-color: #334155 transparent !important;
+  .blog-wrapper .container>.row>.col.col--3,
+  .blog-wrapper .container>.row>.col.col--2,
+  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3) {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 
 /* ===== HOVER ZOOM FOR BLOG IMAGES ===== */
@@ -2060,3 +2227,6 @@ html[data-theme="dark"] {
   transform: scale(1.08);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
+/* =====================================================
+   END SECTION 15
+   ===================================================== */
