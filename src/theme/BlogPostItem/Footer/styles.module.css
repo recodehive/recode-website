@@ -31,8 +31,8 @@
   height: 18px;
   border-radius: 999px;
   border: 2px solid var(--ifm-background-color);
-  background: #34c38f;
-  color: #fff;
+  background: var(--ifm-color-success);
+  color: var(--ifm-color-white);
   display: grid;
   place-items: center;
   font-size: 11px;
@@ -84,8 +84,8 @@
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: #2563eb;
-  background: #dbeafe;
+  color: var(--ifm-color-primary);
+  background: var(--ifm-color-primary-contrast-background);
 }
 
 .authorMeta {
@@ -124,11 +124,6 @@
 
 .githubButton:hover {
   text-decoration: none;
-}
-
-[data-theme="dark"] .authorBadge {
-  color: #bfdbfe;
-  background: color-mix(in srgb, #1d4ed8 35%, transparent);
 }
 
 @media (max-width: 640px) {

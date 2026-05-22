@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useBlogPost } from "@docusaurus/plugin-content-blog/client";
 import BlogPostItemFooterOriginal from "@theme-original/BlogPostItem/Footer";
 import type BlogPostItemFooterType from "@theme/BlogPostItem/Footer";
@@ -9,6 +10,7 @@ import { getAuthorProfile } from "../../../utils/authors";
 import styles from "./styles.module.css";
 
 type Props = WrapperProps<typeof BlogPostItemFooterType>;
+const META_SEPARATOR = " • ";
 
 function getGitHubUrl(author: {
   key?: string;
@@ -45,6 +47,7 @@ function getGitHubHandle(author: {
 }
 
 export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
   const { metadata, isBlogPostPage } = useBlogPost();
   const primaryAuthor = metadata.authors?.[0];
 
@@ -77,12 +80,14 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
     profile?.title;
   const blogDate =
     metadata.date &&
-    new Intl.DateTimeFormat(undefined, {
+    new Intl.DateTimeFormat(siteConfig.i18n?.defaultLocale || "en-US", {
       year: "numeric",
       month: "short",
       day: "numeric",
     }).format(new Date(metadata.date));
-  const metaItems = [authorHandle, blogDate, readTimeText].filter(Boolean).join(" • ");
+  const metaItems = [authorHandle, blogDate, readTimeText]
+    .filter(Boolean)
+    .join(META_SEPARATOR);
 
   const showAuthorCard = Boolean(isBlogPostPage && primaryAuthor && authorName);
 
@@ -93,18 +98,18 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
         <section className={styles.authorCard} aria-label="Post author details">
           <div className={styles.authorBody}>
             <div className={styles.authorAvatarWrapper}>
-            {authorAvatar ? (
-              <img
-                className={styles.authorAvatar}
-                src={authorAvatar}
-                alt={`${authorName} profile picture`}
-                loading="lazy"
-              />
-            ) : (
-              <div className={styles.authorAvatarFallback} aria-hidden="true">
-                {authorName?.charAt(0).toUpperCase()}
-              </div>
-            )}
+              {authorAvatar ? (
+                <img
+                  className={styles.authorAvatar}
+                  src={authorAvatar}
+                  alt={`${authorName} profile picture`}
+                  loading="lazy"
+                />
+              ) : (
+                <div className={styles.authorAvatarFallback} aria-hidden="true">
+                  {authorName?.charAt(0).toUpperCase()}
+                </div>
+              )}
               <span className={styles.verifiedBadge} aria-hidden="true">
                 ✓
               </span>
