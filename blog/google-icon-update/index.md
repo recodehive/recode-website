@@ -68,7 +68,7 @@ It has been happening for five years. The four icons sit in my browser tab bar l
 
 
 
-This week, Google started rolling out a complete redesign of its Workspace app icons across Gmail, Drive, Docs, Sheets, Slides, Calendar, Meet, Chat, Forms, Keep, Voice, and Tasks. The rollout is live right now in the web app launcher and Chrome's New Tab page. Here is what actually changed, why it took this long, and whether the new design actually solves the problem.
+This week, Google started rolling out a complete redesign of its Workspace app icons across Gmail, Drive, Docs, Sheets, Slides, Calendar, Meet, Chat, Forms, Keep, Voice, and Tasks. The rollout is live right now in the web app launcher and Chrome's New Tab page. Here is what actually changed, why it took this long, and whether the new design actually solves the problem..
 
 
 ---
