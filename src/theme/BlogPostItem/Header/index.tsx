@@ -62,17 +62,16 @@ export default function BlogPostItemHeaderWrapper(props: Props): JSX.Element {
     return <BlogPostItemHeaderOriginal {...props} />;
   }
 
-  const primaryAuthor = metadata.authors?.[0];
-  const profile = primaryAuthor?.key ? getAuthorProfile(primaryAuthor.key) : undefined;
-
-  const authorAvatar = primaryAuthor?.imageURL || profile?.imageUrl;
-  const authorName = primaryAuthor?.name || profile?.name;
-  const githubHandle = primaryAuthor
-    ? getGitHubHandle({ key: primaryAuthor.key, url: primaryAuthor.url })
-    : undefined;
-  const githubUrl = primaryAuthor
-    ? getGitHubUrl({ key: primaryAuthor.key, url: primaryAuthor.url, name: primaryAuthor.name })
-    : undefined;
+  // Build display data for ALL authors (not just the first one)
+  const authors = (metadata.authors ?? []).map((author) => {
+    const profile = author.key ? getAuthorProfile(author.key) : undefined;
+    return {
+      avatar: author.imageURL || profile?.imageUrl,
+      name: author.name || profile?.name,
+      handle: getGitHubHandle({ key: author.key, url: author.url }),
+      url: getGitHubUrl({ key: author.key, url: author.url, name: author.name }),
+    };
+  });
 
   const roundedReadTime = Math.max(1, Math.ceil(metadata.readingTime || 0));
   const readTimeText = `${roundedReadTime} min read`;
@@ -94,35 +93,46 @@ export default function BlogPostItemHeaderWrapper(props: Props): JSX.Element {
       {/* Render only the title — Info and Authors are replaced by our compact bar */}
       <BlogPostItemHeaderTitle />
       <div className={styles.metaSection}>
-        {/* Compact meta row: avatar · @handle · date · reading time */}
+        {/* Compact meta row: avatars · @handles · date · reading time */}
         <div className={styles.metaRow}>
-          {(authorAvatar || authorName) && (
-            <div className={styles.authorPart}>
-              {authorAvatar ? (
-                <img
-                  className={styles.avatar}
-                  src={authorAvatar}
-                  alt={authorName ? `${authorName} avatar` : "Author avatar"}
-                  loading="lazy"
-                />
-              ) : (
-                <div className={styles.avatarFallback} aria-hidden="true">
-                  {authorName?.charAt(0).toUpperCase()}
-                </div>
-              )}
-              {githubHandle &&
-                (githubUrl ? (
-                  <Link
-                    to={githubUrl}
-                    className={styles.handle}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {githubHandle}
-                  </Link>
-                ) : (
-                  <span className={styles.handle}>{githubHandle}</span>
-                ))}
+          {authors.length > 0 && (
+            <div className={styles.authorsPart}>
+              {authors.map((author, idx) => (
+                <React.Fragment key={author.handle ?? `${author.name ?? ""}-${idx}`}>
+                  {idx > 0 && (
+                    <span className={styles.authorSep} aria-hidden="true">
+                      &amp;
+                    </span>
+                  )}
+                  <div className={styles.authorPart}>
+                    {author.avatar ? (
+                      <img
+                        className={styles.avatar}
+                        src={author.avatar}
+                        alt={author.name ? `${author.name} avatar` : "Author avatar"}
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className={styles.avatarFallback} aria-hidden="true">
+                        {author.name?.charAt(0).toUpperCase()}
+                      </div>
+                    )}
+                    {author.handle &&
+                      (author.url ? (
+                        <Link
+                          to={author.url}
+                          className={styles.handle}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {author.handle}
+                        </Link>
+                      ) : (
+                        <span className={styles.handle}>{author.handle}</span>
+                      ))}
+                  </div>
+                </React.Fragment>
+              ))}
             </div>
           )}
 
