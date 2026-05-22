@@ -55,12 +55,12 @@ It's a phenomenon called cognitive friction. You have to stop searching for a re
      [![Github](./assets/05-google-new-logo.png)]()
     </BrowserWindow>
 
-<span style={{color: 'red'}}>So From when the issue started happening?</span>
+<span style={{color: 'red'}}>**So From when the issue started happening?**</span>
 This specific daily annoyance traces back to 2020, when Google retired G Suite and rolled out Google Workspace. They erased the unique shapes of their most popular apps and replaced them with uniform outlines. 
 
 So lets look at Gsuite Icons. 👇🏻
 <ZoomImage src={imgGsuite} alt="Google old GSuite logo" />
-   <span style={{color: 'red'}}> The problem</span>
+   <span style={{color: 'red'}}> **The problem**</span>
 It has been happening for five years. The four icons sit in my browser tab bar looking almost identical: same four colors, same flat shapes, same overall vibe. My brain processes them as one visual blob rather than four separate apps. I once spent 30 seconds in a Google Meet waiting room before realizing I had joined my own meeting instead of opening my calendar to check the time.
 
 <span style={{color: 'green'}}> **The Solution**</span> If that sounds familiar, Google finally heard you. And me. And apparently everyone who has ever stared at a browser tab bar wondering which shade of blue-red-yellow-green meant Calendar versus Drive.
