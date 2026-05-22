@@ -2,7 +2,7 @@
 title: "Google Changed Workspace Icon after 6 years"
 authors: [sanjay-kv]
 sidebar_label: "Google Changed Workspace Icon after 6 years"
-tags: [google, icons]
+tags: [google, icons, workspace, UI, UX, UI-update, 2026, google-apps, cognitive]
 date: 2026-05-21
 
 description: Google Changed Workspace Icon after 6 years, What Changed, What Did Not, and Why It Took Six Years
@@ -36,6 +36,8 @@ meta:
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import ZoomImage from '@site/src/components/ZoomImage';
+import imgGsuite from './assets/03-google-old-gsuite-logo.png';
+import imgWorkspace from './assets/06-googleworkspace-new-logo.png';
 
 <!-- truncate -->
 
@@ -57,7 +59,7 @@ It's a phenomenon called cognitive friction. You have to stop searching for a re
 This specific daily annoyance traces back to 2020, when Google retired G Suite and rolled out Google Workspace. They erased the unique shapes of their most popular apps and replaced them with uniform outlines. 
 
 So lets look at Gsuite Icons. 👇🏻
-<ZoomImage src={require('./assets/03-google-old-gsuite-logo.png').default} alt="Google old GSuite logo" />
+<ZoomImage src={imgGsuite} alt="Google old GSuite logo" />
    <span style={{color: 'red'}}> The problem</span>
 It has been happening for five years. The four icons sit in my browser tab bar looking almost identical: same four colors, same flat shapes, same overall vibe. My brain processes them as one visual blob rather than four separate apps. I once spent 30 seconds in a Google Meet waiting room before realizing I had joined my own meeting instead of opening my calendar to check the time.
 
@@ -93,7 +95,7 @@ Within hours of the 2020 announcement, the internet responded with a very specif
 
 The complaint was not just aesthetic. It was functional. When apps share the same four colors and similar shapes, your brain cannot build distinct visual shortcuts for each one. You have to read the icon rather than recognize it. That adds cognitive friction dozens of times a day. Multiply that across 3 billion Google Workspace users and the accumulated frustration becomes significant.
 
-<ZoomImage src={require('./assets/06-googleworkspace-new-logo.png').default} alt="Google old GSuite logo" />
+<ZoomImage src={imgWorkspace} alt="Google new Workspace logo" />
 
 
 <span style={{color: 'red'}}> **Thought process behind Google**</span>? In 2020
@@ -108,7 +110,10 @@ Two reasons. One practical, one strategic.
 
 The practical reason is simple: they finally ran out of excuses not to fix it. The 2020 design was criticized immediately and consistently for five years. Every redesign rumor that surfaced got user hopes up. Fixing the icon confusion was low-hanging fruit with a clear user benefit and Google had no strong argument for keeping the broken version.
 
-The strategic reason is more interesting. Look at which Google products got gradient icons first before this Workspace rollout: the Google G logo, Gemini, Google Photos, Google Maps. Every product associated with Google's AI push got gradients first. Applying the same design language to Workspace now visually ties the entire productivity suite to the AI narrative.
+The strategic reason is more interesting. Look at which Google products got gradient icons first before this Workspace rollout: the Google G logo, Gemini, Google Photos, Google Maps. Every product associated with <span style={{color: 'green'}}>**Google's AI push** </span>got gradients first. Applying the same design language to Workspace now visually ties the entire productivity suite to the AI narrative.
+  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](./assets/08-google-old.png)]()
+    </BrowserWindow>
 
 Google I/O 2026 is happening this week. The timing of this rollout is not accidental. Google is walking into its biggest annual developer event with a refreshed product suite that looks modern, AI-adjacent, and ready for the next phase of Workspace. The icon redesign is as much a marketing signal as a usability fix.
 
@@ -191,11 +196,7 @@ Companies only fix long-standing UX complaints when something else is changing a
 
 Whether the new icons are beautiful or not matters less than whether they work. And by the only measure that actually counts, distinguishing one app from another in half a second, the 2026 redesign works better than the 2020 one did.
 
-That is enough to call it progress.
----
 
-**About the Author**
 
-Sanjay is a Data Engineer focused on building modern data platforms and writing about technology at RecodeHive. He writes about data engineering, cloud architecture, and the tech decisions that actually affect people's daily work.
-
+<GiscusComments/>
 
