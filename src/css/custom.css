@@ -2094,16 +2094,22 @@ html[data-theme="dark"] {
   max-width: 280px !important;
   padding-left: 0 !important;
   padding-right: 0.5rem !important;
-  border-left: 2px solid var(--ifm-toc-border-color) !important;
-  align-self: flex-start !important;
+  align-self: stretch !important;
 }
 
-/* TOC inner wrapper — sticky */
+/* TOC inner wrapper — sticky; border-left here so the vertical line
+   only spans the height of the TOC content, not the full page */
 .blog-wrapper .col.col--2 > div {
   position: sticky !important;
   top: calc(var(--ifm-navbar-height, 60px) + 1rem) !important;
   max-height: calc(100vh - var(--ifm-navbar-height, 60px) - 2rem) !important;
   overflow-y: auto !important;
+  border-left: 2px solid var(--ifm-toc-border-color) !important;
+  scrollbar-width: none !important;
+}
+
+.blog-wrapper .col.col--2 > div::-webkit-scrollbar {
+  display: none !important;
 }
 
 /* TOC list — vertical left border track */
