@@ -4,11 +4,7 @@
   padding: 1.5rem;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 16px;
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--ifm-color-emphasis-100) 80%, transparent),
-    color-mix(in srgb, var(--ifm-color-emphasis-200) 45%, transparent)
-  );
+  background: var(--ifm-color-emphasis-100);
   box-sizing: border-box;
 }
 
@@ -42,8 +38,8 @@
 
 .authorAvatar,
 .authorAvatarFallback {
-  width: 84px;
-  height: 84px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
 }
 
@@ -99,7 +95,6 @@
   color: var(--ifm-color-emphasis-800);
   font-size: 1.1rem;
   line-height: 1.4;
-  max-width: 68ch;
 }
 
 .githubButton {
