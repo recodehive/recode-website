@@ -170,7 +170,7 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
             </svg>
           </div>
           <div className={styles.improveContent}>
-            <p className={styles.improveTitle}>Improve this Blog Post</p>
+            <h3 className={styles.improveTitle}>Improve this Blog Post</h3>
             <p className={styles.improveDescription}>
               All our blog posts are open source. Found a typo, want to add more
               detail, or have a better explanation? Anyone can contribute and
