@@ -2160,6 +2160,20 @@ html[data-theme="dark"] .blog-post-page .markdown {
   margin-bottom: 0.5rem !important;
 }
 
+.blog-post-page .markdown h1,
+.blog-post-page .markdown h2,
+.blog-post-page .markdown h3,
+.blog-post-page .markdown h4 {
+  color: #1F2937 !important;
+}
+
+html[data-theme="dark"] .blog-post-page .markdown h1,
+html[data-theme="dark"] .blog-post-page .markdown h2,
+html[data-theme="dark"] .blog-post-page .markdown h3,
+html[data-theme="dark"] .blog-post-page .markdown h4 {
+  color: #D1D5DB !important;
+}
+
 /* ── Large desktop (≥1400px) — wider content ── */
 @media (min-width: 1400px) {
   .blog-wrapper .container>.row>.col.col--3 {
