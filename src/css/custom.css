@@ -2146,7 +2146,18 @@ html[data-theme="dark"] {
 
 .blog-post-page .markdown {
   max-width: 100% !important;
-  line-height: 1.8 !important;
+  font-size: 1.125rem !important;
+  line-height: 2rem !important;
+  color: rgb(75, 85, 99) !important;
+}
+
+html[data-theme="dark"] .blog-post-page .markdown {
+  color: rgb(209, 213, 219) !important;
+}
+
+.blog-post-page .markdown p {
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
 }
 
 /* ── Large desktop (≥1400px) — wider content ── */
