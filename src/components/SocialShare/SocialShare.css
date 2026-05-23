@@ -4,13 +4,17 @@
   margin-top: 2rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--ifm-color-emphasis-300);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .share-title {
-  margin: 0 0 1rem;
+  margin: 0;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--ifm-color-emphasis-700);
+  white-space: nowrap;
 }
 
 .share-buttons-row {
@@ -95,6 +99,5 @@
 @media (max-width: 576px) {
   .share-buttons-row {
     gap: 0.75rem;
-    flex-wrap: wrap;
   }
 }
