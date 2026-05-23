@@ -91,8 +91,8 @@
 .authorSummary {
   margin: 0.65rem 0 0;
   color: var(--ifm-color-emphasis-800);
-  font-size: 1.1rem;
-  line-height: 1.4;
+  font-size: 0.875rem;
+  line-height: 1.625;
 }
 
 .githubButton {
