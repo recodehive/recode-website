@@ -2062,32 +2062,29 @@ html[data-theme="dark"] {
 }
 
 /* ===== SECTION 15: TABLE OF CONTENTS COLOR ===== */
-/* Issue #1593: Change TOC link color to match theme */
+/* Issue #1593: Change TOC link color on hover/active */
 .table-of-contents__link:hover,
 .table-of-contents__link--active,
 .table-of-contents__link--active:hover {
-  color: #b1e2c5;
+  color: #2e8555;
+  font-weight: normal;
+  text-decoration: none;
 }
 
 [data-theme="dark"] .table-of-contents__link:hover,
 [data-theme="dark"] .table-of-contents__link--active {
-  color: #b1e2c5;
+  color: #2e8555;
+  font-weight: normal;
+  text-decoration: none;
 }
-
 /* ===== SECTION 16: BLOG AUTHOR NAME COLOR ===== */
-/* Issue #1593: Change blog author name color to match theme */
+/* Issue #1593: Change blog author name color to #2e8555 */
 .avatar__intro .avatar__name a,
 .authorDetails_1V9A .avatar__name a {
-  color: #b1e2c5;
-}
-
-.avatar__intro .avatar__name a:hover,
-.authorDetails_1V9A .avatar__name a:hover {
-  color: #b1e2c5;
-  opacity: 0.85;
+  color: #2e8555;
 }
 
 [data-theme="dark"] .avatar__intro .avatar__name a,
 [data-theme="dark"] .authorDetails_1V9A .avatar__name a {
-  color: #b1e2c5;
+  color: #2e8555;
 }
