@@ -47,10 +47,10 @@ export default function Blogs() {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  const filteredBlogs = React.useMemo(
-    () => filterBlogsBySearchTerm(blogs, searchTerm),
-    [searchTerm]
-  );
+  const filteredBlogs = React.useMemo(() => {
+    const sortedBlogs = [...blogs].sort((a, b) => b.id - a.id);
+    return filterBlogsBySearchTerm(sortedBlogs, searchTerm);
+  }, [searchTerm, blogs]);
 
   React.useEffect(() => {
     setCurrentPage(1);
@@ -134,9 +134,8 @@ export default function Blogs() {
         <section className="latest-articles-section">
           <div className="articles-container-wrapper">
             <div className="articles-main-content">
-              <div className="blog-search-panel" style={{ padding: '0 0 24px 0', background: 'transparent', border: 'none', boxShadow: 'none' }}>
+              <div className="blog-search-panel" style={{ padding: '0', background: 'transparent', border: 'none', boxShadow: 'none' }}>
                 <p className="blog-search-eyebrow">Explore articles</p>
-                <h2 className="blog-search-title">Find the right guide</h2>
               </div>
 
               {searchTerm && (
