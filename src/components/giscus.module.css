@@ -1,0 +1,9 @@
+.improveCta {
+  margin: 1rem 0 0;
+  font-size: 0.95rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.improveLink {
+  font-weight: 600;
+}

@@ -69,9 +69,10 @@
 
 // export default GiscusComments;
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "@docusaurus/router";
 import { useColorMode } from "@docusaurus/theme-common";
+import styles from "./giscus.module.css";
 
 type GiscusCommentsProps = {
   forceRender?: boolean;
@@ -84,6 +85,7 @@ const GiscusComments: React.FC<GiscusCommentsProps> = ({
   const { pathname } = useLocation();
   const { colorMode } = useColorMode(); // colorMode is 'light' or 'dark'
   const isBlogPostPage = pathname.startsWith("/blog/");
+  const [improvePageUrl, setImprovePageUrl] = useState<string>("");
 
   if (isBlogPostPage && !forceRender) {
     return null;
@@ -141,7 +143,61 @@ const GiscusComments: React.FC<GiscusCommentsProps> = ({
     );
   }, [colorMode]); // <-- This runs every time colorMode changes.
 
-  return <div ref={ref} />;
+  useEffect(() => {
+    if (forceRender) {
+      return;
+    }
+
+    const resolveImproveUrl = () => {
+      const editThisPageAnchor = document.querySelector<HTMLAnchorElement>(
+        "a.theme-edit-this-page",
+      );
+      const nextImproveUrl = editThisPageAnchor?.href || "";
+      setImprovePageUrl(nextImproveUrl);
+      return Boolean(nextImproveUrl);
+    };
+
+    if (resolveImproveUrl()) {
+      return;
+    }
+
+    const observerRoot =
+      ref.current?.closest("article") ||
+      document.querySelector("article") ||
+      document.querySelector("main") ||
+      // Fallback keeps behavior safe on pages without standard doc/blog layout wrappers.
+      document.body;
+    const observer = new MutationObserver(() => {
+      if (resolveImproveUrl()) {
+        observer.disconnect();
+      }
+    });
+
+    observer.observe(observerRoot, { childList: true, subtree: true });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [forceRender, pathname]);
+
+  return (
+    <>
+      <div ref={ref} />
+      {!forceRender && improvePageUrl && (
+        <p className={styles.improveCta}>
+          Found something to improve?{" "}
+          <a
+            className={styles.improveLink}
+            href={improvePageUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Improve this page
+          </a>
+        </p>
+      )}
+    </>
+  );
 };
 
 export default GiscusComments;
