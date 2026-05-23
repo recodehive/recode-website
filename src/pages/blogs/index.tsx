@@ -46,12 +46,11 @@ export default function Blogs() {
   const { siteConfig } = useDocusaurusContext();
   const [searchTerm, setSearchTerm] = React.useState("");
   const [currentPage, setCurrentPage] = React.useState(1);
-  const sortedBlogs = React.useMemo(() => [...blogs].sort((a, b) => b.id - a.id), []);
 
-  const filteredBlogs = React.useMemo(
-    () => filterBlogsBySearchTerm(sortedBlogs, searchTerm),
-    [searchTerm, sortedBlogs]
-  );
+  const filteredBlogs = React.useMemo(() => {
+    const sortedBlogs = [...blogs].sort((a, b) => b.id - a.id);
+    return filterBlogsBySearchTerm(sortedBlogs, searchTerm);
+  }, [searchTerm]);
 
   React.useEffect(() => {
     setCurrentPage(1);
