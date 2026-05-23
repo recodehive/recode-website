@@ -2095,7 +2095,7 @@ html[data-theme="dark"] {
   padding-left: 0 !important;
   padding-right: 0.5rem !important;
   border-left: 2px solid var(--ifm-toc-border-color) !important;
-  align-self: stretch !important;
+  align-self: flex-start !important;
 }
 
 /* TOC inner wrapper — sticky */
