@@ -100,7 +100,7 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
       {isBlogPostPage && (
         <SocialShare permalink={metadata.permalink} title={metadata.title} />
       )}
-      {isBlogPostPage && improvePostUrl ? (
+      {isBlogPostPage && improvePostUrl && (
         <p className={styles.improveCta}>
           Found something to improve?{" "}
           <Link
@@ -112,7 +112,7 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
             Improve this blog post
           </Link>
         </p>
-      ) : null}
+      )}
       {showAuthorCard && (
         <section className={styles.authorCard} aria-label="Post author details">
           <div className={styles.authorBody}>
