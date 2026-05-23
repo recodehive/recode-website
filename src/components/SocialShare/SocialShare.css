@@ -23,6 +23,17 @@
   gap: 1rem;
   align-items: center;
   overflow-x: auto;
+  scrollbar-width: auto;
+  scrollbar-color: var(--ifm-color-emphasis-600) transparent;
+}
+
+.share-buttons-row::-webkit-scrollbar {
+  height: 6px;
+}
+
+.share-buttons-row::-webkit-scrollbar-thumb {
+  background-color: var(--ifm-color-emphasis-600);
+  border-radius: 999px;
 }
 
 .share-btn-circle {
