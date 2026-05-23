@@ -268,6 +268,8 @@ Google changing its icons is a small thing in isolation. But it is interesting a
 ---
 **About the Author**
 Sanjay is a Data Engineer focused on building modern data platforms and writing about technology at RecodeHive. He writes about data engineering, cloud architecture, and the tech decisions that actually affect people's daily work.
+
+<GiscusComments/>
 ```
 
 :::info
@@ -323,7 +325,7 @@ Use `##` and `###` headings to structure your content.
 
 #### Bulleted Summary Section (Required)
 
-Every techincal explanation blog must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
+Every techincal explanation blog eg: `how to run codeql on GitHub` must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
 
 ```md
 **What you'll learn in this post:**
@@ -331,16 +333,14 @@ Every techincal explanation blog must begin with a bulleted summary right after 
 - How to configure Y for production
 - Common pitfalls and how to avoid them
 ```
-
-    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-     [![Github](assets/blog-09-new-issue.png)](https://github.com/recodehive/recode-website/issues)
-    </BrowserWindow>
   </TabItem>
+  
 
 <TabItem value="Add code blocks" label="Add code blocks">
      #### Named Code Blocks (Required)
 
 Always label code blocks with a filename so readers know exactly what file they are editing:
+Once you copy paste this block it will appear exactly like this for the users.
 
 ````md
 ```java title="Sample.java"
@@ -351,9 +351,7 @@ public class Hello {
 }
 ```
 ````
-  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-     [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
-    </BrowserWindow>
+
   </TabItem>
 
   <TabItem value="Query + Output: Use Tabs" label="Query + Output: Use Tabs">
@@ -372,37 +370,50 @@ Then structure your query + output like this:
 
 ````md
 <Tabs>
-  <TabItem value="Query">
+  <TabItem value="SQL Table" label="SQL Table">
+```sql title="Friends"
+  | id | name            | username         |
+|----|-----------------|------------------|
+| 1  | John Doe        | @johndoe         |
+| 2  | Jane Smith      | @janesmith       |
+| 3  | Bob Johnson     | @bobjohnson      |
+```
+  </TabItem>
 
-  ```sql
+<TabItem value="SQL Code" label="SQL Code">
+  
+  ```sql title="Creating SQL Tables & db. "
+
+    -- creating database
+    CREATE DATABASE my_database;
+
+    -- use the database you created
+    USE my_database;
+
+
   -- Create the table
-  CREATE TABLE friends (
+CREATE TABLE friends (
     id INT PRIMARY KEY,
     name VARCHAR(100),
     username VARCHAR(100)
-  );
+);
 
-  -- Insert data
-  INSERT INTO friends (id, name, username) VALUES
-  (1, 'John Doe', 'johndoe'),
-  (2, 'Jane Smith', 'janesmith'),
-  (3, 'Bob Johnson', 'bobjohnson');
-  ```
+-- Insert data into the table
+INSERT INTO friends (id, name, username) VALUES
+(1, 'John Doe', '@johndoe'),
+(2, 'Jane Smith', '@janesmith'),
+(3, 'Bob Johnson', '@bobjohnson');
 
-  </TabItem>
-  <TabItem value="Output">
-
-  | id | name        | username    |
-  |----|-------------|-------------|
-  | 1  | John Doe    | johndoe     |
-  | 2  | Jane Smith  | janesmith   |
-  | 3  | Bob Johnson | bobjohnson  |
+    ```
 
   </TabItem>
+    
 </Tabs>
+
+
 ````
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-     [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+     [![Github](assets/blog-14-new-issue.png)](https://github.com/recodehive/recode-website/issues)
     </BrowserWindow>
   </TabItem>
 
@@ -429,7 +440,7 @@ Especially from an experienced engineers, it will be easy for new genertion code
 :::
 
 
-## Step 11: Add Screenshots and Images
+## Step 11: Add Screenshots and Banner
 
 ### Recommended Screenshot Dimensions
 
