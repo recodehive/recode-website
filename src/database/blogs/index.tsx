@@ -13,12 +13,12 @@ const blogs: Blog[] = [
 
   {
     id: 1,
-    title: "New Google Icon Changes",
-    image: "/img/blogs/cover-google-icon.jpg",
+    title: "Land a Job in UI/UX Design",
+    image: "/img/blogs/04-ux-job-design.png",
     description:
-      " Google has unveiled a new icon design that reflects its commitment to simplicity and accessibility. The updated icon features a more modern ",
-    slug: "google-icon-update",
-    authors: ["sanjay-kv"],
+      " Are you passionate about design and dreaming of a career in it? Or maybe you are already in the design space and looking to pivot into UI/UX? ",
+    slug: "ux-ui-design-job",
+    authors: ["sowmiya-v", "sanjay-kv"],
     category: "Design",
     tags: ["UX", "UI", "design", "Job"],
   },
@@ -231,7 +231,19 @@ const blogs: Blog[] = [
     authors: ["Aditya-Singh-Rathore"],
     category: "data engineering",
     tags: ["Data Engineers", "Business Analysts", "MBAs", "Data Understanding", "Business Decisions"],
+  
+    id: 20,
+    title: "New Google Icon Changes",
+    image: "/img/blogs/cover-google-icon.jpg",
+    description:
+      " Google has unveiled a new icon design that reflects its commitment to simplicity and accessibility. The updated icon features a more modern ",
+    slug: "google-icon-update",
+    authors: ["sanjay-kv"],
+    category: "Design",
+    tags: ["UX", "UI", "design", "Job"],
   },
+
+  
 
 ];
 
