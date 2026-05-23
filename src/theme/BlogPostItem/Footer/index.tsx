@@ -5,6 +5,8 @@ import { useBlogPost } from "@docusaurus/plugin-content-blog/client";
 import BlogPostItemFooterOriginal from "@theme-original/BlogPostItem/Footer";
 import type BlogPostItemFooterType from "@theme/BlogPostItem/Footer";
 import type { WrapperProps } from "@docusaurus/types";
+import GiscusComments from "../../../components/giscus";
+import SocialShare from "../../../components/SocialShare";
 import { getAuthorProfile } from "../../../utils/authors";
 
 import styles from "./styles.module.css";
@@ -93,7 +95,10 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
 
   return (
     <>
-      <BlogPostItemFooterOriginal {...props} />
+      {!isBlogPostPage && <BlogPostItemFooterOriginal {...props} />}
+      {isBlogPostPage && (
+        <SocialShare permalink={metadata.permalink} title={metadata.title} />
+      )}
       {showAuthorCard && (
         <section className={styles.authorCard} aria-label="Post author details">
           <div className={styles.authorBody}>
@@ -145,6 +150,7 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
           </div>
         </section>
       )}
+      {isBlogPostPage && <GiscusComments forceRender />}
     </>
   );
 }
