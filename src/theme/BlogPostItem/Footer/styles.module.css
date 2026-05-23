@@ -4,11 +4,7 @@
   padding: 1.5rem;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 16px;
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--ifm-color-emphasis-100) 80%, transparent),
-    color-mix(in srgb, var(--ifm-color-emphasis-200) 45%, transparent)
-  );
+  background: var(--ifm-color-emphasis-100);
   box-sizing: border-box;
 }
 
@@ -25,25 +21,23 @@
 
 .verifiedBadge {
   position: absolute;
-  right: -1px;
-  bottom: -1px;
-  width: 18px;
-  height: 18px;
+  right: -2px;
+  bottom: -2px;
+  width: 20px;
+  height: 20px;
   border-radius: 999px;
   border: 2px solid var(--ifm-background-color);
-  background: var(--ifm-color-success);
-  color: var(--ifm-color-white);
-  display: grid;
-  place-items: center;
-  font-size: 11px;
-  line-height: 1;
-  font-weight: 700;
+  background: #34D399;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .authorAvatar,
 .authorAvatarFallback {
-  width: 84px;
-  height: 84px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
 }
 
@@ -99,7 +93,6 @@
   color: var(--ifm-color-emphasis-800);
   font-size: 1.1rem;
   line-height: 1.4;
-  max-width: 68ch;
 }
 
 .githubButton {

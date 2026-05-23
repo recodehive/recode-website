@@ -116,7 +116,15 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
                 </div>
               )}
               <span className={styles.verifiedBadge} aria-hidden="true">
-                ✓
+                <svg viewBox="0 0 12 12" width="11" height="11" fill="none" focusable="false">
+                  <path
+                    d="M2 6l3 3 5-5"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </span>
             </div>
             <div className={styles.authorIdentity}>
