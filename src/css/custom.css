@@ -2092,9 +2092,9 @@ html[data-theme="dark"] {
   flex: 0 0 280px !important;
   width: 280px !important;
   max-width: 280px !important;
-  padding-left: 1.25rem !important;
+  padding-left: 0 !important;
   padding-right: 0.5rem !important;
-  border-left: 1px solid var(--ifm-toc-border-color) !important;
+  border-left: 2px solid var(--ifm-toc-border-color) !important;
   align-self: stretch !important;
 }
 
@@ -2106,16 +2106,25 @@ html[data-theme="dark"] {
   overflow-y: auto !important;
 }
 
+/* TOC list — vertical left border track */
+.blog-wrapper .table-of-contents {
+  border-left: 2px solid var(--ifm-toc-border-color) !important;
+  padding-left: 0 !important;
+  margin-left: 0.75rem !important;
+}
+
 /* TOC links */
 .blog-wrapper .table-of-contents__link {
   white-space: normal !important;
   word-break: break-word !important;
   line-height: 1.5 !important;
   display: block !important;
-  padding: 3px 0 !important;
+  padding: 4px 0 4px 12px !important;
+  margin-left: -2px !important;
   font-size: 0.85rem !important;
-  color: var(--ifm-color-emphasis-700) !important;
-  transition: color 0.2s ease !important;
+  color: var(--ifm-color-emphasis-600) !important;
+  border-left: 2px solid transparent !important;
+  transition: color 0.2s ease, border-color 0.2s ease !important;
 }
 
 .blog-wrapper .table-of-contents__link:hover {
@@ -2127,11 +2136,12 @@ html[data-theme="dark"] {
   font-size: 0.875rem !important;
 }
 
-/* Active TOC link — highlight current section */
+/* Active TOC link — highlight current section with left border indicator */
 .blog-wrapper .table-of-contents__link--active,
 .blog-wrapper .table-of-contents__link--active:hover {
   color: var(--ifm-color-primary) !important;
   font-weight: 600 !important;
+  border-left: 2px solid var(--ifm-color-primary) !important;
 }
 
 .blog-post-page .markdown {
