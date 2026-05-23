@@ -84,8 +84,8 @@ export default function SocialShare({
         : COPY_DEFAULT_LABEL;
 
   return (
-    <section className="blog-post-share-section" aria-label="Share this post">
-      <p className="share-title">Share this post</p>
+    <section className="blog-post-share-section" aria-label="Share this article">
+      <p className="share-title">Share this article</p>
       <div className="share-buttons-row">
         {shareLinks.map((link) => (
           <a
