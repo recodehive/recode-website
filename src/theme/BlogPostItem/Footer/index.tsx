@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useBlogPost } from "@docusaurus/plugin-content-blog/client";
@@ -8,6 +8,7 @@ import type { WrapperProps } from "@docusaurus/types";
 import GiscusComments from "../../../components/giscus";
 import SocialShare from "../../../components/SocialShare";
 import { getAuthorProfile } from "../../../utils/authors";
+import ReadingTimeIndicator from "../../../components/ReadingTimeIndicator";
 
 import styles from "./styles.module.css";
 
@@ -52,6 +53,7 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   const { metadata, isBlogPostPage } = useBlogPost();
   const primaryAuthor = metadata.authors?.[0];
+  const authorCardRef = useRef<HTMLElement | null>(null);
 
   const profile = primaryAuthor?.key
     ? getAuthorProfile(primaryAuthor.key)
@@ -99,8 +101,14 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
       {isBlogPostPage && (
         <SocialShare permalink={metadata.permalink} title={metadata.title} />
       )}
+      {isBlogPostPage && (
+        <ReadingTimeIndicator
+          totalReadTime={roundedReadTime}
+          authorCardRef={authorCardRef}
+        />
+      )}
       {showAuthorCard && (
-        <section className={styles.authorCard} aria-label="Post author details">
+        <section ref={authorCardRef} className={styles.authorCard} aria-label="Post author details">
           <div className={styles.authorBody}>
             <div className={styles.authorAvatarWrapper}>
               {authorAvatar ? (

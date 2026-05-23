@@ -1,0 +1,49 @@
+.container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #0d9488;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(13, 148, 136, 0.35);
+  animation: fadeInUp 0.25s ease-out;
+  pointer-events: none;
+  user-select: none;
+}
+
+[data-theme="dark"] .container {
+  background: #0f766e;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.icon {
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    bottom: 16px;
+    right: 16px;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
