@@ -47,10 +47,10 @@ export default function Blogs() {
   const [searchTerm, setSearchTerm] = React.useState("");
   const [currentPage, setCurrentPage] = React.useState(1);
 
-  const filteredBlogs = React.useMemo(
-    () => filterBlogsBySearchTerm(blogs, searchTerm),
-    [searchTerm]
-  );
+  const filteredBlogs = React.useMemo(() => {
+    const sortedBlogs = [...blogs].sort((a, b) => b.id - a.id);
+    return filterBlogsBySearchTerm(sortedBlogs, searchTerm);
+  }, [searchTerm, blogs]);
 
   React.useEffect(() => {
     setCurrentPage(1);
