@@ -21,19 +21,17 @@
 
 .verifiedBadge {
   position: absolute;
-  right: -1px;
-  bottom: -1px;
-  width: 18px;
-  height: 18px;
+  left: -4px;
+  bottom: -2px;
+  width: 20px;
+  height: 20px;
   border-radius: 999px;
   border: 2px solid var(--ifm-background-color);
   background: var(--ifm-color-success);
   color: var(--ifm-color-white);
-  display: grid;
-  place-items: center;
-  font-size: 11px;
-  line-height: 1;
-  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .authorAvatar,
