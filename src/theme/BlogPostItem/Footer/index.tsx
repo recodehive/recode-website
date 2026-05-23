@@ -92,6 +92,7 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
     .join(META_SEPARATOR);
 
   const showAuthorCard = Boolean(isBlogPostPage && primaryAuthor && authorName);
+  const improvePostUrl = metadata.editUrl;
 
   return (
     <>
@@ -99,6 +100,19 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
       {isBlogPostPage && (
         <SocialShare permalink={metadata.permalink} title={metadata.title} />
       )}
+      {isBlogPostPage && improvePostUrl ? (
+        <p className={styles.improveCta}>
+          Found something to improve?{" "}
+          <Link
+            className={styles.improveLink}
+            to={improvePostUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Improve this blog post
+          </Link>
+        </p>
+      ) : null}
       {showAuthorCard && (
         <section className={styles.authorCard} aria-label="Post author details">
           <div className={styles.authorBody}>
