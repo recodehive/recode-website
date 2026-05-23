@@ -432,8 +432,8 @@
 .blog-main-subtitle {
   font-size: 18px;
   color: #64748b;
-  margin: 0;
-  line-height: 1.7;
+  margin: 0px 0 0;
+  line-height: 1.0;
   max-width: 700px;
   font-weight: 400;
 }

@@ -233,7 +233,7 @@ const blogs: Blog[] = [
     tags: ["Data Engineers", "Business Analysts", "MBAs", "Data Understanding", "Business Decisions"],
   
     id: 20,
-    title: "New Google Icon Changes",
+    title: "Google Changed Workspace Icon after 6 years",
     image: "/img/blogs/cover-google-icon.jpg",
     description:
       " Google has unveiled a new icon design that reflects its commitment to simplicity and accessibility. The updated icon features a more modern ",
