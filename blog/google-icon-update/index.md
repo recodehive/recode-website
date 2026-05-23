@@ -22,7 +22,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/google-icon-update"
   - property: "og:image"
-    content: "./images/cover.png"
+    content: "./assets/cover-google-icon.jpg"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -30,7 +30,7 @@ meta:
   - name: "twitter:description"
     content: "Google Changed Workspace Icon after 6 years"
   - name: "twitter:image"
-    content: "./images/cover.png"
+    content: "./assets/cover-google-icon.jpg"
 ---
 
 import Tabs from '@theme/Tabs';
@@ -152,11 +152,14 @@ My honest take: some of the new icons are significantly better, Drive and Calend
 
 ## Does It Actually Solve the Problem?
 
-Yes. Partially.
+<span style={{color: 'red'}}> **Yes. Partially. </span>
 
 The core complaint for five years was that all the icons look the same. That complaint is addressed. Calendar is now blue. Drive is now gradient-triangle. Gmail is now warm red-pink. Each app has a visual identity that survives a glance rather than requiring a read.
 
 What is not addressed is the deeper question of whether icon design is even the right layer to solve the problem at. The real confusion in a modern Google workflow is not which icon to click. It is which Google product to use for which task. Should this document live in Drive or Sites? Should this conversation happen in Chat or Gmail? Should this meeting be in Meet or Calendar notes?
+  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](./assets/11-google-new-design-changes.jpg)]()
+    </BrowserWindow>
 
 Icon legibility is a surface-level fix for a suite that has genuine overlap and redundancy problems underneath. The new icons will help you click the right app faster. They will not help you decide which app you actually need.
 
@@ -170,7 +173,7 @@ Google changing its icons is a small thing in isolation. But it is interesting a
 
 Companies only fix long-standing UX complaints when something else is changing around them. The gradient design language, the AI product push, Google I/O timing, the Workspace positioning against Microsoft 365 and Microsoft Copilot. The icon redesign is a small piece of a larger repositioning story that Google is telling right now.
 
-Whether the new icons are beautiful or not matters less than whether they work. And by the only measure that actually counts, distinguishing one app from another in half a second, the 2026 redesign works better than the 2020 one did.
+Whether the new icons are beautiful or not matters less than whether they work. And by the only measure that actually counts, distinguishing one app from another in half a second, <span style={{color: 'red'}}> **the 2026 redesign works better than the 2020 one did.**</span>
 
 
 
