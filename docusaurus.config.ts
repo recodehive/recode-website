@@ -263,6 +263,11 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    blog: {
+      sidebar: {
+        groupByYear: false,
+      },
+    },
   } satisfies Preset.ThemeConfig,
 
   markdown: {
