@@ -41,7 +41,7 @@ import imgWorkspace from './assets/06-googleworkspace-new-logo.png';
 
 <!-- truncate -->
 
----
+
 
 Last week I clicked Google Meet when I meant to click Google Calendar.
 
@@ -82,11 +82,11 @@ To understand why this redesign matters, you have to go back to October 2020 whe
 At the time, the rebrand looked clean on paper. Google unified its entire app suite under one design language: every icon would use all four company colors, blue, red, yellow, and green, in the same flat style. The thinking was brand consistency. The result was visual chaos.
 
 
-<div className="img-zoom">
 
- [![Github](./assets/03-google-old-apps-logo.png)]()
+  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](./assets/03-google-old-apps-logo.png)]()
+    </BrowserWindow>
 
-</div>
 
 Within hours of the 2020 announcement, the internet responded with a very specific complaint: all the icons now look the same. The new Gmail icon was the most mocked. The classic envelope with a red M that everyone recognized was replaced with a four-color M that looked like a child's art project. People struggled to tell Calendar from Drive, Drive from Docs, and Meet from everything else at a glance.
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
@@ -95,7 +95,10 @@ Within hours of the 2020 announcement, the internet responded with a very specif
 
 The complaint was not just aesthetic. It was functional. When apps share the same four colors and similar shapes, your brain cannot build distinct visual shortcuts for each one. You have to read the icon rather than recognize it. That adds cognitive friction dozens of times a day. Multiply that across 3 billion Google Workspace users and the accumulated frustration becomes significant.
 
-<ZoomImage src={imgWorkspace} alt="Google new Workspace logo" />
+
+  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+     [![Github](./assets/06-googleworkspace-new-logo.png)]()
+    </BrowserWindow>
 
 
 <span style={{color: 'red'}}> **Thought process behind Google**</span>? In 2020
