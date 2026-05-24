@@ -9,7 +9,6 @@ import PRListModal from "./PRListModal";
 import BadgeModal from "./BadgeModal";
 import { mockContributors } from "./mockData";
 import "./leaderboard.css";
-import ContributorCard from "./ContributorCard";
 
 const GITHUB_ORG = "recodehive";
 
@@ -42,7 +41,7 @@ interface Contributor {
   points: number;
   prs: number;
   prDetails?: PRDetails[];
-  badges?: string[];
+  badges?: string[]; // Array of badge image paths
 }
 
 interface Stats {
@@ -105,19 +104,28 @@ const BADGE_CONFIG = [
   },
 ];
 
-function getContributorBadges(contributor: Contributor, rank: number): string[] {
+/**
+ * Determines which badges a contributor should have based on their stats
+ */
+function getContributorBadges(
+  contributor: Contributor,
+  rank: number,
+): string[] {
   const badges: string[] = [];
 
+  // Special rank-based badges
   if (rank === 1) {
-    badges.push("/badges/10.png");
+    badges.push("/badges/10.png"); // Hall of Fame for #1
   } else if (rank === 2) {
-    badges.push("/badges/9.png");
+    badges.push("/badges/9.png"); // Legendary for #2
   } else if (rank === 3) {
-    badges.push("/badges/8.png");
+    badges.push("/badges/8.png"); // Elite for #3
   }
 
+  // Achievement-based badges
   BADGE_CONFIG.forEach((badge) => {
     if (badge.criteria(contributor.prs, contributor.points)) {
+      // Avoid duplicates
       if (!badges.includes(badge.image)) {
         badges.push(badge.image);
       }
@@ -127,6 +135,9 @@ function getContributorBadges(contributor: Contributor, rank: number): string[] 
   return badges;
 }
 
+/**
+ * Badge display component
+ */
 function ContributorBadges({
   badges,
   onClick,
@@ -259,6 +270,7 @@ function TopPerformerCard({
 }
 
 export default function LeaderBoard(): JSX.Element {
+  // Get time filter functions from context
   const {
     contributors,
     stats,
@@ -272,13 +284,16 @@ export default function LeaderBoard(): JSX.Element {
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [selectedContributor, setSelectedContributor] = useState<Contributor | null>(null);
+  const [selectedContributor, setSelectedContributor] =
+    useState<Contributor | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [badgeModalContributor, setBadgeModalContributor] = useState<Contributor | null>(null);
+  const [badgeModalContributor, setBadgeModalContributor] =
+    useState<Contributor | null>(null);
   const [isBadgeModalOpen, setIsBadgeModalOpen] = useState(false);
   const [isSelectChanged, setIsSelectChanged] = useState(false);
   const itemsPerPage = 20;
 
+  // Modal handlers
   const handlePRClick = (contributor: Contributor) => {
     setSelectedContributor(contributor);
     setIsModalOpen(true);
@@ -289,16 +304,21 @@ export default function LeaderBoard(): JSX.Element {
     setSelectedContributor(null);
   }, []);
 
-  const handleBadgeClick = useCallback((contributor: Contributor) => {
-    setBadgeModalContributor(contributor);
-    setIsBadgeModalOpen(true);
-  }, []);
+  // Badge modal handlers
+  const handleBadgeClick = useCallback(
+    (contributor: Contributor) => {
+      setBadgeModalContributor(contributor);
+      setIsBadgeModalOpen(true);
+    },
+    [],
+  );
 
   const handleCloseBadgeModal = useCallback(() => {
     setIsBadgeModalOpen(false);
     setBadgeModalContributor(null);
   }, []);
 
+  // Use mock data only in development mode when there's an error or no contributors
   const displayContributors =
     error || contributors.length === 0
       ? typeof process !== "undefined" && process.env.NODE_ENV === "development"
@@ -306,6 +326,7 @@ export default function LeaderBoard(): JSX.Element {
         : []
       : contributors;
 
+  // Filter out excluded users and apply search filter
   const filteredContributors = contributors
     .filter(
       (contributor) =>
@@ -328,7 +349,9 @@ export default function LeaderBoard(): JSX.Element {
 
   const renderPaginationButtons = () => {
     const pages = [];
+    const maxVisibleButtons = 5; // Maximum number of page buttons to show directly
 
+    // Special case: if we have 7 or fewer pages, show all of them without ellipsis
     if (totalPages <= 7) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(
@@ -344,6 +367,9 @@ export default function LeaderBoard(): JSX.Element {
       return pages;
     }
 
+    // For more than 7 pages, use the ellipsis approach
+
+    // Always show first page
     pages.push(
       <button
         key={1}
@@ -354,17 +380,23 @@ export default function LeaderBoard(): JSX.Element {
       </button>,
     );
 
+    // Calculate the range of pages to show (middle section)
+    // We want to show current page and 1-2 pages before and after when possible
     let startPage = Math.max(2, currentPage - 1);
     let endPage = Math.min(totalPages - 1, currentPage + 1);
 
+    // Adjust start and end page if we're near the beginning or end
     if (currentPage <= 3) {
+      // Near the beginning, show pages 2, 3, 4
       startPage = 2;
       endPage = Math.min(4, totalPages - 1);
     } else if (currentPage >= totalPages - 2) {
+      // Near the end, show the three pages before the last page
       endPage = totalPages - 1;
       startPage = Math.max(2, totalPages - 3);
     }
 
+    // Show ellipsis if needed before the middle range
     if (startPage > 2) {
       pages.push(
         <span key="ellipsis-1" className="pagination-ellipsis">
@@ -373,6 +405,7 @@ export default function LeaderBoard(): JSX.Element {
       );
     }
 
+    // Show pages in the middle range
     for (let i = startPage; i <= endPage; i++) {
       pages.push(
         <button
@@ -385,6 +418,7 @@ export default function LeaderBoard(): JSX.Element {
       );
     }
 
+    // Show ellipsis if needed after the middle range
     if (endPage < totalPages - 1) {
       pages.push(
         <span key="ellipsis-2" className="pagination-ellipsis">
@@ -393,6 +427,7 @@ export default function LeaderBoard(): JSX.Element {
       );
     }
 
+    // Always show last page
     pages.push(
       <button
         key={totalPages}
@@ -413,20 +448,25 @@ export default function LeaderBoard(): JSX.Element {
     return "regular";
   };
 
+  // Helper function for time filter display
   const getTimeFilterLabel = (filter: string) => {
     switch (filter) {
-      case "week": return "📊 This Week";
-      case "month": return "📆 This Month";
-      case "year": return "📅 This Year";
-      case "all": return "🏆 All Time";
-      default: return "🏆 All Time";
+      case "week":
+        return "📊 This Week";
+      case "month":
+        return "📆 This Month";
+      case "year":
+        return "📅 This Year";
+      case "all":
+        return "🏆 All Time";
+      default:
+        return "🏆 All Time";
     }
   };
 
   return (
     <div className={`leaderboard-container ${isDark ? "dark" : "light"}`}>
       <div className="leaderboard-content">
-
         {/* Header */}
         <motion.div
           className="header"
@@ -445,15 +485,19 @@ export default function LeaderBoard(): JSX.Element {
         {!loading && filteredContributors.length > 2 && (
           <div className="top-performers-container">
             <div className="title-filter-container">
-              <h2 className={`top-performers-title ${isDark ? "dark" : "light"}`}>
+              <h2
+                className={`top-performers-title ${isDark ? "dark" : "light"}`}
+              >
                 recode hive Top Performers
               </h2>
               <div className="time-filter-wrapper top-title-filter">
-                <label htmlFor="time-period-filter" className="filter-label"></label>
+                <label htmlFor="time-period-filter" className="filter-label">
+                </label>
                 <select
                   id="time-period-filter"
                   value={currentTimeFilter}
                   onChange={(e) => {
+                    // Use setTimeFilter from context
                     setTimeFilter(e.target.value as any);
                     setCurrentPage(1);
                     setIsSelectChanged(true);
@@ -469,6 +513,7 @@ export default function LeaderBoard(): JSX.Element {
               </div>
             </div>
             <div className="top-performers-grid">
+              {/* Podium-style top performers — adapted from index.html's leaderboard-podium */}
               <div className="leaderboard-podium">
                 {/* Second place */}
                 {filteredContributors[1] && (
@@ -480,9 +525,14 @@ export default function LeaderBoard(): JSX.Element {
                       className="user-photo"
                     />
                     <div className="details">
-                      <p className="username">{filteredContributors[1].username}</p>
+                      <p className="username">
+                        {filteredContributors[1].username}
+                      </p>
                       <ContributorBadges
-                        badges={getContributorBadges(filteredContributors[1], 2)}
+                        badges={getContributorBadges(
+                          filteredContributors[1],
+                          2,
+                        )}
                         onClick={() => handleBadgeClick(filteredContributors[1])}
                       />
                       <div className="stats">
@@ -493,7 +543,9 @@ export default function LeaderBoard(): JSX.Element {
                         >
                           {filteredContributors[1].prs} PRs
                         </button>
-                        <span className="points">{filteredContributors[1].points} Points</span>
+                        <span className="points">
+                          {filteredContributors[1].points} Points
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -509,9 +561,14 @@ export default function LeaderBoard(): JSX.Element {
                       className="user-photo"
                     />
                     <div className="details">
-                      <p className="username">{filteredContributors[0].username}</p>
+                      <p className="username">
+                        {filteredContributors[0].username}
+                      </p>
                       <ContributorBadges
-                        badges={getContributorBadges(filteredContributors[0], 1)}
+                        badges={getContributorBadges(
+                          filteredContributors[0],
+                          1,
+                        )}
                         onClick={() => handleBadgeClick(filteredContributors[0])}
                       />
                       <div className="stats">
@@ -522,7 +579,9 @@ export default function LeaderBoard(): JSX.Element {
                         >
                           {filteredContributors[0].prs} PRs
                         </button>
-                        <span className="points">{filteredContributors[0].points} Points</span>
+                        <span className="points">
+                          {filteredContributors[0].points} Points
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -538,9 +597,14 @@ export default function LeaderBoard(): JSX.Element {
                       className="user-photo"
                     />
                     <div className="details">
-                      <p className="username">{filteredContributors[2].username}</p>
+                      <p className="username">
+                        {filteredContributors[2].username}
+                      </p>
                       <ContributorBadges
-                        badges={getContributorBadges(filteredContributors[2], 3)}
+                        badges={getContributorBadges(
+                          filteredContributors[2],
+                          3,
+                        )}
                         onClick={() => handleBadgeClick(filteredContributors[2])}
                       />
                       <div className="stats">
@@ -551,7 +615,9 @@ export default function LeaderBoard(): JSX.Element {
                         >
                           {filteredContributors[2].prs} PRs
                         </button>
-                        <span className="points">{filteredContributors[2].points} Points</span>
+                        <span className="points">
+                          {filteredContributors[2].points} Points
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -566,28 +632,46 @@ export default function LeaderBoard(): JSX.Element {
           <div className="stats-grid">
             <div className={`stat-card ${isDark ? "dark" : "light"}`}>
               <div className="stat-content">
-                <div className="stat-icon users"><FaUsers /></div>
+                <div className={`stat-icon users`}>
+                  <FaUsers />
+                </div>
                 <div>
-                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>{stats.totalContributors}</div>
-                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>Total Contributors</div>
+                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>
+                    {stats.totalContributors}
+                  </div>
+                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>
+                    Total Contributors
+                  </div>
                 </div>
               </div>
             </div>
             <div className={`stat-card ${isDark ? "dark" : "light"}`}>
               <div className="stat-content">
-                <div className="stat-icon prs"><FaCode /></div>
+                <div className={`stat-icon prs`}>
+                  <FaCode />
+                </div>
                 <div>
-                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>{stats.flooredTotalPRs}</div>
-                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>Merged PRs</div>
+                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>
+                    {stats.flooredTotalPRs}
+                  </div>
+                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>
+                    Merged PRs
+                  </div>
                 </div>
               </div>
             </div>
             <div className={`stat-card ${isDark ? "dark" : "light"}`}>
               <div className="stat-content">
-                <div className="stat-icon points"><FaStar /></div>
+                <div className={`stat-icon points`}>
+                  <FaStar />
+                </div>
                 <div>
-                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>{stats.flooredTotalPoints}</div>
-                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>Total Points</div>
+                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>
+                    {stats.flooredTotalPoints}
+                  </div>
+                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>
+                    Total Points
+                  </div>
                 </div>
               </div>
             </div>
@@ -647,13 +731,15 @@ export default function LeaderBoard(): JSX.Element {
         )}
 
         {!loading && filteredContributors.length > 0 && (
-          <div className={`contributors-container ${isDark ? "dark" : "light"}`}>
+          <div
+            className={`contributors-container ${isDark ? "dark" : "light"}`}
+          >
             {error && (
               <div
                 className="error-banner"
                 style={{
                   padding: "12px",
-                  backgroundColor: "#fee8e7",
+                  backgroundColor: isDark ? "#fee8e7" : "#fee8e7",
                   color: "#dc2626",
                   borderRadius: "8px",
                   marginBottom: "16px",
@@ -664,7 +750,6 @@ export default function LeaderBoard(): JSX.Element {
                 Demo Mode: Showing sample data due to API configuration issue
               </div>
             )}
-
             <div className="contributors-header">
               <div className="contributor-cell rank">Rank</div>
               <div className="contributor-cell avatar-cell">Avatar</div>
@@ -673,18 +758,20 @@ export default function LeaderBoard(): JSX.Element {
               <div className="contributor-cell points-cell">Points</div>
               <div className="contributor-cell badges-cell">Badges</div>
             </div>
-
             {currentItems.map((contributor, index) => (
               <motion.div
                 key={contributor.username}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className={`contributor-row ${index % 2 === 0 ? "even" : "odd"}`}
+                className={`contributor-row ${isDark ? (index % 2 === 0 ? "even" : "odd") : index % 2 === 0 ? "even" : "odd"}`}
               >
-                <div className="contributor-cell rank-cell">
+                {/*
+                  This avoids indexOf() issues and is O(1).
+                */}
+                <div className={`contributor-cell rank-cell`}>
                   {(() => {
-                    const rankIndex = indexOfFirst + index;
+                    const rankIndex = indexOfFirst + index; // zero-based global index
                     return (
                       <div className={`rank-badge ${getRankClass(rankIndex)}`}>
                         {rankIndex + 1}
@@ -727,7 +814,10 @@ export default function LeaderBoard(): JSX.Element {
                 </div>
                 <div className="contributor-cell badges-cell">
                   <ContributorBadges
-                    badges={getContributorBadges(contributor, indexOfFirst + index + 1)}
+                    badges={getContributorBadges(
+                      contributor,
+                      indexOfFirst + index + 1,
+                    )}
                     onClick={() => handleBadgeClick(contributor)}
                   />
                 </div>
@@ -764,33 +854,18 @@ export default function LeaderBoard(): JSX.Element {
               <p className={`cta-text ${isDark ? "dark" : "light"}`}>
                 Want to get on this leaderboard?
               </p>
-              <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", gap: 8 }}>
-                <a
-                  href={`https://github.com/${GITHUB_ORG}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="cta-button"
-                >
-                  <FaGithub style={{ marginRight: 8 }} />
-                  Contribute on GitHub
-                </a>
-                {filteredContributors.length > 0 && (
-                  <ContributorCard
-                    username={filteredContributors[0].username}
-                    avatar={filteredContributors[0].avatar}
-                    prs={filteredContributors[0].prs}
-                    points={filteredContributors[0].points}
-                    rank={1}
-                    badges={getContributorBadges(filteredContributors[0], 1)}
-                    isDark={isDark}
-                  />
-                )}
-              </div>
+              <a
+                href={`https://github.com/${GITHUB_ORG}`}
+                target="_blank"
+                rel="noreferrer"
+                className="cta-button"
+              >
+                <FaGithub style={{ marginRight: 8 }} />
+                Contribute on GitHub
+              </a>
             </div>
-
           </div>
         )}
-
       </div>
 
       {/* PR List Modal */}
@@ -815,7 +890,6 @@ export default function LeaderBoard(): JSX.Element {
           contributorName={badgeModalContributor.username}
         />
       )}
-
     </div>
   );
 }
