@@ -1,9 +1,8 @@
-import React from "react";
 import Layout from "@theme-original/Layout";
 import Link from "@docusaurus/Link";
 import Head from "@docusaurus/Head";
 
-export default function HTMLRoadmapComingSoon(): React.JSX.Element {
+export default function HTMLRoadmapComingSoon(): JSX.Element {
   return (
     <Layout
       title="HTML Topic Coming Soon"
