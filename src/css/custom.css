@@ -493,6 +493,12 @@ body {
 }
 
 [data-theme="dark"] {
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #0a0a0a;
+  --ifm-navbar-background-color: #000000;
+  --ifm-footer-background-color: #000000;
+  --ifm-toc-border-color: #2a2a2a;
+  --ifm-menu-color-background-active: #111111;
   --ifm-color-primary: #60a5fa;
   --ifm-color-primary-dark: #3b82f6;
   --ifm-color-primary-darker: #2563eb;
@@ -504,16 +510,16 @@ body {
 
   /* Global dark theme tokens used across feature pages (courses, broadcasts, sponsors, etc.) */
   /* Backgrounds */
-  --dark-bg-primary: #0b1220;
-  /* base page background (deep navy) */
-  --dark-bg-secondary: #0f172a;
+  --dark-bg-primary: #000000;
+  /* base page background (black) */
+  --dark-bg-secondary: #0a0a0a;
   /* section alt background */
-  --dark-bg-tertiary: #111827;
+  --dark-bg-tertiary: #111111;
   /* subtle surfaces */
   /* Cards */
-  --dark-card-bg: #111827;
+  --dark-card-bg: #111111;
   /* card background */
-  --dark-card-hover-bg: #0f172a;
+  --dark-card-hover-bg: #1a1a1a;
   /* card hover background */
   /* Text */
   --dark-text-primary: #e5e7eb;
@@ -2174,7 +2180,7 @@ html[data-theme="dark"] {
 }
 
 /* TOC inner wrapper — sticky; border-left here so the vertical line
-  only spans the height of the TOC content, not the full page */
+   only spans the height of the TOC content, not the full page */
 .blog-wrapper .col.col--2>div {
   position: sticky !important;
   top: calc(var(--ifm-navbar-height, 60px) + 1rem) !important;
