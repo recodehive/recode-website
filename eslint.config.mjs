@@ -35,6 +35,12 @@ export default [
     files: ["**/*.{js,jsx}"],
     ignores: ["node_modules/", "build/", ".docusaurus/", "static/", "dist/"],
     languageOptions: {
+      parser: tsParser,
+      parserOptions: {
+        ecmaVersion: 2021,
+        sourceType: "module",
+        ecmaFeatures: { jsx: true },
+      },
       globals: {
         window: "readonly",
         document: "readonly",

@@ -83,6 +83,7 @@ the best practice, Use a short, descriptive name  for example `blog/intro-to-doc
 ## Step 6: Add your name to Author list : optional
 :::info
 If you are first time contributing to blog section, add yourself as author, this gives you good visibility on Google search and better career opportunities.
+We use [docusaurus](https://docusaurus.io/docs) for documentation.
 :::
 Open your code editor and head into sidebar and expand the `blog` folder
 and open the file `authors.yml`. Refer the below image and copy paste the code into the yml as shown.
@@ -154,9 +155,6 @@ touch blog/your-blog-title/index.md
     
 </Tabs>
 ---
-
-
-
 
 ## Step 9: Write the Frontmatter
 
@@ -270,6 +268,8 @@ Google changing its icons is a small thing in isolation. But it is interesting a
 ---
 **About the Author**
 Sanjay is a Data Engineer focused on building modern data platforms and writing about technology at RecodeHive. He writes about data engineering, cloud architecture, and the tech decisions that actually affect people's daily work.
+
+<GiscusComments/>
 ```
 
 :::info
@@ -325,7 +325,7 @@ Use `##` and `###` headings to structure your content.
 
 #### Bulleted Summary Section (Required)
 
-Every blog must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
+Every techincal explanation blog eg: `how to run codeql on GitHub` must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
 
 ```md
 **What you'll learn in this post:**
@@ -333,16 +333,14 @@ Every blog must begin with a bulleted summary right after the intro paragraph. T
 - How to configure Y for production
 - Common pitfalls and how to avoid them
 ```
-
-    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-     [![Github](assets/blog-09-new-issue.png)](https://github.com/recodehive/recode-website/issues)
-    </BrowserWindow>
   </TabItem>
+  
 
 <TabItem value="Add code blocks" label="Add code blocks">
      #### Named Code Blocks (Required)
 
 Always label code blocks with a filename so readers know exactly what file they are editing:
+Once you copy paste this block it will appear exactly like this for the users.
 
 ````md
 ```java title="Sample.java"
@@ -353,9 +351,7 @@ public class Hello {
 }
 ```
 ````
-  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-     [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
-    </BrowserWindow>
+
   </TabItem>
 
   <TabItem value="Query + Output: Use Tabs" label="Query + Output: Use Tabs">
@@ -374,37 +370,50 @@ Then structure your query + output like this:
 
 ````md
 <Tabs>
-  <TabItem value="Query">
+  <TabItem value="SQL Table" label="SQL Table">
+```sql title="Friends"
+  | id | name            | username         |
+|----|-----------------|------------------|
+| 1  | John Doe        | @johndoe         |
+| 2  | Jane Smith      | @janesmith       |
+| 3  | Bob Johnson     | @bobjohnson      |
+```
+  </TabItem>
 
-  ```sql
+<TabItem value="SQL Code" label="SQL Code">
+  
+  ```sql title="Creating SQL Tables & db. "
+
+    -- creating database
+    CREATE DATABASE my_database;
+
+    -- use the database you created
+    USE my_database;
+
+
   -- Create the table
-  CREATE TABLE friends (
+CREATE TABLE friends (
     id INT PRIMARY KEY,
     name VARCHAR(100),
     username VARCHAR(100)
-  );
+);
 
-  -- Insert data
-  INSERT INTO friends (id, name, username) VALUES
-  (1, 'John Doe', 'johndoe'),
-  (2, 'Jane Smith', 'janesmith'),
-  (3, 'Bob Johnson', 'bobjohnson');
-  ```
+-- Insert data into the table
+INSERT INTO friends (id, name, username) VALUES
+(1, 'John Doe', '@johndoe'),
+(2, 'Jane Smith', '@janesmith'),
+(3, 'Bob Johnson', '@bobjohnson');
 
-  </TabItem>
-  <TabItem value="Output">
-
-  | id | name        | username    |
-  |----|-------------|-------------|
-  | 1  | John Doe    | johndoe     |
-  | 2  | Jane Smith  | janesmith   |
-  | 3  | Bob Johnson | bobjohnson  |
+    ```
 
   </TabItem>
+    
 </Tabs>
+
+
 ````
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-     [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+     [![Github](assets/blog-14-new-issue.png)](https://github.com/recodehive/recode-website/issues)
     </BrowserWindow>
   </TabItem>
 
@@ -431,7 +440,7 @@ Especially from an experienced engineers, it will be easy for new genertion code
 :::
 
 
-## Step 11: Add Screenshots and Images
+## Step 11: Add Screenshots and Banner
 
 ### Recommended Screenshot Dimensions
 
@@ -447,7 +456,7 @@ Use **PNG** for UI screenshots (crisp text) and **JPEG/WebP** for photos.
 ### Naming Convention
 
 Use lowercase, hyphen-separated, numbered filenames so they sort correctly and are SEO-friendly. **Never use random or auto-generated names.**
-
+also never leave space on naming, it should be connected with hypen.
 ```
 assets/
 ├── cover.png
@@ -457,7 +466,7 @@ assets/
 ```
 <Tabs>
 
-<TabItem value="Step 101" label="Step 101">
+<TabItem value="Cover page Image" label="Index page Banner">
      Do `npm run build` and complete the build to see everything works fine.
      <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
      [![Github](assets/blog-10-new-issue.png)](https://github.com/recodehive/recode-website/issues)
@@ -480,6 +489,9 @@ Reference images relative to `index.md`:
 ```md
 ![Alt text describing the image](./images/01-open-settings.png)
 ```
+<BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+    [![Github](assets/blog-05-new-issue.png)](https://github.com/recodehive/recode-website/issues)
+  </BrowserWindow>
 
 Always write descriptive alt text — it improves accessibility and SEO.
 
@@ -617,7 +629,7 @@ Before starting any development, make sure your blog meets **all** of the follow
 
 
 ## Step 10: Preview Your Post
-
+Do lint check and then build before push
 Make sure your dev server is still running (`npm start`), then navigate to [http://localhost:3000/blog](http://localhost:3000/blog) to see your post in the listing and click into it to read the full content. Verify:
 
 - The frontmatter title, date, and author show correctly.

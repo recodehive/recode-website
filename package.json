@@ -27,7 +27,7 @@
     ]
   },
   "dependencies": {
-    "@clerk/react": "^6.6.6",
+    "@clerk/react": "^6.7.1",
     "@docusaurus/core": "3.10.1",
     "@docusaurus/plugin-content-docs": "3.10.1",
     "@docusaurus/plugin-google-analytics": "3.10.1",
@@ -56,7 +56,8 @@
     "dotenv": "^17.4.2",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.39.0",
+    "framer-motion": "^12.40.0",
+    "html-to-image": "^1.11.13",
     "lucide-react": "^0.503.0",
     "prism-react-renderer": "^2.3.0",
     "react": "^18.3.1",
