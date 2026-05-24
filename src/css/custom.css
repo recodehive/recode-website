@@ -5,6 +5,86 @@
   color: inherit;
 }
 
+/* FINAL MOBILE OVERRIDE: aggressively remove any top gap on narrow viewports
+   This targets any leftover placeholders, pseudo-elements, safe-area padding,
+   or theme-provided offsets. Keep it last so it wins over other rules. */
+@media screen and (max-width: 1024px) {
+
+  /* remove any generated placeholders or spacer elements that push content down */
+  .theme-doc-navbar-placeholder,
+  .theme-doc-navbar-placeholder * {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* global resets for top spacing and pseudo-elements */
+  html,
+  body,
+  #__docusaurus,
+  .main-wrapper,
+  header,
+  .theme-doc-navbar,
+  .navbar {
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
+    min-height: 0 !important;
+    background-clip: border-box !important;
+  }
+
+  /* remove any pseudo elements that could create a visible gap */
+  html::before,
+  html::after,
+  body::before,
+  body::after,
+  header::before,
+  header::after,
+  .navbar::before,
+  .navbar::after,
+  .theme-doc-navbar::before,
+  .theme-doc-navbar::after {
+    content: none !important;
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* pin header to the very top and extend background into the safe area */
+  header,
+  .theme-doc-navbar,
+  .navbar {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    z-index: 99999 !important;
+    padding-top: env(safe-area-inset-top, 0px) !important;
+    background: var(--ifm-navbar-background-color, var(--ifm-background-color, #0b1220)) !important;
+    box-shadow: none !important;
+  }
+
+  /* ensure inner navbar doesn't add height */
+  .navbar__inner,
+  .navbar__brand {
+    margin: 0 !important;
+    padding: 0.5rem 0.75rem !important;
+    height: auto !important;
+  }
+
+  /* move the page content up directly under the fixed header */
+  main,
+  #__docusaurus,
+  .main-wrapper {
+    margin: 0 !important;
+    padding-top: calc(var(--ifm-navbar-height, 56px) + env(safe-area-inset-top, 0px)) !important;
+  }
+
+}
+
 /* Careers testimonials */
 .testimonials-section .testimonial-carousel {
   background: #ffffff;
@@ -1040,8 +1120,47 @@ html {
 
 /* Enhanced focus styles */
 *:focus {
+
   outline: 2px solid #667eea;
   outline-offset: 2px;
+}
+
+/* Mobile: keep the accessibility skip-link out of the visible top band.
+   It stays keyboard-accessible because it becomes visible again on focus. */
+@media screen and (max-width: 996px) {
+
+  .skipToContent_fXgn,
+  div[role="region"][aria-label="Skip to main content"] {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  .skipToContent_fXgn:focus,
+  .skipToContent_fXgn:focus-visible,
+  div[role="region"][aria-label="Skip to main content"]:focus,
+  div[role="region"][aria-label="Skip to main content"]:focus-within {
+    position: fixed !important;
+    left: 1rem !important;
+    top: 1rem !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0.5rem 1rem !important;
+    overflow: visible !important;
+    clip: auto !important;
+    clip-path: none !important;
+    white-space: normal !important;
+  }
 }
 
 /* Custom selection colors */
@@ -2348,3 +2467,103 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
 /* =====================================================
    END SECTION 15
    ===================================================== */
+
+/* ===== MOBILE TOP-GAP FIX ===== */
+@media screen and (max-width: 996px) {
+
+  html,
+  body,
+  #__docusaurus,
+  .main-wrapper,
+  header,
+  .theme-doc-navbar,
+  .navbar,
+  .navbar--fixed-top,
+  .theme-doc-navbar-placeholder {
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
+  }
+
+  html,
+  body {
+    min-height: 100% !important;
+    background: var(--ifm-navbar-background-color, var(--ifm-background-color)) !important;
+  }
+
+  body {
+    overflow-x: hidden !important;
+  }
+
+  .theme-doc-navbar-placeholder,
+  .theme-doc-navbar-placeholder * {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  header,
+  .theme-doc-navbar,
+  .navbar,
+  .navbar--fixed-top {
+    position: sticky !important;
+    inset: auto !important;
+    z-index: 99999 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    min-height: 0 !important;
+    background: var(--ifm-navbar-background-color, var(--ifm-background-color)) !important;
+    background-clip: padding-box !important;
+  }
+
+  .navbar__inner,
+  .navbar__brand,
+  .navbar__items,
+  .navbar__item {
+    margin: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .navbar {
+    height: auto !important;
+    min-height: 48px !important;
+  }
+
+  main,
+  #__docusaurus,
+  .main-wrapper {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  main>*:first-child,
+  main>div:first-child,
+  .main-wrapper>*:first-child,
+  #__docusaurus>*:first-child,
+  .hero,
+  .hero-section,
+  .docs-home-hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  html::before,
+  html::after,
+  body::before,
+  body::after,
+  header::before,
+  header::after,
+  .navbar::before,
+  .navbar::after,
+  .theme-doc-navbar::before,
+  .theme-doc-navbar::after {
+    content: none !important;
+    display: none !important;
+  }
+}
