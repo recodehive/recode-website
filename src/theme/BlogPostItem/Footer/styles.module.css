@@ -4,7 +4,7 @@
   padding: 1.5rem;
   border: 1px solid var(--ifm-color-emphasis-300);
   border-radius: 16px;
-  background: #FAFBFD;
+  background: var(--ifm-color-emphasis-100);
   box-sizing: border-box;
 }
 
@@ -32,16 +32,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.authorAvatarLink {
-  display: block;
-  line-height: 0;
-  border-radius: 50%;
-}
-
-.authorAvatarLink:hover {
-  opacity: 0.85;
 }
 
 .authorAvatar,
@@ -74,21 +64,6 @@
   font-size: 1.75rem;
   font-weight: 800;
   line-height: 1.2;
-  color: var(--ifm-font-color-base);
-  text-decoration: none;
-}
-
-.authorName:hover {
-  text-decoration: underline;
-}
-
-.authorHandleLink {
-  color: inherit;
-  text-decoration: none;
-}
-
-.authorHandleLink:hover {
-  text-decoration: underline;
 }
 
 .authorNameRow {
@@ -116,8 +91,8 @@
 .authorSummary {
   margin: 0.65rem 0 0;
   color: var(--ifm-color-emphasis-800);
-  font-size: 0.875rem;
-  line-height: 1.625;
+  font-size: 1.1rem;
+  line-height: 1.4;
 }
 
 .githubButton {

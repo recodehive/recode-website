@@ -89,7 +89,9 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
       month: "short",
       day: "numeric",
     }).format(new Date(metadata.date));
-  const metaDateAndTime = [blogDate, readTimeText].filter(Boolean).join(META_SEPARATOR);
+  const metaItems = [authorHandle, blogDate, readTimeText]
+    .filter(Boolean)
+    .join(META_SEPARATOR);
 
   const showAuthorCard = Boolean(isBlogPostPage && primaryAuthor && authorName);
 
@@ -109,28 +111,7 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
         <section ref={authorCardRef} className={styles.authorCard} aria-label="Post author details">
           <div className={styles.authorBody}>
             <div className={styles.authorAvatarWrapper}>
-              {githubUrl ? (
-                <Link
-                  to={githubUrl}
-                  className={styles.authorAvatarLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`${authorName} on GitHub`}
-                >
-                  {authorAvatar ? (
-                    <img
-                      className={styles.authorAvatar}
-                      src={authorAvatar}
-                      alt={`${authorName} profile picture`}
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div className={styles.authorAvatarFallback} aria-hidden="true">
-                      {authorName?.charAt(0).toUpperCase()}
-                    </div>
-                  )}
-                </Link>
-              ) : authorAvatar ? (
+              {authorAvatar ? (
                 <img
                   className={styles.authorAvatar}
                   src={authorAvatar}
@@ -156,40 +137,10 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
             </div>
             <div className={styles.authorIdentity}>
               <div className={styles.authorNameRow}>
-                {githubUrl ? (
-                  <Link
-                    to={githubUrl}
-                    className={styles.authorName}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {authorName}
-                  </Link>
-                ) : (
-                  <p className={styles.authorName}>{authorName}</p>
-                )}
+                <p className={styles.authorName}>{authorName}</p>
                 <span className={styles.authorBadge}>Author</span>
               </div>
-              {(authorHandle || metaDateAndTime) ? (
-                <p className={styles.authorMeta}>
-                  {authorHandle && (
-                    githubUrl ? (
-                      <Link
-                        to={githubUrl}
-                        className={styles.authorHandleLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {authorHandle}
-                      </Link>
-                    ) : (
-                      authorHandle
-                    )
-                  )}
-                  {authorHandle && metaDateAndTime ? META_SEPARATOR : null}
-                  {metaDateAndTime}
-                </p>
-              ) : null}
+              {metaItems ? <p className={styles.authorMeta}>{metaItems}</p> : null}
               {authorSummary ? (
                 <p className={styles.authorSummary}>{authorSummary}</p>
               ) : null}

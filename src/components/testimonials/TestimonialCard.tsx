@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useSafeColorMode } from "../../utils/useSafeColorMode";
@@ -54,9 +54,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     };
   };
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={mounted ? { opacity: 0, y: 20 } : false}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       whileHover={{ y: -8 }}
@@ -95,18 +98,27 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             </Avatar>
 
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-gray-900 mb-1 tracking-tight">
+              <h3
+                className="testimonial-author-name mb-1 text-xl font-bold leading-tight tracking-tight"
+                style={{ color: "#111827", opacity: 1, WebkitTextFillColor: "#111827" }}
+              >
                 {name}
               </h3>
               {username !== "AryanGupta" && username !== "DonaldAnyamba" && (
-                <p className="text-sm text-gray-700 font-medium mb-3">
+                <p
+                  className="testimonial-author-role mb-3 text-sm font-medium"
+                  style={{ color: "#334155", opacity: 1, WebkitTextFillColor: "#334155" }}
+                >
                   {username === "VivienChen" ? "Founder @ Toastie (BC Y24)" :
                     username === "DanielHan" ? "Founder @ Unsloth AI (YC W24, BC Y24)" :
                       "AI Engineer @ Relevance AI"}
                 </p>
               )}
 
-              <div className="flex items-center gap-3 text-xs text-gray-700">
+              <div
+                className="flex items-center gap-3 text-xs"
+                style={{ color: "#334155", opacity: 1, WebkitTextFillColor: "#334155" }}
+              >
                 <span className="font-medium">{date}</span>
               </div>
             </div>

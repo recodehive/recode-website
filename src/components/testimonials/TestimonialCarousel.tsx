@@ -72,6 +72,9 @@ export function TestimonialCarousel() {
   const [current, setCurrent] = useState(0);
   const [count, setCount] = useState(0);
   const { colorMode } = useSafeColorMode();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     if (!api) {
@@ -106,7 +109,7 @@ export function TestimonialCarousel() {
 
       <div className="relative mx-auto max-w-7xl px-4 z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={mounted ? { opacity: 0, y: 30 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-16 text-center"
@@ -121,7 +124,7 @@ export function TestimonialCarousel() {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={mounted ? { opacity: 0, y: 40 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >

@@ -34,7 +34,7 @@ export default function ReadingTimeIndicator({
       authorCardReached = pageScrollPercent >= 90;
     }
 
-    const shouldBeVisible = pageScrollPercent >= 2 && !authorCardReached;
+    const shouldBeVisible = pageScrollPercent >= 15 && !authorCardReached;
     setVisible(shouldBeVisible);
 
     // Calculate remaining time proportional to how far through the content the
