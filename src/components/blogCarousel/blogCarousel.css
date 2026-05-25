@@ -483,6 +483,15 @@
   border: 1px solid rgba(99, 102, 241, 0.15);
 }
 
+.blog-carousel-section p {
+  color: #111827 !important;
+}
+
+[data-theme="dark"] .blog-carousel-section p {
+  color: #d1d5db !important;
+}
+
+
 [data-theme="dark"] .card-read-time {
   color: #a78bfa;
   background: rgba(167, 139, 250, 0.1);
