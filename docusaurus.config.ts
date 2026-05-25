@@ -7,7 +7,6 @@ dotenv.config({ path: ".env.local" });
 dotenv.config();
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
-
 const algoliaAppId = process.env.ALGOLIA_APP_ID?.trim();
 const algoliaSearchApiKey = process.env.ALGOLIA_SEARCH_API_KEY?.trim();
 const algoliaIndexName = process.env.ALGOLIA_INDEX_NAME?.trim();
@@ -109,12 +108,12 @@ const config: Config = {
       title: "recode hive",
       logo: {
         alt: "recode hive Logo",
-        src: "img/logo.png",
+        src: "/img/logo.png",
       },
       items: [
         {
           type: "dropdown",
-          html: '<span class="nav-emoji">📚</span> Docs',
+          html: '<span class="nav-symbol" aria-hidden="true">🗀</span> Docs',
           position: "left",
           to: "/docs/",
           items: [
@@ -165,66 +164,66 @@ const config: Config = {
         },
         {
           to: "/showcase",
-          html: '<span class="nav-emoji">🌍</span> Showcase',
+          html: '<span class="nav-symbol" aria-hidden="true">◇</span> Showcase',
           position: "left",
         },
         {
           to: "/dashboard",
-          html: '<span class="nav-emoji">📊</span> Dashboard',
+          html: '<span class="nav-symbol" aria-hidden="true">⊞</span> Dashboard',
           position: "left",
         },
         {
           to: "/our-sponsors/",
-          html: '<span class="nav-emoji">💰</span> Donate',
+          html: '<span class="nav-symbol" aria-hidden="true">$</span> Donate',
           position: "left",
         },
         {
           type: "dropdown",
-          html: '<span class="nav-emoji">👩🏻‍💻</span> Devfolio',
+          html: '<span class="nav-symbol" aria-hidden="true">⌘</span> Devfolio',
           position: "left",
           items: [
             {
-              label: "💻GitHub Profiles",
+              label: "◆ GitHub Profiles",
               to: "https://dev.recodehive.com/devfolio",
             },
             {
-              label: "🎖️ GitHub Badges",
+              label: "▣ GitHub Badges",
               to: "/badges/github-badges/",
             },
           ],
         },
         {
           to: "/blogs",
-          html: '<span class="nav-emoji">📰</span> Blogs',
+          html: '<span class="nav-symbol" aria-hidden="true">✦</span> Blogs',
           position: "left",
         },
         {
           type: "dropdown",
-          html: '<span class="nav-emoji">🔗</span> More',
+          html: '<span class="nav-symbol" aria-hidden="true">⋯</span> More',
           position: "left",
           items: [
             {
-              label: "📚 E-books",
+              label: "▸ E-books",
               to: "/ebooks",
             },
             {
-              label: "🗺️ Roadmap",
+              label: "➜ Roadmap",
               to: "/roadmaps",
             },
             {
-              label: "🤝 Community",
+              label: "◌ Community",
               to: "/community",
             },
             {
-              label: "📺 Broadcast",
+              label: "◉ Broadcast",
               to: "/broadcasts/",
             },
             {
-              label: "🎙️ Podcast",
+              label: "◍ Podcast",
               to: "/podcasts/",
             },
             {
-              label: "🛍️ Merch Store",
+              label: "▧ Merch Store",
               to: "/merch",
             },
           ],

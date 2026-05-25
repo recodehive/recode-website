@@ -1,4 +1,7 @@
 import React, { type ReactNode, useMemo } from "react";
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useThemeConfig, ErrorCauseBoundary } from "@docusaurus/theme-common";
 import { splitNavbarItems } from "@docusaurus/theme-common/internal";
 import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem";
@@ -6,7 +9,6 @@ import NavbarColorModeToggle from "@theme/Navbar/ColorModeToggle";
 import AlgoliaSiteSearch from "@site/src/components/AlgoliaSiteSearch";
 // import SearchBar from '@theme/SearchBar';
 import NavbarMobileSidebarToggle from "@theme/Navbar/MobileSidebar/Toggle";
-import NavbarLogo from "@theme/Navbar/Logo";
 // import NavbarSearch from '@theme/Navbar/Search';
 
 // Safe wrapper component that handles the mobile sidebar toggle
@@ -75,6 +77,20 @@ function NavbarContentLayout({
   );
 }
 
+function NavbarBrand(): ReactNode {
+  const { siteConfig } = useDocusaurusContext();
+  const logoConfig = siteConfig.themeConfig.navbar.logo;
+  const logoSrc = useBaseUrl(logoConfig?.src ?? "img/logo.png");
+  const logoAlt = logoConfig?.alt ?? siteConfig.title;
+
+  return (
+    <Link className="navbar__brand" to={useBaseUrl("/")} aria-label={siteConfig.title}>
+      <img className="navbar__logo" src={logoSrc} alt={logoAlt} />
+      <strong className="navbar__title">{siteConfig.title}</strong>
+    </Link>
+  );
+}
+
 export default function NavbarContent(): ReactNode {
   const items = useNavbarItems();
 
@@ -90,7 +106,7 @@ export default function NavbarContent(): ReactNode {
         <>
           {/* Safe wrapper for mobile sidebar toggle */}
           <SafeMobileSidebarToggle />
-          <NavbarLogo />
+          <NavbarBrand />
           <NavbarItems items={leftItems} />
         </>
       }
