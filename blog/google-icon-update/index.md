@@ -175,6 +175,9 @@ Companies only fix long-standing UX complaints when something else is changing a
 
 Whether the new icons are beautiful or not matters less than whether they work. And by the only measure that actually counts, distinguishing one app from another in half a second, <span style={{color: 'red'}}> **the 2026 redesign works better than the 2020 one did.**</span>
 
+## References
+
+- [9to5Google: Google's new gradient icons for Gmail, Calendar, Drive, and other apps are radical redesigns](https://9to5google.com/2026/04/26/gmail-google-gradient-redesign/)
 
 
 <GiscusComments/>
