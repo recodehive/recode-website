@@ -45,7 +45,7 @@ export function BlogCarousel() {
           </p>
         </div>
         <Link
-          to="/blog"
+          to="/blogs"
           className="flex items-center gap-1.5 text-sm font-medium text-indigo-600 border border-indigo-200 px-4 py-2 rounded-lg hover:bg-indigo-50 transition-all dark:text-indigo-400 dark:border-indigo-800 dark:hover:bg-indigo-950"
           style={{ textDecoration: "none" }}
         >
@@ -97,11 +97,10 @@ export function BlogCarousel() {
                 key={index}
                 onClick={() => api?.scrollTo(index)}
                 aria-label={`Go to slide ${index + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${
-                  current === index + 1
+                className={`h-2 rounded-full transition-all duration-300 ${current === index + 1
                     ? "w-5 bg-indigo-500"
                     : "w-2 bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500"
-                }`}
+                  }`}
               />
             ))}
           </div>
