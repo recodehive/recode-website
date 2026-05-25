@@ -233,8 +233,6 @@ export default function Blogs() {
 
 const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
   const authors = getAuthorProfiles(blog.authors || []);
-  // Use only the first author for the bottom row (matches reference design)
-  const primaryAuthor = authors[0];
 
   // Tags — use blog.tags if present, fallback to blog.category as single tag
   const tags: string[] =
@@ -289,45 +287,64 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
           </div>
         )}
 
-        {/* Bottom row: avatar + author + date  ···  Read → */}
+        {/* Bottom row: avatar stack + author names + date  ···  Read → */}
         <div className="card-footer">
           <div className="card-author-row">
-            {/* Avatar */}
-            {primaryAuthor && (
-              <div className="card-avatar">
-                {primaryAuthor.imageUrl ? (
-                  <img
-                    src={primaryAuthor.imageUrl}
-                    alt={primaryAuthor.name}
-                    className="card-avatar-img"
-                    onError={(e) => {
-                      const t = e.currentTarget;
-                      t.style.display = "none";
-                      const fb = t.nextElementSibling as HTMLElement | null;
-                      if (fb) fb.style.display = "flex";
-                    }}
-                  />
-                ) : null}
-                <span
-                  className="card-avatar-fallback"
-                  style={{ display: primaryAuthor.imageUrl ? "none" : "flex" }}
-                >
-                  {primaryAuthor.name.charAt(0).toUpperCase()}
-                </span>
+            {/* Avatar stack */}
+            {authors.length > 0 && (
+              <div className="card-avatar-stack">
+                {authors.slice(0, 3).map((author, idx) => (
+                  <Link
+                    key={author.id}
+                    href={author.githubUrl}
+                    className="card-avatar"
+                    style={{ zIndex: authors.length - idx } as React.CSSProperties}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={author.name}
+                  >
+                    {author.imageUrl ? (
+                      <img
+                        src={author.imageUrl}
+                        alt={author.name}
+                        className="card-avatar-img"
+                        onError={(e) => {
+                          const t = e.currentTarget;
+                          t.style.display = "none";
+                          const fb = t.nextElementSibling as HTMLElement | null;
+                          if (fb) fb.style.display = "flex";
+                        }}
+                      />
+                    ) : null}
+                    <span
+                      className="card-avatar-fallback"
+                      style={{ display: author.imageUrl ? "none" : "flex" }}
+                    >
+                      {author.name.charAt(0).toUpperCase()}
+                    </span>
+                  </Link>
+                ))}
               </div>
             )}
 
-            {/* Name + date stacked */}
+            {/* Author names + date stacked */}
             <div className="card-author-info">
-              {primaryAuthor && (
-                <Link
-                  href={primaryAuthor.githubUrl}
-                  className="card-author-handle"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  By @{primaryAuthor.id || primaryAuthor.name.toLowerCase().replace(/\s+/g, "")}
-                </Link>
+              {authors.length > 0 && (
+                <span className="card-author-names">
+                  {authors.map((author, idx) => (
+                    <React.Fragment key={author.id}>
+                      {idx > 0 && <span className="card-author-sep">, </span>}
+                      <Link
+                        href={author.githubUrl}
+                        className="card-author-handle"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {author.name}
+                      </Link>
+                    </React.Fragment>
+                  ))}
+                </span>
               )}
               {(blog as any).date && (
                 <span className="card-date">{formatDate((blog as any).date)}</span>
