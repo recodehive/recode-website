@@ -1,190 +1,284 @@
-import React, { useState, useEffect } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "../ui/carousel";
-import TestimonialCard from "./TestimonialCard";
-import Autoplay from "embla-carousel-autoplay";
-import { motion } from "framer-motion";
+import React from "react";
+import { motion, Variants } from "framer-motion";
 import { useSafeColorMode } from "../../utils/useSafeColorMode";
 
-const baseTestimonials = [
+// --- Types ---
+interface Testimonial {
+  text: string;
+  image: string;
+  name: string;
+  role: string;
+}
+
+// --- Data ---
+const testimonials: Testimonial[] = [
   {
+    text: "The Recode Hive team are amazing to work with, very responsive. I'm a newbie to AI and they stepped us through the process",
+    image: "/icons/ethan.png",
     name: "Ethan Trang",
-    username: "EthanTrang",
-    content:
-      "The Recode Hive team are amazing to work with, very responsive. I'm a newbie to AI and they stepped us through the process",
-    date: "May 18, 2024",
-    avatar: "/icons/ethan.png",
-    gradient: "bg-pink-100",
-    borderColor: "border-pink-200",
+    role: "AI Engineer @ Relevance AI",
   },
   {
+    text: "The tech talent in Recode Hive is unparalleled. We worked with consultants who work in companies like Palantir, OpenAI, Relevance AI and more",
+    image: "/icons/vivien.png",
     name: "Vivien Chen",
-    username: "VivienChen",
-    content:
-      "The tech talent in Recode Hive is unparalleled. We worked with consultants who work in companies like Palantir, OpenAI, Relevance AI and more",
-    date: "April 21, 2023",
-    avatar: "/icons/vivien.png",
-    gradient: "bg-purple-100",
-    borderColor: "border-purple-200",
+    role: "Founder @ Toastie (BC Y24)",
   },
   {
+    text: "We were able to get our project scoped, matched and kicked off in one day. Our invoicing is now 10x faster, thanks to Recode Hive's automation.",
+    image: "/icons/daniel.png",
     name: "Daniel Han",
-    username: "DanielHan",
-    content:
-      "We were able to get our project scoped, matched and kicked off in one day.Our invoicing is now 10x faster, thanks to Recode Hive's automation.",
-    date: "Oct 18, 2024",
-    avatar: "/icons/daniel.png",
-    gradient: "bg-cyan-100",
-    borderColor: "border-cyan-200",
+    role: "Founder @ Unsloth AI (YC W24)",
   },
   {
+    text: "You're constantly inspiring me to get applying for jobs and help me to improve my resume for 90+ ATS score and improve my LinkedIn profile.",
+    image: "/icons/aryan.png",
     name: "Aryan Gupta",
-    username: "AryanGupta",
-    content:
-      "you're constantly inspiring me to get applying for jobs and help me to improve my resume for 90+ ats score and improve my LinkedIn profile. you provided me detailed document analysis of my resume and video for me",
-    date: "Sept 17, 2024",
-    avatar: "/icons/aryan.png",
-    gradient: "bg-pink-100",
-    borderColor: "border-pink-200",
+    role: "Community Member",
   },
   {
+    text: "Pointing out that my contributions all points back to my personal projects is an eye opener, especially now that I want to start building towards open source.",
+    image: "/icons/donald.png",
     name: "Donald Anyamba",
-    username: "DonaldAnyamba",
-    content:
-      "Pointing out that my contributions all points back to my personal projects is an eye opener, especially now that I want to start building towards open source.",
-    date: "May 4, 2026",
-    avatar: "/icons/donald.png",
-    gradient: "bg-purple-100",
-    borderColor: "border-purple-200",
+    role: "Community Member",
   },
 ];
 
-const testimonials = [...baseTestimonials, ...baseTestimonials];
+// Distribute testimonials across 3 columns dynamically to avoid hardcoded indices
+const col1 = testimonials.filter((_, i) => i % 3 === 0);
+const col2 = testimonials.filter((_, i) => i % 3 === 1);
+const col3 = testimonials.filter((_, i) => i % 3 === 2);
 
-export function TestimonialCarousel() {
-  const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [count, setCount] = useState(0);
-  const { colorMode } = useSafeColorMode();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
-
-  useEffect(() => {
-    if (!api) {
-      return;
-    }
-
-    setCount(api.scrollSnapList().length);
-    setCurrent(api.selectedScrollSnap() + 1);
-
-    api.on("select", () => {
-      setCurrent(api.selectedScrollSnap() + 1);
-    });
-  }, [api]);
+// --- Vertical scrolling column ---
+function TestimonialsColumn({
+  testimonialsList,
+  className,
+  duration = 15,
+  isDark,
+}: {
+  testimonialsList: Testimonial[];
+  className?: string;
+  duration?: number;
+  isDark: boolean;
+}) {
+  const cardHeight = 160;
+  const gap = 16;
+  const itemHeight = cardHeight + gap;
+  const cycleHeight = testimonialsList.length * itemHeight;
+  const offset = itemHeight / 2;
 
   return (
-    <div className="relative w-full py-20 overflow-hidden">
-      {/* Dotted Grid Background Pattern */}
-      <div
-        className="absolute inset-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #d1d5db 1px, transparent 1px)',
-          backgroundSize: '2rem 2rem',
+    <div className={`overflow-hidden h-[352px] ${className || ""}`}>
+      <motion.ul
+        initial={{ y: -offset }}
+        animate={{ y: -offset - cycleHeight }}
+        transition={{
+          duration,
+          repeat: Infinity,
+          ease: "linear",
+          repeatType: "loop",
         }}
-      />
-
-      {/* Animated Gradient Orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 right-10 h-72 w-72 rounded-full bg-gradient-to-br from-pink-400/15 to-purple-400/10 blur-3xl animate-pulse" />
-        <div className="absolute bottom-20 left-10 h-80 w-80 rounded-full bg-gradient-to-tr from-cyan-400/15 to-blue-400/10 blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/3 h-64 w-64 rounded-full bg-gradient-to-br from-purple-400/10 to-pink-300/10 blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
-      </div>
-
-      <div className="relative mx-auto max-w-7xl px-4 z-10">
-        <motion.div
-          initial={mounted ? { opacity: 0, y: 30 } : false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
-        >
-          <h2 className={`mb-6 text-5xl md:text-6xl font-bold leading-tight ${colorMode === "dark" ? "text-white" : "text-gray-900"
-            }`}>
-            Builders <span className="mx-3">❤️</span> <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">Recode Hive</span>
-          </h2>
-          <p className={`text-xl font-medium ${colorMode === "dark" ? "text-gray-300" : "text-gray-600"}`}>
-            Our builders go on to do incredible things from working at OpenAI to becoming AI engineers and founders.
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={mounted ? { opacity: 0, y: 40 } : false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <Carousel
-            setApi={setApi}
-            className="w-full"
-            opts={{
-              align: "center",
-              loop: true,
-            }}
-            plugins={[
-              Autoplay({
-                delay: 2500,
-                stopOnInteraction: false,
-                stopOnMouseEnter: false,
-              }),
-            ]}
-          >
-            <CarouselContent className="my-12 -ml-2 md:-ml-4 flex items-stretch">
-              {testimonials.map((testimonial, index) => (
-                <CarouselItem
-                  key={index}
-                  className="flex pl-2 md:basis-1/2 lg:basis-1/3 md:pl-4"
-                >
-                  <TestimonialCard {...testimonial} />
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            {/* Navigation */}
-            <div className="mt-12 flex items-center justify-center gap-6">
-              <CarouselPrevious className={`static translate-y-0 h-12 w-12 ${colorMode === "dark"
-                ? "border-gray-700 bg-gray-800 hover:bg-gray-700"
-                : "border-gray-200 bg-white hover:bg-gray-50"
-                }`} />
-
-              {/* Dots Indicator */}
-              <div className="flex gap-2">
-                {Array.from({ length: count }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => api?.scrollTo(index)}
-                    className={`h-3 w-3 rounded-full transition-all duration-300 ${current === index + 1
-                      ? "bg-gradient-to-r from-purple-600 to-pink-600 scale-125"
-                      : colorMode === "dark"
-                        ? "bg-gray-600 hover:bg-gray-500"
-                        : "bg-gray-300 hover:bg-gray-400"
-                      }`}
-                  />
-                ))}
-              </div>
-
-              <CarouselNext className={`static translate-y-0 h-12 w-12 ${colorMode === "dark"
-                ? "border-gray-700 bg-gray-800 hover:bg-gray-700"
-                : "border-gray-200 bg-white hover:bg-gray-50"
-                }`} />
-            </div>
-          </Carousel>
-        </motion.div>
-      </div>
+        className="flex flex-col list-none m-0 p-0"
+        style={{
+          gap: `${gap}px`,
+        }}
+      >
+        {[...new Array(2).fill(0)].map((_, index) => (
+          <React.Fragment key={index}>
+            {testimonialsList.map(({ text, image, name, role }, i) => (
+              <motion.li
+                key={`${index}-${i}`}
+                aria-hidden={index === 1 ? "true" : "false"}
+                whileHover={{
+                  scale: 1.03,
+                  y: -4,
+                  boxShadow: isDark
+                    ? "0 20px 40px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1)"
+                    : "0 20px 40px -12px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05)",
+                  transition: {
+                    type: "spring",
+                    stiffness: 400,
+                    damping: 17,
+                  },
+                }}
+                className="p-5 rounded-2xl w-full max-w-[280px] cursor-default select-none group transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                style={{
+                  height: `${cardHeight}px`,
+                  minHeight: `${cardHeight}px`,
+                  maxHeight: `${cardHeight}px`,
+                  background: isDark ? "#111111" : "#ffffff",
+                  border: isDark
+                    ? "1px solid rgba(255,255,255,0.08)"
+                    : "1px solid rgba(0,0,0,0.08)",
+                  boxShadow: isDark
+                    ? "0 2px 16px rgba(0,0,0,0.3)"
+                    : "0 2px 12px rgba(0,0,0,0.04)",
+                }}
+              >
+                <blockquote className="m-0 p-0 flex flex-col h-full justify-between">
+                  <p
+                    className="leading-relaxed font-normal m-0 text-[12px] overflow-hidden line-clamp-3"
+                    style={{
+                      color: isDark
+                        ? "rgba(255,255,255,0.65)"
+                        : "rgba(0,0,0,0.6)",
+                      fontFamily: "'Inter', -apple-system, sans-serif",
+                    }}
+                  >
+                    {text}
+                  </p>
+                  <footer className="flex items-center gap-2.5 mt-auto pt-2 flex-shrink-0">
+                    <img
+                      width={32}
+                      height={32}
+                      src={image}
+                      alt={`Avatar of ${name}`}
+                      className="h-8 w-8 rounded-full object-cover"
+                      style={{
+                        boxShadow: isDark
+                          ? "0 0 0 2px rgba(255,255,255,0.08)"
+                          : "0 0 0 2px rgba(0,0,0,0.06)",
+                      }}
+                    />
+                    <div className="flex flex-col">
+                      <cite
+                        className="font-semibold not-italic tracking-tight leading-4 text-[12px]"
+                        style={{
+                          color: isDark ? "#ffffff" : "#0f172a",
+                          fontFamily: "'Inter', -apple-system, sans-serif",
+                        }}
+                      >
+                        {name}
+                      </cite>
+                      <span
+                        className="text-[10px] leading-4 tracking-tight mt-0.5"
+                        style={{
+                          color: isDark
+                            ? "rgba(255,255,255,0.4)"
+                            : "rgba(0,0,0,0.45)",
+                        }}
+                      >
+                        {role}
+                      </span>
+                    </div>
+                  </footer>
+                </blockquote>
+              </motion.li>
+            ))}
+          </React.Fragment>
+        ))}
+      </motion.ul>
     </div>
+  );
+}
+
+const revealVariants: Variants = {
+  hidden: { opacity: 0, y: 16, filter: "blur(6px)" },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: {
+      delay: i * 0.12,
+      duration: 0.5,
+      ease: [0.215, 0.61, 0.355, 1],
+    },
+  }),
+};
+
+// --- Main component ---
+export function TestimonialCarousel() {
+  const { isDark } = useSafeColorMode();
+
+  return (
+    <section className="relative w-full h-full overflow-hidden flex flex-col">
+      {/* Premium symmetric header — unified height & centered alignment */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="min-h-[150px] flex flex-col justify-center items-center text-center flex-shrink-0 mb-4 px-4"
+      >
+        <motion.div custom={0} variants={revealVariants} className="mb-2.5">
+          <span
+            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase"
+            style={{
+              background: isDark
+                ? "rgba(99,102,241,0.08)"
+                : "rgba(99,102,241,0.06)",
+              border: isDark
+                ? "1px solid rgba(99,102,241,0.15)"
+                : "1px solid rgba(99,102,241,0.12)",
+              color: isDark ? "#a5b4fc" : "#4338ca",
+              fontFamily: "'Outfit', 'Inter', -apple-system, sans-serif",
+            }}
+          >
+            ✦ Testimonials
+          </span>
+        </motion.div>
+        <motion.h2
+          custom={1}
+          variants={revealVariants}
+          className="mb-2 text-2xl sm:text-3xl font-extrabold leading-tight tracking-tighter"
+          style={{
+            color: isDark ? "#f1f5f9" : "#0f172a",
+            fontFamily: "'Outfit', 'Inter', -apple-system, sans-serif",
+          }}
+        >
+          Builders ❤️{" "}
+          <span
+            style={{
+              background: "linear-gradient(135deg, #6366f1, #a855f7)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            Recode Hive
+          </span>
+        </motion.h2>
+        <motion.p
+          custom={2}
+          variants={revealVariants}
+          className="text-xs sm:text-sm leading-relaxed mx-auto max-w-lg"
+          style={{
+            color: isDark ? "#94a3b8" : "#64748b",
+            fontFamily: "'Inter', -apple-system, sans-serif",
+          }}
+        >
+          Our builders go on to do incredible things from OpenAI to becoming AI engineers and founders.
+        </motion.p>
+      </motion.div>
+
+      {/* 3-column vertical scroll — premium alignment */}
+      <div
+        className="flex justify-center gap-4 overflow-hidden relative"
+        style={{
+          height: "352px",
+          maskImage:
+            "linear-gradient(to bottom, transparent, black 8%, black 92%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent, black 8%, black 92%, transparent)",
+        }}
+      >
+        <TestimonialsColumn
+          testimonialsList={col1}
+          duration={15}
+          isDark={isDark}
+        />
+        <TestimonialsColumn
+          testimonialsList={col2}
+          className="hidden sm:block"
+          duration={21}
+          isDark={isDark}
+        />
+        <TestimonialsColumn
+          testimonialsList={col3}
+          className="hidden lg:block"
+          duration={18}
+          isDark={isDark}
+        />
+      </div>
+    </section>
   );
 }
