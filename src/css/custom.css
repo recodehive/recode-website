@@ -2567,3 +2567,27 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
     display: none !important;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .footer,
+  footer.footer {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .footer__links,
+  .footer__links.row {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .footer__col,
+  .footer__col.col {
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
