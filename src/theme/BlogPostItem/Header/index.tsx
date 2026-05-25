@@ -97,14 +97,14 @@ export default function BlogPostItemHeaderWrapper(props: Props): JSX.Element {
         <div className={styles.metaRow}>
           {authors.length > 0 && (
             <div className={styles.authorsPart}>
-              {authors.map((author, idx) => (
-                <React.Fragment key={author.handle ?? `${author.name ?? ""}-${idx}`}>
-                  {idx > 0 && (
-                    <span className={styles.authorSep} aria-hidden="true">
-                      &amp;
-                    </span>
-                  )}
-                  <div className={styles.authorPart}>
+              {/* Stacked avatars */}
+              <div className={styles.avatarStack}>
+                {authors.map((author, idx) => (
+                  <div
+                    key={author.handle ?? `${author.name ?? ""}-${idx}`}
+                    className={styles.avatarStackItem}
+                    style={{ zIndex: authors.length - idx }}
+                  >
                     {author.avatar ? (
                       <img
                         className={styles.avatar}
@@ -117,22 +117,33 @@ export default function BlogPostItemHeaderWrapper(props: Props): JSX.Element {
                         {author.name?.charAt(0).toUpperCase()}
                       </div>
                     )}
-                    {author.handle &&
-                      (author.url ? (
-                        <Link
-                          to={author.url}
-                          className={styles.handle}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {author.handle}
-                        </Link>
-                      ) : (
-                        <span className={styles.handle}>{author.handle}</span>
-                      ))}
                   </div>
-                </React.Fragment>
-              ))}
+                ))}
+              </div>
+              {/* Handles after the stack (only authors with a handle) */}
+              {authors
+                .filter((author) => author.handle)
+                .map((author, idx) => (
+                  <React.Fragment key={author.handle}>
+                    {idx > 0 && (
+                      <span className={styles.authorSep} aria-hidden="true">
+                        ,
+                      </span>
+                    )}
+                    {author.url ? (
+                      <Link
+                        to={author.url}
+                        className={styles.handle}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {author.handle}
+                      </Link>
+                    ) : (
+                      <span className={styles.handle}>{author.handle}</span>
+                    )}
+                  </React.Fragment>
+                ))}
             </div>
           )}
 
