@@ -491,6 +491,15 @@
   color: #d1d5db !important;
 }
 
+.blog-carousel-section h2 {
+  color: #111827 !important;
+  opacity: 1 !important;
+}
+
+[data-theme="dark"] .blog-carousel-section h2 {
+  color: #f9fafb !important;
+  opacity: 1 !important;
+}
 
 [data-theme="dark"] .card-read-time {
   color: #a78bfa;
