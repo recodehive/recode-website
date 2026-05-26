@@ -56,9 +56,9 @@ const BlogCard = ({
         <div className="card-category">{category}</div>
 
         {/* Card Image */}
-        <div className="card-image">
+        <Link to={`/blog/${id}`} className="card-image" style={{ display: "block" }}>
           <img src={imageUrl} alt={title} />
-        </div>
+        </Link>
 
         {/* Card Content */}
         <div className="card-content">
