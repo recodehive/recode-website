@@ -341,7 +341,7 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
                         rel="noopener noreferrer"
                         title={author.name}
                       >
-                        @{author.id || author.name.toLowerCase().replace(/\s+/g, "")}
+                        {author.name}
                       </Link>
                     </React.Fragment>
                   ))}
