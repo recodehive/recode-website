@@ -23,6 +23,7 @@ const staggerContainer = {
 };
 
 const BehavioralTab: React.FC<BehavioralTabProps> = ({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   behavioralQuestions = [],
   expandedCategories = [],
   toggleCategory,

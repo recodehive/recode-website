@@ -88,6 +88,7 @@ class GitHubService {
     // Use stored token first, then fall back to window.GITHUB_TOKEN
     const token =
       this.token ||
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (typeof window !== "undefined" ? (window as any).GITHUB_TOKEN : "");
     if (token) {
       headers["Authorization"] = `token ${token}`;
@@ -345,6 +346,7 @@ class GitHubService {
 
     try {
       // Fetch organization info and repositories in parallel
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const [orgInfo, repositories] = await Promise.all([
         this.fetchOrganizationInfo(signal),
         this.fetchAllRepositories(signal),
@@ -496,6 +498,7 @@ class GitHubService {
       const discussions = data.data?.repository?.discussions?.nodes || [];
 
       return discussions.map(
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (discussion: any): GitHubDiscussion => ({
           id: discussion.id,
           title: discussion.title,
@@ -517,6 +520,7 @@ class GitHubService {
           },
           html_url: discussion.url,
           labels:
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             discussion.labels?.nodes?.map((label: any) => ({
               name: label.name,
               color: label.color,

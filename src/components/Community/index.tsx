@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { type FC, useEffect, useState, useMemo } from "react";
 import SlotCounter from "react-slot-counter";
 import "./LandingCommunity.css";

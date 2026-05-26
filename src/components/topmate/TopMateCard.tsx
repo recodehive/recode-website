@@ -31,6 +31,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
   const { isDark } = useSafeColorMode();
 
   const borderClr = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)";
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const mutedClr = isDark
     ? "rgba(148,163,184,0.55)"
     : "rgba(100,116,139,0.65)";

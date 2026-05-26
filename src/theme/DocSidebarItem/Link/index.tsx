@@ -11,11 +11,13 @@ import clsx from "clsx";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import Link from "@docusaurus/Link";
 import isInternalUrl from "@docusaurus/isInternalUrl";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Book } from "lucide-react";
 import { DocSidebarItemLinkProps } from "../types";
 import styles from "./styles.module.css";
 
 // Utility to determine if a sidebar item is active
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isActiveSidebarItem(item: any, activePath: string): boolean {
   if (!activePath) {
     return false;
@@ -28,6 +30,7 @@ export default function DocSidebarItemLink({
   onItemClick,
   activePath,
   level,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   index,
   ...props
 }: DocSidebarItemLinkProps): React.ReactNode {

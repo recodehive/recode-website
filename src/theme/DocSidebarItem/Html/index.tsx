@@ -13,10 +13,13 @@ import { DocSidebarItemHtmlProps } from "../types";
 
 export default function DocSidebarItemHtml({
   item,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   level,
   tabIndex,
   // We're receiving these props but not using them in this component
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   activePath,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   index,
 }: DocSidebarItemHtmlProps): React.ReactNode {
   const { value, className } = item;

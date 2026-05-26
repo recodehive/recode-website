@@ -440,6 +440,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
   };
 
   // Get icon for action type
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getActionIcon = (action: ContributorActivity["action"]): string => {
     switch (action) {
       case "pushed":

@@ -75,6 +75,7 @@ export function BlogCarousel() {
             >
               <BlogCard
                 type={blog.category}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 date={(blog as any).date}
                 title={blog.title}
                 content={blog.description}

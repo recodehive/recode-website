@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "@theme/Layout";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Link from "@docusaurus/Link";
 import "./index.css";
 

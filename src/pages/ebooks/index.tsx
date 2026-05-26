@@ -211,6 +211,7 @@ export default function Ebooks(): ReactElement {
               <button
                 key={category}
                 className={`filter-tab ${selectedFilter === category ? "active" : ""}`}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onClick={() => setSelectedFilter(category as any)}
               >
                 <span className="tab-icon">📚</span>

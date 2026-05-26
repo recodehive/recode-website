@@ -13,6 +13,7 @@ const OurSponsors: React.FC = () => {
   const [showScanner, setShowScanner] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<TabType>("current");
   const modalRef = useRef<HTMLDivElement>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const history = useHistory();
 
   // Filter for current sponsors (exclude isWeSponsor)

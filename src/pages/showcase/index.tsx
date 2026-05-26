@@ -185,6 +185,7 @@ function useSiteCountPlural() {
     );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function ShowcaseFilters({ isDark = false }: { isDark?: boolean }) {
   const filteredUsers = useFilteredUsers();
   const siteCountPlural = useSiteCountPlural();

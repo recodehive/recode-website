@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState, useEffect } from "react";
 import Layout from "@theme/Layout";
 import type { ReactElement } from "react";
@@ -180,6 +181,7 @@ export default function PodcastDetails(): ReactElement {
           title: `Check out this ${podcast.type}`,
           url: podcast.spotifyUrl,
         });
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
         // Fallback to clipboard
         navigator.clipboard.writeText(podcast.spotifyUrl);

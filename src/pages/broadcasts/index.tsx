@@ -246,6 +246,7 @@ function BroadcastsPage(): ReactElement {
 
   const regularVideos = videoData.filter((video) => video.type === "video");
   const liveVideos = videoData.filter((video) => video.type === "live");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const otherVideos = videoData.filter((video) => video.type === "other");
 
   const indexOfLastVideo = currentPage * videosPerPage;

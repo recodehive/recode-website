@@ -50,6 +50,7 @@ export interface Props {
 const ShowcasePage: React.FC<Props> = ({
   Data: legacyData,
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { colorMode, isDark } = useSafeColorMode();
 
   // Use JSON data by default, fallback to legacy props for backward compatibility
@@ -169,6 +170,7 @@ const SelectComponent = ({
   isDark: boolean;
 }) => {
   const [activeItem, setActiveItem] = useState(0);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isHovered, setIsHovered] = useState(false);
 
   return (

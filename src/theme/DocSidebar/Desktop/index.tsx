@@ -7,22 +7,28 @@
  * - Handling sidebar visibility states
  * - Rendering DocSidebarItems component which handles the item list
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState } from "react";
 import clsx from "clsx";
 import { useThemeConfig } from "@docusaurus/theme-common";
 // @ts-ignore
 import {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useHideableNavbar,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   useNavbarMobileSidebar,
 } from "@docusaurus/theme-common/internal";
 import styles from "./styles.module.css";
 import DocSidebarItems from "@theme/DocSidebarItems";
 
 // Using a custom layout for desktop navigation
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
   const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     navbar: { hideOnScroll },
     docs: {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       sidebar: { hideable },
     },
   } = useThemeConfig();

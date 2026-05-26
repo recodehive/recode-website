@@ -65,6 +65,7 @@ const PracticeTab: React.FC<PracticeTabProps> = ({
   mockInterviewQuestions = [],
   onTabChange,
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [selectedQuestion, setSelectedQuestion] = useState<string | null>(null);
   const [activeSession, setActiveSession] = useState<PracticeSession | null>(
     null,

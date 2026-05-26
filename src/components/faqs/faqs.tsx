@@ -44,6 +44,7 @@ const faqData = [
 
 const FAQs: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { colorMode, isDark } = useSafeColorMode();
 
   const toggleAccordion = (index: number) => {

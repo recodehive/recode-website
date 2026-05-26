@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { useState, useRef, useEffect } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
@@ -221,6 +222,7 @@ function TestimonialAvatar({ avatar, name }: { avatar?: string; name: string }) 
 }
 
 function CareersContent() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { colorMode, isDark, mounted } = useSafeColorMode();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 

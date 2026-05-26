@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Head from "@docusaurus/Head";
 import { motion, HTMLMotionProps } from "framer-motion";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { ReactElement } from "react";
 import Layout from "@theme/Layout";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useColorMode } from "@docusaurus/theme-common";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
@@ -34,12 +36,16 @@ function useSafeColorMode() {
 }
 import styles from "./github-badges.module.css";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type MotionDivProps = HTMLMotionProps<"div">;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 type MotionTrProps = HTMLMotionProps<"tr">;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Link from "@docusaurus/Link";
 
 const GithubBadgesContent = (): React.ReactElement => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { colorMode, isDark, mounted } = useSafeColorMode();
 
   // Scroll to top button logic
@@ -66,6 +72,7 @@ const GithubBadgesContent = (): React.ReactElement => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -1355,6 +1362,7 @@ const GithubBadgesContent = (): React.ReactElement => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const handleScrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };

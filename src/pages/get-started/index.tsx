@@ -4,6 +4,7 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { motion, useAnimation, useInView } from "framer-motion";
 import Head from "@docusaurus/Head";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { useColorMode } from "@docusaurus/theme-common";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
@@ -110,8 +111,10 @@ const AnimatedSection = ({ children, delay = 0 }: AnimatedSectionProps) => {
 };
 
 function GetStartedHeader() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { siteConfig } = useDocusaurusContext();
   // Remove unused siteConfig or use it if needed
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [textIndex, setTextIndex] = useState(0);
   const texts = ["Code", "Build", "Deploy", "Learn"];
 
@@ -694,6 +697,7 @@ const LearningPath = ({
 
 function GetStartedContent() {
   const { siteConfig } = useDocusaurusContext();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { colorMode, isDark, mounted } = useSafeColorMode();
   type CompletedPaths = Record<string, boolean>;
 

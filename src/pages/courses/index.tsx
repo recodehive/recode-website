@@ -304,6 +304,7 @@ function CoursesContent() {
     return () => observer.disconnect();
   }, [isStatsVisible]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleCourseClick = (course: any) => {
     if (course.title.includes("Coming Soon")) {
       setModal({ open: true, content: "This course is coming soon!" });

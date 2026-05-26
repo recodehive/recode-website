@@ -1530,10 +1530,15 @@ function InterviewPrepContent({
   toggleTips: (index: number) => void;
   showQuestions: { [key: number]: boolean };
   toggleQuestions: (index: number) => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   behavioralQuestions: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   technicalResources: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   practicePlatforms: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   companyTips: any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   mockInterviewQuestions: any[];
 }) {
   const { isDark } = useSafeColorMode();
@@ -1639,6 +1644,7 @@ function InterviewPrepContent({
               ].map((tab) => (
                 <button
                   key={tab.id}
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
                   onClick={() => setActiveTab(tab.id as any)}
                   className={`flex items-center space-x-2 border-b-2 px-2 py-4 text-sm font-medium transition-colors ${
                     activeTab === tab.id

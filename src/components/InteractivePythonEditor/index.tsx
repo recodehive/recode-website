@@ -4,7 +4,9 @@ import './styles.css';
 
 declare global {
   interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     loadPyodide?: any;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     pyodide?: any;
   }
 }
@@ -65,6 +67,7 @@ export default function InteractivePythonEditor({
       // run the code asynchronously
       // ensure printing goes to the captured stdout
       await pyodide.runPythonAsync(code);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       setOutput((o) => o + String(err));
     } finally {

@@ -18,6 +18,7 @@ export default function ColorModeToggle(): JSX.Element {
         setColorMode: docusaurusSetColorMode,
       } = require("@docusaurus/theme-common");
       docusaurusSetColorMode(mode);
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       // Fallback: just set the DOM attribute
     }

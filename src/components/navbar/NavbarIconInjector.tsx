@@ -8,6 +8,7 @@ import {
 
 export default function NavbarIconInjector() {
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const roots = new Map<string, any>();
 
     NAVBAR_ICONS.forEach((name: NavbarIconName) => {

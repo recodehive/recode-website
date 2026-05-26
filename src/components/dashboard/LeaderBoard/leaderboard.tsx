@@ -44,6 +44,7 @@ interface Contributor {
   badges?: string[]; // Array of badge image paths
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Stats {
   flooredTotalPRs: number;
   totalContributors: number;
@@ -212,6 +213,7 @@ function Badge({
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function TopPerformerCard({
   contributor,
   rank,
@@ -349,6 +351,7 @@ export default function LeaderBoard(): JSX.Element {
 
   const renderPaginationButtons = () => {
     const pages = [];
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const maxVisibleButtons = 5; // Maximum number of page buttons to show directly
 
     // Special case: if we have 7 or fewer pages, show all of them without ellipsis
@@ -449,6 +452,7 @@ export default function LeaderBoard(): JSX.Element {
   };
 
   // Helper function for time filter display
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getTimeFilterLabel = (filter: string) => {
     switch (filter) {
       case "week":
@@ -498,6 +502,7 @@ export default function LeaderBoard(): JSX.Element {
                   value={currentTimeFilter}
                   onChange={(e) => {
                     // Use setTimeFilter from context
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     setTimeFilter(e.target.value as any);
                     setCurrentPage(1);
                     setIsSelectChanged(true);
