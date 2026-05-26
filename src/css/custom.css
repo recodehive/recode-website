@@ -5,6 +5,162 @@
   color: inherit;
 }
 
+/* FINAL MOBILE OVERRIDE: aggressively remove any top gap on narrow viewports
+   This targets any leftover placeholders, pseudo-elements, safe-area padding,
+   or theme-provided offsets. Keep it last so it wins over other rules. */
+@media screen and (max-width: 1024px) {
+
+  /* remove any generated placeholders or spacer elements that push content down */
+  .theme-doc-navbar-placeholder,
+  .theme-doc-navbar-placeholder * {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* global resets for top spacing and pseudo-elements */
+  html,
+  body,
+  #__docusaurus,
+  .main-wrapper,
+  header,
+  .theme-doc-navbar,
+  .navbar {
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
+    min-height: 0 !important;
+    background-clip: border-box !important;
+  }
+
+  /* remove any pseudo elements that could create a visible gap */
+  html::before,
+  html::after,
+  body::before,
+  body::after,
+  header::before,
+  header::after,
+  .navbar::before,
+  .navbar::after,
+  .theme-doc-navbar::before,
+  .theme-doc-navbar::after {
+    content: none !important;
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* pin header to the very top and extend background into the safe area */
+  header,
+  .theme-doc-navbar,
+  .navbar {
+    position: fixed !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 0 !important;
+    z-index: 99999 !important;
+    padding-top: env(safe-area-inset-top, 0px) !important;
+    background: var(--ifm-navbar-background-color, var(--ifm-background-color, #0b1220)) !important;
+    box-shadow: none !important;
+  }
+
+  /* ensure inner navbar doesn't add height */
+  .navbar__inner,
+  .navbar__brand {
+    margin: 0 !important;
+    padding: 0.5rem 0.75rem !important;
+    height: auto !important;
+  }
+
+  /* move the page content up directly under the fixed header */
+  main,
+  #__docusaurus,
+  .main-wrapper {
+    margin: 0 !important;
+    padding-top: calc(var(--ifm-navbar-height, 56px) + env(safe-area-inset-top, 0px)) !important;
+  }
+
+}
+
+/* Careers testimonials */
+.testimonials-section .testimonial-carousel {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  color: #111827;
+}
+
+/* Ensure testimonial cards are visible by default (override animation initial states) */
+.testimonials-section .testimonial-carousel {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.testimonials-section .testimonial-carousel--light {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.testimonials-section .testimonial-content {
+  color: #0f172a;
+}
+
+.testimonials-section .testimonial-content blockquote {
+  color: #0f172a;
+}
+
+.testimonials-section .testimonial-author {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16);
+  opacity: 1;
+  mix-blend-mode: normal;
+  isolation: isolate;
+}
+
+/* Strong override to ensure author text is always visible */
+.testimonials-section .testimonial-author {
+  background: rgba(255, 255, 255, 0.98) !important;
+  border: 1px solid rgba(15, 23, 42, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.16) !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+}
+
+.testimonials-section .testimonial-author-name,
+.testimonials-section .testimonial-author-role {
+  color: #111827 !important;
+  -webkit-text-fill-color: #111827 !important;
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  text-shadow: none !important;
+}
+
+.testimonials-section .testimonial-author-name {
+  color: #111827;
+  -webkit-text-fill-color: #111827;
+  text-shadow: none;
+  opacity: 1;
+  mix-blend-mode: normal;
+  font-weight: 900;
+}
+
+.testimonials-section .testimonial-author-role {
+  color: #334155;
+  -webkit-text-fill-color: #334155;
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
 /* You can override the default Infima variables here. */
 @import "tailwindcss";
 
@@ -356,13 +512,13 @@ html[data-theme="dark"] .menu__link--active::after {
 }
 
 :root {
-  --ifm-color-primary: #1d4ed8;
-  --ifm-color-primary-dark: #1e40af;
-  --ifm-color-primary-darker: #1e3a8a;
-  --ifm-color-primary-darkest: #172554;
-  --ifm-color-primary-light: #2563eb;
-  --ifm-color-primary-lighter: #3b82f6;
-  --ifm-color-primary-lightest: #60a5fa;
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
   --ifm-transition-fast: 150ms;
@@ -417,6 +573,12 @@ body {
 }
 
 [data-theme="dark"] {
+  --ifm-background-color: #000000;
+  --ifm-background-surface-color: #0a0a0a;
+  --ifm-navbar-background-color: #000000;
+  --ifm-footer-background-color: #000000;
+  --ifm-toc-border-color: #2a2a2a;
+  --ifm-menu-color-background-active: #111111;
   --ifm-color-primary: #60a5fa;
   --ifm-color-primary-dark: #3b82f6;
   --ifm-color-primary-darker: #2563eb;
@@ -428,16 +590,16 @@ body {
 
   /* Global dark theme tokens used across feature pages (courses, broadcasts, sponsors, etc.) */
   /* Backgrounds */
-  --dark-bg-primary: #0b1220;
-  /* base page background (deep navy) */
-  --dark-bg-secondary: #0f172a;
+  --dark-bg-primary: #000000;
+  /* base page background (black) */
+  --dark-bg-secondary: #0a0a0a;
   /* section alt background */
-  --dark-bg-tertiary: #111827;
+  --dark-bg-tertiary: #111111;
   /* subtle surfaces */
   /* Cards */
-  --dark-card-bg: #111827;
+  --dark-card-bg: #111111;
   /* card background */
-  --dark-card-hover-bg: #0f172a;
+  --dark-card-hover-bg: #1a1a1a;
   /* card hover background */
   /* Text */
   --dark-text-primary: #e5e7eb;
@@ -958,8 +1120,47 @@ html {
 
 /* Enhanced focus styles */
 *:focus {
+
   outline: 2px solid #667eea;
   outline-offset: 2px;
+}
+
+/* Mobile: keep the accessibility skip-link out of the visible top band.
+   It stays keyboard-accessible because it becomes visible again on focus. */
+@media screen and (max-width: 996px) {
+
+  .skipToContent_fXgn,
+  div[role="region"][aria-label="Skip to main content"] {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    clip-path: inset(50%) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+
+  .skipToContent_fXgn:focus,
+  .skipToContent_fXgn:focus-visible,
+  div[role="region"][aria-label="Skip to main content"]:focus,
+  div[role="region"][aria-label="Skip to main content"]:focus-within {
+    position: fixed !important;
+    left: 1rem !important;
+    top: 1rem !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0.5rem 1rem !important;
+    overflow: visible !important;
+    clip: auto !important;
+    clip-path: none !important;
+    white-space: normal !important;
+  }
 }
 
 /* Custom selection colors */
@@ -2039,4 +2240,354 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   scrollbar-width: thin !important;
   scrollbar-color: #334155 transparent !important;
+}
+
+/* ===== Section 15 : blog layout ===== */
+/* Full width container */
+.blog-wrapper .container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+/* Row: full width flex */
+.blog-wrapper .container>.row {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* LEFT sidebar */
+.blog-wrapper .container>.row>.col.col--3 {
+  flex: 0 0 240px !important;
+  width: 240px !important;
+  max-width: 240px !important;
+  padding-left: 0.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+/* CENTER column — flex, children centered */
+.blog-wrapper .container>.row>.col:not(.col--2):not(.col--3) {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+/* Article + all direct children — centered with max readable width */
+.blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
+  width: 100% !important;
+  max-width: 860px !important;
+}
+
+/* RIGHT sidebar — TOC */
+.blog-wrapper .container>.row>.col.col--2 {
+  flex: 0 0 280px !important;
+  width: 280px !important;
+  max-width: 280px !important;
+  padding-left: 0 !important;
+  padding-right: 0.5rem !important;
+  align-self: stretch !important;
+}
+
+/* TOC inner wrapper — sticky; border-left here so the vertical line
+   only spans the height of the TOC content, not the full page */
+.blog-wrapper .col.col--2>div {
+  position: sticky !important;
+  top: calc(var(--ifm-navbar-height, 60px) + 1rem) !important;
+  max-height: calc(100vh - var(--ifm-navbar-height, 60px) - 2rem) !important;
+  overflow-y: auto !important;
+  border-left: 2px solid var(--ifm-toc-border-color) !important;
+  scrollbar-width: none !important;
+}
+
+.blog-wrapper .col.col--2>div::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* TOC list — vertical left border track */
+.blog-wrapper .table-of-contents {
+  border-left: 2px solid var(--ifm-toc-border-color) !important;
+  padding-left: 0 !important;
+  margin-left: 0.75rem !important;
+}
+
+/* TOC links */
+.blog-wrapper .table-of-contents__link {
+  white-space: normal !important;
+  word-break: break-word !important;
+  line-height: 1.5 !important;
+  display: block !important;
+  padding: 4px 0 4px 12px !important;
+  margin-left: -2px !important;
+  font-size: 0.85rem !important;
+  color: var(--ifm-color-emphasis-600) !important;
+  border-left: 2px solid transparent !important;
+  transition: color 0.2s ease, border-color 0.2s ease !important;
+}
+
+.blog-wrapper .table-of-contents__link:hover {
+  color: var(--ifm-color-primary) !important;
+  text-decoration: none !important;
+}
+
+.blog-wrapper .table-of-contents li>.table-of-contents__link {
+  font-size: 0.875rem !important;
+}
+
+/* Active TOC link — highlight current section with left border indicator */
+.blog-wrapper .table-of-contents__link--active,
+.blog-wrapper .table-of-contents__link--active:hover {
+  color: var(--ifm-color-primary) !important;
+  font-weight: 600 !important;
+  border-left: 2px solid var(--ifm-color-primary) !important;
+}
+
+.blog-post-page .markdown {
+  max-width: 100% !important;
+  font-size: 1.125rem !important;
+  line-height: 2rem !important;
+  color: rgb(75, 85, 99) !important;
+}
+
+html[data-theme="dark"] .blog-post-page .markdown {
+  color: rgb(209, 213, 219) !important;
+}
+
+.blog-post-page .markdown p {
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.blog-post-page .markdown h1,
+.blog-post-page .markdown h2,
+.blog-post-page .markdown h3,
+.blog-post-page .markdown h4 {
+  color: #1F2937 !important;
+}
+
+html[data-theme="dark"] .blog-post-page .markdown h1,
+html[data-theme="dark"] .blog-post-page .markdown h2,
+html[data-theme="dark"] .blog-post-page .markdown h3,
+html[data-theme="dark"] .blog-post-page .markdown h4 {
+  color: #D1D5DB !important;
+}
+
+/* ── Large desktop (≥1400px) — wider content ── */
+@media (min-width: 1400px) {
+  .blog-wrapper .container>.row>.col.col--3 {
+    flex: 0 0 260px !important;
+    width: 260px !important;
+    max-width: 260px !important;
+  }
+
+  .blog-wrapper .container>.row>.col.col--2 {
+    flex: 0 0 300px !important;
+    width: 300px !important;
+    max-width: 300px !important;
+  }
+
+  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
+    max-width: 960px !important;
+  }
+}
+
+/* ── Very large (≥1800px) — even wider ── */
+@media (min-width: 1800px) {
+  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
+    max-width: 1100px !important;
+  }
+}
+
+/* ── Tablet (997px–1199px) ── */
+@media (max-width: 1199px) and (min-width: 997px) {
+  .blog-wrapper .container>.row>.col.col--3 {
+    flex: 0 0 200px !important;
+    width: 200px !important;
+    max-width: 200px !important;
+  }
+
+  .blog-wrapper .container>.row>.col.col--2 {
+    flex: 0 0 220px !important;
+    width: 220px !important;
+    max-width: 220px !important;
+  }
+
+  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
+    max-width: 100% !important;
+  }
+}
+
+/* ── Mobile (≤996px) ── */
+@media (max-width: 996px) {
+  .blog-wrapper .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .blog-wrapper .container>.row {
+    flex-direction: column !important;
+  }
+
+  .blog-wrapper .container>.row>.col.col--3,
+  .blog-wrapper .container>.row>.col.col--2,
+  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3) {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    align-items: flex-start !important;
+  }
+
+  /* Remove the vertical separator and sticky on mobile */
+  .blog-wrapper .container>.row>.col.col--2 {
+    border-left: none !important;
+  }
+
+  .blog-wrapper .col.col--2>div {
+    position: static !important;
+    max-height: none !important;
+    overflow-y: visible !important;
+  }
+
+  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
+    max-width: 100% !important;
+  }
+}
+
+/* =====================================================
+   END SECTION 15
+   ===================================================== */
+
+/* ===== MOBILE TOP-GAP FIX ===== */
+@media screen and (max-width: 996px) {
+
+  html,
+  body,
+  #__docusaurus,
+  .main-wrapper,
+  header,
+  .theme-doc-navbar,
+  .navbar,
+  .navbar--fixed-top,
+  .theme-doc-navbar-placeholder {
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0 !important;
+  }
+
+  html,
+  body {
+    min-height: 100% !important;
+    background: var(--ifm-navbar-background-color, var(--ifm-background-color)) !important;
+  }
+
+  body {
+    overflow-x: hidden !important;
+  }
+
+  .theme-doc-navbar-placeholder,
+  .theme-doc-navbar-placeholder * {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+  }
+
+  header,
+  .theme-doc-navbar,
+  .navbar,
+  .navbar--fixed-top {
+    position: sticky !important;
+    inset: auto !important;
+    z-index: 99999 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    min-height: 0 !important;
+    background: var(--ifm-navbar-background-color, var(--ifm-background-color)) !important;
+    background-clip: padding-box !important;
+  }
+
+  .navbar__inner,
+  .navbar__brand,
+  .navbar__items,
+  .navbar__item {
+    margin: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .navbar {
+    height: auto !important;
+    min-height: 48px !important;
+  }
+
+  main,
+  #__docusaurus,
+  .main-wrapper {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  main>*:first-child,
+  main>div:first-child,
+  .main-wrapper>*:first-child,
+  #__docusaurus>*:first-child,
+  .hero,
+  .hero-section,
+  .docs-home-hero {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+  }
+
+  html::before,
+  html::after,
+  body::before,
+  body::after,
+  header::before,
+  header::after,
+  .navbar::before,
+  .navbar::after,
+  .theme-doc-navbar::before,
+  .theme-doc-navbar::after {
+    content: none !important;
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer,
+  footer.footer {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .footer__links,
+  .footer__links.row {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .footer__col,
+  .footer__col.col {
+    max-width: 100% !important;
+    flex-basis: 100% !important;
+    margin-bottom: 1.5rem !important;
+  }
 }

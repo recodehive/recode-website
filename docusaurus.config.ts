@@ -263,6 +263,11 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
+    blog: {
+      sidebar: {
+        groupByYear: false,
+      },
+    },
   } satisfies Preset.ThemeConfig,
 
   markdown: {
@@ -302,10 +307,10 @@ const config: Config = {
     EMAILJS_TEMPLATE_ID: process.env.EMAILJS_TEMPLATE_ID || "",
     algoliaSiteSearch: hasAlgoliaSiteSearch
       ? {
-          applicationId: algoliaAppId,
-          apiKey: algoliaSearchApiKey,
-          indexName: algoliaIndexName,
-        }
+        applicationId: algoliaAppId,
+        apiKey: algoliaSearchApiKey,
+        indexName: algoliaIndexName,
+      }
       : null,
     hooks: {
       onBrokenMarkdownLinks: "warn",
