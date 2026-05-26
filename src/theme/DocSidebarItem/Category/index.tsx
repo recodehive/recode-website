@@ -25,9 +25,13 @@ import {
   Github,
   PanelRight,
   Code2,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  School,
   Zap,
   Container,
   ChevronDown,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ChevronUp,
   ChevronRight,
 } from "lucide-react";
 import Link from "@docusaurus/Link";
@@ -35,13 +39,25 @@ import clsx from "clsx";
 import { DocSidebarItemCategoryProps } from "../types";
 import styles from "./styles.module.css";
 
-function itemHasHref(
-  item: DocSidebarItemCategoryProps["item"]["items"][number],
-): item is Extract<
-  DocSidebarItemCategoryProps["item"]["items"][number],
-  { href: string }
-> {
-  return "href" in item && typeof item.href === "string";
+// Recursively get all doc ids from sidebar
+// eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+function getAllDocIds(items: any[]): string[] {
+  let ids: string[] = [];
+  for (const item of items) {
+    if (item.type === "category") {
+      // Include the category's href if it exists
+      if (item.href) {
+        ids.push(item.href);
+      }
+      ids = [...ids, ...getAllDocIds(item.items)];
+    } else if (item.type === "doc") {
+      ids.push(item.id);
+    } else if (item.href) {
+      // Handle link type items
+      ids.push(item.href);
+    }
+  }
+  return ids;
 }
 
 const getIcon = (
@@ -58,9 +74,7 @@ const getIcon = (
   } else if (label.includes("Next.js") || className?.includes("nextjs")) {
     return <Zap className={`${styles.categoryIcon} ${styles.nextjsIcon}`} />;
   } else if (label.includes("Docker") || className?.includes("docker")) {
-    return (
-      <Container className={`${styles.categoryIcon} ${styles.dockerIcon}`} />
-    );
+    return <Container className={`${styles.categoryIcon} ${styles.dockerIcon}`} />;
   } else if (label.includes("Technical") || className?.includes("technical")) {
     return (
       <PanelRight
@@ -78,6 +92,10 @@ function DocSidebarItemCategory({
   onItemClick,
   activePath,
   level = 0,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  index,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  ...props
 }: DocSidebarItemCategoryProps): React.ReactNode {
   const { items, label, collapsible, className, href } = item;
 
@@ -104,14 +122,13 @@ function DocSidebarItemCategory({
       // Don't collapse if this category or any of its items are active
       const hasActiveItem = items.some((item) => {
         // Check for direct href match
-        if (itemHasHref(item) && isSamePath(item.href, activePath)) {
+        if (item.href && isSamePath(item.href, activePath)) {
           return true;
         }
         // Check for nested items (for categories like SQL Basics)
         if (item.type === "category" && item.items) {
           return item.items.some(
-            (subItem) =>
-              itemHasHref(subItem) && isSamePath(subItem.href, activePath),
+            (subItem) => subItem.href && isSamePath(subItem.href, activePath),
           );
         }
         return false;
