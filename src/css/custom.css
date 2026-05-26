@@ -2676,26 +2676,30 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
   }
 }
 
-@media screen and (max-width: 768px) {
-  .footer,
-  footer.footer {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-  }
+/* author card fixes */
+[class*="authorName_"] {
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  margin: 0 !important;
+}
 
-  .footer__links,
-  .footer__links.row {
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
-  }
+[class*="authorBadge_"] {
+  font-size: 0.70rem !important;
+  padding: 2px 7px !important;
+}
 
-  .footer__col,
-  .footer__col.col {
-    max-width: 100% !important;
-    flex-basis: 100% !important;
-    margin-bottom: 1.5rem !important;
-  }
+[class*="authorMeta_"] {
+  font-size: 1.0rem !important;
+  margin: 2px 0 !important;
+}
+
+[class*="authorSummary_"] {
+  font-size: 1.0rem !important;
+  line-height: 1.5 !important;
+}
+
+[class*="authorAvatarWrapper_"] img {
+  width: 52px !important;
+  height: 52px !important;
 }
