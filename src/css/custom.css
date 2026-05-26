@@ -358,6 +358,72 @@ html[data-theme="dark"] .menu__link--active::after {
   color: #60a5fa;
 }
 
+/* Ensure blog and markdown content is readable in dark mode */
+html[data-theme="dark"] .blog .markdown,
+html[data-theme="dark"] .blog-post .markdown,
+html[data-theme="dark"] .markdown,
+html[data-theme="dark"] article,
+html[data-theme="dark"] .post,
+html[data-theme="dark"] .content,
+html[data-theme="dark"] .blog .content {
+  color: #ffffff !important;
+}
+
+/* Make headings and list text white as well */
+html[data-theme="dark"] .markdown h1,
+html[data-theme="dark"] .markdown h2,
+html[data-theme="dark"] .markdown h3,
+html[data-theme="dark"] .markdown h4,
+html[data-theme="dark"] .markdown h5,
+html[data-theme="dark"] .markdown h6,
+html[data-theme="dark"] .blog .markdown h1,
+html[data-theme="dark"] .blog .markdown h2 {
+  color: #ffffff !important;
+}
+
+/* Links in blog content should be clearly visible in dark mode */
+/* Links in blog content should be clearly visible in dark mode.
+   Narrow targeting to anchors within article markdown paragraphs so
+   tag-pill components and other tagged elements keep their original colors. */
+html[data-theme="dark"] article .markdown p a,
+html[data-theme="dark"] article p a,
+html[data-theme="dark"] .blog-post .markdown p a {
+  color: #93c5fd !important;
+}
+
+/* Force article/blog post prose to white in dark mode without touching tag pills */
+html[data-theme="dark"] article h1,
+html[data-theme="dark"] article h2,
+html[data-theme="dark"] article h3,
+html[data-theme="dark"] article h4,
+html[data-theme="dark"] article h5,
+html[data-theme="dark"] article h6,
+html[data-theme="dark"] article p,
+html[data-theme="dark"] article li,
+html[data-theme="dark"] article blockquote,
+html[data-theme="dark"] article dd,
+html[data-theme="dark"] article dt,
+html[data-theme="dark"] article small,
+html[data-theme="dark"] article figcaption,
+html[data-theme="dark"] .blog-wrapper,
+html[data-theme="dark"] .blog-post-page,
+html[data-theme="dark"] .plugin-blog,
+html[data-theme="dark"] .container p,
+html[data-theme="dark"] .col--7 p,
+html[data-theme="dark"] .row p {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+/* Also enforce for lists and blockquotes inside posts */
+html[data-theme="dark"] article li,
+html[data-theme="dark"] article ul,
+html[data-theme="dark"] article ol,
+html[data-theme="dark"] article blockquote {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
 /* Navbar styling and alignment */
 .navbar,
 .navbar__inner,
@@ -398,12 +464,54 @@ html[data-theme="dark"] .menu__link--active::after {
   white-space: nowrap;
 }
 
+/* Center FAQ subtitle under the main FAQ heading */
+
+.mb-10.text-center {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+/* Ensure the FAQ section container is centered and uses the intended max-width */
+.relative .mx-auto.max-w-6xl {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  max-width: 1100px !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.mb-10.text-center {
+  justify-content: center !important;
+}
+
+.mb-10.text-center>p,
+.mb-10.text-center p.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .navbar__items {
+
   display: flex;
   align-items: center;
   gap: 0.3rem !important;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+.mb-10.text-center>p.mx-auto.max-w-3xl {
+  align-self: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  box-sizing: border-box !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 /* ======== SECTION 7 : Adjust individual navbar items ==========*/
