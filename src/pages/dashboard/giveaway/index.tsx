@@ -767,8 +767,7 @@ const GiveawayPage: React.FC = () => {
               </div>
             ) : (
               <div className="giveaway-leaderboard-grid">
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                {leaderboard.map((entry, index) => (
+                {leaderboard.map((entry) => (
                   <motion.div
                     key={entry.rank}
                     className={`giveaway-leaderboard-card rank-${entry.rank <= 3 ? entry.rank : "other"}`}
