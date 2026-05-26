@@ -2703,3 +2703,18 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
   width: 52px !important;
   height: 52px !important;
 }
+
+/* Fix overlapping content on Aditya Singh Rathore's author page #1558 */
+[class*="author-aditya-singh-rathore"] .avatar,
+[class*="author-aditya-singh-rathore"] .hero {
+  margin-bottom: 2rem !important;
+}
+
+[class*="author-aditya-singh-rathore"] .social-links,
+[class*="author-aditya-singh-rathore"] .author-socials {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 15px !important;
+  margin-top: 15px !important;
+}
+
