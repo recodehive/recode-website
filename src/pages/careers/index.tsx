@@ -172,23 +172,53 @@ const testimonials = [
     role: "Senior Frontend Developer",
     content:
       "recode hive has given me the opportunity to work on cutting-edge projects while maintaining an amazing work-life balance. The team is incredibly supportive and collaborative.",
-    avatar: "/img/testimonial-sarah.jpg",
+    avatar: "/icons/vivien.png",
   },
   {
     name: "Marcus Johnson",
     role: "DevOps Engineer",
     content:
       "I love the remote-first culture here. The flexibility to work from anywhere has allowed me to travel while building my career. The learning opportunities are endless.",
-    avatar: "/img/testimonial-marcus.jpg",
+    avatar: "/icons/daniel.png",
   },
   {
     name: "Priya Patel",
     role: "Product Manager",
     content:
       "The growth mindset at recode hive is real. I've been able to take on new challenges and expand my skill set with full support from leadership.",
-    avatar: "/img/testimonial-priya.jpg",
+    avatar: "/icons/ethan.png",
   },
 ];
+
+function TestimonialAvatar({ avatar, name }: { avatar?: string; name: string }) {
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setHasError(false);
+  }, [avatar]);
+
+  const showFallback = !avatar || hasError;
+
+  return (
+    <div
+      className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-inner overflow-hidden relative"
+      {...(showFallback ? { "aria-label": `Avatar for ${name}`, role: "img" } : {})}
+    >
+      {!showFallback ? (
+        <img
+          src={avatar}
+          alt={name}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover rounded-full"
+          onError={() => setHasError(true)}
+        />
+      ) : (
+        <User className="h-10 w-10 text-white" aria-hidden="true" />
+      )}
+    </div>
+  );
+}
 
 function CareersContent() {
   const { colorMode, isDark, mounted } = useSafeColorMode();
@@ -593,9 +623,10 @@ function CareersContent() {
                 variants={fadeIn}
               >
                 <div className="testimonial-content relative z-10 text-center">
-                  <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-inner">
-                    <User className="h-10 w-10 text-white" />
-                  </div>
+                  <TestimonialAvatar
+                    avatar={testimonials[activeTestimonial].avatar}
+                    name={testimonials[activeTestimonial].name}
+                  />
                   <blockquote className="mb-6 text-lg italic md:text-xl">
                     "{testimonials[activeTestimonial].content}"
                   </blockquote>
@@ -639,9 +670,10 @@ function CareersContent() {
             ) : (
               <div className="testimonial-carousel testimonial-carousel--light rounded-xl p-8 shadow-lg">
                 <div className="testimonial-content relative z-10 text-center">
-                  <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-inner">
-                    <User className="h-10 w-10 text-white" />
-                  </div>
+                  <TestimonialAvatar
+                    avatar={testimonials[activeTestimonial].avatar}
+                    name={testimonials[activeTestimonial].name}
+                  />
                   <blockquote className="mb-6 text-lg italic md:text-xl">
                     "{testimonials[activeTestimonial].content}"
                   </blockquote>
