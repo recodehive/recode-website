@@ -299,9 +299,11 @@
 .author-name-group {
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 6px;
   min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 /* Stacked avatars */
@@ -366,6 +368,10 @@
 .author-link {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
   position: relative;
   text-decoration: none;
 }

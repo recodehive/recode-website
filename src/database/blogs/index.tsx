@@ -20,7 +20,7 @@ const blogs: Blog[] = [
     slug: "ux-ui-design-job",
     authors: ["sowmiya-v", "sanjay-kv"],
     category: "Design",
-    tags: ["UX", "UI", "Career", "Job"],
+    tags: ["UX", "UI", "design", "Job"],
   },
 
   {
@@ -211,6 +211,41 @@ const blogs: Blog[] = [
     category: "data engineering",
     tags: ["PySpark", "Optimization", "Big Data", "Performance", "Data Engineering"],
   },
+  {
+    id: 20,
+    title: "How We Used Purview Data Catalog to Reduce Onboarding Time for New Data Engineers from 2 Weeks to 3 Days",
+    image: "/img/blogs/purview_cover.png",
+    description:
+      "Microsoft Purview Data Catalog is a powerful tool for managing and organizing data assets within an organization. In this article, we share our experience of using Purview Data Catalog to streamline the onboarding process for new data engineers, reducing the time it takes from 2 weeks to just 3 days. We discuss the features of Purview that enabled us to achieve this improvement and provide insights on how other organizations can leverage this tool to enhance their data management practices.",
+    slug: "microsoft-data-purview",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Purview", "Data Catalog", "Onboarding", "Data Management", "Data Engineering"],
+  },
+  {
+    id: 19,
+    title: "Why Data Engineers Make Better Business Analysts Than MBAs Do",
+    image: "/img/blogs/ba_de_cover_image.png",
+    description:
+      "Data engineers often have a deeper understanding of data and its implications for business decisions than MBAs, who may focus more on theory and strategy. This article explores why data engineers can make better business analysts than MBAs, highlighting their technical expertise, problem-solving skills, and ability to derive insights from data to drive informed business decisions.",
+    slug: "data-engineers-vs-mbas",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Data Engineers", "Business Analysts", "MBAs", "Data Understanding", "Business Decisions"],
+  },
+  {
+    id: 20,
+    title: "Google Changed Workspace Icon after 6 years",
+    image: "/img/blogs/cover-google-icon.jpg",
+    description:
+      " Google has unveiled a new icon design that reflects its commitment to simplicity and accessibility. The updated icon features a more modern ",
+    slug: "google-icon-update",
+    authors: ["sanjay-kv"],
+    category: "Design",
+    tags: ["UX", "UI", "design", "Job"],
+  },
+
+  
 
 ];
 

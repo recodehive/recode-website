@@ -12,9 +12,9 @@
  * - DocSidebarItemHtml: For custom HTML content
  */
 import React from "react";
-import DocSidebarItemCategory from "@theme/DocSidebarItem/Category";
-import DocSidebarItemLink from "@theme/DocSidebarItem/Link";
-import DocSidebarItemHtml from "@theme/DocSidebarItem/Html";
+import DocSidebarItemCategory from "./Category";
+import DocSidebarItemLink from "./Link";
+import DocSidebarItemHtml from "./Html";
 import { DocSidebarItemProps } from "./types";
 
 export default function DocSidebarItem({
@@ -29,7 +29,7 @@ export default function DocSidebarItem({
     case "category":
       return (
         <DocSidebarItemCategory
-          item={item as any}
+          item={item}
           activePath={activePath}
           level={level}
           index={index}
@@ -40,7 +40,7 @@ export default function DocSidebarItem({
     case "html":
       return (
         <DocSidebarItemHtml
-          item={item as any}
+          item={item}
           level={level}
           tabIndex={props.tabIndex}
           activePath={activePath}
@@ -51,7 +51,7 @@ export default function DocSidebarItem({
     default:
       return (
         <DocSidebarItemLink
-          item={item as any}
+          item={item}
           activePath={activePath}
           level={level}
           index={index}

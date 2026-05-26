@@ -1,22 +1,13 @@
 import * as React from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { useEffect, useMemo, useState } from "react";
+import Particles, { ParticlesProvider } from "@tsparticles/react";
+import { useCallback, useMemo } from "react";
 import { loadSlim } from "@tsparticles/slim";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
-const ParticlesComponent = (props) => {
-  const [init, setInit] = useState(false);
-
-  useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
+const ParticlesInner = (props) => {
+  const particlesInit = useCallback(async (engine) => {
+    await loadSlim(engine);
   }, []);
-
-  const particlesLoaded = (container) => {
-    console.log(container);
-  };
 
   const options = useMemo(
     () => ({
@@ -96,20 +87,26 @@ const ParticlesComponent = (props) => {
   );
 
   return (
-    <div
-      style={{
-        position: "fixed",
-        width: "100vw",
-        height: "100vh",
-        top: 0,
-        left: 0,
-        zIndex: -1, // Critical: ensures it's in the background
-        pointerEvents: "none", // Ensures it doesn't block clicks
-      }}
-    >
-      <Particles id={props.id} options={options} />
-    </div>
+    <ParticlesProvider init={particlesInit}>
+      <div
+        style={{
+          position: "fixed",
+          width: "100vw",
+          height: "100vh",
+          top: 0,
+          left: 0,
+          zIndex: -1,
+          pointerEvents: "none",
+        }}
+      >
+        <Particles id={props.id} options={options} />
+      </div>
+    </ParticlesProvider>
   );
 };
+
+const ParticlesComponent = (props) => (
+  <BrowserOnly>{() => <ParticlesInner {...props} />}</BrowserOnly>
+);
 
 export default ParticlesComponent;

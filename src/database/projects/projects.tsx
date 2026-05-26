@@ -1,4 +1,4 @@
-import { OurProjectsData } from "../../components/ourProjects";
+import type { Data as OurProjectsData } from "../../components/ourProjects";
 
 const projectsData: OurProjectsData = {
   tag: "Our Projects",
