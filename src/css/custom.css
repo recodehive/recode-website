@@ -398,12 +398,54 @@ html[data-theme="dark"] .menu__link--active::after {
   white-space: nowrap;
 }
 
+/* Center FAQ subtitle under the main FAQ heading */
+
+.mb-10.text-center {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  text-align: center !important;
+}
+
+/* Ensure the FAQ section container is centered and uses the intended max-width */
+.relative .mx-auto.max-w-6xl {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  max-width: 1100px !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+}
+
+.mb-10.text-center {
+  justify-content: center !important;
+}
+
+.mb-10.text-center>p,
+.mb-10.text-center p.mx-auto {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .navbar__items {
+
   display: flex;
   align-items: center;
   gap: 0.3rem !important;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+.mb-10.text-center>p.mx-auto.max-w-3xl {
+  align-self: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 900px !important;
+  box-sizing: border-box !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 /* ======== SECTION 7 : Adjust individual navbar items ==========*/

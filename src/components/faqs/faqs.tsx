@@ -86,6 +86,7 @@ const FAQs: React.FC = () => {
             <p
               className={`mx-auto mt-3 max-w-3xl text-base ${isDark ? "text-gray-400" : "text-gray-600"
                 }`}
+              style={{ textAlign: "center" }}
             >
               Find answers to the most common questions about recode hive.
             </p>
@@ -116,8 +117,8 @@ const FAQs: React.FC = () => {
                   >
                     <button
                       className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between gap-4 p-4 text-left text-base font-semibold transition-all duration-300 focus:outline-none md:p-5 ${isDark
-                          ? "text-gray-100 hover:text-indigo-300"
-                          : "text-gray-800 hover:text-indigo-700"
+                        ? "text-gray-100 hover:text-indigo-300"
+                        : "text-gray-800 hover:text-indigo-700"
                         }`}
                       style={{
                         background: isDark
@@ -205,8 +206,8 @@ const FAQs: React.FC = () => {
                   >
                     <button
                       className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between gap-4 p-4 text-left text-base font-semibold transition-all duration-300 focus:outline-none md:p-5 ${isDark
-                          ? "text-gray-100 hover:text-indigo-300"
-                          : "text-gray-800 hover:text-indigo-700"
+                        ? "text-gray-100 hover:text-indigo-300"
+                        : "text-gray-800 hover:text-indigo-700"
                         }`}
                       style={{
                         background: isDark
