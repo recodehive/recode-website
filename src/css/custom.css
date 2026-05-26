@@ -2570,24 +2570,24 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
 
 /* author card fixes */
 [class*="authorName_"] {
-  font-size: 1.1rem !important;
+  font-size: 1.2rem !important;
   font-weight: 700 !important;
   line-height: 1.3 !important;
   margin: 0 !important;
 }
 
 [class*="authorBadge_"] {
-  font-size: 0.65rem !important;
+  font-size: 0.70rem !important;
   padding: 2px 7px !important;
 }
 
 [class*="authorMeta_"] {
-  font-size: 0.78rem !important;
+  font-size: 1.0rem !important;
   margin: 2px 0 !important;
 }
 
 [class*="authorSummary_"] {
-  font-size: 0.9rem !important;
+  font-size: 1.0rem !important;
   line-height: 1.5 !important;
 }
 
