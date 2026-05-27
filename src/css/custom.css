@@ -611,6 +611,38 @@ html[data-theme="dark"] article blockquote {
     transform: translateX(4px) !important;
   }
 
+  /* Prevent dropdown section titles from wrapping into multiple lines
+     and ensure title text vertically centers with icons. Also ensure
+     icons are centered and do not shift baseline. */
+  .navbar__item .dropdown__menu .grid>.border-r.col-span-1,
+  .navbar-sidebar .dropdown__menu .grid>.border-r.col-span-1,
+  .navbar__item .dropdown-content .grid>.border-r.col-span-1 {
+    white-space: nowrap !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    line-height: 1 !important;
+  }
+
+  /* Align icon cells and images to vertical center and prevent clipping */
+  .navbar__item .dropdown__menu .nav__icons,
+  .navbar-sidebar .nav__icons,
+  .dropdown__menu .nav__icons {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+  }
+
+  .navbar__item .dropdown__menu .nav__icons img,
+  .navbar-sidebar .nav__icons img,
+  .dropdown__menu .nav__icons img {
+    display: block !important;
+    margin: 0 !important;
+    width: 30px !important;
+    height: 30px !important;
+  }
+
   /* Ensure navbar container doesn't clip dropdowns */
   .navbar,
   .navbar__inner,
@@ -2717,4 +2749,3 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
   gap: 15px !important;
   margin-top: 15px !important;
 }
-
