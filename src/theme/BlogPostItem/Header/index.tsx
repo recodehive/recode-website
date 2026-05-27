@@ -78,10 +78,10 @@ export default function BlogPostItemHeaderWrapper(props: Props): JSX.Element {
 
   const blogDate = metadata.date
     ? new Intl.DateTimeFormat(siteConfig.i18n?.defaultLocale || "en-US", {
-        year: "numeric",
-        month: "short",
-        day: "numeric",
-      }).format(new Date(metadata.date))
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    }).format(new Date(metadata.date))
     : undefined;
 
   const tags = (metadata.tags ?? [])
@@ -121,10 +121,11 @@ export default function BlogPostItemHeaderWrapper(props: Props): JSX.Element {
                 ))}
               </div>
               {/* Handles after the stack (only authors with a handle) */}
+              {/* Full name after the stack */}
               {authors
-                .filter((author) => author.handle)
+                .filter((author) => author.name || author.handle)
                 .map((author, idx) => (
-                  <React.Fragment key={author.handle}>
+                  <React.Fragment key={author.handle ?? author.name}>
                     {idx > 0 && (
                       <span className={styles.authorSep} aria-hidden="true">
                         ,
@@ -137,10 +138,10 @@ export default function BlogPostItemHeaderWrapper(props: Props): JSX.Element {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        {author.handle}
+                        {author.name || author.handle}
                       </Link>
                     ) : (
-                      <span className={styles.handle}>{author.handle}</span>
+                      <span className={styles.handle}>{author.name || author.handle}</span>
                     )}
                   </React.Fragment>
                 ))}
