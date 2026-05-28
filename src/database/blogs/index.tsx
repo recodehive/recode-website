@@ -20,7 +20,7 @@ const blogs: Blog[] = [
     slug: "ux-ui-design-job",
     authors: ["sowmiya-v", "sanjay-kv"],
     category: "Design",
-    tags: ["UX", "UI", "Career", "Job"],
+    tags: ["UX", "UI", "design", "Job"],
   },
 
   {
@@ -221,7 +221,8 @@ const blogs: Blog[] = [
     authors: ["Aditya-Singh-Rathore"],
     category: "data engineering",
     tags: ["Purview", "Data Catalog", "Onboarding", "Data Management", "Data Engineering"],
-
+  },
+  {
     id: 19,
     title: "Why Data Engineers Make Better Business Analysts Than MBAs Do",
     image: "/img/blogs/ba_de_cover_image.png",
@@ -232,6 +233,19 @@ const blogs: Blog[] = [
     category: "data engineering",
     tags: ["Data Engineers", "Business Analysts", "MBAs", "Data Understanding", "Business Decisions"],
   },
+  {
+    id: 20,
+    title: "Google Changed Workspace Icon after 6 years",
+    image: "/img/blogs/cover-google-icon.jpg",
+    description:
+      " Google has unveiled a new icon design that reflects its commitment to simplicity and accessibility. The updated icon features a more modern ",
+    slug: "google-icon-update",
+    authors: ["sanjay-kv"],
+    category: "Design",
+    tags: ["UX", "UI", "design", "Job"],
+  },
+
+  
 
 ];
 

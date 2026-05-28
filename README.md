@@ -1,12 +1,12 @@
-<div style="text-align: center">
+<div align="center">
   <a href="https://www.recodehive.com">
   <img src="static/icons/Logo-512X512.png" alt="recode hive logo" width="150" />
   </a>
 </div>
 
-<h1 style="text-align: center">recode hive</h1>
+<h1 align="center">recode hive</h1>
 
-<div style="text-align: center">
+<div align="center">
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 [![Stars Badge](https://img.shields.io/github/stars/recodehive/recode-website)](https://github.com/recodehive/recode-website/stargazers)
@@ -16,11 +16,11 @@
 [![Contributors](https://img.shields.io/github/contributors/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/graphs/contributors)
 [![License Badge](https://img.shields.io/github/license/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/LICENSE)
 
-<h2 style="text-align: center">Collaboration 1st , code 2nd.</h2>
+<h2 align="center">Collaboration 1st , code 2nd.</h2>
 
-**Your all-in-one resource for learning Git, GitHub, Python through comprehensive tutorials and hands-on projects.**
+**Your all-in-one resource for learning Git, GitHub and, Python through comprehensive tutorials and hands-on projects.**
 
-[Website](https://recodehive.com/) • [Documentation](https://recodehive.com/docs) • [Contributing](community/contributing-guidelines.md) • [Discord](https://discord.gg/dh3TA8U55Q)
+[Website](https://recodehive.com/) • [Documentation](https://recodehive.com/docs) • [Contributing](community/contributing-guidelines.md) • [Discord](https://discord.gg/Yxv9RA3r)
 
 </div>
 
@@ -199,7 +199,7 @@ git push origin feature/your-feature-name
       <p>How to Contribute to this Repo | How to Setup - Watch Video</p>
     </a>
     <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
-      <img style="max-width:700px;" src="https://cdn.loom.com/sessions/thumbnails/c8d8d5f0c2534a1f86fc510dcef52ee0-30cac2eeec09a266-full-play.gif" alt="How to Contribute video thumbnail">
+      <img style="max-width:700px;" src="https://cdn.loom.com/sessions/thumbnails/c8d8d5f0c2534a1f86fc510dcef52ee0-30cac2eeec09a266-full-play.gif">
     </a>
 </div>
 
@@ -216,7 +216,7 @@ For detailed guidelines, please refer to our [Contributing Guidelines](community
 
 Join our community and connect with fellow learners:
 
-[![Discord](https://img.shields.io/badge/Discord-5865F2.svg?style=for-the-badge&logo=Discord&logoColor=white)](https://discord.gg/dh3TA8U55Q)
+[![Discord](https://img.shields.io/badge/Discord-5865F2.svg?style=for-the-badge&logo=Discord&logoColor=white)](https://discord.gg/Yxv9RA3r)
 [![LinkedIn](https://img.shields.io/badge/Follow%20on-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sanjay-k-v/)
 
 ## 📊 Project Statistics
@@ -235,7 +235,7 @@ Join our community and connect with fellow learners:
 We appreciate all contributions to recode hive! Thank you to everyone who has helped make this project better.
 
 <a href="https://github.com/RecodeHive/recode-website/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=RecodeHive/recode-website" alt="Contributors image" />
+  <img src="https://contrib.rocks/image?repo=RecodeHive/recode-website" />
 </a>
 
 ## ⚖️ License
@@ -247,18 +247,20 @@ This project is licensed under the [MIT License](LICENSE). See the LICENSE file 
 Stay up to date with the latest from recode hive:
 
 - **Website:** [recodehive.com](https://recodehive.com/)
-- **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/sanjay-k-v/)
-- **Twitter:** [X](https://x.com/sanjay_kv_)
+- **Instagram:** [@nomad_brains](https://www.instagram.com/nomad_brains/)
+- **LinkedIn:** [Sanjay K V](https://www.linkedin.com/in/sanjay-k-v/)
+- **Twitter:** [@sanjay*kv*](https://x.com/sanjay_kv_)
 - **YouTube:** [@RecodeHive](https://www.youtube.com/@RecodeHive)
 - **Newsletter:** [Subscribe](https://recodehive.substack.com/)
 
 ---
 
-<div style="text-align: center">
+<div align="center">
+
 **Happy open-source contributions—here's to your career success! 🎉**
 
-<p style="text-align: center">
-  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="600" alt="recode hive showcase">
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="600">
 </p>
 
 Made with ❤️ by the recode hive community

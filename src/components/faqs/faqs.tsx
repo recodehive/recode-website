@@ -22,7 +22,7 @@ const faqData = [
   {
     question: "What all resources are available here?",
     answer:
-      "We offer a comprehensive range of learning resources across multiple technologies:<br><br><strong>Currently Available:</strong><br>• 🐍 <a href='/docs/python/intro-python' class='text-indigo-600 hover:text-indigo-800 underline'>Python Tutorials</a> - From basics to advanced concepts<br>• 🗄️ <a href='/docs/sql/intro-sql' class='text-indigo-600 hover:text-indigo-800 underline'>SQL Resources</a> - Database management and queries<br>• 🐙 <a href='/docs/GitHub/intro-github' class='text-indigo-600 hover:text-indigo-800 underline'>GitHub Guides</a> - Version control and collaboration<br>• 📮 <a href='/docs/Technical' class='text-indigo-600 hover:text-indigo-800 underline'>Postman API Testing</a><br>• ⚛️ <a href='/docs/Nextjs/intro-nextjs' class='text-indigo-600 hover:text-indigo-800 underline'>Next.js Development</a><br><br><strong>Coming Soon:</strong> Advanced data tools tutorials, cloud technologies, and more!",
+      "We offer a comprehensive range of learning resources across multiple technologies:<br><br><strong>Currently Available:</strong><br>•🗄️ <a href='/docs/sql/intro-sql' class='text-indigo-600 hover:text-indigo-800 underline'>SQL Resources</a> - Database management and queries<br>• 🐙 <a href='/docs/GitHub/intro-github' class='text-indigo-600 hover:text-indigo-800 underline'>GitHub Guides</a> - Version control and collaboration<br>• 📮 <a href='/docs/Technical' class='text-indigo-600 hover:text-indigo-800 underline'>Postman API Testing</a><br>• ⚛️ <a href='/docs/Nextjs/intro-nextjs' class='text-indigo-600 hover:text-indigo-800 underline'>Next.js Development</a><br><br><strong>Coming Soon:</strong> Advanced data tools tutorials, cloud technologies, and more!",
   },
   {
     question: "How can I contribute as a beginner?",
@@ -86,6 +86,7 @@ const FAQs: React.FC = () => {
             <p
               className={`mx-auto mt-3 max-w-3xl text-base ${isDark ? "text-gray-400" : "text-gray-600"
                 }`}
+              style={{ textAlign: "center" }}
             >
               Find answers to the most common questions about recode hive.
             </p>
@@ -116,8 +117,8 @@ const FAQs: React.FC = () => {
                   >
                     <button
                       className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between gap-4 p-4 text-left text-base font-semibold transition-all duration-300 focus:outline-none md:p-5 ${isDark
-                          ? "text-gray-100 hover:text-indigo-300"
-                          : "text-gray-800 hover:text-indigo-700"
+                        ? "text-gray-100 hover:text-indigo-300"
+                        : "text-gray-800 hover:text-indigo-700"
                         }`}
                       style={{
                         background: isDark
@@ -205,8 +206,8 @@ const FAQs: React.FC = () => {
                   >
                     <button
                       className={`accordion-toggle group flex w-full cursor-pointer items-center justify-between gap-4 p-4 text-left text-base font-semibold transition-all duration-300 focus:outline-none md:p-5 ${isDark
-                          ? "text-gray-100 hover:text-indigo-300"
-                          : "text-gray-800 hover:text-indigo-700"
+                        ? "text-gray-100 hover:text-indigo-300"
+                        : "text-gray-800 hover:text-indigo-700"
                         }`}
                       style={{
                         background: isDark

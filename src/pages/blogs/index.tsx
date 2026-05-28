@@ -4,22 +4,53 @@ import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import blogs from "../../database/blogs/index";
 import Head from "@docusaurus/Head";
-import { getAuthorProfiles, getAuthorTooltip } from "../../utils/authors";
+import { getAuthorProfiles } from "../../utils/authors";
 import { filterBlogsBySearchTerm } from "../../utils/blogFilters";
+import BlogSearch from "../../components/BlogSearch";
 
 import "./blogs-new.css";
 
 const POSTS_PER_PAGE = 12;
 
+// Stable color per tag label (cycles through palette)
+const TAG_COLORS = [
+  { dot: "#f59e0b", border: "#fde68a", bg: "#fffbeb", text: "#92400e" },
+  { dot: "#6366f1", border: "#c7d2fe", bg: "#eef2ff", text: "#3730a3" },
+  { dot: "#ec4899", border: "#fbcfe8", bg: "#fdf2f8", text: "#9d174d" },
+  { dot: "#10b981", border: "#a7f3d0", bg: "#ecfdf5", text: "#065f46" },
+  { dot: "#3b82f6", border: "#bfdbfe", bg: "#eff6ff", text: "#1e40af" },
+  { dot: "#8b5cf6", border: "#ddd6fe", bg: "#f5f3ff", text: "#5b21b6" },
+  { dot: "#f97316", border: "#fed7aa", bg: "#fff7ed", text: "#9a3412" },
+  { dot: "#14b8a6", border: "#99f6e4", bg: "#f0fdfa", text: "#134e4a" },
+];
+
+function tagColor(label: string) {
+  let hash = 0;
+  for (let i = 0; i < label.length; i++)
+    hash = label.charCodeAt(i) + ((hash << 5) - hash);
+  return TAG_COLORS[Math.abs(hash) % TAG_COLORS.length];
+}
+
+function formatDate(dateStr?: string) {
+  if (!dateStr) return "";
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return dateStr;
+  return d.toLocaleDateString("en-US", {
+    month: "short",
+    day: "2-digit",
+    year: "numeric",
+  });
+}
+
 export default function Blogs() {
   const { siteConfig } = useDocusaurusContext();
-  const [searchInput, setSearchInput] = React.useState("");
   const [searchTerm, setSearchTerm] = React.useState("");
   const [currentPage, setCurrentPage] = React.useState(1);
-  const filteredBlogs = React.useMemo(
-    () => filterBlogsBySearchTerm(blogs, searchTerm),
-    [searchTerm],
-  );
+
+  const filteredBlogs = React.useMemo(() => {
+    const sortedBlogs = [...blogs].sort((a, b) => b.id - a.id);
+    return filterBlogsBySearchTerm(sortedBlogs, searchTerm);
+  }, [searchTerm, blogs]);
 
   React.useEffect(() => {
     setCurrentPage(1);
@@ -30,8 +61,9 @@ export default function Blogs() {
   const showingEnd = Math.min(currentPage * POSTS_PER_PAGE, filteredBlogs.length);
   const paginatedBlogs = filteredBlogs.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
-    currentPage * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE
   );
+
   const visiblePages = (() => {
     const pages: number[] = [];
     const maxVisible = 5;
@@ -44,19 +76,10 @@ export default function Blogs() {
     for (let i = start; i <= end; i++) pages.push(i);
     return pages;
   })();
+
   const showLastPage = visiblePages[visiblePages.length - 1] < totalPages;
 
-  const handleSearchChange = (e: { target: { value: string } }) => {
-    setSearchInput(e.target.value);
-  };
-
-  const handleSearchSubmit = (e: { preventDefault: () => void }) => {
-    e.preventDefault();
-    setSearchTerm(searchInput.trim());
-  };
-
   const handleClearFilters = () => {
-    setSearchInput("");
     setSearchTerm("");
   };
 
@@ -67,11 +90,7 @@ export default function Blogs() {
     >
       <Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
           rel="stylesheet"
@@ -104,6 +123,9 @@ export default function Blogs() {
                 Engineering <span className="gradient-text">uptime</span>{" "}
               </h1>
               <p className="blog-main-subtitle">blog by recode community.</p>
+              <div style={{ width: "100%", marginTop: "24px" }}>
+                <BlogSearch initialSearchTerm={searchTerm} onSearchSubmit={setSearchTerm} />
+              </div>
             </div>
           </div>
         </section>
@@ -112,50 +134,10 @@ export default function Blogs() {
         <section className="latest-articles-section">
           <div className="articles-container-wrapper">
             <div className="articles-main-content">
-              <div className="blog-search-panel">
+              <div className="blog-search-panel" style={{ padding: '0', background: 'transparent', border: 'none', boxShadow: 'none' }}>
                 <p className="blog-search-eyebrow">Explore articles</p>
-                <h2 className="blog-search-title">Find the right guide</h2>
-                <form
-                  className="blog-search-form"
-                  onSubmit={handleSearchSubmit}
-                >
-                  <label className="blog-search-field">
-                    <span className="blog-search-visually-hidden">
-                      Search blog articles
-                    </span>
-                    <svg
-                      className="blog-search-submit-icon"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      aria-hidden="true"
-                    >
-                      <circle cx="11" cy="11" r="8"></circle>
-                      <path d="m21 21-4.35-4.35"></path>
-                    </svg>
-                    <input
-                      type="search"
-                      placeholder="Search tutorials, tools, or technologies"
-                      value={searchInput}
-                      onChange={handleSearchChange}
-                    />
-                  </label>
-                  <button className="blog-search-button" type="submit">
-                    Search
-                  </button>
-                  {searchTerm && (
-                    <button
-                      className="blog-search-clear-button"
-                      type="button"
-                      onClick={handleClearFilters}
-                    >
-                      Clear
-                    </button>
-                  )}
-                </form>
               </div>
 
-              {/* Search Results Counter */}
               {searchTerm && (
                 <div className="search-results-info">
                   <p>
@@ -179,13 +161,8 @@ export default function Blogs() {
                     <div className="no-results-content">
                       <div className="no-results-icon">🔍</div>
                       <h3>No articles found</h3>
-                      <p>
-                        Try adjusting your search terms or browse all articles.
-                      </p>
-                      <button
-                        className="clear-search-btn"
-                        onClick={handleClearFilters}
-                      >
+                      <p>Try adjusting your search terms or browse all articles.</p>
+                      <button className="clear-search-btn" onClick={handleClearFilters}>
                         Clear Filters
                       </button>
                     </div>
@@ -209,21 +186,18 @@ export default function Blogs() {
                       {visiblePages.map((page) => (
                         <button
                           key={page}
-                          className={`pagination-number ${currentPage === page ? "active-page" : ""
-                            }`}
+                          className={`pagination-number ${currentPage === page ? "active-page" : ""}`}
                           aria-label={`Go to page ${page}`}
                           onClick={() => setCurrentPage(page)}
                         >
                           {page}
                         </button>
                       ))}
-
                       {showLastPage && (
                         <>
                           <span className="pagination-ellipsis">...</span>
                           <button
-                            className={`pagination-number ${currentPage === totalPages ? "active-page" : ""
-                              }`}
+                            className={`pagination-number ${currentPage === totalPages ? "active-page" : ""}`}
                             aria-label={`Go to page ${totalPages}`}
                             onClick={() => setCurrentPage(totalPages)}
                           >
@@ -243,8 +217,7 @@ export default function Blogs() {
                     </button>
                   </div>
                   <p className="pagination-summary">
-                    Showing {showingStart} - {showingEnd} of{" "}
-                    {filteredBlogs.length} posts
+                    Showing {showingStart} - {showingEnd} of {filteredBlogs.length} posts
                   </p>
                 </div>
               )}
@@ -256,91 +229,135 @@ export default function Blogs() {
   );
 }
 
+// ─── BlogCard ────────────────────────────────────────────────────────────────
+
 const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
   const authors = getAuthorProfiles(blog.authors || []);
 
+  // Tags — use blog.tags if present, fallback to blog.category as single tag
+  const tags: string[] =
+    Array.isArray((blog as any).tags) && (blog as any).tags.length > 0
+      ? (blog as any).tags
+      : blog.category
+        ? [blog.category]
+        : [];
+
   return (
     <div className="article-card">
-      <div className="card-category">{blog.category}</div>
+      {/* ── Image ── */}
       <div className="card-image">
-        <img src={blog.image} alt={blog.title} />
+        <img src={blog.image} alt={blog.title} loading="lazy" />
       </div>
+
+      {/* ── Content ── */}
       <div className="card-content">
+        {/* Title */}
         <h3 className="card-title">
           <Link to={`/blog/${blog.slug}`} className="card-title-link">
             {blog.title}
           </Link>
         </h3>
-        <p className="card-description">{blog.description}</p>
-        <div className="card-meta">
-          <div className="card-author">
-            {/* Stacked Author Avatars */}
-            {authors.length > 0 &&
-              (() => {
-                const max = 3;
-                const visible = authors.slice(0, max);
-                const extra = Math.max(0, authors.length - max);
-                return (
-                  <div className="author-stack" aria-hidden>
-                    {visible.map((a, i) => (
-                      <div
-                        key={a.id}
-                        className="author-stack-item"
-                        style={{ zIndex: max - i }}
-                      >
-                        {a.imageUrl ? (
-                          <img
-                            src={a.imageUrl}
-                            alt={a.name}
-                            className="author-stack-avatar"
-                            onError={(e) => {
-                              const target = e.currentTarget;
-                              target.style.display = "none";
-                              const fallback =
-                                target.nextElementSibling as HTMLElement | null;
-                              if (fallback) fallback.style.display = "flex";
-                            }}
-                          />
-                        ) : (
-                          <span className="author-stack-fallback">
-                            {a.name.charAt(0).toUpperCase()}
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                    {extra > 0 && (
-                      <div className="author-stack-more">+{extra}</div>
-                    )}
-                  </div>
-                );
-              })()}
 
-            {/* Author Names */}
-            <div className="author-name-group">
-              {authors.map((author, authorIndex) => (
-                <span key={author.id} className="author-item">
-                  {authorIndex > 0 && (
-                    <span className="author-separator">,</span>
-                  )}
+        {/* Description */}
+        {blog.description && (
+          <p className="card-description">{blog.description}</p>
+        )}
+
+        {/* Tag pills */}
+        {tags.length > 0 && (
+          <div className="card-tags">
+            {tags.slice(0, 6).map((tag) => {
+              const c = tagColor(tag);
+              return (
+                <span
+                  key={tag}
+                  className="card-tag"
+                  style={{
+                    "--tag-dot": c.dot,
+                    "--tag-border": c.border,
+                    "--tag-bg": c.bg,
+                    "--tag-text": c.text,
+                  } as React.CSSProperties}
+                >
+                  <span className="card-tag-dot" />
+                  {tag}
+                </span>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Bottom row: avatar stack + author names + date  ···  Read → */}
+        <div className="card-footer">
+          <div className="card-author-row">
+            {/* Avatar stack */}
+            {authors.length > 0 && (
+              <div className="card-avatar-stack">
+                {authors.slice(0, 3).map((author, idx) => (
                   <Link
+                    key={author.id}
                     href={author.githubUrl}
-                    className="author-name author-link"
+                    className="card-avatar"
+                    style={{ zIndex: authors.length - idx } as React.CSSProperties}
                     target="_blank"
                     rel="noopener noreferrer"
-                    data-author-tooltip={getAuthorTooltip(author.id)}
-                    aria-label={`Open ${author.name} on GitHub`}
+                    title={author.name}
                   >
-                    {author.name}
+                    {author.imageUrl ? (
+                      <img
+                        src={author.imageUrl}
+                        alt={author.name}
+                        className="card-avatar-img"
+                        onError={(e) => {
+                          const t = e.currentTarget;
+                          t.style.display = "none";
+                          const fb = t.nextElementSibling as HTMLElement | null;
+                          if (fb) fb.style.display = "flex";
+                        }}
+                      />
+                    ) : null}
+                    <span
+                      className="card-avatar-fallback"
+                      style={{ display: author.imageUrl ? "none" : "flex" }}
+                    >
+                      {author.name.charAt(0).toUpperCase()}
+                    </span>
                   </Link>
+                ))}
+              </div>
+            )}
+
+            {/* Author names + date stacked */}
+            <div className="card-author-info">
+              {authors.length > 0 && (
+                <span className="card-author-names">
+                  {authors.map((author, idx) => (
+                    <React.Fragment key={author.id}>
+                      {idx > 0 && <span className="card-author-sep">, </span>}
+                      <Link
+                        href={author.githubUrl}
+                        className="card-author-handle"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title={author.name}
+                      >
+                        {author.name}
+                      </Link>
+                    </React.Fragment>
+                  ))}
                 </span>
-              ))}
+              )}
+              {(blog as any).date && (
+                <span className="card-date">{formatDate((blog as any).date)}</span>
+              )}
             </div>
           </div>
-          <span className="card-read-time">5 min read</span>
+
+          {/* Read link */}
+          <Link to={`/blog/${blog.slug}`} className="card-read-link">
+            Read →
+          </Link>
         </div>
-        <Link to={`/blog/${blog.slug}`} className="card-read-more">
-          Read Article →
-        </Link>
       </div>
     </div>
   );
