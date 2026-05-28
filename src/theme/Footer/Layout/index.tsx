@@ -2,8 +2,7 @@ import React, { type ReactNode, useEffect, useState } from "react";
 import Link from "@docusaurus/Link";
 import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
 import clsx from "clsx";
-import { CheckCircle2, Heart, Monitor, Moon, Sun } from "lucide-react";
-import { createPortal } from "react-dom";
+import { Heart, Monitor, Moon, Sun } from "lucide-react";
 import Counter from "./Counter";
 import "./enhanced-footer.css";
 
@@ -15,9 +14,6 @@ interface FooterStats {
 }
 
 type ThemePreference = "system" | "light" | "dark";
-
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 export default function FooterLayout(): ReactNode {
   const { isDark } = useSafeColorMode();
   const currentYear = new Date().getFullYear();
@@ -27,10 +23,6 @@ export default function FooterLayout(): ReactNode {
     peopleSponsored: "45",
     supportHours: "24/7",
   });
-  const [email, setEmail] = useState("");
-  const [isSubscribed, setIsSubscribed] = useState(false);
-  const [showToast, setShowToast] = useState(false);
-  const [error, setError] = useState("");
   const [themePreference, setThemePreference] =
     useState<ThemePreference>("system");
 
@@ -94,58 +86,10 @@ export default function FooterLayout(): ReactNode {
     return () => clearInterval(interval);
   }, []);
 
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!email) {
-      setError("Email is required");
-      return;
-    }
-
-    if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address");
-      return;
-    }
-
-    setError("");
-    setIsSubscribed(true);
-    setShowToast(true);
-
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
-
-    setTimeout(() => {
-      setIsSubscribed(false);
-      setEmail("");
-    }, 3000);
-  };
-
   return (
     <footer
       className={clsx("enhanced-footer", isDark ? "dark-theme" : "light-theme")}
     >
-      {showToast &&
-        createPortal(
-          <div className="newsletter-toast">
-            <div className="toast-content">
-              <CheckCircle2 className="toast-icon" aria-hidden="true" />
-              <div className="toast-message">
-                <h4>Successfully Subscribed!</h4>
-                <p>Thank you for joining our newsletter.</p>
-              </div>
-              <button
-                className="toast-close"
-                onClick={() => setShowToast(false)}
-                aria-label="Close notification"
-              >
-                x
-              </button>
-            </div>
-          </div>,
-          document.body,
-        )}
-
       <div className="footer-shell">
         <div className="footer-topbar">
           <Link to="/" className="footer-brand" aria-label="RecodeHive home">
@@ -313,54 +257,6 @@ export default function FooterLayout(): ReactNode {
               </li>
             </ul>
           </div>
-
-          <div className="footer-column newsletter-column">
-            <h3 className="footer-column-title">Stay in the Loop</h3>
-            <p className="newsletter-description">
-              Join {stats.activeUsers} developers getting weekly insights,
-              tutorials, and exclusive content.
-            </p>
-            <form className="newsletter-form" onSubmit={handleSubscribe}>
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className={clsx("newsletter-input", error && "input-error")}
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setError("");
-                }}
-                required
-              />
-              <button
-                type="submit"
-                className={clsx(
-                  "newsletter-button",
-                  isSubscribed && "subscribed",
-                )}
-                disabled={isSubscribed}
-              >
-                {isSubscribed ? "Subscribed!" : "Subscribe"}
-              </button>
-              {error && <p className="error-text">{error}</p>}
-            </form>
-            <div className="newsletter-stats">
-              <span className="newsletter-stat">
-                1.2K+ developers joined this week
-              </span>
-            </div>
-            <div className="quick-links-section">
-              <h4 className="quick-links-title">Quick Links</h4>
-              <div className="quick-links-list">
-                <Link to="/get-started" className="quick-link">
-                  Get Started
-                </Link>
-                <Link to="/dashboard" className="quick-link">
-                  Dashboard
-                </Link>
-              </div>
-            </div>
-          </div>
         </div>
 
         <div className="footer-stats" aria-label="Community statistics">
@@ -395,23 +291,19 @@ export default function FooterLayout(): ReactNode {
         </div>
 
         <div className="footer-bottom">
-          <div aria-hidden="true" />
-
-          <div className="footer-bottom-center">
-            <div className="footer-copyright">
-              <span>
-                &copy; {currentYear} recodehive. Made with{" "}
-                <Heart className="footer-heart-icon" aria-label="love" /> by{" "}
-                <a
-                  href="https://github.com/recodehive/recode-website/graphs/contributors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  the Community
-                </a>
-                .
-              </span>
-            </div>
+          <div className="footer-copyright">
+            <span>
+              &copy; {currentYear} recodehive. Made with{" "}
+              <Heart className="footer-heart-icon" aria-label="love" /> by{" "}
+              <a
+                href="https://github.com/recodehive/recode-website/graphs/contributors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                the Community
+              </a>
+              .
+            </span>
           </div>
 
           <div className="footer-controls" aria-label="Footer controls">

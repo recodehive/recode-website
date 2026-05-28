@@ -1,19 +1,30 @@
 import * as React from "react";
-import Particles, { initParticlesEngine } from "@tsparticles/react";
-import { useEffect, useMemo, useState } from "react";
+import * as ParticlesReact from "@tsparticles/react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 
 const ParticlesInner = (props) => {
   const [init, setInit] = useState(false);
+  const Particles = (ParticlesReact.default ??
+    ParticlesReact.Particles) as React.ComponentType<Record<string, unknown>>;
+
+  const particlesInit = useCallback(async (engine) => {
+    await loadSlim(engine);
+  }, []);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
+    const initParticlesEngine = ParticlesReact.initParticlesEngine;
+
+    if (typeof initParticlesEngine !== "function") {
+      setInit(true);
+      return;
+    }
+
+    initParticlesEngine(particlesInit).then(() => {
       setInit(true);
     });
-  }, []);
+  }, [particlesInit]);
 
   const options = useMemo(
     () => ({
@@ -108,7 +119,7 @@ const ParticlesInner = (props) => {
         pointerEvents: "none",
       }}
     >
-      <Particles id={props.id} options={options} />
+      <Particles id={props.id} init={particlesInit} options={options} />
     </div>
   );
 };
