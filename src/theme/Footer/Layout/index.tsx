@@ -261,32 +261,38 @@ export default function FooterLayout(): ReactNode {
 
         <div className="footer-stats" aria-label="Community statistics">
           <div
-            className="stat-item"
+            className="footer-stat-item"
             title="Growing community of active learners"
           >
-            <div className="stat-number">
+            <div className="footer-stat-number">
               <Counter value={parseInt(stats.activeUsers)} suffix="K+" />
             </div>
-            <div className="stat-label">Active Learners</div>
+            <div className="footer-stat-label">Active Learners</div>
           </div>
           <div
-            className="stat-item"
+            className="footer-stat-item"
             title="Comprehensive tutorials and courses"
           >
-            <div className="stat-number">
+            <div className="footer-stat-number">
               <Counter value={parseInt(stats.tutorials)} suffix="+" />
             </div>
-            <div className="stat-label">Tutorials</div>
+            <div className="footer-stat-label">Tutorials</div>
           </div>
-          <div className="stat-item" title="People sponsored by the community">
-            <div className="stat-number">
+          <div
+            className="footer-stat-item"
+            title="People sponsored by the community"
+          >
+            <div className="footer-stat-number">
               <Counter value={parseInt(stats.peopleSponsored)} suffix="+" />
             </div>
-            <div className="stat-label">People Sponsored</div>
+            <div className="footer-stat-label">People Sponsored</div>
           </div>
-          <div className="stat-item" title="Round-the-clock community support">
-            <div className="stat-number">{stats.supportHours}</div>
-            <div className="stat-label">Support</div>
+          <div
+            className="footer-stat-item"
+            title="Round-the-clock community support"
+          >
+            <div className="footer-stat-number">{stats.supportHours}</div>
+            <div className="footer-stat-label">Support</div>
           </div>
         </div>
 

@@ -1351,7 +1351,7 @@ html {
 [data-theme="dark"] .enhanced-footer .footer-main,
 [data-theme="dark"] .enhanced-footer .footer-stats,
 [data-theme="dark"] .enhanced-footer .footer-bottom,
-[data-theme="dark"] .enhanced-footer .stat-item {
+[data-theme="dark"] .enhanced-footer .footer-stat-item {
   background: #191919 !important;
   background-image: none !important;
 }
