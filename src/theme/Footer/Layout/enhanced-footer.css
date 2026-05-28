@@ -220,9 +220,10 @@
 
 .footer-stat-item {
   display: flex;
-  align-items: baseline;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  gap: 9px;
+  gap: 8px;
   min-height: 76px;
   padding: 14px;
   background: var(--footer-canvas);
@@ -257,6 +258,7 @@
 }
 
 .footer-stat-label {
+  display: block;
   color: var(--footer-stone);
   background: none !important;
   -webkit-background-clip: border-box !important;
