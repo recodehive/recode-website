@@ -278,7 +278,9 @@ const BlogCard = ({ blog, index }) => {
     <div className="article-card">
       <div className="card-category">{blog.category}</div>
       <div className="card-image">
-        <img src={blog.image} alt={blog.title} />
+        <Link to={`/blog/${blog.slug}`}>
+          <img src={blog.image} alt={blog.title} />
+        </Link>
       </div>
       <div className="card-content">
         <h3 className="card-title">{blog.title}</h3>
