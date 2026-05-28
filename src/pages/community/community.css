@@ -37,15 +37,15 @@
 /* Hero Section */
 .community-hero {
   position: relative;
-  background: radial-gradient(circle at top left, #a855f7 0, #4f46e5 40%, #0f172a 100%);
-  color: white;
+  background: radial-gradient(circle at top left, #212121 0, #6059ec 40%, #0f172a 100%);
+  color: rgb(246, 212, 212);
   padding: 88px 0 72px;
   overflow: hidden;
   text-align: center;
 }
 
 [data-theme="dark"] .community-hero {
-  background: radial-gradient(circle at top left, #4c1d95 0, #312e81 40%, #020617 100%);
+  background: radial-gradient(circle at top left, #4c228d 0, #0d0c32 40%, #0d2aab 100%);
 }
 
 .community-hero-background {
@@ -106,36 +106,44 @@
 }
 
 .hero-badge-row {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 4px 6px;
+  justify-content: center;
+  width: fit-content;
+  margin: 0 auto 18px;
+  gap: 12px;
+  padding: 8px 14px;
   border-radius: 999px;
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: rgba(60, 28, 148, 0.427);
+  border: 1px solid rgba(242, 199, 190, 0.966);
   margin-bottom: 18px;
 }
 
 .hero-badge,
 .hero-pill {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  min-height: 42px;
   font-size: 0.78rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 4px 10px;
   border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+  line-height: normal;
+  box-sizing: border-box;
+  white-space: nowrap;
+
 }
 
 .hero-badge {
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(41, 94, 220, 0.85);
   color: #e5e7eb;
   border: 1px solid rgba(148, 163, 184, 0.8);
 }
 
 .hero-pill {
-  background: rgba(129, 140, 248, 0.2);
+  background: rgba(10, 13, 36, 0.2);
   color: #e0e7ff;
   border: 1px solid rgba(129, 140, 248, 0.6);
 }
@@ -228,24 +236,31 @@
   background: rgba(15, 23, 42, 0.2);
   color: #e5e7eb;
   border-color: rgba(148, 163, 184, 0.7);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7);
 }
 
 .hero-primary-cta:hover,
 .hero-primary-cta:focus-visible {
-  transform: translateY(-1px);
-  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.85);
+  transform: translateY(-3px);
+  box-shadow: 5px 5px 5px rgba(15, 23, 42, 0.85) , 0 12px 24px rgb(246, 232, 232);
+  background-color: rgb(226, 73, 73);
+  color: #c7d3f0;
+  border: 1px solid rgb(244, 188, 188);
+  transition: all 0.3s ease;
 }
 
 .hero-secondary-cta:hover,
 .hero-secondary-cta:focus-visible {
-  transform: translateY(-1px);
-  background: rgba(15, 23, 42, 0.3);
-  border-color: rgba(191, 219, 254, 0.9);
+  transform: translateY(-3px);
+  background: rgb(58, 4, 138);
+  border-color: rgba(92, 154, 229, 0.9);
+  color: #f9fafb;
+  box-shadow: 0 12px 30px rgba(206, 217, 241, 0.7);
 }
 
 .hero-primary-cta:focus-visible,
 .hero-secondary-cta:focus-visible {
-  outline: 2px solid #fbbf24;
+  outline: 2px solid #ecdaad;
   outline-offset: 2px;
 }
 
@@ -600,7 +615,7 @@
 
 .resource-link:hover {
   background: var(--link-color, #4f46e5);
-  color: #ffffff;
+  color: #f49999;
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(15, 23, 42, 0.25);
   text-decoration: none;

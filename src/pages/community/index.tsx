@@ -41,7 +41,7 @@ const contributionSections: ContributionSection[] = [
         url: "https://github.com/recodehive/Support/issues/new?assignees=&labels=invite+me+to+the+community&projects=&template=invitation.yml&title=Please+invite+me+to+the+Recode-Hive+GitHub+Community+Organization",
       },
     ],
-    color: "#8b5cf6",
+    color: "#b499f4",
     label: "For developers",
   },
   {
