@@ -236,8 +236,8 @@ export default function Blogs(): React.JSX.Element {
 
               <div className="articles-grid">
                 {filteredBlogs.length > 0 ? (
-                  filteredBlogs.map((blog, index) => (
-                    <BlogCard key={blog.id} blog={blog} index={index} />
+                  filteredBlogs.map((blog) => (
+                    <BlogCard key={blog.id} blog={blog} />
                   ))
                 ) : (
                   <div className="no-results">
@@ -265,7 +265,7 @@ export default function Blogs(): React.JSX.Element {
   );
 }
 
-const BlogCard = ({ blog, index }) => {
+const BlogCard = ({ blog }) => {
   // Get authors for this blog post
   const getAuthors = (slug) => {
     const authors = authorMapping[slug] || ["recode hive Team"];
