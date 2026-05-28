@@ -110,7 +110,6 @@ const perks = [
       "Clear career progression paths with mentorship and leadership opportunities.",
   },
 ];
-
 const cultureValues = [
   {
     title: "Innovation First",
@@ -173,23 +172,53 @@ const testimonials = [
     role: "Senior Frontend Developer",
     content:
       "recode hive has given me the opportunity to work on cutting-edge projects while maintaining an amazing work-life balance. The team is incredibly supportive and collaborative.",
-    avatar: "/img/testimonial-sarah.jpg",
+    avatar: "/icons/vivien.png",
   },
   {
     name: "Marcus Johnson",
     role: "DevOps Engineer",
     content:
       "I love the remote-first culture here. The flexibility to work from anywhere has allowed me to travel while building my career. The learning opportunities are endless.",
-    avatar: "/img/testimonial-marcus.jpg",
+    avatar: "/icons/daniel.png",
   },
   {
     name: "Priya Patel",
     role: "Product Manager",
     content:
       "The growth mindset at recode hive is real. I've been able to take on new challenges and expand my skill set with full support from leadership.",
-    avatar: "/img/testimonial-priya.jpg",
+    avatar: "/icons/ethan.png",
   },
 ];
+
+function TestimonialAvatar({ avatar, name }: { avatar?: string; name: string }) {
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setHasError(false);
+  }, [avatar]);
+
+  const showFallback = !avatar || hasError;
+
+  return (
+    <div
+      className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-inner overflow-hidden relative"
+      {...(showFallback ? { "aria-label": `Avatar for ${name}`, role: "img" } : {})}
+    >
+      {!showFallback ? (
+        <img
+          src={avatar}
+          alt={name}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover rounded-full"
+          onError={() => setHasError(true)}
+        />
+      ) : (
+        <User className="h-10 w-10 text-white" aria-hidden="true" />
+      )}
+    </div>
+  );
+}
 
 function CareersContent() {
   const { colorMode, isDark, mounted } = useSafeColorMode();
@@ -216,9 +245,8 @@ function CareersContent() {
       </Head>
 
       <div
-        className={`careers-page min-h-screen transition-colors duration-300 ${
-          isDark ? "bg-gray-900" : "bg-gradient-to-b from-white to-gray-50"
-        }`}
+        className={`careers-page min-h-screen transition-colors duration-300 ${isDark ? "bg-gray-900" : "bg-gradient-to-b from-white to-gray-50"
+          }`}
       >
         {/* Hero Section */}
         <motion.section
@@ -481,29 +509,26 @@ function CareersContent() {
                         </h3>
                         <div className="flex gap-2">
                           <span
-                            className={`rounded-full px-3 py-1 text-sm ${
-                              isDark
-                                ? "bg-blue-900 text-blue-200"
-                                : "bg-blue-100 text-blue-800"
-                            }`}
+                            className={`rounded-full px-3 py-1 text-sm ${isDark
+                              ? "bg-blue-900 text-blue-200"
+                              : "bg-blue-100 text-blue-800"
+                              }`}
                           >
                             {job.department}
                           </span>
                           <span
-                            className={`rounded-full px-3 py-1 text-sm ${
-                              isDark
-                                ? "bg-green-900 text-green-200"
-                                : "bg-green-100 text-green-800"
-                            }`}
+                            className={`rounded-full px-3 py-1 text-sm ${isDark
+                              ? "bg-green-900 text-green-200"
+                              : "bg-green-100 text-green-800"
+                              }`}
                           >
                             {job.location}
                           </span>
                           <span
-                            className={`rounded-full px-3 py-1 text-sm ${
-                              isDark
-                                ? "bg-purple-900 text-purple-200"
-                                : "bg-purple-100 text-purple-800"
-                            }`}
+                            className={`rounded-full px-3 py-1 text-sm ${isDark
+                              ? "bg-purple-900 text-purple-200"
+                              : "bg-purple-100 text-purple-800"
+                              }`}
                           >
                             {job.type}
                           </span>
@@ -550,80 +575,146 @@ function CareersContent() {
           variants={staggerContainer}
         >
           <div className="mx-auto max-w-4xl">
-            <motion.div className="mb-16 text-center" variants={fadeIn}>
-              <h2
-                className="mb-6 text-4xl font-bold md:text-5xl"
-                style={{
-                  color: isDark ? "#ffffff" : "#111827",
-                }}
-              >
-                What Our Team Says
-              </h2>
-              <p
-                className="text-center text-xl"
-                style={{
-                  color: isDark ? "#d1d5db" : "#4b5563",
-                }}
-              >
-                Hear from our team members about their experience at recode
-                hive.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="testimonial-carousel rounded-xl p-8 shadow-lg"
-              style={{
-                backgroundColor: isDark ? "#111827" : "#ffffff",
-              }}
-              variants={fadeIn}
-            >
-              <div className="testimonial-content text-center">
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-inner">
-                  <User className="h-10 w-10 text-white" />
-                </div>
-                <blockquote
-                  className="mb-6 text-lg italic md:text-xl"
+            {mounted ? (
+              <motion.div className="mb-16 text-center" variants={fadeIn}>
+                <h2
+                  className="mb-6 text-4xl font-bold md:text-5xl"
                   style={{
-                    color: isDark ? "#d1d5db" : "#374151",
+                    color: isDark ? "#ffffff" : "#111827",
                   }}
                 >
-                  "{testimonials[activeTestimonial].content}"
-                </blockquote>
-                <div className="testimonial-author">
-                  <h4
-                    className="text-xl font-bold"
+                  What Our Team Says
+                </h2>
+                <p
+                  className="text-center text-xl"
+                  style={{
+                    color: isDark ? "#d1d5db" : "#4b5563",
+                  }}
+                >
+                  Hear from our team members about their experience at recode
+                  hive.
+                </p>
+              </motion.div>
+            ) : (
+              <div className="mb-16 text-center">
+                <h2
+                  className="mb-6 text-4xl font-bold md:text-5xl"
+                  style={{
+                    color: isDark ? "#ffffff" : "#111827",
+                  }}
+                >
+                  What Our Team Says
+                </h2>
+                <p
+                  className="text-center text-xl"
+                  style={{
+                    color: isDark ? "#d1d5db" : "#4b5563",
+                  }}
+                >
+                  Hear from our team members about their experience at recode
+                  hive.
+                </p>
+              </div>
+            )}
+
+            {mounted ? (
+              <motion.div
+                className="testimonial-carousel testimonial-carousel--light rounded-xl p-8 shadow-lg"
+                variants={fadeIn}
+              >
+                <div className="testimonial-content relative z-10 text-center">
+                  <TestimonialAvatar
+                    avatar={testimonials[activeTestimonial].avatar}
+                    name={testimonials[activeTestimonial].name}
+                  />
+                  <blockquote className="mb-6 text-lg italic md:text-xl">
+                    "{testimonials[activeTestimonial].content}"
+                  </blockquote>
+                  <div
+                    className="testimonial-author relative z-10"
                     style={{
-                      color: isDark ? "#ffffff" : "#111827",
+                      backgroundColor: "rgba(255, 255, 255, 0.98)",
+                      borderColor: "rgba(15, 23, 42, 0.08)",
                     }}
                   >
-                    {testimonials[activeTestimonial].name}
-                  </h4>
-                  <p
+                    <h4
+                      className="testimonial-author-name text-xl font-bold leading-tight"
+                      style={{ color: "#111827" }}
+                    >
+                      {testimonials[activeTestimonial].name}
+                    </h4>
+                    <p
+                      className="testimonial-author-role"
+                      style={{ color: "#334155" }}
+                    >
+                      {testimonials[activeTestimonial].role}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 flex justify-center gap-2">
+                    {testimonials.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`h-3 w-3 rounded-full transition-all duration-300 ${index === activeTestimonial
+                          ? "scale-110 bg-blue-600"
+                          : isDark
+                            ? "bg-gray-600 hover:bg-gray-500"
+                            : "bg-gray-300 hover:bg-gray-400"
+                          }`}
+                        onClick={() => setActiveTestimonial(index)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              <div className="testimonial-carousel testimonial-carousel--light rounded-xl p-8 shadow-lg">
+                <div className="testimonial-content relative z-10 text-center">
+                  <TestimonialAvatar
+                    avatar={testimonials[activeTestimonial].avatar}
+                    name={testimonials[activeTestimonial].name}
+                  />
+                  <blockquote className="mb-6 text-lg italic md:text-xl">
+                    "{testimonials[activeTestimonial].content}"
+                  </blockquote>
+                  <div
+                    className="testimonial-author relative z-10"
                     style={{
-                      color: isDark ? "#9ca3af" : "#4b5563",
+                      backgroundColor: "rgba(255, 255, 255, 0.98)",
+                      borderColor: "rgba(15, 23, 42, 0.08)",
                     }}
                   >
-                    {testimonials[activeTestimonial].role}
-                  </p>
+                    <h4
+                      className="testimonial-author-name text-xl font-bold leading-tight"
+                      style={{ color: "#111827" }}
+                    >
+                      {testimonials[activeTestimonial].name}
+                    </h4>
+                    <p
+                      className="testimonial-author-role"
+                      style={{ color: "#334155" }}
+                    >
+                      {testimonials[activeTestimonial].role}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 flex justify-center gap-2">
+                    {testimonials.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`h-3 w-3 rounded-full transition-all duration-300 ${index === activeTestimonial
+                          ? "scale-110 bg-blue-600"
+                          : isDark
+                            ? "bg-gray-600 hover:bg-gray-500"
+                            : "bg-gray-300 hover:bg-gray-400"
+                          }`}
+                        onClick={() => setActiveTestimonial(index)}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-
-              <div className="mt-8 flex justify-center gap-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`h-3 w-3 rounded-full transition-all duration-300 ${
-                      index === activeTestimonial
-                        ? "scale-110 bg-blue-600"
-                        : isDark
-                          ? "bg-gray-600 hover:bg-gray-500"
-                          : "bg-gray-300 hover:bg-gray-400"
-                    }`}
-                    onClick={() => setActiveTestimonial(index)}
-                  />
-                ))}
-              </div>
-            </motion.div>
+            )}
           </div>
         </motion.section>
 
