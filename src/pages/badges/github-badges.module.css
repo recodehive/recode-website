@@ -534,10 +534,10 @@
 }
 
 .tableWrapper {
+  width: max-content;
+  max-width: 100%;
+  margin: 0 auto 32px auto;
   overflow-x: auto;
-  margin-bottom: 32px;
-  display: flex;
-  justify-content: center;
 }
 
 .achievementsTable,

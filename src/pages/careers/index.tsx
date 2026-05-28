@@ -5,6 +5,19 @@ import { motion } from "framer-motion";
 import Link from "@docusaurus/Link";
 // removed useColorMode import to avoid provider + SSR issues
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import {
+  Home,
+  CircleDollarSign,
+  GraduationCap,
+  HeartPulse,
+  Palmtree,
+  Rocket,
+  User,
+  Zap,
+  Users,
+  BrainCircuit,
+  ArrowRight
+} from "lucide-react";
 
 // Safe hook for color mode that handles SSR
 function useSafeColorMode() {
@@ -61,61 +74,60 @@ const staggerContainer = {
 // Sample data for the careers page
 const perks = [
   {
-    icon: "🏠",
+    icon: <Home className="w-8 h-8 text-blue-500" />,
     title: "Remote First",
     description:
       "Work from anywhere in the world with flexible hours that suit your lifestyle.",
   },
   {
-    icon: "💰",
+    icon: <CircleDollarSign className="w-8 h-8 text-green-500" />,
     title: "Competitive Salary",
     description:
       "We offer competitive compensation packages with equity options.",
   },
   {
-    icon: "🎓",
+    icon: <GraduationCap className="w-8 h-8 text-purple-500" />,
     title: "Learning & Development",
     description:
       "Annual learning budget and conference allowances to grow your skills.",
   },
   {
-    icon: "🏥",
+    icon: <HeartPulse className="w-8 h-8 text-red-500" />,
     title: "Health & Wellness",
     description:
       "Comprehensive health insurance and wellness programs for you and your family.",
   },
   {
-    icon: "🌴",
+    icon: <Palmtree className="w-8 h-8 text-teal-500" />,
     title: "Unlimited PTO",
     description:
       "Take the time you need to recharge and maintain work-life balance.",
   },
   {
-    icon: "🚀",
+    icon: <Rocket className="w-8 h-8 text-indigo-500" />,
     title: "Career Growth",
     description:
       "Clear career progression paths with mentorship and leadership opportunities.",
   },
 ];
-
 const cultureValues = [
   {
     title: "Innovation First",
     description:
       "We embrace new technologies and creative solutions to solve complex problems.",
-    image: "/img/culture-innovation.jpg",
+    icon: <Zap className="w-16 h-16 text-white" />,
   },
   {
     title: "Collaboration",
     description:
       "We believe in the power of teamwork and diverse perspectives.",
-    image: "/img/culture-collaboration.jpg",
+    icon: <Users className="w-16 h-16 text-white" />,
   },
   {
     title: "Growth Mindset",
     description:
       "We're committed to continuous learning and personal development.",
-    image: "/img/culture-growth.jpg",
+    icon: <BrainCircuit className="w-16 h-16 text-white" />,
   },
 ];
 
@@ -160,23 +172,53 @@ const testimonials = [
     role: "Senior Frontend Developer",
     content:
       "recode hive has given me the opportunity to work on cutting-edge projects while maintaining an amazing work-life balance. The team is incredibly supportive and collaborative.",
-    avatar: "/img/testimonial-sarah.jpg",
+    avatar: "/icons/vivien.png",
   },
   {
     name: "Marcus Johnson",
     role: "DevOps Engineer",
     content:
       "I love the remote-first culture here. The flexibility to work from anywhere has allowed me to travel while building my career. The learning opportunities are endless.",
-    avatar: "/img/testimonial-marcus.jpg",
+    avatar: "/icons/daniel.png",
   },
   {
     name: "Priya Patel",
     role: "Product Manager",
     content:
       "The growth mindset at recode hive is real. I've been able to take on new challenges and expand my skill set with full support from leadership.",
-    avatar: "/img/testimonial-priya.jpg",
+    avatar: "/icons/ethan.png",
   },
 ];
+
+function TestimonialAvatar({ avatar, name }: { avatar?: string; name: string }) {
+  const [hasError, setHasError] = useState(false);
+
+  useEffect(() => {
+    setHasError(false);
+  }, [avatar]);
+
+  const showFallback = !avatar || hasError;
+
+  return (
+    <div
+      className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500 shadow-inner overflow-hidden relative"
+      {...(showFallback ? { "aria-label": `Avatar for ${name}`, role: "img" } : {})}
+    >
+      {!showFallback ? (
+        <img
+          src={avatar}
+          alt={name}
+          loading="lazy"
+          decoding="async"
+          className="h-full w-full object-cover rounded-full"
+          onError={() => setHasError(true)}
+        />
+      ) : (
+        <User className="h-10 w-10 text-white" aria-hidden="true" />
+      )}
+    </div>
+  );
+}
 
 function CareersContent() {
   const { colorMode, isDark, mounted } = useSafeColorMode();
@@ -203,9 +245,8 @@ function CareersContent() {
       </Head>
 
       <div
-        className={`careers-page min-h-screen transition-colors duration-300 ${
-          isDark ? "bg-gray-900" : "bg-gradient-to-b from-white to-gray-50"
-        }`}
+        className={`careers-page min-h-screen transition-colors duration-300 ${isDark ? "bg-gray-900" : "bg-gradient-to-b from-white to-gray-50"
+          }`}
       >
         {/* Hero Section */}
         <motion.section
@@ -233,10 +274,17 @@ function CareersContent() {
               className="flex flex-col justify-center gap-4 sm:flex-row"
               variants={fadeIn}
             >
-              <Link className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50">
+              <Link
+                to="#openings"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-blue-50"
+              >
                 View Open Positions
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
-              <Link className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50">
+              <Link
+                to="#culture"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-transparent border-2 border-white px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-white/10"
+              >
                 Learn About Our Culture
               </Link>
             </motion.div>
@@ -292,14 +340,18 @@ function CareersContent() {
               {cultureValues.map((value, index) => (
                 <motion.div
                   key={index}
-                  className="culture-card transform rounded-xl p-8 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className="culture-card group transform rounded-xl p-8 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border border-transparent"
                   style={{
                     backgroundColor: isDark ? "#0f172a" : "#ffffff",
+                    borderColor: isDark ? "rgba(59, 130, 246, 0.1)" : "rgba(59, 130, 246, 0.05)",
                   }}
                   variants={fadeIn}
                 >
-                  <div className="mb-6 flex h-48 items-center justify-center rounded-lg bg-gradient-to-br from-blue-400 to-purple-500">
-                    <span className="text-6xl">🚀</span>
+                  <div className="mb-6 flex h-48 items-center justify-center rounded-xl bg-gradient-to-br from-blue-400 to-purple-500 overflow-hidden relative">
+                    <div className="absolute inset-0 bg-black/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                      {value.icon}
+                    </div>
                   </div>
                   <h3
                     className="mb-4 text-2xl font-bold"
@@ -369,13 +421,15 @@ function CareersContent() {
               {perks.map((perk, index) => (
                 <motion.div
                   key={index}
-                  className="perk-card transform rounded-xl p-6 shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className="perk-card group transform rounded-xl p-6 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border border-transparent hover:border-blue-500/30"
                   style={{
                     backgroundColor: isDark ? "#1f2937" : "#ffffff",
                   }}
                   variants={fadeIn}
                 >
-                  <div className="mb-4 text-4xl">{perk.icon}</div>
+                  <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 ${isDark ? 'bg-gray-800' : 'bg-blue-50'}`}>
+                    {perk.icon}
+                  </div>
                   <h3
                     className="mb-3 text-xl font-bold"
                     style={{
@@ -435,13 +489,14 @@ function CareersContent() {
               {jobOpenings.map((job, index) => (
                 <motion.div
                   key={index}
-                  className="job-card rounded-xl p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
+                  className="job-card group rounded-xl p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl border border-transparent hover:border-blue-500/30 relative overflow-hidden"
                   style={{
                     backgroundColor: isDark ? "#1f2937" : "#ffffff",
                   }}
                   variants={fadeIn}
                 >
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                  <div className={`absolute left-0 top-0 h-full w-1 transform transition-all duration-300 group-hover:scale-y-100 scale-y-0 ${isDark ? 'bg-blue-500' : 'bg-blue-600'}`}></div>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between pl-2">
                     <div className="flex-1">
                       <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-center">
                         <h3
@@ -454,29 +509,26 @@ function CareersContent() {
                         </h3>
                         <div className="flex gap-2">
                           <span
-                            className={`rounded-full px-3 py-1 text-sm ${
-                              isDark
-                                ? "bg-blue-900 text-blue-200"
-                                : "bg-blue-100 text-blue-800"
-                            }`}
+                            className={`rounded-full px-3 py-1 text-sm ${isDark
+                              ? "bg-blue-900 text-blue-200"
+                              : "bg-blue-100 text-blue-800"
+                              }`}
                           >
                             {job.department}
                           </span>
                           <span
-                            className={`rounded-full px-3 py-1 text-sm ${
-                              isDark
-                                ? "bg-green-900 text-green-200"
-                                : "bg-green-100 text-green-800"
-                            }`}
+                            className={`rounded-full px-3 py-1 text-sm ${isDark
+                              ? "bg-green-900 text-green-200"
+                              : "bg-green-100 text-green-800"
+                              }`}
                           >
                             {job.location}
                           </span>
                           <span
-                            className={`rounded-full px-3 py-1 text-sm ${
-                              isDark
-                                ? "bg-purple-900 text-purple-200"
-                                : "bg-purple-100 text-purple-800"
-                            }`}
+                            className={`rounded-full px-3 py-1 text-sm ${isDark
+                              ? "bg-purple-900 text-purple-200"
+                              : "bg-purple-100 text-purple-800"
+                              }`}
                           >
                             {job.type}
                           </span>
@@ -494,13 +546,14 @@ function CareersContent() {
                     <div className="md:ml-6">
                       <Link
                         to="/contact-us"
-                        className="inline-block transform rounded-lg bg-blue-600 px-6 py-3 font-semibold shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-700"
+                        className="inline-flex items-center gap-2 transform rounded-lg bg-blue-600 px-6 py-3 font-semibold shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                         style={{
                           color: "#ffffff",
                           textDecoration: "none",
                         }}
                       >
                         Apply Now
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                       </Link>
                     </div>
                   </div>
@@ -522,80 +575,146 @@ function CareersContent() {
           variants={staggerContainer}
         >
           <div className="mx-auto max-w-4xl">
-            <motion.div className="mb-16 text-center" variants={fadeIn}>
-              <h2
-                className="mb-6 text-4xl font-bold md:text-5xl"
-                style={{
-                  color: isDark ? "#ffffff" : "#111827",
-                }}
-              >
-                What Our Team Says
-              </h2>
-              <p
-                className="text-center text-xl"
-                style={{
-                  color: isDark ? "#d1d5db" : "#4b5563",
-                }}
-              >
-                Hear from our team members about their experience at recode
-                hive.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="testimonial-carousel rounded-xl p-8 shadow-lg"
-              style={{
-                backgroundColor: isDark ? "#111827" : "#ffffff",
-              }}
-              variants={fadeIn}
-            >
-              <div className="testimonial-content text-center">
-                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-blue-400 to-purple-500">
-                  <span className="text-2xl">👤</span>
-                </div>
-                <blockquote
-                  className="mb-6 text-lg italic md:text-xl"
+            {mounted ? (
+              <motion.div className="mb-16 text-center" variants={fadeIn}>
+                <h2
+                  className="mb-6 text-4xl font-bold md:text-5xl"
                   style={{
-                    color: isDark ? "#d1d5db" : "#374151",
+                    color: isDark ? "#ffffff" : "#111827",
                   }}
                 >
-                  "{testimonials[activeTestimonial].content}"
-                </blockquote>
-                <div className="testimonial-author">
-                  <h4
-                    className="text-xl font-bold"
+                  What Our Team Says
+                </h2>
+                <p
+                  className="text-center text-xl"
+                  style={{
+                    color: isDark ? "#d1d5db" : "#4b5563",
+                  }}
+                >
+                  Hear from our team members about their experience at recode
+                  hive.
+                </p>
+              </motion.div>
+            ) : (
+              <div className="mb-16 text-center">
+                <h2
+                  className="mb-6 text-4xl font-bold md:text-5xl"
+                  style={{
+                    color: isDark ? "#ffffff" : "#111827",
+                  }}
+                >
+                  What Our Team Says
+                </h2>
+                <p
+                  className="text-center text-xl"
+                  style={{
+                    color: isDark ? "#d1d5db" : "#4b5563",
+                  }}
+                >
+                  Hear from our team members about their experience at recode
+                  hive.
+                </p>
+              </div>
+            )}
+
+            {mounted ? (
+              <motion.div
+                className="testimonial-carousel testimonial-carousel--light rounded-xl p-8 shadow-lg"
+                variants={fadeIn}
+              >
+                <div className="testimonial-content relative z-10 text-center">
+                  <TestimonialAvatar
+                    avatar={testimonials[activeTestimonial].avatar}
+                    name={testimonials[activeTestimonial].name}
+                  />
+                  <blockquote className="mb-6 text-lg italic md:text-xl">
+                    "{testimonials[activeTestimonial].content}"
+                  </blockquote>
+                  <div
+                    className="testimonial-author relative z-10"
                     style={{
-                      color: isDark ? "#ffffff" : "#111827",
+                      backgroundColor: "rgba(255, 255, 255, 0.98)",
+                      borderColor: "rgba(15, 23, 42, 0.08)",
                     }}
                   >
-                    {testimonials[activeTestimonial].name}
-                  </h4>
-                  <p
+                    <h4
+                      className="testimonial-author-name text-xl font-bold leading-tight"
+                      style={{ color: "#111827" }}
+                    >
+                      {testimonials[activeTestimonial].name}
+                    </h4>
+                    <p
+                      className="testimonial-author-role"
+                      style={{ color: "#334155" }}
+                    >
+                      {testimonials[activeTestimonial].role}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 flex justify-center gap-2">
+                    {testimonials.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`h-3 w-3 rounded-full transition-all duration-300 ${index === activeTestimonial
+                          ? "scale-110 bg-blue-600"
+                          : isDark
+                            ? "bg-gray-600 hover:bg-gray-500"
+                            : "bg-gray-300 hover:bg-gray-400"
+                          }`}
+                        onClick={() => setActiveTestimonial(index)}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ) : (
+              <div className="testimonial-carousel testimonial-carousel--light rounded-xl p-8 shadow-lg">
+                <div className="testimonial-content relative z-10 text-center">
+                  <TestimonialAvatar
+                    avatar={testimonials[activeTestimonial].avatar}
+                    name={testimonials[activeTestimonial].name}
+                  />
+                  <blockquote className="mb-6 text-lg italic md:text-xl">
+                    "{testimonials[activeTestimonial].content}"
+                  </blockquote>
+                  <div
+                    className="testimonial-author relative z-10"
                     style={{
-                      color: isDark ? "#9ca3af" : "#4b5563",
+                      backgroundColor: "rgba(255, 255, 255, 0.98)",
+                      borderColor: "rgba(15, 23, 42, 0.08)",
                     }}
                   >
-                    {testimonials[activeTestimonial].role}
-                  </p>
+                    <h4
+                      className="testimonial-author-name text-xl font-bold leading-tight"
+                      style={{ color: "#111827" }}
+                    >
+                      {testimonials[activeTestimonial].name}
+                    </h4>
+                    <p
+                      className="testimonial-author-role"
+                      style={{ color: "#334155" }}
+                    >
+                      {testimonials[activeTestimonial].role}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 flex justify-center gap-2">
+                    {testimonials.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`h-3 w-3 rounded-full transition-all duration-300 ${index === activeTestimonial
+                          ? "scale-110 bg-blue-600"
+                          : isDark
+                            ? "bg-gray-600 hover:bg-gray-500"
+                            : "bg-gray-300 hover:bg-gray-400"
+                          }`}
+                        onClick={() => setActiveTestimonial(index)}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
-
-              <div className="mt-8 flex justify-center gap-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`h-3 w-3 rounded-full transition-all duration-300 ${
-                      index === activeTestimonial
-                        ? "scale-110 bg-blue-600"
-                        : isDark
-                          ? "bg-gray-600 hover:bg-gray-500"
-                          : "bg-gray-300 hover:bg-gray-400"
-                    }`}
-                    onClick={() => setActiveTestimonial(index)}
-                  />
-                ))}
-              </div>
-            </motion.div>
+            )}
           </div>
         </motion.section>
 
@@ -624,13 +743,14 @@ function CareersContent() {
             >
               <Link
                 to="/contact-us"
-                className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-blue-50"
               >
                 Get In Touch
+                <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/community"
-                className="transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-transparent border-2 border-white px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-white/10"
               >
                 Join Our Community
               </Link>

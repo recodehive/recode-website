@@ -3,6 +3,7 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import * as dotenv from "dotenv";
 import giscusInjector from "./src/plugins/giscus-injector";
+dotenv.config({ path: ".env.local" });
 dotenv.config();
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -37,6 +38,7 @@ const config: Config = {
   projectName: "recode-website",
 
   onBrokenLinks: "throw",
+  onBrokenAnchors: "ignore",
   // onBrokenMarkdownLinks moved to markdown.hooks
 
   // Google Analytics and Theme Scripts
@@ -114,6 +116,7 @@ const config: Config = {
           type: "dropdown",
           html: '<span class="nav-emoji">📚</span> Docs',
           position: "left",
+          to: "/docs/",
           items: [
             {
               type: "html",
@@ -121,7 +124,6 @@ const config: Config = {
                  <a class="border-r col-span-1" href="/docs/">Tutorials</a>
                  <div class="grid grid-cols-4 col-span-2">
                    <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
-                   <a href="/docs/python/intro-python" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
                    <a href="/docs/GitHub/intro-github" class="nav__icons" > <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
                    <a href="/docs" class="nav__icons"> <img src="/icons/Logo-512X512.png" title="Docs" alt="Docs" /> </a>
                    <a href="/docs/Docker/intro" class="nav__icons"> <img src="/icons/docker.svg" title="Docker" alt="Docker" /> </a>
@@ -139,22 +141,6 @@ const config: Config = {
                  <div class="grid grid-cols-4 col-span-2">
                    <a href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/git.svg" alt="git" /> </a>
                    <a href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF&ab_channel=RecodeHive" class="nav__icons"> <img src="/icons/postman.svg" alt="Postman" /> </a>
-                 </div>
-               </div>`,
-            },
-            {
-              type: "html",
-              value: '<hr style="margin: 0.3rem 0;">',
-            },
-            {
-              type: "html",
-              value: `<div class="grid grid-cols-3 gap-4">
-                 <a class="border-r col-span-1" href="/interview-prep/" target="_self">Interview Prep</a>
-                 <div class="grid grid-cols-1 col-span-2">
-                   <a href="/interview-prep/?tab=technical" target="_self" class="nav__icons"> 🧩Technical </a>
-                   <a href="/interview-prep/?tab=behavioral" target="_self" class="nav__icons"> 💡Behavioral </a>
-                   <a href="/interview-prep/?tab=companies" target="_self" class="nav__icons"> 🏢Companies </a>
-                   <a href="/interview-prep/?tab=practice" target="_self" class="nav__icons"> 🎯Practice </a>
                  </div>
                </div>`,
             },
@@ -247,7 +233,7 @@ const config: Config = {
         {
           type: "html",
           position: "right",
-          value: '<div id="firebase-auth-github-navbar"></div>',
+          value: '<div id="clerk-auth-navbar"></div>',
         },
       ],
     },
@@ -259,6 +245,11 @@ const config: Config = {
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
+    },
+    blog: {
+      sidebar: {
+        groupByYear: false,
+      },
     },
   } satisfies Preset.ThemeConfig,
 
@@ -286,6 +277,7 @@ const config: Config = {
   // ✅ Add this customFields object to expose the token to the client-side
   customFields: {
     gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
+    clerkPublishableKey: process.env.VITE_CLERK_PUBLISHABLE_KEY || "",
     // Shopify credentials for merch store
     SHOPIFY_STORE_DOMAIN:
       process.env.SHOPIFY_STORE_DOMAIN || "junh9v-gw.myshopify.com",
@@ -298,10 +290,10 @@ const config: Config = {
     EMAILJS_TEMPLATE_ID: process.env.EMAILJS_TEMPLATE_ID || "",
     algoliaSiteSearch: hasAlgoliaSiteSearch
       ? {
-          applicationId: algoliaAppId,
-          apiKey: algoliaSearchApiKey,
-          indexName: algoliaIndexName,
-        }
+        applicationId: algoliaAppId,
+        apiKey: algoliaSearchApiKey,
+        indexName: algoliaIndexName,
+      }
       : null,
     hooks: {
       onBrokenMarkdownLinks: "warn",

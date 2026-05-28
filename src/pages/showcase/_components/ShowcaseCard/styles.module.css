@@ -105,6 +105,7 @@
 
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border: var(--card-border);
   border-radius: 8px;
@@ -268,7 +269,6 @@
   );
   opacity: 0.5;
   transition: opacity 0.3s ease;
-  mix-blend-mode: multiply;
 }
 
 .card:hover .showcaseCardImage::after {

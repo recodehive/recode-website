@@ -1,9 +1,4 @@
-import React, {
-  type ReactNode,
-  useMemo,
-  Component,
-  type ReactElement,
-} from "react";
+import React, { type ReactNode, useMemo } from "react";
 import { useThemeConfig, ErrorCauseBoundary } from "@docusaurus/theme-common";
 import { splitNavbarItems } from "@docusaurus/theme-common/internal";
 import NavbarItem, { type Props as NavbarItemConfig } from "@theme/NavbarItem";
@@ -23,7 +18,7 @@ function SafeMobileSidebarToggle(): ReactNode {
   // If it fails, the error will be caught by Docusaurus's error boundary
   try {
     return <NavbarMobileSidebarToggle />;
-  } catch (error) {
+  } catch {
     // This won't catch hook errors, but it's here for other potential errors
     console.warn("Mobile sidebar toggle unavailable");
     return null;
@@ -38,18 +33,24 @@ function NavbarItems({ items }: { items: NavbarItemConfig[] }): ReactNode {
   return (
     <>
       {items.map((item, i) => {
-        const key = `${item.label || item.to || item.href || "item"}-${i}`;
+        const itemKey =
+          ("label" in item && item.label) ||
+          ("to" in item && item.to) ||
+          ("href" in item && item.href) ||
+          "item";
+        const key = `${itemKey}-${i}`;
         return (
           <ErrorCauseBoundary
             key={key}
-            onError={(error) =>
-              new Error(
+            onError={(error) => {
+              const boundaryError = new Error(
                 `A theme navbar item failed to render.
 Please double-check the following navbar item (themeConfig.navbar.items) of your Docusaurus config:
 ${JSON.stringify(item, null, 2)}`,
-                { cause: error },
-              )
-            }
+              );
+              (boundaryError as Error & { cause?: unknown }).cause = error;
+              return boundaryError;
+            }}
           >
             <NavbarItem {...item} />
           </ErrorCauseBoundary>

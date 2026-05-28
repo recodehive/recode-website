@@ -20,7 +20,7 @@ const blogs: Blog[] = [
     slug: "ux-ui-design-job",
     authors: ["sowmiya-v", "sanjay-kv"],
     category: "Design",
-    tags: ["UX", "UI", "Career", "Job"],
+    tags: ["UX", "UI", "design", "Job"],
   },
 
   {
@@ -90,17 +90,6 @@ const blogs: Blog[] = [
     tags: ["Microsoft", "Azure", "Data Engineering", "Certification"],
   },
   {
-    id: 9,
-    title: "How SSO Actually Works",
-    image: "/img/blogs/sso_cover.png",
-    description:
-      "SSO lets you log into dozens of apps with a single set of credentials. But how does it actually work under the hood? A beginner-friendly walkthrough of the full flow — from clicking 'Sign in with Google' to getting access — step by step.",
-    slug: "single-sign-on",
-    authors: ["Aditya-Singh-Rathore", "sanjay-kv"],
-    category: "security",
-    tags: ["SSO", "Authentication", "Security", "OAuth", "OpenID Connect", "SAML"],
-  },
-  {
     id: 8,
     title: "Microsoft Fabric: One Platform, One Lake, Every Data Workload",
     image: "/img/blogs/microsoft-farbic-blog-image.png",
@@ -110,6 +99,17 @@ const blogs: Blog[] = [
     authors: ["Aditya-Singh-Rathore"],
     category: "data engineering",
     tags: ["Microsoft", "Azure", "Data Engineering", "Certification", "Fabric", "OneLake", "Data Workloads", "Unified Analytics"],
+  },
+  {
+    id: 9,
+    title: "How SSO Actually Works",
+    image: "/img/blogs/sso_cover.png",
+    description:
+      "SSO lets you log into dozens of apps with a single set of credentials. But how does it actually work under the hood? A beginner-friendly walkthrough of the full flow — from clicking 'Sign in with Google' to getting access — step by step.",
+    slug: "single-sign-on",
+    authors: ["Aditya-Singh-Rathore", "sanjay-kv"],
+    category: "security",
+    tags: ["SSO", "Authentication", "Security", "OAuth", "OpenID Connect", "SAML"],
   },
   {
     id: 10,
@@ -167,16 +167,6 @@ const blogs: Blog[] = [
     tags: ["Medallion Architecture", "Data Pipeline", "Data Management", "Data Quality", "Data Governance", "Scalability", "Data Engineering"],
   },
   {
-    id: 16,
-    title: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Months",
-    image: "/img/blogs/batch-vs-stream-cover.png",
-    description:
-      "Streaming pipelines are powerful for real-time data processing, but they come with hidden costs that are often overlooked. These costs include increased complexity, higher resource consumption, and potential challenges in maintaining data consistency and reliability. This article explores these hidden costs and provides insights on how to mitigate them.",
-    slug: "batch-vs-stream-processing",
-    authors: ["Aditya-Singh-Rathore"],
-    category: "data engineering",
-    tags: ["Streaming Pipelines", "Real-Time Data Processing", "Data Consistency", "Data Reliability", "Resource Consumption", "Complexity", "Data Engineering"],
-
     id: 15,
     title: "Azure Synapse Analytics: When to Use It (And When to Choose Fabric Instead)",
     image: "/img/blogs/azure-synapse-cover.png",
@@ -187,6 +177,75 @@ const blogs: Blog[] = [
     category: "data engineering",
     tags: ["Azure", "Synapse Analytics", "Data Warehousing", "Big Data", "Unified Analytics", "Fabric", "Data Engineering"],
   },
+  {
+    id: 16,
+    title: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Months",
+    image: "/img/blogs/batch-vs-stream-cover.png",
+    description:
+      "Streaming pipelines are powerful for real-time data processing, but they come with hidden costs that are often overlooked. These costs include increased complexity, higher resource consumption, and potential challenges in maintaining data consistency and reliability. This article explores these hidden costs and provides insights on how to mitigate them.",
+    slug: "batch-vs-stream-processing",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Streaming Pipelines", "Real-Time Data Processing", "Data Consistency", "Data Reliability", "Resource Consumption", "Complexity", "Data Engineering"],
+  },
+
+  {
+    id: 17,
+    title: "Azure Data Pipeline Cost Optimization: How We Cut a $4,200 Bill by 73%",
+    image: "/img/blogs/cost_optimzation_cover.png",
+    description:
+      "Azure Data Pipeline can be a powerful tool for data processing and analytics, but it can also lead to unexpectedly high costs if not managed properly. In this article, we share our experience of optimizing our Azure Data Pipeline costs, which resulted in a 73% reduction in our monthly bill, saving us $3,066. We discuss the strategies we implemented to achieve this significant cost reduction while maintaining the performance and reliability of our data pipeline.",
+    slug: "azure-cost-optimization",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Azure", "Data Pipeline", "Cost Optimization", "Data Engineering"],
+  },
+  {
+    id: 18,
+    title: "PySpark Optimization Techniques: 6 Mistakes That Slow Down Every Beginner's Pipeline",
+    image: "/img/blogs/pyspark_optimization_cover.png",
+    description:
+      "PySpark is a powerful tool for big data processing, but it can be challenging to optimize for performance. In this article, we discuss six common mistakes that beginners make when optimizing their PySpark pipelines, which can lead to slow performance and increased costs. We provide practical tips and techniques to help you avoid these pitfalls and improve the efficiency of your PySpark applications.",
+    slug: "spark-performance-optimizations",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["PySpark", "Optimization", "Big Data", "Performance", "Data Engineering"],
+  },
+  {
+    id: 20,
+    title: "How We Used Purview Data Catalog to Reduce Onboarding Time for New Data Engineers from 2 Weeks to 3 Days",
+    image: "/img/blogs/purview_cover.png",
+    description:
+      "Microsoft Purview Data Catalog is a powerful tool for managing and organizing data assets within an organization. In this article, we share our experience of using Purview Data Catalog to streamline the onboarding process for new data engineers, reducing the time it takes from 2 weeks to just 3 days. We discuss the features of Purview that enabled us to achieve this improvement and provide insights on how other organizations can leverage this tool to enhance their data management practices.",
+    slug: "microsoft-data-purview",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Purview", "Data Catalog", "Onboarding", "Data Management", "Data Engineering"],
+  },
+  {
+    id: 19,
+    title: "Why Data Engineers Make Better Business Analysts Than MBAs Do",
+    image: "/img/blogs/ba_de_cover_image.png",
+    description:
+      "Data engineers often have a deeper understanding of data and its implications for business decisions than MBAs, who may focus more on theory and strategy. This article explores why data engineers can make better business analysts than MBAs, highlighting their technical expertise, problem-solving skills, and ability to derive insights from data to drive informed business decisions.",
+    slug: "data-engineers-vs-mbas",
+    authors: ["Aditya-Singh-Rathore"],
+    category: "data engineering",
+    tags: ["Data Engineers", "Business Analysts", "MBAs", "Data Understanding", "Business Decisions"],
+  },
+  {
+    id: 20,
+    title: "Google Changed Workspace Icon after 6 years",
+    image: "/img/blogs/cover-google-icon.jpg",
+    description:
+      " Google has unveiled a new icon design that reflects its commitment to simplicity and accessibility. The updated icon features a more modern ",
+    slug: "google-icon-update",
+    authors: ["sanjay-kv"],
+    category: "Design",
+    tags: ["UX", "UI", "design", "Job"],
+  },
+
+  
 
 ];
 

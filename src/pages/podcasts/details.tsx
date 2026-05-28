@@ -294,7 +294,7 @@ export default function PodcastDetails(): ReactElement {
                   src={`https://open.spotify.com/embed/${podcast.type}/${podcast.spotifyUrl.split("/").pop()?.split("?")[0]}`}
                   width="100%"
                   height="400"
-                  frameBorder="0"
+                  style={{ border: "none" }}
                   allowFullScreen
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"

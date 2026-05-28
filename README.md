@@ -18,9 +18,9 @@
 
 <h2 align="center">Collaboration 1st , code 2nd.</h2>
 
-**Your all-in-one resource for learning Git, GitHub, Python through comprehensive tutorials and hands-on projects.**
+**Your all-in-one resource for learning Git, GitHub and, Python through comprehensive tutorials and hands-on projects.**
 
-[Website](https://recodehive.com/) • [Documentation](https://recodehive.com/docs) • [Contributing](community/contributing-guidelines.md) • [Discord](https://discord.gg/dh3TA8U55Q)
+[Website](https://recodehive.com/) • [Documentation](https://recodehive.com/docs) • [Contributing](community/contributing-guidelines.md) • [Discord](https://discord.gg/Yxv9RA3r)
 
 </div>
 
@@ -216,7 +216,7 @@ For detailed guidelines, please refer to our [Contributing Guidelines](community
 
 Join our community and connect with fellow learners:
 
-[![Discord](https://img.shields.io/badge/Discord-5865F2.svg?style=for-the-badge&logo=Discord&logoColor=white)](https://discord.gg/dh3TA8U55Q)
+[![Discord](https://img.shields.io/badge/Discord-5865F2.svg?style=for-the-badge&logo=Discord&logoColor=white)](https://discord.gg/Yxv9RA3r)
 [![LinkedIn](https://img.shields.io/badge/Follow%20on-LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/sanjay-k-v/)
 
 ## 📊 Project Statistics
@@ -247,8 +247,9 @@ This project is licensed under the [MIT License](LICENSE). See the LICENSE file 
 Stay up to date with the latest from recode hive:
 
 - **Website:** [recodehive.com](https://recodehive.com/)
-- **LinkedIn:** [LinkedIn](https://www.linkedin.com/in/sanjay-k-v/)
-- **Twitter:** [X](https://x.com/sanjay_kv_)
+- **Instagram:** [@nomad_brains](https://www.instagram.com/nomad_brains/)
+- **LinkedIn:** [Sanjay K V](https://www.linkedin.com/in/sanjay-k-v/)
+- **Twitter:** [@sanjay*kv*](https://x.com/sanjay_kv_)
 - **YouTube:** [@RecodeHive](https://www.youtube.com/@RecodeHive)
 - **Newsletter:** [Subscribe](https://recodehive.substack.com/)
 

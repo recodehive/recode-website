@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Quote } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useSafeColorMode } from "../../utils/useSafeColorMode";
-import { ExternalLink, Quote } from "lucide-react";
+
 
 interface TestimonialCardProps {
   name: string;
@@ -10,7 +11,7 @@ interface TestimonialCardProps {
   content: string;
   date: string;
   avatar: string;
-  link: string;
+  gradient?: string;
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
@@ -19,122 +20,148 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   content,
   date,
   avatar,
-  link,
+  gradient,
 }) => {
-  const { colorMode, isDark } = useSafeColorMode();
+  const { isDark } = useSafeColorMode();
 
-  const formatLinkDisplay = (url: string) => {
-    try {
-      const urlObj = new URL(url);
-      return urlObj.hostname + urlObj.pathname;
-    } catch {
-      return url;
-    }
+  // Map gradient prop to card visual variant
+  const isAccent = gradient === "bg-purple-100";
+  const isFeatured = gradient === "bg-pink-100";
+
+  const getRole = () => {
+    if (username === "VivienChen") return "Founder @ Toastie (BC Y24)";
+    if (username === "DanielHan") return "Founder @ Unsloth AI (YC W24, BC Y24)";
+    if (username === "EthanTrang") return "AI Engineer @ Relevance AI";
+    return null;
   };
+
+  const role = getRole();
+
+  // Card colors by variant
+  const cardBg = isAccent
+    ? "linear-gradient(135deg, #4338ca 0%, #6d28d9 100%)"
+    : isDark
+      ? "#0a0a0a"
+      : "#ffffff";
+
+  const isInverted = isAccent || isDark;
+  const textClr = isInverted ? "rgba(255,255,255,0.85)" : "rgba(17,24,39,0.78)";
+  const nameClr = isInverted ? "#f1f5f9" : "#0f172a";
+  const mutedClr = isAccent
+    ? "rgba(255,255,255,0.50)"
+    : isDark
+      ? "rgba(148,163,184,0.55)"
+      : "rgba(100,116,139,0.65)";
+  const borderClr = isAccent
+    ? "rgba(255,255,255,0.10)"
+    : isDark
+      ? "rgba(255,255,255,0.06)"
+      : "rgba(0,0,0,0.07)";
+  const quoteClr = isAccent
+    ? "rgba(255,255,255,0.12)"
+    : isDark
+      ? "rgba(99,102,241,0.12)"
+      : "rgba(99,102,241,0.08)";
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      whileHover={{ y: -5 }}
-      transition={{ duration: 0.3 }}
-      className={`group relative h-full overflow-hidden rounded-2xl border backdrop-blur-sm transition-all duration-300 hover:shadow-2xl ${
-        isDark 
-          ? "border-gray-700/50 bg-gray-900/80 shadow-xl" 
-          : "border-gray-200/50 bg-white/90 shadow-lg"
-      }`}
+      whileHover={{ scale: 1.035, y: -3 }}
+      transition={{ type: "spring", stiffness: 400, damping: 25 }}
+      className="relative flex flex-col justify-between overflow-hidden rounded-2xl p-5 flex-shrink-0 cursor-default select-none"
+      style={{
+        width: 320,
+        minHeight: 180,
+        background: cardBg,
+        border: `1px solid ${borderClr}`,
+        boxShadow: isDark
+          ? "0 2px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.03)"
+          : "0 2px 20px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",
+      }}
     >
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-blue-500/5 to-pink-500/5" />
-      
-      {/* Quote Icon */}
-      <div className="absolute top-4 right-4 opacity-20">
-        <Quote size={32} className="text-purple-500" />
+      {/* Grid pattern overlay for featured cards */}
+      {isFeatured && (
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(79,79,79,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(79,79,79,0.14) 1px, transparent 1px)",
+            backgroundSize: "44px 48px",
+            maskImage:
+              "radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 110%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 80% 50% at 50% 0%, #000 70%, transparent 110%)",
+          }}
+        />
+      )}
+
+      {/* Quote icon top-right */}
+      <div className="absolute top-5 right-5 pointer-events-none">
+        <Quote
+          size={28}
+          style={{ color: quoteClr }}
+          className="rotate-180"
+        />
       </div>
 
-      <div className="relative flex h-full flex-col p-6">
-        {/* Header */}
-        <div className="mb-6 flex items-center gap-4">
-          <div className="relative shrink-0">
-            <Avatar className="h-16 w-16 overflow-hidden border-2 border-gradient-to-r from-purple-500 to-pink-500 bg-white/90 shadow-md">
-              <AvatarImage src={avatar} className="h-full w-full scale-[2.3] object-cover transition-transform duration-500" />
-              <AvatarFallback className="bg-gradient-to-br from-purple-500 to-pink-500 text-white font-semibold">
-                {name.charAt(0)}
-              </AvatarFallback>
-            </Avatar>
-            <div className="absolute bottom-0 right-0 h-4 w-4 rounded-full border-2 border-white bg-green-500 shadow-sm" />
-          </div>
-          <div className="flex-1">
-            <h3 className={`text-lg font-bold ${
-              isDark ? "text-white" : "text-gray-900"
-            }`}>
-              {name}
-            </h3>
-            <p className={`text-sm ${
-              isDark ? "text-gray-400" : "text-gray-500"
-            }`}>
-              @{username}
-            </p>
-          </div>
-        </div>
+      {/* Quote content */}
+      <p
+        className="relative z-10 text-[13px] leading-[1.65] flex-1 pr-8"
+        style={{
+          color: textClr,
+          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+        }}
+      >
+        &ldquo;{content.replace(/#\w+/g, "").trim()}&rdquo;
+      </p>
 
-        {/* Content */}
-        <div className="flex-1">
-          <p className={`text-base leading-relaxed ${
-            isDark ? "text-gray-300" : "text-gray-700"
-          }`}>
-            {content.replace(/#\w+/g, '').trim()}
-          </p>
-        </div>
-
-        {/* Footer */}
-        <div className={`mt-6 space-y-4 border-t pt-4 ${
-          isDark ? "border-gray-700/50" : "border-gray-200/50"
-        }`}>
-          {/* Hashtags */}
-          <div className="flex flex-wrap gap-2">
-            {content.match(/#\w+/g)?.map((hashtag, index) => (
-              <span
-                key={index}
-                className={`rounded-full px-3 py-1 text-xs font-medium transition-colors hover:scale-105 ${
-                  isDark
-                    ? "bg-blue-500/20 text-blue-400 hover:bg-blue-500/30"
-                    : "bg-blue-100 text-blue-600 hover:bg-blue-200"
-                }`}
-              >
-                {hashtag}
-              </span>
-            ))}
-          </div>
-
-          {/* Link and Date */}
-          <div className="flex items-center justify-between">
-            <a
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group/link flex items-center gap-2 text-sm font-medium transition-colors ${
-                isDark
-                  ? "text-purple-400 hover:text-purple-300"
-                  : "text-purple-600 hover:text-purple-700"
-              }`}
+      {/* Author row */}
+      <div
+        className="relative z-10 flex items-center justify-between mt-3 pt-3"
+        style={{ borderTop: `1px solid ${borderClr}` }}
+      >
+        <div className="min-w-0 flex-1 mr-3">
+          <h3
+            className="font-semibold text-[14px] leading-tight truncate"
+            style={{
+              color: nameClr,
+              fontFamily: "'Inter', -apple-system, sans-serif",
+            }}
+          >
+            {name}
+          </h3>
+          {role && (
+            <p
+              className="text-[12px] mt-0.5 truncate"
+              style={{ color: mutedClr }}
             >
-              <span className="truncate">{formatLinkDisplay(link)}</span>
-              <ExternalLink size={14} className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
-            </a>
-            <span className={`text-xs ${
-              isDark ? "text-gray-500" : "text-gray-400"
-            }`}>
-              {date}
-            </span>
-          </div>
+              {role}
+            </p>
+          )}
+          <span
+            className="text-[11px] mt-0.5 inline-block"
+            style={{ color: mutedClr }}
+          >
+            {date}
+          </span>
         </div>
+        <Avatar
+          className="h-9 w-9 rounded-lg overflow-hidden flex-shrink-0"
+          style={{ border: `2px solid ${borderClr}` }}
+        >
+          <AvatarImage
+            src={avatar}
+            className="h-full w-full object-cover"
+          />
+          <AvatarFallback
+            className="text-white font-semibold text-sm rounded-xl"
+            style={{
+              background: "linear-gradient(135deg, #6366f1, #a855f7)",
+            }}
+          >
+            {name.charAt(0)}
+          </AvatarFallback>
+        </Avatar>
       </div>
-
-      {/* Hover Effect Border */}
-      <div className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-purple-500/20 via-blue-500/20 to-pink-500/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100" 
-           style={{ mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', maskComposite: 'xor' }} />
     </motion.div>
   );
 };

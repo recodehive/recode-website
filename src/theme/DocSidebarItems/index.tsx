@@ -9,9 +9,8 @@
  *
  * It serves as the bridge between DocSidebar/Desktop and individual DocSidebarItem components.
  */
-import React, { useState, useEffect } from "react";
+import React from "react";
 import DocSidebarItem from "@theme/DocSidebarItem";
-import clsx from "clsx";
 import styles from "./styles.module.css";
 
 export default function DocSidebarItems({ items, activePath, level = 0 }) {

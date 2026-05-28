@@ -14,9 +14,9 @@ tags:
 description: In this tutorial, you will learn how to set up your development environment for Git And GitHub.
 ---
 
-GitHub is a platform for version control of your software development using Git. GitHub was founded in 2008 and was recently acquired by Microsoft, who is now the parent organization. Setting up is a straightforward process: first, create a GitHub account online, then install Git on your system and connect it with GitHub. This way, any changes made will be pushed directly to GitHub.
+GitHub is a code hosting platform built on top of Git. It was founded in 2008 and acquired by Microsoft in 2018. If you are just getting started, the setup is simple, you create a free account on GitHub's website, install Git on your machine, and link the two together so your local changes can be pushed to the cloud.
 
-### Step 1: Let’s create a GitHub Account
+### Step 1: Let's create a GitHub Account
 
 To create a GitHub account, go to the [GitHub Website](https://github.com/) and sign up using your email ID.
 
@@ -26,14 +26,14 @@ To create a GitHub account, go to the [GitHub Website](https://github.com/) and 
 
 ### Step 2: Finishing the account creation
 
-Choose a readable username; this is important, just like your LinkedIn username. After completing the signup process, you may be prompted to solve a puzzle as part of the verification.
+Pick a username that is easy to read and remember, think of it the same way you would choose a professional username on LinkedIn. Once you complete the signup form, GitHub will ask you to solve a quick puzzle to confirm you are human.
 
 **Live Server:** GitHub signup screen  
    <BrowserWindow url="https://github.com/" bodyStyle={{padding: 0}}>
     [![GitHub](./assets/4-account-creation.png)](https://github.com/)
    </BrowserWindow>
 
-**Features you receive:** On completing registration, you gain access to GitHub Copilot, unlimited repositories, built-in tools for code quality improvement, automated workflows with Actions, and support from the community.
+**What you get with a free account:** Once registered, you can create unlimited public and private repositories, use GitHub Copilot for coding assistance, set up automated workflows with GitHub Actions, and access a large developer community for support and collaboration.
 
    <BrowserWindow url="https://github.com/signin" bodyStyle={{padding: 0}}>
     [![GitHub](./assets/4-github-signin.png)](https://github.com/)
@@ -44,7 +44,7 @@ Click the top right profile icon, then select "Your profile" to view your profil
 
 ### Step 3: Understanding the Interface
 
-As the next step, GitHub will ask you to verify your account. Check your email inbox for a verification mail, and confirm to proceed. After verification, you will be redirected to your GitHub page (example below), which will show your verified status.
+GitHub will send a verification email to the address you signed up with. Open that email and click the confirmation link. Once verified, you will be taken to your GitHub dashboard where your account status will show as confirmed.
 
 <BrowserWindow url="https://github.com/sanjay-kv" bodyStyle={{padding: 0}}>
  [![GitHub](./assets/5-github-interface.png)](https://github.com/sanjay-kv)
@@ -52,30 +52,30 @@ As the next step, GitHub will ask you to verify your account. Check your email i
 
 ### Step 4: Personalize and Secure Your Account
 
-After verifying your email and accessing your GitHub dashboard, take a moment to personalize and secure your account. Add a profile picture to make your account recognizable, fill out your bio with your background or interests, and link relevant social media or websites. Review your account security settings—enable two-factor authentication to strengthen your protection. Updating profile details and enabling security features ensures a professional, secure GitHub presence for future collaborations.
+With your account verified, spend a few minutes making it your own. Upload a profile photo so collaborators can recognize you, write a short bio describing what you work on, and add links to your website or other profiles. While you are in settings, head over to the security section and turn on two-factor authentication this is covered in detail in the next step.
 
-### Step 5: Final Step — Secure Your GitHub Account
+### Step 5: Final Step: Secure Your GitHub Account
 
-Congratulations on setting up your GitHub account! Before exploring further, it’s critical to secure your account using multi-factor authentication (2FA).
+Congratulations on setting up your GitHub account! Before you start exploring, take a few minutes to turn on two-factor authentication (2FA). This is one of the most effective ways to protect your account.
 
-**Why enable multi-factor authentication (2FA)?**  
-2FA adds an extra layer of security by requiring both your password and a unique verification code from your mobile device whenever you sign in. This prevents unauthorized access, even if your password is compromised, keeping your code and personal information safe.
+**Why does 2FA matter?**  
+When you log in with only a password, anyone who gets hold of that password can access your account. With 2FA turned on, logging in requires a second step a short code generated by an app on your phone. Even if someone steals your password, they still cannot get in without that code.
 
-**How to enable 2FA on GitHub:**
+**How to turn on 2FA:**
 
-1. Click your profile picture in the top right, then click **Settings**.
-2. In the left sidebar under **Access**, select **Password and authentication**.
-3. Find the **Two-factor authentication** section and click **Enable two-factor authentication**.
-4. Choose your preferred method (an authenticator app is recommended), and scan the displayed QR code with the app on your phone.
-5. Enter the code generated by your authenticator app, or use an SMS code if you chose that method.
-6. Save your recovery codes in a safe place—these allow you to regain access if you lose your phone.
-7. Confirm that you have saved your recovery codes and finish setup.
+1. Click your profile picture in the top right corner and open **Settings**.
+2. In the left menu, look under **Access** and click **Password and authentication**.
+3. Scroll to the **Two-factor authentication** section and click the button to enable it.
+4. Select an authenticator app as your method, this is more reliable than SMS. Open the app on your phone and scan the QR code shown on screen.
+5. Type in the six-digit code your app generates to confirm everything is connected.
+6. GitHub will give you a set of recovery codes. Save these somewhere safe, a password manager or a printed copy stored securely. These are the only way back in if you ever lose access to your phone.
+7. Complete the setup and you are done.
 
 <BrowserWindow url="https://github.com/sanjay-kv" bodyStyle={{padding: 0}}>
  [![GitHub](./assets/5-github-auth.png)](https://github.com/sanjay-kv)
 </BrowserWindow>
 
-Now, 2FA is enabled on your account. Every time you log in, you’ll need both your password and a unique code—making your account far more secure.
+From this point on, every login will ask for both your password and a fresh code from your authenticator app.
 
 **Dashboard recap:**
 
@@ -88,6 +88,6 @@ Now, 2FA is enabled on your account. Every time you log in, you’ll need both y
 
 ## Conclusion
 
-Thank you for reading “How to create a GitHub Account?”. In the next post, you'll learn how to use Git to create a repository and clone a project from GitHub.
+Thank you for reading "How to create a GitHub Account?". In the next post, you'll learn how to use Git to create a repository and clone a project from GitHub.
 
 Signing off, Sanjay Viswanathan.

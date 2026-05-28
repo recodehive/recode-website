@@ -14,93 +14,106 @@ tags:
 description: In this tutorial, you will learn about GitHub, its importance, what is GitHub from Scratch, how to use GitHub, steps to start using GitHub, and more.
 ---
 
-GitHub is a web-based platform used for version control and collaboration. It allows developers to work together on projects from anywhere in the world. GitHub is built on top of Git, a distributed version control system created by Linus Torvalds in 2005.
+GitHub is a cloud-based platform that helps developers store, manage, and track changes to their code. It combines the power of Git — a version control system — with a collaborative interface that makes teamwork across distributed teams possible. Whether you are building a solo project or contributing to a large open-source codebase, GitHub provides the tools to manage your work effectively.
 
 :::note
 Key Features of GitHub:
-GitHub  will help you to control the version of the project on a large scale.
-
-GitHub offers <a href="https://github.com/pricing">Premium</a> account for use, Premium users get unlimited GitHub Repo time, Storage etc. 
-
+- GitHub enables large-scale version control, letting teams track every change made to a project over time.
+- It supports both public and private repositories, making it suitable for open-source projects and proprietary software alike.
+- GitHub offers <a href="https://github.com/pricing">paid plans</a> with additional features like advanced security, larger storage, and team management tools.
 :::
 
-## How to start with GitHub?
+---
 
-Whenever you create something exciting or something new on your own, you always want to show it to others. As programmers, we also want to show our projects and codes to others, but how? So GitHub is the solution, it let's people to collaborate and scale the projects all on cloud.  Some other example of similar platform are Bitbucket, GitLab, Beanstalk, etc. Many of them give you the facility to work on your code together as a team. Currently, GitHub is more popular than other above-listed platforms for hosting your code.
+## How to Start with GitHub?
+
+As a developer, you often want to share your work, get feedback, and collaborate with others. GitHub makes this possible by providing a central place where code can be hosted, reviewed, and improved together. Instead of emailing files back and forth, teams can work on the same codebase simultaneously without overwriting each other's work.
+
+Other platforms that offer similar functionality include Bitbucket, GitLab, and Azure Repos. Each has its strengths, but GitHub remains the most widely adopted platform for hosting open-source projects and developer portfolios.
+
 :::info
-In the picture below, you can see Developer 1, Developer 2, etc., working on the same project. Let's say they are trying to build an Amazon website; Developer 1 handles the men's shopping section, Developer 2 deals with the women's section, and Developer 3 works on the login feature.
-
-So, each individual works on a different feature from a copy of the central repository, once the development is done they push changes to the *remote repository* (central repo as per picture). Once a code review happens and it is good to go, the senior developer will merge the code into the central repository so all the features will be live in production.
+Consider a team building an e-commerce website. Developer 1 works on the product listing page, Developer 2 handles the checkout flow, and Developer 3 builds the user authentication system. Each developer works on their own copy of the codebase locally. When their feature is ready, they push the changes to the shared remote repository on GitHub. A senior developer then reviews the code through a pull request and merges it into the main branch, making the new features available to everyone.
 :::
 
-  <BrowserWindow url="https://github.com/" bodyStyle={{padding: 0}}>    
-     [![Visual Studio Code](./assets/1-Introduction-to-github.png)](https://code.visualstudio.com/)
-    </BrowserWindow>
+<BrowserWindow url="https://github.com/" bodyStyle={{padding: 0}}>    
+   [![GitHub Dashboard](./assets/1-Introduction-to-github.png)](https://github.com/)
+</BrowserWindow>
 
+---
 
+## What is Git?
 
-## What is Git??
+Git is the engine that powers GitHub. It is a free, open-source distributed version control system created by Linus Torvalds in 2005. Torvalds originally built Git to manage the development of the Linux kernel, which required a system that could handle thousands of contributors efficiently.
 
-In the above example, all the developers were able to work on different features simultaneously because of Git. For uploading your project to your GitHub account, you need to install Git first. In other words, Git helps with the version management of files and coordinates work among a diverse team in the software development phase. Git is an open-source project and developed in 2005 by Linus Torvalds and Junior.
+Git tracks changes to files over time, allowing developers to revisit earlier versions of their code, understand what changed and when, and coordinate work across a large team without conflicts.
 
-
-  
 :::info
-1.  *What is Version control System?*: To understand the version control system, let me give you one example; sometimes, you wish you have a record that contains all the changes you made in your code or your project. The version control systems are software tools that record all of your changes in the files. It is like a database of changes. Git is a version control system that most developers prefer to use. We will see how you can upload your code on GitHub using Git. With VCS you can track the branch, who made changes at what time, line of code added, retrieve the previous version of changes. 
-2.  Basic Git Terminology::
+**What is a Version Control System?**
 
-        | Keyword | 	Terminology | 	Description |
-        | --- | --------------- | -------------------- |
-        | VCS   | Version Control System | Track changes to a collection of files |
-        | SCM  | Software configuration Management | 	Another name for VCS,earlier versions of VCS, like CVS and SVN, used a centralized server, which caused a single point of failure. |
-        | DVCS | 	Distributed Version Control System| Git is distributed, the project history is stored both in client and server. Means you can make changes locally and remote. |
-        | Working Tree  | Tree | Current version of files where the active project is on |
-        | Repo  | 	Repository | 		Top of the working tree where Git keeps all records and history. |
-        | Bare repo   | 	 | 		Not part of working Tree ends with .git, eg. backup.git |
-        | Hash  | 	160 bit long SHA-1 | 		Based on the hash number, the file has been modified or not. |
-        | Object  | 	Git has 4 objects | 		Tree Object(directory, names),  Blob Object(main file), Commit Object(specific versions), Tag(name attached to commit) |
-        | Commit  |  | 		Makes Changes |
-        | Branch  | 	A series of linked commits | 		The most recent commit is called Head. |
-        | Remote  | 	 | 		reference to other git repo |
-        | | 	 Git Command | 		Check our [Git Commands Cheatsheet](../GitHub/setup-environment/git-commands.md) for practical examples |
+Imagine you are working on a project and you accidentally delete an important function. Without version control, recovering that code would be difficult or impossible. A version control system (VCS) acts like a detailed history log — every change you make is recorded, along with who made it and when. You can roll back to any earlier state at any point.
 
+Git is a distributed version control system (DVCS), which means every developer has a full copy of the project history on their local machine. This makes it faster and more resilient than older centralized systems.
+
+**Core Git Terminology:**
+
+| Keyword | Terminology | Description |
+| --- | --------------- | -------------------- |
+| VCS | Version Control System | Tracks changes to a collection of files over time |
+| SCM | Software Configuration Management | Another term for VCS; earlier systems like CVS and SVN used centralized servers |
+| DVCS | Distributed Version Control System | Each developer holds a full copy of the project history locally and remotely |
+| Working Tree | Tree | The current state of files in your active project directory |
+| Repo | Repository | The top-level folder where Git stores all project history and records |
+| Bare Repo | | A repository without a working tree, typically used for remote backups; ends with `.git` |
+| Hash | 160-bit SHA-1 | A unique identifier generated for each commit to detect changes |
+| Object | Git has 4 object types | Tree (directories), Blob (file contents), Commit (snapshots), Tag (named references) |
+| Commit | | A saved snapshot of changes at a point in time |
+| Branch | A series of linked commits | An independent line of development; the latest commit is called HEAD |
+| Remote | | A reference to a Git repository hosted on another machine or server |
+| | Git Commands | See our [Git Commands Cheatsheet](../GitHub/setup-environment/git-commands.md) for practical examples |
 :::
 
 :::tip Need Git Commands?
-Want to start using Git right away? Check out our [comprehensive Git Commands Cheatsheet](../GitHub/setup-environment/git-commands.md) that includes 50 essential Git commands with examples. We also recommend trying [Learn Git Branching](https://learngitbranching.js.org/) - an interactive visual tool to practice Git commands in a gamified environment!
+Ready to start using Git? Check out our [comprehensive Git Commands Cheatsheet](../GitHub/setup-environment/git-commands.md) with 50 essential commands and real examples. We also recommend [Learn Git Branching](https://learngitbranching.js.org/) — an interactive visual tool to practice Git in a gamified environment.
 :::
 
-## Why Learn GitHub? 
+---
 
-GitHub simplifies the command-line interface of Git and makes it more GUI-friendly. GitHub is built on top of Git. Here want we do is staging the files and doing the commit, You can clone the entire repository, create a branch, commit to that branch, and then ask the main developer to merge the branch. When you clone in reality you are creating a copy of the real code/repository in your local environment.
+## Why Learn GitHub?
 
- ![Git Structure](./assets/2-git-strucutre.png)
-   
-  
+GitHub builds on top of Git by adding a visual interface, collaboration features, and a large developer community. Here is why learning GitHub is valuable:
+
+1. **Industry standard** — The majority of open-source projects and many private companies use GitHub to manage their codebases.
+2. **Portfolio visibility** — Your GitHub profile acts as a public portfolio that employers and collaborators can view.
+3. **Collaboration tools** — Features like pull requests, code reviews, and issue tracking make teamwork structured and transparent.
+4. **Automation** — GitHub Actions allows you to automate repetitive tasks like testing, building, and deploying your application.
+5. **Community** — GitHub hosts millions of open-source projects, making it a great place to learn from real codebases and contribute to projects you use.
+
+The typical GitHub workflow looks like this: you clone a repository to your local machine, create a new branch for your feature, make and commit your changes, push the branch to GitHub, and then open a pull request asking the project maintainer to review and merge your work.
+
+![Git Structure](./assets/2-git-strucutre.png)
+
 :::info
-1.  Basic GitHub Keywords::
+**Core GitHub Concepts:**
 
-        | Category | 	Description |
-        | --- |  -------------------- |
-        | Issues | The place where new suggestions or development ideas can be added. |
-        | Discussions | Place where a community discussion can happen |
-        | Pull requests | PR - Once the user worked on the issue, they can develop the feature and ask to merge |
-        | Labels | Feature to categorise the issue, like bug, deadline, feature |
-        | Actions | To automate the entire process of repeitive task on GitHub |
-        | Forks | Cloning the original repo to your name |
+| Feature | Description |
+| --- | -------------------- |
+| Issues | A place to report bugs, request features, or track tasks |
+| Discussions | A space for community conversations and questions |
+| Pull Requests | A request to merge your changes into the main codebase after review |
+| Labels | Tags used to categorize issues and pull requests (e.g. bug, enhancement) |
+| Actions | Automation workflows that run on events like push or pull request |
+| Forks | A personal copy of someone else's repository under your own account |
 
-
-The fork is a personal copy of the repo which is already present or uploaded in GitHub by a different user. Once you fork and make changes to the repository the changes will happen to your forked repo, not the real one.
-
+A fork is useful when you want to contribute to a project you do not have direct write access to. You fork the repository, make your changes in your own copy, and then submit a pull request to the original project.
 :::
 
+---
 
+### Watch the Video Tutorial
+<iframe width="880" height="480" src="https://www.youtube.com/embed/GrTV59Y84S8?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="How to start with GitHub in 2024 | Beginner&#39;s Guide" style={{ border: "none" }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-### Watch the video Tutorial
-<iframe width="880" height="480" src="https://www.youtube.com/embed/GrTV59Y84S8?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="How to start with GitHub in 2024 | Beginner&#39;s Guide" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-
+---
 
 ## Conclusion
 
-If you think this GitHub Tutorial starter kit for Beginner was useful to you, then don’t forget to share it with others.  We will discuss this in detail in the next post. or In the next post, we will discuss how to upload your project to your GitHub account using Git.
+GitHub is far more than a place to store code — it is a complete platform for software collaboration, project management, and automation. By learning GitHub, you gain a skill that is relevant across every area of software development, from personal projects to large enterprise teams. In the next tutorial, we will walk through how to create your first GitHub repository and push your local project to it using Git.
