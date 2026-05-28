@@ -227,13 +227,6 @@ export default function Blogs() {
   );
 }
 
-const BlogCard = ({ blog }) => {
-  // Get authors for this blog post
-  const getAuthors = (slug) => {
-    const authors = authorMapping[slug] || ["recode hive Team"];
-    return authors.length > 1 ? authors.join(" & ") : authors[0];
-  };
-
 const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
   const authors = getAuthorProfiles(blog.authors || []);
 
