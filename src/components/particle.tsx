@@ -1,12 +1,18 @@
 import * as React from "react";
-import Particles, { ParticlesProvider } from "@tsparticles/react";
-import { useCallback, useMemo } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
+import { useEffect, useMemo, useState } from "react";
 import { loadSlim } from "@tsparticles/slim";
 import BrowserOnly from "@docusaurus/BrowserOnly";
 
 const ParticlesInner = (props) => {
-  const particlesInit = useCallback(async (engine) => {
-    await loadSlim(engine);
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      setInit(true);
+    });
   }, []);
 
   const options = useMemo(
@@ -86,22 +92,24 @@ const ParticlesInner = (props) => {
     [],
   );
 
+  if (!init) {
+    return null;
+  }
+
   return (
-    <ParticlesProvider init={particlesInit}>
-      <div
-        style={{
-          position: "fixed",
-          width: "100vw",
-          height: "100vh",
-          top: 0,
-          left: 0,
-          zIndex: -1,
-          pointerEvents: "none",
-        }}
-      >
-        <Particles id={props.id} options={options} />
-      </div>
-    </ParticlesProvider>
+    <div
+      style={{
+        position: "fixed",
+        width: "100vw",
+        height: "100vh",
+        top: 0,
+        left: 0,
+        zIndex: -1,
+        pointerEvents: "none",
+      }}
+    >
+      <Particles id={props.id} options={options} />
+    </div>
   );
 };
 
