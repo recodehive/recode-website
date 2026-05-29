@@ -263,19 +263,19 @@ export function TestimonialCarousel() {
       >
         <TestimonialsColumn
           testimonialsList={col1}
-          duration={15}
+          duration={8}
           isDark={isDark}
         />
         <TestimonialsColumn
           testimonialsList={col2}
           className="hidden sm:block"
-          duration={21}
+          duration={11}
           isDark={isDark}
         />
         <TestimonialsColumn
           testimonialsList={col3}
           className="hidden lg:block"
-          duration={18}
+          duration={9}
           isDark={isDark}
         />
       </div>
