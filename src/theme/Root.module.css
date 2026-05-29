@@ -1,7 +1,7 @@
 /* Base styles for the toast container */
 .toastContainer {
   position: fixed;
-  bottom: 20px;
+  top: 30px;
   right: 24px;
   border: 1px solid oklch(0.69 0 0);
   border-radius: 8px; /* Docusaurus --radius var is often 8px */
