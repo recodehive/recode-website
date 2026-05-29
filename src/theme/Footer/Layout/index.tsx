@@ -171,7 +171,7 @@ export default function FooterLayout(): ReactNode {
               </div>
 
               <div className="footer-hero-text">
-                <h2>Collaboration first, Code second.</h2>
+                <h1>Collaboration first, Code second.</h1>
               </div>
             </div>
 
