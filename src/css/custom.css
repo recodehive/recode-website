@@ -2734,6 +2734,21 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
   }
 }
 
+/* Fix: Optimize mobile navigation sidebar responsiveness (#1752) */
+@media screen and (max-width: 480px) {
+    .sidebar_src-theme-Navbar-ResponsiveSidebar-styles-module,
+    .navbar-sidebar,
+    .menu { 
+        position: fixed !important;
+        width: 270px !important;
+        max-width: 85vw !important;
+        z-index: 1000 !important;
+    }
+    .menu__link {
+        padding: 10px 16px !important;
+        margin: 2px 0 !important;
+    }
+}
 
 
 
