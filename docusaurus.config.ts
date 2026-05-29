@@ -192,7 +192,7 @@ const config: Config = {
             },
             {
               label: "🗺️ Roadmap",
-              to: "/roadmaps",
+              href: "https://github.com/orgs/recodehive/projects/9",
             },
             {
               label: "🤝 Community",
