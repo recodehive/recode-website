@@ -173,6 +173,7 @@
  * - active-sidebar-override.css
  */
 
+
 /* ================= SECTION 1: BASIC MENU STRUCTURE ================= */
 
 /* Fix menu overflow and ensure proper display */
@@ -2717,4 +2718,22 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
   gap: 15px !important;
   margin-top: 15px !important;
 }
+
+/* Fix mobile navigation sidebar overlap and layout alignment under 480px */
+@media screen and (max-width: 480px) {
+  .theme-doc-sidebar-container {
+    width: 100% !important;
+    position: fixed !important;
+    z-index: 9999 !important;
+    padding: 12px !important;
+  }
+  
+  .docMainContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+}
+
+
+
 
