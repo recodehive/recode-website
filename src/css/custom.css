@@ -1,9 +1,4 @@
-[data-theme="light"] .interview-prep-page p,
-[data-theme="light"] .interview-prep-page li,
-[data-theme="light"] .interview-prep-page span,
-[data-theme="light"] .interview-prep-page div {
-  color: inherit;
-}
+/* Interview-prep styles removed */
 
 /* FINAL MOBILE OVERRIDE: aggressively remove any top gap on narrow viewports
    This targets any leftover placeholders, pseudo-elements, safe-area padding,
@@ -286,14 +281,7 @@ a.menu__link.menu__link--active div span:first-child {
   font-weight: 600;
 }
 
-/* Python theme */
-.custom-sidebar-python>.menu__list-item-collapsible>.menu__link {
-  background: linear-gradient(135deg, #3776ab, #ffd43b);
-  color: white;
-  border-radius: 8px;
-  margin: 4px 0;
-  font-weight: 600;
-}
+/* Python theme removed - category deprecated */
 
 /* SQL theme */
 .custom-sidebar-sql>.menu__list-item-collapsible>.menu__link {
@@ -325,7 +313,6 @@ a.menu__link.menu__link--active div span:first-child {
 
 /* Hover effects for all custom categories */
 .custom-sidebar-github>.menu__list-item-collapsible>.menu__link:hover,
-.custom-sidebar-python>.menu__list-item-collapsible>.menu__link:hover,
 .custom-sidebar-sql>.menu__list-item-collapsible>.menu__link:hover,
 .custom-sidebar-nextjs>.menu__list-item-collapsible>.menu__link:hover,
 .custom-sidebar-gsa>.menu__list-item-collapsible>.menu__link:hover,
@@ -1122,66 +1109,7 @@ html.theme-light .text-gray-900 {
   color: #1a1a1a !important;
 }
 
-/* ==== Interview Prep: enforce proper light theme surfaces ==== */
-/* Some Tailwind dark: classes may not be recognized by Docusaurus data-theme in all cases.
-   Ensure that in light mode, all Interview Prep cards use white surfaces and readable text. */
-[data-theme="light"] .interview-prep-page .bg-white,
-[data-theme="light"] .interview-prep-page [class*="bg-white/"],
-[data-theme="light"] .interview-prep-page .question-card,
-[data-theme="light"] .interview-prep-page .technical-inner,
-[data-theme="light"] .interview-prep-page .technical-inner-success,
-[data-theme="light"] .interview-prep-page .interview-prep-sidebar {
-  background-color: #ffffff !important;
-  color: #111827;
-  /* gray-900 */
-}
-
-/* Ensure common dark-surface utilities don't leak into light theme in this area */
-[data-theme="light"] .interview-prep-page [class*="bg-gray-800"],
-[data-theme="light"] .interview-prep-page [class*="bg-gray-900"] {
-  background-color: #ffffff !important;
-}
-
-/* Ensure the specific block is forced light in light mode */
-html[data-theme="light"] .interview-prep-page .technical-outer {
-  background-image: linear-gradient(135deg,
-      #eff6ff 0%,
-      #f8fafc 100%) !important;
-  background-color: #ffffff !important;
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
-  mix-blend-mode: normal !important;
-  isolation: isolate !important;
-  z-index: 10 !important;
-}
-
-/* Companies tab: use white gradients in light mode and remove overlays */
-[data-theme="light"] .company-outer {
-  background-image: linear-gradient(135deg,
-      #ffffff 0%,
-      #f8fafc 100%) !important;
-  background-color: #ffffff !important;
-  color: #0f172a !important;
-  isolation: isolate !important;
-  -webkit-backdrop-filter: none !important;
-  backdrop-filter: none !important;
-  mix-blend-mode: normal !important;
-}
-
-/* hide the subtle pattern overlay added inside the component */
-[data-theme="light"] .company-outer>.absolute.inset-0,
-[data-theme="light"] .company-outer .absolute.inset-0.opacity-5 {
-  display: none !important;
-  background: none !important;
-  opacity: 1 !important;
-}
-
-/* ensure badges & inner panels render normally */
-[data-theme="light"] .company-outer,
-[data-theme="light"] .company-outer * {
-  mix-blend-mode: normal !important;
-  background-blend-mode: normal !important;
-}
+/* Interview-prep & related light-mode overrides removed (section deprecated) */
 
 /*==== SECTION 13 Modern Blog Enhancements ======*/
 .modern-gradient-bg {
@@ -1523,11 +1451,7 @@ html {
 [data-theme="light"] .interview-prep-page h3,
 [data-theme="light"] .interview-prep-page h4,
 [data-theme="light"] .interview-prep-page h5,
-[data-theme="light"] .interview-prep-page h6 {
-  /* Use a dark heading color in light mode for readability */
-  color: #111827 !important;
-  /* Tailwind gray-900 */
-}
+[data-theme="light"] .interview-prep-page h6 {}
 
 .watch-video-btn {
   background-color: #dc2626;
@@ -1545,37 +1469,6 @@ html {
   background-color: #b91c1c;
 }
 
-[data-theme="dark"] .interview-prep-sidebar:hover {
-  border-color: #3b82f6 !important;
-}
-
-[data-theme="dark"] .interview-prep-sidebar {
-  border-color: #4b5563 !important;
-}
-
-/* Active tab in dark mode */
-[data-theme="dark"] .interview-prep-nav-tab-active {
-  border-bottom-color: #60a5fa !important;
-  color: #60a5fa !important;
-}
-
-/* Inactive tab in dark mode */
-[data-theme="dark"] .interview-prep-nav-tab-inactive {
-  border-bottom-color: transparent !important;
-  color: #9ca3af !important;
-}
-
-[data-theme="dark"] .interview-prep-nav-tab-inactive:hover {
-  color: #d1d5db !important;
-}
-
-.interview-prep-discord-btn {
-  color: white;
-}
-
-.interview-prep-discord-btn:hover {
-  color: white;
-}
 
 [data-theme="dark"] .overview-sidebar-blue {
   border-color: #3b82f6;
@@ -2139,11 +2032,6 @@ a {
 }
 
 /* difficulty badge overrides — ensure readable in light mode and lift above overlays */
-.interview-prep-page .difficulty-badge {
-  z-index: 50;
-  background-clip: padding-box;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-}
 
 /* Light mode: explicit background + text for each variant */
 [data-theme="light"] .interview-prep-page .difficulty-badge.bg-green-200 {
@@ -2152,26 +2040,6 @@ a {
   color: #14532d !important;
 }
 
-[data-theme="light"] .interview-prep-page .difficulty-badge.bg-yellow-200 {
-  background-color: #fef3c7 !important;
-  /* yellow-200 */
-  color: #78350f !important;
-}
-
-[data-theme="light"] .interview-prep-page .difficulty-badge.bg-red-200 {
-  background-color: #fee2e2 !important;
-  /* red-200 */
-  color: #7f1d1d !important;
-}
-
-/* Keep all duration badges grey in light mode */
-[data-theme="light"] .interview-prep-page .duration-badge {
-  background-color: #f3f4f6 !important;
-  /* gray-100 */
-  color: #1f2937 !important;
-  /* gray-800 */
-  z-index: 50;
-}
 
 /* Force removal of that Tailwind gradient in light mode */
 html[data-theme="light"] .bg-gradient-to-r.from-blue-50.to-purple-50 {
@@ -2727,13 +2595,9 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
     z-index: 9999 !important;
     padding: 12px !important;
   }
-  
+
   .docMainContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
 }
-
-
-
-
