@@ -16,7 +16,7 @@
 [![Contributors](https://img.shields.io/github/contributors/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/graphs/contributors)
 [![License Badge](https://img.shields.io/github/license/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/LICENSE)
 
-<h2 align="center">Collaboration first , code second.</h2>
+<h2 align="center">Collaboration 1st , code 2nd.</h2>
 
 **Your all-in-one resource for learning Git, GitHub, and Python through comprehensive tutorials and hands-on projects.**
 
