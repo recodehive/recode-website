@@ -16,9 +16,9 @@
 [![Contributors](https://img.shields.io/github/contributors/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/graphs/contributors)
 [![License Badge](https://img.shields.io/github/license/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/LICENSE)
 
-<h2 align="center">Collaboration 1st , code 2nd.</h2>
+<h2 align="center">Collaboration first , code second.</h2>
 
-**Your all-in-one resource for learning Git, GitHub and, Python through comprehensive tutorials and hands-on projects.**
+**Your all-in-one resource for learning Git, GitHub, and Python through comprehensive tutorials and hands-on projects.**
 
 [Website](https://recodehive.com/) • [Documentation](https://recodehive.com/docs) • [Contributing](community/contributing-guidelines.md) • [Discord](https://discord.gg/Yxv9RA3r)
 
@@ -61,7 +61,7 @@ docker run -p 3000:3000 recodehive-app
 docker-compose up
 ```
 
-Your application will be available at http://localhost:3000
+Your application will be available at "http://localhost:3000"
 
 **Traditional Setup:**
 
@@ -161,7 +161,7 @@ flowchart LR
 
 ### Step-by-Step Guide
 
-**Fork the repository** on GitHub
+**Fork the repository** on GitHub.
 
 **Clone your fork:**
 
@@ -176,7 +176,7 @@ cd recode-website
 git checkout -b feature/your-feature-name
 ```
 
-**Make your changes** and test thoroughly
+**Make your changes** and test thoroughly.
 
 **Commit your changes:**
 
