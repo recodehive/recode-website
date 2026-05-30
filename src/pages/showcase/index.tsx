@@ -188,8 +188,25 @@ function useSiteCountPlural() {
 function ShowcaseFilters({ isDark = false }: { isDark?: boolean }) {
   const filteredUsers = useFilteredUsers();
   const siteCountPlural = useSiteCountPlural();
+  const history = useHistory();
+  const location = useLocation();
+
+  const clearFilters = () => {
+    const params = new URLSearchParams(location.search);
+
+    params.delete("tags");
+    params.delete("name");
+    params.delete("operator");
+
+    history.push({
+      ...location,
+      search: params.toString(),
+      state: prepareUserState(),
+    });
+  };
+
   return (
-       <section className="margin-top--l margin-bottom--lg container">
+    <section className="margin-top--l margin-bottom--lg container">
       <div className={clsx("margin-bottom--sm", styles.filterCheckbox)}>
         <div>
           <motion.h2
@@ -219,7 +236,16 @@ function ShowcaseFilters({ isDark = false }: { isDark?: boolean }) {
             <span>{siteCountPlural(filteredUsers.length)}</span>
           </motion.div>
         </div>
-        <ShowcaseFilterToggle />
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <ShowcaseFilterToggle />
+
+          <button
+            className={styles.clearFilterButton}
+            onClick={clearFilters}
+          >
+            Clear Filters
+          </button>
+        </div>
       </div>
       <motion.ul
         initial={{ opacity: 0 }}
