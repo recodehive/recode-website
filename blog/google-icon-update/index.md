@@ -38,6 +38,7 @@ import TabItem from '@theme/TabItem';
 import ZoomImage from '@site/src/components/ZoomImage';
 import imgGsuite from './assets/03-google-old-gsuite-logo.png';
 import imgWorkspace from './assets/06-googleworkspace-new-logo.png';
+import imgXPost from './assets/10-x-post.png';
 
 <!-- truncate -->
 
@@ -141,11 +142,11 @@ Reactions are split, which is predictable and honestly fair.
 The people who are happy are mostly the ones who experienced the confusion problem most acutely. People who live in browser tabs with ten Google services pinned simultaneously. People whose phone home screens are a wall of identical four-color squares. For this group, the new icons are a long-overdue fix and the response is straightforward relief.
 Looking at the new icons directly, here is what stands out:
 
-  <BrowserWindow url="https://x.com/Gautamk104/status/2057843133392842780?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E2057843133392842780%7Ctwgr%5E3dbaf20e8e4f9f64fd6032e85f7ed7c1e1b5fe0f%7Ctwcon%5Es1_c10&ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Furl%3Dhttps%3A%2F%2Ftwitter.com%2FGautamk104%2Fstatus%2F2057843133392842780" bodyStyle={{padding: 0}}>
-    <a href="https://x.com/Gautamk104/status/2057843133392842780?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E2057843133392842780%7Ctwgr%5E3dbaf20e8e4f9f64fd6032e85f7ed7c1e1b5fe0f%7Ctwcon%5Es1_c10&ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Furl%3Dhttps%3A%2F%2Ftwitter.com%2FGautamk104%2Fstatus%2F2057843133392842780" target="_blank" rel="noreferrer noopener">
-      <img src="./assets/10-x-post.png" alt="Github" />
+  <BrowserWindow url="https://x.com/Gautamk104/status/2057843133392842780?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E2057843133392842780%7Ctwgr%5E3dbaf20e8e4f9f64fd6032e85f7ed7c1e1b5fe0f%7Ctwcon%5Es1_c10&ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Furl%3Dhttps%3A%2F%2Ftwitter.com%2FGautamk104%2Fstatus%2F2057843133392842780" bodyStyle={{padding: 0}}>    
+    <a href="https://x.com/Gautamk104/status/2057843133392842780?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E2057843133392842780%7Ctwgr%5E3dbaf20e8e4f9f64fd6032e85f7ed7c1e1b5fe0f%7Ctwcon%5Es1_c10&ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Furl%3Dhttps%3A%2F%2Ftwitter.com%2FGautamk104%2Fstatus%2F2057843133392842780">
+      <img src={imgXPost} alt="X post about the Google Workspace icon update" />
     </a>
-  </BrowserWindow>
+    </BrowserWindow>
 
 
 My honest take: some of the new icons are significantly better, Drive and Calendar especially. A few are sideways moves rather than improvements. Gmail's gradient version is fine but the 2020 version was not actually the confusing one, the envelope shape was always distinctive enough. The icons that most needed differentiation got it. The ones that were already recognizable got gradients they did not necessarily need.
