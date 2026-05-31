@@ -267,10 +267,7 @@ export default function FooterLayout(): ReactNode {
                 </li>
                 <li>
                   <Link to="/careers" className="footer-link">
-                    <FooterIcon
-                      icon={BriefcaseBusiness}
-                      className="link-icon"
-                    />
+                    <FooterIcon icon={BriefcaseBusiness} className="link-icon" />
                     Careers
                     <span className="link-badge hiring">We're Hiring!</span>
                   </Link>
@@ -289,7 +286,6 @@ export default function FooterLayout(): ReactNode {
                 </li>
               </ul>
             </div>
-
             {/* Support Column */}
             <div className="footer-column">
               <h3 className="footer-column-title">
