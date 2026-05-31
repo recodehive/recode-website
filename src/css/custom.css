@@ -2828,3 +2828,26 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
     padding-right: 16px !important;
   }
 }
+
+
+.theme-doc-main-container,
+.theme-doc-markdown,
+main[class*='docMainContainer_'] {
+  position: relative;
+  z-index: 1 !important; 
+}
+
+.theme-doc-markdown h1,
+.theme-doc-markdown h2,
+.theme-doc-markdown h3,
+.theme-doc-markdown span,
+.theme-doc-markdown div,
+.theme-doc-markdown label {
+  z-index: 1 !important;
+}
+
+.theme-doc-sidebar-container,
+.menu--responsive,
+div[class*='sidebarViewport_'] {
+  z-index: 9999 !important; 
+}
