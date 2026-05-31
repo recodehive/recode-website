@@ -27,7 +27,6 @@ import {
   Video,
 } from "lucide-react";
 import "./enhanced-footer.css";
-import Counter from "./Counter";
 import { createPortal } from "react-dom";
 
 // Dynamic stats interface

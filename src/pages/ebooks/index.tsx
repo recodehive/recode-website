@@ -49,9 +49,7 @@ export default function Ebooks(): ReactElement {
   const history = useHistory();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedFilter, setSelectedFilter] = useState<
-    "all" | "Programming" | "Web Development" | "Data Science"
-  >("all");
+  const [selectedFilter, setSelectedFilter] = useState("all");
   const [favorites, setFavorites] = useState<number[]>(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("ebook-favorites");
@@ -211,7 +209,7 @@ export default function Ebooks(): ReactElement {
               <button
                 key={category}
                 className={`filter-tab ${selectedFilter === category ? "active" : ""}`}
-                onClick={() => setSelectedFilter(category as any)}
+                onClick={() => setSelectedFilter(category)}
               >
                 <span className="tab-icon">📚</span>
                 {category} (

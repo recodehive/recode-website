@@ -185,7 +185,7 @@ function useSiteCountPlural() {
     );
 }
 
-function ShowcaseFilters({ isDark = false }: { isDark?: boolean }) {
+function ShowcaseFilters() {
   const filteredUsers = useFilteredUsers();
   const siteCountPlural = useSiteCountPlural();
   const history = useHistory();

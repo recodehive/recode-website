@@ -18,7 +18,7 @@ export default function ColorModeToggle(): JSX.Element {
         setColorMode: docusaurusSetColorMode,
       } = require("@docusaurus/theme-common");
       docusaurusSetColorMode(mode);
-    } catch (e) {
+    } catch {
       // Fallback: just set the DOM attribute
     }
   };

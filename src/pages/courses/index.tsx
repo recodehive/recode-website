@@ -121,6 +121,8 @@ const courses = [
   },
 ];
 
+type Course = (typeof courses)[number];
+
 
 const topics = [
   "ETL",
@@ -304,7 +306,7 @@ function CoursesContent() {
     return () => observer.disconnect();
   }, [isStatsVisible]);
 
-  const handleCourseClick = (course: any) => {
+  const handleCourseClick = (course: Course) => {
     if (course.title.includes("Coming Soon")) {
       setModal({ open: true, content: "This course is coming soon!" });
     } else {

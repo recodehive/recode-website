@@ -7,26 +7,13 @@
  * - Handling sidebar visibility states
  * - Rendering DocSidebarItems component which handles the item list
  */
-import React, { useState } from "react";
+import React from "react";
 import clsx from "clsx";
-import { useThemeConfig } from "@docusaurus/theme-common";
-// @ts-ignore
-import {
-  useHideableNavbar,
-  useNavbarMobileSidebar,
-} from "@docusaurus/theme-common/internal";
 import styles from "./styles.module.css";
 import DocSidebarItems from "@theme/DocSidebarItems";
 
 // Using a custom layout for desktop navigation
-function DocSidebarDesktop({ path, sidebar, onCollapse, isHidden }) {
-  const {
-    navbar: { hideOnScroll },
-    docs: {
-      sidebar: { hideable },
-    },
-  } = useThemeConfig();
-
+function DocSidebarDesktop({ path, sidebar, isHidden }) {
   return (
     <div
       className={clsx(styles.sidebar, styles.sidebarWithHideableNavbar, {

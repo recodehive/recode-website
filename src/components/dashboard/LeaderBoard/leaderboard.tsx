@@ -11,6 +11,7 @@ import { mockContributors } from "./mockData";
 import "./leaderboard.css";
 
 const GITHUB_ORG = "recodehive";
+type TimeFilter = "week" | "month" | "year" | "all";
 
 // Users to exclude from the leaderboard
 const EXCLUDED_USERS = [
@@ -42,12 +43,6 @@ interface Contributor {
   prs: number;
   prDetails?: PRDetails[];
   badges?: string[]; // Array of badge image paths
-}
-
-interface Stats {
-  flooredTotalPRs: number;
-  totalContributors: number;
-  flooredTotalPoints: number;
 }
 
 // Badge configuration - maps badge numbers to achievement criteria
@@ -212,63 +207,6 @@ function Badge({
   );
 }
 
-function TopPerformerCard({
-  contributor,
-  rank,
-  onPRClick,
-  onBadgeClick,
-}: {
-  contributor: Contributor;
-  rank: number;
-  onPRClick: (contributor: Contributor) => void;
-  onBadgeClick?: (contributor: Contributor) => void;
-}) {
-  const { isDark } = useSafeColorMode();
-  const rankClass = rank === 1 ? "top-1" : rank === 2 ? "top-2" : "top-3";
-  const badges = getContributorBadges(contributor, rank);
-
-  return (
-    <div className={`top-performer-card ${isDark ? "dark" : "light"}`}>
-      <img
-        src={contributor.avatar}
-        alt={contributor.username}
-        className="avatar large"
-      />
-      <div className={`rank-overlay ${rankClass}`}>
-        <span className="rank-text">{rank}</span>
-      </div>
-      <div className="performer-info">
-        <a
-          href={contributor.profile}
-          target="_blank"
-          rel="noreferrer"
-          className="username-link"
-        >
-          {contributor.username}
-        </a>
-        <ContributorBadges
-          badges={badges}
-          onClick={() => onBadgeClick?.(contributor)}
-        />
-        <div className="badges-container">
-          <Badge
-            count={contributor.prs}
-            label="PRs"
-            color={{ background: "#dbeafe", color: "#2563eb" }}
-            onClick={() => onPRClick(contributor)}
-            clickable={true}
-          />
-          <Badge
-            count={contributor.points}
-            label="Points"
-            color={{ background: "#ede9fe", color: "#7c3aed" }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
 export default function LeaderBoard(): JSX.Element {
   // Get time filter functions from context
   const {
@@ -349,7 +287,6 @@ export default function LeaderBoard(): JSX.Element {
 
   const renderPaginationButtons = () => {
     const pages = [];
-    const maxVisibleButtons = 5; // Maximum number of page buttons to show directly
 
     // Special case: if we have 7 or fewer pages, show all of them without ellipsis
     if (totalPages <= 7) {
@@ -448,22 +385,6 @@ export default function LeaderBoard(): JSX.Element {
     return "regular";
   };
 
-  // Helper function for time filter display
-  const getTimeFilterLabel = (filter: string) => {
-    switch (filter) {
-      case "week":
-        return "📊 This Week";
-      case "month":
-        return "📆 This Month";
-      case "year":
-        return "📅 This Year";
-      case "all":
-        return "🏆 All Time";
-      default:
-        return "🏆 All Time";
-    }
-  };
-
   return (
     <div className={`leaderboard-container ${isDark ? "dark" : "light"}`}>
       <div className="leaderboard-content">
@@ -498,7 +419,7 @@ export default function LeaderBoard(): JSX.Element {
                   value={currentTimeFilter}
                   onChange={(e) => {
                     // Use setTimeFilter from context
-                    setTimeFilter(e.target.value as any);
+                    setTimeFilter(e.target.value as TimeFilter);
                     setCurrentPage(1);
                     setIsSelectChanged(true);
                     setTimeout(() => setIsSelectChanged(false), 1200);

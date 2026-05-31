@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";

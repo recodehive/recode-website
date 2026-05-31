@@ -82,7 +82,7 @@ export function BlogCarousel() {
             >
               <BlogCard
                 type={blog.category}
-                date={(blog as any).date}
+                date={blog.date}
                 title={blog.title}
                 content={blog.description}
                 imageUrl={blog.image}

@@ -11,12 +11,11 @@ import clsx from "clsx";
 import { ThemeClassNames } from "@docusaurus/theme-common";
 import Link from "@docusaurus/Link";
 import isInternalUrl from "@docusaurus/isInternalUrl";
-import { Book } from "lucide-react";
-import { DocSidebarItemLinkProps } from "../types";
+import { DocSidebarItemLinkProps, type SidebarLinkItem } from "../types";
 import styles from "./styles.module.css";
 
 // Utility to determine if a sidebar item is active
-function isActiveSidebarItem(item: any, activePath: string): boolean {
+function isActiveSidebarItem(item: SidebarLinkItem, activePath: string): boolean {
   if (!activePath) {
     return false;
   }
@@ -28,7 +27,6 @@ export default function DocSidebarItemLink({
   onItemClick,
   activePath,
   level,
-  index,
   ...props
 }: DocSidebarItemLinkProps): React.ReactNode {
   const { href, label, className, autoAddBaseUrl } = item;

@@ -7,6 +7,7 @@ interface Blog {
   authors: string[];
   category: string;
   tags?: string[];
+  date?: string;
 }
 
 const blogs: Blog[] = [

@@ -192,7 +192,7 @@ export default function BlogSearch({ initialSearchTerm = "", onSearchSubmit }: B
                 <div className="blog-search-section">
                   <h4 className="blog-search-section-title">MATCHING ARTICLES</h4>
                   <div className="blog-search-articles">
-                    {searchResults.articles.map((article, idx) => {
+                    {searchResults.articles.map((article) => {
                       const itemIndex = selectableItems.findIndex((item) => item.label === article.title);
                       return (
                         <Link 

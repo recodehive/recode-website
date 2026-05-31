@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
@@ -221,7 +221,7 @@ function TestimonialAvatar({ avatar, name }: { avatar?: string; name: string }) 
 }
 
 function CareersContent() {
-  const { colorMode, isDark, mounted } = useSafeColorMode();
+  const { isDark, mounted } = useSafeColorMode();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   useEffect(() => {

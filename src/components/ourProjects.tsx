@@ -50,7 +50,7 @@ export interface Props {
 const ShowcasePage: React.FC<Props> = ({
   Data: legacyData,
 }) => {
-  const { colorMode, isDark } = useSafeColorMode();
+  const { isDark } = useSafeColorMode();
 
   // Use JSON data by default, fallback to legacy props for backward compatibility
   // Convert legacy data to new format if needed
@@ -169,8 +169,6 @@ const SelectComponent = ({
   isDark: boolean;
 }) => {
   const [activeItem, setActiveItem] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

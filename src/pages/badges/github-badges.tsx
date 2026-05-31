@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Head from "@docusaurus/Head";
-import { motion, HTMLMotionProps } from "framer-motion";
-import type { ReactElement } from "react";
+import { motion } from "framer-motion";
 import Layout from "@theme/Layout";
-import { useColorMode } from "@docusaurus/theme-common";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 // Safe hook for color mode that handles SSR
@@ -34,13 +32,8 @@ function useSafeColorMode() {
 }
 import styles from "./github-badges.module.css";
 
-type MotionDivProps = HTMLMotionProps<"div">;
-type MotionTrProps = HTMLMotionProps<"tr">;
-
-import Link from "@docusaurus/Link";
-
 const GithubBadgesContent = (): React.ReactElement => {
-  const { colorMode, isDark, mounted } = useSafeColorMode();
+  const { isDark } = useSafeColorMode();
 
   // Scroll to top button logic
   useEffect(() => {
@@ -65,10 +58,6 @@ const GithubBadgesContent = (): React.ReactElement => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const handleScrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   return (
     <Layout
@@ -1353,10 +1342,6 @@ const GithubBadgesContent = (): React.ReactElement => {
       </div>
     </Layout>
   );
-};
-
-const handleScrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
 const GithubBadges = (): React.ReactElement => {

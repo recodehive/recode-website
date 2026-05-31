@@ -5,7 +5,6 @@ import Layout from "@theme/Layout";
 import { FaPlusCircle, FaTimes } from "react-icons/fa";
 import Head from "@docusaurus/Head";
 import sponsors from "@site/src/database/sponsors";
-import { useHistory } from "@docusaurus/router";
 
 type TabType = "current" | "past";
 
@@ -13,8 +12,6 @@ const OurSponsors: React.FC = () => {
   const [showScanner, setShowScanner] = useState<boolean>(false);
   const [activeTab, setActiveTab] = useState<TabType>("current");
   const modalRef = useRef<HTMLDivElement>(null);
-  const history = useHistory();
-
   // Filter for current sponsors (exclude isWeSponsor)
   const currentSponsors = sponsors.filter(
     (s) => !s.isPastSponsor && !s.isWeSponsor,
