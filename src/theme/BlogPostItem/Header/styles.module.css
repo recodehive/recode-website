@@ -120,27 +120,19 @@
 .tag {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  padding: 3px 10px 3px 8px;
-  border-radius: 20px;
-  font-size: 0.8rem;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
   font-weight: 500;
-  background: var(--tag-bg);
-  color: var(--tag-text);
-  border: 1px solid var(--tag-border);
+  background: #f1f5f9;
+  color: #475569;
+  border: none;
   white-space: nowrap;
 }
 
-.tagDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--tag-dot);
-  flex-shrink: 0;
-}
-
 [data-theme="dark"] .tag {
-  opacity: 0.85;
+  background: #334155;
+  color: #cbd5e1;
 }
 
 @media (max-width: 480px) {

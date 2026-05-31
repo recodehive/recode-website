@@ -2512,10 +2512,13 @@ html[data-theme="dark"] {
 }
 
 .blog-post-page .markdown {
-  max-width: 100% !important;
-  font-size: 1.125rem !important;
-  line-height: 2rem !important;
-  color: rgb(75, 85, 99) !important;
+  max-width: 720px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: 1rem !important;
+  line-height: 1.75 !important;
+  color: #334155 !important;
 }
 
 html[data-theme="dark"] .blog-post-page .markdown {
@@ -2523,15 +2526,28 @@ html[data-theme="dark"] .blog-post-page .markdown {
 }
 
 .blog-post-page .markdown p {
-  margin-top: 1.25rem !important;
-  margin-bottom: 0.5rem !important;
+  margin-top: 0 !important;
+  margin-bottom: 1.5rem !important;
 }
 
-.blog-post-page .markdown h1,
-.blog-post-page .markdown h2,
+.blog-post-page .markdown h1 {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  margin-top: 2.5rem !important;
+}
+
+.blog-post-page .markdown h2 {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: #1e293b !important;
+  margin-top: 2.5rem !important;
+}
+
 .blog-post-page .markdown h3,
 .blog-post-page .markdown h4 {
-  color: #1F2937 !important;
+  color: #1e293b !important;
+  margin-top: 2rem !important;
 }
 
 html[data-theme="dark"] .blog-post-page .markdown h1,
@@ -2539,6 +2555,34 @@ html[data-theme="dark"] .blog-post-page .markdown h2,
 html[data-theme="dark"] .blog-post-page .markdown h3,
 html[data-theme="dark"] .blog-post-page .markdown h4 {
   color: #D1D5DB !important;
+}
+
+/* Callout / Info block styling */
+.blog-post-page .markdown .admonition,
+.blog-post-page .markdown .alert {
+  border-left: 4px solid #3b82f6 !important;
+  background: #eff6ff !important;
+  font-size: inherit !important;
+}
+
+html[data-theme="dark"] .blog-post-page .markdown .admonition,
+html[data-theme="dark"] .blog-post-page .markdown .alert {
+  background: rgba(59, 130, 246, 0.1) !important;
+}
+
+/* Blog post page title (H1 rendered by Docusaurus header, outside .markdown) */
+.blog-post-page article header h1,
+.blog-post-page article header h2[itemprop="headline"] {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  line-height: 1.3 !important;
+}
+
+html[data-theme="dark"] .blog-post-page article header h1,
+html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
+  color: #f1f5f9 !important;
 }
 
 /* ── Large desktop (≥1400px) — wider content ── */
