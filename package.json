@@ -105,6 +105,9 @@
       "last 5 safari version"
     ]
   },
+  "overrides": {
+    "sharp": "^0.34.5"
+  },
   "engines": {
     "node": ">=20.9.0 <23"
   }
