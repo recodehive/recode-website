@@ -13,11 +13,7 @@ import { DocSidebarItemHtmlProps } from "../types";
 
 export default function DocSidebarItemHtml({
   item,
-  level,
   tabIndex,
-  // We're receiving these props but not using them in this component
-  activePath,
-  index,
 }: DocSidebarItemHtmlProps): React.ReactNode {
   const { value, className } = item;
   return (

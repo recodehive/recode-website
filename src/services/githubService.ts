@@ -59,6 +59,55 @@ export interface GitHubDiscussion {
   }>;
 }
 
+declare global {
+  interface Window {
+    GITHUB_TOKEN?: string;
+  }
+}
+
+interface GitHubGraphQLLabel {
+  name: string;
+  color: string;
+}
+
+interface GitHubGraphQLDiscussion {
+  id: string;
+  title: string;
+  body?: string;
+  createdAt: string;
+  updatedAt: string;
+  url: string;
+  author?: {
+    login?: string;
+    avatarUrl?: string;
+    url?: string;
+  };
+  category?: {
+    name?: string;
+    emoji?: string;
+  };
+  comments?: {
+    totalCount?: number;
+  };
+  reactions?: {
+    totalCount?: number;
+  };
+  labels?: {
+    nodes?: GitHubGraphQLLabel[];
+  };
+}
+
+interface DiscussionsGraphQLResponse {
+  errors?: unknown;
+  data?: {
+    repository?: {
+      discussions?: {
+        nodes?: GitHubGraphQLDiscussion[];
+      };
+    };
+  };
+}
+
 class GitHubService {
   private readonly ORG_NAME = "recodehive";
   private readonly CACHE_KEY = "github_org_stats";
@@ -88,7 +137,7 @@ class GitHubService {
     // Use stored token first, then fall back to window.GITHUB_TOKEN
     const token =
       this.token ||
-      (typeof window !== "undefined" ? (window as any).GITHUB_TOKEN : "");
+      (typeof window !== "undefined" ? window.GITHUB_TOKEN ?? "" : "");
     if (token) {
       headers["Authorization"] = `token ${token}`;
     }
@@ -345,7 +394,7 @@ class GitHubService {
 
     try {
       // Fetch organization info and repositories in parallel
-      const [orgInfo, repositories] = await Promise.all([
+      const [, repositories] = await Promise.all([
         this.fetchOrganizationInfo(signal),
         this.fetchAllRepositories(signal),
       ]);
@@ -486,7 +535,7 @@ class GitHubService {
         throw new Error(`GraphQL request failed: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as DiscussionsGraphQLResponse;
 
       if (data.errors) {
         console.error("GraphQL errors:", data.errors);
@@ -496,7 +545,7 @@ class GitHubService {
       const discussions = data.data?.repository?.discussions?.nodes || [];
 
       return discussions.map(
-        (discussion: any): GitHubDiscussion => ({
+        (discussion): GitHubDiscussion => ({
           id: discussion.id,
           title: discussion.title,
           body: discussion.body || "",
@@ -517,7 +566,7 @@ class GitHubService {
           },
           html_url: discussion.url,
           labels:
-            discussion.labels?.nodes?.map((label: any) => ({
+            discussion.labels?.nodes?.map((label) => ({
               name: label.name,
               color: label.color,
             })) || [],

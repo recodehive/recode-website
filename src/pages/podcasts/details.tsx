@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import type { ReactElement } from "react";
 import { useLocation, useHistory } from "@docusaurus/router";
@@ -180,7 +180,7 @@ export default function PodcastDetails(): ReactElement {
           title: `Check out this ${podcast.type}`,
           url: podcast.spotifyUrl,
         });
-      } catch (err) {
+      } catch {
         // Fallback to clipboard
         navigator.clipboard.writeText(podcast.spotifyUrl);
       }

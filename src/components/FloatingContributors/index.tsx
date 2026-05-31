@@ -439,26 +439,6 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
     }
   };
 
-  // Get icon for action type
-  const getActionIcon = (action: ContributorActivity["action"]): string => {
-    switch (action) {
-      case "pushed":
-        return "🚀";
-      case "created":
-        return "✨";
-      case "merged":
-        return "🔄";
-      case "opened":
-        return "📝";
-      case "commented":
-        return "💬";
-      case "closed":
-        return "✅";
-      default:
-        return "💻";
-    }
-  };
-
   // Get text for action type
   const getActionText = (action: ContributorActivity["action"]): string => {
     switch (action) {

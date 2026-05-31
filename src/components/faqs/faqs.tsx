@@ -44,7 +44,7 @@ const faqData = [
 
 const FAQs: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const { colorMode, isDark } = useSafeColorMode();
+  const { isDark } = useSafeColorMode();
 
   const toggleAccordion = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);

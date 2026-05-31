@@ -1,4 +1,4 @@
-import React, { type FC, useEffect, useState, useMemo } from "react";
+import React, { type FC, useMemo } from "react";
 import SlotCounter from "react-slot-counter";
 import "./LandingCommunity.css";
 import { useCommunityStatsContext } from "@site/src/lib/statsProvider";

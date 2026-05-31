@@ -1,5 +1,5 @@
 // src/plugins/tailwind-plugin.js
-module.exports = function tailwindPlugin(context, options) {
+module.exports = function tailwindPlugin() {
   return {
     name: "tailwind-plugin",
     configurePostCss(postcssOptions) {

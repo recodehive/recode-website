@@ -236,8 +236,8 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
 
   // Tags — use blog.tags if present, fallback to blog.category as single tag
   const tags: string[] =
-    Array.isArray((blog as any).tags) && (blog as any).tags.length > 0
-      ? (blog as any).tags
+    Array.isArray(blog.tags) && blog.tags.length > 0
+      ? blog.tags
       : blog.category
         ? [blog.category]
         : [];
@@ -347,8 +347,8 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
                   ))}
                 </span>
               )}
-              {(blog as any).date && (
-                <span className="card-date">{formatDate((blog as any).date)}</span>
+              {blog.date && (
+                <span className="card-date">{formatDate(blog.date)}</span>
               )}
             </div>
           </div>

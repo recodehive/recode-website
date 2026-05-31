@@ -7,7 +7,7 @@ import React, {
   useState,
   type ReactNode,
 } from "react";
-import { githubService, type GitHubOrgStats } from "../services/githubService";
+import { githubService } from "../services/githubService";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 // Time filter types
@@ -78,6 +78,11 @@ interface PullRequestItem {
   labels?: Array<{ name: string }>;
 }
 
+interface OrgRepository {
+  name: string;
+  archived: boolean;
+}
+
 // Enhanced contributor type for internal processing (stores all PRs)
 interface FullContributor extends Omit<Contributor, "points" | "prs"> {
   allPRDetails: PRDetails[]; // All PRs regardless of filter
@@ -94,7 +99,6 @@ interface CommunityStatsProviderProps {
 }
 
 const GITHUB_ORG = "recodehive";
-const POINTS_PER_PR = 10;
 const MAX_CONCURRENT_REQUESTS = 15;
 const CACHE_DURATION = 20 * 60 * 1000; // 20 minutes cache
 const MAX_PAGES_PER_REPO = 10;
@@ -253,7 +257,7 @@ export function CommunityStatsProvider({
 
   const fetchAllOrgRepos = useCallback(
     async (headers: Record<string, string>) => {
-      const repos: any[] = [];
+      const repos: OrgRepository[] = [];
       let page = 1;
       while (true) {
         const resp = await fetch(
@@ -267,7 +271,7 @@ export function CommunityStatsProvider({
             `Failed to fetch org repos: ${resp.status} ${resp.statusText}`,
           );
         }
-        const data = await resp.json();
+        const data: OrgRepository[] = await resp.json();
         repos.push(...data);
         if (!Array.isArray(data) || data.length < 100) break;
         page++;
@@ -337,7 +341,7 @@ export function CommunityStatsProvider({
   // Enhanced processing function that stores only valid PRs with points
   const processBatch = useCallback(
     async (
-      repos: any[],
+      repos: OrgRepository[],
       headers: Record<string, string>,
     ): Promise<{
       contributorMap: Map<string, FullContributor>;
@@ -479,8 +483,8 @@ export function CommunityStatsProvider({
           },
           timestamp: now,
         });
-      } catch (err: any) {
-        if (err.name !== "AbortError") {
+      } catch (err: unknown) {
+        if (!(err instanceof DOMException && err.name === "AbortError")) {
           console.error("Error fetching GitHub organization stats:", err);
           setError(
             err instanceof Error ? err.message : "Failed to fetch GitHub stats",

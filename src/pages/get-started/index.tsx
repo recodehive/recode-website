@@ -4,7 +4,6 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { motion, useAnimation, useInView } from "framer-motion";
 import Head from "@docusaurus/Head";
-import { useColorMode } from "@docusaurus/theme-common";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
 
 // Safe hook for color mode that handles SSR
@@ -110,18 +109,6 @@ const AnimatedSection = ({ children, delay = 0 }: AnimatedSectionProps) => {
 };
 
 function GetStartedHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  // Remove unused siteConfig or use it if needed
-  const [textIndex, setTextIndex] = useState(0);
-  const texts = ["Code", "Build", "Deploy", "Learn"];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTextIndex((prevIndex) => (prevIndex + 1) % texts.length);
-    }, 2000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <header className={styles.heroBanner}>
       <div className={styles.heroOverlay}></div>
@@ -694,7 +681,7 @@ const LearningPath = ({
 
 function GetStartedContent() {
   const { siteConfig } = useDocusaurusContext();
-  const { colorMode, isDark, mounted } = useSafeColorMode();
+  const { isDark } = useSafeColorMode();
   type CompletedPaths = Record<string, boolean>;
 
   const [completedPaths, setCompletedPaths] = useState<CompletedPaths>(() => {

@@ -246,8 +246,6 @@ function BroadcastsPage(): ReactElement {
 
   const regularVideos = videoData.filter((video) => video.type === "video");
   const liveVideos = videoData.filter((video) => video.type === "live");
-  const otherVideos = videoData.filter((video) => video.type === "other");
-
   const indexOfLastVideo = currentPage * videosPerPage;
   const indexOfFirstVideo = indexOfLastVideo - videosPerPage;
 
