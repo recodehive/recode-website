@@ -2690,6 +2690,94 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
    END SECTION 15
    ===================================================== */
 
+/* ===== RESPONSIVE NAVBAR OVERFLOW FIX ===== */
+@media screen and (min-width: 1401px) {
+  .navbar__inner {
+    gap: 0.5rem !important;
+  }
+
+  .navbar__items:not(.navbar__items--right) {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .navbar__items--right {
+    flex: 0 0 auto !important;
+  }
+
+  .navbar__items>.navbar__item {
+    flex: 0 0 auto !important;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .navbar,
+  .navbar .navbar__inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+  }
+
+  .navbar .navbar__inner {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.5rem !important;
+  }
+
+  .navbar .navbar__items {
+    min-width: 0 !important;
+  }
+
+  .navbar .navbar__items:not(.navbar__items--right) {
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+  }
+
+  .navbar .navbar__items--right {
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+  }
+
+  .navbar .navbar__toggle {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 40px !important;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .navbar .navbar__brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .navbar .navbar__title {
+    min-width: 0 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .navbar__inner>.navbar__items>.navbar__item:not(.navbar__toggle),
+  .navbar__items--right>.navbar__item,
+  .navbar__items--right .algolia-sitesearch-navbar,
+  .navbar__items--right .colorModeToggle {
+    display: none !important;
+  }
+
+  .navbar-sidebar .navbar__item,
+  .navbar-sidebar .navbar__link,
+  .navbar-sidebar .dropdown {
+    display: block !important;
+    white-space: normal !important;
+  }
+}
+
 /* ===== MOBILE TOP-GAP FIX ===== */
 @media screen and (max-width: 996px) {
 
