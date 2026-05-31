@@ -7,6 +7,61 @@ import styles from "./Root.module.css"; // Import the CSS module
 import { useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
+function isEditableEventTarget(target: EventTarget | null): boolean {
+  if (!(target instanceof Element)) {
+    return false;
+  }
+
+  if (target.isContentEditable) {
+    return true;
+  }
+
+  const tagName = target.tagName.toLowerCase();
+  if (tagName === "textarea" || tagName === "select") {
+    return true;
+  }
+
+  if (target instanceof HTMLInputElement) {
+    const editableTypes = new Set([
+      "text",
+      "search",
+      "url",
+      "tel",
+      "email",
+      "password",
+      "number",
+      "date",
+      "datetime-local",
+      "month",
+      "time",
+      "week",
+    ]);
+    return !target.readOnly && !target.disabled && editableTypes.has(target.type);
+  }
+
+  return target.matches(
+    "[contenteditable='true'], [contenteditable=''], [contenteditable='plaintext-only']",
+  );
+}
+
+function focusSearchInput(): boolean {
+  const navbarSearch = document.querySelector<HTMLInputElement>(
+    "#algolia-sitesearch-navbar input",
+  );
+  if (navbarSearch) {
+    navbarSearch.focus({ preventScroll: true });
+    return true;
+  }
+
+  const blogSearch = document.querySelector<HTMLInputElement>(".blog-search-input");
+  if (blogSearch) {
+    blogSearch.focus({ preventScroll: true });
+    return true;
+  }
+
+  return false;
+}
+
 // A simple Trophy SVG icon component
 function TrophyIcon() {
   return (
@@ -141,6 +196,33 @@ export default function Root({ children }: { children: React.ReactNode }) {
 
     return () => {
       observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    function handleGlobalSearchShortcut(event: KeyboardEvent) {
+      if (
+        event.key !== "/" ||
+        event.defaultPrevented ||
+        event.metaKey ||
+        event.altKey ||
+        event.ctrlKey
+      ) {
+        return;
+      }
+
+      if (isEditableEventTarget(event.target)) {
+        return;
+      }
+
+      if (focusSearchInput()) {
+        event.preventDefault();
+      }
+    }
+
+    document.addEventListener("keydown", handleGlobalSearchShortcut);
+    return () => {
+      document.removeEventListener("keydown", handleGlobalSearchShortcut);
     };
   }, []);
 
