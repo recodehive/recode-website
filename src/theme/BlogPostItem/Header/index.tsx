@@ -59,8 +59,42 @@ export default function BlogPostItemHeaderWrapper(props: Props): JSX.Element {
   const { metadata, isBlogPostPage } = useBlogPost();
 
   if (!isBlogPostPage) {
-    return <BlogPostItemHeaderOriginal {...props} />;
-  }
+  const roundedReadTime = Math.max(1, Math.ceil(metadata.readingTime || 0));
+  const readTimeText = `${roundedReadTime} min read`;
+
+  return (
+    <>
+      <BlogPostItemHeaderOriginal {...props} />
+      <span
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "0.25rem",
+          fontSize: "0.8rem",
+          color: "var(--ifm-color-emphasis-600)",
+          marginTop: "0.25rem",
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="12"
+          height="12"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <polyline points="12 6 12 12 16 14" />
+        </svg>
+        {readTimeText}
+      </span>
+    </>
+  );
+}
 
   // Build display data for ALL authors (not just the first one)
   const authors = (metadata.authors ?? []).map((author) => {
