@@ -110,7 +110,7 @@ millions of employees were suddenly forced out of physical offices and onto thei
 ## Why Google Is Doing This Now
 
 Two reasons. One practical, one strategic.
-Two reasons. One practical, one strategic.
+
 
 The practical reason is simple: they finally ran out of excuses not to fix it. The 2020 design was criticized immediately and consistently for five years. Every redesign rumor that surfaced got user hopes up. Fixing the icon confusion was low-hanging fruit with a clear user benefit and Google had no strong argument for keeping the broken version.
 
