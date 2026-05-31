@@ -52,7 +52,7 @@ It's a phenomenon called cognitive friction. You have to stop searching for a re
 :::
 
    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-    ![Github](./assets/05-google-new-logo.png)
+    ![New Google Workspace app icons 2026 redesign](./assets/05-google-new-logo.png)
     </BrowserWindow>
 
 <span style={{color: 'red'}}>**So From when the issue started happening?**</span>
@@ -60,7 +60,7 @@ This specific daily annoyance traces back to 2020, when Google retired G Suite a
 
 So lets look at Gsuite Icons. 👇🏻
    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-    ![Github](./assets/03-google-old-gsuite-logo.png)
+    ![Google G Suite original app icons before 2020 rebrand](./assets/03-google-old-gsuite-logo.png)
     </BrowserWindow>
 
    <span style={{color: 'red'}}> **The problem**</span>
@@ -68,7 +68,7 @@ It has been happening for five years. The four icons sit in my browser tab bar l
 
 <span style={{color: 'green'}}> **The Solution**</span> If that sounds familiar, Google finally heard you. And me. And apparently everyone who has ever stared at a browser tab bar wondering which shade of blue-red-yellow-green meant Calendar versus Drive.
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-    ![Github](./assets/01-New-Google-icon-Design.jpg)
+    ![New Google Workspace icon design introduced in 2026](./assets/01-New-Google-icon-Design.jpg)
     </BrowserWindow>
 
 
@@ -87,19 +87,19 @@ At the time, the rebrand looked clean on paper. Google unified its entire app su
 
 <div className="img-zoom">
 
- ![Github](./assets/03-google-old-apps-logo.png)
+ ![Google Workspace app icons after 2020 rebrand showing uniform four-color design](./assets/03-google-old-apps-logo.png)
 
 </div>
 
 Within hours of the 2020 announcement, the internet responded with a very specific complaint: all the icons now look the same. The new Gmail icon was the most mocked. The classic envelope with a red M that everyone recognized was replaced with a four-color M that looked like a child's art project. People struggled to tell Calendar from Drive, Drive from Docs, and Meet from everything else at a glance.
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-    ![Github](./assets/04-google-old-outline-logo.png)
+    ![Google Workspace 2020 flat outline icon design for Gmail Drive Docs and Meet](./assets/04-google-old-outline-logo.png)
     </BrowserWindow>
 
 The complaint was not just aesthetic. It was functional. When apps share the same four colors and similar shapes, your brain cannot build distinct visual shortcuts for each one. You have to read the icon rather than recognize it. That adds cognitive friction dozens of times a day. Multiply that across 3 billion Google Workspace users and the accumulated frustration becomes significant.
 
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-    ![Github](./assets/06-googleworkspace-new-logo.png)
+    ![Google Workspace new logo with gradient color redesign 2026](./assets/06-googleworkspace-new-logo.png)
     </BrowserWindow>
 
 <span style={{color: 'red'}}> **Thought process behind Google**</span>? In 2020
@@ -116,7 +116,7 @@ The practical reason is simple: they finally ran out of excuses not to fix it. T
 
 The strategic reason is more interesting. Look at which Google products got gradient icons first before this Workspace rollout: the Google G logo, Gemini, Google Photos, Google Maps. Every product associated with <span style={{color: 'green'}}>**Google's AI push** </span>got gradients first. Applying the same design language to Workspace now visually ties the entire productivity suite to the AI narrative.
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-    ![Github](./assets/08-google-old.png)
+    ![Google old app icon design before the 2026 gradient update](./assets/08-google-old.png)
     </BrowserWindow>
 
 Google I/O 2026 is happening this week. The timing of this rollout is not accidental. Google is walking into its biggest annual developer event with a refreshed product suite that looks modern, AI-adjacent, and ready for the next phase of Workspace. The icon redesign is as much a marketing signal as a usability fix.
@@ -131,7 +131,7 @@ The strict four-color rule is gone. Instead of forcing every icon to carry all f
 
 Looking at the new icons directly, here is what stands out:
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-    ![Github](./assets/09-google-new-design.png)
+    ![Google 2026 new icon design showing per-app gradient color identity](./assets/09-google-new-design.png)
     </BrowserWindow>
 
 The icons are also physically larger in the launcher. Google removed the Workspace page container that previously boxed each icon in, giving more visual real estate to the icon shapes themselves.
@@ -146,7 +146,7 @@ The people who are happy are mostly the ones who experienced the confusion probl
 Looking at the new icons directly, here is what stands out:
 
   <BrowserWindow url="https://x.com/Gautamk104/status/2057843133392842780?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E2057843133392842780%7Ctwgr%5E3dbaf20e8e4f9f64fd6032e85f7ed7c1e1b5fe0f%7Ctwcon%5Es1_c10&ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Furl%3Dhttps%3A%2F%2Ftwitter.com%2FGautamk104%2Fstatus%2F2057843133392842780" bodyStyle={{padding: 0}}>    
-     [![Github](./assets/10-x-post.png)](https://x.com/Gautamk104/status/2057843133392842780?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E2057843133392842780%7Ctwgr%5E3dbaf20e8e4f9f64fd6032e85f7ed7c1e1b5fe0f%7Ctwcon%5Es1_c10&ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Furl%3Dhttps%3A%2F%2Ftwitter.com%2FGautamk104%2Fstatus%2F2057843133392842780)
+     [![X post by Gautamk104 reacting to Google Workspace icon redesign 2026](./assets/10-x-post.png)](https://x.com/Gautamk104/status/2057843133392842780?ref_src=twsrc%5Etfw%7Ctwcamp%5Etweetembed%7Ctwterm%5E2057843133392842780%7Ctwgr%5E3dbaf20e8e4f9f64fd6032e85f7ed7c1e1b5fe0f%7Ctwcon%5Es1_c10&ref_url=https%3A%2F%2Fpublish.twitter.com%2F%3Furl%3Dhttps%3A%2F%2Ftwitter.com%2FGautamk104%2Fstatus%2F2057843133392842780)
     </BrowserWindow>
 
 
@@ -162,7 +162,7 @@ The core complaint for five years was that all the icons look the same. That com
 
 What is not addressed is the deeper question of whether icon design is even the right layer to solve the problem at. The real confusion in a modern Google workflow is not which icon to click. It is which Google product to use for which task. Should this document live in Drive or Sites? Should this conversation happen in Chat or Gmail? Should this meeting be in Meet or Calendar notes?
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
-    ![Github](./assets/11-google-new-design-changes.jpg)
+    ![Comparison of Google Workspace icon changes before and after the 2026 redesign](./assets/11-google-new-design-changes.jpg)
     </BrowserWindow>
 
 Icon legibility is a surface-level fix for a suite that has genuine overlap and redundancy problems underneath. The new icons will help you click the right app faster. They will not help you decide which app you actually need.
