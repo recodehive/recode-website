@@ -6,7 +6,7 @@ sanjay-kv:
   email: sanjay@recodehive.com
   page: true # Turns the feature on
   description: >
-    I'm a Software Engineer turned into a Data Engineer and Program Manager🚀, 🏆 Google ML Facilitator & Ex- GitHub CE who delivered 100+ talks on ML and open source and developer advocacy at various events and platforms.
+    Founder of recodehive and Technical program manager, Prev Google ML Facilitator & Ex- GitHub CE who delivered 100+ talks on ML and open source and developer advocacy.
 
   socials:
     x: https://x.com/sanjay_kv_
@@ -19,7 +19,7 @@ sanjay-kv:
 
 sowmiya-v:
   name: Sowmiya Venkatesan
-  tile:  Business Strategy & Operations Manager 
+  tile: Business Strategy & Operations Manager
   url: https://github.com/sowmiyeh
   image_url: https://avatars.githubusercontent.com/u/74345706?v=4
 
@@ -32,7 +32,6 @@ Aditya-Singh-Rathore:
   page: true # Turns the feature on
   description: >
     Aditya is a self-taught, Fabric-certified Data Engineer, GSSoC winner, author, and open-source enthusiast passionate about building scalable data solutions, contributing to the community, and sharing knowledge through blogs and public learning.
-
 
   socials:
     linkedin: aditya-singh-rathore0017
