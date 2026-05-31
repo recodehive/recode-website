@@ -1,3 +1,4 @@
+
 /* Enhanced Footer Styles - COMPLETELY ISOLATED FROM THEME CHANGES */
 
 /* Theme-aware footer styles */
@@ -137,9 +138,11 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   box-sizing: border-box;
 }
 
-/* Footer Hero Section */
+/* ==========================================================================
+   FOOTER HERO SECTION (OPTIMIZED FLEX BOX LAYOUT)
+   ========================================================================== */
 .enhanced-footer .footer-hero {
-  padding: 30px 0 20px !important; /* Reduced vertical padding */
+  padding: 30px 0 20px !important;
   position: relative;
   background: #ffffff !important;
   color: #111111 !important;
@@ -147,16 +150,16 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 
 .enhanced-footer .footer-hero-content {
   display: flex !important;
-  flex-direction: column !important; /* Stack items tightly */
+  flex-direction: column !important;
   align-items: flex-start !important;
   justify-content: flex-start !important;
-  row-gap: 16px !important; /* This directly controls the space between title and buttons */
+  row-gap: 16px !important; /* Fixed the massive whitespace gap */
   margin-bottom: 15px !important;
   text-align: left;
 }
 
 .enhanced-footer .footer-logo-section {
-  margin-bottom: 4px !important; /* Shrink margin below the logo */
+  margin-bottom: 4px !important;
 }
 
 .enhanced-footer .footer-logo {
@@ -197,17 +200,17 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 .enhanced-footer .footer-hero-left {
   display: flex;
   flex-direction: column;
-  gap: 8px !important; /* Reduce gap between logo and "Collaboration first..." */
-  flex: 0 1 auto !important; /* Prevent it from expanding artificially */
+  gap: 8px !important;
+  flex: 0 1 auto !important;
   min-width: 0;
 }
 
 .enhanced-footer .footer-hero-right {
   display: flex;
   align-items: center;
-  justify-content: flex-start !important; /* Pull to the left alongside text */
+  justify-content: flex-start !important;
   flex: 0 1 auto !important;
-  margin-left: 0 !important; /* Remove desktop auto-margin offset pushing it away */
+  margin-left: 0 !important;
   width: 100%;
 }
 
@@ -216,6 +219,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   gap: 12px;
   align-items: center;
 }
+
 .enhanced-footer .btn {
   display: inline-flex;
   align-items: center;
@@ -246,7 +250,9 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   max-width: 600px;
 }
 
-/* Links Grid System Section */
+/* ==========================================================================
+   LINKS SECTION & GRID COLUMNS
+   ========================================================================== */
 .enhanced-footer .footer-links-section {
   padding: 56px 0;
   background: #ffffff;
@@ -348,7 +354,9 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   white-space: nowrap;
 }
 
-/* Newsletter Components */
+/* ==========================================================================
+   NEWSLETTER COLUMN & FORM COMPONENT STYLES
+   ========================================================================== */
 .enhanced-footer .newsletter-column {
   background: #ffffff;
   padding: 24px;
@@ -427,7 +435,9 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   transform: translateY(-3px);
 }
 
-/* Bottom Copyright and Legal Row */
+/* ==========================================================================
+   BOTTOM SECTION & LEGAL DATA
+   ========================================================================== */
 .enhanced-footer .footer-bottom {
   padding: 16px 0;
   border-top: 1px solid rgba(17, 17, 17, 0.08);
@@ -493,7 +503,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 /* ==========================================================================
-   CLEAN RESPONSIVE MEDIA QUERIES (ISOLATED & UN-TRAFFICKED)
+   ISOLATED MEDIA QUERIES & RESPONSIVE COMPRESSION
    ========================================================================== */
 
 @media (max-width: 1200px) {
@@ -522,18 +532,18 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 
 @media (max-width: 880px) {
   .enhanced-footer .footer-hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    row-gap: 12px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    row-gap: 12px !important;
   }
   .enhanced-footer .footer-hero-right {
-    width: 100%;
-    justify-content: flex-start;
-    margin-top: 12px;
+    width: 100% !important;
+    justify-content: flex-start !important;
+    margin-top: 12px !important;
   }
   .enhanced-footer .footer-hero-left {
-    width: 100%;
+    width: 100% !important;
   }
 }
 
@@ -581,7 +591,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   }
 }
 
-/* Micro-responsive fixes targeting screens down to Mobile S (320px) */
+/* Specific micro-fixes down to 320px frame sizes */
 @media (max-width: 480px) {
   .enhanced-footer .footer-hero {
     padding: 20px 0 12px !important;
@@ -659,7 +669,9 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   }
 }
 
-/* Toast Component Styles */
+/* ==========================================================================
+   TOAST NOTIFICATION INJECTION RULES
+   ========================================================================== */
 .newsletter-toast {
   position: fixed;
   bottom: 20px;

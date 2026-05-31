@@ -159,9 +159,28 @@ const config: Config = {
           position: "left",
         },
         {
+          type: "dropdown",
           to: "/dashboard",
           html: '<span class="nav-emoji">📊</span> Dashboard',
           position: "left",
+          items: [
+            {
+              label: "🏠 Home",
+              to: "/dashboard",
+            },
+            {
+              label: "💬 Discuss",
+              to: "/dashboard#discuss",
+            },
+            {
+              label: "🏆 Leaderboard",
+              to: "/dashboard#leaderboard",
+            },
+            {
+              label: "🎁 Giveaway",
+              to: "/dashboard/giveaway",
+            },
+          ],
         },
         {
           to: "/our-sponsors/",
