@@ -87,6 +87,7 @@
 }
 
 @keyframes float {
+
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
@@ -117,6 +118,7 @@
 }
 
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -362,7 +364,7 @@
   color: #a78bfa;
 }
 
-.toc-item.active + .toc-item.active {
+.toc-item.active+.toc-item.active {
   margin-top: -2px;
   /* overlap borders */
   border-top: 1px solid rgba(139, 92, 246, 0.3);
@@ -379,7 +381,7 @@
 
 /* Last active in a block keeps rounded bottom */
 .toc-item.active:last-child,
-.toc-item.active + .toc-item:not(.active) {
+.toc-item.active+.toc-item:not(.active) {
   border-radius: 0 0 8px 8px;
 }
 
@@ -544,6 +546,7 @@
 
 .thank-you-card {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  --thank-bg-color: #667eea;
   color: white;
   padding: 0;
   border-radius: 24px;
@@ -561,12 +564,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    45deg,
-    rgba(255, 255, 255, 0.1) 0%,
-    transparent 50%,
-    rgba(255, 255, 255, 0.1) 100%
-  );
+  background: linear-gradient(45deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.1) 100%);
   pointer-events: none;
 }
 
@@ -584,9 +585,61 @@
 }
 
 .thank-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 2.5rem;
   animation: bounce 2s infinite;
   animation-delay: var(--delay, 0s);
+  cursor: default;
+  outline: none;
+}
+
+.thank-icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 12px);
+  transform: translateX(-50%) translateY(4px) scale(0.98);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.92);
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.22);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  z-index: 3;
+}
+
+.thank-icon::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 4px);
+  transform: translateX(-50%) translateY(2px);
+  opacity: 0;
+  pointer-events: none;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(15, 23, 42, 0.92);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 3;
+}
+
+.thank-icon:hover::after,
+.thank-icon:hover::before,
+.thank-icon:focus-visible::after,
+.thank-icon:focus-visible::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
 }
 
 .thank-icon:nth-child(1) {
@@ -601,7 +654,31 @@
   --delay: 0.6s;
 }
 
+.thank-icon:nth-child(1)::after,
+.thank-icon:nth-child(1)::before {
+  transform-origin: bottom center;
+}
+
+.thank-icon:nth-child(2)::after,
+.thank-icon:nth-child(2)::before {
+  transform-origin: bottom center;
+}
+
+.thank-icon:nth-child(3)::after,
+.thank-icon:nth-child(3)::before {
+  transform-origin: bottom center;
+}
+
+[data-theme="dark"] .thank-icon::after {
+  background: rgba(15, 23, 42, 0.98);
+}
+
+[data-theme="dark"] .thank-icon::before {
+  border-top-color: rgba(15, 23, 42, 0.98);
+}
+
 @keyframes bounce {
+
   0%,
   20%,
   50%,
@@ -646,6 +723,22 @@
   font-weight: 500;
 }
 
+.thank-you-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  white-space: nowrap;
+  color: #fbbf24;
+}
+
+.thank-you-brand-logo {
+  width: 1.15rem;
+  height: 1.15rem;
+  object-fit: contain;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
 .thank-you-description {
   font-size: 1.1rem;
   line-height: 1.7;
@@ -659,6 +752,88 @@
   border-radius: 6px;
   font-weight: 600;
   text-shadow: none;
+}
+
+.highlight-stat {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: help;
+  outline: none;
+  font-family: "Outfit", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 1.02em;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-transform: capitalize;
+  text-rendering: geometricPrecision;
+}
+
+.highlight-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.88em;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.highlight-stat::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(4px) scale(0.98);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: 24rem;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.94);
+  color: #ffffff;
+  font-size: 0.74rem;
+  font-weight: 600;
+  line-height: 1;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.22);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  z-index: 6;
+}
+
+.highlight-stat::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 2px);
+  transform: translateX(-50%) translateY(2px);
+  opacity: 0;
+  pointer-events: none;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid rgba(15, 23, 42, 0.94);
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+  z-index: 6;
+}
+
+.highlight-stat:hover::after,
+.highlight-stat:hover::before,
+.highlight-stat:focus-visible::after,
+.highlight-stat:focus-visible::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+}
+
+[data-theme="dark"] .highlight-stat::after {
+  background: rgba(15, 23, 42, 0.98);
+}
+
+[data-theme="dark"] .highlight-stat::before {
+  border-top-color: rgba(15, 23, 42, 0.98);
 }
 
 .highlight.collaborate {
@@ -710,16 +885,68 @@
   backdrop-filter: blur(10px);
 }
 
-.quote-icon {
-  font-size: 2rem;
-  margin-bottom: 12px;
+.quote-icon-group {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  width: 2.5rem;
+  height: 2.5rem;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.quote-icon-svg {
+  width: 2.25rem;
+  height: 2.25rem;
+  color: #fbbf24;
   display: block;
+}
+
+.quote-icon-primary {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.quote-icon-secondary {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 1.6rem;
+  height: 1.6rem;
+  transform: rotate(6deg) scale(0.95);
+  opacity: 0.95;
+  z-index: 2;
+}
+
+@media (max-width: 480px) {
+  .quote-icon-group {
+    top: 10px;
+    left: 10px;
+    width: 2.1rem;
+    height: 2.1rem;
+  }
+
+  .quote-icon-secondary {
+    right: -4px;
+    bottom: -4px;
+    width: 1.4rem;
+    height: 1.4rem;
+  }
 }
 
 .thank-you-quote em {
   font-size: 1.1rem;
   font-weight: 500;
   color: #fbbf24;
+}
+
+.thank-you-quote-line {
+  margin: 10px auto 0;
+  max-width: 42ch;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .support-section {
@@ -732,9 +959,42 @@
   backdrop-filter: blur(10px);
 }
 
+.support-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
 .support-icon {
-  font-size: 1.8rem;
   flex-shrink: 0;
+}
+
+/* Ensure footer/global .support-icon styles don't add a colored box here */
+.thank-you-card .support-icon {
+  background: transparent !important;
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.support-svg {
+  width: 28px;
+  height: 28px;
+  color: var(--thank-bg-color, #667eea);
+  stroke: currentColor;
+  fill: none;
+}
+
+.support-flower {
+  width: 22px;
+  height: 22px;
+  color: #fbbf24;
+  margin-left: 2px;
 }
 
 .support-text {
@@ -744,8 +1004,11 @@
   line-height: 1.5;
 }
 
+/* end revert */
+
 [data-theme="dark"] .thank-you-card {
   background: linear-gradient(135deg, #4c1d95 0%, #581c87 50%, #7c3aed 100%);
+  --thank-bg-color: #4c1d95;
   box-shadow: 0 20px 40px rgba(76, 29, 149, 0.4);
 }
 
@@ -889,6 +1152,7 @@
     padding: 0 20px 24px;
   }
 }
+
 .section-header h2,
 .section-header h3,
 .contribution-section h2,
@@ -905,16 +1169,16 @@
 }
 
 /* force the heading for a constant theme */
-.contribution-section > h2,
-.contribution-section > h3,
-.contribution-section > h4 {
+.contribution-section>h2,
+.contribution-section>h3,
+.contribution-section>h4 {
   color: #1e293b;
   font-weight: 700;
 }
 
-[data-theme="dark"] .contribution-section > h2,
-[data-theme="dark"] .contribution-section > h3,
-[data-theme="dark"] .contribution-section > h4 {
+[data-theme="dark"] .contribution-section>h2,
+[data-theme="dark"] .contribution-section>h3,
+[data-theme="dark"] .contribution-section>h4 {
   color: #ffffff;
 }
 

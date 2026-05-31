@@ -2,8 +2,15 @@ import React, { useState, useEffect } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import { motion } from "framer-motion";
+import { GiBee } from "react-icons/gi";
+import { MdLocalFlorist } from "react-icons/md";
 import ScrollBottomToTop from "@site/src/components/scroll/bottom-to-top";
 import "./community.css";
+import { HiOutlineChatAlt2 } from "react-icons/hi";
+import {
+  CommunityStatsProvider,
+  useCommunityStatsContext,
+} from "@site/src/lib/statsProvider";
 
 interface ContributionSection {
   id: string;
@@ -118,7 +125,22 @@ const tableOfContents = [
   { id: "get-started", title: "Get Started", icon: "🚀" },
 ];
 
-export default function CommunityPage(): React.ReactElement {
+const thankYouIcons = [
+  { emoji: "💚", label: "A little hive hug for you" },
+  { emoji: "🎉", label: "Yay, you're part of the celebration" },
+  { emoji: "✨", label: "Sparkle first, scroll later" },
+];
+
+function CommunityPageContent(): React.ReactElement {
+  const {
+    githubContributorsCount,
+    githubContributorsCountText,
+    githubReposCount,
+    githubReposCountText,
+    githubStarCount,
+    githubStarCountText,
+  } = useCommunityStatsContext();
+
   const [activeSections, setActiveSections] = useState<string[]>([
     "how-you-can-contribute",
   ]);
@@ -193,6 +215,24 @@ export default function CommunityPage(): React.ReactElement {
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
+
+  const highlightStats = {
+    collaborate: {
+      label: "collaborate",
+      tooltip: `${githubContributorsCountText} collaborators are active right now`,
+      count: githubContributorsCount,
+    },
+    learn: {
+      label: "learn",
+      tooltip: `${githubReposCountText} public repositories to learn from`,
+      count: githubReposCount,
+    },
+    grow: {
+      label: "grow",
+      tooltip: `${githubStarCountText} stars showing the community is growing`,
+      count: githubStarCount,
+    },
+  };
 
   return (
     <Layout
@@ -274,12 +314,12 @@ export default function CommunityPage(): React.ReactElement {
                       key={section.id}
                       id={section.id}
                       className={`contribution-section ${(
-                          isMobile
-                            ? activeSections.includes(section.id)
-                            : selectedSection === section.id
-                        )
-                          ? "selected"
-                          : ""
+                        isMobile
+                          ? activeSections.includes(section.id)
+                          : selectedSection === section.id
+                      )
+                        ? "selected"
+                        : ""
                         }`}
                       initial={{ opacity: 0, y: 30 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -392,47 +432,116 @@ export default function CommunityPage(): React.ReactElement {
                     <div className="thank-you-card">
                       <div className="thank-you-header">
                         <div className="thank-you-icons">
-                          <span className="thank-icon">💚</span>
-                          <span className="thank-icon">🎉</span>
-                          <span className="thank-icon">✨</span>
+                          {thankYouIcons.map((icon) => (
+                            <span
+                              key={icon.emoji}
+                              className="thank-icon"
+                              data-tooltip={icon.label}
+                              aria-label={icon.label}
+                              title={icon.label}
+                              tabIndex={0}
+                              role="img"
+                            >
+                              {icon.emoji}
+                            </span>
+                          ))}
                         </div>
                       </div>
 
                       <div className="thank-you-content">
                         <p className="thank-you-main">
                           Thank you for your interest in{" "}
-                          <strong>recode hive</strong>!
+                          <span className="thank-you-brand">
+                            <img
+                              src="/img/logo.png"
+                              alt="Recode Hive logo"
+                              className="thank-you-brand-logo"
+                            />
+                            <strong>recode hive</strong>
+                          </span>
+                          !
                         </p>
                         <p className="thank-you-description">
                           We're thrilled to have you here and can't wait to{" "}
-                          <span className="highlight collaborate">
+                          <span
+                            className="highlight highlight-stat collaborate"
+                            data-tooltip={highlightStats.collaborate.tooltip}
+                            aria-label={highlightStats.collaborate.tooltip}
+                            title={highlightStats.collaborate.tooltip}
+                            tabIndex={0}
+                          >
+                            <span className="highlight-icon" aria-hidden="true">
+                              🤝
+                            </span>
                             collaborate
                           </span>
-                          , <span className="highlight learn">learn</span>, and{" "}
-                          <span className="highlight grow">grow</span> —
-                          together. 🌱
+                          ,{" "}
+                          <span
+                            className="highlight highlight-stat learn"
+                            data-tooltip={highlightStats.learn.tooltip}
+                            aria-label={highlightStats.learn.tooltip}
+                            title={highlightStats.learn.tooltip}
+                            tabIndex={0}
+                          >
+                            <span className="highlight-icon" aria-hidden="true">
+                              📚
+                            </span>
+                            learn
+                          </span>
+                          , and{" "}
+                          <span
+                            className="highlight highlight-stat grow"
+                            data-tooltip={highlightStats.grow.tooltip}
+                            aria-label={highlightStats.grow.tooltip}
+                            title={highlightStats.grow.tooltip}
+                            tabIndex={0}
+                          >
+                            <span className="highlight-icon" aria-hidden="true">
+                              🌱
+                            </span>
+                            grow
+                          </span>{" "}
+                          — together.
                         </p>
 
                         <blockquote className="thank-you-quote">
-                          <div className="quote-icon">🐝</div>
+                          <div className="quote-icon-group" aria-hidden="true">
+                            <GiBee className="quote-icon-svg quote-icon-primary" />
+                          </div>
                           <em>
                             Let's make this community the best it can bee!
                           </em>
+                          <p className="thank-you-quote-line">
+                            Share ideas, collaborate on projects, and grow together
+                            with passionate contributors from around the world.
+                          </p>
+                          <GiBee
+                            className="quote-icon-svg quote-icon-secondary"
+                            aria-hidden="true"
+                          />
                         </blockquote>
 
                         <div className="support-section">
-                          <div className="support-icon">💬</div>
-                          <a
-                            href="https://github.com/recodehive/recode-website/discussions"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            style={{ color: "inherit" }}
-                          >
-                            <p className="support-text">
-                              We're here to help and support you throughout your
-                              journey — don't hesitate to reach out.
-                            </p>
-                          </a>
+                          <div className="support-icon" aria-hidden="true">
+                            <HiOutlineChatAlt2 className="support-svg" />
+                          </div>
+                          <div className="support-copy">
+                            <a
+                              href="https://github.com/recodehive/recode-website/discussions"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              style={{ color: "inherit" }}
+                            >
+                              <p className="support-text">
+                                We're here to help and support you throughout your
+                                journey — don't hesitate to reach out.
+                              </p>
+                            </a>
+                            <MdLocalFlorist
+                              className="support-flower"
+                              aria-hidden="true"
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -472,5 +581,13 @@ export default function CommunityPage(): React.ReactElement {
         <ScrollBottomToTop />
       </div>
     </Layout>
+  );
+}
+
+export default function CommunityPage(): React.ReactElement {
+  return (
+    <CommunityStatsProvider>
+      <CommunityPageContent />
+    </CommunityStatsProvider>
   );
 }

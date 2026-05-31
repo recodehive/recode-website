@@ -42,7 +42,7 @@ import imgXPost from './assets/10-x-post.png';
 
 <!-- truncate -->
 
----
+
 
 Last week I clicked Google Meet when I meant to click Google Calendar.
 
@@ -60,7 +60,10 @@ It's a phenomenon called cognitive friction. You have to stop searching for a re
 This specific daily annoyance traces back to 2020, when Google retired G Suite and rolled out Google Workspace. They erased the unique shapes of their most popular apps and replaced them with uniform outlines. 
 
 So lets look at Gsuite Icons. 👇🏻
-<ZoomImage src={imgGsuite} alt="Google old GSuite logo" />
+   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+    ![Github](./assets/03-google-old-gsuite-logo.png)
+    </BrowserWindow>
+
    <span style={{color: 'red'}}> **The problem**</span>
 It has been happening for five years. The four icons sit in my browser tab bar looking almost identical: same four colors, same flat shapes, same overall vibe. My brain processes them as one visual blob rather than four separate apps. I once spent 30 seconds in a Google Meet waiting room before realizing I had joined my own meeting instead of opening my calendar to check the time.
 
@@ -96,8 +99,9 @@ Within hours of the 2020 announcement, the internet responded with a very specif
 
 The complaint was not just aesthetic. It was functional. When apps share the same four colors and similar shapes, your brain cannot build distinct visual shortcuts for each one. You have to read the icon rather than recognize it. That adds cognitive friction dozens of times a day. Multiply that across 3 billion Google Workspace users and the accumulated frustration becomes significant.
 
-<ZoomImage src={imgWorkspace} alt="Google new Workspace logo" />
-
+  <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
+    ![Github](./assets/06-googleworkspace-new-logo.png)
+    </BrowserWindow>
 
 <span style={{color: 'red'}}> **Thought process behind Google**</span>? In 2020
 millions of employees were suddenly forced out of physical offices and onto their laptops at kitchen tables. Google needed to convince these remote teams that separate productivity tools like Docs, Sheets, and Meet were actually one single, highly integrated cloud ecosystem.
