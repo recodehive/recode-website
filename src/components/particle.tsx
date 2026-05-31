@@ -14,17 +14,8 @@ const ParticlesInner = (props) => {
   }, []);
 
   useEffect(() => {
-    const initParticlesEngine = ParticlesReact.initParticlesEngine;
-
-    if (typeof initParticlesEngine !== "function") {
-      setInit(true);
-      return;
-    }
-
-    initParticlesEngine(particlesInit).then(() => {
-      setInit(true);
-    });
-  }, [particlesInit]);
+    setInit(true);
+  }, []);
 
   const options = useMemo(
     () => ({

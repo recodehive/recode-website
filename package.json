@@ -27,7 +27,7 @@
     ]
   },
   "dependencies": {
-    "@clerk/react": "^6.7.1",
+    "@clerk/react": "^6.7.2",
     "@docusaurus/core": "3.10.1",
     "@docusaurus/plugin-content-docs": "3.10.1",
     "@docusaurus/plugin-google-analytics": "3.10.1",
@@ -46,13 +46,13 @@
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-slot": "^1.2.3",
     "@tsparticles/engine": "^4.0.5",
-    "@tsparticles/react": "^4.0.5",
-    "@tsparticles/slim": "^4.0.5",
+    "@tsparticles/react": "^4.1.0",
+    "@tsparticles/slim": "^4.1.0",
     "@vercel/analytics": "^1.5.0",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "date-fns": "^4.3.0",
+    "date-fns": "^4.4.0",
     "dotenv": "^17.4.2",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
@@ -83,7 +83,7 @@
     "@typescript-eslint/eslint-plugin": "^8.59.4",
     "@typescript-eslint/parser": "^8.60.0",
     "autoprefixer": "^10.5.0",
-    "eslint": "^9.38.0",
+    "eslint": "^10.4.1",
     "eslint-plugin-react": "^7.37.5",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.5",
@@ -105,7 +105,10 @@
       "last 5 safari version"
     ]
   },
+  "overrides": {
+    "sharp": "^0.34.5"
+  },
   "engines": {
-    "node": ">=20.9.0"
+    "node": ">=20.9.0 <23"
   }
 }

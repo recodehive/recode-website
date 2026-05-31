@@ -252,3 +252,36 @@
     justify-content: center;
   }
 }
+
+/* Dark mode fixes for author card visibility */
+[data-theme='dark'] .authorCard {
+  background: #1e1e1e;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme='dark'] .authorName {
+  color: #f1f5f9;
+}
+
+[data-theme='dark'] .authorMeta {
+  color: #94a3b8;
+}
+
+[data-theme='dark'] .authorSummary {
+  color: #cbd5e1;
+}
+
+[data-theme='dark'] .authorBadge {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+}
+
+[data-theme='dark'] .githubButton {
+  background: #2a2a2a;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f1f5f9;
+}
+
+[data-theme='dark'] .githubButton:hover {
+  background: #333333;
+}

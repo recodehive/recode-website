@@ -13,7 +13,7 @@
   --footer-green-deep: #00b48a;
   --footer-hover: #f2f2f2;
   --footer-error: #d45656;
-  background: #eee8dd;
+  background: #fffdf8;
   color: var(--footer-ink);
   font-family:
     Inter,
@@ -43,8 +43,6 @@
 .footer-shell {
   width: min(100%, 1276px);
   margin: 0 auto;
-  border-left: 1px solid var(--footer-hairline);
-  border-right: 1px solid var(--footer-hairline);
   background: var(--footer-canvas);
   box-shadow:
     -14px 0 24px rgba(0, 0, 0, 0.035),

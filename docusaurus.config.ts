@@ -59,6 +59,13 @@ const config: Config = {
     },
   ],
 
+  stylesheets: [
+    {
+      href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+      type: "text/css",
+    },
+  ],
+
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
@@ -192,7 +199,7 @@ const config: Config = {
             },
             {
               label: "🗺️ Roadmap",
-              to: "/roadmaps",
+              href: "https://github.com/orgs/recodehive/projects/9",
             },
             {
               label: "🤝 Community",
