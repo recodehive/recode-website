@@ -443,6 +443,7 @@ html[data-theme="dark"] article blockquote {
   margin: 0;
   height: 60px;
   display: flex;
+  width: 100%;
 }
 
 .navbar__brand {
@@ -501,6 +502,7 @@ html[data-theme="dark"] article blockquote {
   gap: 0.3rem !important;
   margin: 0 !important;
   padding: 0 !important;
+  min-width: 0;
 }
 
 .mb-10.text-center>p.mx-auto.max-w-3xl {
@@ -527,12 +529,14 @@ html[data-theme="dark"] article blockquote {
   padding: 0.3rem 0.5rem;
   font-size: 0.85rem;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .navbar__link {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  white-space: nowrap;
 }
 
 /* Fix icon alignment in navbar */
@@ -746,14 +750,21 @@ body {
 }
 
 /* ===== SECTION 11: CRITICAL FIX: TABLET/IPAD NAVBAR BEHAVIOR ===== */
-@media screen and (max-width: 996px) {
+@media screen and (max-width: 1200px) {
   /* Hide TOP navbar items on mobile (not sidebar) */
 
   /*
-  * Hide all navbar items on small screens except the toggle, brand,
-  * and the Clerk auth control.
+  * Hide top-level navbar items before they collide. Docusaurus' default
+  * mobile breakpoint is 996px, but this navbar has enough links to overflow
+  * on tablets and smaller laptops.
   */
-  .navbar__items .navbar__item:not(.navbar__toggle):not(.navbar__brand):not( :has(#firebase-auth-github-navbar)) {
+  .navbar__inner>.navbar__items>.navbar__item:not(.navbar__toggle):not(:has(#clerk-auth-navbar)) {
+    display: none !important;
+  }
+
+  .navbar__items--right>.navbar__item:not(:has(#clerk-auth-navbar)),
+  .navbar__items--right .algolia-sitesearch-navbar,
+  .navbar__items--right .colorModeToggle {
     display: none !important;
   }
 
@@ -778,11 +789,13 @@ body {
     max-width: 100% !important;
     padding: 0 !important;
     width: 100% !important;
+    gap: 0.5rem !important;
   }
 
   /* Logo and brand adjustments */
   .navbar__brand {
-    margin-right: 1.5rem !important;
+    min-width: 0 !important;
+    margin-right: auto !important;
   }
 
   .navbar__logo {
@@ -791,11 +804,16 @@ body {
 
   .navbar__title {
     font-size: 1rem !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
   }
 
   /* Ensure sidebar toggle is always visible */
   .navbar__toggle {
-    display: block !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex: 0 0 auto !important;
     margin-right: 0.5rem !important;
   }
 
