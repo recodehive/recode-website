@@ -3,7 +3,6 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import * as dotenv from "dotenv";
 import giscusInjector from "./src/plugins/giscus-injector";
-import blogReadingTime from "./src/plugins/blog-reading-time";
 dotenv.config({ path: ".env.local" });
 dotenv.config();
 
@@ -263,7 +262,6 @@ const config: Config = {
   themes: ["@docusaurus/theme-mermaid"],
 
   plugins: [
-    blogReadingTime,
     [
       "@docusaurus/plugin-ideal-image",
       {
