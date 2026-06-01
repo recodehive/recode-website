@@ -37,7 +37,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import ZoomImage from '@site/src/components/ZoomImage';
 import imgGsuite from './assets/03-google-old-gsuite-logo.png';
-import imgWorkspace from './assets/06-googleworkspace-new-logo.png';
 
 <!-- truncate -->
 
@@ -96,7 +95,7 @@ Within hours of the 2020 announcement, the internet responded with a very specif
     ![Google Workspace 2020 flat outline icon design for Gmail Drive Docs and Meet](./assets/04-google-old-outline-logo.png)
     </BrowserWindow>
 
-The complaint was not just aesthetic. It was functional. When apps share the same four colors and similar shapes, your brain cannot build distinct visual shortcuts for each one. You have to read the icon rather than recognize it. That adds cognitive friction dozens of times a day. Multiply that across 3 billion Google Workspace users and the accumulated frustration becomes significant.
+The complaint was not just aesthetic. It was functional. When apps share the same four colors and similar shapes, your brain cannot build distinct visual shortcuts for each one. You have to read the icon rather than recognize it. That adds cognitive friction dozens of times a day. Multiply that across 3 billion Google Workspace users (Source: [Google Workspace](https://workspace.google.com/howitsdone/)) and the accumulated frustration becomes significant.
 
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
     ![Google Workspace new logo with gradient color redesign 2026](./assets/06-googleworkspace-new-logo.png)
