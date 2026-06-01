@@ -170,10 +170,12 @@ export default function FooterLayout(): ReactNode {
               </div>
 
               <div className="footer-hero-text">
-                <h1>Collaboration first, Code second.</h1>
+                <h1>
+                  Collaboration first,
+                  <span className="second-line">Code second.</span>
+                </h1>
               </div>
             </div>
-
             <div className="footer-hero-right">
               <div className="footer-cta-buttons">
                 <Link
@@ -483,3 +485,4 @@ export default function FooterLayout(): ReactNode {
     </footer>
   );
 }
+
