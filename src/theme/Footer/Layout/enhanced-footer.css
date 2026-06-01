@@ -1126,17 +1126,26 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   font-weight: 400;
   backdrop-filter: none;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 31%);
 }
 
 .newsletter-input:focus {
   outline: none;
-  border-color: #111111;
+  border-color: #9393933b;
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.08);
+  box-shadow: 0 0 0 2px rgb(17 17 17 / 50%);
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 .newsletter-input::placeholder {
   color: #6b7280;
+}
+
+.newsletter-input:hover {
+  border-color: #6b72807a;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
+  transform: translateY(-1px);
 }
 
 .newsletter-button {
@@ -1601,12 +1610,11 @@ html[data-theme="light"] .enhanced-footer.light-theme {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
     margin-top: 30px;
-    margin-bottom: 36px;
+    margin-bottom: 36px;}
     /* extra separation from footer links */
 
     .newsletter-column {
-      grid-column: span 2;
-    }
+      grid-column: span 1;
   }
 
   @media (max-width: 1024px) {
@@ -1621,12 +1629,12 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 
     .footer-links-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
+      gap: 24px;
     }
 
     .newsletter-column {
-      grid-column: span 2;
-      margin-top: 20px;
+      grid-column: span 1;
+      margin-top: 0;
     }
   }
 
@@ -1672,8 +1680,8 @@ html[data-theme="light"] .enhanced-footer.light-theme {
     }
 
     .footer-links-grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
+      grid-template-columns: 1fr !important;
+      width: 100%;
     }
 
     .footer-column {
@@ -1685,6 +1693,9 @@ html[data-theme="light"] .enhanced-footer.light-theme {
       transition: all 0.3s ease;
       box-shadow: 0 8px 25px rgb(0 0 0 / 17%);
       overflow: visible;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .footer-column:hover {
@@ -1803,12 +1814,15 @@ html[data-theme="light"] .enhanced-footer.light-theme {
       padding: 18px 24px;
       /* larger CTA for mobile */
       font-size: 15px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .newsletter-input {
       padding: 16px 18px;
       font-size: 15px;
       width: 100%;
+      box-sizing: border-box;
     }
   }
 
