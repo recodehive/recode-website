@@ -232,6 +232,7 @@ export default function Blogs() {
 // ─── BlogCard ────────────────────────────────────────────────────────────────
 
 const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
+  const readingTime = blog.readingTime ?? 1;
   const authors = getAuthorProfiles(blog.authors || []);
 
   // Tags — use blog.tags if present, fallback to blog.category as single tag
@@ -350,6 +351,15 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
               {(blog as any).date && (
                 <span className="card-date">{formatDate((blog as any).date)}</span>
               )}
+              <span className="card-reading-time">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="11" height="11"
+                  fill="none" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                {readingTime} min read
+              </span>
             </div>
           </div>
 

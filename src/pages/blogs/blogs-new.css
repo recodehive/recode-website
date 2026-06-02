@@ -1305,3 +1305,12 @@
     font-size: 13px;
   }
 }
+/* ── Reading time ── */
+.card-reading-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-top: 2px;
+}
