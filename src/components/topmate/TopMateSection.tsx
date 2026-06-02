@@ -30,14 +30,14 @@ const TopMateSection = ({ setShowTopmate }) => {
   };
 
   return (
-    <div className="relative h-full flex flex-col">
-      <div className="relative w-full h-full flex flex-col justify-between">
+    <div className="relative flex flex-col w-full h-90">
+      <div className="relative flex w-full flex-col justify-between">
         {/* Section header — unified height & centered alignment */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="min-h-[150px] flex flex-col justify-center items-center text-center flex-shrink-0 mb-4 px-4"
+          className="mb-4 flex flex-shrink-0 flex-col items-center justify-center px-4 text-center"
         >
           <motion.div custom={0} variants={revealVariants} className="mb-2.5">
             <span
@@ -60,7 +60,7 @@ const TopMateSection = ({ setShowTopmate }) => {
           <motion.h2
             custom={1}
             variants={revealVariants}
-            className="mb-2 text-2xl sm:text-3xl font-extrabold leading-tight tracking-tighter"
+            className="mb-2 text-2xl leading-tight font-extrabold tracking-tighter sm:text-3xl"
             style={{
               color: isDark ? "#f1f5f9" : "#0f172a",
               fontFamily: "'Outfit', 'Inter', -apple-system, sans-serif",
@@ -82,7 +82,7 @@ const TopMateSection = ({ setShowTopmate }) => {
           <motion.p
             custom={2}
             variants={revealVariants}
-            className="text-xs sm:text-sm leading-relaxed mx-auto max-w-xs"
+            className="mx-auto max-w-xs text-xs leading-relaxed sm:text-sm"
             style={{
               color: isDark ? "#94a3b8" : "#64748b",
               fontFamily: "'Inter', -apple-system, sans-serif",
@@ -102,7 +102,7 @@ const TopMateSection = ({ setShowTopmate }) => {
             delay: 0.25,
             ease: [0.215, 0.61, 0.355, 1],
           }}
-          className="flex-1 flex"
+          className="flex flex-1 w-full"
         >
           <TopMateCard {...profileData} setShowTopmate={setShowTopmate} />
         </motion.div>
