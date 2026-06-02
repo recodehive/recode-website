@@ -2,6 +2,7 @@ import React from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
+import { useHistory } from "@docusaurus/router";
 import blogs from "../../database/blogs/index";
 import Head from "@docusaurus/Head";
 import { getAuthorProfiles } from "../../utils/authors";
@@ -232,7 +233,10 @@ export default function Blogs() {
 // ─── BlogCard ────────────────────────────────────────────────────────────────
 
 const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
+  const readingTime = blog.readingTime ?? 1;
   const authors = getAuthorProfiles(blog.authors || []);
+  const history = useHistory();
+  const blogPath = `/blog/${blog.slug}`;
 
   // Tags — use blog.tags if present, fallback to blog.category as single tag
   const tags: string[] =
@@ -243,7 +247,19 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
         : [];
 
   return (
-    <div className="article-card">
+    <div
+      className="article-card"
+      role="link"
+      tabIndex={0}
+      aria-label={`Read ${blog.title}`}
+      onClick={() => history.push(blogPath)}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          history.push(blogPath);
+        }
+      }}
+    >
       {/* ── Image ── */}
       <div className="card-image">
         <img src={blog.image} alt={blog.title} loading="lazy" />
@@ -253,9 +269,7 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
       <div className="card-content">
         {/* Title */}
         <h3 className="card-title">
-          <Link to={`/blog/${blog.slug}`} className="card-title-link">
-            {blog.title}
-          </Link>
+          <span className="card-title-link">{blog.title}</span>
         </h3>
 
         {/* Description */}
@@ -302,6 +316,7 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     title={author.name}
+                    onClick={(event) => event.stopPropagation()}
                   >
                     {author.imageUrl ? (
                       <img
@@ -340,6 +355,7 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                         title={author.name}
+                        onClick={(event) => event.stopPropagation()}
                       >
                         {author.name}
                       </Link>
@@ -350,11 +366,20 @@ const BlogCard = ({ blog }: { blog: (typeof blogs)[number] }) => {
               {(blog as any).date && (
                 <span className="card-date">{formatDate((blog as any).date)}</span>
               )}
+              <span className="card-reading-time">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="11" height="11"
+                  fill="none" stroke="currentColor" strokeWidth="2"
+                  strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                {readingTime} min read
+              </span>
             </div>
           </div>
 
           {/* Read link */}
-          <Link to={`/blog/${blog.slug}`} className="card-read-link">
+          <Link to={blogPath} className="card-read-link">
             Read →
           </Link>
         </div>

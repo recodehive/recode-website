@@ -170,17 +170,23 @@ export default function FooterLayout(): ReactNode {
               </div>
 
               <div className="footer-hero-text">
-                <h1>Collaboration first, Code second.</h1>
+                <h1>
+                  Collaboration first,
+                  <span className="second-line">Code second.</span>
+                </h1>
               </div>
             </div>
-
             <div className="footer-hero-right">
               <div className="footer-cta-buttons">
                 <Link
                   to="/blog"
                   className="btn"
                   aria-label="Read Blog"
-                  style={{ background: "#ffffff", color: "#111111", border: "1.5px solid #111111" }}
+                  style={{
+                    background: "#ffffff",
+                    color: "#111111",
+                    border: "1.5px solid #111111",
+                  }}
                 >
                   <Newspaper size={16} strokeWidth={2} aria-hidden="true" />
                   Read Blog
@@ -191,7 +197,11 @@ export default function FooterLayout(): ReactNode {
                   rel="noopener noreferrer"
                   className="btn"
                   aria-label="Star on GitHub"
-                  style={{ background: "#111111", color: "#ffffff", border: "1.5px solid #111111" }}
+                  style={{
+                    background: "#111111",
+                    color: "#ffffff",
+                    border: "1.5px solid #111111",
+                  }}
                 >
                   <Github size={16} strokeWidth={2} aria-hidden="true" />
                   Star on GitHub
@@ -349,8 +359,9 @@ export default function FooterLayout(): ReactNode {
                 />
                 <button
                   type="submit"
-                  className={`newsletter-button ${isSubscribed ? "subscribed" : ""
-                    }`}
+                  className={`newsletter-button ${
+                    isSubscribed ? "subscribed" : ""
+                  }`}
                   disabled={isSubscribed}
                 >
                   {isSubscribed ? "Subscribed!" : "Subscribe Now"}
@@ -359,7 +370,10 @@ export default function FooterLayout(): ReactNode {
               </form>
               <div className="newsletter-stats">
                 <span className="newsletter-stat">
-                  <FooterIcon icon={BarChart3} className="newsletter-stat-icon" />
+                  <FooterIcon
+                    icon={BarChart3}
+                    className="newsletter-stat-icon"
+                  />
                   1.2K+ developers joined this week
                 </span>
               </div>
@@ -471,9 +485,8 @@ export default function FooterLayout(): ReactNode {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    the Community
+                    community.
                   </a>
-                  .
                 </span>
               </div>
             </div>
