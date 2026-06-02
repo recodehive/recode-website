@@ -326,7 +326,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .footer-logo-section {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .footer-logo {
@@ -405,6 +405,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   justify-content: flex-end;
   flex: 0 0 auto;
   margin-left: auto;
+  align-self: flex-end;
 }
 
 .footer-cta-buttons {
@@ -583,24 +584,57 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   opacity: 0.82;
 }
 
+.second-line {
+  display: inline;
+}
+
 @media (max-width: 880px) {
   .footer-hero-content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    row-gap: 12px;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
   }
 
   .footer-hero-right {
     width: 100%;
     display: flex;
-    justify-content: flex-start;
-    margin-top: 12px;
+    justify-content: center;
+    margin-top: 0;
   }
 
   .footer-hero-left {
     width: 100%;
+    flex: none;
+    align-items: center;
   }
+   .footer-logo {
+    justify-content: center;
+  }
+
+  .footer-brand-header {
+    align-items: center;
+  }
+
+  .footer-hero-text {
+    text-align: center;
+  }
+
+  .footer-hero-text h1 {
+    text-align: center;
+    margin: 0 auto;
+    max-width: none;
+  }
+
+  .second-line {
+    display: block;
+  }
+
+  .footer-cta-buttons {
+    justify-content: center;
+  }
+
 }
 
 /* Stats Section */
@@ -1606,23 +1640,41 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   }
 
   @media (max-width: 1024px) {
-    .footer-hero-text h1 {
-      font-size: 32px;
+    .footer-hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
     }
-
-    .footer-stats {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+  
+    .footer-hero-left {
+      width: 100%;
+      flex: none;
+      align-items: center;
     }
-
-    .footer-links-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
+  
+    .footer-logo {
+      justify-content: center;
     }
-
-    .newsletter-column {
-      grid-column: span 2;
-      margin-top: 20px;
+  
+    .footer-brand-header {
+      align-items: center;
+    }
+  
+    .footer-hero-right {
+      width: 100%;
+      justify-content: center;
+      margin-top: 0;
+    }
+  
+    .footer-cta-buttons {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  
+    .second-line {
+      display: block;
     }
   }
 
