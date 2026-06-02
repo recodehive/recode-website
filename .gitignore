@@ -25,5 +25,4 @@ yarn-error.log*
 # Temporary files
 /tmp/
 tsconfig.tsbuildinfo
-.idea/
 *.iml

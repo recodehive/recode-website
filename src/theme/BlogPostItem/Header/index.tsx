@@ -12,24 +12,6 @@ import styles from "./styles.module.css";
 
 type Props = WrapperProps<typeof BlogPostItemHeaderType>;
 
-const TAG_COLORS = [
-  { dot: "#f59e0b", border: "#fde68a", bg: "#fffbeb", text: "#92400e" },
-  { dot: "#6366f1", border: "#c7d2fe", bg: "#eef2ff", text: "#3730a3" },
-  { dot: "#ec4899", border: "#fbcfe8", bg: "#fdf2f8", text: "#9d174d" },
-  { dot: "#10b981", border: "#a7f3d0", bg: "#ecfdf5", text: "#065f46" },
-  { dot: "#f97316", border: "#fed7aa", bg: "#fff7ed", text: "#9a3412" },
-  { dot: "#8b5cf6", border: "#ddd6fe", bg: "#f5f3ff", text: "#5b21b6" },
-  { dot: "#14b8a6", border: "#99f6e4", bg: "#f0fdfa", text: "#134e4a" },
-  { dot: "#ef4444", border: "#fecaca", bg: "#fef2f2", text: "#991b1b" },
-];
-
-function tagColor(label: string) {
-  let hash = 0;
-  for (let i = 0; i < label.length; i++) {
-    hash = (hash * 31 + label.charCodeAt(i)) & 0xffff;
-  }
-  return TAG_COLORS[hash % TAG_COLORS.length];
-}
 
 function getGitHubHandle(author: { key?: string; url?: string }): string | undefined {
   if (author.url && /github\.com\//i.test(author.url)) {
@@ -180,25 +162,15 @@ export default function BlogPostItemHeaderWrapper(props: Props): JSX.Element {
           </span>
         </div>
 
-        {/* Colored tag pills */}
+        {/* Unified tag pills */}
         {tags.length > 0 && (
           <div className={styles.tagsRow} aria-label="Tags">
             {tags.map((tag) => {
-              const c = tagColor(tag);
               return (
                 <span
                   key={tag}
                   className={styles.tag}
-                  style={
-                    {
-                      "--tag-dot": c.dot,
-                      "--tag-border": c.border,
-                      "--tag-bg": c.bg,
-                      "--tag-text": c.text,
-                    } as React.CSSProperties
-                  }
                 >
-                  <span className={styles.tagDot} aria-hidden="true" />
                   {tag}
                 </span>
               );
