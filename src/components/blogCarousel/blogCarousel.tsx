@@ -90,6 +90,7 @@ export function BlogCarousel() {
                 authors={blog.authors}
                 tags={blog.tags}
                 category={blog.category}
+                readingTime={blog.readingTime}
               />
             </CarouselItem>
           ))}

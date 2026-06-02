@@ -969,7 +969,7 @@ body {
 .dropdown-content .grid {
   width: 100% !important;
   /* Comfortable space between the label column and icons column */
-  column-gap: 1rem !important;
+  column-gap: 0.6rem !important;
   /* Subtle vertical space per row */
   padding: 0.35rem 0 !important;
 }
@@ -1033,6 +1033,60 @@ body {
 .dropdown-content .col-span-1,
 .dropdown-content .col-span-2 {
   color: var(--ifm-font-color-base);
+}
+
+/* Prevent labels in the left column of navbar dropdowns from wrapping */
+.dropdown-content .border-r.col-span-1,
+.dropdown__menu .border-r.col-span-1,
+.dropdown-content .col-span-1>a,
+.dropdown__menu .col-span-1>a {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Stronger layout rules to keep labels and icons aligned across deployments */
+.dropdown__menu .grid>.border-r.col-span-1,
+.dropdown-content .grid>.border-r.col-span-1 {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  flex: 0 0 auto !important;
+  min-width: auto !important;
+  /* allow label to size to content */
+  padding-right: 0.4rem !important;
+}
+
+/* Make the label itself use a single line and center vertically */
+.dropdown__menu .grid>.border-r.col-span-1 a,
+.dropdown-content .grid>.border-r.col-span-1 a {
+  display: inline-block !important;
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+/* Ensure icon groups are vertically centered and consistent */
+.dropdown__menu .grid .nav__icons,
+.dropdown-content .grid .nav__icons {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.6rem !important;
+}
+
+.dropdown__menu .grid .nav__icons img,
+.dropdown-content .grid .nav__icons img {
+  display: block !important;
+  margin: 0 !important;
+}
+
+/* Fallback for very narrow viewports: reduce min-width slightly */
+@media (max-width: 480px) {
+
+  .dropdown__menu .grid>.border-r.col-span-1,
+  .dropdown-content .grid>.border-r.col-span-1 {
+    min-width: 72px !important;
+  }
 }
 
 .dropdown-content a:hover {
@@ -2827,4 +2881,27 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
+}
+
+
+.theme-doc-main-container,
+.theme-doc-markdown,
+main[class*='docMainContainer_'] {
+  position: relative;
+  z-index: 1 !important; 
+}
+
+.theme-doc-markdown h1,
+.theme-doc-markdown h2,
+.theme-doc-markdown h3,
+.theme-doc-markdown span,
+.theme-doc-markdown div,
+.theme-doc-markdown label {
+  z-index: 1 !important;
+}
+
+.theme-doc-sidebar-container,
+.menu--responsive,
+div[class*='sidebarViewport_'] {
+  z-index: 9999 !important; 
 }

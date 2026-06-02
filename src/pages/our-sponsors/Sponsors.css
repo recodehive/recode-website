@@ -16,14 +16,12 @@
 
 .TitleText {
   margin-top: 1rem;
-  background: linear-gradient(
-    90deg,
-    #4f46e5 0%,
-    #7c3aed 25%,
-    #4f46e5 52%,
-    #059669 74%,
-    #16a34a 100%
-  );
+  background: linear-gradient(90deg,
+      #4f46e5 0%,
+      #7c3aed 25%,
+      #4f46e5 52%,
+      #059669 74%,
+      #16a34a 100%);
   display: inline-block;
   background-size: 100% 100%;
   background-position: center;
@@ -82,12 +80,13 @@
   background-color: #e0e7ff;
   color: #4f46e5;
   border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  padding: 2px 8px;
-  min-width: 24px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  min-width: 28px;
   text-align: center;
-  transition: all 0.2s ease;
+  transition: all 0.18s ease;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
 }
 
 .tab-button.active .tab-badge {
@@ -101,6 +100,7 @@
   margin: 0 auto 2rem;
   padding: 0.42rem;
   width: fit-content;
+  max-width: 100%;
   border: 1px solid #e5e7eb;
   border-radius: 14px;
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
@@ -111,11 +111,9 @@
 
 [data-theme="dark"] .sponsor-page .tabs {
   border-color: var(--dark-border);
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--dark-card-bg) 90%, white 10%) 0%,
-    var(--dark-card-bg) 100%
-  );
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--dark-card-bg) 90%, white 10%) 0%,
+      var(--dark-card-bg) 100%);
   box-shadow:
     0 12px 26px rgba(0, 0, 0, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -173,7 +171,12 @@
 
 .sponsor-page .tab-badge {
   background-color: #e2e8f0;
-  color: #334155;
+  color: #1f2937;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 4px 10px;
+  min-width: 28px;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.06);
 }
 
 .sponsor-page .tab-button.active .tab-badge {
@@ -182,8 +185,13 @@
 }
 
 [data-theme="dark"] .sponsor-page .tab-badge {
-  background-color: rgba(148, 163, 184, 0.25);
-  color: #e2e8f0;
+  background-color: rgba(148, 163, 184, 0.38);
+  color: #f8fafc;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 4px 10px;
+  min-width: 28px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
 }
 
 .no-sponsors {
@@ -375,12 +383,10 @@
   left: -100%;
   width: 300%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.4),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent);
   transition: 0.5s;
   z-index: 1;
 }
@@ -411,6 +417,38 @@
   z-index: 2;
   margin: 0;
   padding: 0;
+}
+
+[data-theme="dark"] .sponsor-page .sponsor-card.empty-card {
+  background: linear-gradient(135deg,
+      color-mix(in srgb, var(--dark-card-bg) 88%, rgba(99, 102, 241, 0.02) 12%) 0%,
+      var(--dark-card-bg) 100%);
+  border: 1px dashed rgba(148, 163, 184, 0.14);
+  color: var(--dark-text-primary);
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.6),
+    0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .sponsor-page .sponsor-card.empty-card::before {
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.03),
+      transparent);
+}
+
+[data-theme="dark"] .sponsor-page .sponsor-card.empty-card:hover {
+  box-shadow:
+    0 14px 30px -8px rgba(0, 0, 0, 0.6),
+    0 10px 12px -6px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .sponsor-page .sponsor-card.empty-card h3 {
+  color: var(--dark-text-primary);
+}
+
+[data-theme="dark"] .sponsor-page .sponsor-card.empty-card .join-icon {
+  color: var(--ifm-color-primary);
 }
 
 .sponsor-page .scanner-popup {
@@ -445,6 +483,62 @@
   margin-top: 2rem;
 }
 
+.sponsors-section h2,
+.sponsors-section h3,
+.sponsors-section .past-heading,
+.sponsors-section .section-title,
+.sponsors-section .past-title {
+  text-align: center;
+  margin: 1.25rem 0;
+}
+
+/* Ensure the heart icon beside the title stays aligned */
+.sponsors-section .past-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.25rem;
+  min-height: 46px;
+  margin: 1.25rem auto;
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+[data-theme="dark"] .sponsors-section .past-heading {
+  border-color: var(--dark-border);
+  background: linear-gradient(180deg,
+      color-mix(in srgb, var(--dark-card-bg) 90%, white 10%) 0%,
+      var(--dark-card-bg) 100%);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.sponsors-section .past-heading .past-heart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Match tab label font styling */
+.sponsors-section .past-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1;
+  font-family: inherit;
+}
+
+/* Color matches tabs: dark text in light mode, white in dark mode */
+.sponsors-section .past-heading {
+  color: #475569;
+}
+
+[data-theme="dark"] .sponsors-section .past-heading {
+  color: #ffffff;
+}
+
 .support-links {
   margin-top: 5rem;
   display: flex;
@@ -456,7 +550,8 @@
 .scanner-button {
   background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
   color: white;
-  padding: 12px 28px 12px 28px; /* Fixed padding to prevent jumping */
+  padding: 12px 28px 12px 28px;
+  /* Fixed padding to prevent jumping */
   border-radius: 8px;
   cursor: pointer;
   border: none;
@@ -485,17 +580,15 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
   transition: 0.5s;
   z-index: 1;
 }
 
-.scanner-button > * {
+.scanner-button>* {
   position: relative;
   z-index: 2;
 }
@@ -597,8 +690,8 @@
     font-size: clamp(0.72rem, 1.4vw, 0.86rem);
     font-weight: 500;
     letter-spacing: 0.01em;
-    line-height: 1.25;
-    white-space: normal;
+    width: fit-content;
+    max-width: 100%;
     overflow: visible;
     text-overflow: clip;
     overflow-wrap: anywhere;
@@ -634,7 +727,7 @@
     max-width: 100%;
   }
 
-  .sponsor-page .sponsors-list > * {
+  .sponsor-page .sponsors-list>* {
     min-width: 0;
   }
 
