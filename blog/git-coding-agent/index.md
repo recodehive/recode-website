@@ -40,6 +40,10 @@ The GitHub Copilot Coding Agent is an asynchronous software engineering agent th
 - ✅Writes code, runs tests, and creates pull requests—just like a teammate.
 - ✅Works inside GitHub Actions, unlike the real-time agent mode in your IDE (e.g., VS Code).
 
+:::tip Recommended Reading
+Want to deepen your learning journey? Browse our [E-books Collection](/ebooks) for additional developer resources and learning materials.
+:::
+
 ---
 
 ### 🔧 How It Works

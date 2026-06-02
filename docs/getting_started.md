@@ -7,6 +7,10 @@ sidebar_position: 2
 
 This guide walks you through everything you need to write and publish a blog post on recode hive, heads-up for you there is a lot of steps, our idea is not about <b>quantity</b>, lets focus on quality on the article you write the best one will be eligible for [GitHub Sponsorship](http://localhost:3000/our-sponsors/).
 
+:::tip Additional Resources
+You can also explore our [E-books Collection](/ebooks) for free learning resources and technical guides.
+:::
+
 ---
 
 :::info Prerequisites

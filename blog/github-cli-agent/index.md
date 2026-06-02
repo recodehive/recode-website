@@ -242,6 +242,10 @@ gh copilot suggest "optimize SEO for docusaurus website"
 gh copilot suggest "add metadata to blog posts"
 ```
 
+:::tip Developer Resources
+Explore our [Technical E-books](/ebooks) for additional learning materials and development guides.
+:::
+
 ## 🔗 Resources
 
 * [Official Documentation](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli)

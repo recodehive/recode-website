@@ -120,6 +120,10 @@ The strategic reason is more interesting. Look at which Google products got grad
 
 Google I/O 2026 is happening this week. The timing of this rollout is not accidental. Google is walking into its biggest annual developer event with a refreshed product suite that looks modern, AI-adjacent, and ready for the next phase of Workspace. The icon redesign is as much a marketing signal as a usability fix.
 
+:::info Further Reading
+Interested in learning more about technology and software development? Browse our [Developer Learning Resources](/ebooks).
+:::
+
 ---
 
 ## What Changed in 2026
@@ -167,6 +171,10 @@ What is not addressed is the deeper question of whether icon design is even the 
 Icon legibility is a surface-level fix for a suite that has genuine overlap and redundancy problems underneath. The new icons will help you click the right app faster. They will not help you decide which app you actually need.
 
 That is a bigger problem. One that gradients cannot solve.
+
+:::tip Learning Resources
+Looking to improve your technical skills? Explore our [E-books Collection](/ebooks) for curated resources on development, GitHub, cloud computing, and more.
+:::
 
 ---
 
