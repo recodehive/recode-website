@@ -31,9 +31,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
   const { isDark } = useSafeColorMode();
 
   const borderClr = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.07)";
-  const mutedClr = isDark
-    ? "rgba(148,163,184,0.55)"
-    : "rgba(100,116,139,0.65)";
+  const mutedClr = isDark ? "rgba(148,163,184,0.55)" : "rgba(100,116,139,0.65)";
   const subtleClr = isDark
     ? "rgba(148,163,184,0.35)"
     : "rgba(100,116,139,0.45)";
@@ -42,6 +40,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
     "Resume & portfolio review",
     "Career path guidance",
     "Open-source strategy",
+    "Mock Interview Prep",
   ];
 
   return (
@@ -49,7 +48,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
       initial={{ opacity: 0, y: 30, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="group relative w-full h-full overflow-hidden rounded-2xl flex flex-col transition-all duration-500 hover:scale-[1.008]"
+      className="group relative flex h-90 w-full flex-col overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.008]"
       style={{
         background: isDark ? "#0a0a0a" : "#ffffff",
         border: `1px solid ${borderClr}`,
@@ -60,7 +59,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
     >
       {/* Grid pattern overlay */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
             "linear-gradient(to right, rgba(79,79,79,0.10) 1px, transparent 1px), linear-gradient(to bottom, rgba(79,79,79,0.10) 1px, transparent 1px)",
@@ -74,7 +73,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
 
       {/* Subtle corner glow */}
       <div
-        className="absolute -top-20 -right-20 w-40 h-40 rounded-full pointer-events-none"
+        className="pointer-events-none absolute -top-20 -right-20 h-40 w-40 rounded-full"
         style={{
           background: isDark
             ? "radial-gradient(circle, rgba(99,102,241,0.06), transparent)"
@@ -83,11 +82,11 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         }}
       />
 
-      <div className="relative p-5 flex flex-col h-full">
+      <div className="relative flex h-full flex-col p-4">
         {/* Header Badge row */}
-        <div className="mb-3 flex items-center justify-between flex-shrink-0">
+        <div className="mb-2 flex flex-shrink-0 items-center justify-between">
           <div
-            className="flex items-center gap-2 rounded-full px-3 py-1.5"
+            className="flex items-center gap-2 rounded-full px-2.5 py-1"
             style={{
               background: isDark
                 ? "rgba(99,102,241,0.08)"
@@ -98,7 +97,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
             }}
           >
             <Calendar
-              size={13}
+              size={12}
               style={{ color: isDark ? "#a5b4fc" : "#6366f1" }}
             />
             <span
@@ -135,7 +134,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
 
         {/* Title */}
         <h2
-          className="mb-1.5 text-base sm:text-lg font-bold leading-tight tracking-tight flex-shrink-0"
+          className="mb-1 flex-shrink-0 text-base leading-tight font-bold tracking-tight"
           style={{
             color: isDark ? "#f1f5f9" : "#0f172a",
             fontFamily: "'Inter', -apple-system, sans-serif",
@@ -146,7 +145,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
 
         {/* Description */}
         <p
-          className="mb-3 text-[12px] leading-relaxed flex-shrink-0"
+          className="mb-2 line-clamp-2 flex-shrink-0 text-[11px] leading-snug"
           style={{
             color: isDark ? "rgba(148,163,184,0.7)" : "rgba(100,116,139,0.8)",
             fontFamily: "'Inter', -apple-system, sans-serif",
@@ -155,9 +154,9 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
           {description}
         </p>
 
-        {/* What you get — compact inline */}
-        <div className="flex-1 mb-3">
-          <div className="flex items-center gap-1.5 mb-2">
+        {/* What you get — 2x2 Grid Section */}
+        <div className="mb-2.5 min-h-0 flex-grow">
+          <div className="mb-1 flex items-center gap-1.5">
             <Sparkles
               size={11}
               style={{ color: isDark ? "#a5b4fc" : "#6366f1" }}
@@ -169,11 +168,11 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
               What you get
             </span>
           </div>
-          <ul className="space-y-1.5">
+          <ul className="grid grid-cols-2 gap-x-2 gap-y-1">
             {features.map((f, i) => (
-              <li key={i} className="flex items-center gap-2">
+              <li key={i} className="flex min-w-0 items-center gap-1.5">
                 <CheckCircle2
-                  size={13}
+                  size={11}
                   className="flex-shrink-0"
                   style={{
                     color: isDark
@@ -182,7 +181,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
                   }}
                 />
                 <span
-                  className="text-[12px]"
+                  className="truncate text-[10.5px]"
                   style={{
                     color: isDark
                       ? "rgba(226,232,240,0.75)"
@@ -198,37 +197,37 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         </div>
 
         <div
-          className="rounded-xl p-3 w-full flex-shrink-0"
+          className="mt-1 w-full flex-shrink-0 rounded-xl p-1"
           style={{
             background: isDark ? "rgba(255,255,255,0.02)" : "rgba(0,0,0,0.02)",
             border: `1px solid ${borderClr}`,
           }}
         >
-          <div className="flex items-center justify-between w-full">
-            <div className="flex items-center gap-3">
+          <div className="flex w-full items-center justify-between">
+            <div className="flex items-center gap-2">
               <div className="relative flex-shrink-0">
                 <img
                   src={profileImage}
                   alt="Profile"
-                  className="h-10 w-10 rounded-xl object-cover"
-                  style={{ border: `2px solid ${borderClr}` }}
+                  className="h-8 w-8 rounded-lg object-cover"
+                  style={{ border: `1.5px solid ${borderClr}` }}
                 />
                 <div
-                  className="absolute -bottom-0.5 -right-0.5 rounded-full p-0.5"
+                  className="absolute -right-0.5 -bottom-0.5 rounded-full p-0.5"
                   style={{ background: isDark ? "#0a0a0a" : "#ffffff" }}
                 >
                   <div
-                    className="h-2 w-2 rounded-full"
+                    className="h-1.5 w-1.5 rounded-full"
                     style={{
                       background: "#22c55e",
-                      boxShadow: "0 0 6px rgba(34,197,94,0.4)",
+                      boxShadow: "0 0 4px rgba(34,197,94,0.4)",
                     }}
                   />
                 </div>
               </div>
-              <div>
+              <div className="min-w-0">
                 <p
-                  className="text-[10px] font-medium"
+                  className="mb-0.5 text-[9px] leading-none font-medium"
                   style={{ color: subtleClr }}
                 >
                   Book at
@@ -237,28 +236,30 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
                   href={`https://topmate.io/${username}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group/link flex items-center gap-1 text-[13px] font-semibold transition-colors duration-200"
+                  className="group/link flex items-center gap-0.5 text-[11px] leading-none font-semibold transition-colors duration-200"
                   style={{
                     color: isDark ? "#a5b4fc" : "#4338ca",
                     textDecoration: "none",
                   }}
                 >
-                  <span>topmate.io/{username}</span>
+                  <span className="max-w-[95px] truncate sm:max-w-[none]">
+                    topmate.io/{username}
+                  </span>
                   <ArrowUpRight
-                    size={12}
-                    className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                    size={10}
+                    className="flex-shrink-0 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
                   />
                 </a>
               </div>
             </div>
 
             {/* Rating */}
-            <div className="flex flex-col items-end gap-0.5">
+            <div className="flex flex-shrink-0 flex-col items-end justify-center">
               <div className="flex items-center gap-0.5">
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    size={11}
+                    size={9}
                     className="flex-shrink-0"
                     style={{
                       fill: isDark ? "rgba(251,191,36,0.85)" : "#f59e0b",
@@ -268,7 +269,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
                 ))}
               </div>
               <span
-                className="text-[10px] font-medium"
+                className="mt-0.5 text-[9px] leading-none font-medium"
                 style={{ color: subtleClr }}
               >
                 5.0 rating
@@ -278,16 +279,18 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         </div>
 
         {/* Social proof line */}
-        <div
-          className="flex items-center justify-center gap-1.5 mt-2 mb-2 flex-shrink-0"
-        >
+        <div className="mt-1.5 mb-1.5 flex flex-shrink-0 items-center justify-center gap-1.5">
           <Users
-            size={12}
-            style={{ color: isDark ? "rgba(148,163,184,0.4)" : "rgba(100,116,139,0.5)" }}
+            size={11}
+            style={{
+              color: isDark ? "rgba(148,163,184,0.4)" : "rgba(100,116,139,0.5)",
+            }}
           />
           <span
-            className="text-[11px] font-medium"
-            style={{ color: isDark ? "rgba(148,163,184,0.4)" : "rgba(100,116,139,0.5)" }}
+            className="text-[10px] font-medium"
+            style={{
+              color: isDark ? "rgba(148,163,184,0.4)" : "rgba(100,116,139,0.5)",
+            }}
           >
             200+ sessions completed
           </span>
@@ -300,7 +303,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
           rel="noopener noreferrer"
           whileHover={{ scale: 1.015 }}
           whileTap={{ scale: 0.985 }}
-          className="flex w-full items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold tracking-wide transition-all duration-300 flex-shrink-0"
+          className="flex w-full flex-shrink-0 items-center justify-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold tracking-wide transition-all duration-300"
           style={{
             background: "linear-gradient(135deg, #4338ca 0%, #6d28d9 100%)",
             color: "rgba(255,255,255,0.95)",
@@ -312,12 +315,9 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
             fontFamily: "'Inter', -apple-system, sans-serif",
           }}
         >
-          <Calendar size={15} style={{ color: "rgba(255,255,255,0.8)" }} />
+          <Calendar size={13} style={{ color: "rgba(255,255,255,0.8)" }} />
           <span>Schedule Now</span>
-          <ArrowUpRight
-            size={15}
-            style={{ color: "rgba(255,255,255,0.65)" }}
-          />
+          <ArrowUpRight size={13} style={{ color: "rgba(255,255,255,0.65)" }} />
         </motion.a>
       </div>
     </motion.div>
