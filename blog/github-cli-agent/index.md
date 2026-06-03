@@ -242,7 +242,7 @@ gh copilot suggest "optimize SEO for docusaurus website"
 gh copilot suggest "add metadata to blog posts"
 ```
 :::tip Related Reading
-Interested in recent Google product and branding changes? Check out our [Google Icon Update Blog](/blog/google-icon-update).
+Interested in recent Google product and branding changes? Check out our [Google Icon Update Blog](https://www.recodehive.com/blog/google-icon-update).
 :::
 
 ## 🔗 Resources

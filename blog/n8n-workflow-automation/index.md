@@ -125,7 +125,7 @@ This is where the magic happens - nodes that bring artificial intelligence into 
 - AutoML integration
 
 :::info Related Article
-Explore how Google is evolving its product experience in our [Google Branding Update Analysis](/blog/google-icon-update).
+Explore how Google is evolving its product experience in our [Google Branding Update Analysis](https://www.recodehive.com/blog/google-icon-update).
 :::
 
 **Anthropic Claude Nodes:**
