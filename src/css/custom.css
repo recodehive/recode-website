@@ -2637,9 +2637,38 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
   font-size: inherit !important;
 }
 
-html[data-theme="dark"] .blog-post-page .markdown .admonition,
-html[data-theme="dark"] .blog-post-page .markdown .alert {
-  background: rgba(59, 130, 246, 0.1) !important;
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info,
+html[data-theme="dark"].blog-post-page .markdown .alert--info {
+  --ifm-alert-foreground-color: #ffffff !important;
+  --ifm-alert-background-color: #0f172a !important;
+  --ifm-alert-background-color-highlight: rgba(148, 163, 184, 0.14) !important;
+  --ifm-alert-border-color: #2563eb !important;
+  --ifm-link-color: #93c5fd !important;
+  --ifm-link-hover-color: #bfdbfe !important;
+  background-color: var(--ifm-alert-background-color) !important;
+  background: var(--ifm-alert-background-color) !important;
+  border-left-color: var(--ifm-alert-border-color) !important;
+  color: #ffffff !important;
+}
+
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"],
+html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"],
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] p,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] li,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] span,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] strong,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] em,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] code,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] a,
+html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] p,
+html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] li,
+html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] span,
+html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] strong,
+html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] em,
+html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] code,
+html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] a {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 /* Blog post page title (H1 rendered by Docusaurus header, outside .markdown) */
@@ -2994,7 +3023,7 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
 .theme-doc-markdown,
 main[class*='docMainContainer_'] {
   position: relative;
-  z-index: 1 !important; 
+  z-index: 1 !important;
 }
 
 .theme-doc-markdown h1,
@@ -3010,4 +3039,6 @@ main[class*='docMainContainer_'] {
 .menu--responsive,
 div[class*='sidebarViewport_'] {
   z-index: 9999 !important; 
+}
+  z-index: 9999 !important;
 }
