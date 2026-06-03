@@ -41,6 +41,10 @@ You've done this a hundred times without thinking about it.
 
 You land on a website, maybe LinkedIn, maybe Spotify, maybe some random productivity app and instead of creating yet another account with yet another password, you just click **"Sign in with Google."**
 
+:::tip Google Ecosystem Update
+Want to see another recent Google product change? Read about the [Latest Google Design Changes](/blog/google-icon-update).
+:::
+
 Two seconds later, you're in.
 
 No new password. No verification email. No "must contain one uppercase, one number, and the soul of a forgotten god." Just... in.

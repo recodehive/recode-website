@@ -133,6 +133,9 @@ We’re inviting early adopters to help shape the future of the GitHub Copilot C
 
 The GitHub Copilot Coding Agent represents a significant step forward in developer productivity and workflow automation. By integrating AI-driven code generation and automated pull requests directly into your GitHub processes, you can streamline repetitive tasks and focus on higher-level problem solving. While automation accelerates development, human insight and collaboration remain essential for delivering quality software. Embrace these tools to enhance your workflow, but always keep user needs and team goals at the center of your development process.
 
+:::info Further Reading
+Curious about another recent Google product change? Check out our [Google Workspace Icon Update](/blog/google-icon-update) for a breakdown of Google's latest redesign decisions.
+:::
 
 ---
 

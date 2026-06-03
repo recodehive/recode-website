@@ -241,6 +241,9 @@ gh copilot suggest "deploy docusaurus site"
 gh copilot suggest "optimize SEO for docusaurus website"
 gh copilot suggest "add metadata to blog posts"
 ```
+:::tip Related Reading
+Interested in recent Google product and branding changes? Check out our [Google Icon Update Blog](/blog/google-icon-update).
+:::
 
 ## 🔗 Resources
 

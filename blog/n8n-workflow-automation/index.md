@@ -124,6 +124,10 @@ This is where the magic happens - nodes that bring artificial intelligence into 
 - Vision AI for image analysis
 - AutoML integration
 
+:::info Related Article
+Explore how Google is evolving its product experience in our [Google Branding Update Analysis](/blog/google-icon-update).
+:::
+
 **Anthropic Claude Nodes:**
 - Advanced reasoning and analysis
 - Long-form content generation
