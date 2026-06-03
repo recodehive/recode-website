@@ -120,8 +120,16 @@ The strategic reason is more interesting. Look at which Google products got grad
 
 Google I/O 2026 is happening this week. The timing of this rollout is not accidental. Google is walking into its biggest annual developer event with a refreshed product suite that looks modern, AI-adjacent, and ready for the next phase of Workspace. The icon redesign is as much a marketing signal as a usability fix.
 
-:::info Further Reading
-Interested in learning more about technology and software development? Browse our [Developer Learning Resources](/ebooks).
+:::info Learning Resources
+
+Want to strengthen your development skills while following the latest tech trends?
+
+- Explore our [Programming in C](/ebooks) resource for strong programming fundamentals.
+- Learn object-oriented concepts through [Programming in C++](/ebooks).
+- Build automation and scripting skills with [Programming in Python](/ebooks).
+- Understand enterprise application development with [Programming in Java](/ebooks).
+- Browse our complete [E-books Collection](/ebooks) for more developer learning resources.
+
 :::
 
 ---
