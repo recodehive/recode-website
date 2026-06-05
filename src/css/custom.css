@@ -2934,3 +2934,39 @@ main[class*='docMainContainer_'] {
 div[class*='sidebarViewport_'] {
   z-index: 9999 !important;
 }
+
+/* Leaderboard Pagination Button Icon Visibility Fix */
+.pagination-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 40px !important;
+  height: 40px !important;
+  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  background: var(--ifm-background-surface-color) !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  color: var(--ifm-color-primary) !important;
+  padding: 0 !important;
+}
+
+.pagination-btn svg {
+  stroke: currentColor !important;
+  fill: none !important;
+  stroke-width: 2px !important;
+  width: 20px !important;
+  height: 20px !important;
+  display: block !important;
+}
+
+.pagination-btn:hover:not(.disabled) {
+  background: var(--ifm-color-primary) !important;
+  color: white !important;
+  border-color: var(--ifm-color-primary) !important;
+}
+
+.pagination-btn.disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+}
