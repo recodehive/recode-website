@@ -233,6 +233,13 @@ export default function FooterLayout(): ReactNode {
                   </Link>
                 </li>
                 <li>
+                  <Link to="/courses" className="footer-link">
+                    <FooterIcon icon={Video} className="link-icon" />
+                    Video Courses
+                    <span className="link-badge new">New</span>
+                  </Link>
+                </li>
+                <li>
                   <Link to="/get-started" className="footer-link">
                     <FooterIcon icon={Rocket} className="link-icon" />
                     Get Started
@@ -242,19 +249,6 @@ export default function FooterLayout(): ReactNode {
                   <Link to="/badges/github-badges" className="footer-link">
                     <FooterIcon icon={Award} className="link-icon" />
                     GitHub Badges
-                  </Link>
-                </li>
-                <li>
-                  <Link href="https://dev.recodehive.com/devfolio" className="footer-link">
-                    <FooterIcon icon={Award} className="link-icon" />
-                    GitHub Profiles
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/courses" className="footer-link">
-                    <FooterIcon icon={Video} className="link-icon" />
-                    Video Courses
-                    <span className="link-badge new">New</span>
                   </Link>
                 </li>
               </ul>
@@ -270,13 +264,6 @@ export default function FooterLayout(): ReactNode {
               </h3>
               <ul className="footer-links">
                 <li>
-                  <Link to="/careers" className="footer-link">
-                    <FooterIcon icon={BriefcaseBusiness} className="link-icon"/>
-                    Careers
-                    <span className="link-badge hiring">We're Hiring!</span>
-                  </Link>
-                </li>
-                <li>
                   <Link to="/community" className="footer-link">
                     <FooterIcon icon={Users} className="link-icon" />
                     Community
@@ -286,6 +273,16 @@ export default function FooterLayout(): ReactNode {
                   <Link to="/blogs" className="footer-link">
                     <FooterIcon icon={Newspaper} className="link-icon" />
                     Our Blog
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/careers" className="footer-link">
+                    <FooterIcon
+                      icon={BriefcaseBusiness}
+                      className="link-icon"
+                    />
+                    Careers
+                    <span className="link-badge hiring">We're Hiring!</span>
                   </Link>
                 </li>
                 <li>
@@ -313,27 +310,24 @@ export default function FooterLayout(): ReactNode {
               </h3>
               <ul className="footer-links">
                 <li>
+                  <Link to="/contact-us" className="footer-link">
+                    <FooterIcon
+                      icon={MessageCircleQuestion}
+                      className="link-icon"
+                    />
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
                   <Link to="/broadcasts" className="footer-link">
                     <FooterIcon icon={MonitorPlay} className="link-icon" />
                     Broadcasts
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact-us" className="footer-link">
-                    <FooterIcon icon={MessageCircleQuestion} className="link-icon"/>
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
                   <Link to="/podcasts" className="footer-link">
                     <FooterIcon icon={Mic2} className="link-icon" />
                     Podcasts
-                  </Link>
-                </li>
-                <li>
-                  <Link to="https://github.com/orgs/recodehive/projects/9" className="footer-link">
-                    <FooterIcon icon={MonitorPlay} className="link-icon" />
-                    Roadmap
                   </Link>
                 </li>
               </ul>
