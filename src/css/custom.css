@@ -2620,7 +2620,9 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
 }
 
 html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info,
-html[data-theme="dark"].blog-post-page .markdown .alert--info {
+html[data-theme="dark"].blog-post-page .markdown .alert--info,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note,
+html[data-theme="dark"].blog-post-page .markdown .alert--secondary {
   --ifm-alert-foreground-color: #ffffff !important;
   --ifm-alert-background-color: #0f172a !important;
   --ifm-alert-background-color-highlight: rgba(148, 163, 184, 0.14) !important;
@@ -2635,6 +2637,8 @@ html[data-theme="dark"].blog-post-page .markdown .alert--info {
 
 html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"],
 html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"],
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"],
+html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"],
 html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] p,
 html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] li,
 html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] span,
@@ -2642,13 +2646,27 @@ html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*=
 html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] em,
 html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] code,
 html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] a,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] p,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] li,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] span,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] strong,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] em,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] code,
+html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] a,
 html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] p,
 html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] li,
 html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] span,
 html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] strong,
 html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] em,
 html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] code,
-html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] a {
+html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] a,
+html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] p,
+html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] li,
+html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] span,
+html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] strong,
+html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] em,
+html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] code,
+html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] a {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff !important;
 }
