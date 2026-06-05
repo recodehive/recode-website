@@ -27,7 +27,7 @@
     ]
   },
   "dependencies": {
-    "@clerk/react": "^6.7.2",
+    "@clerk/react": "^6.7.3",
     "@docusaurus/core": "3.10.1",
     "@docusaurus/plugin-content-docs": "3.10.1",
     "@docusaurus/plugin-google-analytics": "3.10.1",
