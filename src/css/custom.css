@@ -2934,3 +2934,13 @@ main[class*='docMainContainer_'] {
 div[class*='sidebarViewport_'] {
   z-index: 9999 !important;
 }
+ 
+.mobile-social-text {
+  margin-left: 8px;
+}
+
+@media (min-width: 997px) {
+  .mobile-social-text {
+    display: none;
+  }
+}
