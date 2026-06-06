@@ -183,8 +183,9 @@ export async function generateShareCard(data: ShareCardData): Promise<Blob> {
   ctx.fillStyle = "#0f172a"; // Deep slate
   ctx.fillText("recode", 155, 120);
 
+  const recodeWidth = ctx.measureText("recode").width;
   ctx.fillStyle = "#d97706"; // Amber-gold (highly readable on light theme)
-  ctx.fillText("hive", 280, 120);
+  ctx.fillText("hive", 155 + recodeWidth + 1, 120);
 
   // Subtitle / Tagline
   ctx.font = "500 16px Inter, system-ui, -apple-system, sans-serif";
