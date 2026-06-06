@@ -80,7 +80,9 @@ const BlogCard = ({
     <div className="article-card">
       {/* Image */}
       <div className="card-image">
-        <img src={imageUrl} alt={title} loading="lazy" />
+        <Link to={`/blog/${id}`} className="block" aria-label={`Read ${title}`}>
+          <img src={imageUrl} alt={title} loading="lazy" />
+        </Link>
       </div>
 
       {/* Content */}
