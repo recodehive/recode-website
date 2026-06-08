@@ -57,7 +57,7 @@ It's a phenomenon called cognitive friction. You have to stop searching for a re
 <span style={{color: 'red'}}>**So From when the issue started happening?**</span>
 This specific daily annoyance traces back to 2020, when Google retired G Suite and rolled out Google Workspace. They erased the unique shapes of their most popular apps and replaced them with uniform outlines. 
 
-So lets look at Gsuite Icons. ðŸ‘‡ðŸ»
+So lets look at Gsuite Icons. 👇🏻
    <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
     ![Google G Suite original app icons before 2020 rebrand](./assets/03-google-old-gsuite-logo.png)
     </BrowserWindow>
@@ -157,7 +157,7 @@ My honest take: some of the new icons are significantly better, Drive and Calend
 
 ## Does It Actually Solve the Problem?
 
-<span style={{color: 'red'}}> **Yes. Partially. </span>
+<span style={{color: 'red'}}> **Yes. Partially.** </span>
 
 The core complaint for five years was that all the icons look the same. That complaint is addressed. Calendar is now blue. Drive is now gradient-triangle. Gmail is now warm red-pink. Each app has a visual identity that survives a glance rather than requiring a read.
 
@@ -183,5 +183,3 @@ Whether the new icons are beautiful or not matters less than whether they work. 
 
 
 <GiscusComments/>
-
-
