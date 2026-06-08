@@ -48,7 +48,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
       initial={{ opacity: 0, y: 30, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="group relative flex h-90 w-full flex-col overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.008]"
+      className="group relative flex min-h-[360px] w-full flex-col overflow-hidden rounded-2xl transition-all duration-500 hover:scale-[1.008]"
       style={{
         background: isDark ? "#0a0a0a" : "#ffffff",
         border: `1px solid ${borderClr}`,
