@@ -30,7 +30,7 @@ const TopMateSection = ({ setShowTopmate }) => {
   };
 
   return (
-    <div className="relative flex flex-col w-full h-90">
+    <div className="relative flex flex-col w-full">
       <div className="relative flex w-full flex-col justify-between">
         {/* Section header — unified height & centered alignment */}
         <motion.div
