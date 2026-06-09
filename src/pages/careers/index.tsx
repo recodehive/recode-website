@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Link from "@docusaurus/Link";
 // removed useColorMode import to avoid provider + SSR issues
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import "./index.css";
 import {
   Home,
   CircleDollarSign,
@@ -276,14 +277,16 @@ function CareersContent() {
             >
               <Link
                 to="#openings"
-                className="group flex items-center justify-center gap-2 transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-blue-50"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 cursor-pointer careers-btn-primary"
+              style={{ color: "#2563eb", textDecoration: "none" }}
               >
                 View Open Positions
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 to="#culture"
-                className="group flex items-center justify-center gap-2 transform rounded-lg bg-transparent border-2 border-white px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-white/10"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-transparent border-2 border-white px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 cursor-pointer careers-btn-outline"
+              style={{ color: "#ffffff", textDecoration: "none" }}
               >
                 Learn About Our Culture
               </Link>
@@ -427,7 +430,7 @@ function CareersContent() {
                   }}
                   variants={fadeIn}
                 >
-                  <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6 ${isDark ? 'bg-gray-800' : 'bg-blue-50'}`}>
+                  <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:shadow-md ${isDark ? 'bg-gray-700' : 'bg-blue-50'}`}>
                     {perk.icon}
                   </div>
                   <h3
@@ -546,7 +549,7 @@ function CareersContent() {
                     <div className="md:ml-6">
                       <Link
                         to="/contact-us"
-                        className="inline-flex items-center gap-2 transform rounded-lg bg-blue-600 px-6 py-3 font-semibold shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="inline-flex items-center gap-2 transform rounded-lg bg-blue-600 px-6 py-3 font-semibold shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg active:scale-95 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 cursor-pointer whitespace-nowrap careers-btn-apply"
                         style={{
                           color: "#ffffff",
                           textDecoration: "none",
@@ -619,7 +622,8 @@ function CareersContent() {
 
             {mounted ? (
               <motion.div
-                className="testimonial-carousel testimonial-carousel--light rounded-xl p-8 shadow-lg"
+                className="testimonial-carousel rounded-xl p-8 shadow-lg"
+                style={{ backgroundColor: isDark ? "#1e293b" : "#ffffff" }}
                 variants={fadeIn}
               >
                 <div className="testimonial-content relative z-10 text-center">
@@ -630,23 +634,13 @@ function CareersContent() {
                   <blockquote className="mb-6 text-lg italic md:text-xl">
                     "{testimonials[activeTestimonial].content}"
                   </blockquote>
-                  <div
-                    className="testimonial-author relative z-10"
-                    style={{
-                      backgroundColor: "rgba(255, 255, 255, 0.98)",
-                      borderColor: "rgba(15, 23, 42, 0.08)",
-                    }}
-                  >
-                    <h4
-                      className="testimonial-author-name text-xl font-bold leading-tight"
-                      style={{ color: "#111827" }}
-                    >
+                  <div className="mt-4 text-center">
+                    <h4 className="text-xl font-bold leading-tight"
+                      style={{ color: isDark ? "#f1f5f9" : "#111827" }}>
                       {testimonials[activeTestimonial].name}
                     </h4>
-                    <p
-                      className="testimonial-author-role"
-                      style={{ color: "#334155" }}
-                    >
+                    <p className="text-sm mt-1"
+                      style={{ color: isDark ? "#94a3b8" : "#334155" }}>
                       {testimonials[activeTestimonial].role}
                     </p>
                   </div>
@@ -655,7 +649,8 @@ function CareersContent() {
                     {testimonials.map((_, index) => (
                       <button
                         key={index}
-                        className={`h-3 w-3 rounded-full transition-all duration-300 ${index === activeTestimonial
+                        aria-label={`Go to testimonial ${index + 1}`}
+                        className={`h-3 w-3 rounded-full transition-all duration-300 cursor-pointer ${index === activeTestimonial
                           ? "scale-110 bg-blue-600"
                           : isDark
                             ? "bg-gray-600 hover:bg-gray-500"
@@ -668,7 +663,7 @@ function CareersContent() {
                 </div>
               </motion.div>
             ) : (
-              <div className="testimonial-carousel testimonial-carousel--light rounded-xl p-8 shadow-lg">
+              <div className="testimonial-carousel rounded-xl p-8 shadow-lg" style={{ backgroundColor: "#ffffff" }}>
                 <div className="testimonial-content relative z-10 text-center">
                   <TestimonialAvatar
                     avatar={testimonials[activeTestimonial].avatar}
@@ -677,23 +672,13 @@ function CareersContent() {
                   <blockquote className="mb-6 text-lg italic md:text-xl">
                     "{testimonials[activeTestimonial].content}"
                   </blockquote>
-                  <div
-                    className="testimonial-author relative z-10"
-                    style={{
-                      backgroundColor: "rgba(255, 255, 255, 0.98)",
-                      borderColor: "rgba(15, 23, 42, 0.08)",
-                    }}
-                  >
-                    <h4
-                      className="testimonial-author-name text-xl font-bold leading-tight"
-                      style={{ color: "#111827" }}
-                    >
+                  <div className="mt-4 text-center">
+                    <h4 className="text-xl font-bold leading-tight"
+                      style={{ color: isDark ? "#f1f5f9" : "#111827" }}>
                       {testimonials[activeTestimonial].name}
                     </h4>
-                    <p
-                      className="testimonial-author-role"
-                      style={{ color: "#334155" }}
-                    >
+                    <p className="text-sm mt-1"
+                      style={{ color: isDark ? "#94a3b8" : "#334155" }}>
                       {testimonials[activeTestimonial].role}
                     </p>
                   </div>
@@ -702,7 +687,8 @@ function CareersContent() {
                     {testimonials.map((_, index) => (
                       <button
                         key={index}
-                        className={`h-3 w-3 rounded-full transition-all duration-300 ${index === activeTestimonial
+                        aria-label={`Go to testimonial ${index + 1}`}
+                        className={`h-3 w-3 rounded-full transition-all duration-300 cursor-pointer ${index === activeTestimonial
                           ? "scale-110 bg-blue-600"
                           : isDark
                             ? "bg-gray-600 hover:bg-gray-500"
@@ -743,14 +729,16 @@ function CareersContent() {
             >
               <Link
                 to="/contact-us"
-                className="group flex items-center justify-center gap-2 transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-blue-50"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 cursor-pointer careers-btn-primary"
+              style={{ color: "#2563eb", textDecoration: "none" }}
               >
                 Get In Touch
                 <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/community"
-                className="group flex items-center justify-center gap-2 transform rounded-lg bg-transparent border-2 border-white px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-white/10"
+                className="group flex items-center justify-center gap-2 transform rounded-lg bg-transparent border-2 border-white px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl active:scale-95 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 cursor-pointer careers-btn-outline"
+              style={{ color: "#ffffff", textDecoration: "none" }}
               >
                 Join Our Community
               </Link>
