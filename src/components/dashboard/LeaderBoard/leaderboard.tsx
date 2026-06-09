@@ -148,7 +148,7 @@ function ContributorBadges({
   if (!badges || badges.length === 0) return null;
 
   return (
-    <div className="contributor-badges" onClick={onClick}>
+    <div className="contributor-badges" onClick={onClick} role="button" tabIndex={0} aria-label="View contributor badges" onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") onClick?.(); }}>
       {badges.map((badge, index) => (
         <img
           key={index}

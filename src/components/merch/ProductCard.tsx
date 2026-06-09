@@ -42,7 +42,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, onAddToCart }) => {
       onHoverEnd={() => setIsHovered(false)}
     >
       <div className="product-card-image-wrapper">
-        <div className="product-card-image" onClick={openViewer} style={{ cursor: 'pointer' }}>
+        <div className="product-card-image" onClick={openViewer} role="button" tabIndex={0} aria-label="View product image" onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") openViewer(); }} style={{ cursor: 'pointer' }}>
           <img src={product.image} alt={product.title} loading="lazy" />
           {isHovered && (
             <motion.div

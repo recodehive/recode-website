@@ -58,7 +58,7 @@ function ShowcaseCard({ user }: { user: User }) {
 
   return (
     <li key={user.title} className={clsx("card shadow--md", styles.card)}>
-      <div className={styles.cardLink} onClick={handleCardClick} />
+      <div className={styles.cardLink} onClick={handleCardClick} role="button" tabIndex={0} aria-label={`Visit ${user.title}`} onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") handleCardClick(); }} />
       <div className={clsx("card__image", styles.showcaseCardImage)}>
         <IdealImage img={user.preview} alt={user.title} />
       </div>
