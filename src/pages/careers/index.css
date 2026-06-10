@@ -1,0 +1,5 @@
+/* Testimonial blockquote reset */
+.testimonial-carousel blockquote {
+  border-left: none !important;
+  padding-left: 0 !important;
+}
