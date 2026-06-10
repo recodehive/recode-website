@@ -2,13 +2,12 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 import { getAuthorProfiles } from "../../utils/authors";
-import { usePluginData } from "@docusaurus/useGlobalData";
+
 
 interface BlogCardProps {
   type: string;
   date?: string;
   title: string;
-  content: string;
   imageUrl: string;
   id: string;
   authors?: string[];
@@ -50,7 +49,6 @@ const BlogCard = ({
   type,
   date,
   title,
-  content,
   imageUrl,
   id,
   authors,
@@ -80,7 +78,9 @@ const BlogCard = ({
     <div className="article-card">
       {/* Image */}
       <div className="card-image">
-        <img src={imageUrl} alt={title} loading="lazy" />
+        <Link to={`/blog/${id}`} className="block" aria-label={`Read ${title}`}>
+          <img src={imageUrl} alt={title} loading="lazy" />
+        </Link>
       </div>
 
       {/* Content */}

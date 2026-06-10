@@ -126,14 +126,14 @@ Google I/O 2026 is happening this week. The timing of this rollout is not accide
 
 The new icons do one thing that the 2020 redesign refused to do: they let each app look different from the others.
 
-The strict four-color rule is gone. Instead of forcing every icon to carry all four brand colors, the new design gives each app its own dominant color identity with gradients replacing the flat hard-edged color blocks.
+The previous requirement that each icon display all four brand colors has been removed, the new design gives each app its own dominant color identity with gradients replacing the flat hard-edged color blocks.
 
 Looking at the new icons directly, here is what stands out:
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
     ![Google 2026 new icon design showing per-app gradient color identity](./assets/09-google-new-design.png)
     </BrowserWindow>
 
-The icons are also physically larger in the launcher. Google removed the Workspace page container that previously boxed each icon in, giving more visual real estate to the icon shapes themselves.
+The icons are also physically larger in the launcher.Google also did away with the Workspace page-shaped container that surrounded the icons, allowing the designs to take up more space and become more visually prominent.
 
 ---
 

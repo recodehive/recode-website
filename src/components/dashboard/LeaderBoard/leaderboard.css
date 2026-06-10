@@ -2374,3 +2374,160 @@
   }
 }
 
+/* Badge Modal Share Button Actions */
+.badge-modal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.badge-modal-share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  height: 40px;
+}
+
+.badge-modal-share-btn.light {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.badge-modal-share-btn.light:hover:not(:disabled) {
+  background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+}
+
+.badge-modal-share-btn.dark {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+}
+
+.badge-modal-share-btn.dark:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(139, 92, 246, 0.4);
+}
+
+.badge-modal-share-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Badge Modal Download Button */
+.badge-modal-download-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+
+.badge-modal-download-btn.light {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+.badge-modal-download-btn.light:hover:not(:disabled) {
+  background: #e5e7eb;
+  color: #1f2937;
+  transform: scale(1.05);
+}
+
+.badge-modal-download-btn.dark {
+  background: #374151;
+  color: #d1d5db;
+}
+
+.badge-modal-download-btn.dark:hover:not(:disabled) {
+  background: #4b5563;
+  color: #f9fafb;
+  transform: scale(1.05);
+}
+
+.badge-modal-download-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.badge-modal-download-btn .badge-modal-spinner {
+  margin-right: 0;
+}
+
+/* Spinner for share button load state */
+.badge-modal-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: badge-spin 0.8s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes badge-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error Banner in Badge Modal */
+.badge-modal-error-banner {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border: 1px solid;
+  text-align: center;
+}
+
+.badge-modal-error-banner.light {
+  background-color: #fee2e2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
+.badge-modal-error-banner.dark {
+  background-color: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .badge-modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .badge-modal-header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .badge-modal-share-btn {
+    flex: 1;
+    max-width: 180px;
+  }
+}
+
+
