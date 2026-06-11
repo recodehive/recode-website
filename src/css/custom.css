@@ -438,24 +438,23 @@ html[data-theme="dark"] article blockquote {
     color var(--ifm-transition-fast) ease;
 }
 
-/* ====== Header / Navbar stacking fix for Docs pages ======
-/* Ensure the top navbar stays fully visible above the docs sidebar
+/* ====== Navbar stacking fix for Docs pages ======
+   Ensure the top navbar stays fully visible above the docs sidebar
    and does not get pushed or clipped when the sidebar is sticky. */
-header,
-.theme-doc-navbar,
-.navbar {
+body:has(.theme-doc-sidebar-container) .theme-doc-navbar,
+body:has(.theme-doc-sidebar-container) .navbar {
   position: sticky !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
-  z-index: 2147483646 !important; /* sit above sidebar but below toast */
+  z-index: 99999 !important;
 }
 
 /* Prevent any transform or clipping on navbar containers that can
    create new stacking contexts and cause overlap issues */
-.navbar__inner,
-.navbar__items {
+body:has(.theme-doc-sidebar-container) .navbar__inner,
+body:has(.theme-doc-sidebar-container) .navbar__items {
   transform: none !important;
   will-change: auto !important;
   overflow: visible !important;
