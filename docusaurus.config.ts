@@ -59,6 +59,13 @@ const config: Config = {
     },
   ],
 
+  stylesheets: [
+    {
+      href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap",
+      type: "text/css",
+    },
+  ],
+
   i18n: {
     defaultLocale: "en",
     locales: ["en"],
@@ -124,7 +131,6 @@ const config: Config = {
                  <a class="border-r col-span-1" href="/docs/">Tutorials</a>
                  <div class="grid grid-cols-4 col-span-2">
                    <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
-                   <a href="/docs/python/intro-python" class="nav__icons"> <img src="/icons/python.svg" title="Python" alt="Python" /> </a>
                    <a href="/docs/GitHub/intro-github" class="nav__icons" > <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
                    <a href="/docs" class="nav__icons"> <img src="/icons/Logo-512X512.png" title="Docs" alt="Docs" /> </a>
                    <a href="/docs/Docker/intro" class="nav__icons"> <img src="/icons/docker.svg" title="Docker" alt="Docker" /> </a>
@@ -193,7 +199,7 @@ const config: Config = {
             },
             {
               label: "🗺️ Roadmap",
-              to: "/roadmaps",
+              href: "https://github.com/orgs/recodehive/projects/9",
             },
             {
               label: "🤝 Community",

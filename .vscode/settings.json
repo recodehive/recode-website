@@ -10,18 +10,4 @@
     "javascriptreact",
     "typescriptreact"
   ],
-  "workbench.colorCustomizations": {
-    "editor.lineHighlightBorder": "#FF2D9A25",
-    "editorCursor.foreground": "#FF2D9A",
-    "tab.activeBorder": "#FF2D9A35",
-    "tab.activeBorderTop": "#FF2D9A35",
-    "tab.activeBackground": "#1A0028",
-    "tab.activeForeground": "#FF6EC7",
-    "statusBar.background": "#120020",
-    "statusBar.foreground": "#FF6EC7",
-    "editorIndentGuide.activeBackground1": "#FF2D9A35",
-    "editor.selectionBackground": "#FF2D9A28",
-    "editorBracketHighlight.foreground1": "#FF2D9A",
-    "editorBracketHighlight.foreground2": "#FF6EC7"
-  }
 }

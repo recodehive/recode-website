@@ -3,16 +3,17 @@ import React from "react";
 import Link from "@docusaurus/Link";
 import { getAuthorProfiles } from "../../utils/authors";
 
+
 interface BlogCardProps {
   type: string;
   date?: string;
   title: string;
-  content: string;
   imageUrl: string;
   id: string;
   authors?: string[];
   tags?: string[];
   category?: string;
+  readingTime?: number;
 }
 
 const TAG_COLORS = [
@@ -53,8 +54,10 @@ const BlogCard = ({
   authors,
   tags,
   category,
+  readingTime,
 }: BlogCardProps) => {
   const authorProfiles = getAuthorProfiles(authors || []);
+  const computedReadTime = readingTime ?? 1;
 
   if (!id || !type) {
     return <div>data not fetched properly, imageId and entryId not found</div>;
@@ -75,7 +78,9 @@ const BlogCard = ({
     <div className="article-card">
       {/* Image */}
       <div className="card-image">
-        <img src={imageUrl} alt={title} loading="lazy" />
+        <Link to={`/blog/${id}`} className="block" aria-label={`Read ${title}`}>
+          <img src={imageUrl} alt={title} loading="lazy" />
+        </Link>
       </div>
 
       {/* Content */}
@@ -167,6 +172,24 @@ const BlogCard = ({
                 </div>
               )}
               {date && <span className="card-date">{formatDate(date)}</span>}
+              <span className="card-reading-time">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="11"
+                  height="11"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+                {computedReadTime} min read
+              </span>
             </div>
           </div>
 

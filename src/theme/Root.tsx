@@ -6,6 +6,7 @@ import clsx from "clsx"; // Import clsx for conditional classes
 import styles from "./Root.module.css"; // Import the CSS module
 import { useLocation } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import ScrollBottomToTop from "@site/src/components/scroll/bottom-to-top";
 
 // A simple Trophy SVG icon component
 function TrophyIcon() {
@@ -232,6 +233,8 @@ export default function Root({ children }: { children: React.ReactNode }) {
           </button>
         </div>
       )}
+
+      <ScrollBottomToTop />
 
       {process.env.NODE_ENV === "production" && <Analytics />}
     </>

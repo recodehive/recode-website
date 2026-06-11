@@ -1161,9 +1161,16 @@
 }
 
 .active-page {
-  background: #475569 !important;
-  color: white;
-  border-color: #475569 !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.16);
+  transform: translateY(-1px);
+}
+
+.active-page:hover {
+  background: #111111 !important;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.22);
 }
 
 .pagination-btn:disabled {
@@ -1304,4 +1311,13 @@
     padding: 0 18px;
     font-size: 13px;
   }
+}
+/* ── Reading time ── */
+.card-reading-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 0.75rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-top: 2px;
 }

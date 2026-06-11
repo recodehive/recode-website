@@ -3,13 +3,8 @@
 /* Theme-aware footer styles */
 .enhanced-footer.light-theme,
 .enhanced-footer.dark-theme {
-  background: linear-gradient(135deg,
-      #0f0f23 0%,
-      #1a1a2e 25%,
-      #16213e 50%,
-      #0f3460 75%,
-      #533483 100%) !important;
-  color: #e2e8f0 !important;
+  background: #ffffff !important;
+  color: #111111 !important;
 }
 
 /* Keyframe Animations */
@@ -79,13 +74,8 @@
     "Segoe UI",
     Roboto,
     sans-serif !important;
-  background: linear-gradient(135deg,
-      #0f0f23 0%,
-      #1a1a2e 25%,
-      #16213e 50%,
-      #0f3460 75%,
-      #533483 100%) !important;
-  color: #e2e8f0 !important;
+  background: #ffffff !important;
+  color: #111111 !important;
   position: relative;
   overflow: hidden;
 }
@@ -150,36 +140,21 @@ html[data-theme="light"] .enhanced-footer * {
 /* Force the main footer background and colors to never change */
 .enhanced-footer.dark-theme,
 .enhanced-footer.light-theme {
-  background: linear-gradient(135deg,
-      #0f0f23 0%,
-      #1a1a2e 25%,
-      #16213e 50%,
-      #0f3460 75%,
-      #533483 100%) !important;
-  color: #e2e8f0 !important;
+  background: #ffffff !important;
+  color: #111111 !important;
 }
 
 /* Absolute protection against any theme changes */
 [data-theme="dark"] .enhanced-footer.dark-theme,
 html[data-theme="dark"] .enhanced-footer.dark-theme {
-  background: linear-gradient(135deg,
-      #0f0f23 0%,
-      #1a1a2e 25%,
-      #16213e 50%,
-      #0f3460 75%,
-      #533483 100%) !important;
-  color: #e2e8f0 !important;
+  background: #ffffff !important;
+  color: #111111 !important;
 }
 
 [data-theme="light"] .enhanced-footer.light-theme,
 html[data-theme="light"] .enhanced-footer.light-theme {
-  background: linear-gradient(135deg,
-      #0f0f23 0%,
-      #1a1a2e 25%,
-      #16213e 50%,
-      #0f3460 75%,
-      #533483 100%) !important;
-  color: #e2e8f0 !important;
+  background: #ffffff !important;
+  color: #111111 !important;
 }
 
 /* Force all text elements to maintain their colors based on theme */
@@ -195,7 +170,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 .enhanced-footer.light-theme h4,
 .enhanced-footer.light-theme h5,
 .enhanced-footer.light-theme h6 {
-  color: #ffffff !important;
+  color: #111111 !important;
 }
 
 .enhanced-footer.dark-theme p,
@@ -206,53 +181,53 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 .enhanced-footer.light-theme span,
 .enhanced-footer.light-theme div,
 .enhanced-footer.light-theme li {
-  color: #e2e8f0 !important;
+  color: #111111 !important;
 }
 
 .enhanced-footer.dark-theme a,
 .enhanced-footer.light-theme a {
-  color: #cbd5e1 !important;
+  color: #111111 !important;
 }
 
 .enhanced-footer.dark-theme a:hover,
 .enhanced-footer.light-theme a:hover {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 /* Specific protection for footer elements */
 .enhanced-footer.dark-theme .footer-brand-title,
 .enhanced-footer.light-theme .footer-brand-title {
-  color: #ffffff !important;
+  color: #111111 !important;
 }
 
 .enhanced-footer.dark-theme .footer-column-title,
 .enhanced-footer.light-theme .footer-column-title {
-  color: #ffffff !important;
+  color: #111111 !important;
 }
 
 .enhanced-footer.dark-theme .footer-link,
 .enhanced-footer.light-theme .footer-link {
-  color: #cbd5e1 !important;
+  color: #111111 !important;
 }
 
 [data-theme="dark"] .enhanced-footer .footer-link:hover,
 [data-theme="light"] .enhanced-footer .footer-link:hover {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 [data-theme="dark"] .enhanced-footer .footer-copyright,
 [data-theme="light"] .enhanced-footer .footer-copyright {
-  color: #94a3b8 !important;
+  color: #111111 !important;
 }
 
 [data-theme="dark"] .enhanced-footer .legal-link,
 [data-theme="light"] .enhanced-footer .legal-link {
-  color: #94a3b8 !important;
+  color: #111111 !important;
 }
 
 [data-theme="dark"] .enhanced-footer .legal-link:hover,
 [data-theme="light"] .enhanced-footer .legal-link:hover {
-  color: #ffffff !important;
+  color: #000000 !important;
 }
 
 /* Add animated background pattern */
@@ -263,20 +238,8 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   left: 0;
   right: 0;
   bottom: 0;
-  background:
-    radial-gradient(circle at 20% 80%,
-      rgba(120, 119, 198, 0.08) 0%,
-      transparent 60%),
-    radial-gradient(circle at 80% 20%,
-      rgba(255, 119, 198, 0.06) 0%,
-      transparent 60%),
-    radial-gradient(circle at 40% 40%,
-      rgba(120, 219, 255, 0.04) 0%,
-      transparent 60%),
-    radial-gradient(circle at 60% 70%,
-      rgba(167, 139, 250, 0.05) 0%,
-      transparent 50%);
-  animation: backgroundShift 25s ease-in-out infinite;
+  background: none;
+  opacity: 0;
   pointer-events: none;
 }
 
@@ -288,24 +251,9 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image:
-    radial-gradient(2px 2px at 20px 30px,
-      rgba(255, 255, 255, 0.1),
-      transparent),
-    radial-gradient(2px 2px at 40px 70px,
-      rgba(255, 255, 255, 0.08),
-      transparent),
-    radial-gradient(1px 1px at 90px 40px,
-      rgba(255, 255, 255, 0.06),
-      transparent),
-    radial-gradient(1px 1px at 130px 80px,
-      rgba(255, 255, 255, 0.04),
-      transparent);
-  background-repeat: repeat;
-  background-size: 150px 100px;
-  animation: particleFloat 30s linear infinite;
+  background: none;
+  opacity: 0;
   pointer-events: none;
-  opacity: 0.3;
 }
 
 @keyframes backgroundShift {
@@ -362,35 +310,43 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 .footer-hero {
   padding: 40px 0 30px;
   position: relative;
+  background: #ffffff !important;
+  color: #111111 !important;
 }
 
 .footer-hero-content {
-  text-align: center;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: clamp(40px, 7vw, 120px);
+  row-gap: 18px;
   margin-bottom: 30px;
+  text-align: left;
 }
 
 .footer-logo-section {
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .footer-logo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
 }
 
 .logo-container {
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background: #111111;
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow:
-    0 4px 16px rgba(102, 126, 234, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 4px 16px rgba(17, 17, 17, 0.16),
+    0 0 0 1px rgba(17, 17, 17, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
   position: relative;
   transition: all 0.3s ease;
@@ -403,25 +359,20 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   inset: 0;
   border-radius: 16px;
   padding: 1px;
-  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
-  mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  mask-composite: xor;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 0.25;
 }
 
 .logo-container:hover::before {
-  opacity: 1;
+  opacity: 0.35;
 }
 
 .logo-container:hover {
   transform: translateY(-2px) scale(1.05);
   box-shadow:
-    0 12px 40px rgba(102, 126, 234, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 12px 40px rgba(17, 17, 17, 0.18),
+    0 0 0 1px rgba(17, 17, 17, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
 .footer-logo-img {
@@ -435,19 +386,58 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 .footer-brand-header {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 6px;
   margin-top: 8px;
+}
+
+.footer-hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1 1 520px;
+  min-width: 0;
+}
+
+.footer-hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 0 0 auto;
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+.footer-cta-buttons {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.footer-cta-buttons .btn {
+  gap: 8px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  white-space: nowrap;
 }
 
 .footer-brand-title {
   font-size: 28px;
   font-weight: 700;
-  background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-align: center;
+  color: #111111 !important;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: #111111 !important;
+  background: none !important;
+  background-clip: initial;
   letter-spacing: -1px;
   margin: 0;
   font-family:
@@ -499,7 +489,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 
 .trust-text {
   font-size: 12px;
-  color: #94a3b8;
+  color: #111111;
   font-weight: 500;
   text-align: center;
 }
@@ -514,26 +504,6 @@ html[data-theme="light"] .enhanced-footer.light-theme {
     opacity: 1;
     transform: scale(1.1);
   }
-}
-
-.footer-brand-name {
-  font-size: 28px;
-  font-weight: 800;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #e2e8f0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: -0.02em;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.footer-brand-name:hover {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  transform: scale(1.02);
 }
 
 .footer-rating {
@@ -580,7 +550,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 
 .rating-text {
   font-size: 13px;
-  color: #cbd5e1;
+  color: #111111;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -589,60 +559,82 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 .footer-hero-text h1 {
   font-size: 32px;
   font-weight: 900;
-  background: linear-gradient(135deg,
-      #ffffff 0%,
-      #f8fafc 30%,
-      #e2e8f0 60%,
-      #cbd5e1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #111111 !important;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: #111111 !important;
+  background: none !important;
+  background-clip: initial;
   margin: 0 0 16px 0;
   line-height: 1.1;
   letter-spacing: -0.03em;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-shadow: none;
   position: relative;
-  animation: titleGlow 4s ease-in-out infinite;
-}
-
-@keyframes titleGlow {
-
-  0%,
-  100% {
-    background: linear-gradient(135deg,
-        #ffffff 0%,
-        #f8fafc 30%,
-        #e2e8f0 60%,
-        #cbd5e1 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  50% {
-    background: linear-gradient(135deg,
-        #667eea 0%,
-        #764ba2 30%,
-        #f093fb 60%,
-        #ffffff 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+  animation: none;
 }
 
 .footer-hero-text p {
   font-size: 16px;
-  color: #cbd5e1;
+  color: #111111 !important;
   line-height: 1.6;
-  max-width: 500px;
-  margin: 0 auto;
+  max-width: 680px;
+  margin: 0;
   font-weight: 500;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  opacity: 0.9;
+  text-shadow: none;
+  opacity: 0.82;
+}
+
+.second-line {
+  display: inline;
+}
+
+@media (max-width: 880px) {
+  .footer-hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .footer-hero-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 0;
+  }
+
+  .footer-hero-left {
+    width: 100%;
+    flex: none;
+    align-items: center;
+  }
+   .footer-logo {
+    justify-content: center;
+  }
+
+  .footer-brand-header {
+    align-items: center;
+  }
+
+  .footer-hero-text {
+    text-align: center;
+  }
+
+  .footer-hero-text h1 {
+    text-align: center;
+    margin: 0 auto;
+    max-width: none;
+  }
+
+  .second-line {
+    display: block;
+  }
+
+  .footer-cta-buttons {
+    justify-content: center;
+  }
+
 }
 
 /* Stats Section */
@@ -738,22 +730,22 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .stat-icon-learners {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #111111;
   color: white;
 }
 
 .stat-icon-tutorials {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: #374151;
   color: white;
 }
 
 .stat-icon-success {
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  background: #6b7280;
   color: white;
 }
 
 .stat-icon-support {
-  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+  background: #9ca3af;
   color: white;
 }
 
@@ -767,27 +759,29 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 .stat-number {
   font-size: 28px;
   font-weight: 900;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: #111111;
+  background-clip: initial;
+  color: #111111;
   line-height: 1;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: none;
   transition: all 0.3s ease;
 }
 
 .stat-item:hover .stat-number {
   transform: scale(1.05);
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+  background: none;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: #111111;
+  background-clip: initial;
+  color: #111111;
+  text-shadow: none;
 }
 
 .stat-label {
   font-size: 13px;
-  color: #94a3b8;
+  color: #111111;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.8px;
@@ -795,16 +789,16 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .stat-item:hover .stat-label {
-  color: #cbd5e1;
-  text-shadow: 0 0 8px rgba(203, 213, 225, 0.3);
+  color: #111111;
+  text-shadow: none;
 }
 
 /* Links Section */
 .footer-links-section {
   padding: 56px 0;
   /* more padding above and below the divider */
-  background: rgba(0, 0, 0, 0.15);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
 }
 
 .footer-links-grid {
@@ -816,13 +810,14 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .footer-column {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 18px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  backdrop-filter: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: visible;
@@ -837,9 +832,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg,
-      rgba(102, 126, 234, 0.03) 0%,
-      rgba(240, 147, 251, 0.03) 100%);
+  background: none;
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -850,29 +843,29 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .footer-column:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.12);
+  background: #f9fafb;
+  border-color: rgba(17, 17, 17, 0.12);
   transform: translateY(-4px);
   box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.15),
-    0 6px 20px rgba(102, 126, 234, 0.1);
+    0 12px 40px rgb(15 1 1 / 8%),
+    0 6px 20px rgba(0, 0, 0, 0.04);
 }
 
 .footer-column-title {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 18px;
+  gap: 12px;
+  font-size: 20px;
   /* slightly bigger to stand out */
   font-weight: 700;
-  color: #ffffff;
+  color: #111111;
   margin-bottom: 20px;
   letter-spacing: -0.01em;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  text-shadow: none;
 }
 
 .footer-icon {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
@@ -890,23 +883,26 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .column-icon {
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border-radius: 6px;
-  display: flex;
+  color: #111111;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: #ffffff;
+  color: #111111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .column-icon .footer-icon {
-  width: 12px;
-  height: 12px;
+  width: 18px;
+  height: 18px;
 }
 
 .resources-icon {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #38e1da 0%, #139caa 100%);
 }
 
 .company-icon {
@@ -936,7 +932,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #cbd5e1;
+  color: #111111;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
@@ -946,10 +942,10 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   position: relative;
   margin: 8px 0;
   /* increased vertical breathing room per link */
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(17, 17, 17, 0.08);
   overflow: visible;
-  backdrop-filter: blur(5px);
-  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: none;
+  background: #ffffff;
   white-space: nowrap;
   /* keep items like "Contact Us" on one line */
 }
@@ -996,21 +992,21 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .footer-link:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(102, 126, 234, 0.3);
+  color: #111111;
+  background: #f9fafb;
+  border-color: rgba(17, 17, 17, 0.12);
   transform: translateX(6px) translateY(-2px) scale(1.01);
   box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.2),
-    0 4px 15px rgba(102, 126, 234, 0.15),
+    0 8px 25px rgba(0, 0, 0, 0.08),
+    0 4px 15px rgba(0, 0, 0, 0.04),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
+  backdrop-filter: none;
   text-decoration: none;
 }
 
 .footer-link:hover span:not(.link-icon):not(.link-badge) {
-  color: #ffffff;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+  color: #111111;
+  text-shadow: none;
 }
 
 .footer-link:active {
@@ -1020,15 +1016,15 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 
 .footer-link:focus {
   outline: none;
-  border-color: rgba(102, 126, 234, 0.5);
+  border-color: rgba(17, 17, 17, 0.18);
   box-shadow:
-    0 0 0 3px rgba(102, 126, 234, 0.2),
-    0 8px 25px rgba(0, 0, 0, 0.15);
+    0 0 0 3px rgba(17, 17, 17, 0.08),
+    0 8px 25px rgba(0, 0, 0, 0.08);
   animation: linkPulse 2s infinite;
 }
 
 .footer-link:focus-visible {
-  outline: 2px solid rgba(102, 126, 234, 0.6);
+  outline: 2px solid rgba(17, 17, 17, 0.18);
   outline-offset: 2px;
 }
 
@@ -1039,12 +1035,12 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 2;
   position: relative;
-  color: rgba(226, 232, 240, 0.82);
+  color: #111111;
 }
 
 .footer-link:hover .link-icon {
   opacity: 1;
-  color: #ffffff;
+  color: #111111;
   transform: scale(1.12) translateZ(0);
   text-decoration: none;
 }
@@ -1056,12 +1052,12 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   justify-content: center;
   height: 28px;
   /* consistent badge height */
-  line-height: 1;
+  color: #111111;
   font-size: 11px;
   font-weight: 600;
   padding: 0 10px;
   /* horizontal padding only to keep size consistent */
-  border-radius: 10px;
+  color: #111111;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-left: auto;
@@ -1076,71 +1072,71 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .link-badge.popular {
-  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  background: #111111;
   color: white;
 }
 
 .footer-link:hover .link-badge.popular {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  background: #374151;
   transform: scale(1.05) translateY(-1px);
-  box-shadow: 0 3px 12px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 3px 12px rgba(17, 17, 17, 0.18);
 }
 
 .link-badge.new {
-  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  background: #111111;
   color: white;
 }
 
 .footer-link:hover .link-badge.new {
-  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  background: #374151;
   transform: scale(1.1) translateY(-1px);
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 4px 15px rgba(17, 17, 17, 0.18);
 }
 
 .link-badge.hot {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  background: #111111;
   color: white;
 }
 
 .footer-link:hover .link-badge.hot {
-  background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+  background: #374151;
   transform: scale(1.1) translateY(-1px);
-  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+  box-shadow: 0 4px 15px rgba(17, 17, 17, 0.18);
 }
 
 .link-badge.hiring {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  background: #111111;
   color: white;
 }
 
 .footer-link:hover .link-badge.hiring {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  background: #374151;
   transform: scale(1.1) translateY(-1px);
-  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 4px 15px rgba(17, 17, 17, 0.18);
 }
 
 .link-badge.active {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  background: #111111;
   color: white;
 }
 
 .footer-link:hover .link-badge.active {
-  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+  background: #374151;
   transform: scale(1.1) translateY(-1px);
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 4px 15px rgba(17, 17, 17, 0.18);
 }
 
 /* Newsletter Column */
 .newsletter-column {
-  background: rgba(255, 255, 255, 0.03);
+  background: #ffffff;
   padding: 24px;
   border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  backdrop-filter: none;
 }
 
 .newsletter-description {
-  color: #94a3b8;
+  color: #111111;
   font-size: 14px;
   line-height: 1.5;
   margin-bottom: 20px;
@@ -1156,31 +1152,40 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 .newsletter-input {
   padding: 14px 18px;
   /* increased for easier tapping */
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(17, 17, 17, 0.12);
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  color: #ffffff;
+  background: #ffffff;
+  color: #111111;
   font-size: 14px;
   font-weight: 400;
-  backdrop-filter: blur(20px);
+  backdrop-filter: none;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 31%);
 }
 
 .newsletter-input:focus {
   outline: none;
-  border-color: #6366f1;
+  border-color: #9393933b;
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 2px rgb(17 17 17 / 50%);
+  border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 .newsletter-input::placeholder {
-  color: #94a3b8;
+  color: #6b7280;
+}
+
+.newsletter-input:hover {
+  border-color: #6b72807a;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 20%);
+  transform: translateY(-1px);
 }
 
 .newsletter-button {
   padding: 16px 28px;
   /* slightly larger for touch */
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+  background: #111111;
   color: white;
   border: none;
   border-radius: 12px;
@@ -1188,10 +1193,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow:
-    0 8px 24px rgba(102, 126, 234, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(17, 17, 17, 0.16);
   position: relative;
   overflow: hidden;
   text-transform: uppercase;
@@ -1205,10 +1207,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(255, 255, 255, 0.2),
-      transparent);
+  background: none;
   transition: left 0.6s ease;
 }
 
@@ -1218,10 +1217,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 
 .newsletter-button:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow:
-    0 12px 32px rgba(102, 126, 234, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 12px 32px rgba(17, 17, 17, 0.18);
 }
 
 .newsletter-button:active {
@@ -1265,14 +1261,14 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   align-items: center;
   gap: 8px;
   font-size: 12px;
-  color: #94a3b8;
+  color: #111111;
   font-weight: 400;
 }
 
 .newsletter-stat-icon {
   width: 14px;
   height: 14px;
-  color: #93c5fd;
+  color: #111111;
 }
 
 /* Quick Links Section */
@@ -1290,7 +1286,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .newsletter-quick-links .quick-links-title {
-  color: #cbd5e1;
+  color: #111111;
   font-size: 13px;
   margin-bottom: 12px;
   font-weight: 700;
@@ -1303,10 +1299,10 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .newsletter-quick-links .quick-link {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
   border-radius: 8px;
-  color: #cbd5e1;
+  color: #111111;
   font-size: 13px;
   padding: 10px 14px;
   margin-bottom: 0;
@@ -1317,8 +1313,8 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .newsletter-quick-links .quick-link:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: #f9fafb;
+  color: #111111;
 }
 
 .quick-links-title {
@@ -1327,7 +1323,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   gap: 8px;
   font-size: 12px;
   font-weight: 600;
-  color: #94a3b8;
+  color: #111111;
   margin-bottom: 16px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -1336,7 +1332,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 .links-icon {
   width: 14px;
   height: 14px;
-  color: #cbd5e1;
+  color: #111111;
 }
 
 .quick-links-list {
@@ -1350,10 +1346,10 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   align-items: center;
   gap: 10px;
   padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.08);
   border-radius: 10px;
-  color: #cbd5e1;
+  color: #111111;
   text-decoration: none;
   font-size: 13px;
   font-weight: 500;
@@ -1369,10 +1365,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(102, 126, 234, 0.15),
-      transparent);
+  background: none;
   transition: left 0.6s ease;
 }
 
@@ -1383,9 +1376,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   left: 0;
   width: 0;
   height: 100%;
-  background: linear-gradient(135deg,
-      rgba(102, 126, 234, 0.1) 0%,
-      rgba(240, 147, 251, 0.1) 100%);
+  background: none;
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 10px;
 }
@@ -1399,13 +1390,13 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .quick-link:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(102, 126, 234, 0.4);
-  color: #ffffff;
+  background: #f9fafb;
+  border-color: rgba(17, 17, 17, 0.12);
+  color: #111111;
   transform: translateY(-3px) translateX(2px);
   box-shadow:
-    0 8px 25px rgba(0, 0, 0, 0.2),
-    0 4px 12px rgba(102, 126, 234, 0.15);
+    0 8px 25px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.04);
   text-decoration: none;
 }
 
@@ -1416,21 +1407,21 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
   position: relative;
-  color: #cbd5e1;
+  color: #111111;
 }
 
 .quick-link:hover .quick-link-icon {
   opacity: 1;
-  color: #ffffff;
+  color: #111111;
   transform: scale(1.12);
 }
 
 /* Bottom Section */
 .footer-bottom {
   padding: 16px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  background: #ffffff;
+  backdrop-filter: none;
 }
 
 .footer-bottom-content {
@@ -1449,7 +1440,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 
 .social-label {
   font-size: 14px;
-  color: #94a3b8;
+  color: #111111;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -1467,11 +1458,11 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #94a3b8;
+  color: #111111;
   text-decoration: none;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(20px);
+  border: 1px solid rgba(17, 17, 17, 0.1);
+  background: #ffffff;
+  backdrop-filter: none;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
@@ -1484,10 +1475,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(255, 255, 255, 0.1),
-      transparent);
+  background: none;
   transition: left 0.6s ease;
 }
 
@@ -1499,15 +1487,15 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   width: 22px;
   height: 22px;
   transition: all 0.3s ease;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  filter: none;
 }
 
 .social-link:hover {
   transform: translateY(-4px) scale(1.05);
-  color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.3);
-  background: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  color: #111111;
+  border-color: rgba(17, 17, 17, 0.15);
+  background: #f9fafb;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .social-link:hover svg {
@@ -1515,27 +1503,28 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .social-link.github:hover {
-  background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
-  border-color: #24292e;
-  box-shadow: 0 12px 32px rgba(36, 41, 46, 0.4);
+  background: #ffffff;
+  border-color: rgba(17, 17, 17, 0.15);
+  color: #111111;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .social-link.twitter:hover {
-  background: linear-gradient(135deg, #1da1f2 0%, #0d8bd9 100%);
-  border-color: #1da1f2;
-  box-shadow: 0 12px 32px rgba(29, 161, 242, 0.4);
+  background: #f9fafb;
+  border-color: rgba(17, 17, 17, 0.15);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .social-link.instagram:hover {
-  background: linear-gradient(135deg, #e4405f 0%, #833ab4 50%, #fccc63 100%);
-  border-color: #e4405f;
-  box-shadow: 0 12px 32px rgba(228, 64, 95, 0.4);
+  background: #f9fafb;
+  border-color: rgba(17, 17, 17, 0.15);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .social-link.linkedin:hover {
-  background: linear-gradient(135deg, #0077b5 0%, #005885 100%);
-  border-color: #0077b5;
-  box-shadow: 0 12px 32px rgba(0, 119, 181, 0.4);
+  background: #f9fafb;
+  border-color: rgba(17, 17, 17, 0.15);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .footer-bottom-center {
@@ -1552,7 +1541,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .legal-link {
-  color: #94a3b8;
+  color: #111111;
   text-decoration: none !important;
   font-size: 14px;
   font-weight: 500;
@@ -1563,7 +1552,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   white-space: nowrap;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(5px);
+  backdrop-filter: none;
 }
 
 .legal-link::before {
@@ -1573,9 +1562,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   top: 0;
   width: 0;
   height: 100%;
-  background: linear-gradient(135deg,
-      rgba(99, 102, 241, 0.1) 0%,
-      rgba(139, 92, 246, 0.1) 100%);
+  background: none;
   transition: width 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   z-index: 0;
 }
@@ -1585,20 +1572,20 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 }
 
 .legal-link:hover {
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(99, 102, 241, 0.4);
+  color: #111111;
+  background: #f9fafb;
+  border-color: rgba(17, 17, 17, 0.12);
   transform: translateY(-2px) scale(1.02);
   box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.15),
-    0 2px 8px rgba(99, 102, 241, 0.2);
+    0 6px 20px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04);
   text-decoration: none;
 }
 
 .legal-link:focus {
   outline: none;
-  border-color: rgba(99, 102, 241, 0.5);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  border-color: rgba(17, 17, 17, 0.18);
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.08);
 }
 
 .footer-bottom-right {
@@ -1608,7 +1595,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 
 .footer-copyright {
   text-align: right;
-  color: #94a3b8;
+  color: #111111;
   font-size: 14px;
   line-height: 1.6;
   font-weight: 500;
@@ -1624,43 +1611,17 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   color: #e53e3e;
 }
 
-/* Ensure footer text is white */
-.enhanced-footer,
-.enhanced-footer .container,
-.enhanced-footer .footer-hero,
-.enhanced-footer .footer-links-section,
-.enhanced-footer .footer-bottom,
-.enhanced-footer .newsletter-column {
-  color: #ffffff;
-}
-
 /* Target common text elements and links inside the footer */
 .enhanced-footer h1,
 .enhanced-footer h2,
 .enhanced-footer h3,
 .enhanced-footer h4,
-.enhanced-footer h5,
-.enhanced-footer h6,
-.enhanced-footer p,
-.enhanced-footer span,
-.enhanced-footer a,
-.enhanced-footer .footer-link,
-.enhanced-footer .quick-link,
-.enhanced-footer .legal-link,
-.enhanced-footer .newsletter-description,
-.enhanced-footer .footer-brand-title,
-.enhanced-footer .footer-trust-badge,
-.enhanced-footer .stat-label,
-.enhanced-footer .stat-number,
 .enhanced-footer .newsletter-stat,
 .enhanced-footer .toast-message,
 .enhanced-footer .error-text {
-  color: #ffffff;
+  color: #111111;
 }
 
-/* ==== REPLACEMENT: narrow white overrides (preserve hero/brand gradients) ==== */
-
-/* Target only UI text that must be solid white */
 .enhanced-footer .stat-label,
 .enhanced-footer .stat-number,
 .enhanced-footer .footer-column-title,
@@ -1673,28 +1634,9 @@ html[data-theme="light"] .enhanced-footer.light-theme {
 .enhanced-footer .newsletter-button,
 .enhanced-footer .footer-copyright,
 .enhanced-footer .social-label {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
+  color: #111111 !important;
+  -webkit-text-fill-color: #111111 !important;
 }
-
-/* Ensure SVG/icons follow readable color */
-.enhanced-footer svg {
-  color: #ffffff;
-  fill: currentColor;
-}
-
-/* Preserve headings/brand text gradients by NOT unsetting background-clip or -webkit-text-fill-color */
-.footer-hero-text h1,
-.footer-brand-title,
-.footer-brand-name {
-  /* Intentionally empty — keep their gradient text styles */
-}
-
-/* IMPORTANT: remove or comment out any of these broad rules if present elsewhere in the file:
-   - .enhanced-footer * { color: inherit; }
-   - Any blocks that set -webkit-background-clip: unset or background: none for headings
-   - The duplicated "Ensure footer text is white" / "Force solid white..." blocks
-*/
 
 /* Responsive Design */
 @media (max-width: 1200px) {
@@ -1702,33 +1644,59 @@ html[data-theme="light"] .enhanced-footer.light-theme {
     grid-template-columns: repeat(2, 1fr);
     gap: 32px;
     margin-top: 30px;
-    margin-bottom: 36px;
+    margin-bottom: 36px;}
     /* extra separation from footer links */
 
     .newsletter-column {
-      grid-column: span 2;
-    }
+      grid-column: span 1;
   }
 
   @media (max-width: 1024px) {
-    .footer-hero-text h1 {
-      font-size: 32px;
+    .footer-hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
     }
-
-    .footer-stats {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+  
+    .footer-hero-left {
+      width: 100%;
+      flex: none;
+      align-items: center;
     }
-
     .footer-links-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 28px;
+      gap: 24px;
     }
-
+    
     .newsletter-column {
-      grid-column: span 2;
-      margin-top: 20px;
+      grid-column: span 1;
+      margin-top: 0;
     }
+    
+    .footer-logo {
+      justify-content: center;
+    }
+    
+    .footer-brand-header {
+      align-items: center;
+    }
+    
+    .footer-hero-right {
+      width: 100%;
+      justify-content: center;
+      margin-top: 0;
+    }
+    
+    .footer-cta-buttons {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .second-line {
+      display: block;
+    }    }
   }
 
   @media (max-width: 768px) {
@@ -1773,32 +1741,39 @@ html[data-theme="light"] .enhanced-footer.light-theme {
     }
 
     .footer-links-grid {
-      grid-template-columns: 1fr;
-      gap: 24px;
+      grid-template-columns: 1fr !important;
+      width: 100%;
     }
 
     .footer-column {
       background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      border: 1px solid rgb(16 7 7 / 15%);
       border-radius: 16px;
       padding: 24px;
       backdrop-filter: blur(20px);
       transition: all 0.3s ease;
+      box-shadow: 0 8px 25px rgb(0 0 0 / 17%);
       overflow: visible;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
     }
 
     .footer-column:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgb(95 88 88 / 19%);
       border-color: rgba(255, 255, 255, 0.15);
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 8px 25px rgb(0 0 0 / 46%);
     }
 
     .footer-column-title {
+      display: flex;
+      align-items: center;
+      justify-content: left;
       text-align: center;
       margin-bottom: 20px;
       padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgb(21 2 2 / 10%);
     }
 
     .footer-links {
@@ -1809,7 +1784,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
       width: 100%;
       justify-content: flex-start;
       background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgb(69 62 62 / 22%);
       border-radius: 10px;
       margin: 0;
       white-space: nowrap;
@@ -1818,7 +1793,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
     }
 
     .footer-link:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgb(84 75 75 / 69%);
       border-color: rgba(255, 255, 255, 0.15);
       transform: translateX(4px);
     }
@@ -1900,12 +1875,15 @@ html[data-theme="light"] .enhanced-footer.light-theme {
       padding: 18px 24px;
       /* larger CTA for mobile */
       font-size: 15px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .newsletter-input {
       padding: 16px 18px;
       font-size: 15px;
       width: 100%;
+      box-sizing: border-box;
     }
   }
 
@@ -1917,10 +1895,6 @@ html[data-theme="light"] .enhanced-footer.light-theme {
     .footer-hero-text h1 {
       font-size: 24px;
       line-height: 1.3;
-    }
-
-    .footer-brand-name {
-      font-size: 20px;
     }
 
     .footer-stats {
@@ -2090,7 +2064,7 @@ html[data-theme="light"] .enhanced-footer.light-theme {
     width: 24px;
     height: 24px;
     margin-right: 12px;
-    color: #667eea;
+    color: #111111;
   }
 
   .toast-message h4 {
@@ -2157,17 +2131,17 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   .enhanced-footer h4,
   .enhanced-footer h5,
   .enhanced-footer h6 {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
+    color: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
     /* Safari/Chrome */
-    -webkit-background-clip: unset !important;
-    background-clip: unset !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
     background-image: none !important;
     background: none !important;
     text-shadow: none !important;
   }
 
-  /* Ensure regular text and links stay white as well */
+  /* Ensure regular text and links stay black as well */
   .enhanced-footer,
   .enhanced-footer p,
   .enhanced-footer span,
@@ -2178,45 +2152,24 @@ html[data-theme="light"] .enhanced-footer.light-theme {
   .enhanced-footer .footer-link,
   .enhanced-footer .quick-link,
   .enhanced-footer .legal-link {
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
+    color: #111111 !important;
+    -webkit-text-fill-color: #111111 !important;
   }
 
-  /* Keep controls/buttons visuals intact by not forcing their backgrounds */
-  .enhanced-footer .newsletter-button,
-  .enhanced-footer .link-badge,
-  .enhanced-footer .stat-icon,
-  .enhanced-footer .logo-container,
-  .enhanced-footer .social-link {
-    /* preserve existing backgrounds */
+  .enhanced-footer .footer-hero {
+    background: #ffffff !important;
+    color: #111111 !important;
   }
 
-  /* Restore purple gradient for stat numbers (override white) */
-  .enhanced-footer .stat-number {
-    background: linear-gradient(135deg,
-        #667eea 0%,
-        #764ba2 50%,
-        #f093fb 100%) !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.12) !important;
-  }
-
-  /* Restore purple gradient for brand/title (recodehive) */
   .enhanced-footer .footer-brand-name,
   .enhanced-footer .footer-brand-title,
-  .enhanced-footer .footer-hero-text h1 {
-    background: linear-gradient(135deg,
-        #667eea 0%,
-        #764ba2 50%,
-        #f093fb 100%) !important;
-    -webkit-background-clip: text !important;
-    background-clip: text !important;
-    -webkit-text-fill-color: transparent !important;
-    color: transparent !important;
-    text-shadow: 0 4px 12px rgba(118, 75, 162, 0.18) !important;
+  .enhanced-footer .footer-hero-text h1,
+  .enhanced-footer .footer-hero-text p {
+    color: #111111 !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    -webkit-text-fill-color: #111111 !important;
+    text-shadow: none !important;
   }
-  }
+
 

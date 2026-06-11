@@ -21,6 +21,7 @@ import {
   MonitorPlay,
   Newspaper,
   Rocket,
+  Github,
   Sparkles,
   Users,
   Video,
@@ -152,107 +153,59 @@ export default function FooterLayout(): ReactNode {
       <div className="footer-hero">
         <div className="container">
           <div className="footer-hero-content">
-            <div className="footer-logo-section">
-              <div className="footer-logo">
-                <div className="logo-container">
-                  <img
-                    src="/img/logo.png"
-                    alt="RecodeHive Logo"
-                    className="footer-logo-img"
-                  />
-                </div>
-                <div className="footer-brand-header">
-                  <h1 className="footer-brand-title">recodehive</h1>
-                  <div className="footer-trust-badge">
-                    <div className="trust-stars">
-                      <span className="star">⭐</span>
-                      <span className="star">⭐</span>
-                      <span className="star">⭐</span>
-                      <span className="star">⭐</span>
-                      <span className="star">⭐</span>
-                    </div>
-                    <span className="trust-text">
-                      Trusted by 50K+ developers
-                    </span>
+            <div className="footer-hero-left">
+              <div className="footer-logo-section">
+                <div className="footer-logo">
+                  <div className="logo-container">
+                    <img
+                      src="/img/logo.png"
+                      alt="RecodeHive Logo"
+                      className="footer-logo-img"
+                    />
+                  </div>
+                  <div className="footer-brand-header">
+                    <h1 className="footer-brand-title">recodehive</h1>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="footer-hero-text">
-              <h1>Empowering the Next Generation of Developers</h1>
-              <p>
-                Master cutting-edge technologies, build innovative projects, and
-                join a thriving community of developers passionate about
-                open-source innovation and continuous learning.
-              </p>
-            </div>
-          </div>
 
-          {/* Stats Section */}
-          <div className="footer-stats">
-            <div
-              className="stat-item"
-              title="Growing community of active learners"
-            >
-              <div className="stat-icon stat-icon-learners">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zM4 18v-6h2.5l6 6H4zm16.5-9.5L19 7l-7.5 7.5L9 12l-2.5 2.5L4 12l7.5-7.5L14 7l6.5 1.5z" />
-                </svg>
-              </div>
-              <div className="stat-content">
-                <div className="stat-number">
-                  <Counter value={parseInt(stats.activeUsers)} suffix="K+" />
-                </div>
-                <div className="stat-label">Active Learners</div>
+              <div className="footer-hero-text">
+                <h1>
+                  Collaboration first,
+                  <span className="second-line">Code second.</span>
+                </h1>
               </div>
             </div>
-
-            <div
-              className="stat-item"
-              title="Comprehensive tutorials and courses"
-            >
-              <div className="stat-icon stat-icon-tutorials">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-                </svg>
-              </div>
-              <div className="stat-content">
-                <div className="stat-number">
-                  <Counter value={parseInt(stats.tutorials)} suffix="+" />
-                </div>
-                <div className="stat-label">Tutorials</div>
-              </div>
-            </div>
-
-            <div
-              className="stat-item"
-              title="High success rate in learning outcomes"
-            >
-              <div className="stat-icon stat-icon-success">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                </svg>
-              </div>
-              <div className="stat-content">
-                <div className="stat-number">
-                  <Counter value={parseInt(stats.peopleSponsored)} suffix="+" />
-                </div>
-                <div className="stat-label">People Sponsored</div>
-              </div>
-            </div>
-
-            <div
-              className="stat-item"
-              title="Round-the-clock community support"
-            >
-              <div className="stat-icon stat-icon-support">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-6h2v6zm0-8h-2V7h2v4z" />
-                </svg>
-              </div>
-              <div className="stat-content">
-                <div className="stat-number">{stats.supportHours}</div>
-                <div className="stat-label">Support</div>
+            <div className="footer-hero-right">
+              <div className="footer-cta-buttons">
+                <Link
+                  to="/blog"
+                  className="btn"
+                  aria-label="Read Blog"
+                  style={{
+                    background: "#ffffff",
+                    color: "#111111",
+                    border: "1.5px solid #111111",
+                  }}
+                >
+                  <Newspaper size={16} strokeWidth={2} aria-hidden="true" />
+                  Read Blog
+                </Link>
+                <a
+                  href="https://github.com/recodehive/recode-website"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn"
+                  aria-label="Star on GitHub"
+                  style={{
+                    background: "#111111",
+                    color: "#ffffff",
+                    border: "1.5px solid #111111",
+                  }}
+                >
+                  <Github size={16} strokeWidth={2} aria-hidden="true" />
+                  Star on GitHub
+                </a>
               </div>
             </div>
           </div>
@@ -280,13 +233,6 @@ export default function FooterLayout(): ReactNode {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/courses" className="footer-link">
-                    <FooterIcon icon={Video} className="link-icon" />
-                    Video Courses
-                    <span className="link-badge new">New</span>
-                  </Link>
-                </li>
-                <li>
                   <Link to="/get-started" className="footer-link">
                     <FooterIcon icon={Rocket} className="link-icon" />
                     Get Started
@@ -296,6 +242,19 @@ export default function FooterLayout(): ReactNode {
                   <Link to="/badges/github-badges" className="footer-link">
                     <FooterIcon icon={Award} className="link-icon" />
                     GitHub Badges
+                  </Link>
+                </li>
+                <li>
+                  <Link href="https://dev.recodehive.com/devfolio" className="footer-link">
+                    <FooterIcon icon={Award} className="link-icon" />
+                    GitHub Profiles
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/courses" className="footer-link">
+                    <FooterIcon icon={Video} className="link-icon" />
+                    Video Courses
+                    <span className="link-badge new">New</span>
                   </Link>
                 </li>
               </ul>
@@ -311,6 +270,13 @@ export default function FooterLayout(): ReactNode {
               </h3>
               <ul className="footer-links">
                 <li>
+                  <Link to="/careers" className="footer-link">
+                    <FooterIcon icon={BriefcaseBusiness} className="link-icon"/>
+                    Careers
+                    <span className="link-badge hiring">We're Hiring!</span>
+                  </Link>
+                </li>
+                <li>
                   <Link to="/community" className="footer-link">
                     <FooterIcon icon={Users} className="link-icon" />
                     Community
@@ -320,16 +286,6 @@ export default function FooterLayout(): ReactNode {
                   <Link to="/blogs" className="footer-link">
                     <FooterIcon icon={Newspaper} className="link-icon" />
                     Our Blog
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/careers" className="footer-link">
-                    <FooterIcon
-                      icon={BriefcaseBusiness}
-                      className="link-icon"
-                    />
-                    Careers
-                    <span className="link-badge hiring">We're Hiring!</span>
                   </Link>
                 </li>
                 <li>
@@ -357,24 +313,27 @@ export default function FooterLayout(): ReactNode {
               </h3>
               <ul className="footer-links">
                 <li>
-                  <Link to="/contact-us" className="footer-link">
-                    <FooterIcon
-                      icon={MessageCircleQuestion}
-                      className="link-icon"
-                    />
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
                   <Link to="/broadcasts" className="footer-link">
                     <FooterIcon icon={MonitorPlay} className="link-icon" />
                     Broadcasts
                   </Link>
                 </li>
                 <li>
+                  <Link to="/contact-us" className="footer-link">
+                    <FooterIcon icon={MessageCircleQuestion} className="link-icon"/>
+                    Contact Us
+                  </Link>
+                </li>
+                <li>
                   <Link to="/podcasts" className="footer-link">
                     <FooterIcon icon={Mic2} className="link-icon" />
                     Podcasts
+                  </Link>
+                </li>
+                <li>
+                  <Link to="https://github.com/orgs/recodehive/projects/9" className="footer-link">
+                    <FooterIcon icon={MonitorPlay} className="link-icon" />
+                    Roadmap
                   </Link>
                 </li>
               </ul>
@@ -406,8 +365,9 @@ export default function FooterLayout(): ReactNode {
                 />
                 <button
                   type="submit"
-                  className={`newsletter-button ${isSubscribed ? "subscribed" : ""
-                    }`}
+                  className={`newsletter-button ${
+                    isSubscribed ? "subscribed" : ""
+                  }`}
                   disabled={isSubscribed}
                 >
                   {isSubscribed ? "Subscribed!" : "Subscribe Now"}
@@ -416,7 +376,10 @@ export default function FooterLayout(): ReactNode {
               </form>
               <div className="newsletter-stats">
                 <span className="newsletter-stat">
-                  <FooterIcon icon={BarChart3} className="newsletter-stat-icon" />
+                  <FooterIcon
+                    icon={BarChart3}
+                    className="newsletter-stat-icon"
+                  />
                   1.2K+ developers joined this week
                 </span>
               </div>
@@ -528,9 +491,8 @@ export default function FooterLayout(): ReactNode {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    the Community
+                    community.
                   </a>
-                  .
                 </span>
               </div>
             </div>

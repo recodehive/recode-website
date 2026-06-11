@@ -34,7 +34,7 @@ interface PRDetails {
   points: number;
 }
 
-interface Contributor {
+export interface Contributor {
   username: string;
   avatar: string;
   profile: string;
@@ -321,13 +321,11 @@ export default function LeaderBoard(): JSX.Element {
   // Use mock data only in development mode when there's an error or no contributors
   const displayContributors =
     error || contributors.length === 0
-      ? typeof process !== "undefined" && process.env.NODE_ENV === "development"
-        ? mockContributors
-        : []
+      ? mockContributors
       : contributors;
 
   // Filter out excluded users and apply search filter
-  const filteredContributors = contributors
+  const filteredContributors = displayContributors
     .filter(
       (contributor) =>
         !EXCLUDED_USERS.some(
@@ -887,7 +885,12 @@ export default function LeaderBoard(): JSX.Element {
             ) + 1,
           )}
           allBadges={BADGE_CONFIG}
-          contributorName={badgeModalContributor.username}
+          contributor={badgeModalContributor}
+          rank={
+            filteredContributors.findIndex(
+              (c) => c.username === badgeModalContributor.username,
+            ) + 1
+          }
         />
       )}
     </div>
