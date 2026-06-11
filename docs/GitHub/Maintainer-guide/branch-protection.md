@@ -1,13 +1,13 @@
 ---
-id: enable-discussion
-title: How to Enable GitHub Discussions
-sidebar_label: How to Enable Discussions
-sidebar_position: 4
-tags: [GitHub, GitHub-development, document-structure, GitHub repo,]
-description: In this tutorial, you will learn about the how to create a GitHub repo by Online GUI interface. 
+id: branch-protection
+title: How to Block Merges and Require Reviews on GitHub
+sidebar_label: How to do branch protection
+sidebar_position: 5
+tags: [GitHub, Git, Open Source, Documentation]
+description: In this tutorial, you will learn how to create and initialize a new GitHub repository from scratch using the GitHub web interface.
 ---
 
-In the previous post we spoke about commit, fork, clone, in this post we gonna deep dive into the terminology by creating a GitHub Repository from scratch. 
+In the previous post we spoke about milestones, creating GitHub projects, Create labels, for maintainers.
 In order to create a project and host, the repository is a place where you add all your program code files and other documentation. 
 
 ### Prerequisites
@@ -127,9 +127,6 @@ I'm going to add my resume and add my name as heading to the ``README.md`` file
 
 Now you will be able to see the uploaded resume. 
 
-### Watch the video Tutorial
-
-<iframe width="880" height="480" src="https://www.youtube.com/embed/XWjx-RjmhRM?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="How to create your first GitHub repository" style={{ border: "none" }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Conclusion
 

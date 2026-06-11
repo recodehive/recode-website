@@ -65,7 +65,8 @@ const sidebars: SidebarsConfig = {
             "GitHub/Maintainer-guide/github-labels",
             "GitHub/Maintainer-guide/milestone",
             "GitHub/Maintainer-guide/github-project",
-            "GitHub/Maintainer-guide/enable-dicussion",
+            "GitHub/Maintainer-guide/enable-discussion",
+            "GitHub/Maintainer-guide/branch-protection",
           ],
         },
         {
