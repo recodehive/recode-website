@@ -1,10 +1,12 @@
 // src/components/dashboard/LeaderBoard/BadgeModal.tsx
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaTimes } from "react-icons/fa";
+import { FaTimes, FaShareAlt, FaDownload } from "react-icons/fa";
 import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
+import { Contributor } from "./leaderboard";
+import { generateShareCard } from "../../../utils/cardGenerator";
 
-interface BadgeConfig {
+export interface BadgeConfig {
   image: string;
   name: string;
   criteria: (prs: number, points: number) => boolean;
@@ -15,7 +17,8 @@ interface BadgeModalProps {
   onClose: () => void;
   earnedBadges: string[];
   allBadges: BadgeConfig[];
-  contributorName?: string;
+  contributor: Contributor;
+  rank: number;
 }
 
 export default function BadgeModal({
@@ -23,9 +26,85 @@ export default function BadgeModal({
   onClose,
   earnedBadges,
   allBadges,
-  contributorName,
+  contributor,
+  rank,
 }: BadgeModalProps): JSX.Element | null {
   const { isDark } = useSafeColorMode();
+  const [isSharing, setIsSharing] = useState(false);
+  const [isDownloading, setIsDownloading] = useState(false);
+  const [shareError, setShareError] = useState<string | null>(null);
+
+  const getCardBlob = async () => {
+    return await generateShareCard({
+      username: contributor.username,
+      avatarUrl: contributor.avatar,
+      prs: contributor.prs,
+      points: contributor.points,
+      rank,
+      earnedBadges,
+      allBadges,
+    });
+  };
+
+  const handleDownloadCard = async () => {
+    setIsDownloading(true);
+    setShareError(null);
+    try {
+      const cardBlob = await getCardBlob();
+      const downloadUrl = URL.createObjectURL(cardBlob);
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = `recodehive-${contributor.username}-achievements.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(downloadUrl);
+    } catch (err) {
+      console.error("Error generating or downloading card: ", err);
+      setShareError("Could not download achievements card. Please try again.");
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  const handleShareCard = async () => {
+    setIsSharing(true);
+    setShareError(null);
+    try {
+      const cardBlob = await getCardBlob();
+      const file = new File(
+        [cardBlob],
+        `recodehive-${contributor.username}-achievements.png`,
+        { type: "image/png" }
+      );
+
+      if (
+        navigator.share &&
+        navigator.canShare &&
+        navigator.canShare({ files: [file] })
+      ) {
+        await navigator.share({
+          files: [file],
+          title: "My Recode Hive Open Source Achievements",
+          text: `Check out my open-source contribution achievements on Recode Hive! I am ranked #${rank} with ${contributor.prs} merged PRs and ${contributor.points} points. 🚀`,
+        });
+      } else {
+        const downloadUrl = URL.createObjectURL(cardBlob);
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = `recodehive-${contributor.username}-achievements.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(downloadUrl);
+      }
+    } catch (err) {
+      console.error("Error generating or sharing card: ", err);
+      setShareError("Could not share achievements card. Please try again.");
+    } finally {
+      setIsSharing(false);
+    }
+  };
 
   // Close modal on Escape key press
   useEffect(() => {
@@ -79,9 +158,7 @@ export default function BadgeModal({
                   id="badge-modal-title"
                   className={`badge-modal-title ${isDark ? "dark" : "light"}`}
                 >
-                  {contributorName
-                    ? `${contributorName}'s Badges`
-                    : "Achievement Badges"}
+                  {contributor.username ? `${contributor.username}'s Badges` : "Achievement Badges"}
                 </h2>
                 <p
                   className={`badge-modal-subtitle ${isDark ? "dark" : "light"}`}
@@ -89,17 +166,50 @@ export default function BadgeModal({
                   {earnedBadges.length} of {allBadges.length} badges earned
                 </p>
               </div>
-              <button
-                className={`badge-modal-close ${isDark ? "dark" : "light"}`}
-                onClick={onClose}
-                aria-label="Close modal"
-              >
-                <FaTimes />
-              </button>
+              <div className="badge-modal-header-actions">
+                <button
+                  className={`badge-modal-download-btn ${isDark ? "dark" : "light"}`}
+                  onClick={handleDownloadCard}
+                  disabled={isDownloading || isSharing}
+                  aria-label="Download achievements card"
+                  title="Download Card"
+                >
+                  {isDownloading ? (
+                    <span className="badge-modal-spinner" />
+                  ) : (
+                    <FaDownload />
+                  )}
+                </button>
+                <button
+                  className={`badge-modal-share-btn ${isDark ? "dark" : "light"}`}
+                  onClick={handleShareCard}
+                  disabled={isDownloading || isSharing}
+                  aria-label="Share achievements card"
+                >
+                  {isSharing ? (
+                    <span className="badge-modal-spinner" />
+                  ) : (
+                    <FaShareAlt style={{ marginRight: 6 }} />
+                  )}
+                  {isSharing ? "Generating..." : "Share Card"}
+                </button>
+                <button
+                  className={`badge-modal-close ${isDark ? "dark" : "light"}`}
+                  onClick={onClose}
+                  aria-label="Close modal"
+                >
+                  <FaTimes />
+                </button>
+              </div>
             </div>
 
             {/* Modal Body */}
             <div className={`badge-modal-body ${isDark ? "dark" : "light"}`}>
+              {shareError && (
+                <div className={`badge-modal-error-banner ${isDark ? "dark" : "light"}`}>
+                  {shareError}
+                </div>
+              )}
               <div className="badge-grid">
                 {allBadges.map((badge, index) => {
                   const isEarned = earnedBadges.includes(badge.image);
