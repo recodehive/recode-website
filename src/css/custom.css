@@ -8,7 +8,7 @@
 /* FINAL MOBILE OVERRIDE: aggressively remove any top gap on narrow viewports
    This targets any leftover placeholders, pseudo-elements, safe-area padding,
    or theme-provided offsets. Keep it last so it wins over other rules. */
-/* Keep your 1024px rule to hide the placeholder element */
+/* Hide the placeholder element on tablets and smaller */
 @media screen and (max-width: 1024px) {
   .theme-doc-navbar-placeholder,
   .theme-doc-navbar-placeholder * {
