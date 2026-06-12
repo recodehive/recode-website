@@ -8,9 +8,8 @@
 /* FINAL MOBILE OVERRIDE: aggressively remove any top gap on narrow viewports
    This targets any leftover placeholders, pseudo-elements, safe-area padding,
    or theme-provided offsets. Keep it last so it wins over other rules. */
+/* Hide the placeholder element on tablets and smaller */
 @media screen and (max-width: 1024px) {
-
-  /* remove any generated placeholders or spacer elements that push content down */
   .theme-doc-navbar-placeholder,
   .theme-doc-navbar-placeholder * {
     display: none !important;
@@ -19,6 +18,17 @@
     padding: 0 !important;
     overflow: hidden !important;
   }
+}
+
+/* Add this 480px rule right below it to fix the mobile menu links text overlapping */
+@media screen and (max-width: 480px) {
+  .navbar-sidebar .menu__list-item {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    position: relative !important;
+  }
+}
+
 
   /* global resets for top spacing and pseudo-elements */
   html,
@@ -2928,63 +2938,4 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
-}
 
-
-.theme-doc-main-container,
-.theme-doc-markdown,
-main[class*='docMainContainer_'] {
-  position: relative;
-  z-index: 1 !important;
-}
-
-.theme-doc-markdown h1,
-.theme-doc-markdown h2,
-.theme-doc-markdown h3,
-.theme-doc-markdown span,
-.theme-doc-markdown div,
-.theme-doc-markdown label {
-  z-index: 1 !important;
-}
-
-.theme-doc-sidebar-container,
-.menu--responsive,
-div[class*='sidebarViewport_'] {
-  z-index: 9999 !important;
-}
-
-/* Leaderboard Pagination Button Icon Visibility Fix */
-.pagination-btn {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 40px !important;
-  height: 40px !important;
-  border: 1px solid var(--ifm-color-emphasis-300) !important;
-  background: var(--ifm-background-surface-color) !important;
-  border-radius: 8px !important;
-  cursor: pointer !important;
-  transition: all 0.2s ease !important;
-  color: var(--ifm-color-primary) !important;
-  padding: 0 !important;
-}
-
-.pagination-btn svg {
-  stroke: currentColor !important;
-  fill: none !important;
-  stroke-width: 2px !important;
-  width: 20px !important;
-  height: 20px !important;
-  display: block !important;
-}
-
-.pagination-btn:hover:not(.disabled) {
-  background: var(--ifm-color-primary) !important;
-  color: white !important;
-  border-color: var(--ifm-color-primary) !important;
-}
-
-.pagination-btn.disabled {
-  opacity: 0.4 !important;
-  cursor: not-allowed !important;
-}
