@@ -1,0 +1,22 @@
+[
+  { "id": 1, "category": "Git & GitHub Tips", "tip": "Use `git stash` to temporarily save uncommitted changes before switching branches." },
+  { "id": 2, "category": "Git & GitHub Tips", "tip": "Use `git log --oneline` for a compact view of your commit history." },
+  { "id": 3, "category": "Git & GitHub Tips", "tip": "Always write meaningful commit messages — future you will thank present you." },
+  { "id": 4, "category": "Git & GitHub Tips", "tip": "Use `git bisect` to find the commit that introduced a bug using binary search." },
+  { "id": 5, "category": "JavaScript/React Tips", "tip": "Use optional chaining (`?.`) to safely access deeply nested object properties." },
+  { "id": 6, "category": "JavaScript/React Tips", "tip": "Prefer `const` over `let` when the variable won't be reassigned." },
+  { "id": 7, "category": "JavaScript/React Tips", "tip": "Use React.memo() to prevent unnecessary re-renders of functional components." },
+  { "id": 8, "category": "JavaScript/React Tips", "tip": "Use the nullish coalescing operator (`??`) instead of `||` when 0 or empty string are valid values." },
+  { "id": 9, "category": "Open Source Contribution Tips", "tip": "Always read CONTRIBUTING.md before opening a pull request." },
+  { "id": 10, "category": "Open Source Contribution Tips", "tip": "Start with 'good first issue' labeled issues when contributing to a new project." },
+  { "id": 11, "category": "Open Source Contribution Tips", "tip": "Keep your PRs small and focused — one feature or fix per PR." },
+  { "id": 12, "category": "Open Source Contribution Tips", "tip": "Sync your fork with the upstream repo regularly to avoid merge conflicts." },
+  { "id": 13, "category": "VS Code Shortcuts", "tip": "Use `Ctrl + P` to quickly open any file in your project." },
+  { "id": 14, "category": "VS Code Shortcuts", "tip": "Use `Ctrl + Shift + K` to delete an entire line instantly." },
+  { "id": 15, "category": "VS Code Shortcuts", "tip": "Use `Alt + Click` to place multiple cursors for simultaneous editing." },
+  { "id": 16, "category": "VS Code Shortcuts", "tip": "Use `Ctrl + backtick` to toggle the integrated terminal." },
+  { "id": 17, "category": "Productivity Tricks", "tip": "Use the Pomodoro technique — 25 minutes of focused work followed by a 5-minute break." },
+  { "id": 18, "category": "Productivity Tricks", "tip": "Rubber duck debugging: explain your code out loud to find bugs faster." },
+  { "id": 19, "category": "Productivity Tricks", "tip": "Write TODO comments in code to track unfinished work." },
+  { "id": 20, "category": "Productivity Tricks", "tip": "Take breaks — stepping away from a problem often leads to the solution faster." }
+]
