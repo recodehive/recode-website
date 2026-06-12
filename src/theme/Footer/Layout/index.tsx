@@ -302,7 +302,6 @@ export default function FooterLayout(): ReactNode {
                 </li>
               </ul>
             </div>
-
             {/* Support Column */}
             <div className="footer-column">
               <h3 className="footer-column-title">

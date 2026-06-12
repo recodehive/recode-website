@@ -671,12 +671,13 @@
     display: none;
   }
 
-  .dashboard-menu-btn {
-    display: block;
+  .dashboard-menu-btn,
+  .dashboard-mobile-menu {
+    display: none !important;
   }
 
   .dashboard-main-content {
-    padding: 80px 20px 40px;
+    padding: 24px 20px 40px;
   }
 
   .dashboard-home-container {
@@ -750,7 +751,7 @@
 
 @media (max-width: 768px) {
   .dashboard-main-content {
-    padding: 80px 16px 40px;
+    padding: 24px 16px 40px;
   }
 
   .dashboard-stat-card {
