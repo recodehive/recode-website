@@ -9,7 +9,6 @@
    This targets any leftover placeholders, pseudo-elements, safe-area padding,
    or theme-provided offsets. Keep it last so it wins over other rules. */
 @media screen and (max-width: 1024px) {
-
   /* remove any generated placeholders or spacer elements that push content down */
   .theme-doc-navbar-placeholder,
   .theme-doc-navbar-placeholder * {
@@ -63,7 +62,10 @@
     top: 0 !important;
     z-index: 99999 !important;
     padding-top: env(safe-area-inset-top, 0px) !important;
-    background: var(--ifm-navbar-background-color, var(--ifm-background-color, #0b1220)) !important;
+    background: var(
+      --ifm-navbar-background-color,
+      var(--ifm-background-color, #0b1220)
+    ) !important;
     box-shadow: none !important;
   }
 
@@ -80,9 +82,10 @@
   #__docusaurus,
   .main-wrapper {
     margin: 0 !important;
-    padding-top: calc(var(--ifm-navbar-height, 56px) + env(safe-area-inset-top, 0px)) !important;
+    padding-top: calc(
+      var(--ifm-navbar-height, 56px) + env(safe-area-inset-top, 0px)
+    ) !important;
   }
-
 }
 
 /* Careers testimonials */
@@ -172,7 +175,6 @@
  * - sidebar-active.css
  * - active-sidebar-override.css
  */
-
 
 /* ================= SECTION 1: BASIC MENU STRUCTURE ================= */
 
@@ -278,7 +280,7 @@ a.menu__link.menu__link--active div span:first-child {
 /* ================= SECTION 4: CUSTOM SIDEBAR CATEGORY THEMES ================= */
 
 /* GitHub theme */
-.custom-sidebar-github>.menu__list-item-collapsible>.menu__link {
+.custom-sidebar-github > .menu__list-item-collapsible > .menu__link {
   background: linear-gradient(135deg, #24292e, #586069);
   color: white;
   border-radius: 8px;
@@ -287,7 +289,7 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* Python theme */
-.custom-sidebar-python>.menu__list-item-collapsible>.menu__link {
+.custom-sidebar-python > .menu__list-item-collapsible > .menu__link {
   background: linear-gradient(135deg, #3776ab, #ffd43b);
   color: white;
   border-radius: 8px;
@@ -296,7 +298,7 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* SQL theme */
-.custom-sidebar-sql>.menu__list-item-collapsible>.menu__link {
+.custom-sidebar-sql > .menu__list-item-collapsible > .menu__link {
   background: linear-gradient(135deg, #336791, #4479a1);
   color: white;
   border-radius: 8px;
@@ -305,7 +307,7 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* Technical theme */
-.custom-sidebar-technical>.menu__list-item-collapsible>.menu__link {
+.custom-sidebar-technical > .menu__list-item-collapsible > .menu__link {
   background: linear-gradient(135deg, #ff6b6b, #ee5a24);
   color: white;
   border-radius: 8px;
@@ -314,9 +316,9 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* Custom subcategory styling */
-.custom-sidebar-setup>.menu__list-item-collapsible>.menu__link,
-.custom-sidebar-basics>.menu__list-item-collapsible>.menu__link,
-.custom-sidebar-maintainer>.menu__list-item-collapsible>.menu__link {
+.custom-sidebar-setup > .menu__list-item-collapsible > .menu__link,
+.custom-sidebar-basics > .menu__list-item-collapsible > .menu__link,
+.custom-sidebar-maintainer > .menu__list-item-collapsible > .menu__link {
   background: rgba(36, 41, 46, 0.1);
   border-left: 3px solid #24292e;
   padding-left: 16px;
@@ -324,12 +326,12 @@ a.menu__link.menu__link--active div span:first-child {
 }
 
 /* Hover effects for all custom categories */
-.custom-sidebar-github>.menu__list-item-collapsible>.menu__link:hover,
-.custom-sidebar-python>.menu__list-item-collapsible>.menu__link:hover,
-.custom-sidebar-sql>.menu__list-item-collapsible>.menu__link:hover,
-.custom-sidebar-nextjs>.menu__list-item-collapsible>.menu__link:hover,
-.custom-sidebar-gsa>.menu__list-item-collapsible>.menu__link:hover,
-.custom-sidebar-technical>.menu__list-item-collapsible>.menu__link:hover {
+.custom-sidebar-github > .menu__list-item-collapsible > .menu__link:hover,
+.custom-sidebar-python > .menu__list-item-collapsible > .menu__link:hover,
+.custom-sidebar-sql > .menu__list-item-collapsible > .menu__link:hover,
+.custom-sidebar-nextjs > .menu__list-item-collapsible > .menu__link:hover,
+.custom-sidebar-gsa > .menu__list-item-collapsible > .menu__link:hover,
+.custom-sidebar-technical > .menu__list-item-collapsible > .menu__link:hover {
   transform: translateX(4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -436,6 +438,28 @@ html[data-theme="dark"] article blockquote {
     color var(--ifm-transition-fast) ease;
 }
 
+/* ====== Navbar stacking fix for Docs pages ======
+   Ensure the top navbar stays fully visible above the docs sidebar
+   and does not get pushed or clipped when the sidebar is sticky. */
+body:has(.theme-doc-sidebar-container) .theme-doc-navbar,
+body:has(.theme-doc-sidebar-container) .navbar {
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 99999 !important;
+}
+
+/* Prevent any transform or clipping on navbar containers that can
+   create new stacking contexts and cause overlap issues */
+body:has(.theme-doc-sidebar-container) .navbar__inner,
+body:has(.theme-doc-sidebar-container) .navbar__items {
+  transform: none !important;
+  will-change: auto !important;
+  overflow: visible !important;
+}
+
 /*======= SECTION 6: Fix navbar alignment and spacing ======== */
 .navbar {
   /* padding: 0 1rem; */
@@ -488,14 +512,13 @@ html[data-theme="dark"] article blockquote {
   justify-content: center !important;
 }
 
-.mb-10.text-center>p,
+.mb-10.text-center > p,
 .mb-10.text-center p.mx-auto {
   margin-left: auto !important;
   margin-right: auto !important;
 }
 
 .navbar__items {
-
   display: flex;
   align-items: center;
   gap: 0.3rem !important;
@@ -503,7 +526,7 @@ html[data-theme="dark"] article blockquote {
   padding: 0 !important;
 }
 
-.mb-10.text-center>p.mx-auto.max-w-3xl {
+.mb-10.text-center > p.mx-auto.max-w-3xl {
   align-self: center !important;
   text-align: center !important;
   width: 100% !important;
@@ -516,7 +539,7 @@ html[data-theme="dark"] article blockquote {
 }
 
 /* ======== SECTION 7 : Adjust individual navbar items ==========*/
-.navbar__items>.navbar__item {
+.navbar__items > .navbar__item {
   padding: 0.2rem 0.3rem !important;
   margin: 0 !important;
 }
@@ -547,7 +570,6 @@ html[data-theme="dark"] article blockquote {
 
 /* Ensure dropdowns are visible on big screens */
 @media (min-width: 1300px) {
-
   .navbar__item.dropdown,
   .navbar__item:has(.dropdown-content) {
     position: relative !important;
@@ -728,7 +750,6 @@ body {
 
 /* =====  SECTION 10: DESKTOP NAVBAR ENHANCEMENTS ===== */
 @media (min-width: 1300px) {
-
   /* Better spacing for desktop navbar */
   .navbar__inner {
     max-width: 1400px;
@@ -753,7 +774,10 @@ body {
   * Hide all navbar items on small screens except the toggle, brand,
   * and the Clerk auth control.
   */
-  .navbar__items .navbar__item:not(.navbar__toggle):not(.navbar__brand):not( :has(#firebase-auth-github-navbar)) {
+  .navbar__items
+    .navbar__item:not(.navbar__toggle):not(.navbar__brand):not(
+      :has(#firebase-auth-github-navbar)
+    ) {
     display: none !important;
   }
 
@@ -958,8 +982,8 @@ body {
 }
 
 /* Prevent grid content from forcing overflow in the dropdown rows */
-.dropdown__menu .grid>.col-span-2,
-.dropdown-content .grid>.col-span-2 {
+.dropdown__menu .grid > .col-span-2,
+.dropdown-content .grid > .col-span-2 {
   min-width: 0 !important;
   /* allow the icon column to shrink inside the 3-col grid */
 }
@@ -969,7 +993,7 @@ body {
 .dropdown-content .grid {
   width: 100% !important;
   /* Comfortable space between the label column and icons column */
-  column-gap: 0.6rem !important;
+  column-gap: 1rem !important;
   /* Subtle vertical space per row */
   padding: 0.35rem 0 !important;
 }
@@ -982,8 +1006,8 @@ body {
 }
 
 /* Add breathing room between the left label and the vertical separator */
-.dropdown__menu .grid>.border-r.col-span-1,
-.dropdown-content .grid>.border-r.col-span-1 {
+.dropdown__menu .grid > .border-r.col-span-1,
+.dropdown-content .grid > .border-r.col-span-1 {
   padding-right: 0.5rem !important;
 }
 
@@ -1033,60 +1057,6 @@ body {
 .dropdown-content .col-span-1,
 .dropdown-content .col-span-2 {
   color: var(--ifm-font-color-base);
-}
-
-/* Prevent labels in the left column of navbar dropdowns from wrapping */
-.dropdown-content .border-r.col-span-1,
-.dropdown__menu .border-r.col-span-1,
-.dropdown-content .col-span-1>a,
-.dropdown__menu .col-span-1>a {
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-}
-
-/* Stronger layout rules to keep labels and icons aligned across deployments */
-.dropdown__menu .grid>.border-r.col-span-1,
-.dropdown-content .grid>.border-r.col-span-1 {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  flex: 0 0 auto !important;
-  min-width: auto !important;
-  /* allow label to size to content */
-  padding-right: 0.4rem !important;
-}
-
-/* Make the label itself use a single line and center vertically */
-.dropdown__menu .grid>.border-r.col-span-1 a,
-.dropdown-content .grid>.border-r.col-span-1 a {
-  display: inline-block !important;
-  white-space: nowrap !important;
-  line-height: 1 !important;
-}
-
-/* Ensure icon groups are vertically centered and consistent */
-.dropdown__menu .grid .nav__icons,
-.dropdown-content .grid .nav__icons {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.6rem !important;
-}
-
-.dropdown__menu .grid .nav__icons img,
-.dropdown-content .grid .nav__icons img {
-  display: block !important;
-  margin: 0 !important;
-}
-
-/* Fallback for very narrow viewports: reduce min-width slightly */
-@media (max-width: 480px) {
-
-  .dropdown__menu .grid>.border-r.col-span-1,
-  .dropdown-content .grid>.border-r.col-span-1 {
-    min-width: 72px !important;
-  }
 }
 
 .dropdown-content a:hover {
@@ -1198,9 +1168,11 @@ html.theme-light .text-gray-900 {
 
 /* Ensure the specific block is forced light in light mode */
 html[data-theme="light"] .interview-prep-page .technical-outer {
-  background-image: linear-gradient(135deg,
-      #eff6ff 0%,
-      #f8fafc 100%) !important;
+  background-image: linear-gradient(
+    135deg,
+    #eff6ff 0%,
+    #f8fafc 100%
+  ) !important;
   background-color: #ffffff !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
@@ -1211,9 +1183,11 @@ html[data-theme="light"] .interview-prep-page .technical-outer {
 
 /* Companies tab: use white gradients in light mode and remove overlays */
 [data-theme="light"] .company-outer {
-  background-image: linear-gradient(135deg,
-      #ffffff 0%,
-      #f8fafc 100%) !important;
+  background-image: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f8fafc 100%
+  ) !important;
   background-color: #ffffff !important;
   color: #0f172a !important;
   isolation: isolate !important;
@@ -1223,7 +1197,7 @@ html[data-theme="light"] .interview-prep-page .technical-outer {
 }
 
 /* hide the subtle pattern overlay added inside the component */
-[data-theme="light"] .company-outer>.absolute.inset-0,
+[data-theme="light"] .company-outer > .absolute.inset-0,
 [data-theme="light"] .company-outer .absolute.inset-0.opacity-5 {
   display: none !important;
   background: none !important;
@@ -1246,12 +1220,11 @@ html[data-theme="light"] .interview-prep-page .technical-outer {
   /* layered soft shadows for a realistic elevated card */
   box-shadow:
     0 2px 6px rgba(2, 6, 23, 0.06),
-    /* subtle near shadow */
-    0 12px 24px rgba(2, 6, 23, 0.08),
-    /* mid shadow for depth */
-    0 32px 60px rgba(2, 6, 23, 0.12);
+    /* subtle near shadow */ 0 12px 24px rgba(2, 6, 23, 0.08),
+    /* mid shadow for depth */ 0 32px 60px rgba(2, 6, 23, 0.12);
   /* long soft ambient shadow */
-  transition: box-shadow 280ms cubic-bezier(0.2, 0.9, 0.2, 1),
+  transition:
+    box-shadow 280ms cubic-bezier(0.2, 0.9, 0.2, 1),
     transform 280ms cubic-bezier(0.2, 0.9, 0.2, 1);
   position: relative;
   isolation: isolate;
@@ -1284,7 +1257,9 @@ html[data-theme="light"] .interview-prep-page .technical-outer {
 .testimonial-carousel,
 .testimonial-author,
 .question-card {
-  transition: transform 280ms cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 280ms ease;
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    box-shadow 280ms ease;
   will-change: transform, box-shadow;
 }
 
@@ -1334,7 +1309,6 @@ html {
 
 /* Enhanced focus styles */
 *:focus {
-
   outline: 2px solid #667eea;
   outline-offset: 2px;
 }
@@ -1342,7 +1316,6 @@ html {
 /* Mobile: keep the accessibility skip-link out of the visible top band.
    It stays keyboard-accessible because it becomes visible again on focus. */
 @media screen and (max-width: 996px) {
-
   .skipToContent_fXgn,
   div[role="region"][aria-label="Skip to main content"] {
     position: fixed !important;
@@ -1397,12 +1370,14 @@ html {
 /* ===== FOOTER BACKGROUND PROTECTION ===== */
 /* Ensure footer maintains its gradient background in dark mode */
 [data-theme="dark"] .enhanced-footer {
-  background: linear-gradient(135deg,
-      #0f0f23 0%,
-      #1a1a2e 25%,
-      #16213e 50%,
-      #0f3460 75%,
-      #533483 100%) !important;
+  background: linear-gradient(
+    135deg,
+    #0f0f23 0%,
+    #1a1a2e 25%,
+    #16213e 50%,
+    #0f3460 75%,
+    #533483 100%
+  ) !important;
   color: #e2e8f0 !important;
 }
 
@@ -1418,17 +1393,22 @@ html {
 
 /* ===== STEP 6: MAXIMUM SPECIFICITY PROTECTION ===== */
 /* Override the exact problematic global rule with same specificity */
-[data-theme="dark"] body:not(:has(.community-page)) .enhanced-footer .container {
+[data-theme="dark"]
+  body:not(:has(.community-page))
+  .enhanced-footer
+  .container {
   background-color: transparent !important;
 }
 
 [data-theme="dark"] body:not(:has(.community-page)) .enhanced-footer {
-  background: linear-gradient(135deg,
-      #0f0f23 0%,
-      #1a1a2e 25%,
-      #16213e 50%,
-      #0f3460 75%,
-      #533483 100%) !important;
+  background: linear-gradient(
+    135deg,
+    #0f0f23 0%,
+    #1a1a2e 25%,
+    #16213e 50%,
+    #0f3460 75%,
+    #533483 100%
+  ) !important;
   color: #e2e8f0 !important;
 }
 
@@ -1450,14 +1430,15 @@ html {
 
 /* ===== REMOVE THEME TOGGLE FROM MOBILE SIDEBAR AS THERE IS ONE ON THE NAVBAR ===== */
 @media (max-width: 1200px) {
-
   /* Aggressively hide theme toggle in mobile sidebar */
-  .navbar-sidebar__brand button:not(.navbar-sidebar__close):not([class*="close"]),
+  .navbar-sidebar__brand
+    button:not(.navbar-sidebar__close):not([class*="close"]),
   .navbar-sidebar__brand .colorModeToggle,
   .navbar-sidebar .colorModeToggle,
   .navbar-sidebar__brand button[class*="colorModeToggle"],
   .navbar-sidebar button[class*="colorModeToggle"],
-  .navbar-sidebar__brand .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
+  .navbar-sidebar__brand
+    .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
   .navbar-sidebar .clean-btn[class*="toggle"]:not(.navbar-sidebar__close),
   .navbar-sidebar__brand [class*="toggle_"]:not(.navbar-sidebar__close),
   .navbar-sidebar [class*="toggle_"]:not(.navbar-sidebar__close),
@@ -1529,7 +1510,6 @@ html {
 
 /* Mobile-only visibility & spacing fixes for Tutorials icons (320–768px) */
 @media screen and (max-width: 768px) {
-
   /* Ensure the label + icons row inside Docs dropdown uses the full width */
   .navbar-sidebar .grid,
   .navbar-sidebar .dropdown__menu .grid,
@@ -1542,12 +1522,12 @@ html {
   }
 
   /* So the icon column doesn't get clipped in the 3-col layout */
-  .navbar-sidebar .grid>.col-span-2 {
+  .navbar-sidebar .grid > .col-span-2 {
     min-width: 0 !important;
   }
 
   /* Tighten label space and drop the border on very small screens */
-  .navbar-sidebar .grid>.border-r.col-span-1 {
+  .navbar-sidebar .grid > .border-r.col-span-1 {
     border-right: 0 !important;
     padding-right: 0.25rem !important;
     font-weight: 600;
@@ -1592,7 +1572,7 @@ html {
   }
 
   /* Add vertical space between Tutorials, Courses, Interview Prep blocks */
-  .navbar-sidebar .dropdown__menu>.grid {
+  .navbar-sidebar .dropdown__menu > .grid {
     padding: 1rem 0 !important;
     margin: 1rem 0 !important;
   }
@@ -1926,7 +1906,7 @@ html {
   flex-shrink: 0;
 }
 
-.algolia-sitesearch-navbar .sitesearch-button .keyboard-shortcut>* {
+.algolia-sitesearch-navbar .sitesearch-button .keyboard-shortcut > * {
   min-width: 0 !important;
   height: auto !important;
   padding: 0 !important;
@@ -2067,8 +2047,8 @@ html {
   padding-right: var(--ifm-navbar-padding-horizontal) !important;
 }
 
-.navbar>.container,
-.navbar>.container-fluid {
+.navbar > .container,
+.navbar > .container-fluid {
   max-width: none !important;
   width: 100% !important;
   padding: 0 !important;
@@ -2114,12 +2094,16 @@ main {
   right: 0;
   bottom: 0;
   background:
-    radial-gradient(circle at 20% 30%,
+    radial-gradient(
+      circle at 20% 30%,
       rgba(99, 102, 241, 0.08) 0%,
-      transparent 40%),
-    radial-gradient(circle at 80% 70%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 80% 70%,
       rgba(168, 85, 247, 0.06) 0%,
-      transparent 45%);
+      transparent 45%
+    );
   pointer-events: none;
 }
 
@@ -2171,7 +2155,7 @@ a {
 
 /* ================= MISCELLANEOUS ================= */
 /* Fix Home icon alignment with text in breadcrumbs [Docs] */
-.theme-doc-breadcrumbs a.breadcrumbs__link>svg {
+.theme-doc-breadcrumbs a.breadcrumbs__link > svg {
   display: inline-block;
 }
 
@@ -2286,9 +2270,11 @@ html[data-theme="light"] .bg-gradient-to-r.from-blue-50.to-purple-50 {
 
 /* Companies: force white/near-white surface in light mode for .company-outer */
 html[data-theme="light"] .company-outer {
-  background-image: linear-gradient(135deg,
-      #ffffff 0%,
-      #f8fafc 100%) !important;
+  background-image: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f8fafc 100%
+  ) !important;
   background-color: #ffffff !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
@@ -2332,9 +2318,11 @@ html[data-theme="light"] a.company-tab-link {
 /* If any Tailwind gradient utility still applies, remove it for these containers in light mode */
 html[data-theme="light"] .company-outer.bg-gradient-to-br,
 html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
-  background-image: linear-gradient(135deg,
-      #ffffff 0%,
-      #f8fafc 100%) !important;
+  background-image: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f8fafc 100%
+  ) !important;
   background-color: #ffffff !important;
   -webkit-backdrop-filter: none !important;
   backdrop-filter: none !important;
@@ -2369,7 +2357,7 @@ html[data-theme="light"] [data-slot="card-header"].bg-gradient-to-br {
 /* Issue #980: Fix inconsistent padding and margins across sections */
 
 /* Standard section spacing: 2rem vertical, 1.5rem horizontal on smaller screens */
-main>div:not(.m-0) {
+main > div:not(.m-0) {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
@@ -2381,7 +2369,7 @@ main>div:not(.m-0) {
 
 /* Responsive: reduce spacing on mobile devices */
 @media (max-width: 768px) {
-  main>div:not(.m-0) {
+  main > div:not(.m-0) {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -2466,7 +2454,7 @@ html[data-theme="dark"] {
 }
 
 /* Row: full width flex */
-.blog-wrapper .container>.row {
+.blog-wrapper .container > .row {
   display: flex !important;
   flex-wrap: nowrap !important;
   align-items: flex-start !important;
@@ -2476,7 +2464,7 @@ html[data-theme="dark"] {
 }
 
 /* LEFT sidebar */
-.blog-wrapper .container>.row>.col.col--3 {
+.blog-wrapper .container > .row > .col.col--3 {
   flex: 0 0 240px !important;
   width: 240px !important;
   max-width: 240px !important;
@@ -2485,7 +2473,7 @@ html[data-theme="dark"] {
 }
 
 /* CENTER column — flex, children centered */
-.blog-wrapper .container>.row>.col:not(.col--2):not(.col--3) {
+.blog-wrapper .container > .row > .col:not(.col--2):not(.col--3) {
   flex: 1 1 auto !important;
   min-width: 0 !important;
   max-width: 100% !important;
@@ -2497,13 +2485,13 @@ html[data-theme="dark"] {
 }
 
 /* Article + all direct children — centered with max readable width */
-.blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
+.blog-wrapper .container > .row > .col:not(.col--2):not(.col--3) > * {
   width: 100% !important;
   max-width: 860px !important;
 }
 
 /* RIGHT sidebar — TOC */
-.blog-wrapper .container>.row>.col.col--2 {
+.blog-wrapper .container > .row > .col.col--2 {
   flex: 0 0 280px !important;
   width: 280px !important;
   max-width: 280px !important;
@@ -2514,7 +2502,7 @@ html[data-theme="dark"] {
 
 /* TOC inner wrapper — sticky; border-left here so the vertical line
    only spans the height of the TOC content, not the full page */
-.blog-wrapper .col.col--2>div {
+.blog-wrapper .col.col--2 > div {
   position: sticky !important;
   top: calc(var(--ifm-navbar-height, 60px) + 1rem) !important;
   max-height: calc(100vh - var(--ifm-navbar-height, 60px) - 2rem) !important;
@@ -2523,7 +2511,7 @@ html[data-theme="dark"] {
   scrollbar-width: none !important;
 }
 
-.blog-wrapper .col.col--2>div::-webkit-scrollbar {
+.blog-wrapper .col.col--2 > div::-webkit-scrollbar {
   display: none !important;
 }
 
@@ -2545,7 +2533,9 @@ html[data-theme="dark"] {
   font-size: 0.85rem !important;
   color: var(--ifm-color-emphasis-600) !important;
   border-left: 2px solid transparent !important;
-  transition: color 0.2s ease, border-color 0.2s ease !important;
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease !important;
 }
 
 .blog-wrapper .table-of-contents__link:hover {
@@ -2553,7 +2543,7 @@ html[data-theme="dark"] {
   text-decoration: none !important;
 }
 
-.blog-wrapper .table-of-contents li>.table-of-contents__link {
+.blog-wrapper .table-of-contents li > .table-of-contents__link {
   font-size: 0.875rem !important;
 }
 
@@ -2569,7 +2559,12 @@ html[data-theme="dark"] {
   max-width: 720px !important;
   margin-left: auto !important;
   margin-right: auto !important;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif !important;
   font-size: 1rem !important;
   line-height: 1.75 !important;
   color: #334155 !important;
@@ -2608,7 +2603,7 @@ html[data-theme="dark"] .blog-post-page .markdown h1,
 html[data-theme="dark"] .blog-post-page .markdown h2,
 html[data-theme="dark"] .blog-post-page .markdown h3,
 html[data-theme="dark"] .blog-post-page .markdown h4 {
-  color: #D1D5DB !important;
+  color: #d1d5db !important;
 }
 
 /* Callout / Info block styling */
@@ -2619,62 +2614,20 @@ html[data-theme="dark"] .blog-post-page .markdown h4 {
   font-size: inherit !important;
 }
 
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info,
-html[data-theme="dark"].blog-post-page .markdown .alert--info,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note,
-html[data-theme="dark"].blog-post-page .markdown .alert--secondary {
-  --ifm-alert-foreground-color: #ffffff !important;
-  --ifm-alert-background-color: #0f172a !important;
-  --ifm-alert-background-color-highlight: rgba(148, 163, 184, 0.14) !important;
-  --ifm-alert-border-color: #2563eb !important;
-  --ifm-link-color: #93c5fd !important;
-  --ifm-link-hover-color: #bfdbfe !important;
-  background-color: var(--ifm-alert-background-color) !important;
-  background: var(--ifm-alert-background-color) !important;
-  border-left-color: var(--ifm-alert-border-color) !important;
-  color: #ffffff !important;
-}
-
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"],
-html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"],
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"],
-html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"],
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] p,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] li,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] span,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] strong,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] em,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] code,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-info [class*="admonitionContent_"] a,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] p,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] li,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] span,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] strong,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] em,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] code,
-html[data-theme="dark"].blog-post-page .markdown .theme-admonition-note [class*="admonitionContent_"] a,
-html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] p,
-html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] li,
-html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] span,
-html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] strong,
-html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] em,
-html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] code,
-html[data-theme="dark"].blog-post-page .markdown .alert--info [class*="admonitionContent_"] a,
-html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] p,
-html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] li,
-html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] span,
-html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] strong,
-html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] em,
-html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] code,
-html[data-theme="dark"].blog-post-page .markdown .alert--secondary [class*="admonitionContent_"] a {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
+html[data-theme="dark"] .blog-post-page .markdown .admonition,
+html[data-theme="dark"] .blog-post-page .markdown .alert {
+  background: rgba(59, 130, 246, 0.1) !important;
 }
 
 /* Blog post page title (H1 rendered by Docusaurus header, outside .markdown) */
 .blog-post-page article header h1,
 .blog-post-page article header h2[itemprop="headline"] {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif !important;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif !important;
   font-size: 2.5rem !important;
   font-weight: 700 !important;
   color: #0f172a !important;
@@ -2688,45 +2641,45 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
 
 /* ── Large desktop (≥1400px) — wider content ── */
 @media (min-width: 1400px) {
-  .blog-wrapper .container>.row>.col.col--3 {
+  .blog-wrapper .container > .row > .col.col--3 {
     flex: 0 0 260px !important;
     width: 260px !important;
     max-width: 260px !important;
   }
 
-  .blog-wrapper .container>.row>.col.col--2 {
+  .blog-wrapper .container > .row > .col.col--2 {
     flex: 0 0 300px !important;
     width: 300px !important;
     max-width: 300px !important;
   }
 
-  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
+  .blog-wrapper .container > .row > .col:not(.col--2):not(.col--3) > * {
     max-width: 960px !important;
   }
 }
 
 /* ── Very large (≥1800px) — even wider ── */
 @media (min-width: 1800px) {
-  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
+  .blog-wrapper .container > .row > .col:not(.col--2):not(.col--3) > * {
     max-width: 1100px !important;
   }
 }
 
 /* ── Tablet (997px–1199px) ── */
 @media (max-width: 1199px) and (min-width: 997px) {
-  .blog-wrapper .container>.row>.col.col--3 {
+  .blog-wrapper .container > .row > .col.col--3 {
     flex: 0 0 200px !important;
     width: 200px !important;
     max-width: 200px !important;
   }
 
-  .blog-wrapper .container>.row>.col.col--2 {
+  .blog-wrapper .container > .row > .col.col--2 {
     flex: 0 0 220px !important;
     width: 220px !important;
     max-width: 220px !important;
   }
 
-  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
+  .blog-wrapper .container > .row > .col:not(.col--2):not(.col--3) > * {
     max-width: 100% !important;
   }
 }
@@ -2738,13 +2691,13 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
     padding-right: 1rem !important;
   }
 
-  .blog-wrapper .container>.row {
+  .blog-wrapper .container > .row {
     flex-direction: column !important;
   }
 
-  .blog-wrapper .container>.row>.col.col--3,
-  .blog-wrapper .container>.row>.col.col--2,
-  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3) {
+  .blog-wrapper .container > .row > .col.col--3,
+  .blog-wrapper .container > .row > .col.col--2,
+  .blog-wrapper .container > .row > .col:not(.col--2):not(.col--3) {
     flex: 1 1 auto !important;
     width: 100% !important;
     max-width: 100% !important;
@@ -2754,17 +2707,17 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
   }
 
   /* Remove the vertical separator and sticky on mobile */
-  .blog-wrapper .container>.row>.col.col--2 {
+  .blog-wrapper .container > .row > .col.col--2 {
     border-left: none !important;
   }
 
-  .blog-wrapper .col.col--2>div {
+  .blog-wrapper .col.col--2 > div {
     position: static !important;
     max-height: none !important;
     overflow-y: visible !important;
   }
 
-  .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
+  .blog-wrapper .container > .row > .col:not(.col--2):not(.col--3) > * {
     max-width: 100% !important;
   }
 }
@@ -2775,7 +2728,6 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
 
 /* ===== MOBILE TOP-GAP FIX ===== */
 @media screen and (max-width: 996px) {
-
   html,
   body,
   #__docusaurus,
@@ -2793,7 +2745,10 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
   html,
   body {
     min-height: 100% !important;
-    background: var(--ifm-navbar-background-color, var(--ifm-background-color)) !important;
+    background: var(
+      --ifm-navbar-background-color,
+      var(--ifm-background-color)
+    ) !important;
   }
 
   body {
@@ -2822,7 +2777,10 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
     box-shadow: none !important;
     transform: none !important;
     min-height: 0 !important;
-    background: var(--ifm-navbar-background-color, var(--ifm-background-color)) !important;
+    background: var(
+      --ifm-navbar-background-color,
+      var(--ifm-background-color)
+    ) !important;
     background-clip: padding-box !important;
   }
 
@@ -2847,10 +2805,10 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
     padding-top: 0 !important;
   }
 
-  main>*:first-child,
-  main>div:first-child,
-  .main-wrapper>*:first-child,
-  #__docusaurus>*:first-child,
+  main > *:first-child,
+  main > div:first-child,
+  .main-wrapper > *:first-child,
+  #__docusaurus > *:first-child,
   .hero,
   .hero-section,
   .docs-home-hero {
@@ -2882,17 +2840,17 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
 }
 
 [class*="authorBadge_"] {
-  font-size: 0.70rem !important;
+  font-size: 0.7rem !important;
   padding: 2px 7px !important;
 }
 
 [class*="authorMeta_"] {
-  font-size: 1.0rem !important;
+  font-size: 1rem !important;
   margin: 2px 0 !important;
 }
 
 [class*="authorSummary_"] {
-  font-size: 1.0rem !important;
+  font-size: 1rem !important;
   line-height: 1.5 !important;
 }
 
@@ -2928,63 +2886,4 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
-}
-
-
-.theme-doc-main-container,
-.theme-doc-markdown,
-main[class*='docMainContainer_'] {
-  position: relative;
-  z-index: 1 !important;
-}
-
-.theme-doc-markdown h1,
-.theme-doc-markdown h2,
-.theme-doc-markdown h3,
-.theme-doc-markdown span,
-.theme-doc-markdown div,
-.theme-doc-markdown label {
-  z-index: 1 !important;
-}
-
-.theme-doc-sidebar-container,
-.menu--responsive,
-div[class*='sidebarViewport_'] {
-  z-index: 9999 !important;
-}
-
-/* Leaderboard Pagination Button Icon Visibility Fix */
-.pagination-btn {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  width: 40px !important;
-  height: 40px !important;
-  border: 1px solid var(--ifm-color-emphasis-300) !important;
-  background: var(--ifm-background-surface-color) !important;
-  border-radius: 8px !important;
-  cursor: pointer !important;
-  transition: all 0.2s ease !important;
-  color: var(--ifm-color-primary) !important;
-  padding: 0 !important;
-}
-
-.pagination-btn svg {
-  stroke: currentColor !important;
-  fill: none !important;
-  stroke-width: 2px !important;
-  width: 20px !important;
-  height: 20px !important;
-  display: block !important;
-}
-
-.pagination-btn:hover:not(.disabled) {
-  background: var(--ifm-color-primary) !important;
-  color: white !important;
-  border-color: var(--ifm-color-primary) !important;
-}
-
-.pagination-btn.disabled {
-  opacity: 0.4 !important;
-  cursor: not-allowed !important;
 }
