@@ -2915,6 +2915,22 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
   margin-top: 15px !important;
 }
 
+
+/* ===== Accessibility: focus-visible indicators ===== */
+:focus-visible {
+  outline: 2px solid var(--ifm-color-primary) !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+}
+
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--ifm-color-primary) !important;
+  outline-offset: 2px !important;
+  border-radius: 4px !important;
+}
 /* Fix mobile navigation sidebar overlap and layout alignment under 480px */
 @media screen and (max-width: 480px) {
   .theme-doc-sidebar-container {
