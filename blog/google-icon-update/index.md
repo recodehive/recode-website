@@ -1,4 +1,4 @@
----
+﻿---
 title: "Google Changed Workspace Icon after 6 years"
 authors: [sanjay-kv]
 sidebar_label: "Google Changed Workspace Icon after 6 years"
@@ -113,7 +113,9 @@ Two reasons. One practical, one strategic.
 
 The practical reason is simple: they finally ran out of excuses not to fix it. The 2020 design was criticized immediately and consistently for five years. Every redesign rumor that surfaced got user hopes up. Fixing the icon confusion was low-hanging fruit with a clear user benefit and Google had no strong argument for keeping the broken version.
 
-The strategic reason is more interesting. Look at which Google products got gradient icons first before this Workspace rollout: the Google G logo, Gemini, Google Photos, Google Maps. Every product associated with <span style={{color: 'green'}}>**Google's AI push** </span>got gradients first. Applying the same design language to Workspace now visually ties the entire productivity suite to the AI narrative.
+The strategic reason is more interesting. Google did not apply the gradient design language to all products simultaneously. The rollout followed a deliberate sequence: the Google G logo, Gemini, Google Photos, and Google Maps received gradient treatment before Workspace did. According to 9to5Google, this visual shift was intentional — the gradient effect was specifically chosen to reflect the presence of AI-powered features across those products ([9to5Google, April 2026](https://9to5google.com)).
+
+What this sequencing reveals is a positioning strategy, not just a design refresh. By first applying the gradient language to AI-forward products like Gemini and then extending it to Workspace, Google is visually signaling that its productivity suite belongs in the same category as its AI tools. The design change functions as a branding bridge — connecting everyday work apps to the AI narrative Google is building around Google I/O 2026. The icons are doing marketing work, not just usability work.
   <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
     ![Google old app icon design before the 2026 gradient update](./assets/08-google-old.png)
     </BrowserWindow>
@@ -155,7 +157,7 @@ My honest take: some of the new icons are significantly better, Drive and Calend
 
 ## Does It Actually Solve the Problem?
 
-<span style={{color: 'red'}}> **Yes. Partially. </span>
+<span style={{color: 'red'}}> **Yes. Partially.** </span>
 
 The core complaint for five years was that all the icons look the same. That complaint is addressed. Calendar is now blue. Drive is now gradient-triangle. Gmail is now warm red-pink. Each app has a visual identity that survives a glance rather than requiring a read.
 
