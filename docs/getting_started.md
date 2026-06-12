@@ -286,7 +286,9 @@ Sanjay is a Data Engineer focused on building modern data platforms and writing 
 | `canonical_url` | Leave blank unless cross-posting from another site |
 
 :::
-
+ :::tip Recommended Reading
+Learn more about Google's recent Workspace redesign in our [Google Icon Update Blog](https://www.recodehive.com/blog/google-icon-update).
+:::
 
 ---
 
