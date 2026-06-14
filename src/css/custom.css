@@ -3056,8 +3056,7 @@ main[class*='docMainContainer_'] {
 div[class*='sidebarViewport_'] {
   z-index: 9999 !important; 
 }
-  z-index: 9999 !important;
-}
+
 
 /* Leaderboard Pagination Button Icon Visibility Fix */
 .pagination-btn {
