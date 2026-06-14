@@ -1,0 +1,32 @@
+<svg width="100%" viewBox="0 0 680 340" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>Dear Coder — a builder note from ReCode Hive</title>
+  <desc>A handwritten-style letter from the ReCode Hive community to coders</desc>
+  <rect width="680" height="340" rx="16" fill="#FFFDF5"/>
+  <rect x="0" y="0" width="680" height="340" rx="16" fill="none" stroke="#E8E0C8" stroke-width="1"/>
+  <line x1="60" y1="80" x2="620" y2="80" stroke="#EDE8D8" stroke-width="0.8"/>
+  <line x1="60" y1="108" x2="620" y2="108" stroke="#EDE8D8" stroke-width="0.8"/>
+  <line x1="60" y1="136" x2="620" y2="136" stroke="#EDE8D8" stroke-width="0.8"/>
+  <line x1="60" y1="164" x2="620" y2="164" stroke="#EDE8D8" stroke-width="0.8"/>
+  <line x1="60" y1="192" x2="620" y2="192" stroke="#EDE8D8" stroke-width="0.8"/>
+  <line x1="60" y1="220" x2="620" y2="220" stroke="#EDE8D8" stroke-width="0.8"/>
+  <line x1="60" y1="248" x2="620" y2="248" stroke="#EDE8D8" stroke-width="0.8"/>
+  <line x1="60" y1="276" x2="620" y2="276" stroke="#EDE8D8" stroke-width="0.8"/>
+  <line x1="88" y1="30" x2="88" y2="310" stroke="#F5B8B8" stroke-width="1.2"/>
+  <circle cx="34" cy="90" r="7" fill="none" stroke="#D0C8B0" stroke-width="1"/>
+  <circle cx="34" cy="170" r="7" fill="none" stroke="#D0C8B0" stroke-width="1"/>
+  <circle cx="34" cy="250" r="7" fill="none" stroke="#D0C8B0" stroke-width="1"/>
+  <text x="100" y="58" font-family="Georgia, serif" font-size="22" font-weight="700" fill="#2C2C2A" font-style="italic">Dear Coder,</text>
+  <text x="100" y="102" font-family="Georgia, serif" font-size="15" fill="#3C3C38">We built ReCode Hive for one reason — because we remember what it felt</text>
+  <text x="100" y="130" font-family="Georgia, serif" font-size="15" fill="#3C3C38">like to be a beginner. Overwhelmed, unsure where to start, looking for a</text>
+  <text x="100" y="158" font-family="Georgia, serif" font-size="15" fill="#3C3C38">community that actually gets it.</text>
+  <text x="100" y="190" font-family="Georgia, serif" font-size="15" fill="#3C3C38">This is that community. Open source, open doors. Whether you're writing</text>
+  <text x="100" y="218" font-family="Georgia, serif" font-size="15" fill="#3C3C38">your first commit or your thousandth — you belong here. Learn in public,</text>
+  <text x="100" y="246" font-family="Georgia, serif" font-size="15" fill="#3C3C38">build in community, and grow faster than you thought possible.</text>
+  <text x="100" y="278" font-family="Georgia, serif" font-size="15" fill="#3C3C38">Now stop reading. Go build something. We'll be right here.</text>
+  <text x="100" y="310" font-family="Georgia, serif" font-size="16" font-style="italic" fill="#2C2C2A">— The ReCode Hive Team</text>
+  <g transform="translate(590, 42)">
+    <polygon points="0,-18 15.6,-9 15.6,9 0,18 -15.6,9 -15.6,-9" fill="#1D9E75" opacity="0.15"/>
+    <polygon points="0,-12 10.4,-6 10.4,6 0,12 -10.4,6 -10.4,-6" fill="none" stroke="#1D9E75" stroke-width="1.5" opacity="0.6"/>
+    <text x="0" y="5" font-family="Georgia, serif" font-size="9" fill="#0F6E56" text-anchor="middle" font-weight="700">RH</text>
+  </g>
+</svg>

@@ -72,14 +72,12 @@ export default function Home(): ReactNode {
             <BlogCarousel />
           </div>
 
-          <div
-            className="m-4"
-            onClick={() => (window.location.href = "https://www.sanjaykv.com/")}
-          >
+          <div className="m-4">
             <img
-              src="/selfhero.png"
-              alt="recodehive"
-              className="h-full w-full cursor-pointer rounded-2xl object-cover"
+              src="/hero-builder-note.svg"
+              alt="Dear Coder — a note from the ReCode Hive team"
+              className="h-full w-full rounded-2xl object-cover shadow-md"
+              loading="lazy"
             />
           </div>
 
