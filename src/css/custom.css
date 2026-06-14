@@ -763,7 +763,6 @@ body {
   }
 
   .navbar__items--right>.navbar__item:not(:has(#clerk-auth-navbar)),
-  .navbar__items--right .algolia-sitesearch-navbar,
   .navbar__items--right .colorModeToggle {
     display: none !important;
   }
@@ -2866,7 +2865,6 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
 
   .navbar__inner>.navbar__items>.navbar__item:not(.navbar__toggle),
   .navbar__items--right>.navbar__item,
-  .navbar__items--right .algolia-sitesearch-navbar,
   .navbar__items--right .colorModeToggle {
     display: none !important;
   }
