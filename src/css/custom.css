@@ -2953,8 +2953,32 @@ div[class*='sidebarViewport_'] {
   z-index: 9999 !important;
 }
  
+.mobile-social-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
 .mobile-social-text {
-  margin-left: 8px;
+  color: var(--ifm-menu-color) !important;
+  font-size: 1.2 rem;
+  font-weight: 640;
+  padding-right: 20px;
+}
+
+.navbar-social-link {
+  display: flex !important;
+  align-items: center;
+  padding-left: 15px !important; /* shift right to match other menu items */
+  color: var(--ifm-menu-color) !important;
+  text-decoration: none !important;
+  
+}
+
+.navbar-social-link svg {
+  color: var(--ifm-menu-color) !important;
+  fill: currentColor;
+
 }
 
 @media (min-width: 997px) {
