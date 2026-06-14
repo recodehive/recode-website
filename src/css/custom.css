@@ -2985,6 +2985,7 @@ div[class*='sidebarViewport_'] {
   .mobile-social-text {
     display: none;
   }
+}
 
 /* Leaderboard Pagination Button Icon Visibility Fix */
 .pagination-btn {
