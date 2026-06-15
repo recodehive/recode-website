@@ -9,6 +9,7 @@ import PRListModal from "./PRListModal";
 import BadgeModal from "./BadgeModal";
 import { mockContributors } from "./mockData";
 import "./leaderboard.css";
+import DailyCodingTip from "@site/src/components/DailyCodingTip";
 
 const GITHUB_ORG = "recodehive";
 
@@ -474,11 +475,16 @@ export default function LeaderBoard(): JSX.Element {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="title">Recode Hive Leaderboard</h1>
-          <p className={`subtitle ${isDark ? "dark" : "light"}`}>
-            Top contributors across the <strong>{GITHUB_ORG}</strong>{" "}
-            organization
-          </p>
+<div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+            <div>
+              <h1 className="title">Recode Hive Leaderboard</h1>
+              <p className={`subtitle ${isDark ? "dark" : "light"}`}>
+                Top contributors across the <strong>{GITHUB_ORG}</strong>{" "}
+                organization
+              </p>
+            </div>
+            <DailyCodingTip />
+          </div>
         </motion.div>
 
         {/* Top 3 Performers Section */}
