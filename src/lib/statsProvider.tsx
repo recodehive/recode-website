@@ -164,6 +164,7 @@ export function CommunityStatsProvider({
     siteConfig: { customFields },
   } = useDocusaurusContext();
   const token = customFields?.gitToken || "";
+  const backendApiUrl = (customFields?.backendApiUrl as string) || "http://localhost:5000";
 
   const [loading, setLoading] = useState(false); // Start with false to avoid hourglass
   const [error, setError] = useState<string | null>(null);
@@ -251,164 +252,6 @@ export function CommunityStatsProvider({
     setCurrentTimeFilter(filter);
   }, []);
 
-  const fetchAllOrgRepos = useCallback(
-    async (headers: Record<string, string>) => {
-      const repos: any[] = [];
-      let page = 1;
-      while (true) {
-        const resp = await fetch(
-          `https://api.github.com/orgs/${GITHUB_ORG}/repos?type=public&per_page=100&page=${page}`,
-          {
-            headers,
-          },
-        );
-        if (!resp.ok) {
-          throw new Error(
-            `Failed to fetch org repos: ${resp.status} ${resp.statusText}`,
-          );
-        }
-        const data = await resp.json();
-        repos.push(...data);
-        if (!Array.isArray(data) || data.length < 100) break;
-        page++;
-      }
-      return repos;
-    },
-    [],
-  );
-
-  const fetchMergedPRsForRepo = useCallback(
-    async (repoName: string, headers: Record<string, string>) => {
-      const mergedPRs: PullRequestItem[] = [];
-
-      // First, get the first page to estimate total pages
-      const firstResp = await fetch(
-        `https://api.github.com/repos/${GITHUB_ORG}/${repoName}/pulls?state=closed&per_page=100&page=1`,
-        { headers },
-      );
-
-      if (!firstResp.ok) {
-        console.warn(
-          `Failed to fetch PRs for ${repoName}: ${firstResp.status} ${firstResp.statusText}`,
-        );
-        return [];
-      }
-
-      const firstPRs: PullRequestItem[] = await firstResp.json();
-      if (!Array.isArray(firstPRs) || firstPRs.length === 0) return [];
-
-      const firstPageMerged = firstPRs.filter((pr) => Boolean(pr.merged_at));
-      mergedPRs.push(...firstPageMerged);
-
-      // If we got less than 100, that's all there is
-      if (firstPRs.length < 100) return mergedPRs;
-
-      // Create parallel requests for remaining pages
-      const pagePromises: Promise<PullRequestItem[]>[] = [];
-      const maxPages = Math.min(MAX_PAGES_PER_REPO, 10);
-
-      for (let i = 2; i <= maxPages; i++) {
-        pagePromises.push(
-          fetch(
-            `https://api.github.com/repos/${GITHUB_ORG}/${repoName}/pulls?state=closed&per_page=100&page=${i}`,
-            { headers },
-          )
-            .then(async (resp) => {
-              if (!resp.ok) return [];
-              const prs: PullRequestItem[] = await resp.json();
-              if (!Array.isArray(prs)) return [];
-              return prs.filter((pr) => Boolean(pr.merged_at));
-            })
-            .catch(() => []),
-        );
-      }
-
-      // Wait for all pages in parallel
-      const remainingPages = await Promise.all(pagePromises);
-      remainingPages.forEach((pagePRs) => {
-        if (pagePRs.length > 0) mergedPRs.push(...pagePRs);
-      });
-
-      return mergedPRs;
-    },
-    [],
-  );
-
-  // Enhanced processing function that stores only valid PRs with points
-  const processBatch = useCallback(
-    async (
-      repos: any[],
-      headers: Record<string, string>,
-    ): Promise<{
-      contributorMap: Map<string, FullContributor>;
-      totalMergedPRs: number;
-    }> => {
-      const contributorMap = new Map<string, FullContributor>();
-      let totalMergedPRs = 0;
-
-      // Process repos in batches to control concurrency
-      for (let i = 0; i < repos.length; i += MAX_CONCURRENT_REQUESTS) {
-        const batch = repos.slice(i, i + MAX_CONCURRENT_REQUESTS);
-
-        const promises = batch.map(async (repo) => {
-          if (repo.archived) return { mergedPRs: [], repoName: repo.name };
-
-          try {
-            const mergedPRs = await fetchMergedPRsForRepo(repo.name, headers);
-            return { mergedPRs, repoName: repo.name };
-          } catch (error) {
-            console.warn(`Skipping repo ${repo.name} due to error:`, error);
-            return { mergedPRs: [], repoName: repo.name };
-          }
-        });
-
-        // Wait for current batch to complete
-        const results = await Promise.all(promises);
-
-        // Process results from this batch
-        results.forEach(({ mergedPRs, repoName }) => {
-          mergedPRs.forEach((pr) => {
-            // Calculate points for this PR based on labels
-            const prPoints = calculatePointsForPR(pr.labels);
-
-            // ONLY store PRs that have points (i.e., have "recode" label and a level label)
-            if (prPoints > 0) {
-              totalMergedPRs++;
-
-              const username = pr.user.login;
-              if (!contributorMap.has(username)) {
-                contributorMap.set(username, {
-                  username,
-                  avatar: pr.user.avatar_url,
-                  profile: pr.user.html_url,
-                  points: 0, // Will be calculated later based on filter
-                  prs: 0, // Will be calculated later based on filter
-                  allPRDetails: [], // Store only valid PRs here
-                });
-              }
-              const contributor = contributorMap.get(username)!;
-
-              // Add detailed PR information only if it has all required fields
-              if (pr.title && pr.html_url && pr.merged_at && pr.number) {
-                contributor.allPRDetails.push({
-                  title: pr.title,
-                  url: pr.html_url,
-                  mergedAt: pr.merged_at,
-                  repoName,
-                  number: pr.number,
-                  points: prPoints,
-                });
-              }
-            }
-          });
-        });
-      }
-
-      return { contributorMap, totalMergedPRs };
-    },
-    [fetchMergedPRsForRepo],
-  );
-
   const fetchAllStats = useCallback(
     async (signal: AbortSignal) => {
       // Check cache first and load it immediately without showing loading state
@@ -433,41 +276,36 @@ export function CommunityStatsProvider({
 
       setError(null);
 
-      if (!token) {
-        setError(
-          "GitHub token not found. Please set customFields.gitToken in docusaurus.config.js.",
-        );
-        setLoading(false);
-        return;
-      }
-
       try {
-        const headers: Record<string, string> = {
-          Authorization: `token ${token}`,
-          Accept: "application/vnd.github.v3+json",
-        };
-
-        // Fetch both org stats and repos in parallel
-        const [orgStats, repos] = await Promise.all([
-          githubService.fetchOrganizationStats(signal),
-          fetchAllOrgRepos(headers),
+        const [leaderboardResp, statsResp] = await Promise.all([
+          fetch(`${backendApiUrl}/api/leaderboard`, { signal }),
+          fetch(`${backendApiUrl}/api/stats`, { signal })
         ]);
 
+        if (!leaderboardResp.ok || !statsResp.ok) {
+          throw new Error("Failed to fetch leaderboard data from backend server");
+        }
+
+        const leaderboardData = await leaderboardResp.json();
+        const statsData = await statsResp.json();
+
         // Set org stats immediately
-        setGithubStarCount(orgStats.totalStars);
-        setGithubContributorsCount(orgStats.totalContributors);
-        setGithubForksCount(orgStats.totalForks);
-        setGithubReposCount(orgStats.publicRepositories);
-        setGithubDiscussionsCount(orgStats.discussionsCount);
-        setLastUpdated(new Date(orgStats.lastUpdated));
+        setGithubStarCount(statsData.totalStars);
+        setGithubContributorsCount(statsData.totalContributors);
+        setGithubForksCount(statsData.totalForks);
+        setGithubReposCount(statsData.publicRepositories);
+        setGithubDiscussionsCount(statsData.discussionsCount);
+        setLastUpdated(new Date(statsData.lastUpdated));
 
-        // Process leaderboard data with concurrent processing
-        const { contributorMap, totalMergedPRs } = await processBatch(
-          repos,
-          headers,
-        );
-
-        const contributorsArray = Array.from(contributorMap.values());
+        // Format to FullContributor (which matches contributor mapping)
+        const contributorsArray: FullContributor[] = (leaderboardData.contributors || []).map((c: any) => ({
+          username: c.username,
+          avatar: c.avatar,
+          profile: c.profile,
+          points: c.points,
+          prs: c.prs,
+          allPRDetails: c.prDetails || [] // Backend stores complete list
+        }));
 
         setAllContributors(contributorsArray);
 
@@ -475,15 +313,15 @@ export function CommunityStatsProvider({
         setCache({
           data: {
             contributors: contributorsArray,
-            rawStats: { totalPRs: totalMergedPRs },
+            rawStats: { totalPRs: statsData.totalContributors },
           },
           timestamp: now,
         });
       } catch (err: any) {
         if (err.name !== "AbortError") {
-          console.error("Error fetching GitHub organization stats:", err);
+          console.error("Error fetching stats from backend:", err);
           setError(
-            err instanceof Error ? err.message : "Failed to fetch GitHub stats",
+            err instanceof Error ? err.message : "Failed to fetch stats from backend",
           );
 
           // Set fallback values on error
@@ -497,7 +335,7 @@ export function CommunityStatsProvider({
         setLoading(false);
       }
     },
-    [token, fetchAllOrgRepos, processBatch, cache],
+    [backendApiUrl, cache],
   );
 
   const clearCache = useCallback(() => {
