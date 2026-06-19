@@ -281,8 +281,9 @@ const config: Config = {
     ],
   ],
 
-  // ✅ Add this customFields object to expose the token to the client-side
+  // Custom fields exposed to client-side code (browser-visible at build time)
   customFields: {
+    backendApiUrl: process.env.BACKEND_API_URL || "http://localhost:5000",
     gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
     clerkPublishableKey: process.env.VITE_CLERK_PUBLISHABLE_KEY || "",
     // Shopify credentials for merch store
