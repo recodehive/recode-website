@@ -163,7 +163,6 @@ export function CommunityStatsProvider({
   const {
     siteConfig: { customFields },
   } = useDocusaurusContext();
-  const token = customFields?.gitToken || "";
   const backendApiUrl = (customFields?.backendApiUrl as string) || "http://localhost:5000";
 
   const [loading, setLoading] = useState(false); // Start with false to avoid hourglass
