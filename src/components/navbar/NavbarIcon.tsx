@@ -40,7 +40,7 @@ export default function NavbarIcon(props: NavbarIconProps) {
       <button
         className={`navbar-icon-item ${active ? "active" : ""}`}
         onClick={onClick}
-        role="button"
+        aria-label={text}
         tabIndex={0}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
