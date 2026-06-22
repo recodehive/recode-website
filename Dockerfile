@@ -1,4 +1,5 @@
-FROM node:20-alpine AS builder
+# Stage 1: Build the static files
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
@@ -18,8 +19,18 @@ RUN npm install --legacy-peer-deps
 
 COPY . .
 
-# Expose the application port
-EXPOSE 3000
+# Build the Docusaurus project
+RUN npm run build
 
-# Start the application
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+# Stage 2: Serve the files using Nginx
+FROM nginx:alpine
+
+# Copy the static files from builder stage
+# Docusaurus builds to the "build" directory by default
+COPY --from=builder /app/build /usr/share/nginx/html
+
+# Expose the application port
+EXPOSE 80
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
