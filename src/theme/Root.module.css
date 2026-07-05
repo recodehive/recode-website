@@ -1,7 +1,7 @@
 /* Base styles for the toast container */
 .toastContainer {
   position: fixed;
-  top: 20px;
+  top: 40px;
   right: 24px;
   border: 1px solid oklch(0.69 0 0);
   border-radius: 8px; /* Docusaurus --radius var is often 8px */
@@ -94,7 +94,7 @@
 @keyframes slideDownFadeOut {
   0% {
     opacity: 0;
-    transform: translateY(-10px) scale(0.95);
+    transform: translateY(10px) scale(0.95);
   }
   10%,
   90% {
@@ -103,6 +103,6 @@
   }
   100% {
     opacity: 0;
-    transform: translateY(-10px) scale(0.95);
+    transform: translateY(10px) scale(0.95);
   }
 }
