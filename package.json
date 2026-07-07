@@ -45,7 +45,7 @@
     "@radix-ui/react-avatar": "^1.2.0",
     "@radix-ui/react-collapsible": "^1.1.16",
     "@radix-ui/react-slot": "^1.2.3",
-    "@tsparticles/engine": "^4.0.5",
+    "@tsparticles/engine": "^4.3.1",
     "@tsparticles/react": "^4.2.1",
     "@tsparticles/slim": "^4.2.1",
     "@vercel/analytics": "^1.5.0",
