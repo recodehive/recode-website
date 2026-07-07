@@ -14,6 +14,7 @@ import { TestimonialCarousel } from "../components/testimonials/TestimonialCarou
 import { CommunityStatsProvider } from "../lib/statsProvider";
 import { LandingCommunity } from "../components/Community";
 import FAQs from "../components/faqs/faqs";
+import DailyCodingTip from "../components/DailyCodingTip";
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
@@ -66,6 +67,10 @@ export default function Home(): ReactNode {
         >
           <div className="m-4">
             <Header />
+          </div>
+
+          <div className="m-4">
+            <DailyCodingTip />
           </div>
 
           <div className="blog-carousel-section">
