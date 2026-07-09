@@ -80,7 +80,7 @@
     "@types/canvas-confetti": "^1.9.0",
     "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.7",
-    "@typescript-eslint/eslint-plugin": "^8.62.1",
+    "@typescript-eslint/eslint-plugin": "^8.63.0",
     "@typescript-eslint/parser": "^8.63.0",
     "autoprefixer": "^10.5.2",
     "eslint": "^10.6.0",
