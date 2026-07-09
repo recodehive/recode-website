@@ -130,7 +130,7 @@ const GiscusComments: React.FC<GiscusCommentsProps> = ({
       "iframe.giscus-frame",
     );
 
-    if (!iframe) {
+    if (!iframe || !iframe.contentWindow) {
       return;
     }
 
