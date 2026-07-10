@@ -13,7 +13,12 @@ const CodeOfConduct: React.FC = () => {
         <div className="coc-content-wrapper">
           {/* Header Section */}
           <div className="coc-header">
+            <div className="coc-header-top">
             <h1 className="coc-title">Code of Conduct</h1>
+            <a href="/" className="coc-back-home-link">
+                Back to Home &rarr;
+              </a>
+            </div>
             <p className="coc-last-updated">
               <strong>Last Updated:</strong> 29th Oct 2025
             </p>

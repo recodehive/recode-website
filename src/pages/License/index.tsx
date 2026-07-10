@@ -13,7 +13,12 @@ const Licensing: React.FC = () => {
         <div className="lic-content-wrapper">
           {/* Header Section */}
           <div className="lic-header">
+            <div className="lic-header-top">
             <h1 className="lic-title">Licensing</h1>
+            <a href="/" className="lic-back-home-link">
+                Back to Home &rarr;
+              </a>
+            </div>
             <p className="lic-intro">
               Welcome to RecodeHive. This project is licensed under the MIT
               License. This page outlines the terms of the license and provides
