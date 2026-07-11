@@ -12,7 +12,12 @@ const PrivacyPolicy: React.FC = () => {
         <div className="privacy-content-wrapper">
           {/* Header Section */}
           <div className="privacy-header">
+            <div className="privacy-header-top">
             <h1 className="privacy-title">Privacy Policy</h1>
+             <a href="/" className="privacy-back-home-link">
+                Back to Home &rarr;
+              </a>
+            </div>
             <p className="privacy-last-updated">
               <strong>Last Updated:</strong> 25th May 2025
             </p>

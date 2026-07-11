@@ -62,7 +62,12 @@ const TermsOfService: React.FC = () => {
       wrapperClassName={styles.pageWrapper}
     >
       <div className={styles.pageContainer}>
-        <h1 className={styles.mainTitle}>Terms of Service</h1>
+        <div className={styles.headerWrapper}>
+          <h1 className={styles.mainTitle}>Terms of Service</h1>
+          <a href="/" className={styles.backHomeLink}>
+            Back to Home &rarr;
+          </a>
+        </div>
         <p className={styles.introText}>
           Welcome to <b>RecodeHive</b>, operated by{" "}
           <strong>Sanjay Viswanathan</strong>. These Terms of Service govern
