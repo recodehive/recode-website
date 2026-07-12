@@ -17,6 +17,7 @@ const EXCLUDED_USERS = [
   "sanjay-kv",
   "allcontributors",
   "allcontributors[bot]",
+  "dependabot",
   "dependabot[bot]",
   "copilot",
   "copilot[bot]",
