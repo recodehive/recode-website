@@ -8,7 +8,6 @@ import Header from "../components/header/header";
 import ScrollBottomToTop from "../components/scroll/bottom-to-top";
 
 import { BlogCarousel } from "../components/blogCarousel/blogCarousel";
-import OurProjects from "../components/ourProjects";
 import TopMateSection from "../components/topmate/TopMateSection";
 import { TestimonialCarousel } from "../components/testimonials/TestimonialCarousel";
 import { CommunityStatsProvider } from "../lib/statsProvider";
@@ -81,10 +80,6 @@ export default function Home(): ReactNode {
               alt="recodehive"
               className="h-full w-full cursor-pointer rounded-2xl object-cover"
             />
-          </div>
-
-          <div className="m-4">
-            <OurProjects />
           </div>
 
           {/* Mentorship (left) + Testimonials (right) — side by side */}
