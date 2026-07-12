@@ -163,7 +163,7 @@ export function CommunityStatsProvider({
   const {
     siteConfig: { customFields },
   } = useDocusaurusContext();
-  const backendApiUrl = (customFields?.backendApiUrl as string) || "http://localhost:5000";
+  const backendApiUrl = (customFields?.backendApiUrl as string) || "https://leaderboard-production-6143.up.railway.app";
 
   const [loading, setLoading] = useState(false); // Start with false to avoid hourglass
   const [error, setError] = useState<string | null>(null);

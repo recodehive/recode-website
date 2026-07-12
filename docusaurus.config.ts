@@ -290,7 +290,7 @@ const config: Config = {
 
   // Custom fields exposed to client-side code (browser-visible at build time)
   customFields: {
-    backendApiUrl: process.env.BACKEND_API_URL || "http://localhost:5000",
+    backendApiUrl: process.env.BACKEND_API_URL || "https://leaderboard-production-6143.up.railway.app",
     gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
     clerkPublishableKey: process.env.VITE_CLERK_PUBLISHABLE_KEY || "",
     // Shopify credentials for merch store
