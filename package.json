@@ -87,7 +87,7 @@
     "eslint-plugin-react": "^7.37.5",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.8",
-    "postcss": "^8.5.16",
+    "postcss": "^8.5.19",
     "prettier": "^3.9.4",
     "prettier-plugin-tailwindcss": "^0.6.14",
     "tailwindcss": "^4.3.2",
