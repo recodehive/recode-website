@@ -101,10 +101,12 @@ interface ContributorActivity {
 
 interface FloatingContributorsProps {
   headerEmbedded?: boolean;
+  onClose?: () => void;
 }
 
 const FloatingContributors: React.FC<FloatingContributorsProps> = ({
   headerEmbedded = false,
+  onClose,
 }) => {
   const [contributors, setContributors] = useState<Contributor[]>([]);
   const [activities, setActivities] = useState<ContributorActivity[]>([]);
@@ -535,7 +537,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
             {/* Close button */}
             <button
               className="floating-contributors-close"
-              onClick={() => setIsVisible(false)}
+              onClick={() => (onClose ? onClose() : setIsVisible(false))}
               aria-label="Close contributors showcase"
             >
               ×

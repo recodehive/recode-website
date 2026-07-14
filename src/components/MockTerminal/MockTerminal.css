@@ -1,0 +1,126 @@
+/* Mock terminal card — light variant by default, dark variant under [data-theme='dark'] */
+.mock-terminal {
+  width: 450px;
+  max-width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+  overflow: hidden;
+  text-align: left;
+}
+
+[data-theme="dark"] .mock-terminal {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #131513;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+}
+
+.mock-terminal__titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 18px;
+  background: #f5f6f2;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+[data-theme="dark"] .mock-terminal__titlebar {
+  background: #181b18;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.mock-terminal__dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.mock-terminal__dot--red {
+  background: #ff5f57;
+}
+
+.mock-terminal__dot--yellow {
+  background: #febc2e;
+}
+
+.mock-terminal__dot--green {
+  background: #28c840;
+}
+
+.mock-terminal__label {
+  margin-left: 6px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  color: rgba(45, 55, 50, 0.55);
+}
+
+[data-theme="dark"] .mock-terminal__label {
+  color: rgba(244, 246, 243, 0.45);
+}
+
+.mock-terminal__body {
+  padding: 24px 22px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 13.5px;
+  line-height: 2.1;
+}
+
+.mock-terminal__prompt {
+  color: #1fa45b;
+}
+
+[data-theme="dark"] .mock-terminal__prompt {
+  color: #37d67a;
+}
+
+.mock-terminal__cmd {
+  color: #21313c;
+}
+
+[data-theme="dark"] .mock-terminal__cmd {
+  color: #f4f6f3;
+}
+
+.mock-terminal__out {
+  color: rgba(55, 65, 70, 0.62);
+}
+
+[data-theme="dark"] .mock-terminal__out {
+  color: rgba(244, 246, 243, 0.6);
+}
+
+.mock-terminal__cursor {
+  display: inline-block;
+  width: 9px;
+  height: 17px;
+  background: #2fbf71;
+  vertical-align: text-bottom;
+  animation: mock-terminal-blink 1.1s infinite;
+}
+
+[data-theme="dark"] .mock-terminal__cursor {
+  background: #37d67a;
+}
+
+@keyframes mock-terminal-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@media (max-width: 520px) {
+  .mock-terminal {
+    width: 100%;
+  }
+
+  .mock-terminal__body {
+    font-size: 12px;
+    padding: 18px 16px;
+  }
+}

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import "./header.css";
 import Link from "@docusaurus/Link";
 import { motion } from "framer-motion";
 import FloatingContributors from "../FloatingContributors";
+import MockTerminal from "../MockTerminal";
 import { useCommunityStatsContext } from "../../lib/statsProvider";
 
 const HeaderStats = () => {
@@ -122,6 +123,8 @@ const HeaderContent = () => {
 };
 
 const HeaderToaster = () => {
+  const [showActivity, setShowActivity] = useState(true);
+
   return (
     <motion.div
       initial={{ scale: 0, x: 10 }}
@@ -143,14 +146,27 @@ const HeaderToaster = () => {
         width: "100%",
       }}
     >
-      {/* Render the FloatingContributors component as the header toaster */}
+      {/* Live Activity by default; mock terminal takes its place once closed */}
       <div
         style={{
           position: "relative",
           zIndex: 1,
         }}
       >
-        <FloatingContributors headerEmbedded={true} />
+        {showActivity ? (
+          <FloatingContributors
+            headerEmbedded={true}
+            onClose={() => setShowActivity(false)}
+          />
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+          >
+            <MockTerminal />
+          </motion.div>
+        )}
       </div>
     </motion.div>
   );
