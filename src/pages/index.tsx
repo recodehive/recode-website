@@ -63,6 +63,7 @@ export default function Home(): ReactNode {
             color: "var(--ifm-font-color-base)",
           }}
         >
+          <CommunityStatsProvider>
           <div className="m-4">
             <Header />
           </div>
@@ -99,10 +100,9 @@ export default function Home(): ReactNode {
           </div>
 
           <div className="m-4">
-            <CommunityStatsProvider>
-              <LandingCommunity className="recodehive" />
-            </CommunityStatsProvider>
+            <LandingCommunity className="recodehive" />
           </div>
+          </CommunityStatsProvider>
 
           <div
             className="m-0"

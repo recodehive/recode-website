@@ -2,8 +2,46 @@ import React from "react";
 import "./header.css";
 import Link from "@docusaurus/Link";
 import { motion } from "framer-motion";
-import ParticlesComponent from "../particle";
 import FloatingContributors from "../FloatingContributors";
+import { useCommunityStatsContext } from "../../lib/statsProvider";
+
+const HeaderStats = () => {
+  const {
+    githubStarCountText,
+    githubContributorsCountText,
+    githubForksCountText,
+    githubReposCountText,
+  } = useCommunityStatsContext();
+
+  const stats = [
+    { value: githubStarCountText, label: "stars" },
+    { value: githubContributorsCountText, label: "contributors" },
+    { value: githubForksCountText, label: "forks" },
+    { value: githubReposCountText, label: "projects" },
+  ];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: -10 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 1,
+        type: "spring",
+        stiffness: 100,
+        delay: 0.4,
+      }}
+      className="chh__header-stats"
+    >
+      {stats.map((stat) => (
+        <span key={stat.label} className="chh__header-stat">
+          <span className="chh__header-stat__value">{stat.value}</span>{" "}
+          <span className="chh__header-stat__label">{stat.label}</span>
+        </span>
+      ))}
+    </motion.div>
+  );
+};
 
 const HeaderContent = () => {
   return (
@@ -18,10 +56,10 @@ const HeaderContent = () => {
           stiffness: 100,
           delay: 0.1,
         }}
-        className="gradient__text"
       >
-        <ParticlesComponent />
-        Level Up Skills with <br /> recode hive
+        Level Up Skills with
+        <br />
+        <span className="chh__header-brand">&lt;recode hive/&gt;</span>
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, x: -10 }}
@@ -33,16 +71,9 @@ const HeaderContent = () => {
           stiffness: 100,
           delay: 0.2,
         }}
-        style={{ textAlign: "center" }}
       >
-        <strong>recode hive</strong> helps you get started with open-source
-        contributions. We’ve built an inclusive community with people from
-        around the world. Join us to earn while learning .<br />
-        <span style={{ color: "#e44d26", fontWeight: "bold" }}>
-          everything made simpler and more practical.
-        </span>
-        <br></br>
-        <br></br>
+        Get started with open-source contributions in an inclusive, worldwide
+        community. Earn while learning simpler and more practical.
       </motion.p>
 
       <div className="chh__header-content__input">
@@ -56,9 +87,11 @@ const HeaderContent = () => {
             stiffness: 100,
             delay: 0.3,
           }}
-          style={{ flex: 1 }}
         >
-          <Link to="/docs/" className="chh__header-content__input--button">
+          <Link
+            to="/docs/"
+            className="chh__header-content__input--button chh__header-content__input--primary"
+          >
             Get Started
           </Link>
         </motion.div>
@@ -73,13 +106,17 @@ const HeaderContent = () => {
             stiffness: 100,
             delay: 0.2,
           }}
-          style={{ flex: 1 }}
         >
-          <Link to="/courses" className="chh__header-content__input--button">
-            Courses
+          <Link
+            to="/courses"
+            className="chh__header-content__input--button chh__header-content__input--secondary"
+          >
+            Browse Courses
           </Link>
         </motion.div>
       </div>
+
+      <HeaderStats />
     </div>
   );
 };
