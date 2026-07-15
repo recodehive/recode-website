@@ -53,10 +53,10 @@ const MockTerminal: React.FC<MockTerminalProps> = ({ onPromptClick }) => {
           }}
         >
           <span className="mock-terminal__prompt">$</span>{" "}
-          <span className="mock-terminal__cursor" />{" "}
           <span className="mock-terminal__hint">
             click to see live user activity
           </span>
+          <span className="mock-terminal__cursor" />
         </div>
       </div>
     </div>

@@ -115,10 +115,15 @@
 }
 
 .mock-terminal__hint {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
   font-size: 11.5px;
-  font-style: italic;
   color: rgba(55, 65, 70, 0.4);
   transition: color 0.2s ease;
+  /* 32ch = length of "click to see live user activity" */
+  animation: mock-terminal-typing 5s steps(32, end) infinite;
 }
 
 [data-theme="dark"] .mock-terminal__hint {
@@ -131,6 +136,18 @@
 
 [data-theme="dark"] .mock-terminal__prompt-line:hover .mock-terminal__hint {
   color: rgba(244, 246, 243, 0.6);
+}
+
+@keyframes mock-terminal-typing {
+  0% {
+    width: 0;
+  }
+  55% {
+    width: 32ch;
+  }
+  100% {
+    width: 32ch;
+  }
 }
 
 @keyframes mock-terminal-blink {
