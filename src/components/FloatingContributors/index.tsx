@@ -497,9 +497,11 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
     }
   };
 
-  // Bots are filtered at fetch time; this also guards stale cached state
+  // Bots are filtered at fetch time; this also guards stale cached state.
+  // Unrecognized event types ("other" → ACTIVE badge) are hidden from the feed.
   const visibleActivities = activities.filter(
-    (activity) => !isBotAccount(activity.contributor.login),
+    (activity) =>
+      !isBotAccount(activity.contributor.login) && activity.action !== "other",
   );
   const visibleContributors = contributors.filter(
     (contributor) => !isBotAccount(contributor.login),

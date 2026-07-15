@@ -16,6 +16,10 @@ import Autoplay from "embla-carousel-autoplay";
 import Link from "@docusaurus/Link";
 import "./blogCarousel.css";
 
+const latestBlogs = [...blogs]
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .slice(0, 5);
+
 export function BlogCarousel() {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -70,16 +74,15 @@ export function BlogCarousel() {
         ]}
       >
         <CarouselContent className="my-10">
-          {blogs.map((blog) => (
+          {latestBlogs.map((blog) => (
             <CarouselItem
               key={blog.id}
               className="basis-full sm:basis-1/2 lg:basis-1/3 xl:basis-1/4"
             >
               <BlogCard
                 type={blog.category}
-                date={(blog as any).date}
+                date={blog.date}
                 title={blog.title}
-                content={blog.description}
                 imageUrl={blog.image}
                 id={blog.slug}
                 authors={blog.authors}

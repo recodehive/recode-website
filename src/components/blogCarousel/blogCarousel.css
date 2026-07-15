@@ -95,7 +95,8 @@
 
 /* ── Card image ── */
 .card-image {
-  height: 200px;
+  /* Blog covers are ~1.9:1 (1730x909); matching it shows the full image */
+  aspect-ratio: 1.9;
   overflow: hidden;
   position: relative;
   background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
@@ -129,7 +130,7 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
     filter 0.45s ease;
 }
@@ -662,10 +663,6 @@
 
 /* ── Responsive ── */
 @media (max-width: 768px) {
-  .card-image {
-    height: 160px;
-  }
-
   .card-content {
     padding: 16px 18px 14px;
   }
