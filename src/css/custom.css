@@ -1409,66 +1409,6 @@ html {
   color: inherit;
 }
 
-/* =====  BASIC FOOTER PROTECTION ===== */
-/* Prevent global dark theme container rule from affecting footer */
-[data-theme="dark"] .enhanced-footer .container {
-  background-color: transparent !important;
-}
-
-/* ===== FOOTER BACKGROUND PROTECTION ===== */
-/* Ensure footer maintains its gradient background in dark mode */
-[data-theme="dark"] .enhanced-footer {
-  background: linear-gradient(135deg,
-      #0f0f23 0%,
-      #1a1a2e 25%,
-      #16213e 50%,
-      #0f3460 75%,
-      #533483 100%) !important;
-  color: #e2e8f0 !important;
-}
-
-/* ===== STEP 5: FOOTER SECTION PROTECTION ===== */
-/* Protect specific footer sections from global overrides */
-[data-theme="dark"] .enhanced-footer .footer-links-section {
-  background: rgba(0, 0, 0, 0.15) !important;
-}
-
-[data-theme="dark"] .enhanced-footer .footer-bottom {
-  background: rgba(0, 0, 0, 0.2) !important;
-}
-
-/* ===== STEP 6: MAXIMUM SPECIFICITY PROTECTION ===== */
-/* Override the exact problematic global rule with same specificity */
-[data-theme="dark"] body:not(:has(.community-page)) .enhanced-footer .container {
-  background-color: transparent !important;
-}
-
-[data-theme="dark"] body:not(:has(.community-page)) .enhanced-footer {
-  background: linear-gradient(135deg,
-      #0f0f23 0%,
-      #1a1a2e 25%,
-      #16213e 50%,
-      #0f3460 75%,
-      #533483 100%) !important;
-  color: #e2e8f0 !important;
-}
-
-/* ===== STEP 7: COMPREHENSIVE ELEMENT PROTECTION ===== */
-/* Protect all footer elements from any global overrides */
-[data-theme="dark"] .enhanced-footer *,
-[data-theme="dark"] .enhanced-footer .row,
-[data-theme="dark"] .enhanced-footer .col,
-[data-theme="dark"] .enhanced-footer div,
-[data-theme="dark"] .enhanced-footer section {
-  background-color: transparent !important;
-}
-
-/* Ensure text colors inherit properly */
-[data-theme="dark"] .enhanced-footer,
-[data-theme="dark"] .enhanced-footer * {
-  color: inherit !important;
-}
-
 /* ===== REMOVE THEME TOGGLE FROM MOBILE SIDEBAR AS THERE IS ONE ON THE NAVBAR ===== */
 @media (max-width: 1200px) {
 
