@@ -625,10 +625,10 @@ html[data-theme="dark"] article blockquote {
 }
 
 :root {
-  --ifm-background-color: #fafaf8;
-  --ifm-background-surface-color: #fafaf8;
-  --ifm-navbar-background-color: #fafaf8;
-  --ifm-footer-background-color: #fafaf8;
+  --ifm-background-color: #FAFAF8;
+  --ifm-background-surface-color: #FAFAF8;
+  --ifm-navbar-background-color: #FAFAF8 !important;
+  --ifm-footer-background-color: #FAFAF8;
   --ifm-color-primary: #2e8555;
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
