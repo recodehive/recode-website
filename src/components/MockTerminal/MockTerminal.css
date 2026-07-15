@@ -104,6 +104,35 @@
   background: #37d67a;
 }
 
+.mock-terminal__prompt-line {
+  cursor: pointer;
+  outline: none;
+  border-radius: 6px;
+}
+
+.mock-terminal__prompt-line:focus-visible {
+  box-shadow: 0 0 0 2px rgba(47, 191, 113, 0.5);
+}
+
+.mock-terminal__hint {
+  font-size: 11.5px;
+  font-style: italic;
+  color: rgba(55, 65, 70, 0.4);
+  transition: color 0.2s ease;
+}
+
+[data-theme="dark"] .mock-terminal__hint {
+  color: rgba(244, 246, 243, 0.35);
+}
+
+.mock-terminal__prompt-line:hover .mock-terminal__hint {
+  color: rgba(55, 65, 70, 0.65);
+}
+
+[data-theme="dark"] .mock-terminal__prompt-line:hover .mock-terminal__hint {
+  color: rgba(244, 246, 243, 0.6);
+}
+
 @keyframes mock-terminal-blink {
   0%,
   100% {

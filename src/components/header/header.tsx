@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./header.css";
 import Link from "@docusaurus/Link";
 import { motion } from "framer-motion";
@@ -123,7 +123,29 @@ const HeaderContent = () => {
 };
 
 const HeaderToaster = () => {
-  const [showActivity, setShowActivity] = useState(true);
+  // Terminal shows first; Live Activity auto-opens after 10s (or on prompt click)
+  const [showActivity, setShowActivity] = useState(false);
+  const autoOpenTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    autoOpenTimerRef.current = setTimeout(() => {
+      setShowActivity(true);
+    }, 10000);
+
+    return () => {
+      if (autoOpenTimerRef.current) {
+        clearTimeout(autoOpenTimerRef.current);
+      }
+    };
+  }, []);
+
+  const openActivity = () => {
+    if (autoOpenTimerRef.current) {
+      clearTimeout(autoOpenTimerRef.current);
+      autoOpenTimerRef.current = null;
+    }
+    setShowActivity(true);
+  };
 
   return (
     <motion.div
@@ -146,7 +168,7 @@ const HeaderToaster = () => {
         width: "100%",
       }}
     >
-      {/* Live Activity by default; mock terminal takes its place once closed */}
+      {/* Mock terminal by default; Live Activity opens after 10s or on prompt click */}
       <div
         style={{
           position: "relative",
@@ -164,7 +186,7 @@ const HeaderToaster = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           >
-            <MockTerminal />
+            <MockTerminal onPromptClick={openActivity} />
           </motion.div>
         )}
       </div>

@@ -1,9 +1,13 @@
 import React from "react";
 import "./MockTerminal.css";
 
-const MockTerminal: React.FC = () => {
+interface MockTerminalProps {
+  onPromptClick?: () => void;
+}
+
+const MockTerminal: React.FC<MockTerminalProps> = ({ onPromptClick }) => {
   return (
-    <div className="mock-terminal" aria-hidden="true">
+    <div className="mock-terminal">
       <div className="mock-terminal__titlebar">
         <span className="mock-terminal__dot mock-terminal__dot--red" />
         <span className="mock-terminal__dot mock-terminal__dot--yellow" />
@@ -35,9 +39,24 @@ const MockTerminal: React.FC = () => {
           </span>
         </div>
         <div className="mock-terminal__out">→ sponsored: ₹500 this week</div>
-        <div>
+        <div
+          className="mock-terminal__prompt-line"
+          role="button"
+          tabIndex={0}
+          aria-label="Open live user activity"
+          onClick={onPromptClick}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              onPromptClick?.();
+            }
+          }}
+        >
           <span className="mock-terminal__prompt">$</span>{" "}
-          <span className="mock-terminal__cursor" />
+          <span className="mock-terminal__cursor" />{" "}
+          <span className="mock-terminal__hint">
+            click to see live user activity
+          </span>
         </div>
       </div>
     </div>
