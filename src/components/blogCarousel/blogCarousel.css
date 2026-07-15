@@ -18,9 +18,9 @@
 /* ── Hover: lift + purple glow ── */
 .article-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 48px rgba(147, 51, 234, 0.22),
-    0 4px 12px rgba(147, 51, 234, 0.15);
-  border-color: rgba(147, 51, 234, 0.8);
+  box-shadow: 0 20px 48px rgba(22, 163, 74, 0.22),
+    0 4px 12px rgba(22, 163, 74, 0.15);
+  border-color: rgba(22, 163, 74, 0.8);
 }
 
 /* ── Dark mode base ── */
@@ -32,9 +32,9 @@
 
 [data-theme="dark"] .article-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 48px rgba(192, 132, 252, 0.28),
-    0 4px 12px rgba(192, 132, 252, 0.18);
-  border-color: rgba(192, 132, 252, 0.8);
+  box-shadow: 0 20px 48px rgba(74, 222, 128, 0.28),
+    0 4px 12px rgba(74, 222, 128, 0.18);
+  border-color: rgba(74, 222, 128, 0.8);
 }
 
 /* ── Subtle overlay on hover ── */
@@ -43,8 +43,8 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg,
-      rgba(147, 51, 234, 0.04) 0%,
-      rgba(217, 70, 239, 0.04) 100%);
+      rgba(22, 163, 74, 0.04) 0%,
+      rgba(74, 222, 128, 0.04) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -171,7 +171,7 @@
 }
 
 .article-card:hover .card-title {
-  color: #9333ea;
+  color: #16a34a;
 }
 
 [data-theme="dark"] .card-title {
@@ -179,7 +179,7 @@
 }
 
 [data-theme="dark"] .article-card:hover .card-title {
-  color: #a78bfa;
+  color: #4ade80;
 }
 
 .card-title-link {
@@ -238,7 +238,7 @@
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #9333ea 0%, #c084fc 100%);
+  background: linear-gradient(90deg, #16a34a 0%, #4ade80 100%);
   border-radius: 2px;
   transition: width 0.35s ease;
 }
@@ -248,7 +248,7 @@
 }
 
 [data-theme="dark"] .card-meta::after {
-  background: linear-gradient(90deg, #c084fc 0%, #d946ef 100%);
+  background: linear-gradient(90deg, #4ade80 0%, #86efac 100%);
 }
 
 /* ── Author ── */

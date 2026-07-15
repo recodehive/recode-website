@@ -41,16 +41,11 @@ const TopMateSection = ({ setShowTopmate }) => {
         >
           <motion.div custom={0} variants={revealVariants} className="mb-2.5">
             <span
-              className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase"
+              className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase"
               style={{
-                background: isDark
-                  ? "rgba(99,102,241,0.08)"
-                  : "rgba(99,102,241,0.06)",
-                border: isDark
-                  ? "1px solid rgba(99,102,241,0.15)"
-                  : "1px solid rgba(99,102,241,0.12)",
-                color: isDark ? "#a5b4fc" : "#4338ca",
-                fontFamily: "'Outfit', 'Inter', -apple-system, sans-serif",
+                color: isDark ? "#4ade80" : "#16a34a",
+                fontFamily:
+                  "'Space Grotesk', 'Inter', -apple-system, sans-serif",
               }}
             >
               ✦ Mentorship
@@ -60,23 +55,14 @@ const TopMateSection = ({ setShowTopmate }) => {
           <motion.h2
             custom={1}
             variants={revealVariants}
-            className="mb-2 text-2xl leading-tight font-extrabold tracking-tighter sm:text-3xl"
+            className="mb-2 text-2xl leading-tight font-bold tracking-tight sm:text-3xl"
             style={{
-              color: isDark ? "#f1f5f9" : "#0f172a",
-              fontFamily: "'Outfit', 'Inter', -apple-system, sans-serif",
+              color: isDark ? "#ffffff" : "#0f172a",
+              fontFamily:
+                "'Space Grotesk', 'Inter', -apple-system, sans-serif",
             }}
           >
-            Book a{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #6366f1, #a855f7)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
-              Session
-            </span>
+            Book a Session
           </motion.h2>
 
           <motion.p

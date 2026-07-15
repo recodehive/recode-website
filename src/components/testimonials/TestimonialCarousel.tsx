@@ -201,16 +201,11 @@ export function TestimonialCarousel() {
       >
         <motion.div custom={0} variants={revealVariants} className="mb-2.5">
           <span
-            className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold tracking-widest uppercase"
+            className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase"
             style={{
-              background: isDark
-                ? "rgba(99,102,241,0.08)"
-                : "rgba(99,102,241,0.06)",
-              border: isDark
-                ? "1px solid rgba(99,102,241,0.15)"
-                : "1px solid rgba(99,102,241,0.12)",
-              color: isDark ? "#a5b4fc" : "#4338ca",
-              fontFamily: "'Outfit', 'Inter', -apple-system, sans-serif",
+              color: isDark ? "#4ade80" : "#16a34a",
+              fontFamily:
+                "'Space Grotesk', 'Inter', -apple-system, sans-serif",
             }}
           >
             ✦ Testimonials
@@ -219,23 +214,13 @@ export function TestimonialCarousel() {
         <motion.h2
           custom={1}
           variants={revealVariants}
-          className="mb-2 text-2xl sm:text-3xl font-extrabold leading-tight tracking-tighter"
+          className="mb-2 text-2xl sm:text-3xl font-bold leading-tight tracking-tight"
           style={{
-            color: isDark ? "#f1f5f9" : "#0f172a",
-            fontFamily: "'Outfit', 'Inter', -apple-system, sans-serif",
+            color: isDark ? "#ffffff" : "#0f172a",
+            fontFamily: "'Space Grotesk', 'Inter', -apple-system, sans-serif",
           }}
         >
-          Builders ❤️{" "}
-          <span
-            style={{
-              background: "linear-gradient(135deg, #6366f1, #a855f7)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Recode Hive
-          </span>
+          Builders <span aria-label="love">&hearts;</span> Recode Hive
         </motion.h2>
         <motion.p
           custom={2}
@@ -246,7 +231,8 @@ export function TestimonialCarousel() {
             fontFamily: "'Inter', -apple-system, sans-serif",
           }}
         >
-          Our builders go on to do incredible things from OpenAI to becoming AI engineers and founders.
+          Our builders go on to do incredible things — from OpenAI to becoming
+          AI engineers and founders.
         </motion.p>
       </motion.div>
 
