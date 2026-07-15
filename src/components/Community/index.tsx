@@ -25,7 +25,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
         stat: githubStarCount,
         statText: githubStarCountText,
         description:
-          "Stars across all our GitHub repositories, showcasing the support and appreciation from the community.",
+          "Stars across our GitHub repositories — community support and appreciation.",
         href: "https://github.com/recodehive/Support",
         label: "GitHub Stars",
       },
@@ -33,7 +33,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
         stat: githubReposCount,
         statText: githubReposCountText,
         description:
-          "Live public projects on recode hive, demonstrating the power of open-source collaboration.",
+          "Live public projects demonstrating the power of open-source collaboration.",
         href: "https://github.com/orgs/recodehive/repositories?q=visibility%3Apublic+archived%3Afalse",
         label: "Public Repositories",
       },
@@ -41,7 +41,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
         stat: githubContributorsCount,
         statText: githubContributorsCountText,
         description:
-          "Amazing contributors who have made our repositories better and helped build our community.",
+          "Amazing contributors who made our repositories and community better.",
         href: "https://github.com/orgs/recodehive/people",
         label: "Contributors",
       },
@@ -49,7 +49,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
         stat: githubForksCount,
         statText: githubForksCountText,
         description:
-          "Forks of our repositories, showing how our community extends and builds upon our work.",
+          "Forks of our repositories — the community extends and builds on our work.",
         href: "https://github.com/orgs/recodehive/discussions",
         label: "Community Forks",
       },
@@ -75,12 +75,11 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
   return (
     <div className={`landing-community ${className || ""}`}>
       <div className="landing-community__header">
+        <p className="landing-community__eyebrow">✦ Community</p>
         <h2 className="landing-community__title">
-          Discover the strength of our{" "}
-          <span className="landing-community__highlight">
-            amazing community
-          </span>
-          .
+          Discover the strength of our
+          <br />
+          amazing community
         </h2>
       </div>
 
@@ -142,19 +141,14 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
             alt="team collaboration"
             loading="lazy"
           />
-          <div className="landing-community__info-text">
-            Our developers are the core of recode hive community. We take pride
-            in our{" "}
-            <span className="landing-community__link">GitHub organization</span>{" "}
-            with amazing{" "}
-            <span className="landing-community__link">
-              contributors and maintainers
-            </span>{" "}
-            powering recode hive's growth.
-            <div className="external-link-indicator">
-              <span className="external-link-icon">↗</span>
-              <small>Click to explore our GitHub</small>
-            </div>
+          <div className="landing-community__info-overlay">
+            <p className="landing-community__info-text">
+              Our developers are the core of the recode hive community 
+              amazing contributors and maintainers powering our growth.
+            </p>
+            <span className="landing-community__info-cta">
+              <span className="external-link-icon">↗</span> Explore our GitHub
+            </span>
           </div>
         </div>
       </div>
