@@ -2,6 +2,16 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./FloatingContributors.css";
 
+// Bot accounts (dependabot, github-actions, etc.) are excluded from the feed
+const isBotAccount = (login: string): boolean => {
+  const name = login.toLowerCase();
+  return (
+    name.includes("[bot]") ||
+    name.includes("dependabot") ||
+    name.includes("github-actions")
+  );
+};
+
 // Format relative time (e.g., "2 hours ago")
 const formatTimeAgo = (date: Date): string => {
   const seconds = Math.floor((new Date().getTime() - date.getTime()) / 1000);
@@ -246,8 +256,10 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
         }
       }
 
-      // Process events into activities
+      // Process events into activities (excluding bot accounts)
       if (Array.isArray(events) && events.length > 0) {
+        events = events.filter((event) => !isBotAccount(event.actor.login));
+
         // Convert GitHub events to our activity format
         const newActivities: ContributorActivity[] = events.map((event) => {
           // Map GitHub event types to our action types
@@ -317,7 +329,11 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
 
               if (Array.isArray(contributorsData)) {
                 contributorsData.forEach((contributor) => {
-                  if (contributor.login && contributor.type === "User") {
+                  if (
+                    contributor.login &&
+                    contributor.type === "User" &&
+                    !isBotAccount(contributor.login)
+                  ) {
                     contributorsMap.set(contributor.login, {
                       id: contributor.id.toString(),
                       login: contributor.login,
@@ -335,7 +351,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
             // If we couldn't get contributors data, at least use actors from events
             events.forEach((event) => {
               const login = event.actor.login;
-              if (!contributorsMap.has(login)) {
+              if (!contributorsMap.has(login) && !isBotAccount(login)) {
                 contributorsMap.set(login, {
                   id: event.actor.id.toString(),
                   login,
@@ -481,13 +497,22 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
     }
   };
 
-  // Don't render anything while initial loading
-  if (loading && activities.length === 0) {
+  // Bots are filtered at fetch time; this also guards stale cached state
+  const visibleActivities = activities.filter(
+    (activity) => !isBotAccount(activity.contributor.login),
+  );
+  const visibleContributors = contributors.filter(
+    (contributor) => !isBotAccount(contributor.login),
+  );
+
+  // Don't render anything while loading or if nothing is left to show
+  if (visibleActivities.length === 0) {
     return null;
   }
 
   // Get current activity to display
-  const currentActivity = activities[currentActivityIndex];
+  const currentActivity =
+    visibleActivities[currentActivityIndex % visibleActivities.length];
 
   return (
     <AnimatePresence>
@@ -534,24 +559,30 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
                 }
             }
           >
-            {/* Close button */}
-            <button
-              className="floating-contributors-close"
-              onClick={() => (onClose ? onClose() : setIsVisible(false))}
-              aria-label="Close contributors showcase"
-            >
-              ×
-            </button>
+            {/* Terminal-style titlebar */}
+            <div className="floating-contributors-titlebar">
+              <span className="fc-dot fc-dot--red" />
+              <span className="fc-dot fc-dot--yellow" />
+              <span className="fc-dot fc-dot--green" />
+              <span className="floating-contributors-titlebar-label">
+                ~/recodehive — live activity
+              </span>
+              <button
+                className="floating-contributors-close"
+                onClick={() => (onClose ? onClose() : setIsVisible(false))}
+                aria-label="Close contributors showcase"
+              >
+                ×
+              </button>
+            </div>
 
-            {/* Header */}
-            <div className="floating-contributors-header">
-              <div className="floating-contributors-title">
-                <span className="title-icon">👥</span>
-                <span>Live Activity</span>
-              </div>
-              <div className="floating-contributors-subtitle">
-                recodehive/recode-website
-              </div>
+            <div className="floating-contributors-body">
+            {/* Command line header */}
+            <div className="floating-contributors-cmdline">
+              <span className="fc-prompt">$</span>{" "}
+              <span className="fc-cmd">
+                gh activity --repo recode-website --watch
+              </span>
             </div>
 
             {/* Current activity */}
@@ -613,12 +644,12 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
               <div className="contributors-grid-header">
                 <span>Recent Contributors</span>
                 <span className="contributors-count">
-                  {contributors.length}
+                  {visibleContributors.length}
                 </span>
               </div>
 
               <div className="contributors-avatars">
-                {contributors
+                {[...visibleContributors]
                   .sort((a, b) => b.contributions - a.contributions) // Sort contributors by contributions in descending order
                   .slice(0, 5) // Limit to top 5 contributors
                   .map((contributor, index) => (
@@ -659,9 +690,9 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
                     </motion.div>
                   ))}
 
-                {contributors.length > 5 && (
+                {visibleContributors.length > 5 && (
                   <div className="contributors-more">
-                    <span>+{contributors.length - 5}</span>
+                    <span>+{visibleContributors.length - 5}</span>
                   </div>
                 )}
               </div>
@@ -683,32 +714,8 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
                 <span className="cta-arrow">↗</span>
               </motion.a>
             </div>
+            </div>
           </motion.div>
-
-          {/* Floating particles */}
-          <div className="floating-particles">
-            {[...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="floating-particle"
-                animate={{
-                  y: [0, -20, 0],
-                  x: [0, Math.sin(i) * 10, 0],
-                  opacity: [0.3, 0.8, 0.3],
-                }}
-                transition={{
-                  duration: 3 + i * 0.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: i * 0.2,
-                }}
-                style={{
-                  left: `${10 + i * 15}%`,
-                  top: `${20 + (i % 3) * 20}%`,
-                }}
-              />
-            ))}
-          </div>
         </motion.div>
       )}
     </AnimatePresence>
