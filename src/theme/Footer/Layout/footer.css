@@ -135,6 +135,35 @@
   cursor: default;
 }
 
+.rh-btn--white {
+  color: var(--rhf-text);
+  background: var(--rhf-bg, #fff);
+  border: 1.5px solid var(--rhf-border);
+}
+
+.rh-btn--white:hover {
+  color: var(--rhf-text);
+  border-color: var(--rhf-text);
+  text-decoration: none;
+}
+
+.rh-btn--dark {
+  color: #fff;
+  background: #0a0a0a;
+  border: 1.5px solid #0a0a0a;
+}
+
+.rh-btn--dark:hover {
+  color: #fff;
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  text-decoration: none;
+}
+
+.rh-btn__icon {
+  flex-shrink: 0;
+}
+
 /* Link columns */
 
 .rh-footer__label {
