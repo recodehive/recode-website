@@ -624,10 +624,10 @@ html[data-theme="dark"] article blockquote {
   }
 }
 
-:root {
+:root, html[data-theme="light"] {
   --ifm-background-color: #FAFAF8;
   --ifm-background-surface-color: #FAFAF8;
-  --ifm-navbar-background-color: #FAFAF8 !important;
+  --ifm-navbar-background-color: #FAFAF8;
   --ifm-footer-background-color: #FAFAF8;
   --ifm-color-primary: #2e8555;
   --ifm-color-primary-dark: #29784c;
@@ -689,7 +689,7 @@ body {
   text-decoration: none;
 }
 
-[data-theme="dark"] {
+html[data-theme="dark"] {
   --ifm-background-color: #000000;
   --ifm-background-surface-color: #0a0a0a;
   --ifm-navbar-background-color: #000000;
