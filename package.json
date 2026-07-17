@@ -33,7 +33,7 @@
     "@docusaurus/plugin-google-analytics": "3.10.2",
     "@docusaurus/plugin-ideal-image": "3.10.1",
     "@docusaurus/preset-classic": "3.10.1",
-    "@docusaurus/theme-classic": "3.10.1",
+    "@docusaurus/theme-classic": "3.10.2",
     "@docusaurus/theme-mermaid": "3.10.1",
     "@docusaurus/theme-search-algolia": "3.10.1",
     "@emailjs/browser": "^4.4.1",
