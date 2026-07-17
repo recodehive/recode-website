@@ -126,73 +126,78 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
   const [lastFetched, setLastFetched] = useState<number | null>(null);
   const refreshTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Create fallback activities for when API fails
-  const createFallbackActivities = useCallback((): ContributorActivity[] => {
-    const fallbackContributors = [
-      {
-        login: "sanjay-kv",
-        avatar_url: "https://avatars.githubusercontent.com/u/30715153?v=4",
-        html_url: "https://github.com/sanjay-kv",
-      },
-      {
-        login: "recodehive-team",
-        avatar_url: "https://avatars.githubusercontent.com/u/150000000?v=4",
-        html_url: "https://github.com/recodehive",
-      },
-      {
-        login: "open-source-contributor",
-        avatar_url: "https://avatars.githubusercontent.com/u/583231?v=4",
-        html_url: "https://github.com/open-source-contributor",
-      },
-      {
-        login: "developer",
-        avatar_url: "https://avatars.githubusercontent.com/u/9919?v=4",
-        html_url: "https://github.com/developer",
-      },
-      {
-        login: "coder",
-        avatar_url: "https://avatars.githubusercontent.com/u/6154722?v=4",
-        html_url: "https://github.com/coder",
-      },
-    ];
+  // When there's no recent event-feed activity, fall back to the repo's
+  // actual latest push (commits) and latest issue comments instead of mock data.
+  const fetchRealFallbackActivities = useCallback(async (): Promise<
+    ContributorActivity[]
+  > => {
+    const results: ContributorActivity[] = [];
 
-    const actions: ContributorActivity["action"][] = [
-      "pushed",
-      "created",
-      "merged",
-      "opened",
-      "commented",
-    ];
-    const timeOffsets = [5, 10, 30, 60, 120, 240, 480]; // minutes
-    const messages = [
-      "Updated documentation",
-      "Fixed styling issues",
-      "Added new feature",
-      "Resolved conflict in package.json",
-      "Implemented responsive design",
-      "Updated dependencies",
-      "Fixed typo in README",
-    ];
-
-    return fallbackContributors.map((contributor, index) => {
-      const now = new Date();
-      const timestamp = new Date(
-        now.getTime() - timeOffsets[index % timeOffsets.length] * 60 * 1000,
+    try {
+      const commitsResponse = await fetch(
+        "https://api.github.com/repos/recodehive/recode-website/commits?per_page=5",
       );
+      if (commitsResponse.ok) {
+        const commits = await commitsResponse.json();
+        if (Array.isArray(commits)) {
+          commits.forEach((commit) => {
+            const login = commit.author?.login;
+            if (!login || isBotAccount(login)) return;
+            const timestamp = new Date(
+              commit.commit?.author?.date ?? Date.now(),
+            );
+            results.push({
+              id: `commit-${commit.sha}`,
+              contributor: {
+                login,
+                avatar_url: commit.author.avatar_url,
+                html_url: `https://github.com/${login}`,
+              },
+              action: "pushed",
+              message: commit.commit?.message?.slice(0, 50),
+              timestamp,
+              timeAgo: formatTimeAgo(timestamp),
+            });
+          });
+        }
+      }
+    } catch (e) {
+      console.warn("Error fetching fallback commits:", e);
+    }
 
-      return {
-        id: `fallback-${index}`,
-        contributor: {
-          login: contributor.login,
-          avatar_url: contributor.avatar_url,
-          html_url: contributor.html_url,
-        },
-        action: actions[index % actions.length],
-        message: messages[index % messages.length]?.slice(0, 50), // Consistent message length
-        timestamp,
-        timeAgo: formatTimeAgo(timestamp),
-      };
-    });
+    try {
+      const commentsResponse = await fetch(
+        "https://api.github.com/repos/recodehive/recode-website/issues/comments?per_page=5&sort=created&direction=desc",
+      );
+      if (commentsResponse.ok) {
+        const comments = await commentsResponse.json();
+        if (Array.isArray(comments)) {
+          comments.forEach((comment) => {
+            const login = comment.user?.login;
+            if (!login || isBotAccount(login)) return;
+            const timestamp = new Date(comment.created_at ?? Date.now());
+            results.push({
+              id: `comment-${comment.id}`,
+              contributor: {
+                login,
+                avatar_url: comment.user.avatar_url,
+                html_url: `https://github.com/${login}`,
+              },
+              action: "commented",
+              message: comment.body?.slice(0, 50),
+              timestamp,
+              timeAgo: formatTimeAgo(timestamp),
+            });
+          });
+        }
+      }
+    } catch (e) {
+      console.warn("Error fetching fallback comments:", e);
+    }
+
+    return results.sort(
+      (a, b) => b.timestamp.getTime() - a.timestamp.getTime(),
+    );
   }, []);
 
   // Fetch live data from GitHub
@@ -368,6 +373,26 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
             setContributors(Array.from(contributorsMap.values()));
           }
         }
+
+        // If nothing left after filtering out bots/"other" events, pull the
+        // repo's real latest push + comments instead of leaving it empty.
+        const hasVisible = newActivities.some(
+          (activity) =>
+            !isBotAccount(activity.contributor.login) &&
+            activity.action !== "other",
+        );
+        if (!hasVisible) {
+          const realFallback = await fetchRealFallbackActivities();
+          if (realFallback.length > 0) {
+            setActivities(realFallback);
+          }
+        }
+      } else {
+        // No events at all from the API — use real fallback data.
+        const realFallback = await fetchRealFallbackActivities();
+        if (realFallback.length > 0) {
+          setActivities(realFallback);
+        }
       }
 
       setLastFetched(now);
@@ -383,32 +408,33 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
     } catch (error) {
       console.warn("Error fetching GitHub events:", error);
 
-      // Use fallback data if we have no activities yet
+      // Use the repo's real latest push + comments if we have no activities yet
       if (activities.length === 0) {
-        const fallbackActivities = createFallbackActivities();
-        setActivities(fallbackActivities);
+        const realFallback = await fetchRealFallbackActivities();
+        if (realFallback.length > 0) {
+          setActivities(realFallback);
 
-        // Create fallback contributors
-        const contributorsMap = new Map<string, Contributor>();
-        fallbackActivities.forEach((activity) => {
-          const login = activity.contributor.login;
-          if (!contributorsMap.has(login)) {
-            contributorsMap.set(login, {
-              id: `fallback-${login}`,
-              login,
-              avatar_url: activity.contributor.avatar_url,
-              contributions: Math.floor(Math.random() * 50) + 10,
-              html_url: activity.contributor.html_url,
-            });
-          }
-        });
+          const contributorsMap = new Map<string, Contributor>();
+          realFallback.forEach((activity) => {
+            const login = activity.contributor.login;
+            if (!contributorsMap.has(login)) {
+              contributorsMap.set(login, {
+                id: `fallback-${login}`,
+                login,
+                avatar_url: activity.contributor.avatar_url,
+                contributions: 0,
+                html_url: activity.contributor.html_url,
+              });
+            }
+          });
 
-        setContributors(Array.from(contributorsMap.values()));
+          setContributors(Array.from(contributorsMap.values()));
+        }
       }
 
       setLoading(false);
     }
-  }, [activities.length, createFallbackActivities, lastFetched]);
+  }, [activities.length, fetchRealFallbackActivities, lastFetched]);
 
   // Initialize component and start data fetching
   useEffect(() => {
