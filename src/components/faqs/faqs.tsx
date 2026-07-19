@@ -54,9 +54,7 @@ const FAQs: React.FC = () => {
     <section
       className="relative overflow-hidden py-8 transition-all duration-300"
       style={{
-        background: isDark
-          ? "linear-gradient(to bottom, #0a0a0a 0%, #0f1e14 30%, #16281c 60%, #16351f 85%, #1b4e2d 100%)"
-          : "linear-gradient(to bottom, #f9fafb 0%, #f3f4f6 30%, #e5e7eb 60%, #d3f5e1 85%, #e7fbf0 100%)",
+        background: isDark ? "#161616" : "#FFFFFF",
         border: "none",
         borderTop: "none",
         boxShadow: "none",
@@ -111,12 +109,10 @@ const FAQs: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                     style={{
-                      background: isDark
-                        ? "rgba(19, 78, 45, 0.30)"
-                        : "rgba(55, 214, 122, 0.10)",
+                      background: isDark ? "#161616" : "#FFFFFF",
                       border: isDark
-                        ? "1px solid rgba(55, 214, 122, 0.25)"
-                        : "1px solid rgba(55, 214, 122, 0.35)",
+                        ? "1px solid rgba(255, 255, 255, 0.12)"
+                        : "1px solid rgba(0, 0, 0, 0.10)",
                       backdropFilter: "blur(10px)",
                     }}
                   >
@@ -128,11 +124,11 @@ const FAQs: React.FC = () => {
                       style={{
                         background: isDark
                           ? isOpen
-                            ? "rgba(55, 214, 122, 0.18)"
-                            : "rgba(19, 78, 45, 0.30)"
+                            ? "#1f1f1f"
+                            : "#161616"
                           : isOpen
-                            ? "rgba(55, 214, 122, 0.25)"
-                            : "rgba(55, 214, 122, 0.08)",
+                            ? "#f5f5f5"
+                            : "#FFFFFF",
                       }}
                       onClick={() => toggleAccordion(originalIndex)}
                       aria-expanded={isOpen}
@@ -161,11 +157,9 @@ const FAQs: React.FC = () => {
                           }`}
                         style={{
                           borderTop: isDark
-                            ? "1px solid rgba(55, 214, 122, 0.3)"
-                            : "1px solid rgba(55, 214, 122, 0.45)",
-                          background: isDark
-                            ? "rgba(17, 24, 39, 0.5)"
-                            : "rgba(255, 255, 255, 0.72)",
+                            ? "1px solid rgba(255, 255, 255, 0.12)"
+                            : "1px solid rgba(0, 0, 0, 0.10)",
+                          background: isDark ? "#161616" : "#FFFFFF",
                           color: isDark ? "#d1d5db" : "#111827",
                           padding: "1rem 1.25rem 1.25rem",
                         }}
@@ -200,12 +194,10 @@ const FAQs: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                     style={{
-                      background: isDark
-                        ? "rgba(19, 78, 45, 0.30)"
-                        : "rgba(55, 214, 122, 0.10)",
+                      background: isDark ? "#161616" : "#FFFFFF",
                       border: isDark
-                        ? "1px solid rgba(55, 214, 122, 0.25)"
-                        : "1px solid rgba(55, 214, 122, 0.35)",
+                        ? "1px solid rgba(255, 255, 255, 0.12)"
+                        : "1px solid rgba(0, 0, 0, 0.10)",
                       backdropFilter: "blur(10px)",
                     }}
                   >
@@ -217,11 +209,11 @@ const FAQs: React.FC = () => {
                       style={{
                         background: isDark
                           ? isOpen
-                            ? "rgba(55, 214, 122, 0.18)"
-                            : "rgba(19, 78, 45, 0.30)"
+                            ? "#1f1f1f"
+                            : "#161616"
                           : isOpen
-                            ? "rgba(55, 214, 122, 0.25)"
-                            : "rgba(55, 214, 122, 0.08)",
+                            ? "#f5f5f5"
+                            : "#FFFFFF",
                       }}
                       onClick={() => toggleAccordion(originalIndex)}
                       aria-expanded={isOpen}
@@ -250,11 +242,9 @@ const FAQs: React.FC = () => {
                           }`}
                         style={{
                           borderTop: isDark
-                            ? "1px solid rgba(55, 214, 122, 0.3)"
-                            : "1px solid rgba(55, 214, 122, 0.45)",
-                          background: isDark
-                            ? "rgba(17, 24, 39, 0.5)"
-                            : "rgba(255, 255, 255, 0.72)",
+                            ? "1px solid rgba(255, 255, 255, 0.12)"
+                            : "1px solid rgba(0, 0, 0, 0.10)",
+                          background: isDark ? "#161616" : "#FFFFFF",
                           color: isDark ? "#d1d5db" : "#111827",
                           padding: "1rem 1.25rem 1.25rem",
                         }}
