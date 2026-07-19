@@ -45,6 +45,7 @@ const LINK_COLUMNS: FooterColumn[] = [
       { label: "Contact Us", to: "/contact-us" },
       { label: "Podcasts", to: "/podcasts" },
       { label: "Roadmap", to: "https://github.com/orgs/recodehive/projects/9", external: true },
+      { label: "Changelog", to: "/changelog" },
     ],
   },
 ];

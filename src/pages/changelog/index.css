@@ -1,0 +1,201 @@
+.changelog__page {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+.changelog__header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.changelog__header h1 {
+  font-family:
+    "Space Grotesk",
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-weight: 700;
+  font-size: 2.75rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+}
+
+.changelog__header-brand {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  color: #16a34a;
+  font-weight: 700;
+}
+
+[data-theme="dark"] .changelog__header-brand {
+  color: #4ade80;
+}
+
+.changelog__header p {
+  font-family: var(--font-family);
+  color: var(--ifm-color-emphasis-600);
+  font-size: 1.05rem;
+}
+
+.changelog__timeline {
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--ifm-color-emphasis-300);
+}
+
+.changelog__entry {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.changelog__entry:last-child {
+  margin-bottom: 0;
+}
+
+.changelog__dot {
+  position: absolute;
+  left: -1.6rem;
+  top: 1.6rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--ifm-color-emphasis-800);
+  border: 2px solid var(--ifm-background-color);
+}
+
+.changelog__card {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 12px;
+  background: var(--ifm-background-surface-color);
+  padding: 1.5rem 1.75rem;
+}
+
+.changelog__card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.9rem;
+}
+
+.changelog__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #16a34a;
+  background: var(--ifm-color-success-contrast-background);
+  border: 1px solid var(--ifm-color-success-light);
+  border-radius: 6px;
+  padding: 0.2rem 0.55rem;
+}
+
+[data-theme="dark"] .changelog__badge {
+  color: #4ade80;
+}
+
+.changelog__date {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+.changelog__title {
+  font-family:
+    "Space Grotesk",
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.changelog__title a {
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
+}
+
+.changelog__title a:hover {
+  color: var(--ifm-color-primary);
+}
+
+.changelog__body-wrap--clamped {
+  max-height: 9rem;
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+.changelog__body-heading {
+  font-family:
+    "Space Grotesk",
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0.75rem 0 0.4rem;
+}
+
+.changelog__body-text,
+.changelog__body-list {
+  font-family: var(--font-family);
+  color: var(--ifm-color-emphasis-700);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.changelog__body-list {
+  margin: 0 0 0.5rem;
+  padding-left: 1.2rem;
+}
+
+.changelog__toggle {
+  font-family: var(--font-family);
+  background: none;
+  border: none;
+  color: var(--ifm-color-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.4rem 0;
+}
+
+.changelog__toggle:hover {
+  text-decoration: underline;
+}
+
+.changelog__divider {
+  margin: 1rem 0 0.75rem;
+  border: none;
+  border-top: 1px solid var(--ifm-color-emphasis-300);
+}
+
+.changelog__author {
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-600);
+  margin: 0;
+}
+
+.changelog__empty {
+  font-family: var(--font-family);
+  text-align: center;
+  color: var(--ifm-color-emphasis-600);
+}
+
+@media screen and (max-width: 768px) {
+  .changelog__header h1 {
+    font-size: 2rem;
+  }
+}
