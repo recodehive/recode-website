@@ -97,15 +97,30 @@ const NewsletterPopup = () => {
 
         <p className="mb-4 text-xs text-gray-500">
           By subscribing, I agree to Substack’s{" "}
-          <a href="#" className="underline hover:text-blue-600">
+          <a
+            href="https://substack.com/tos"
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:text-blue-600"
+          >
             Terms of Use
           </a>{" "}
           and acknowledge its{" "}
-          <a href="#" className="underline hover:text-blue-600">
+          <a
+            href="https://substack.com/privacy"
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:text-blue-600"
+          >
             Information Collection Notice
           </a>{" "}
           and{" "}
-          <a href="#" className="underline hover:text-blue-600">
+          <a
+            href="https://substack.com/privacy"
+            target="_blank"
+            rel="noreferrer"
+            className="underline hover:text-blue-600"
+          >
             Privacy Policy
           </a>
           .
