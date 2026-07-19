@@ -133,7 +133,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
         rel="noopener noreferrer"
         whileHover={{ scale: 1.015 }}
         whileTap={{ scale: 0.985 }}
-        className="mt-5 flex w-full items-center justify-center rounded-full px-4 py-2.5 text-sm font-semibold"
+        className="mt-5 flex w-fit items-center justify-center self-center rounded-full px-4 py-1.5 text-[13px] font-semibold"
         style={{
           background: green,
           color: isDark ? "#052e16" : "#ffffff",
