@@ -113,7 +113,6 @@ export default function MerchPage(): ReactNode {
     async function fetchShopifyProducts() {
       try {
         if (isShopifyConfigured()) {
-          console.log("Fetching products from Shopify...");
           const shopifyProducts = await getProducts(20);
 
           if (shopifyProducts && shopifyProducts.length > 0) {
@@ -138,19 +137,13 @@ export default function MerchPage(): ReactNode {
               };
             });
 
-            console.log(
-              "Loaded products from Shopify:",
-              formattedProducts.length,
-            );
             setProducts(formattedProducts);
             setFilteredProducts(formattedProducts);
           } else {
-            console.log("No products found in Shopify, using sample products");
             setProducts(sampleProducts);
             setFilteredProducts(sampleProducts);
           }
         } else {
-          console.log("Shopify not configured, using sample products");
           setProducts(sampleProducts);
           setFilteredProducts(sampleProducts);
         }
