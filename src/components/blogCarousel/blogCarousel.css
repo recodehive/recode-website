@@ -590,7 +590,7 @@
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #16a34a;
-  margin: 0 0 0.5rem;
+  margin: 0 0 0.25rem;
 }
 
 [data-theme="dark"] .blog-section-eyebrow {
@@ -615,7 +615,7 @@
 .blog-section-subtitle {
   font-size: 16px;
   color: #4b5563;
-  margin: 0.5rem 0 0;
+  margin: 0.25rem 0 0;
 }
 
 [data-theme="dark"] .blog-section-subtitle {
