@@ -66,8 +66,8 @@ const FAQs: React.FC = () => {
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="w-full">
           <div className="mb-10 text-center lg:mb-14">
-            <p
-              className="mb-2.5 inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase"
+            <h3
+              className="mb-1 inline-flex items-center gap-2 text-lg font-semibold tracking-widest uppercase"
               style={{
                 color: isDark ? "#4ade80" : "#16a34a",
                 fontFamily:
@@ -75,7 +75,7 @@ const FAQs: React.FC = () => {
               }}
             >
               ✦ FAQs
-            </p>
+            </h3>
             <h2
               className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl"
               style={{
@@ -87,7 +87,7 @@ const FAQs: React.FC = () => {
               Looking for answers?
             </h2>
             <p
-              className={`mx-auto mt-3 max-w-3xl text-base ${isDark ? "text-gray-400" : "text-gray-600"
+              className={`mx-auto mt-1.5 max-w-3xl text-base ${isDark ? "text-gray-400" : "text-gray-600"
                 }`}
               style={{ textAlign: "center" }}
             >
