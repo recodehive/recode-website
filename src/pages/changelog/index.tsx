@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Layout from "@theme/Layout";
 import releases from "@site/src/data/releases.json";
-import { ReleaseBody } from "./markdown";
+import { ReleaseBody } from "@site/src/components/changelog/ReleaseBody";
 import "./index.css";
 
 type Release = {
