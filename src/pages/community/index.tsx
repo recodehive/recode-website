@@ -7,10 +7,41 @@ import { MdLocalFlorist } from "react-icons/md";
 import ScrollBottomToTop from "@site/src/components/scroll/bottom-to-top";
 import "./community.css";
 import { HiOutlineChatAlt2 } from "react-icons/hi";
+import { FaFire, FaClock, FaTwitter, FaLinkedin, FaBook, FaArrowRight } from "react-icons/fa";
 import {
   CommunityStatsProvider,
   useCommunityStatsContext,
 } from "@site/src/lib/statsProvider";
+
+interface CommunityPost {
+  id: string;
+  author: string;
+  avatar: string;
+  timeAgo: string;
+  category: string;
+  title: string;
+  excerpt: string;
+  likes: number;
+  comments: number;
+  type: "top" | "newest";
+}
+
+interface NewsItem {
+  id: string;
+  title: string;
+  date: string;
+  type: string;
+  thumbnail: string;
+}
+
+interface UpcomingEvent {
+  id: string;
+  date: string;
+  month: string;
+  title: string;
+  time: string;
+  color: string;
+}
 
 interface ContributionSection {
   id: string;
@@ -125,6 +156,125 @@ const tableOfContents = [
   { id: "get-started", title: "Get Started", icon: "🚀" },
 ];
 
+const communityPosts: CommunityPost[] = [
+  {
+    id: "1",
+    author: "Aditya Sharma",
+    avatar: "🐝",
+    timeAgo: "2h",
+    category: "General",
+    title: "Monthly Challenge: Build with Docusaurus",
+    excerpt:
+      "This month, put your skills to the test by building a custom Docusaurus plugin. Share your progress and get feedback from the hive!",
+    likes: 24,
+    comments: 8,
+    type: "top",
+  },
+  {
+    id: "2",
+    author: "Priya Nair",
+    avatar: "🌻",
+    timeAgo: "5h",
+    category: "Show & Tell",
+    title: "My first open source PR merged!",
+    excerpt:
+      "Just got my first PR merged into recode hive. Huge thanks to the reviewers for the guidance — onward to the next issue.",
+    likes: 41,
+    comments: 15,
+    type: "top",
+  },
+  {
+    id: "3",
+    author: "Rahul Verma",
+    avatar: "🚀",
+    timeAgo: "1d",
+    category: "Resources",
+    title: "Curated list of beginner-friendly issues",
+    excerpt:
+      "Compiled a list of good-first-issues across our repos, sorted by difficulty. Great starting point for new contributors.",
+    likes: 33,
+    comments: 6,
+    type: "top",
+  },
+  {
+    id: "4",
+    author: "Sneha Iyer",
+    avatar: "✨",
+    timeAgo: "10m",
+    category: "General",
+    title: "Weekend hack session — who's in?",
+    excerpt:
+      "Planning an informal weekend hack session over Discord. Drop a comment if you'd like to join, all skill levels welcome.",
+    likes: 5,
+    comments: 3,
+    type: "newest",
+  },
+  {
+    id: "5",
+    author: "Karan Mehta",
+    avatar: "🐝",
+    timeAgo: "45m",
+    category: "Show & Tell",
+    title: "Redesigned my portfolio using recode hive docs",
+    excerpt:
+      "Used a bunch of tips from our documentation section to rebuild my portfolio site. Sharing the repo in case it helps anyone.",
+    likes: 12,
+    comments: 4,
+    type: "newest",
+  },
+];
+
+const communityNews: NewsItem[] = [
+  {
+    id: "1",
+    title: "Creative Coding with p5.js",
+    date: "Jul 24th",
+    type: "Video",
+    thumbnail: "🎨",
+  },
+  {
+    id: "2",
+    title: "13 Things to Do if You Were Ghosted by a Recruiter",
+    date: "Jul 18th",
+    type: "Video",
+    thumbnail: "🌟",
+  },
+  {
+    id: "3",
+    title: "12 Cool Open Source Project Ideas",
+    date: "Jun 18th",
+    type: "Blog",
+    thumbnail: "💡",
+  },
+];
+
+const upcomingEvents: UpcomingEvent[] = [
+  {
+    id: "1",
+    date: "12",
+    month: "AUG",
+    title: "recode hive Community AMA",
+    time: "Tue Aug 12th @ 3:00pm ET",
+    color: "#8b5cf6",
+  },
+  {
+    id: "2",
+    date: "12",
+    month: "AUG",
+    title: "Open Source Office Hours",
+    time: "Tue Aug 12th @ 1:30pm ET",
+    color: "#10b981",
+  },
+  {
+    id: "3",
+    date: "13",
+    month: "AUG",
+    title: "Resume Review Workshop",
+    time: "Wed Aug 13th @ 2:00pm ET",
+    color: "#f59e0b",
+  },
+];
+
 const thankYouIcons = [
   { emoji: "💚", label: "A little hive hug for you" },
   { emoji: "🎉", label: "Yay, you're part of the celebration" },
@@ -144,6 +294,7 @@ function CommunityPageContent(): React.ReactElement {
   const [activeSections, setActiveSections] = useState<string[]>([
     "how-you-can-contribute",
   ]);
+  const [activeFeedTab, setActiveFeedTab] = useState<"top" | "newest">("top");
   const [selectedSection, setSelectedSection] = useState<string | null>(null);
   const [openDropdowns, setOpenDropdowns] = useState<string[]>([]);
 
@@ -281,6 +432,138 @@ function CommunityPageContent(): React.ReactElement {
                   have you here!
                 </p>
               </motion.div>
+            </div>
+          </section>
+
+          {/* Community Feed Section */}
+          <section id="community-feed" className="community-feed-section">
+            <div className="container">
+              <div className="community-feed-layout">
+                <div className="community-feed-main">
+                  <div className="feed-tabs">
+                    <button
+                      className={`feed-tab ${activeFeedTab === "top" ? "active" : ""}`}
+                      onClick={() => setActiveFeedTab("top")}
+                    >
+                      <FaFire /> Top Posts
+                    </button>
+                    <button
+                      className={`feed-tab ${activeFeedTab === "newest" ? "active" : ""}`}
+                      onClick={() => setActiveFeedTab("newest")}
+                    >
+                      <FaClock /> Newest
+                    </button>
+                  </div>
+
+                  <div className="feed-posts">
+                    {communityPosts
+                      .filter((post) => post.type === activeFeedTab)
+                      .map((post, index) => (
+                        <motion.div
+                          key={post.id}
+                          className="feed-post-card"
+                          initial={{ opacity: 0, y: 15 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.4, delay: 0.05 * index }}
+                        >
+                          <div className="feed-post-header">
+                            <span className="feed-post-avatar">{post.avatar}</span>
+                            <div className="feed-post-meta">
+                              <span className="feed-post-author">{post.author}</span>
+                              <span className="feed-post-time">
+                                {post.timeAgo} · #{post.category}
+                              </span>
+                            </div>
+                          </div>
+                          <h4 className="feed-post-title">{post.title}</h4>
+                          <p className="feed-post-excerpt">{post.excerpt}</p>
+                          <div className="feed-post-footer">
+                            <span>❤️ {post.likes}</span>
+                            <span>💬 {post.comments}</span>
+                          </div>
+                        </motion.div>
+                      ))}
+                  </div>
+
+                  <div className="feed-social-links">
+                    <a
+                      href="https://twitter.com/recodehive"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="feed-social-link"
+                    >
+                      <FaTwitter /> Follow on Twitter
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/company/recodehive"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="feed-social-link"
+                    >
+                      <FaLinkedin /> Follow on LinkedIn
+                    </a>
+                  </div>
+                </div>
+
+                <div className="community-feed-sidebar">
+                  <div className="feed-sidebar-card">
+                    <div className="feed-sidebar-header">
+                      <h4>recode hive News</h4>
+                      <a href="/blog" className="feed-sidebar-see-all">
+                        See all <FaArrowRight size={10} />
+                      </a>
+                    </div>
+                    {communityNews.map((item) => (
+                      <div key={item.id} className="feed-news-item">
+                        <span className="feed-news-thumb">{item.thumbnail}</span>
+                        <div>
+                          <p className="feed-news-title">{item.title}</p>
+                          <span className="feed-news-meta">
+                            {item.date} | {item.type}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="feed-sidebar-card">
+                    <div className="feed-sidebar-header">
+                      <h4>Upcoming Events</h4>
+                    </div>
+                    {upcomingEvents.map((event) => (
+                      <div key={event.id} className="feed-event-item">
+                        <div
+                          className="feed-event-date"
+                          style={{ backgroundColor: event.color }}
+                        >
+                          <span>{event.date}</span>
+                          <small>{event.month}</small>
+                        </div>
+                        <div>
+                          <p className="feed-event-title">{event.title}</p>
+                          <span className="feed-event-time">{event.time}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <a
+                
+                    href="https://github.com/recodehive/recode-website/blob/main/CODE_OF_CONDUCT.md"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="feed-sidebar-card feed-guidelines-card"
+                  >
+                    <FaBook className="feed-guidelines-icon" />
+                    <div>
+                      <p className="feed-guidelines-title">Community Guidelines</p>
+                      <span className="feed-guidelines-sub">
+                        Review our Code of Conduct
+                      </span>
+                    </div>
+                    <FaArrowRight size={12} />
+                  </a>
+                </div>
+              </div>
             </div>
           </section>
 
