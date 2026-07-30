@@ -1,12 +1,14 @@
 // src/components/dashboard/LeaderBoard/leaderboard.tsx
 import React, { JSX, useState, useCallback } from "react";
 import { motion } from "framer-motion";
-import { FaStar, FaCode, FaUsers, FaGithub, FaSearch } from "react-icons/fa";
+import { FaGithub, FaSearch } from "react-icons/fa";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import { useUser } from "@clerk/react";
 import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
 import { useCommunityStatsContext } from "@site/src/lib/statsProvider";
 import PRListModal from "./PRListModal";
 import BadgeModal from "./BadgeModal";
+import PersonalStats from "./PersonalStats";
 import { mockContributors } from "./mockData";
 import "./leaderboard.css";
 
@@ -282,6 +284,17 @@ export default function LeaderBoard(): JSX.Element {
   } = useCommunityStatsContext();
 
   const { isDark } = useSafeColorMode();
+  // useUser() throws if no ClerkProvider is mounted (e.g. Clerk not configured
+  // locally); guard so the leaderboard still renders without personalization.
+  let clerkUser: ReturnType<typeof useUser>["user"] | undefined;
+  try {
+    clerkUser = useUser().user;
+  } catch {
+    clerkUser = undefined;
+  }
+  const viewerLogin =
+    clerkUser?.externalAccounts?.find((a) => a.provider === "github")
+      ?.username ?? null;
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -463,8 +476,23 @@ export default function LeaderBoard(): JSX.Element {
     }
   };
 
+  // Viewer's raw contributor entry (pre-exclusion) for sidebar badges/personal stats
+  const viewerContributorIndex = viewerLogin
+    ? displayContributors.findIndex(
+        (c) => c.username.toLowerCase() === viewerLogin.toLowerCase(),
+      )
+    : -1;
+  const viewerBadges =
+    viewerContributorIndex !== -1
+      ? getContributorBadges(
+          displayContributors[viewerContributorIndex],
+          viewerContributorIndex + 1,
+        )
+      : [];
+
   return (
     <div className={`leaderboard-container ${isDark ? "dark" : "light"}`}>
+      <div className="leaderboard-layout">
       <div className="leaderboard-content">
         {/* Header */}
         <motion.div
@@ -479,6 +507,13 @@ export default function LeaderBoard(): JSX.Element {
             organization
           </p>
         </motion.div>
+
+        {/* Personal stats strip */}
+        <PersonalStats
+          contributors={displayContributors}
+          viewerLogin={viewerLogin}
+          isDark={isDark}
+        />
 
         {/* Top 3 Performers Section */}
         {!loading && filteredContributors.length > 2 && (
@@ -626,57 +661,6 @@ export default function LeaderBoard(): JSX.Element {
           </div>
         )}
 
-        {/* Stats */}
-        {stats && (
-          <div className="stats-grid">
-            <div className={`stat-card ${isDark ? "dark" : "light"}`}>
-              <div className="stat-content">
-                <div className={`stat-icon users`}>
-                  <FaUsers />
-                </div>
-                <div>
-                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>
-                    {stats.totalContributors}
-                  </div>
-                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>
-                    Total Contributors
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={`stat-card ${isDark ? "dark" : "light"}`}>
-              <div className="stat-content">
-                <div className={`stat-icon prs`}>
-                  <FaCode />
-                </div>
-                <div>
-                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>
-                    {stats.flooredTotalPRs}
-                  </div>
-                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>
-                    Merged PRs
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className={`stat-card ${isDark ? "dark" : "light"}`}>
-              <div className="stat-content">
-                <div className={`stat-icon points`}>
-                  <FaStar />
-                </div>
-                <div>
-                  <div className={`stat-value ${isDark ? "dark" : "light"}`}>
-                    {stats.flooredTotalPoints}
-                  </div>
-                  <div className={`stat-label ${isDark ? "dark" : "light"}`}>
-                    Total Points
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
         {/* Search */}
         <div className="search-container">
           <div className="search-wrapper">
@@ -757,13 +741,18 @@ export default function LeaderBoard(): JSX.Element {
               <div className="contributor-cell points-cell">Points</div>
               <div className="contributor-cell badges-cell">Badges</div>
             </div>
-            {currentItems.map((contributor, index) => (
+            {currentItems.map((contributor, index) => {
+              const isViewer =
+                !!viewerLogin &&
+                contributor.username.toLowerCase() ===
+                  viewerLogin.toLowerCase();
+              return (
               <motion.div
                 key={contributor.username}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
-                className={`contributor-row ${isDark ? (index % 2 === 0 ? "even" : "odd") : index % 2 === 0 ? "even" : "odd"}`}
+                className={`contributor-row ${isDark ? (index % 2 === 0 ? "even" : "odd") : index % 2 === 0 ? "even" : "odd"} ${isViewer ? "you-row" : ""}`}
               >
                 {/*
                   This avoids indexOf() issues and is O(1).
@@ -794,6 +783,7 @@ export default function LeaderBoard(): JSX.Element {
                   >
                     {contributor.username}
                   </a>
+                  {isViewer && <span className="you-chip">YOU</span>}
                 </div>
                 <div className="contributor-cell prs-cell">
                   <Badge
@@ -821,7 +811,8 @@ export default function LeaderBoard(): JSX.Element {
                   />
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
 
             {/* Pagination */}
             {totalPages > 1 && (
@@ -865,6 +856,96 @@ export default function LeaderBoard(): JSX.Element {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Sidebar */}
+      <div className="leaderboard-sidebar">
+        {stats && (
+          <div className="sidebar-card">
+            <div className="sidebar-card-title">
+              Hive activity
+              <span className="sidebar-card-badge">
+                {getTimeFilterLabel(currentTimeFilter).replace(/^\S+\s/, "")}
+              </span>
+            </div>
+            <div className="hive-activity-stats">
+              <div className="hive-activity-stat">
+                <div className="hive-activity-value">
+                  {stats.totalContributors}
+                </div>
+                <div className="hive-activity-label">Contributors</div>
+              </div>
+              <div className="hive-activity-stat">
+                <div className="hive-activity-value">
+                  {stats.flooredTotalPRs}
+                </div>
+                <div className="hive-activity-label">Merged PRs</div>
+              </div>
+              <div className="hive-activity-stat">
+                <div className="hive-activity-value">
+                  {stats.flooredTotalPoints}
+                </div>
+                <div className="hive-activity-label">Total Points</div>
+              </div>
+            </div>
+          </div>
+        )}
+
+        <div className="sidebar-card">
+          <div className="sidebar-card-title">How to earn points</div>
+          <div className="points-callout">
+            Points count only when your merged PR carries the{" "}
+            <strong>recode</strong> label and a level label.
+          </div>
+          <div className="points-level-row">
+            <span>
+              <span className="points-level-badge level-1">level 1</span>
+              Good first issue
+            </span>
+            <span className="points-level-value">+10</span>
+          </div>
+          <div className="points-level-row">
+            <span>
+              <span className="points-level-badge level-2">level 2</span>
+              Feature / fix
+            </span>
+            <span className="points-level-value">+30</span>
+          </div>
+          <div className="points-level-row">
+            <span>
+              <span className="points-level-badge level-3">level 3</span>
+              Major contribution
+            </span>
+            <span className="points-level-value">+50</span>
+          </div>
+        </div>
+
+        <div className="sidebar-card">
+          <div className="sidebar-card-title">Your badges</div>
+          {viewerBadges.length > 0 ? (
+            <div className="sidebar-badges-grid">
+              {viewerBadges.map((badge, i) => (
+                <img
+                  key={i}
+                  src={badge}
+                  alt={`Badge ${i + 1}`}
+                  className="sidebar-badge-icon"
+                  title={
+                    BADGE_CONFIG.find((b) => b.image === badge)?.name ||
+                    "Achievement Badge"
+                  }
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="sidebar-badges-empty">
+              {viewerLogin
+                ? "No badges yet — merge a recode-labeled PR to earn one."
+                : "Connect your GitHub account to see your badges."}
+            </div>
+          )}
+        </div>
+      </div>
       </div>
 
       {/* PR List Modal */}

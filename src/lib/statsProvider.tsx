@@ -94,7 +94,6 @@ interface CommunityStatsProviderProps {
 }
 
 const GITHUB_ORG = "recodehive";
-const POINTS_PER_PR = 10;
 const MAX_CONCURRENT_REQUESTS = 15;
 const CACHE_DURATION = 20 * 60 * 1000; // 20 minutes cache
 const MAX_PAGES_PER_REPO = 10;
