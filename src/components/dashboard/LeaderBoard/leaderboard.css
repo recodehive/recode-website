@@ -19,6 +19,324 @@
   margin: 0 auto;
 }
 
+/* 2-column layout: main content + sidebar */
+.leaderboard-layout {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+  align-items: start;
+}
+
+.leaderboard-layout .leaderboard-content {
+  max-width: none;
+  margin: 0;
+}
+
+.leaderboard-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: sticky;
+  top: 24px;
+}
+
+@media (max-width: 1100px) {
+  .leaderboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .leaderboard-sidebar {
+    position: static;
+  }
+}
+
+.sidebar-card {
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid transparent;
+}
+
+.leaderboard-container.light .sidebar-card {
+  background: #ffffff;
+  border-color: #e5e7eb;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.leaderboard-container.dark .sidebar-card {
+  background: #2d3340;
+  border-color: #3a4150;
+}
+
+.sidebar-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.leaderboard-container.light .sidebar-card-title {
+  color: #1f2937;
+}
+
+.leaderboard-container.dark .sidebar-card-title {
+  color: #f3f4f6;
+}
+
+.sidebar-card-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #ede9fe;
+  color: #7c3aed;
+  margin-left: 8px;
+}
+
+/* Hive activity card */
+.hive-activity-stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.hive-activity-stat {
+  text-align: center;
+  flex: 1;
+}
+
+.hive-activity-value {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.leaderboard-container.light .hive-activity-value {
+  color: #1f2937;
+}
+
+.leaderboard-container.dark .hive-activity-value {
+  color: #f3f4f6;
+}
+
+.hive-activity-label {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+.leaderboard-container.light .hive-activity-label {
+  color: #6b7280;
+}
+
+.leaderboard-container.dark .hive-activity-label {
+  color: #9ca3af;
+}
+
+/* How to earn points card */
+.points-callout {
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  line-height: 1.5;
+}
+
+.leaderboard-container.light .points-callout {
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.leaderboard-container.dark .points-callout {
+  background: #312e81;
+  color: #c7d2fe;
+}
+
+.points-level-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 13px;
+  border-top: 1px solid;
+}
+
+.leaderboard-container.light .points-level-row {
+  border-color: #f0f0f0;
+  color: #374151;
+}
+
+.leaderboard-container.dark .points-level-row {
+  border-color: #3a4150;
+  color: #d1d5db;
+}
+
+.points-level-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  margin-right: 8px;
+}
+
+.points-level-badge.level-1 {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.points-level-badge.level-2 {
+  background: #dbeafe;
+  color: #2563eb;
+}
+
+.points-level-badge.level-3 {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.points-level-value {
+  font-weight: 700;
+  color: #16a34a;
+}
+
+/* Your badges card */
+.sidebar-badges-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.sidebar-badge-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
+.sidebar-badges-empty {
+  font-size: 13px;
+}
+
+.leaderboard-container.light .sidebar-badges-empty {
+  color: #6b7280;
+}
+
+.leaderboard-container.dark .sidebar-badges-empty {
+  color: #9ca3af;
+}
+
+/* Personal stats strip */
+.personal-stats-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 768px) {
+  .personal-stats-strip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.personal-stat-card {
+  border-radius: 14px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid transparent;
+}
+
+.leaderboard-container.light .personal-stat-card {
+  background: #ffffff;
+  border-color: #e5e7eb;
+}
+
+.leaderboard-container.dark .personal-stat-card {
+  background: #2d3340;
+  border-color: #3a4150;
+}
+
+.personal-stat-label {
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.leaderboard-container.light .personal-stat-label {
+  color: #6b7280;
+}
+
+.leaderboard-container.dark .personal-stat-label {
+  color: #9ca3af;
+}
+
+.personal-stat-value {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.leaderboard-container.light .personal-stat-value {
+  color: #1f2937;
+}
+
+.leaderboard-container.dark .personal-stat-value {
+  color: #f3f4f6;
+}
+
+.personal-stat-sub {
+  font-size: 11px;
+  margin-top: 4px;
+  color: #16a34a;
+}
+
+.personal-stats-connect {
+  padding: 16px;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.leaderboard-container.light .personal-stats-connect {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.leaderboard-container.dark .personal-stats-connect {
+  background: #78350f;
+  color: #fde68a;
+}
+
+/* YOU row highlight */
+.contributor-row.you-row {
+  border: 2px solid #6366f1 !important;
+  border-radius: 10px;
+}
+
+.you-chip {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #6366f1;
+  color: #fff;
+  vertical-align: middle;
+}
+
+/* Rank medallion colors */
+.rank-badge.top-1 {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #fff;
+}
+
+.rank-badge.top-2 {
+  background: linear-gradient(135deg, #d1d5db, #9ca3af);
+  color: #fff;
+}
+
+.rank-badge.top-3 {
+  background: linear-gradient(135deg, #d97706, #92400e);
+  color: #fff;
+}
+
 /* Header */
 .header {
   text-align: center;
