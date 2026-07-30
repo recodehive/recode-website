@@ -95,8 +95,6 @@ const VideoCard: React.FC<{
   };
 
   const handleThumbnailError = (failedUrl: string) => {
-    console.log(`Failed to load thumbnail: ${failedUrl}`);
-
     if (failedUrl.includes("maxresdefault")) {
       tryThumbnailUrl(`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`);
     } else if (failedUrl.includes("hqdefault")) {
@@ -111,13 +109,11 @@ const VideoCard: React.FC<{
   useEffect(() => {
     if (!videoId) return;
 
-    console.log(`Loading thumbnails for video ID: ${videoId}`);
     tryThumbnailUrl(`https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`);
 
     const firstFrameUrl = `https://img.youtube.com/vi/${videoId}/0.jpg`;
     setTimeout(() => {
       if (!thumbnailUrl) {
-        console.log("Trying first frame as fallback");
         tryThumbnailUrl(firstFrameUrl);
       }
     }, 1000);
@@ -167,8 +163,6 @@ const VideoCard: React.FC<{
                 style={{ objectFit: "cover" }}
                 loading="lazy"
                 onError={(e) => {
-                  const img = e.target as HTMLImageElement;
-                  console.log("Image error:", img.src);
                   setThumbnailUrl("");
                 }}
               />
