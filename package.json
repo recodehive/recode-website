@@ -89,7 +89,7 @@
     "eslint": "^10.7.0",
     "eslint-plugin-react": "^7.37.5",
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.8",
+    "lint-staged": "^17.2.0",
     "postcss": "^8.5.19",
     "prettier": "^3.9.5",
     "prettier-plugin-tailwindcss": "^0.8.1",
