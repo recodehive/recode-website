@@ -214,6 +214,10 @@ const config: Config = {
               to: "/podcasts/",
             },
             {
+              label: "📝 Changelog",
+              to: "/changelog",
+            },
+            {
               label: "🛍️ Merch Store",
               to: "/merch",
             },
