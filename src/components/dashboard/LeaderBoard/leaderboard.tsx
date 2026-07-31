@@ -939,7 +939,7 @@ export default function LeaderBoard(): JSX.Element {
           ) : (
             <div className="sidebar-badges-empty">
               {viewerLogin
-                ? "No badges yet — merge a recode-labeled PR to earn one."
+                ? "No badges yet, merge a recode-labeled PR to earn one."
                 : "Connect your GitHub account to see your badges."}
             </div>
           )}
