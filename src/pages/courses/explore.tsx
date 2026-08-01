@@ -180,7 +180,7 @@ export default function ExploreCourses() {
       );
     } else if (sortOption === "duration-asc") {
       result = [...result].sort(
-        (a, b) => parseInt(a.duration) - parseInt(b.duration),
+        (a, b) => parseInt(a.duration, 10) - parseInt(b.duration, 10),
       );
     }
 
