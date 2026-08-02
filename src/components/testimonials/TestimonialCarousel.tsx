@@ -26,21 +26,21 @@ const testimonials: Testimonial[] = [
   },
   {
     text: "We were able to get our project scoped, matched and kicked off in one day. Our invoicing is now 10x faster, thanks to Recode Hive's automation.",
-    image: "https://github.com/Abhash-kumar-sinha.png",
-    name: "Abhash Kumar",
-    role: "Recode Hive Contributor",
+    image: "https://github.com/Adez017.png",
+    name: "Adez",
+    role: "Project Maintainer @ Recode Hive",
   },
   {
     text: "You're constantly inspiring me to get applying for jobs and help me to improve my resume for 90+ ATS score and improve my LinkedIn profile.",
-    image: "https://github.com/aryan-gupta.png",
-    name: "Aryan Gupta",
-    role: "Community Member",
+    image: "https://github.com/iitzIrFan.png",
+    name: "Irfan",
+    role: "Recode Hive Contributor",
   },
   {
     text: "Pointing out that my contributions all points back to my personal projects is an eye opener, especially now that I want to start building towards open source.",
-    image: "https://github.com/donald-anyamba.png",
-    name: "Donald Anyamba",
-    role: "Community Member",
+    image: "https://github.com/codewithdhruba01.png",
+    name: "Dhruba",
+    role: "Recode Hive Contributor",
   },
 ];
 
