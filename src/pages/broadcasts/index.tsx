@@ -193,7 +193,7 @@ const VideoSection: React.FC<{
     <div className="video-section">
       <h2>{title}</h2>
       <div className="video-grid">
-        {videos.map((video) => (
+        {(videos ?? []).map((video) => (
           <VideoCard key={video.id} video={video} onClick={onClick} />
         ))}
       </div>
