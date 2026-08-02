@@ -70,9 +70,26 @@
 }
 
 .sidebar-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 14px;
+}
+
+.sidebar-card-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6366f1;
+  cursor: pointer;
+}
+
+.sidebar-card-link:hover {
+  text-decoration: underline;
 }
 
 .leaderboard-container.light .sidebar-card-title {
@@ -197,6 +214,29 @@
   color: #16a34a;
 }
 
+.points-recode-badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #6366f1;
+  color: #ffffff;
+}
+
+.points-footnote {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.leaderboard-container.light .points-footnote {
+  color: #9ca3af;
+}
+
+.leaderboard-container.dark .points-footnote {
+  color: #6b7280;
+}
+
 /* Your badges card */
 .sidebar-badges-grid {
   display: flex;
@@ -204,10 +244,58 @@
   gap: 10px;
 }
 
+.sidebar-badge-item {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+}
+
 .sidebar-badge-icon {
   width: 36px;
   height: 36px;
   border-radius: 50%;
+  transition: transform 0.15s ease;
+}
+
+.sidebar-badge-item:hover .sidebar-badge-icon {
+  transform: scale(1.1);
+}
+
+.sidebar-badge-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #111827;
+  color: #f9fafb;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 10;
+}
+
+.sidebar-badge-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #111827;
+}
+
+.sidebar-badge-item:hover .sidebar-badge-tooltip,
+.sidebar-badge-item:focus-visible .sidebar-badge-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .sidebar-badges-empty {
@@ -301,6 +389,58 @@
 .leaderboard-container.dark .personal-stats-connect {
   background: #78350f;
   color: #fde68a;
+}
+
+/* Contribution streak grid (in sidebar StreakCard, 10 cols x 2 rows for 20 weeks) */
+.streak-grid-cells {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.streak-grid-cell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+}
+
+.leaderboard-container.light .streak-grid-cell.level-0 {
+  background: #e5e7eb;
+}
+.leaderboard-container.light .streak-grid-cell.level-1 {
+  background: #93c5fd;
+}
+.leaderboard-container.light .streak-grid-cell.level-2 {
+  background: #3b82f6;
+}
+.leaderboard-container.light .streak-grid-cell.level-3 {
+  background: #3578e5;
+}
+
+.leaderboard-container.dark .streak-grid-cell.level-0 {
+  background: #262a33;
+}
+.leaderboard-container.dark .streak-grid-cell.level-1 {
+  background: #22406e;
+}
+.leaderboard-container.dark .streak-grid-cell.level-2 {
+  background: #2c548f;
+}
+.leaderboard-container.dark .streak-grid-cell.level-3 {
+  background: #3578e5;
+}
+
+.streak-grid-caption {
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+.leaderboard-container.light .streak-grid-caption {
+  color: #6b7280;
+}
+
+.leaderboard-container.dark .streak-grid-caption {
+  color: #9ca3af;
 }
 
 /* YOU row highlight */

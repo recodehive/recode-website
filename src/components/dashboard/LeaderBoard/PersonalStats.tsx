@@ -1,10 +1,7 @@
 // src/components/dashboard/LeaderBoard/PersonalStats.tsx
 import React from "react";
 import type { Contributor } from "./leaderboard";
-
-interface PRDetails {
-  mergedAt: string;
-}
+import { getWeekBuckets, getCurrentStreak } from "@site/src/lib/streakUtils";
 
 const TIERS = [
   { name: "Scout", min: 0, max: 1 },
@@ -22,30 +19,6 @@ function getNextTier(prs: number) {
     (tier) => prs >= tier.min && prs <= tier.max,
   );
   return TIERS[currentIndex + 1] ?? null;
-}
-
-/**
- * Counts consecutive weeks (walking backwards from today) with at least one merged PR.
- */
-function computeStreak(prDetails: PRDetails[] = []): number {
-  if (prDetails.length === 0) return 0;
-
-  const weekMs = 7 * 24 * 60 * 60 * 1000;
-  const now = Date.now();
-
-  const mergedWeeks = new Set(
-    prDetails.map((pr) =>
-      Math.floor((now - new Date(pr.mergedAt).getTime()) / weekMs),
-    ),
-  );
-
-  let streak = 0;
-  let week = 0;
-  while (mergedWeeks.has(week)) {
-    streak++;
-    week++;
-  }
-  return streak;
 }
 
 export default function PersonalStats({
@@ -85,7 +58,7 @@ export default function PersonalStats({
 
   const viewer = contributors[viewerIndex];
   const rank = viewerIndex + 1;
-  const streak = computeStreak(viewer.prDetails as PRDetails[]);
+  const streak = getCurrentStreak(getWeekBuckets(viewer.prDetails ?? []));
   const tier = getTier(viewer.prs);
   const nextTier = getNextTier(viewer.prs);
   const prsToNext = nextTier ? nextTier.min - viewer.prs : 0;
