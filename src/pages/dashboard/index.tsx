@@ -27,11 +27,10 @@ import {
   Home,
   Users,
   Gift,
-  ArrowLeft,
   GitFork,
   RefreshCw,
 } from "lucide-react";
-import NavbarIcon from "@site/src/components/navbar/NavbarIcon";
+import DashboardSidebar from "@site/src/components/dashboard/Sidebar/DashboardSidebar";
 import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 import LeaderBoard from "@site/src/components/dashboard/LeaderBoard/leaderboard";
@@ -459,44 +458,7 @@ const DashboardContent: React.FC = () => {
         </div>
       </div>
 
-      <div className="dashboard-sidebar">
-        <div className="sidebar-header">
-          <button
-            className="back-button"
-            onClick={() => history.goBack()}
-            aria-label="Go back"
-          >
-            <ArrowLeft />
-          </button>
-        </div>
-        <div className="sidebar-nav">
-          <NavbarIcon
-            icon={<Home size={20} />}
-            text="Home"
-            active={activeTab === "home"}
-            onClick={() => handleTabChange("home")}
-          />
-          <NavbarIcon
-            icon={<MessageCircle size={20} />}
-            text="Discussions"
-            active={activeTab === "discuss"}
-            onClick={() => handleTabChange("discuss")}
-          />
-          <NavbarIcon
-            icon={<Users size={20} />}
-            text="LeaderBoard
-"
-            active={activeTab === "contributors"}
-            onClick={() => handleTabChange("contributors")}
-          />
-          <NavbarIcon
-            icon={<Gift size={20} />}
-            text="Giveaways"
-            active={activeTab === "giveaway"}
-            onClick={() => handleTabChange("giveaway")}
-          />
-        </div>
-      </div>
+      <DashboardSidebar activeTab={activeTab} onTabChange={handleTabChange} />
 
       <div className="dashboard-main-content">
         <Head>
