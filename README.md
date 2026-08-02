@@ -63,6 +63,8 @@ docker-compose up
 
 Your application will be available at "http://localhost:3000"
 
+> **Note:** If port 3000 is already in use, stop the conflicting process or configure the application to use another available port before starting it.
+
 **Traditional Setup:**
 
 ```bash
