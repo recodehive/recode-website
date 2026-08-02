@@ -47,7 +47,8 @@ export default function VideoDetails(): ReactElement {
         const response = await fetch(
           `https://www.youtube.com/oembed?url=${encodeURIComponent(video.youtubeUrl)}&format=json`,
         );
-        const data = await response.json();
+        if (!response.ok) throw new Error("Request failed");
+const data = await response.json();
         setTitle(data.title);
       } catch (error) {
         setTitle("Video Title Unavailable");
