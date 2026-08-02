@@ -530,6 +530,217 @@
   color: #b3b3b3;
 }
 
+/* "How points & badges are calculated" trigger */
+.points-info-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  background: none;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.light .points-info-trigger {
+  color: #6366f1;
+}
+
+.dark .points-info-trigger {
+  color: #a5b4fc;
+}
+
+.points-info-trigger:hover {
+  text-decoration: underline;
+}
+
+/* Points/Badges info modal — reuses .badge-modal-* shell, adds tabs */
+.points-info-modal {
+  max-width: 640px;
+}
+
+.points-info-tabs {
+  display: flex;
+  gap: 8px;
+  padding: 0 24px;
+  border-bottom: 1px solid;
+}
+
+.badge-modal-container.light .points-info-tabs {
+  border-color: #e5e7eb;
+}
+
+.badge-modal-container.dark .points-info-tabs {
+  border-color: #3a4150;
+}
+
+.points-info-tab {
+  background: none;
+  border: none;
+  padding: 12px 4px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+
+.light .points-info-tab {
+  color: #6b7280;
+}
+
+.dark .points-info-tab {
+  color: #9ca3af;
+}
+
+.points-info-tab.active {
+  color: #6366f1;
+  border-bottom-color: #6366f1;
+}
+
+.points-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.points-info-formula {
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.light .points-info-formula {
+  background: #eef2ff;
+  color: #4338ca;
+}
+
+.dark .points-info-formula {
+  background: #312e81;
+  color: #c7d2fe;
+}
+
+.points-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid;
+}
+
+.light .points-badge-row {
+  border-color: #f0f0f0;
+}
+
+.dark .points-badge-row {
+  border-color: #3a4150;
+}
+
+.points-badge-row:first-child {
+  border-top: none;
+}
+
+.points-badge-row-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.points-badge-row-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.light .points-badge-row-name {
+  color: #1f2937;
+}
+
+.dark .points-badge-row-name {
+  color: #f3f4f6;
+}
+
+.points-badge-row-requirement {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.light .points-badge-row-requirement {
+  color: #6b7280;
+}
+
+.dark .points-badge-row-requirement {
+  color: #9ca3af;
+}
+
+/* Support the mission banner */
+.support-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  background: radial-gradient(circle at top left, #1e293b, #0f172a);
+  border-radius: 18px;
+  padding: 24px 28px;
+  margin-bottom: 32px;
+}
+
+.support-banner-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #6366f1;
+  margin-bottom: 8px;
+}
+
+.support-banner-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: #f9fafb;
+  margin: 0 0 6px 0;
+}
+
+.support-banner-subtitle {
+  font-size: 13px;
+  color: #9ca3af;
+  margin: 0;
+  max-width: 480px;
+}
+
+.support-banner-cta {
+  flex-shrink: 0;
+  background: #6366f1;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 0 24px rgba(99, 102, 241, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.support-banner-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 32px rgba(99, 102, 241, 0.6);
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .support-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
+
 /* Top Performers Section */
 .top-performers-container {
   text-align: center;
