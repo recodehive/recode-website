@@ -35,7 +35,7 @@ function tagColor(label: string) {
 function formatDate(dateStr?: string) {
   if (!dateStr) return "";
   const d = new Date(dateStr);
-  if (isNaN(d.getTime())) return dateStr;
+  if (Number.isNaN(d.getTime())) return dateStr;
   return d.toLocaleDateString("en-US", {
     month: "short",
     day: "2-digit",
