@@ -122,7 +122,7 @@ const BlogCard = ({
             {/* Avatar stack — shows all authors overlapped */}
             {authorProfiles.length > 0 && (
               <div className="card-avatar-stack">
-                {authorProfiles.map((author, i) => (
+                {(authorProfiles ?? []).map((author, i) => (
                   <div
                     key={author.id || i}
                     className="card-avatar"

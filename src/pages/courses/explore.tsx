@@ -67,7 +67,7 @@ function CourseCard({ course }: { course: Course }) {
 
       {/* Tags */}
       <div className="explore-tags">
-        {course.tags.map((tag) => (
+        {course.(tags ?? []).map((tag) => (
           <span key={tag} className="explore-tag">
             {tag}
           </span>
