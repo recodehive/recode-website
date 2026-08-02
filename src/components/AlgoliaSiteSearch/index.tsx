@@ -112,7 +112,7 @@ export default function AlgoliaSiteSearch(): React.ReactElement | null {
           return;
         }
 
-        container.innerHTML = "";
+        container.textContent = "";
         window.SiteSearch.init({
           container: `#${containerId}`,
           applicationId,
