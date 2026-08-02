@@ -5,9 +5,12 @@ import {
   getWeekBuckets,
   getCurrentStreak,
   getBestStreak,
+  type StreakPR,
 } from "@site/src/lib/streakUtils";
 
-const GRID_WEEKS = 20;
+const MIN_GRID_WEEKS = 20;
+const GRID_COLUMNS = 10;
+const WEEK_MS = 7 * 24 * 60 * 60 * 1000;
 
 function getIntensityLevel(count: number): 0 | 1 | 2 | 3 {
   if (count <= 0) return 0;
@@ -22,6 +25,19 @@ function formatWeekOf(weekStartIso: string): string {
     day: "numeric",
     timeZone: "UTC",
   });
+}
+
+// The grid's shape stays constant regardless of the leaderboard's ranking
+// time filter — it always spans back to the viewer's earliest merged PR
+// (or MIN_GRID_WEEKS, whichever is larger) so switching filters never
+// shrinks or reflows the card.
+function getGridWeekCount(prDetails: StreakPR[]): number {
+  if (prDetails.length === 0) return MIN_GRID_WEEKS;
+  const earliest = Math.min(
+    ...prDetails.map((pr) => new Date(pr.mergedAt).getTime()),
+  );
+  const weeksSince = Math.ceil((Date.now() - earliest) / WEEK_MS) + 1;
+  return Math.max(MIN_GRID_WEEKS, weeksSince);
 }
 
 export default function StreakCard({
@@ -57,16 +73,19 @@ export default function StreakCard({
     );
   }
 
-  // Always computed from raw, unfiltered PR history so the grid doesn't
-  // collapse when the leaderboard's own time filter changes.
-  const buckets = getWeekBuckets(viewer.prDetails ?? [], GRID_WEEKS);
+  const prDetails = viewer.prDetails ?? [];
+  const numWeeks = getGridWeekCount(prDetails);
+  const buckets = getWeekBuckets(prDetails, numWeeks);
   const currentStreak = getCurrentStreak(buckets);
   const bestStreak = getBestStreak(buckets);
 
   return (
     <div className="sidebar-card">
       <div className="sidebar-card-title">Contribution streak</div>
-      <div className="streak-grid-cells">
+      <div
+        className="streak-grid-cells"
+        style={{ gridTemplateColumns: `repeat(${GRID_COLUMNS}, 1fr)` }}
+      >
         {buckets.map((bucket) => (
           <div
             key={bucket.weekStart}
@@ -78,7 +97,7 @@ export default function StreakCard({
         ))}
       </div>
       <div className="streak-grid-caption">
-        Last {GRID_WEEKS} weeks
+        Last {numWeeks} week{numWeeks === 1 ? "" : "s"}
         {currentStreak > 0 && <> · 🔥 {currentStreak}-week streak active</>}
       </div>
       {bestStreak > 0 && (
