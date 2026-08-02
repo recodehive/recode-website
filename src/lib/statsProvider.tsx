@@ -33,6 +33,9 @@ interface ICommunityStatsContext {
   // Leaderboard properties
   contributors: Contributor[];
   stats: Stats | null;
+  // True once real (unfiltered) contributor data has loaded — lets callers
+  // distinguish "no data yet / fetch failed" from "filter matched nobody".
+  hasContributorsData: boolean;
 
   // New time filter properties
   currentTimeFilter: TimeFilter;
@@ -179,7 +182,6 @@ export function CommunityStatsProvider({
 
   // Enhanced state for leaderboard data (stores all contributors with full PR history)
   const [allContributors, setAllContributors] = useState<FullContributor[]>([]);
-  const [stats, setStats] = useState<Stats | null>(null);
 
   // Cache state (stores raw data without filters)
   const [cache, setCache] = useState<{
@@ -218,16 +220,16 @@ export function CommunityStatsProvider({
     return filteredContributors;
   }, [allContributors, currentTimeFilter]);
 
-  // Update stats when contributors change
-  useEffect(() => {
-    if (contributors.length > 0) {
-      setStats({
-        flooredTotalPRs: contributors.reduce((sum, c) => sum + c.prs, 0),
-        totalContributors: contributors.length,
-        flooredTotalPoints: contributors.reduce((sum, c) => sum + c.points, 0),
-      });
-    }
-  }, [contributors]);
+  // Stats derived directly from the (already time-filtered) contributors list,
+  // so switching filters always recomputes — including down to zero.
+  const stats: Stats | null = useMemo(() => {
+    if (allContributors.length === 0) return null;
+    return {
+      flooredTotalPRs: contributors.reduce((sum, c) => sum + c.prs, 0),
+      totalContributors: contributors.length,
+      flooredTotalPoints: contributors.reduce((sum, c) => sum + c.points, 0),
+    };
+  }, [contributors, allContributors]);
 
   // Function to get filtered PRs for a specific contributor (for PR view modal)
   const getFilteredPRsForContributor = useCallback(
@@ -391,6 +393,7 @@ export function CommunityStatsProvider({
     clearCache,
     contributors,
     stats,
+    hasContributorsData: allContributors.length > 0,
     currentTimeFilter,
     setTimeFilter,
     getFilteredPRsForContributor,

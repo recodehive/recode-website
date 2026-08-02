@@ -2,7 +2,7 @@
 import React, { JSX, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { FaGithub, FaSearch } from "react-icons/fa";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+import { ChevronRight, ChevronLeft, Info } from "lucide-react";
 import { useUser } from "@clerk/react";
 import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
 import { useCommunityStatsContext } from "@site/src/lib/statsProvider";
@@ -10,6 +10,9 @@ import PRListModal from "./PRListModal";
 import BadgeModal from "./BadgeModal";
 import PersonalStats from "./PersonalStats";
 import StreakCard from "./StreakCard";
+import PointsInfoModal from "./PointsInfoModal";
+import SupportBanner from "./SupportBanner";
+import { BADGE_CONFIG } from "./badgeConfig";
 import { mockContributors } from "./mockData";
 import "./leaderboard.css";
 
@@ -52,60 +55,6 @@ interface Stats {
   totalContributors: number;
   flooredTotalPoints: number;
 }
-
-// Badge configuration - names match the text baked into each badge's artwork
-const BADGE_CONFIG = [
-  {
-    image: "/badges/1.png",
-    name: "Open Source Explorer",
-    criteria: (prs: number) => prs >= 1,
-  },
-  {
-    image: "/badges/2.png",
-    name: "re:code Hero",
-    criteria: (prs: number) => prs >= 5,
-  },
-  {
-    image: "/badges/3.png",
-    name: "Doc Dynamo",
-    criteria: (prs: number) => prs >= 10,
-  },
-  {
-    image: "/badges/4.png",
-    name: "Merge Marvel",
-    criteria: (prs: number) => prs >= 25,
-  },
-  {
-    image: "/badges/5.png",
-    name: "BUG masher",
-    criteria: (prs: number) => prs >= 50,
-  },
-  {
-    image: "/badges/6.png",
-    name: "Issue Insider",
-    criteria: (prs: number) => prs >= 100,
-  },
-  {
-    image: "/badges/7.png",
-    name: "IDEA GENIUS",
-    criteria: (_: number, points: number) => points >= 500,
-  },
-  {
-    image: "/badges/8.png",
-    name: "Community Builder",
-    criteria: (prs: number) => prs >= 200,
-  },
-  {
-    image: "/badges/9.png",
-    name: "Hive Hero",
-    criteria: (prs: number) => prs >= 500,
-  },
-  {
-    image: "/badges/10.png",
-    name: "Hive Master",
-    criteria: (prs: number, points: number) => prs >= 1000 || points >= 5000,
-  },
-];
 
 /**
  * Determines which badges a contributor should have based on their stats.
@@ -260,6 +209,7 @@ export default function LeaderBoard(): JSX.Element {
   const {
     contributors,
     stats,
+    hasContributorsData,
     loading,
     error,
     currentTimeFilter,
@@ -287,6 +237,7 @@ export default function LeaderBoard(): JSX.Element {
   const [badgeModalContributor, setBadgeModalContributor] =
     useState<Contributor | null>(null);
   const [isBadgeModalOpen, setIsBadgeModalOpen] = useState(false);
+  const [isPointsInfoOpen, setIsPointsInfoOpen] = useState(false);
   const [isSelectChanged, setIsSelectChanged] = useState(false);
   const itemsPerPage = 20;
 
@@ -315,24 +266,26 @@ export default function LeaderBoard(): JSX.Element {
     setBadgeModalContributor(null);
   }, []);
 
-  // Use mock data only in development mode when there's an error or no contributors
+  // Use mock data only when there's a fetch error or no data has ever loaded —
+  // NOT when the current time filter just happens to match zero contributors.
   const displayContributors =
-    error || contributors.length === 0
-      ? mockContributors
-      : contributors;
+    error || !hasContributorsData ? mockContributors : contributors;
+
+  // Excluded-only view (bots etc. removed, no search applied) — the true
+  // ranking order, used for personal rank/streak/badges so it always matches
+  // the visible leaderboard regardless of the search box.
+  const rankedContributors = displayContributors.filter(
+    (contributor) =>
+      !EXCLUDED_USERS.some(
+        (excludedUser) =>
+          contributor.username.toLowerCase() === excludedUser.toLowerCase(),
+      ),
+  );
 
   // Filter out excluded users and apply search filter
-  const filteredContributors = displayContributors
-    .filter(
-      (contributor) =>
-        !EXCLUDED_USERS.some(
-          (excludedUser) =>
-            contributor.username.toLowerCase() === excludedUser.toLowerCase(),
-        ),
-    )
-    .filter((contributor) =>
-      contributor.username.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
+  const filteredContributors = rankedContributors.filter((contributor) =>
+    contributor.username.toLowerCase().includes(searchQuery.toLowerCase()),
+  );
 
   const totalPages = Math.ceil(filteredContributors.length / itemsPerPage);
   const indexOfLast = currentPage * itemsPerPage;
@@ -459,16 +412,17 @@ export default function LeaderBoard(): JSX.Element {
     }
   };
 
-  // Viewer's raw contributor entry (pre-exclusion) for sidebar badges/personal stats
+  // Viewer's entry in the same excluded-only ranking order shown on the
+  // leaderboard, so personal rank/badges always match what's visible.
   const viewerContributorIndex = viewerLogin
-    ? displayContributors.findIndex(
+    ? rankedContributors.findIndex(
         (c) => c.username.toLowerCase() === viewerLogin.toLowerCase(),
       )
     : -1;
   const viewerBadges =
     viewerContributorIndex !== -1
       ? getContributorBadges(
-          displayContributors[viewerContributorIndex],
+          rankedContributors[viewerContributorIndex],
           viewerContributorIndex + 1,
         )
       : [];
@@ -489,11 +443,19 @@ export default function LeaderBoard(): JSX.Element {
             Top contributors across the <strong>{GITHUB_ORG}</strong>{" "}
             organization
           </p>
+          <button
+            type="button"
+            className="points-info-trigger"
+            onClick={() => setIsPointsInfoOpen(true)}
+          >
+            <Info size={14} />
+            How points &amp; badges are calculated
+          </button>
         </motion.div>
 
         {/* Personal stats strip */}
         <PersonalStats
-          contributors={displayContributors}
+          contributors={rankedContributors}
           viewerLogin={viewerLogin}
           isDark={isDark}
         />
@@ -839,6 +801,8 @@ export default function LeaderBoard(): JSX.Element {
             </div>
           </div>
         )}
+
+        <SupportBanner />
       </div>
 
       {/* Sidebar */}
@@ -915,7 +879,7 @@ export default function LeaderBoard(): JSX.Element {
                 type="button"
                 className="sidebar-card-link"
                 onClick={() =>
-                  handleBadgeClick(displayContributors[viewerContributorIndex])
+                  handleBadgeClick(rankedContributors[viewerContributorIndex])
                 }
               >
                 View all
@@ -934,7 +898,7 @@ export default function LeaderBoard(): JSX.Element {
                     type="button"
                     className="sidebar-badge-item"
                     onClick={() =>
-                      handleBadgeClick(displayContributors[viewerContributorIndex])
+                      handleBadgeClick(rankedContributors[viewerContributorIndex])
                     }
                     aria-label={`View badges — ${badgeName}`}
                   >
@@ -958,11 +922,17 @@ export default function LeaderBoard(): JSX.Element {
         </div>
 
         <StreakCard
-          contributors={displayContributors}
+          contributors={rankedContributors}
           viewerLogin={viewerLogin}
         />
       </div>
       </div>
+
+      {/* Points & Badges Info Modal */}
+      <PointsInfoModal
+        isOpen={isPointsInfoOpen}
+        onClose={() => setIsPointsInfoOpen(false)}
+      />
 
       {/* PR List Modal */}
       <PRListModal

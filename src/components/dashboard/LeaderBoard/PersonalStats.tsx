@@ -2,24 +2,7 @@
 import React from "react";
 import type { Contributor } from "./leaderboard";
 import { getWeekBuckets, getCurrentStreak } from "@site/src/lib/streakUtils";
-
-const TIERS = [
-  { name: "Scout", min: 0, max: 1 },
-  { name: "Challenger", min: 2, max: 4 },
-  { name: "Knight", min: 5, max: 19 },
-  { name: "Sovereign", min: 20, max: Infinity },
-];
-
-function getTier(prs: number) {
-  return TIERS.find((tier) => prs >= tier.min && prs <= tier.max) ?? TIERS[0];
-}
-
-function getNextTier(prs: number) {
-  const currentIndex = TIERS.findIndex(
-    (tier) => prs >= tier.min && prs <= tier.max,
-  );
-  return TIERS[currentIndex + 1] ?? null;
-}
+import { getCurrentAndNextBadge, getRemainingToBadge } from "./badgeConfig";
 
 export default function PersonalStats({
   contributors,
@@ -59,9 +42,13 @@ export default function PersonalStats({
   const viewer = contributors[viewerIndex];
   const rank = viewerIndex + 1;
   const streak = getCurrentStreak(getWeekBuckets(viewer.prDetails ?? []));
-  const tier = getTier(viewer.prs);
-  const nextTier = getNextTier(viewer.prs);
-  const prsToNext = nextTier ? nextTier.min - viewer.prs : 0;
+  const { current: currentBadge, next: nextBadge } = getCurrentAndNextBadge(
+    viewer.prs,
+    viewer.points,
+  );
+  const remaining = nextBadge
+    ? getRemainingToBadge(nextBadge, viewer.prs, viewer.points)
+    : null;
 
   return (
     <div className="personal-stats-strip">
@@ -78,11 +65,14 @@ export default function PersonalStats({
         <div className="personal-stat-value">{streak} wks</div>
       </div>
       <div className="personal-stat-card">
-        <div className="personal-stat-label">Tier: {tier.name}</div>
+        <div className="personal-stat-label">
+          Badge: {currentBadge ? currentBadge.name : "None yet"}
+        </div>
         <div className="personal-stat-value">{viewer.prs} PRs</div>
-        {nextTier && (
+        {nextBadge && remaining && (
           <div className="personal-stat-sub">
-            {prsToNext} more PR{prsToNext === 1 ? "" : "s"} to {nextTier.name}
+            {remaining.amount} more {remaining.unit}
+            {remaining.amount === 1 ? "" : "s"} to {nextBadge.name}
           </div>
         )}
       </div>
