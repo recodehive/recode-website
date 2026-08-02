@@ -90,6 +90,14 @@ declare module "@site/src/lib/utils" {
   export function cn(...args: any[]): string;
 }
 
+declare module "@site/src/lib/streakUtils" {
+  export type StreakPR = import("../lib/streakUtils").StreakPR;
+  export type WeekBucket = import("../lib/streakUtils").WeekBucket;
+  export const getWeekBuckets: typeof import("../lib/streakUtils").getWeekBuckets;
+  export const getCurrentStreak: typeof import("../lib/streakUtils").getCurrentStreak;
+  export const getBestStreak: typeof import("../lib/streakUtils").getBestStreak;
+}
+
 declare module "@site/src/utils/jsUtils" {
   export function sortBy<T>(
     array: T[],

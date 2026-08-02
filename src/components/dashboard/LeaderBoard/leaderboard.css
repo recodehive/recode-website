@@ -303,6 +303,58 @@
   color: #fde68a;
 }
 
+/* Contribution streak grid (in sidebar StreakCard, 10 cols x 2 rows for 20 weeks) */
+.streak-grid-cells {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.streak-grid-cell {
+  aspect-ratio: 1;
+  border-radius: 4px;
+}
+
+.leaderboard-container.light .streak-grid-cell.level-0 {
+  background: #e5e7eb;
+}
+.leaderboard-container.light .streak-grid-cell.level-1 {
+  background: #93c5fd;
+}
+.leaderboard-container.light .streak-grid-cell.level-2 {
+  background: #3b82f6;
+}
+.leaderboard-container.light .streak-grid-cell.level-3 {
+  background: #3578e5;
+}
+
+.leaderboard-container.dark .streak-grid-cell.level-0 {
+  background: #262a33;
+}
+.leaderboard-container.dark .streak-grid-cell.level-1 {
+  background: #22406e;
+}
+.leaderboard-container.dark .streak-grid-cell.level-2 {
+  background: #2c548f;
+}
+.leaderboard-container.dark .streak-grid-cell.level-3 {
+  background: #3578e5;
+}
+
+.streak-grid-caption {
+  font-size: 11px;
+  margin-top: 10px;
+}
+
+.leaderboard-container.light .streak-grid-caption {
+  color: #6b7280;
+}
+
+.leaderboard-container.dark .streak-grid-caption {
+  color: #9ca3af;
+}
+
 /* YOU row highlight */
 .contributor-row.you-row {
   border: 2px solid #6366f1 !important;

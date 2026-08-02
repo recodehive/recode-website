@@ -9,6 +9,7 @@ import { useCommunityStatsContext } from "@site/src/lib/statsProvider";
 import PRListModal from "./PRListModal";
 import BadgeModal from "./BadgeModal";
 import PersonalStats from "./PersonalStats";
+import StreakCard from "./StreakCard";
 import { mockContributors } from "./mockData";
 import "./leaderboard.css";
 
@@ -944,6 +945,11 @@ export default function LeaderBoard(): JSX.Element {
             </div>
           )}
         </div>
+
+        <StreakCard
+          contributors={displayContributors}
+          viewerLogin={viewerLogin}
+        />
       </div>
       </div>
 
