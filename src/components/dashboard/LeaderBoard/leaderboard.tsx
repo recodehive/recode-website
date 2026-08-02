@@ -878,7 +878,8 @@ export default function LeaderBoard(): JSX.Element {
           <div className="sidebar-card-title">How to earn points</div>
           <div className="points-callout">
             Points count only when your merged PR carries the{" "}
-            <strong>recode</strong> label and a level label.
+            <span className="points-recode-badge">recode</span> label and a
+            level label.
           </div>
           <div className="points-level-row">
             <span>
@@ -900,6 +901,9 @@ export default function LeaderBoard(): JSX.Element {
               Major contribution
             </span>
             <span className="points-level-value">+50</span>
+          </div>
+          <div className="points-footnote">
+            PRs without a level label earn 0 points.
           </div>
         </div>
 
