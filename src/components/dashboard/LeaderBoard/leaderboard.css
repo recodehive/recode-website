@@ -70,9 +70,26 @@
 }
 
 .sidebar-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 15px;
   font-weight: 700;
   margin-bottom: 14px;
+}
+
+.sidebar-card-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6366f1;
+  cursor: pointer;
+}
+
+.sidebar-card-link:hover {
+  text-decoration: underline;
 }
 
 .leaderboard-container.light .sidebar-card-title {
@@ -204,10 +221,58 @@
   gap: 10px;
 }
 
+.sidebar-badge-item {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+}
+
 .sidebar-badge-icon {
   width: 36px;
   height: 36px;
   border-radius: 50%;
+  transition: transform 0.15s ease;
+}
+
+.sidebar-badge-item:hover .sidebar-badge-icon {
+  transform: scale(1.1);
+}
+
+.sidebar-badge-tooltip {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: #111827;
+  color: #f9fafb;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 6px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+  z-index: 10;
+}
+
+.sidebar-badge-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #111827;
+}
+
+.sidebar-badge-item:hover .sidebar-badge-tooltip,
+.sidebar-badge-item:focus-visible .sidebar-badge-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .sidebar-badges-empty {

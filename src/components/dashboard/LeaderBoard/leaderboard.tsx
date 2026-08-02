@@ -53,89 +53,72 @@ interface Stats {
   flooredTotalPoints: number;
 }
 
-// Badge configuration - maps badge numbers to achievement criteria
+// Badge configuration - names match the text baked into each badge's artwork
 const BADGE_CONFIG = [
   {
     image: "/badges/1.png",
-    name: "First Contribution",
+    name: "Open Source Explorer",
     criteria: (prs: number) => prs >= 1,
   },
   {
     image: "/badges/2.png",
-    name: "Bronze Contributor",
+    name: "re:code Hero",
     criteria: (prs: number) => prs >= 5,
   },
   {
     image: "/badges/3.png",
-    name: "Silver Contributor",
+    name: "Doc Dynamo",
     criteria: (prs: number) => prs >= 10,
   },
   {
     image: "/badges/4.png",
-    name: "Gold Contributor",
+    name: "Merge Marvel",
     criteria: (prs: number) => prs >= 25,
   },
   {
     image: "/badges/5.png",
-    name: "Platinum Contributor",
+    name: "BUG masher",
     criteria: (prs: number) => prs >= 50,
   },
   {
     image: "/badges/6.png",
-    name: "Diamond Contributor",
+    name: "Issue Insider",
     criteria: (prs: number) => prs >= 100,
   },
   {
     image: "/badges/7.png",
-    name: "Points Master",
+    name: "IDEA GENIUS",
     criteria: (_: number, points: number) => points >= 500,
   },
   {
     image: "/badges/8.png",
-    name: "Elite Contributor",
+    name: "Community Builder",
     criteria: (prs: number) => prs >= 200,
   },
   {
     image: "/badges/9.png",
-    name: "Legendary Contributor",
+    name: "Hive Hero",
     criteria: (prs: number) => prs >= 500,
   },
   {
     image: "/badges/10.png",
-    name: "Hall of Fame",
+    name: "Hive Master",
     criteria: (prs: number, points: number) => prs >= 1000 || points >= 5000,
   },
 ];
 
 /**
- * Determines which badges a contributor should have based on their stats
+ * Determines which badges a contributor should have based on their stats.
+ * A badge only appears when its own criteria is actually met — no rank-based
+ * overrides, so the badge shown always matches what it claims to represent.
  */
 function getContributorBadges(
   contributor: Contributor,
-  rank: number,
+  _rank: number,
 ): string[] {
-  const badges: string[] = [];
-
-  // Special rank-based badges
-  if (rank === 1) {
-    badges.push("/badges/10.png"); // Hall of Fame for #1
-  } else if (rank === 2) {
-    badges.push("/badges/9.png"); // Legendary for #2
-  } else if (rank === 3) {
-    badges.push("/badges/8.png"); // Elite for #3
-  }
-
-  // Achievement-based badges
-  BADGE_CONFIG.forEach((badge) => {
-    if (badge.criteria(contributor.prs, contributor.points)) {
-      // Avoid duplicates
-      if (!badges.includes(badge.image)) {
-        badges.push(badge.image);
-      }
-    }
-  });
-
-  return badges;
+  return BADGE_CONFIG.filter((badge) =>
+    badge.criteria(contributor.prs, contributor.points),
+  ).map((badge) => badge.image);
 }
 
 /**
@@ -921,21 +904,45 @@ export default function LeaderBoard(): JSX.Element {
         </div>
 
         <div className="sidebar-card">
-          <div className="sidebar-card-title">Your badges</div>
+          <div className="sidebar-card-title">
+            Your badges
+            {viewerContributorIndex !== -1 && (
+              <button
+                type="button"
+                className="sidebar-card-link"
+                onClick={() =>
+                  handleBadgeClick(displayContributors[viewerContributorIndex])
+                }
+              >
+                View all
+              </button>
+            )}
+          </div>
           {viewerBadges.length > 0 ? (
             <div className="sidebar-badges-grid">
-              {viewerBadges.map((badge, i) => (
-                <img
-                  key={i}
-                  src={badge}
-                  alt={`Badge ${i + 1}`}
-                  className="sidebar-badge-icon"
-                  title={
-                    BADGE_CONFIG.find((b) => b.image === badge)?.name ||
-                    "Achievement Badge"
-                  }
-                />
-              ))}
+              {viewerBadges.map((badge, i) => {
+                const badgeName =
+                  BADGE_CONFIG.find((b) => b.image === badge)?.name ||
+                  "Achievement Badge";
+                return (
+                  <button
+                    key={i}
+                    type="button"
+                    className="sidebar-badge-item"
+                    onClick={() =>
+                      handleBadgeClick(displayContributors[viewerContributorIndex])
+                    }
+                    aria-label={`View badges — ${badgeName}`}
+                  >
+                    <img
+                      src={badge}
+                      alt={badgeName}
+                      className="sidebar-badge-icon"
+                    />
+                    <span className="sidebar-badge-tooltip">{badgeName}</span>
+                  </button>
+                );
+              })}
             </div>
           ) : (
             <div className="sidebar-badges-empty">
