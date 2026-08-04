@@ -31,6 +31,16 @@ const EXCLUDED_USERS = [
   "dependabot-preview[bot]",
 ];
 
+function formatUpdateTime(date: Date): string {
+  return date.toLocaleString("en-US", {
+    day: "numeric",
+    month: "short",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+}
+
 interface PRDetails {
   title: string;
   url: string;
@@ -212,6 +222,7 @@ export default function LeaderBoard(): JSX.Element {
     hasContributorsData,
     loading,
     error,
+    lastUpdated,
     currentTimeFilter,
     setTimeFilter,
   } = useCommunityStatsContext();
@@ -621,6 +632,27 @@ export default function LeaderBoard(): JSX.Element {
               className={`search-input ${isDark ? "dark" : "light"}`}
             />
           </div>
+        </div>
+
+        {/* Update cadence notice */}
+        <div className={`update-notice ${isDark ? "dark" : "light"}`}>
+          <p className="update-notice-text">
+            <strong>Updates every 2 hours.</strong> Merged PRs may take up to
+            2 hours to appear. Every PR with the{" "}
+            <code className="update-notice-code">recode</code> label and a
+            level label earns points based on that level.
+          </p>
+          {lastUpdated && (
+            <div className="update-notice-times">
+              <div>Last updated: {formatUpdateTime(lastUpdated)}</div>
+              <div>
+                Next update: ~
+                {formatUpdateTime(
+                  new Date(lastUpdated.getTime() + 2 * 60 * 60 * 1000),
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
         {loading && (

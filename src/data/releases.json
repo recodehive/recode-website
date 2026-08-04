@@ -1,5 +1,18 @@
 [
   {
+    "id": 363780680,
+    "name": "V1.0.8",
+    "tagName": "1.0.8",
+    "publishedAt": "2026-08-02T12:21:21Z",
+    "htmlUrl": "https://github.com/recodehive/recode-website/releases/tag/1.0.8",
+    "body": "## What's Changed\r\n* chore: bump @docusaurus/theme-classic from 3.10.1 to 3.10.2 by @dependabot[bot] in https://github.com/recodehive/recode-website/pull/1996\r\n* chore: bump @typescript-eslint/eslint-plugin from 8.63.0 to 8.64.0 by @dependabot[bot] in https://github.com/recodehive/recode-website/pull/1998\r\n* chore: bump @clerk/react from 6.12.0 to 6.12.5 by @dependabot[bot] in https://github.com/recodehive/recode-website/pull/1999\r\n* fix: point newsletter popup legal links to real Substack URLs (#1986) by @OmanshiRaj in https://github.com/recodehive/recode-website/pull/2003\r\n* fix: remove debug console.log statements from production components (#1985) by @Lakshayg136 in https://github.com/recodehive/recode-website/pull/2005\r\n* fix(testimonials): replace testimonial names with recode hive contributors (#1983) by @Rohitdey45 in https://github.com/recodehive/recode-website/pull/2008\r\n* feat: redesign community page with feed, news, events & guidelines by @aaniya22 in https://github.com/recodehive/recode-website/pull/2021\r\n* feat: redesign leaderboard with sidebar layout and personal stats by @sanjay-kv in https://github.com/recodehive/recode-website/pull/2022\r\n* fix: remove sanjay-kv from leaderboard exclusion list by @sanjay-kv in https://github.com/recodehive/recode-website/pull/2028\r\n* Revise PR comment for clarity and brevity by @sanjay-kv in https://github.com/recodehive/recode-website/pull/2029\r\n* fix(testimonials): replace testimonial profiles with valid active GitHub avatars (#1983) by @Rohitdey45 in https://github.com/recodehive/recode-website/pull/2030\r\n* chore: bump @radix-ui/react-slot from 1.3.0 to 1.3.3 by @dependabot[bot] in https://github.com/recodehive/recode-website/pull/2031\r\n* chore: bump framer-motion from 12.42.2 to 12.43.0 by @dependabot[bot] in https://github.com/recodehive/recode-website/pull/2032\r\n* chore: bump postcss from 8.5.19 to 8.5.24 by @dependabot[bot] in https://github.com/recodehive/recode-website/pull/2033\r\n* chore: bump @typescript-eslint/parser from 8.63.0 to 8.65.0 by @dependabot[bot] in https://github.com/recodehive/recode-website/pull/2034\r\n* chore: bump @clerk/react from 6.12.5 to 6.12.8 by @dependabot[bot] in https://github.com/recodehive/recode-website/pull/2035\r\n* Feat/leaderboard redesign by @sanjay-kv in https://github.com/recodehive/recode-website/pull/2040\r\n* added the footer sponsor badge by @sanjay-kv in https://github.com/recodehive/recode-website/pull/2041\r\n\r\n## New Contributors\r\n* @OmanshiRaj made their first contribution in https://github.com/recodehive/recode-website/pull/2003\r\n* @Lakshayg136 made their first contribution in https://github.com/recodehive/recode-website/pull/2005\r\n* @Rohitdey45 made their first contribution in https://github.com/recodehive/recode-website/pull/2008\r\n\r\n**Full Changelog**: https://github.com/recodehive/recode-website/compare/v1.0.5-recode...1.0.8",
+    "prerelease": false,
+    "author": {
+      "login": "sanjay-kv",
+      "htmlUrl": "https://github.com/sanjay-kv"
+    }
+  },
+  {
     "id": 356337315,
     "name": "V1.0.7",
     "tagName": "v1.0.5-recode",
