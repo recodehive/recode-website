@@ -33,52 +33,52 @@ function meetsRequirement(
 
 const BADGE_DEFS: Array<Omit<BadgeDef, "criteria">> = [
   {
-    image: "/badges/1.png",
+    image: "/badges/new-badges/1.png",
     name: "Open Source Explorer",
     requirement: { type: "prs", value: 1 },
   },
   {
-    image: "/badges/2.png",
+    image: "/badges/new-badges/2.png",
     name: "re:code Hero",
     requirement: { type: "prs", value: 5 },
   },
   {
-    image: "/badges/3.png",
+    image: "/badges/new-badges/3.png",
     name: "Doc Dynamo",
     requirement: { type: "prs", value: 10 },
   },
   {
-    image: "/badges/4.png",
+    image: "/badges/new-badges/4.png",
     name: "Merge Marvel",
     requirement: { type: "prs", value: 25 },
   },
   {
-    image: "/badges/5.png",
+    image: "/badges/new-badges/5.png",
     name: "BUG masher",
     requirement: { type: "prs", value: 50 },
   },
   {
-    image: "/badges/6.png",
+    image: "/badges/new-badges/6.png",
     name: "Issue Insider",
     requirement: { type: "prs", value: 100 },
   },
   {
-    image: "/badges/7.png",
+    image: "/badges/new-badges/7.png",
     name: "IDEA GENIUS",
     requirement: { type: "points", value: 500 },
   },
   {
-    image: "/badges/8.png",
+    image: "/badges/new-badges/8.png",
     name: "Community Builder",
     requirement: { type: "prs", value: 200 },
   },
   {
-    image: "/badges/9.png",
+    image: "/badges/new-badges/9.png",
     name: "Hive Hero",
     requirement: { type: "prs", value: 500 },
   },
   {
-    image: "/badges/10.png",
+    image: "/badges/new-badges/10.png",
     name: "Hive Master",
     requirement: { type: "prs", value: 1000, altPointsValue: 5000 },
   },
