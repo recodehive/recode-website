@@ -70,7 +70,7 @@
     "remark-gfm": "^4.0.1",
     "remark-math": "^6.0.0",
     "sharp": "^0.34.5",
-    "styled-components": "^6.4.3",
+    "styled-components": "^6.5.0",
     "tailwind-merge": "^3.6.0",
     "tw-animate-css": "^1.2.8",
     "vanilla-tilt": "^1.8.1"
