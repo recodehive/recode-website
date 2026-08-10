@@ -5,7 +5,7 @@ import { FaGithub, FaSearch } from "react-icons/fa";
 import { ChevronRight, ChevronLeft, Info } from "lucide-react";
 import { useUser } from "@clerk/react";
 import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
-import { useCommunityStatsContext } from "@site/src/lib/statsProvider";
+import { useCommunityStatsContext, EXCLUDED_USERS } from "@site/src/lib/statsProvider";
 import PRListModal from "./PRListModal";
 import BadgeModal from "./BadgeModal";
 import PersonalStats from "./PersonalStats";
@@ -17,19 +17,6 @@ import { mockContributors } from "./mockData";
 import "./leaderboard.css";
 
 const GITHUB_ORG = "recodehive";
-
-// Users to exclude from the leaderboard
-const EXCLUDED_USERS = [
-  "allcontributors",
-  "allcontributors[bot]",
-  "dependabot",
-  "dependabot[bot]",
-  "copilot",
-  "copilot[bot]",
-  "github-actions[bot]",
-  "renovate[bot]",
-  "dependabot-preview[bot]",
-];
 
 function formatUpdateTime(date: Date): string {
   return date.toLocaleString("en-US", {
@@ -220,6 +207,8 @@ export default function LeaderBoard(): JSX.Element {
     contributors,
     stats,
     hasContributorsData,
+    isFallbackPeriod,
+    fallbackLabel,
     loading,
     error,
     lastUpdated,
@@ -655,6 +644,15 @@ export default function LeaderBoard(): JSX.Element {
           )}
         </div>
 
+        {!loading && isFallbackPeriod && (
+          <div className={`update-notice fallback-notice ${isDark ? "dark" : "light"}`}>
+            <p className="update-notice-text">
+              <strong>No merged recode-labeled PRs this week yet.</strong>{" "}
+              Showing {fallbackLabel}&apos;s activity instead.
+            </p>
+          </div>
+        )}
+
         {loading && (
           <div className={`skeleton-loader ${isDark ? "dark" : "light"}`}>
             <div className="skeleton-header">
@@ -843,8 +841,12 @@ export default function LeaderBoard(): JSX.Element {
           <div className="sidebar-card">
             <div className="sidebar-card-title">
               Hive activity
-              <span className="sidebar-card-badge">
-                {getTimeFilterLabel(currentTimeFilter).replace(/^\S+\s/, "")}
+              <span
+                className={`sidebar-card-badge ${isFallbackPeriod ? "fallback" : ""}`}
+              >
+                {isFallbackPeriod
+                  ? "Last Week"
+                  : getTimeFilterLabel(currentTimeFilter).replace(/^\S+\s/, "")}
               </span>
             </div>
             <div className="hive-activity-stats">

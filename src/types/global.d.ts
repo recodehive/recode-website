@@ -84,6 +84,7 @@ declare module "@docusaurus/Head" {
 declare module "@site/src/lib/statsProvider" {
   export function useCommunityStatsContext(): any;
   export const CommunityStatsProvider: any;
+  export const EXCLUDED_USERS: string[];
   export type TimeFilter = import("../lib/statsProvider").TimeFilter;
 }
 

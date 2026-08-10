@@ -36,6 +36,10 @@ interface ICommunityStatsContext {
   // True once real (unfiltered) contributor data has loaded — lets callers
   // distinguish "no data yet / fetch failed" from "filter matched nobody".
   hasContributorsData: boolean;
+  // True when the "week" filter had zero human contributors and we fell
+  // back to showing the previous week's data instead.
+  isFallbackPeriod: boolean;
+  fallbackLabel: string | null;
 
   // New time filter properties
   currentTimeFilter: TimeFilter;
@@ -101,6 +105,24 @@ const MAX_CONCURRENT_REQUESTS = 15;
 const CACHE_DURATION = 20 * 60 * 1000; // 20 minutes cache
 const MAX_PAGES_PER_REPO = 10;
 
+// Bot/automation accounts to exclude from the leaderboard everywhere —
+// both the stats sidebar and the contributor table must agree on this list,
+// otherwise the sidebar can show counts for accounts the table hides.
+export const EXCLUDED_USERS = [
+  "allcontributors",
+  "allcontributors[bot]",
+  "dependabot",
+  "dependabot[bot]",
+  "copilot",
+  "copilot[bot]",
+  "github-actions[bot]",
+  "renovate[bot]",
+  "dependabot-preview[bot]",
+];
+
+const isExcludedUser = (username: string): boolean =>
+  EXCLUDED_USERS.some((u) => u.toLowerCase() === username.toLowerCase());
+
 // Function to calculate points based on PR labels
 const calculatePointsForPR = (labels?: Array<{ name: string }>): number => {
   if (!labels || labels.length === 0) {
@@ -159,6 +181,16 @@ const isPRInTimeRange = (mergedAt: string, filter: TimeFilter): boolean => {
   return prDate >= filterDate;
 };
 
+// Only "week" currently falls back to the prior period when empty — the
+// window one week before the current 7-day cutoff.
+const isPRInPreviousWeek = (mergedAt: string): boolean => {
+  const now = new Date();
+  const weekStart = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+  const previousWeekStart = new Date(now.getTime() - 14 * 24 * 60 * 60 * 1000);
+  const prDate = new Date(mergedAt);
+  return prDate >= previousWeekStart && prDate < weekStart;
+};
+
 export function CommunityStatsProvider({
   children,
 }: CommunityStatsProviderProps) {
@@ -192,33 +224,67 @@ export function CommunityStatsProvider({
     timestamp: number;
   }>({ data: null, timestamp: 0 });
 
-  // Computed filtered contributors based on current time filter
-  const contributors = useMemo(() => {
+  const buildFilteredContributors = useCallback(
+    (matcher: (mergedAt: string) => boolean) => {
+      return allContributors
+        .filter((contributor) => !isExcludedUser(contributor.username))
+        .map((contributor) => {
+          const filteredPRs = contributor.allPRDetails.filter((pr) =>
+            matcher(pr.mergedAt),
+          );
+          const totalPoints = filteredPRs.reduce(
+            (sum, pr) => sum + pr.points,
+            0,
+          );
+
+          return {
+            username: contributor.username,
+            avatar: contributor.avatar,
+            profile: contributor.profile,
+            points: totalPoints,
+            prs: filteredPRs.length,
+            prDetails: filteredPRs,
+          };
+        })
+        .filter((contributor) => contributor.prs > 0)
+        .sort((a, b) => b.points - a.points || b.prs - a.prs);
+    },
+    [allContributors],
+  );
+
+  // Computed filtered contributors based on current time filter, with bots
+  // excluded so the sidebar stats and the visible table always agree.
+  const currentPeriodContributors = useMemo(() => {
     if (!allContributors.length) return [];
+    return buildFilteredContributors((mergedAt) =>
+      isPRInTimeRange(mergedAt, currentTimeFilter),
+    );
+  }, [allContributors, currentTimeFilter, buildFilteredContributors]);
 
-    const filteredContributors = allContributors
-      .map((contributor) => {
-        const filteredPRs = contributor.allPRDetails.filter((pr) =>
-          isPRInTimeRange(pr.mergedAt, currentTimeFilter),
-        );
+  // If "week" has no human contributors, fall back to last week's data
+  // instead of rendering an empty leaderboard.
+  const previousWeekContributors = useMemo(() => {
+    if (!allContributors.length) return [];
+    if (currentTimeFilter !== "week") return [];
+    if (currentPeriodContributors.length > 0) return [];
+    return buildFilteredContributors(isPRInPreviousWeek);
+  }, [
+    allContributors,
+    currentTimeFilter,
+    currentPeriodContributors,
+    buildFilteredContributors,
+  ]);
 
-        // Calculate total points from all filtered PRs
-        const totalPoints = filteredPRs.reduce((sum, pr) => sum + pr.points, 0);
+  const isFallbackPeriod =
+    currentTimeFilter === "week" &&
+    currentPeriodContributors.length === 0 &&
+    previousWeekContributors.length > 0;
 
-        return {
-          username: contributor.username,
-          avatar: contributor.avatar,
-          profile: contributor.profile,
-          points: totalPoints,
-          prs: filteredPRs.length,
-          prDetails: filteredPRs, // For backward compatibility, though we'll use the new function
-        };
-      })
-      .filter((contributor) => contributor.prs > 0) // Only show contributors with PRs in the time range
-      .sort((a, b) => b.points - a.points || b.prs - a.prs);
+  const contributors = isFallbackPeriod
+    ? previousWeekContributors
+    : currentPeriodContributors;
 
-    return filteredContributors;
-  }, [allContributors, currentTimeFilter]);
+  const fallbackLabel = isFallbackPeriod ? "last week" : null;
 
   // Stats derived directly from the (already time-filtered) contributors list,
   // so switching filters always recomputes — including down to zero.
@@ -394,6 +460,8 @@ export function CommunityStatsProvider({
     contributors,
     stats,
     hasContributorsData: allContributors.length > 0,
+    isFallbackPeriod,
+    fallbackLabel,
     currentTimeFilter,
     setTimeFilter,
     getFilteredPRsForContributor,

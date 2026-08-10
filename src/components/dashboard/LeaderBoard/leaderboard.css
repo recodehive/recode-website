@@ -203,6 +203,22 @@
   white-space: nowrap;
 }
 
+/* Fallback-period notice (e.g. "showing last week's activity") */
+.fallback-notice.light {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.fallback-notice.dark {
+  background: #451a03;
+  color: #fde68a;
+}
+
+.sidebar-card-badge.fallback {
+  background: #fef3c7;
+  color: #92400e;
+}
+
 /* How to earn points card */
 .points-callout {
   font-size: 13px;
