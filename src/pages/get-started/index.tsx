@@ -2,7 +2,7 @@ import React, { ReactNode, useState, useEffect, useRef } from "react";
 import Layout from "@theme/Layout";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { motion, useAnimation, useInView } from "framer-motion";
+import { motion, useAnimation, useInView, AnimatePresence } from "framer-motion";
 import Head from "@docusaurus/Head";
 import { useColorMode } from "@docusaurus/theme-common";
 import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
@@ -156,10 +156,17 @@ function GetStartedHeader() {
             <div className={styles.staticText}>
               <span className={styles.staticText}>Start&nbsp;</span>
               <span className={styles.dynamicText}>
-                <span className={styles.typingWord}>Code</span>
-                <span className={styles.typingWord}>Build</span>
-                <span className={styles.typingWord}>Deploy</span>
-                <span className={styles.typingWord}>Learn</span>
+                 <AnimatePresence mode="wait">
+                <motion.span
+                   key={texts[textIndex]}
+                   className={styles.typingWord}
+                   initial={{ opacity: 0, y: 8 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   exit={{ opacity: 0, y: -8 }}
+                   transition={{ duration: 0.35, ease: "easeInOut" }}>
+                  {texts[textIndex]}
+                </motion.span>
+               </AnimatePresence>
               </span>
               <span className={styles.staticText}>&nbsp;Today</span>
             </div>
