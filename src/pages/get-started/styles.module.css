@@ -1059,56 +1059,20 @@
   flex: 0 1 auto;
 }
 
+/* Only one word is ever rendered at a time (see AnimatePresence in
+    index.tsx), so no absolute stacking / keyframe timing is needed here.
+    This avoids the overlapping-text bug from the previous pure-CSS
+    multi-word animation (issue #2073). */
 .typingWord {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  animation: typing 12s ease-in-out infinite;
+  display: inline-block;
   white-space: nowrap;
-  background: linear-gradient(90deg, #22d3ee, #60a5fa);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-}
-
-.typingWord:nth-child(1) {
-  animation-delay: 0s;
-}
-.typingWord:nth-child(2) {
-  animation-delay: 3s;
-}
-.typingWord:nth-child(3) {
-  animation-delay: 6s;
-}
-.typingWord:nth-child(4) {
-  animation-delay: 9s;
-}
-
-@keyframes typing {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 100%);
-  }
-  5% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-  20% {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-  25% {
-    opacity: 0;
-    transform: translate(-50%, -200%);
-  }
-  100% {
-    opacity: 0;
-  }
-}
+   background: linear-gradient(90deg, #22d3ee, #60a5fa);
+   background-clip: text;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   font-weight: 800;
+   letter-spacing: 0.5px;
+ }
 
 .dynamicText::after {
   content: "|";
