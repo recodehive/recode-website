@@ -65,9 +65,9 @@ const FAQs: React.FC = () => {
     >
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="w-full">
-          <div className="mb-10 text-center lg:mb-14">
-            <p
-              className="mb-2.5 inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase"
+          <div className="mb-5 text-center lg:mb-6">
+            <h3
+              className="mb-1 inline-flex items-center gap-2 text-sm font-bold tracking-widest uppercase"
               style={{
                 color: isDark ? "#4ade80" : "#16a34a",
                 fontFamily:
@@ -75,28 +75,35 @@ const FAQs: React.FC = () => {
               }}
             >
               ✦ FAQs
-            </p>
+            </h3>
             <h2
               className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl"
               style={{
                 color: isDark ? "#ffffff" : "#0f172a",
                 fontFamily:
                   "'Space Grotesk', 'Inter', -apple-system, sans-serif",
+                margin: "0",
               }}
             >
               Looking for answers?
             </h2>
+            <div className="flex w-full justify-center">
             <p
-              className={`mx-auto mt-3 max-w-3xl text-base ${isDark ? "text-gray-400" : "text-gray-600"
-                }`}
-              style={{ textAlign: "center" }}
-            >
-              Find answers to the most common questions about recode hive.
-            </p>
+                className={`mx-auto max-w-3xl text-base ${isDark ? "text-gray-400" : "text-gray-600"
+                  }`}
+                  style={{
+                     textAlign: "center",
+                     width: "100%",
+                   }}
+                >
+                Find answers to the most common questions about recode hive.
+              </p>
+            </div>
           </div>
+          
 
           <div className="mx-auto flex max-w-5xl flex-col items-start gap-4 md:flex-row md:gap-6">
-            <div className="flex w-full flex-1 flex-col gap-4 md:gap-6">
+            <div className="flex w-full flex-1 flex-col gap-3 md:gap-4">
               {faqData.filter((_, index) => index % 2 === 0).map((faq, idx) => {
                 const originalIndex = idx * 2;
                 const isOpen = activeIndex === originalIndex;
@@ -134,7 +141,7 @@ const FAQs: React.FC = () => {
                       aria-expanded={isOpen}
                       aria-controls={`faq-panel-${originalIndex}`}
                     >
-                      <span>{faq.question}</span>
+                      <h3 className="text-lg font-semibold md:text-xl m-0">{faq.question}</h3>
                       <motion.span
                         className="transform transition-transform duration-300"
                         animate={{ rotate: isOpen ? 180 : 0 }}
@@ -161,7 +168,7 @@ const FAQs: React.FC = () => {
                             : "1px solid rgba(0, 0, 0, 0.10)",
                           background: isDark ? "#161616" : "#FFFFFF",
                           color: isDark ? "#d1d5db" : "#111827",
-                          padding: "1rem 1.25rem 1.25rem",
+                          padding: "0.5rem 1.25rem 1rem",
                         }}
                         dangerouslySetInnerHTML={{
                           __html: faq.answer
@@ -181,7 +188,7 @@ const FAQs: React.FC = () => {
               })}
             </div>
 
-            <div className="flex w-full flex-1 flex-col gap-4 md:gap-6">
+            <div className="flex w-full flex-1 flex-col gap-3 md:gap-4">
               {faqData.filter((_, index) => index % 2 !== 0).map((faq, idx) => {
                 const originalIndex = idx * 2 + 1;
                 const isOpen = activeIndex === originalIndex;
@@ -219,7 +226,7 @@ const FAQs: React.FC = () => {
                       aria-expanded={isOpen}
                       aria-controls={`faq-panel-${originalIndex}`}
                     >
-                      <span>{faq.question}</span>
+                      <h3 className="text-lg font-semibold md:text-xl m-0">{faq.question}</h3>
                       <motion.span
                         className="transform transition-transform duration-300"
                         animate={{ rotate: isOpen ? 180 : 0 }}
@@ -246,7 +253,7 @@ const FAQs: React.FC = () => {
                             : "1px solid rgba(0, 0, 0, 0.10)",
                           background: isDark ? "#161616" : "#FFFFFF",
                           color: isDark ? "#d1d5db" : "#111827",
-                          padding: "1rem 1.25rem 1.25rem",
+                          padding: "0.5rem 1.25rem 1rem",
                         }}
                         dangerouslySetInnerHTML={{
                           __html: faq.answer
