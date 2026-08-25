@@ -132,7 +132,7 @@ export default function FooterLayout(): ReactNode {
               <span>code second.</span>
             </p>
             <div className="rh-footer__cta">
-              <Link to="/blog" className="rh-btn rh-btn--white">
+              <Link to="/blogs" className="rh-btn rh-btn--white">
                 <svg
                   className="rh-btn__icon"
                   width="16"
