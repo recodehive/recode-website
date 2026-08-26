@@ -117,6 +117,7 @@ const config: Config = {
       logo: {
         alt: "recode hive Logo",
         src: "img/logo.png",
+        srcDark: "img/logo-dark.png", // add: light-colored / white-background version for night mode
       },
       items: [
         {

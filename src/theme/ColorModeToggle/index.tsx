@@ -1,31 +1,14 @@
 import React from "react";
-import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
-import ExecutionEnvironment from "@docusaurus/ExecutionEnvironment";
+import { useColorMode } from "@docusaurus/theme-common";
 
 export default function ColorModeToggle(): JSX.Element {
-  const { colorMode } = useSafeColorMode();
-
-  // Safe setColorMode that works with DOM
-  const setColorMode = (mode: "light" | "dark") => {
-    if (!ExecutionEnvironment.canUseDOM) return;
-    // Set DOM attribute immediately for instant visual feedback
-    document.documentElement.setAttribute("data-theme", mode);
-    // Also store in localStorage
-    localStorage.setItem("theme", mode);
-    // Trigger Docusaurus's internal theme change if available
-    try {
-      const {
-        setColorMode: docusaurusSetColorMode,
-      } = require("@docusaurus/theme-common");
-      docusaurusSetColorMode(mode);
-    } catch (e) {
-      // Fallback: just set the DOM attribute
-    }
-  };
+  const { colorMode, setColorMode } = useColorMode();
 
   const toggleColorMode = () => {
     const newMode = colorMode === "dark" ? "light" : "dark";
-    // Only use Docusaurus's setColorMode - it handles everything properly
+    // Use Docusaurus's real setColorMode - this updates the actual
+    // ColorModeProvider context, which drives ThemedImage (navbar logo),
+    // data-theme attribute, and localStorage all in one call.
     setColorMode(newMode);
   };
 
