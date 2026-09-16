@@ -195,8 +195,17 @@
   margin: 2px 0;
 }
 
-/* Custom spacing for sidebar */
-.theme-doc-sidebar-container {
+/* Custom spacing for sidebar.
+   IMPORTANT: this must be set on :root (not on .theme-doc-sidebar-container)
+   because Docusaurus's own docMainContainer CSS module reads the SAME
+   --doc-sidebar-width variable to compute its max-width via
+   calc(100% - var(--doc-sidebar-width)). Custom properties only cascade to
+   descendants, and .docMainContainer is a SIBLING of the sidebar container,
+   not a child of it — so scoping the variable to the sidebar selector only
+   changed the sidebar's own width while the main content kept using the
+   default 300px, producing a mismatch that pushed/cut off content on the
+   right. Setting it on :root keeps both sides in sync. */
+:root {
   --doc-sidebar-width: 320px;
 }
 
@@ -2662,7 +2671,7 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
   }
 
   .blog-wrapper .container>.row>.col:not(.col--2):not(.col--3)>* {
-    max-width: 960px !important;
+    max-width: 1100px !important;
   }
 }
 
@@ -2964,7 +2973,7 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
 }
 
 /* Fix mobile navigation sidebar overlap and layout alignment under 480px */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 996px) {
   .theme-doc-sidebar-container {
     width: 100% !important;
     position: fixed !important;
@@ -2972,7 +2981,8 @@ html[data-theme="dark"] .blog-post-page article header h2[itemprop="headline"] {
     padding: 12px !important;
   }
 
-  .docMainContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module {
+  .docMainContainer_node_modules-\@docusaurus-theme-classic-lib-theme-DocPage-Layout-Main-styles-module,
+  main[class*="docMainContainer_"] {
     padding-left: 16px !important;
     padding-right: 16px !important;
   }
@@ -3070,4 +3080,47 @@ div[class*='sidebarViewport_'] {
 .pagination-btn.disabled {
   opacity: 0.4 !important;
   cursor: not-allowed !important;
+}
+
+/* ===== Fix: doc page content overflowing/cut off on the right instead of
+   wrapping, once the sidebar sits correctly in-flow next to it. This is the
+   classic flex-child-won't-shrink bug: a flex item defaults to
+   min-width: auto, so text/headings wider than the remaining space push the
+   whole column past the viewport edge instead of wrapping. ===== */
+div[class*="docRoot_"],
+div[class*="docPage__layout"],
+.theme-doc-page,
+main[class*="docMainContainer_"] {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+main[class*="docMainContainer_"] {
+  flex: 1 1 0% !important;
+  min-width: 0 !important;
+  overflow-x: hidden !important;
+}
+
+.theme-doc-sidebar-container {
+  flex: 0 0 auto !important;
+}
+
+.theme-doc-markdown,
+article[class*="docItemContainer_"],
+.theme-doc-markdown h1,
+.theme-doc-markdown h2,
+.theme-doc-markdown h3,
+.theme-doc-markdown p,
+.theme-doc-markdown li {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+}
+
+/* Prevent any accidental horizontal scroll at the page level */
+html,
+body,
+#__docusaurus {
+  overflow-x: hidden !important;
 }
