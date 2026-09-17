@@ -46,7 +46,6 @@ export default function DashboardSidebar({
 }: DashboardSidebarProps): React.JSX.Element {
   const { user } = useUser();
   const { signOut, openUserProfile } = useClerk();
-
   const [collapsed, setCollapsed] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const profileMenuRef = useRef<HTMLDivElement>(null);
