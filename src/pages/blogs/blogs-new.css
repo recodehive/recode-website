@@ -1014,31 +1014,6 @@
   color: #c084fc;
 }
 
-/* Cycle accent colors across cards — matching reference */
-.articles-grid .article-card:nth-child(6n+1) .card-read-link {
-  color: #6366f1;
-}
-
-.articles-grid .article-card:nth-child(6n+2) .card-read-link {
-  color: #10b981;
-}
-
-.articles-grid .article-card:nth-child(6n+3) .card-read-link {
-  color: #ec4899;
-}
-
-.articles-grid .article-card:nth-child(6n+4) .card-read-link {
-  color: #f59e0b;
-}
-
-.articles-grid .article-card:nth-child(6n+5) .card-read-link {
-  color: #3b82f6;
-}
-
-.articles-grid .article-card:nth-child(6n+6) .card-read-link {
-  color: #8b5cf6;
-}
-
 /* Hide old card elements that are no longer in JSX */
 .card-category {
   display: none !important;
@@ -1312,6 +1287,7 @@
     font-size: 13px;
   }
 }
+
 /* ── Reading time ── */
 .card-reading-time {
   display: inline-flex;

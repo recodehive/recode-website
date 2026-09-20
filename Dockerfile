@@ -11,8 +11,8 @@ RUN apk add --no-cache \
     python3 \
     libc6-compat
 
-# Update npm to the latest version
-RUN npm install -g npm@latest
+# Use npm 10, which is compatible with Node 20
+RUN npm install -g npm@10
 
 RUN npm install --legacy-peer-deps
 
