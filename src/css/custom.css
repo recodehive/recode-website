@@ -3098,7 +3098,7 @@ main[class*="docMainContainer_"] {
 main[class*="docMainContainer_"] {
   flex: 1 1 0% !important;
   min-width: 0 !important;
-  overflow-x: hidden !important;
+  overflow-x: auto !important;
 }
 
 .theme-doc-sidebar-container {
