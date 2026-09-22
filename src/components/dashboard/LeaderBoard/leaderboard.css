@@ -327,7 +327,7 @@
 .sidebar-badge-icon {
   width: 36px;
   height: 36px;
-  border-radius: 50%;
+  object-fit: contain;
   transition: transform 0.15s ease;
 }
 
@@ -344,23 +344,29 @@
   color: #f9fafb;
   font-size: 11px;
   font-weight: 600;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   white-space: nowrap;
-  padding: 6px 10px;
-  border-radius: 6px;
+  clip-path: polygon(
+    25% 0,
+    75% 0,
+    100% 50%,
+    75% 100%,
+    25% 100%,
+    0 50%
+  );
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.15s ease, transform 0.15s ease;
   z-index: 10;
 }
 
-.sidebar-badge-tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: #111827;
+.sidebar-badge-tooltip img {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
 }
 
 .sidebar-badge-item:hover .sidebar-badge-tooltip,
