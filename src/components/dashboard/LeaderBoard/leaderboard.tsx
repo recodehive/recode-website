@@ -941,7 +941,10 @@ export default function LeaderBoard(): JSX.Element {
                       alt={badgeName}
                       className="sidebar-badge-icon"
                     />
-                    <span className="sidebar-badge-tooltip">{badgeName}</span>
+                    <span className="sidebar-badge-tooltip" aria-hidden="true">
+                      <img src={badge} alt="" />
+                      <span>{badgeName}</span>
+                    </span>
                   </button>
                 );
               })}
