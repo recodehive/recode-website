@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "@docusaurus/Link";
 import { usePluginData } from "@docusaurus/useGlobalData";
+import { useSafeColorMode } from "../../utils/useSafeColorMode";
 import "./FromTheBlog.css";
 
 interface RecentPost {
@@ -21,6 +22,7 @@ interface BlogGlobalData {
 }
 
 const FromTheBlog: React.FC = () => {
+  const { isDark } = useSafeColorMode();
   const { recentPosts = [] } =
     (usePluginData("docusaurus-plugin-content-blog") as BlogGlobalData) ?? {};
 
@@ -31,17 +33,45 @@ const FromTheBlog: React.FC = () => {
   return (
     <section className="from-blog">
       <div className="from-blog__inner">
-        <p className="from-blog__eyebrow">✦ Blog</p>
-        <div className="from-blog__header">
-          <div>
-            <h2 className="from-blog__title">From the Blog</h2>
-            <p className="from-blog__subtitle">
-              Latest articles from our contributors
-            </p>
+        <div className="from-blog__text">
+          <p
+            className="from-blog__eyebrow m-0 inline-flex items-center gap-2 p-0 text-center text-xs font-semibold tracking-widest uppercase"
+            style={{
+              color: isDark ? "#4ade80" : "#16a34a",
+              fontFamily:
+                "'Space Grotesk', 'Inter', -apple-system, sans-serif",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            ✦ Blog
+          </p>
+          <div className="from-blog__header">
+            <div>
+              <h2
+                className="from-blog__title m-0 text-3xl font-bold leading-tight tracking-tight sm:text-4xl"
+                style={{
+                  color: isDark ? "#ffffff" : "#0f172a",
+                  fontFamily:
+                    "'Space Grotesk', 'Inter', -apple-system, sans-serif",
+                  margin: 0,
+                  padding: 0,
+                }}
+              >
+                From the Blog
+              </h2>
+              <p
+                className={`from-blog__subtitle mx-auto m-0 w-full max-w-3xl p-0 text-center text-base ${isDark ? "text-gray-400" : "text-gray-600"
+                  }`}
+                style={{ margin: 0, padding: 0, textAlign: "center" }}
+              >
+                Latest articles from our contributors
+              </p>
+            </div>
+            <Link to="/blogs" className="from-blog__viewall">
+              View all →
+            </Link>
           </div>
-          <Link to="/blogs" className="from-blog__viewall">
-            View all →
-          </Link>
         </div>
 
         <div className="from-blog__grid">

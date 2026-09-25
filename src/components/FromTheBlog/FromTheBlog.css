@@ -11,7 +11,7 @@
   background: var(--fb-bg);
   border-top: 1px solid var(--fb-border);
   border-bottom: 1px solid var(--fb-border);
-  padding: 96px 24px;
+  padding: 0;
   font-family: "Instrument Sans", Inter, -apple-system, BlinkMacSystemFont,
     sans-serif;
 }
@@ -31,39 +31,24 @@
   margin: 0 auto;
 }
 
-.from-blog__eyebrow {
-  margin: 0 0 14px;
-  font-size: 13px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--fb-green);
+.from-blog__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 .from-blog__header {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 40px;
-}
-
-.from-blog__title {
-  margin: 0;
-  font-family: "Space Grotesk", Inter, sans-serif;
-  font-weight: 700;
-  font-size: 42px;
-  letter-spacing: -0.03em;
-  color: var(--fb-text);
-}
-
-.from-blog__subtitle {
-  margin: 10px 0 0;
-  font-size: 16px;
-  color: var(--fb-muted);
+  display: block;
+  width: 100%;
+  margin-bottom: 0;
 }
 
 .from-blog__viewall {
+  margin: 0;
+  padding: 0;
   flex-shrink: 0;
   font-size: 14px;
   font-weight: 600;
@@ -76,6 +61,7 @@
 }
 
 .from-blog__grid {
+  margin-top: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
@@ -151,14 +137,11 @@
 
 @media (max-width: 640px) {
   .from-blog {
-    padding: 64px 16px;
+    padding: 0;
   }
 
   .from-blog__header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 28px;
+    margin-bottom: 0;
   }
 
   .from-blog__title {
