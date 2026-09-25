@@ -17,6 +17,7 @@
     rgba(255, 255, 255, 0.05) 0%,
     rgba(240, 242, 245, 0.05) 100%
   );
+  margin-top: 5px;
 }
 
 .sidebarWithHideableNavbar {
@@ -45,13 +46,13 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding-top: 1rem; /* Add top padding to give space for the first item */
+  padding-top: 3.5rem; /* Add top padding to give space for the first item */
   overflow: visible; /* Ensure content isn't cut off */
 }
 
 .menu {
   padding: 1.25rem 0.5rem;
-  padding-top: 2.5rem; /* Significantly increase top padding to move GitHub down */
+  padding-top: 0rem; /* Significantly increase top padding to move GitHub down */
   padding-bottom: 3rem; /* Add extra padding at bottom to prevent items from being cut off */
   flex: 1;
   overflow-y: auto;
