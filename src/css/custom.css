@@ -2998,7 +2998,7 @@ main[class*='docMainContainer_'] {
 .theme-doc-sidebar-container,
 .menu--responsive,
 div[class*='sidebarViewport_'] {
-  z-index: 9999 !important; 
+  z-index: 99 !important; 
 }
  
 .mobile-social-item {
