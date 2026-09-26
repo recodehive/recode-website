@@ -275,7 +275,7 @@
 .table-of-contents {
   position: sticky;
   top: 100px;
-  background: white;
+  background: #fafaf8;
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
