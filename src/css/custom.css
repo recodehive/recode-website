@@ -2480,7 +2480,6 @@ html[data-theme="dark"] {
   top: calc(var(--ifm-navbar-height, 60px) + 1rem) !important;
   max-height: calc(100vh - var(--ifm-navbar-height, 60px) - 2rem) !important;
   overflow-y: auto !important;
-  border-left: 2px solid var(--ifm-toc-border-color) !important;
   scrollbar-width: none !important;
 }
 
