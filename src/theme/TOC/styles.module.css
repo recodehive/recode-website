@@ -1,0 +1,5 @@
+.tocContainer {
+  background: var(--ifm-background-surface-color);
+  border-radius: 16px;
+  padding: 5px;
+}
