@@ -44,7 +44,7 @@ export default function ScrollBottomToTop() {
   }
 
   return (
-    <div className="scroll-to-top fixed right-5 bottom-5 z-50 flex flex-col gap-3">
+    <div className="scroll-to-top fixed right-5 bottom-24 z-50 flex flex-col gap-3 sm:bottom-20">
       {showTopButton && (
         <button
           aria-label="Scroll to top"
