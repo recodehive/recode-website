@@ -138,7 +138,7 @@ jobs:
                 /current\s+behavior/i,
                 /use\s+case/i,
                 /\bimpact\b/i,
-                /\bpriority\s*:/i,
+                /(^|\n)\s{0,3}(?:#{2,3}\s*)?priority\b\s*:?/i,
                 /\benvironment\b/i,
                 /\bbrowser\b/i,
               ].some((pattern) => pattern.test(commentStrippedBody));
