@@ -209,11 +209,11 @@
 
 /* Force high visibility for active sidebar items - Blue Theme */
 .menu__link--active {
-  background-color: #eff6ff;
+  background-color: transparent;
   /* Light blue background */
-  color: #1d4ed8;
+  color: #2f855a;
   /* Strong blue text */
-  font-weight: bold;
+  font-weight: 500;
   position: relative;
   box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
 }
@@ -221,39 +221,39 @@
 /* Make the active icon stand out in the sidebar */
 .menu__link--active .categoryIcon,
 .menu__link--active .linkIcon {
-  color: #2563eb;
+  color: #2f855a;
 }
 
 /* Make active text bold and larger */
 .menu__link--active span {
-  font-weight: 700;
-  color: #1d4ed8;
+  font-weight: 500;
+  color: #2f855a;
   /* Strong blue color */
-  font-size: 1.05em;
+  font-size: 1em;
 }
 
 /* ================= SECTION 3: ACTIVE INDICATORS ================= */
 
 /* Style the existing dot for active pages */
 a.menu__link.menu__link--active div span:first-child {
-  background-color: #2563eb !important;
+  background-color: #38a169 !important;
   /* Blue dot */
   opacity: 1 !important;
-  width: 8px !important;
-  height: 8px !important;
-  box-shadow: 0 0 6px #2563eb !important;
+  width: 6px !important;
+  height: 6px !important;
+  box-shadow: 0 0 6px #38a169 !important;
   /* Add glow effect */
   animation: breatheBlue 2s infinite;
 }
 
 /* Add arrow indicator to the right */
 .menu__link--active::after {
-  content: "→";
+  content: "";
   position: absolute;
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  color: #2563eb;
+  color: #38a169;
   font-weight: bold;
 }
 
@@ -339,24 +339,24 @@ a.menu__link.menu__link--active div span:first-child {
 
 /* Dark mode styles for active items */
 html[data-theme="dark"] .menu__link--active {
-  background-color: rgba(96, 165, 250, 0.15);
-  color: #93c5fd;
+  background-color: transparent;
+  color: #9ae6b4;
 }
 
 /* Dark mode text color */
 html[data-theme="dark"] .menu__link--active span {
-  color: #93c5fd;
+  color: #9ae6b4;
 }
 
 /* Dark mode dot styling */
 html[data-theme="dark"] a.menu__link.menu__link--active div span:first-child {
-  background-color: #93c5fd !important;
-  box-shadow: 0 0 8px #60a5fa !important;
+  background-color: #9ae6b4 !important;
+  box-shadow: 0 0 8px #68d391 !important;
 }
 
 /* Dark mode indicator colors */
 html[data-theme="dark"] .menu__link--active::after {
-  color: #60a5fa;
+  color: #9ae6b4;
 }
 
 /* Ensure blog and markdown content is readable in dark mode */
@@ -2480,7 +2480,6 @@ html[data-theme="dark"] {
   top: calc(var(--ifm-navbar-height, 60px) + 1rem) !important;
   max-height: calc(100vh - var(--ifm-navbar-height, 60px) - 2rem) !important;
   overflow-y: auto !important;
-  border-left: 2px solid var(--ifm-toc-border-color) !important;
   scrollbar-width: none !important;
 }
 
