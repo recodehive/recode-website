@@ -126,6 +126,16 @@ jobs:
               const hasStructure = headings.length > 0 || /(^|\n)([-*]|\d+\.)\s+/m.test(normalizedBody);
               const hasDiagnosticKeywords =
                 /(steps|reproduce|expected|actual|current|use case|benefit|impact|priority|environment|browser|error)/i.test(contentOnly);
+              const contentHeadings = headings.filter(
+                (heading) => !/^(record|add screenshots?)$/i.test(heading),
+              );
+              const hasMeaningfulHeadingContent = contentHeadings.some(
+                (heading) => !isMissingValue(getSection(heading)),
+              );
+
+              if (contentHeadings.length > 0 && !hasMeaningfulHeadingContent) {
+                addMissing("Fill in the issue details instead of leaving placeholder responses.");
+              }
 
               if (!hasStructure && !hasDiagnosticKeywords) {
                 addMissing("Explain the expected outcome, use case, or current problem more clearly.");
