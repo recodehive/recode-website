@@ -129,7 +129,7 @@ jobs:
                 }
               }
             } else {
-              const hasStructure = headings.length > 0 || /(^|\n)([-*]|\d+\.)\s+/m.test(normalizedBody);
+              const hasStructure = headings.length > 0;
               const hasStructuredSignals = [
                 /steps?\s+to\s+reproduce/i,
                 /expected\s+behavior/i,
