@@ -34,9 +34,11 @@ jobs:
             );
             const normalizeHeading = (heading) =>
               heading.replace(/\s+/g, " ").trim().toLowerCase();
-
+            const normalizedHeadings = headings.map((heading) => normalizeHeading(heading));
             const getSection = (heading) => {
-              const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+              const actualHeading =
+                headings.find((candidate) => normalizeHeading(candidate) === normalizeHeading(heading)) ?? heading;
+              const escapedHeading = actualHeading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
               const match = normalizedBody.match(
                 new RegExp(`^###\\s+${escapedHeading}[ \\t]*\\r?\\n([\\s\\S]*?)(?=^###\\s+|$)`, "m"),
               );
@@ -113,14 +115,16 @@ jobs:
             const matchedTemplate = requiredSectionsByTitle
               .map((template) => ({
                 ...template,
-                matchedSections: template.sections.filter((section) => headings.includes(section)).length,
+                matchedSections: template.sections.filter((section) =>
+                  normalizedHeadings.includes(normalizeHeading(section)),
+                ).length,
               }))
               .filter((template) => template.matchedSections > 0)
               .sort((left, right) => right.matchedSections - left.matchedSections)[0];
 
             if (matchedTemplate) {
               for (const section of matchedTemplate.sections) {
-                if (!headings.includes(section) || isMissingValue(getSection(section))) {
+                if (!normalizedHeadings.includes(normalizeHeading(section)) || isMissingValue(getSection(section))) {
                   addMissing(`Fill in the "${section}" section.`);
                 }
               }
