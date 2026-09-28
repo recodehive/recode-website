@@ -20,8 +20,8 @@ jobs:
             const title = (context.payload.issue?.title ?? "").trim();
             const body = (context.payload.issue?.body ?? "").trim();
             const normalizedBody = body.replace(/\r/g, "");
-            const bodyWithoutComments = normalizedBody.replace(/<!--[\s\S]*?-->/g, "");
-            const contentOnly = bodyWithoutComments
+            const commentStrippedBody = normalizedBody.replace(/<!--[\s\S]*?-->/g, "");
+            const contentOnly = commentStrippedBody
               .replace(/!\[[^\]]*\]\([^)]+\)/g, " ")
               .replace(/<img[^>]*>/gi, " ")
               .replace(/https?:\/\/\S+/gi, " ")
@@ -30,7 +30,7 @@ jobs:
               .trim();
 
             const headings = Array.from(
-              bodyWithoutComments.matchAll(/^#{2,3}\s+(.+)$/gm),
+              commentStrippedBody.matchAll(/^#{2,3}\s+(.+)$/gm),
               ([, heading]) => heading.trim(),
             );
             const normalizeHeading = (heading) =>
@@ -40,7 +40,7 @@ jobs:
               const actualHeading =
                 headings.find((candidate) => normalizeHeading(candidate) === normalizeHeading(heading)) ?? heading;
               const escapedHeading = actualHeading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-              const match = bodyWithoutComments.match(
+              const match = commentStrippedBody.match(
                 new RegExp(`^#{2,3}\\s+${escapedHeading}[ \\t]*\\r?\\n([\\s\\S]*?)(?=^#{2,3}\\s+|$)`, "m"),
               );
 
@@ -141,7 +141,7 @@ jobs:
                 /\bpriority\s*:/i,
                 /\benvironment\b/i,
                 /\bbrowser\b/i,
-              ].some((pattern) => pattern.test(bodyWithoutComments));
+              ].some((pattern) => pattern.test(commentStrippedBody));
               const contentHeadings = headings.filter(
                 (heading) => {
                   const normalizedHeading = normalizeHeading(heading);
