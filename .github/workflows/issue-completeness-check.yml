@@ -32,6 +32,8 @@ jobs:
               normalizedBody.matchAll(/^###\s+(.+)$/gm),
               ([, heading]) => heading.trim(),
             );
+            const normalizeHeading = (heading) =>
+              heading.replace(/\s+/g, " ").trim().toLowerCase();
 
             const getSection = (heading) => {
               const escapedHeading = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -136,7 +138,13 @@ jobs:
                 /\bbrowser\b/i,
               ].some((pattern) => pattern.test(normalizedBody));
               const contentHeadings = headings.filter(
-                (heading) => !/^(record|add screenshots?)$/i.test(heading),
+                (heading) => {
+                  const normalizedHeading = normalizeHeading(heading);
+                  return !(
+                    normalizedHeading.startsWith("record") ||
+                    normalizedHeading.startsWith("add screenshot")
+                  );
+                },
               );
               const hasMeaningfulHeadingContent = contentHeadings.some(
                 (heading) => !isMissingValue(getSection(heading)),
