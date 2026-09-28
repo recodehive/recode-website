@@ -178,7 +178,8 @@ const ContactUs: FC = () => {
               <button
                 key={category}
                 type="button"
-                className={activeCategory === category ? "is-active" : ""}
+className={activeCategory === category ? "is-active" : ""}
+                aria-pressed={activeCategory === category}
                 onClick={() => setActiveCategory(category)}
               >
                 {category}
