@@ -124,8 +124,17 @@ jobs:
               }
             } else {
               const hasStructure = headings.length > 0 || /(^|\n)([-*]|\d+\.)\s+/m.test(normalizedBody);
-              const hasDiagnosticKeywords =
-                /(steps|reproduce|expected|actual|current|use case|benefit|impact|priority|environment|browser|error)/i.test(contentOnly);
+              const hasStructuredSignals = [
+                /steps?\s+to\s+reproduce/i,
+                /expected\s+behavior/i,
+                /actual\s+behavior/i,
+                /current\s+behavior/i,
+                /use\s+case/i,
+                /\bimpact\b/i,
+                /\bpriority\s*:/i,
+                /\benvironment\b/i,
+                /\bbrowser\b/i,
+              ].some((pattern) => pattern.test(normalizedBody));
               const contentHeadings = headings.filter(
                 (heading) => !/^(record|add screenshots?)$/i.test(heading),
               );
@@ -137,7 +146,7 @@ jobs:
                 addMissing("Fill in the issue details instead of leaving placeholder responses.");
               }
 
-              if (!hasStructure && !hasDiagnosticKeywords) {
+              if (!hasStructure && !hasStructuredSignals) {
                 addMissing("Explain the expected outcome, use case, or current problem more clearly.");
               }
             }
