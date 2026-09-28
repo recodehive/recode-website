@@ -16,6 +16,7 @@ jobs:
         id: ai
         uses: actions/github-script@v7
         with:
+          result-encoding: string
           script: |
             const title = (context.payload.issue?.title ?? "").trim();
             const body = (context.payload.issue?.body ?? "").trim();
@@ -164,13 +165,13 @@ jobs:
               }
             }
 
-            core.setOutput("response", missingDetails.map((detail) => `- ${detail}`).join("\n"));
+            return missingDetails.map((detail) => `- ${detail}`).join("\n");
 
       - name: Request missing issue details
-        if: ${{ steps.ai.outputs.response != '' }}
+        if: ${{ steps.ai.outputs.result != '' }}
         uses: actions/github-script@v7
         env:
-          AI_RESPONSE: ${{ steps.ai.outputs.response }}
+          AI_RESPONSE: ${{ steps.ai.outputs.result }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
