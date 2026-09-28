@@ -51,12 +51,19 @@ jobs:
                 .replace(/<!--[\s\S]*?-->/g, "")
                 .replace(/\r/g, "")
                 .trim();
+              const normalized = cleaned
+                .replace(/[*_`~]/g, "")
+                .replace(/\s+/g, " ")
+                .trim()
+                .toLowerCase();
 
               return (
-                cleaned === "" ||
-                cleaned === "_No response_" ||
-                cleaned === "No response" ||
-                cleaned === "N/A"
+                normalized === "" ||
+                normalized === "no response" ||
+                normalized === "n/a" ||
+                normalized === "na" ||
+                normalized === "none" ||
+                normalized === "not applicable"
               );
             };
 
@@ -77,14 +84,14 @@ jobs:
 
             const requiredSectionsByTitle = [
               {
-                test: /^\s*🐞\[Bug\]:/i,
+                name: "bug",
                 sections: [
                   "Describe the bug",
                   "Expected behavior",
                 ],
               },
               {
-                test: /^\s*💡\[Feature\]:/i,
+                name: "feature",
                 sections: [
                   "Feature Description",
                   "Use Case",
@@ -92,7 +99,7 @@ jobs:
                 ],
               },
               {
-                test: /^\s*📝\[Docs\]:/i,
+                name: "docs",
                 sections: [
                   "Issue Description",
                   "Suggested Change",
@@ -101,7 +108,13 @@ jobs:
               },
             ];
 
-            const matchedTemplate = requiredSectionsByTitle.find(({ test }) => test.test(title));
+            const matchedTemplate = requiredSectionsByTitle
+              .map((template) => ({
+                ...template,
+                matchedSections: template.sections.filter((section) => headings.includes(section)).length,
+              }))
+              .filter((template) => template.matchedSections > 0)
+              .sort((left, right) => right.matchedSections - left.matchedSections)[0];
 
             if (matchedTemplate) {
               for (const section of matchedTemplate.sections) {
