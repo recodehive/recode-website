@@ -1,16 +1,15 @@
 :root {
-  --help-ink: #0b1220;
-  --help-muted: #5f6b7a;
+  --help-ink: var(--ifm-font-color-base);
+  --help-muted: var(--ifm-color-emphasis-700);
   --help-line: #e4e7eb;
-  --help-blue: #075cff;
-  --help-green: #20c96b;
+  --help-green: #16a34a;
 }
 
 .help-center {
   min-height: 100vh;
   background: #f5f5f4;
   color: var(--help-ink);
-  font-family: "Manrope", "Avenir Next", sans-serif;
+  font-family: var(--font-family);
 }
 
 .help-center__content {
@@ -27,7 +26,7 @@
 .help-center__eyebrow,
 .support-direct__eyebrow {
   margin: 0 0 0.85rem;
-  color: var(--help-blue);
+  color: var(--help-green);
   font-size: 0.68rem;
   font-weight: 800;
   letter-spacing: 0.16em;
@@ -38,9 +37,16 @@
 .help-center h1 {
   margin: 0;
   color: var(--help-ink);
+  font-family:
+    "Space Grotesk",
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   font-size: clamp(2.15rem, 5vw, 3.2rem);
-  font-weight: 800;
-  letter-spacing: -0.045em;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   line-height: 1.05;
 }
 
@@ -66,8 +72,8 @@
 }
 
 .help-center__search:focus-within {
-  border-color: #8ab0ff;
-  box-shadow: 0 0 0 3px rgb(7 92 255 / 11%);
+  border-color: var(--help-green);
+  box-shadow: 0 0 0 3px rgb(22 163 74 / 11%);
 }
 
 .help-center__search input {
@@ -113,14 +119,14 @@
 
 .help-center__categories button:hover,
 .help-center__categories button:focus-visible {
-  border-color: #a8c2fa;
-  color: var(--help-blue);
+  border-color: #86efac;
+  color: var(--help-green);
   outline: 0;
 }
 
 .help-center__categories button.is-active {
-  border-color: var(--help-blue);
-  background: var(--help-blue);
+  border-color: var(--help-green);
+  background: var(--help-green);
   color: #fff;
 }
 
@@ -141,7 +147,7 @@
 }
 
 .faq-item.is-open {
-  border-color: #b5caff;
+  border-color: #86efac;
 }
 
 .faq-item__trigger {
@@ -164,7 +170,7 @@
 }
 
 .faq-item__trigger > svg:first-child {
-  color: var(--help-blue);
+  color: var(--help-green);
 }
 
 .faq-item__trigger > svg:last-child {
@@ -177,7 +183,7 @@
 }
 
 .faq-item__trigger:focus-visible {
-  outline: 2px solid var(--help-blue);
+  outline: 2px solid var(--help-green);
   outline-offset: -2px;
 }
 
@@ -214,9 +220,16 @@
 .support-direct h2 {
   margin: 0;
   color: var(--help-ink);
+  font-family:
+    "Space Grotesk",
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   font-size: 1.2rem;
-  font-weight: 800;
-  letter-spacing: -0.025em;
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 .support-form > p,
@@ -318,8 +331,8 @@
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
-  border-color: #8ab0ff;
-  box-shadow: 0 0 0 3px rgb(7 92 255 / 11%);
+  border-color: var(--help-green);
+  box-shadow: 0 0 0 3px rgb(22 163 74 / 11%);
 }
 
 .submit-button {
@@ -328,7 +341,7 @@
   padding: 0.65rem 1.05rem;
   border: 0;
   border-radius: 0.45rem;
-  background: var(--help-blue);
+  background: var(--help-green);
   color: #fff;
   cursor: pointer;
   font: inherit;
@@ -363,13 +376,21 @@
   align-items: flex-start;
   gap: 0.55rem;
   padding: 0.8rem 0;
-  color: var(--help-blue);
+  color: var(--help-green);
 }
 
 .form-success-message h3 {
   margin: 0;
   color: var(--help-ink);
+  font-family:
+    "Space Grotesk",
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   font-size: 1rem;
+  font-weight: 700;
 }
 
 .form-success-message p {

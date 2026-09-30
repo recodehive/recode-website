@@ -306,7 +306,7 @@ className={activeCategory === category ? "is-active" : ""}
               <p className="support-direct__eyebrow">Faster for quick questions</p>
               <h2>Chat on WhatsApp</h2>
               <p>For account access or a quick clarification, message the team directly.</p>
-              <a href="https://chat.whatsapp.com/Izl2yfbFlmY8CExjnIpNkX?mode=ems_copy_t" target="_blank" rel="noreferrer">
+              <a href="https://chat.whatsapp.com/D1CZ7BrLMVw4OzwsdVNdos?mode=gi_t" target="_blank" rel="noreferrer">
                 <MessageCircle size={17} aria-hidden="true" /> Open WhatsApp
               </a>
               <p className="support-direct__note">Never share passwords, OTPs or payment card details with support.</p>
