@@ -36,58 +36,46 @@ const categories: Category[] = [
 
 const questions: Question[] = [
   {
-    question: "How do I update my learning plan?",
-    answer: "Open your account settings, choose Learning plan, and select the topics or pace you want to change.",
+    question: "What is the recode hive?",
+    answer: "recode hive is a platform that provides learning resources, data engineering tutorials, blogs, and opportunities for open-source contribution.",
     category: "Account & learning plan",
     icon: CircleHelp,
   },
   {
-    question: "Will my plan be saved if I explore before signing up?",
-    answer: "Your progress is saved once you create an account. You can explore the learning paths before signing up and continue from there afterward.",
-    category: "Account & learning plan",
-    icon: CircleHelp,
-  },
-  {
-    question: "What is included with Premium?",
-    answer: "Premium includes expanded course access, practice materials, and additional progress guidance.",
-    category: "Billing & premium",
-    icon: CreditCard,
-  },
-  {
-    question: "How do refunds work?",
-    answer: "Send us your order details through the form below and the team will review your refund request.",
-    category: "Billing & premium",
-    icon: CreditCard,
-  },
-  {
-    question: "Why is a completed lesson not reflected in my progress?",
-    answer: "Refresh the lesson and check your connection. If your progress still does not update, send us the lesson URL and account email.",
+    question: "What features do the recode hive provides?",
+    answer: "We provide tutorials, documentation, hands-on projects, open-source contribution opportunities, earning opportunities, and community support.",
     category: "Courses & progress",
     icon: BookOpen,
   },
   {
-    question: "Where can I review weak topics?",
-    answer: "Your progress view highlights topics that need another pass and links back to the related lessons.",
-    category: "Courses & progress",
-    icon: BookOpen,
-  },
-  {
-    question: "Can I use coding problems on mobile?",
-    answer: "Yes. Coding exercises are available on mobile browsers, although a larger screen is recommended for longer problems.",
-    category: "Coding & DataLab",
-    icon: FileText,
-  },
-  {
-    question: "Is anonymous DataLab work saved?",
-    answer: "Anonymous work is kept for the current session. Sign in to keep it available across devices.",
-    category: "Coding & DataLab",
-    icon: FileText,
-  },
-  {
-    question: "How do I submit a portfolio project?",
-    answer: "Use the project submission flow from your learning area and include a public demo or repository link.",
+    question: "How can I contribute tutorials?",
+    answer: "Fork the recode hive repository, review the contribution guidelines, create your tutorial content, and submit a pull request.",
     category: "Projects & proof",
     icon: ExternalLink,
+  },
+  {
+    question: "What all resources are available here?",
+    answer: "Available resources include SQL, GitHub, Postman API testing, and Next.js development guides, with more technologies coming soon.",
+    category: "Courses & progress",
+    icon: FileText,
+  },
+  {
+    question: "How can I contribute as a beginner?",
+    answer: "Start with the GitHub Basics guide, join the Discord community, look for good first issues, and follow the contribution guide.",
+    category: "Account & learning plan",
+    icon: CircleHelp,
+  },
+  {
+    question: "How can I earn from this recode hive organisation?",
+    answer: "You can earn through the GitHub sponsorship program by making meaningful contributions and following the contribution guidelines.",
+    category: "Billing & premium",
+    icon: CreditCard,
+  },
+  {
+    question: "How will I stay up to date with the latest news from this organisation?",
+    answer: "Subscribe to the newsletter and follow recode hive on Instagram, Twitter, LinkedIn, YouTube, and Discord for updates.",
+    category: "Account & learning plan",
+    icon: MessageCircle,
   },
 ];
 

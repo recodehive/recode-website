@@ -19,7 +19,7 @@
 }
 
 .help-center__header {
-  max-width: 650px;
+  max-width: none;
   margin-bottom: 2rem;
 }
 
@@ -48,14 +48,16 @@
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
+  white-space: nowrap;
 }
 
 .help-center__intro {
-  max-width: 620px;
+  max-width: none;
   margin: 1rem 0 0;
   color: var(--help-muted);
   font-size: 0.88rem;
   line-height: 1.65;
+  white-space: nowrap;
 }
 
 .help-center__search {
