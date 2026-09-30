@@ -2417,6 +2417,19 @@ html[data-theme="dark"] {
   scrollbar-color: #334155 transparent !important;
 }
 
+/* Keep Docs scrolling without showing page or sidebar scrollbar chrome. */
+body.theme-doc-page,
+body.theme-doc-page .sidebar,
+body.theme-doc-page .menu {
+  scrollbar-width: none !important;
+}
+
+body.theme-doc-page::-webkit-scrollbar,
+body.theme-doc-page .sidebar::-webkit-scrollbar,
+body.theme-doc-page .menu::-webkit-scrollbar {
+  display: none !important;
+}
+
 /* ===== Section 15 : blog layout ===== */
 /* Full width container */
 .blog-wrapper .container {
