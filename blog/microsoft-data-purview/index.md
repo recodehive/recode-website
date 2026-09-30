@@ -1,11 +1,11 @@
 ---
-title: "How We Used Purview Data Catalog to Reduce Onboarding Time for New Data Engineers from 2 Weeks to 3 Days"
+title: "Microsoft Purview Data Catalog: How We Cut Data Engineer Onboarding from 2 Weeks to 3 Days"
 authors: [Aditya-Singh-Rathore]
-sidebar_label: "Purview Data Catalog Onboarding Optimization"
+sidebar_label: "Microsoft Purview Data Catalog"
 tags: [azure, microsoft-purview, data-catalog, data-governance, onboarding, data-lineage, metadata, data-engineering, azure-data-factory, delta-lake]
 date: 2026-05-19
 
-description: New data engineers were spending 2 weeks just figuring out what data existed and who owned it. Here's how we used Microsoft Purview's catalog, lineage graph, and business glossary to cut that to 3 days — with the exact configuration that made it work.
+description: "Learn how Microsoft Purview Data Catalog improves data discovery, lineage, ownership, and governance. This practical case study shows how we reduced data engineer onboarding from 2 weeks to 3 days — including the configuration that made it work."
 
 draft: false
 canonical_url: https://www.recodehive.com/blog/purview-data-catalog-onboarding
@@ -14,9 +14,9 @@ meta:
   - name: "robots"
     content: "index, follow"
   - property: "og:title"
-    content: "How We Used Purview Data Catalog to Cut Data Engineer Onboarding from 2 Weeks to 3 Days"
+    content: "Microsoft Purview Data Catalog: How We Cut Data Engineer Onboarding from 2 Weeks to 3 Days"
   - property: "og:description"
-    content: "New data engineers were spending 2 weeks just figuring out what data existed. Here's the exact Purview setup that cut it to 3 days."
+    content: "A practical Microsoft Purview Data Catalog implementation covering discovery, lineage, glossary, and ownership — and how it reduced onboarding from 2 weeks to 3 days."
   - property: "og:type"
     content: "article"
   - property: "og:url"
@@ -26,9 +26,9 @@ meta:
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
-    content: "Purview Data Catalog Cut Our Engineer Onboarding from 2 Weeks to 3 Days"
+    content: "Microsoft Purview Data Catalog: 2 Weeks to 3 Days"
   - name: "twitter:description"
-    content: "2 weeks → 3 days. Here's the exact Microsoft Purview setup — catalog, lineage, glossary, ownership — that made new engineers productive immediately."
+    content: "See how catalog, lineage, glossary, and ownership metadata helped reduce data engineer onboarding from 2 weeks to 3 days."
   - name: "twitter:image"
     content: "./images/cover.png"
 ---
@@ -37,6 +37,21 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 <!-- truncate -->
+Microsoft Purview Data Catalog helps data teams discover data assets, understand lineage, define business terms, and identify ownership across a data estate.
+
+In this case study, we used Purview across an Azure data platform with ADLS Gen2, Azure Data Factory, Synapse Analytics, and Power BI. The result was a reduction in median time to first independent PR from **14 days to 4 days**.
+
+:::tip
+### In short
+
+We used three Microsoft Purview capabilities:
+
+- **Data Catalog** → find the right data asset
+- **Data Lineage** → understand upstream and downstream dependencies
+- **Business Glossary + Ownership** → understand definitions and know who to contact
+
+Together, these reduced the median time to first independent PR from **14 days to 4 days**.
+:::
 
 The ticket came in on a Wednesday. A new data engineer, two weeks into the job had spent four days trying to understand why the `customer_lifetime_value` column in the Gold layer showed different numbers than the same field in the BI report.
 
@@ -46,14 +61,34 @@ He had been Slacking three different senior engineers to chase down an answer th
 
 That ticket was the moment we decided to fix onboarding.
 
-**What this post covers:**
-- The exact problem structure that made onboarding slow and why it was invisible to us until we measured it
-- How we used Microsoft Purview's three core capabilities, searchable catalog, lineage visualization, and business glossary with ownership metadata to eliminate the "who do I ask?" loop
-- The configuration steps that actually moved the needle, with real before-and-after numbers for each
-- What we got wrong the first time, and the one thing that made the second attempt stick
+## Results at a Glance
+
+| Metric | Before Purview | After Purview |
+|---|---:|---:|
+| Median time to first independent PR | 14 days | 4 days |
+| Hours lost to ownership questions | 11 hrs | 0.5 hrs |
+| Hours lost to table discovery | 18 hrs | 0.8 hrs |
+| Hours lost to lineage tracing | 14 hrs | 1.2 hrs |
+| Senior engineer interruptions per new hire | 23 | 4 |
+
+Here's how we got there.
+
+## What You'll Learn
+
+- The problem: why data engineers lose time finding data
+- Our Azure data estate before Purview
+- Microsoft Purview Data Catalog and searchable data discovery
+- Microsoft Purview Data Lineage with Azure Data Factory
+- Microsoft Purview Business Glossary and data ownership
+- The onboarding experience before and after Purview
+- Measured results
+- What we got wrong
+- Implementation checklist
+- What Purview cannot do
+- Frequently asked questions
 
 
-## The Problem, Measured
+## The Problem: Why Data Engineers Lose Time Finding Data
 
 Before we changed anything, we ran a structured retrospective with four recent hires across different seniority levels. We asked one question: **"In your first two weeks, where did you spend time that you wish you hadn't?"**
 
@@ -97,14 +132,16 @@ Azure Synapse Analytics (SQL serving for BI)
 Power BI (dashboards, ~25 reports)
 ```
 
-240 tables across three layers. 40 ADF pipelines. 25 Power BI reports. No central documentation. New engineers navigated this through a combination of institutional knowledge, Slack archaeology, and luck.
+240 tables across three layers. 40 ADF pipelines. 25 Power BI reports. No central documentation.
+
+If your platform also follows a Bronze → Silver → Gold pattern, see our [Medallion Architecture Explained](https://www.recodehive.com/blog/medallion-architecture) guide for the broader architecture pattern. New engineers navigated this through a combination of institutional knowledge, Slack archaeology, and luck.
 
 
 ## The Three Purview Capabilities That Moved the Needle
 
 We did not use every Purview feature. We used three, in a deliberate order, because each one built on the last.
 
-### Capability 1: Searchable Data Catalog (Week 1 unlock)
+## Microsoft Purview Data Catalog: Searchable Data Discovery
 
 The first and most urgent problem: new engineers could not find tables without asking someone. The bronze, silver, and gold layers had consistent naming conventions internally, but there was no way to search across all 240 tables by business concept. If you wanted the table behind the "monthly active users" metric, you had to know to look in `gold.user_engagement_monthly`, a name that is only obvious in retrospect.
 
@@ -190,10 +227,10 @@ After enrichment, a new engineer searching "monthly active users" in the Purview
 
 **Before:** 18 hours finding the right table. **After:** under 20 minutes, self-serve.
 
-![Purview Catalog Search UI](./img/purview-catalog-search.png)
+![Microsoft Purview Data Catalog search showing a data asset and metadata](./img/purview-catalog-search.webp)
 
 
-### Capability 2: Lineage Visualization (Day 2–3 unlock)
+## Microsoft Purview Data Lineage with Azure Data Factory
 
 Finding the right table was the first unlock. Understanding whether it was safe to modify a pipeline that fed into that table was the second.
 
@@ -228,12 +265,12 @@ After this, every ADF pipeline run automatically updates the lineage graph. A ne
 
 The downstream view is just as valuable. Before touching a silver table, a new engineer can see exactly which gold tables and Power BI reports depend on it. That single capability eliminated the most common new-hire mistake: modifying a table without realizing it breaks a downstream report.
 
-![Lineage Graph](./img/purview-lineage-graph.png)
+![Microsoft Purview data lineage graph showing Azure Data Factory dependencies](./img/purview-lineage-graph.webp)
 
 **Before:** 14 hours tracing dependencies manually. **After:** under 10 minutes in the lineage tab.
 
 
-### Capability 3: Business Glossary + Ownership Metadata (The trust layer)
+## Microsoft Purview Business Glossary and Data Ownership
 
 The catalog tells you what tables exist. The lineage tells you how they connect. Neither tells you whether the table is the authoritative source for a given metric, who is responsible for it when something breaks, or what the business definition of the columns actually means.
 
@@ -432,7 +469,7 @@ Phase 4 — Measurement (Ongoing)
   ✓ Track: ownership coverage % (target: >95% on gold, >80% on silver)
 ```
 
-![Configuration Phases Timeline](./img/purview-setup-phases.png)
+![Microsoft Purview implementation phases for data catalog, lineage, and governance](./img/purview-setup-phases.webp)
 
 
 ## Before You Start: What Purview Cannot Do
@@ -462,6 +499,26 @@ What it replaces is navigational friction. The questions that had no business be
 
 
 ## Frequently Asked Questions
+
+**Q: What is Microsoft Purview Data Catalog?**
+
+Microsoft Purview Data Catalog is the part of the Purview experience we used to discover data assets, search metadata, understand asset context, and connect business definitions and ownership information to the data estate.
+
+**Q: What is Microsoft Purview used for?**
+
+In this implementation, we used Purview for searchable data discovery, lineage visualization, business glossary terms, metadata enrichment, and ownership visibility.
+
+**Q: How does Microsoft Purview data lineage work with Azure Data Factory?**
+
+Purview's lineage graph is populated through the ADF integration. In our setup, ADF pipeline runs reported source and sink relationships so engineers could trace dependencies from source systems through transformation pipelines to downstream assets.
+
+**Q: How does the Microsoft Purview Business Glossary help data engineers?**
+
+We used glossary terms to define metrics that had multiple implementations or non-obvious business definitions. Each term included a canonical definition, an authoritative table, and relevant contacts.
+
+**Q: How do you assign data owners in Microsoft Purview?**
+
+We used a convention where every gold table had one owner responsible for its accuracy and one expert responsible for its implementation or maintenance. A weekly automated check flagged gold assets without ownership metadata.
 
 **Q: We use Databricks Unity Catalog, not Microsoft Purview. Does this apply?**
 
