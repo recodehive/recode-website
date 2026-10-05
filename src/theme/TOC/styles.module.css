@@ -3,3 +3,19 @@
   border-radius: 16px;
   padding: 5px;
 }
+
+.tocContainer > div:first-child {
+  position: sticky;
+  top: calc(var(--ifm-navbar-height, 60px) + 1rem);
+  z-index: 2;
+  background: var(--ifm-background-surface-color);
+}
+
+@media (min-width: 997px) {
+  .tocContainer > div:first-child {
+    position: fixed;
+    right: 108px;
+    width: min(280px, calc(100vw - 2rem));
+    box-sizing: border-box;
+  }
+}

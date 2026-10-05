@@ -6,18 +6,7 @@
   --dashboard-accent-softer: rgba(139, 92, 246, 0.08);
   display: flex;
   min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at 10% 0%,
-      var(--dashboard-accent-softer),
-      transparent 42%
-    ),
-    radial-gradient(
-      circle at 90% 100%,
-      rgba(102, 126, 234, 0.08),
-      transparent 40%
-    ),
-    var(--ifm-background-color);
+  background: #f3f3f3;
   position: relative;
 }
 
@@ -640,10 +629,8 @@
 
 /* Giveaway Section */
 .giveaway-section {
-  text-align: center;
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 20px;
 }
 
 .giveaway-section h1 {

@@ -7,7 +7,7 @@ const ReadingPill = () => {
   const [progress, setProgress] = useState(0)
 
   useMotionValueEvent(scrollYProgress,"change",(latest)=>{
-    setProgress(Math.round(latest*100))
+    setProgress(Math.round(Math.max(0, Math.min(1, latest)) * 100))
   })
 
   return (
@@ -19,10 +19,17 @@ const ReadingPill = () => {
           <span className="text-gray-600">{progress}%</span>
       </div>
 
-      <div className="h-1 w-full overflow-hidden rounded-full bg-gray-200">
+      <div
+        className="h-1 w-full overflow-hidden rounded-full bg-gray-200"
+        role="progressbar"
+        aria-label="Reading progress"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={progress}
+      >
         <motion.div
           className="h-full origin-left rounded-full bg-[#2e8555]"
-          style={{ scaleX: scrollYProgress }}
+          style={{ scaleX: progress / 100 }}
         />
       </div>
     </div>

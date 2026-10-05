@@ -35,6 +35,8 @@ import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 import LeaderBoard from "@site/src/components/dashboard/LeaderBoard/leaderboard";
 import SignInDashboard from "@site/src/components/dashboard/SignInDashboard";
+import GiveawayPage from "@site/src/components/dashboard/giveaway";
+
 
 type DiscussionTab = "discussions" | "trending" | "unanswered";
 type SortOption = "most_popular" | "latest" | "oldest";
@@ -323,7 +325,8 @@ const DashboardContent: React.FC = () => {
       history.push("#discuss");
       window.scrollTo(0, 0);
     } else if (tab === "giveaway") {
-      history.push("/dashboard/giveaway");
+      history.push("#giveaway");
+      window.scrollTo(0, 0);
     } else if (tab === "contributors") {
       history.push("#leaderboard");
       window.scrollTo(0, 0);
@@ -693,17 +696,7 @@ const DashboardContent: React.FC = () => {
             transition={{ duration: 0.5 }}
             className="giveaway-section"
           >
-            <h1>Giveaways</h1>
-            <p>
-              Participate in our exciting giveaways for a chance to win awesome
-              prizes!
-            </p>
-            <div className="giveaway-content">
-              <p>
-                Stay tuned for our next giveaway. Follow our social media
-                channels for updates!
-              </p>
-            </div>
+            <GiveawayPage/>
           </motion.div>
         )}
       </div>
