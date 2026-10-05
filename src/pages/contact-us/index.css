@@ -418,6 +418,111 @@
   }
 }
 
+/* Keep the help center aligned with the site's dark theme. */
+[data-theme="dark"] .help-center {
+  --help-ink: #ffffff;
+  --help-muted: #d1d5db;
+  --help-line: rgba(255, 255, 255, 0.12);
+  --help-green: #4ade80;
+  background: #000000;
+}
+
+[data-theme="dark"] .help-center__search,
+[data-theme="dark"] .help-center__categories button,
+[data-theme="dark"] .faq-item,
+[data-theme="dark"] .support-panel {
+  background: #161616;
+  border-color: var(--help-line);
+  box-shadow: 0 2px 12px rgb(0 0 0 / 30%);
+}
+
+[data-theme="dark"] .help-center__search {
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .help-center__search input::placeholder,
+[data-theme="dark"] .form-input::placeholder,
+[data-theme="dark"] .form-textarea::placeholder {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .help-center__categories button {
+  color: #f3f4f6;
+}
+
+[data-theme="dark"] .help-center__categories button:hover,
+[data-theme="dark"] .help-center__categories button:focus-visible {
+  border-color: #4ade80;
+  color: #4ade80;
+}
+
+[data-theme="dark"] .help-center__categories button.is-active {
+  background: #22c55e;
+  border-color: #22c55e;
+  color: #0b1a10;
+}
+
+[data-theme="dark"] .faq-item.is-open {
+  border-color: #4ade80;
+}
+
+[data-theme="dark"] .faq-item__trigger > svg:last-child {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .support-direct {
+  background: #0a0a0a;
+  border-color: var(--help-line);
+}
+
+[data-theme="dark"] .support-direct__eyebrow {
+  color: #9ca3af;
+}
+
+[data-theme="dark"] .form-label {
+  color: #f3f4f6;
+}
+
+[data-theme="dark"] .form-input,
+[data-theme="dark"] .form-select,
+[data-theme="dark"] .form-textarea {
+  background: #0a0a0a;
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .form-input:focus,
+[data-theme="dark"] .form-select:focus,
+[data-theme="dark"] .form-textarea:focus {
+  border-color: #4ade80;
+  box-shadow: 0 0 0 3px rgb(74 222 128 / 16%);
+}
+
+[data-theme="dark"] .form-select option {
+  background: #0a0a0a;
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .submit-button,
+[data-theme="dark"] .support-direct a {
+  background: #22c55e;
+  color: #0b1a10;
+  box-shadow: 0 6px 16px rgb(34 197 94 / 18%);
+}
+
+[data-theme="dark"] .submit-button:hover:not(:disabled),
+[data-theme="dark"] .support-direct a:hover {
+  background: #4ade80;
+  color: #0b1a10;
+  filter: none;
+}
+
+[data-theme="dark"] .form-error-message {
+  background: #2a171b;
+  border-color: #7f1d1d;
+  color: #fca5a5;
+}
+
 @media (max-width: 480px) {
   .form-row {
     grid-template-columns: 1fr;
