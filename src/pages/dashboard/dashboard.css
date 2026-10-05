@@ -805,3 +805,17 @@
   border-color: var(--ifm-color-emphasis-300);
   border-top-color: var(--dashboard-accent);
 }
+
+html[data-theme='dark'] .dashboard-main-content .bg-white {
+  background-color: #18181B !important;
+  border-color: #374151 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme='dark'] .dashboard-main-content .text-gray-900 {
+  color: #ffffff !important;
+}
+
+html[data-theme='dark'] .dashboard-main-content .text-gray-500 {
+  color: #9ca3af !important;
+}

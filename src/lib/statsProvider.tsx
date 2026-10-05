@@ -45,6 +45,8 @@ interface ICommunityStatsContext {
   currentTimeFilter: TimeFilter;
   setTimeFilter: (filter: TimeFilter) => void;
   getFilteredPRsForContributor: (username: string) => PRDetails[];
+  getAllTimePRsForContributor: (username: string) => PRDetails[];
+  getAllTimeContributor: (username: string) => Contributor | undefined;
 }
 
 // Define types for leaderboard data
@@ -313,6 +315,50 @@ export function CommunityStatsProvider({
     [allContributors, currentTimeFilter],
   );
 
+  const getAllTimeContributor = useCallback(
+  (username: string): Contributor | undefined => {
+    const contributor = allContributors.find(
+      (c) => c.username.toLowerCase() === username.toLowerCase()
+    );
+
+    if (!contributor) return undefined;
+
+    const totalPRs = contributor.allPRDetails.length;
+
+    const totalPoints = contributor.allPRDetails.reduce(
+      (sum, pr) => sum + pr.points,
+      0
+    );
+
+    return {
+      username: contributor.username,
+      avatar: contributor.avatar,
+      profile: contributor.profile,
+      prs: totalPRs,
+      points: totalPoints,
+      prDetails: contributor.allPRDetails,
+    };
+  },
+  [allContributors],
+);
+
+  const getAllTimePRsForContributor = useCallback(
+  (username: string): PRDetails[] => {
+    const contributor = allContributors.find(
+      (c) => c.username.toLowerCase() === username.toLowerCase()
+    );
+
+    if (!contributor) return [];
+
+    return [...contributor.allPRDetails].sort(
+      (a, b) =>
+        new Date(b.mergedAt).getTime() -
+        new Date(a.mergedAt).getTime()
+    );
+  },
+  [allContributors],
+);
+
   // Time filter setter function
   const setTimeFilter = useCallback((filter: TimeFilter) => {
     setCurrentTimeFilter(filter);
@@ -465,6 +511,8 @@ export function CommunityStatsProvider({
     currentTimeFilter,
     setTimeFilter,
     getFilteredPRsForContributor,
+    getAllTimePRsForContributor,
+    getAllTimeContributor
   };
 
   return (
