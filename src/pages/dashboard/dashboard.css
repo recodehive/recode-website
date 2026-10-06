@@ -806,3 +806,15 @@ html[data-theme='dark'] .dashboard-main-content .text-gray-900 {
 html[data-theme='dark'] .dashboard-main-content .text-gray-500 {
   color: #9ca3af !important;
 }
+
+html[data-theme='dark'] .dashboard-main-content .bg-gray-50 {
+  background-color: #27272a !important;
+}
+
+html[data-theme='dark'] .dashboard-main-content .border-gray-300 {
+  border-color: #0f172a !important;
+}
+
+[data-theme='dark'] .dashboard-layout{
+  background: black;
+}

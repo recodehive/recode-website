@@ -160,36 +160,36 @@ export default function SignInDashboard(): JSX.Element {
         </div>
       </section>
 
-      <section className="w-full min-w-0 overflow-hidden rounded-2xl border border-green-800/60 bg-green-950">
+      <section className="w-full min-w-0 overflow-hidden rounded-2xl border border-gray-300 bg-white px-5 py-4 text-gray-900 sm:px-6 sm:py-3 dark:border-gray-700 dark:bg-gray-900 dark:text-white">
         <div className="p-4 sm:p-6 lg:p-8">
-          <div className="mb-5 sm:mb-6">
-            <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-green-400 sm:text-[11px]">
+          <div className="mb-4 sm:mb-2">
+            <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-green-500 sm:text-[11px]">
               BUILD IN PUBLIC
             </p>
-            <h2 className="text-xl font-semibold tracking-tight !text-white sm:text-2xl lg:text-3xl">
+            <h2 className="text-xl font-semibold tracking-tight sm:text-2xl lg:text-3xl">
               Turn consistency into proof
             </h2>
-            <p className="mt-2 max-w-2xl text-xs leading-5 text-green-100/70 sm:text-sm sm:leading-6">
+            <p className="mt-2 max-w-2xl text-xs leading-5 text-gray-600 sm:text-sm sm:leading-6">
               Complete meaningful learning actions each week, build your consistency, and share each win.
             </p>
           </div>
-          <div className="mb-5 inline-flex items-center justify-center gap-3 rounded-xl border border-green-800/70 bg-green-900/50 px-4 py-3 sm:mb-6">
-            <Flame className="h-4 w-4 shrink-0 text-green-400" />
+          <div className="mb-5 inline-flex items-center justify-center gap-3 rounded-xl border border-gray-300 bg-gray-50 text-gray-900 sm:px-6 sm:py-3 px-4 py-3 sm:mb-6">
+            <Flame size={20} className="shrink-0 text-green-400" />
             <div className="flex flex-col justify-center">
-              <span className="text-lg font-semibold leading-none text-white">
+              <span className="text-lg font-semibold leading-none text-gray-900">
                 {streak}
               </span>
-              <span className="mt-1 text-[9px] font-medium uppercase tracking-wider text-green-300/60">
+              <span className="mt-1 text-[9px] font-medium uppercase tracking-wider text-gray-500">
                 Week Streak
               </span>
             </div>
           </div>
-          <div className="w-full rounded-xl border border-green-800/70 bg-green-900/40 p-4 sm:p-5">
+          <div className="w-full rounded-xl border border-gray-300 bg-gray-50 p-4 sm:p-5">
             <div className="mb-5 flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-              <p className="text-xs font-medium text-green-100">
+              <p className="text-xs font-medium text-green-500">
                 Your last 7 weeks
               </p>
-              <p className="text-[10px] text-green-400">
+              <p className="text-[10px] text-green-500">
                 {streak} {streak === 1 ? "week" : "weeks"} streak
               </p>
             </div>
@@ -210,8 +210,8 @@ export default function SignInDashboard(): JSX.Element {
                       >
                         <div
                           className={`relative z-10 flex h-7 w-7 items-center justify-center rounded-full border text-[9px] font-medium ${hasActivity
-                              ? "border-green-300 bg-green-500 text-white shadow-[0_0_15px_rgba(34,197,94,0.35)]"
-                              : "border-green-800 bg-green-950 text-green-500"
+                              ? "border-green-300 bg-green-700 text-white"
+                              : "border-green-800 bg-green-950 text-white"
                             }`}
                         >
                           {hasActivity ? (
@@ -225,13 +225,13 @@ export default function SignInDashboard(): JSX.Element {
                         </div>
                         <span
                           className={`mt-3 whitespace-nowrap text-[9px] font-medium ${index === activity.length - 1
-                              ? "text-white"
-                              : "text-green-300/60"
+                              ? "text-gray-500"
+                              : "text-green-700"
                             }`}
                         >
                           {weekLabel}
                         </span>
-                        <span className="mt-1 whitespace-nowrap text-[8px] text-green-300/40">
+                        <span className="mt-1 whitespace-nowrap text-[8px] text-gray-500">
                           {week.count}{" "}
                           {week.count === 1 ? "PR" : "PRs"}
                         </span>
@@ -244,10 +244,10 @@ export default function SignInDashboard(): JSX.Element {
           </div>
           <div className="mt-5 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-green-300/50">
+              <p className="mb-1 text-[9px] font-semibold uppercase tracking-[0.16em] text-green-500">
                 NEXT ACHIEVEMENT
               </p>
-              <p className="text-sm font-semibold text-white">
+              <p className="text-sm font-semibold text-gray-500">
                 {streak + 1}-week consistency streak
               </p>
             </div>
