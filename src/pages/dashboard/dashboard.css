@@ -277,6 +277,10 @@
   margin-right: auto;
 }
 
+.dashboard-sign-in-prompt {
+  color: #111827;
+}
+
 .dashboard-stats-section {
   margin-bottom: 60px;
 }
@@ -813,6 +817,38 @@ html[data-theme='dark'] .dashboard-main-content .bg-gray-50 {
 
 html[data-theme='dark'] .dashboard-main-content .border-gray-300 {
   border-color: #0f172a !important;
+}
+
+[data-theme='light'] .dashboard-layout {
+  background: #fafaf8;
+  color: #111827;
+}
+
+[data-theme='light'] .dashboard-main-content .bg-white {
+  background-color: #fafaf8 !important;
+  border-color: #e5e7eb !important;
+  color: #111827 !important;
+}
+
+[data-theme='light'] .dashboard-main-content .bg-gray-50 {
+  background-color: #f3f4f6 !important;
+}
+
+[data-theme='light'] .dashboard-main-content .text-gray-900,
+[data-theme='light'] .dashboard-main-content .dashboard-sign-in-prompt {
+  color: #111827 !important;
+}
+
+[data-theme='light'] .dashboard-main-content .text-gray-600 {
+  color: #4b5563 !important;
+}
+
+[data-theme='light'] .dashboard-main-content .text-gray-500 {
+  color: #6b7280 !important;
+}
+
+[data-theme='light'] .dashboard-main-content .border-gray-300 {
+  border-color: #e5e7eb !important;
 }
 
 [data-theme='dark'] .dashboard-layout{
