@@ -6,7 +6,7 @@
   --dashboard-accent-softer: rgba(139, 92, 246, 0.08);
   display: flex;
   min-height: 100vh;
-  background: #f3f3f3;
+  background: var(--ifm-background-color);
   position: relative;
 }
 
