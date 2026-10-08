@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import BrowserOnly from "@docusaurus/BrowserOnly";
-import { SignInButton, useAuth } from "@clerk/react";
+import { Show, SignInButton, useAuth } from "@clerk/react";
 import { motion } from "framer-motion";
 import {
   useCommunityStatsContext,
@@ -34,6 +34,7 @@ import DashboardSidebar from "@site/src/components/dashboard/Sidebar/DashboardSi
 import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 import LeaderBoard from "@site/src/components/dashboard/LeaderBoard/leaderboard";
+import SignInDashboard from "@site/src/components/dashboard/SignInDashboard";
 import GiveawayPage from "@site/src/components/dashboard/giveaway";
 
 
@@ -105,6 +106,7 @@ const DashboardContent: React.FC = () => {
   const [discussionsLoading, setDiscussionsLoading] = useState(true);
   const [discussionsError, setDiscussionsError] = useState<string | null>(null);
   const [showDashboardMenu, setShowDashboardMenu] = useState(false);
+  const { isLoaded, isSignedIn } = useAuth();
 
   // Initialize GitHub service with token from Docusaurus config
   useEffect(() => {
@@ -469,45 +471,76 @@ const DashboardContent: React.FC = () => {
         </Head>
 
         {activeTab === "home" && (
-          <motion.div
-            className="dashboard-home-container"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <h1 className="dashboard-main-title">
-              Recode Hive Community Dashboard
-            </h1>
-            <p className="dashboard-description">
-              Welcome to the Recode Hive community hub! Explore our stats,
-              engage in discussions, and connect with fellow contributors.
-            </p>
+          <>
+            {isLoaded ? (
+              <>
+              {isSignedIn ? (
+                <SignInDashboard />
+              ) : (
+                <motion.div
+                  className="dashboard-home-container"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h1 className="dashboard-main-title">
+                    Recode Hive Community Dashboard
+                  </h1>
+                  <div className="dashboard-description">
+                    <p>
+                      Welcome to the Recode Hive community hub! Explore our stats,
+                      engage in discussions, and connect with fellow contributors.
+                    </p>
+                    <p className="text-xl font-bold text-black">Sign in to view your stats</p>
+                    <Show when="signed-out">
+                      <SignInButton mode="modal">
+                        <button
+                          type="button"
+                          className="bg-[#16a34a] text-white px-7 py-2 rounded-3xl text-[0.875rem] font-medium "
+                          aria-label="Sign in to recode hive"
+                        >
+                          Sign in
+                        </button>
+                      </SignInButton>
+                    </Show>
+                  </div>
 
-            <section className="dashboard-stats-section">
-              <h2 className="section-title">Community At a Glance</h2>
-              <div className="stat-cards-container">
-                <StatCard
-                  icon={<Star size={24} />}
-                  title="Total Stars"
-                  valueText={githubStarCountText || "937"}
-                  description="Stars across all our public repositories"
-                />
-                <StatCard
-                  icon={<Users size={24} />}
-                  title="Contributors"
-                  valueText={githubContributorsCountText || "444"}
-                  description="Amazing community members"
-                />
-                <StatCard
-                  icon={<GitFork size={24} />}
-                  title="Forks"
-                  valueText={githubForksCountText || "1.03K"}
-                  description="Community contributions"
-                />
+                  <section className="dashboard-stats-section">
+                    <h2 className="section-title">Community At a Glance</h2>
+                    <div className="stat-cards-container">
+                      <StatCard
+                        icon={<Star size={24} />}
+                        title="Total Stars"
+                        valueText={githubStarCountText || "937"}
+                        description="Stars across all our public repositories"
+                      />
+                      <StatCard
+                        icon={<Users size={24} />}
+                        title="Contributors"
+                        valueText={githubContributorsCountText || "444"}
+                        description="Amazing community members"
+                      />
+                      <StatCard
+                        icon={<GitFork size={24} />}
+                        title="Forks"
+                        valueText={githubForksCountText || "1.03K"}
+                        description="Community contributions"
+                      />
+                    </div>
+                  </section>
+                </motion.div>
+              )}
+              </>
+            ):
+              (
+              <div>
+                Loading...
               </div>
-            </section>
-          </motion.div>
-        )}
+            )
+            }
+          </>
+        )
+      }
 
         {activeTab === "discuss" && (
           <motion.div
@@ -527,25 +560,22 @@ const DashboardContent: React.FC = () => {
               <div className="discussion-tabs">
                 <button
                   onClick={() => handleDiscussionTabChange("discussions")}
-                  className={`tab-button ${
-                    activeDiscussionTab === "discussions" ? "active" : ""
-                  }`}
+                  className={`tab-button ${activeDiscussionTab === "discussions" ? "active" : ""
+                    }`}
                 >
                   <MessageCircle size={18} /> All Discussions
                 </button>
                 <button
                   onClick={() => handleDiscussionTabChange("trending")}
-                  className={`tab-button ${
-                    activeDiscussionTab === "trending" ? "active" : ""
-                  }`}
+                  className={`tab-button ${activeDiscussionTab === "trending" ? "active" : ""
+                    }`}
                 >
                   <TrendingUp size={18} /> Trending
                 </button>
                 <button
                   onClick={() => handleDiscussionTabChange("unanswered")}
-                  className={`tab-button ${
-                    activeDiscussionTab === "unanswered" ? "active" : ""
-                  }`}
+                  className={`tab-button ${activeDiscussionTab === "unanswered" ? "active" : ""
+                    }`}
                 >
                   <HelpCircle size={18} /> Unanswered
                 </button>
