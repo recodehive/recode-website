@@ -190,7 +190,7 @@
 }
 
 .faq-item__answer {
-  margin: -0.1rem 2.5rem 0.85rem;
+  margin: 1rem 2.5rem 0.85rem 2.5rem;
   color: var(--help-muted);
   font-size: 0.74rem;
   line-height: 1.55;
