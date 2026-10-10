@@ -491,7 +491,9 @@ const DashboardContent: React.FC = () => {
                       Welcome to the Recode Hive community hub! Explore our stats,
                       engage in discussions, and connect with fellow contributors.
                     </p>
-                    <p className="text-xl font-bold text-black">Sign in to view your stats</p>
+                    <p className="dashboard-sign-in-prompt text-xl font-bold">
+                      Sign in to view your stats
+                    </p>
                     <Show when="signed-out">
                       <SignInButton mode="modal">
                         <button
