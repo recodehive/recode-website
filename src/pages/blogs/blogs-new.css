@@ -447,7 +447,7 @@
    ===================================================== */
 .latest-articles-section {
   padding: 60px 20px 80px;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  background: #F3F3F3;
   position: relative;
   overflow: hidden;
   margin-top: -20px;
@@ -458,16 +458,7 @@
 }
 
 .latest-articles-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 50%);
-  pointer-events: none;
+  display: none;
 }
 
 .articles-container-wrapper {
