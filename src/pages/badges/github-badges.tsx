@@ -100,119 +100,153 @@ const GithubBadgesContent = (): React.ReactElement => {
         </Head>
         {/* Main content */} {/* Hero Banner Section */}
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           className={styles.heroBanner}
         >
+          {/* Subtle Ambient Background Glows */}
+          <div className={styles.heroGlowLeft} aria-hidden="true" />
+          <div className={styles.heroGlowRight} aria-hidden="true" />
+
           <div className={styles.heroContent}>
             <motion.div
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className={styles.logoSection}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className={styles.badgePill}
             >
-              <div className={styles.recodeLogoContainer}>
-                <span className={styles.recodeText}>recode</span>
-                <span className={styles.hiveText}>hive</span>
-              </div>
+              <span className={styles.badgePillIcon}>✨</span>
+              <span className={styles.badgePillText}>
+                Open Source Milestones & Achievements
+              </span>
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.7, delay: 0.4 }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className={styles.heroTitle}
             >
-              🏆 GitHub Achievement Badges 🏆
+              GitHub Achievement <span className={styles.heroTitleHighlight}>Badges</span>
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className={styles.heroDescription}
             >
-              Unlock and showcase your GitHub achievements! Join the recode hive
-              community and earn badges that highlight your contributions to the
-              open source ecosystem.
+              Unlock, earn, and showcase official GitHub achievement badges on your profile. A complete, community-curated guide to leveling up your open-source journey.
             </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className={styles.heroActions}
+            >
+              <button
+                type="button"
+                className={styles.primaryCta}
+                onClick={() => {
+                  document.getElementById("achievement-guide")?.scrollIntoView({ behavior: "smooth" });
+                }}
+              >
+                <span>Explore All Badges</span>
+                <span className={styles.ctaArrow}>↓</span>
+              </button>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.8 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
               className={styles.badgeStats}
             >
-              <div className={styles.statItem}>
+              <div className={styles.statCard}>
                 <div className={styles.statNumber}>20+</div>
                 <div className={styles.statLabel}>Available Badges</div>
               </div>
-              <div className={styles.statDivider}></div>
-              <div className={styles.statItem}>
+              <div className={styles.statCard}>
                 <div className={styles.statNumber}>5K+</div>
                 <div className={styles.statLabel}>Community Members</div>
               </div>
-              <div className={styles.statDivider}></div>
-              <div className={styles.statItem}>
+              <div className={styles.statCard}>
                 <div className={styles.statNumber}>100%</div>
                 <div className={styles.statLabel}>Free Resources</div>
               </div>
             </motion.div>
           </div>
 
-          <div className={styles.heroVisual}>
+          <div className={styles.heroVisual} aria-hidden="true">
             <motion.div
               animate={{
-                rotate: [0, 5, -5, 0],
-                scale: [1, 1.05, 1],
+                y: [0, -12, 0],
+                rotate: [0, 3, 0],
               }}
               transition={{
-                duration: 4,
+                duration: 6,
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className={styles.floatingBadge}
+              className={`${styles.floatingBadgeCard} ${styles.floatingBadge1}`}
             >
-              🥇
+              <img
+                src="https://github.githubassets.com/images/modules/profile/achievements/starstruck-default.png"
+                alt="Starstruck badge"
+                className={styles.floatingBadgeImg}
+              />
+              <span className={styles.floatingBadgeLabel}>Starstruck</span>
             </motion.div>
             <motion.div
               animate={{
-                rotate: [0, -3, 3, 0],
+                y: [0, 14, 0],
+                rotate: [0, -3, 0],
+              }}
+              transition={{
+                duration: 5.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.8,
+              }}
+              className={`${styles.floatingBadgeCard} ${styles.floatingBadge2}`}
+            >
+              <img
+                src="https://github.githubassets.com/images/modules/profile/achievements/pull-shark-default.png"
+                alt="Pull Shark badge"
+                className={styles.floatingBadgeImg}
+              />
+              <span className={styles.floatingBadgeLabel}>Pull Shark</span>
+            </motion.div>
+            <motion.div
+              animate={{
                 y: [0, -10, 0],
+                rotate: [0, -4, 0],
               }}
               transition={{
-                duration: 3,
+                duration: 7,
                 repeat: Infinity,
                 ease: "easeInOut",
-                delay: 1,
+                delay: 1.5,
               }}
-              className={styles.floatingBadge}
+              className={`${styles.floatingBadgeCard} ${styles.floatingBadge3}`}
             >
-              ⭐
-            </motion.div>
-            <motion.div
-              animate={{
-                rotate: [0, 8, -8, 0],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 2,
-              }}
-              className={styles.floatingBadge}
-            >
-              🏅
+              <img
+                src="https://github.githubassets.com/images/modules/profile/achievements/quickdraw-default.png"
+                alt="Quickdraw badge"
+                className={styles.floatingBadgeImg}
+              />
+              <span className={styles.floatingBadgeLabel}>Quickdraw</span>
             </motion.div>
           </div>
         </motion.div>
         {/* Achievement List Section */}
         <motion.section
+          id="achievement-guide"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
           className={styles.achievementSection}
         >
           <div className={styles.sectionHeader}>

@@ -11,19 +11,48 @@
 
 /* Hero Banner Styles */
 .heroBanner {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
-  padding: 60px 40px;
+  background: linear-gradient(135deg, #3b28b6 0%, #4f46e5 35%, #7c3aed 70%, #6d28d9 100%);
+  border-radius: 24px;
+  padding: 56px 40px 48px;
   margin-bottom: 40px;
   position: relative;
   overflow: hidden;
-  color: white;
-  box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    0 24px 48px -12px rgba(79, 70, 229, 0.35),
+    0 1px 2px rgba(255, 255, 255, 0.2) inset;
 }
 
 [data-theme="dark"] .heroBanner {
-  background: linear-gradient(135deg, #1e3a8a 0%, #7c3aed 100%);
-  box-shadow: 0 20px 40px rgba(30, 58, 138, 0.4);
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #312e81 75%, #4338ca 100%);
+  border-color: rgba(129, 140, 248, 0.22);
+  box-shadow:
+    0 24px 48px -12px rgba(15, 23, 42, 0.6),
+    0 1px 2px rgba(255, 255, 255, 0.08) inset;
+}
+
+/* Ambient Radial Glows */
+.heroGlowLeft {
+  position: absolute;
+  top: -60px;
+  left: -40px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(236, 72, 153, 0.28) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heroGlowRight {
+  position: absolute;
+  bottom: -60px;
+  right: -40px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .heroContent {
@@ -33,130 +62,221 @@
   text-align: center;
   z-index: 2;
   position: relative;
+  max-width: 780px;
+  margin: 0 auto;
 }
 
-.logoSection {
-  margin-bottom: 30px;
-}
-
-.recodeLogoContainer {
-  font-size: 2.5rem;
-  font-weight: 900;
-  letter-spacing: -2px;
-  display: flex;
+/* Header Badge Pill */
+.badgePill {
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 9999px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-.recodeText {
-  color: #fbbf24;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+.badgePillIcon {
+  font-size: 0.95rem;
 }
 
-.hiveText {
-  color: #f3f4f6;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+.badgePillText {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.95);
+  text-transform: uppercase;
 }
 
+/* Hero Title */
 .heroTitle {
-  font-size: 3rem;
+  font-size: 2.85rem;
   font-weight: 800;
-  margin: 20px 0;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-  background: linear-gradient(45deg, #fbbf24, #f59e0b, #fbbf24);
-  background-size: 200% 200%;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin: 0 0 16px;
+  color: #ffffff;
+}
+
+.heroTitleHighlight {
+  background: linear-gradient(135deg, #fed7aa 0%, #fde047 50%, #fef08a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: gradientShift 3s ease-in-out infinite;
+  display: inline-block;
 }
 
-@keyframes gradientShift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+[data-theme="dark"] .heroTitleHighlight {
+  background: linear-gradient(135deg, #a5b4fc 0%, #c084fc 50%, #f472b6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
+/* Hero Description */
 .heroDescription {
-  font-size: 1.2rem;
-  line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto 40px;
-  opacity: 0.95;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-  color: rgb(251, 251, 251) !important;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.88) !important;
+  max-width: 620px;
+  margin: 0 auto 28px;
+  font-weight: 400;
 }
 
-.badgeStats {
+/* Interactive CTA Action Buttons */
+.heroActions {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
+  gap: 14px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
 }
 
-.statItem {
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  background: #ffffff;
+  color: #4338ca;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.primaryCta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+  background: #f8fafc;
+  color: #3730a3;
+  text-decoration: none;
+}
+
+.ctaArrow {
+  font-size: 1rem;
+  transition: transform 0.2s ease;
+  color: inherit !important;
+}
+
+.primaryCta:hover .ctaArrow {
+  transform: translateY(2px);
+}
+
+/* Glassmorphic Stat Cards */
+.badgeStats {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 640px;
+}
+
+.statCard {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: 16px 12px;
   text-align: center;
+  transition: all 0.25s ease;
+}
+
+.statCard:hover {
+  background: rgba(255, 255, 255, 0.13);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .statNumber {
-  font-size: 2.5rem;
-  font-weight: 900;
-  color: #fbbf24;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  line-height: 1;
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .statLabel {
-  font-size: 0.9rem;
-  opacity: 0.9;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.78);
   margin-top: 5px;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
-.statDivider {
-  width: 2px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 1px;
-}
-
+/* Floating Real GitHub Achievement Badges */
 .heroVisual {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
   z-index: 1;
 }
 
-.floatingBadge {
+.floatingBadgeCard {
   position: absolute;
-  font-size: 3rem;
-  opacity: 0.2;
-  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 10px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 9999px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+  pointer-events: auto;
+  transition: transform 0.3s ease;
 }
 
-.floatingBadge:nth-child(1) {
-  top: 20%;
-  right: 10%;
+.floatingBadgeCard:hover {
+  transform: scale(1.08) !important;
+  background: rgba(255, 255, 255, 0.2);
 }
 
-.floatingBadge:nth-child(2) {
-  top: 60%;
-  right: 20%;
+.floatingBadgeImg {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.25));
 }
 
-.floatingBadge:nth-child(3) {
-  top: 35%;
+.floatingBadgeLabel {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+}
+
+.floatingBadge1 {
+  top: 18%;
   right: 5%;
+}
+
+.floatingBadge2 {
+  bottom: 20%;
+  right: 6%;
+}
+
+.floatingBadge3 {
+  top: 24%;
+  left: 4%;
 }
 
 /* Achievement Section Styles */
@@ -200,30 +320,47 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .floatingBadgeCard {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .heroBanner {
-    padding: 40px 20px;
+    padding: 36px 20px 32px;
+    border-radius: 20px;
   }
 
   .heroTitle {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
   }
 
-  .recodeLogoContainer {
-    font-size: 2rem;
+  .heroDescription {
+    font-size: 1rem;
+    margin-bottom: 22px;
+  }
+
+  .heroActions {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .primaryCta {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
   }
 
   .badgeStats {
     flex-direction: column;
-    gap: 20px;
+    gap: 12px;
   }
 
-  .statDivider {
-    display: none;
-  }
-
-  .heroDescription {
-    font-size: 1.1rem;
+  .statCard {
+    padding: 14px 16px;
   }
 
   .sectionTitle {
