@@ -31,8 +31,8 @@
 
 [data-theme="dark"] .blog-search-input-container:focus-within,
 [data-theme="dark"] .blog-search-input-container.dropdown-open {
-  border-color: #8b5cf6;
-  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+border-color: #4ade80;                       /* was #6366f1 */
+  box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.15); /* was rgba(99, 102, 241, 0.15) */
 }
 
 .blog-search-icon {
@@ -307,8 +307,8 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  background: #e0e7ff;
-  color: #4f46e5;
+  background: #dcfce7;   /* was #e0e7ff */
+  color: #15803d;
   border-radius: 8px;
 }
 
