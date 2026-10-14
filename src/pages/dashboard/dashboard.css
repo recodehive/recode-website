@@ -6,18 +6,7 @@
   --dashboard-accent-softer: rgba(139, 92, 246, 0.08);
   display: flex;
   min-height: 100vh;
-  background:
-    radial-gradient(
-      circle at 10% 0%,
-      var(--dashboard-accent-softer),
-      transparent 42%
-    ),
-    radial-gradient(
-      circle at 90% 100%,
-      rgba(102, 126, 234, 0.08),
-      transparent 40%
-    ),
-    var(--ifm-background-color);
+  background: var(--ifm-background-color);
   position: relative;
 }
 
@@ -286,6 +275,10 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.dashboard-sign-in-prompt {
+  color: #111827;
 }
 
 .dashboard-stats-section {
@@ -640,10 +633,8 @@
 
 /* Giveaway Section */
 .giveaway-section {
-  text-align: center;
-  max-width: 600px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 60px 20px;
 }
 
 .giveaway-section h1 {
@@ -804,4 +795,62 @@
 [data-theme="dark"] .loading-spinner {
   border-color: var(--ifm-color-emphasis-300);
   border-top-color: var(--dashboard-accent);
+}
+
+html[data-theme='dark'] .dashboard-main-content .bg-white {
+  background-color: #18181B !important;
+  border-color: #374151 !important;
+  color: #ffffff !important;
+}
+
+html[data-theme='dark'] .dashboard-main-content .text-gray-900 {
+  color: #ffffff !important;
+}
+
+html[data-theme='dark'] .dashboard-main-content .text-gray-500 {
+  color: #9ca3af !important;
+}
+
+html[data-theme='dark'] .dashboard-main-content .bg-gray-50 {
+  background-color: #27272a !important;
+}
+
+html[data-theme='dark'] .dashboard-main-content .border-gray-300 {
+  border-color: #0f172a !important;
+}
+
+[data-theme='light'] .dashboard-layout {
+  background: #fafaf8;
+  color: #111827;
+}
+
+[data-theme='light'] .dashboard-main-content .bg-white {
+  background-color: #fafaf8 !important;
+  border-color: #e5e7eb !important;
+  color: #111827 !important;
+}
+
+[data-theme='light'] .dashboard-main-content .bg-gray-50 {
+  background-color: #f3f4f6 !important;
+}
+
+[data-theme='light'] .dashboard-main-content .text-gray-900,
+[data-theme='light'] .dashboard-main-content .dashboard-sign-in-prompt {
+  color: #111827 !important;
+}
+
+[data-theme='light'] .dashboard-main-content .text-gray-600 {
+  color: #4b5563 !important;
+}
+
+[data-theme='light'] .dashboard-main-content .text-gray-500 {
+  color: #6b7280 !important;
+}
+
+[data-theme='light'] .dashboard-main-content .border-gray-300 {
+  border-color: #e5e7eb !important;
+}
+
+[data-theme='dark'] .dashboard-layout{
+  background: black;
 }

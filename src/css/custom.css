@@ -629,6 +629,10 @@ html[data-theme="dark"] article blockquote {
   --ifm-background-surface-color: #FAFAF8;
   --ifm-navbar-background-color: #FAFAF8;
   --ifm-footer-background-color: #FAFAF8;
+  --ifm-font-color-base: #111827;
+  --ifm-font-color-base-inverse: #FAFAF8;
+  --ifm-color-content: #111827;
+  --ifm-color-content-secondary: #4B5563;
   --ifm-color-primary: #2e8555;
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
@@ -693,6 +697,7 @@ html[data-theme="dark"] {
   --ifm-background-color: #000000;
   --ifm-background-surface-color: #0a0a0a;
   --ifm-navbar-background-color: #000000;
+  --ifm-navbar-link-color: #ffffff;
   --ifm-footer-background-color: #000000;
   --ifm-toc-border-color: #2a2a2a;
   --ifm-menu-color-background-active: #111111;
@@ -732,6 +737,14 @@ html[data-theme="dark"] {
   --dark-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 1px 2px rgba(0, 0, 0, 0.4);
   --dark-shadow-lg:
     0 10px 15px -3px rgba(0, 0, 0, 0.7), 0 4px 6px -2px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="dark"] .navbar__brand,
+html[data-theme="dark"] .navbar__title,
+html[data-theme="dark"] .navbar__item,
+html[data-theme="dark"] .navbar__link,
+html[data-theme="dark"] .dropdown__link {
+  color: #ffffff !important;
 }
 
 /* =====  SECTION 10: DESKTOP NAVBAR ENHANCEMENTS ===== */
@@ -2415,6 +2428,19 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   scrollbar-width: thin !important;
   scrollbar-color: #334155 transparent !important;
+}
+
+/* Keep Docs scrolling without showing page or sidebar scrollbar chrome. */
+body.theme-doc-page,
+body.theme-doc-page .sidebar,
+body.theme-doc-page .menu {
+  scrollbar-width: none !important;
+}
+
+body.theme-doc-page::-webkit-scrollbar,
+body.theme-doc-page .sidebar::-webkit-scrollbar,
+body.theme-doc-page .menu::-webkit-scrollbar {
+  display: none !important;
 }
 
 /* ===== Section 15 : blog layout ===== */

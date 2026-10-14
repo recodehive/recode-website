@@ -1,5 +1,10 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --font-space: "Space Grotesk", sans-serif;
+}
 
 /* Support both class-based (.dark) and attribute-based ([data-theme="dark"]) dark modes */
 @custom-variant dark (&:is(.dark, [data-theme="dark"]) *);

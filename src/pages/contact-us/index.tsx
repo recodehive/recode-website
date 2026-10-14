@@ -1,19 +1,103 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState, type ComponentType, type FC, type FormEvent } from "react";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import emailjs from "@emailjs/browser";
-import { Mail, MapPin, Clock } from "lucide-react";
+import {
+  BookOpen,
+  ChevronDown,
+  CircleHelp,
+  CreditCard,
+  ExternalLink,
+  FileText,
+  MessageCircle,
+  Search,
+  Send,
+} from "lucide-react";
 import "./index.css";
 
 type FormStatus = "idle" | "sending" | "success" | "error";
+type Category = "All" | "Account & learning plan" | "Billing & premium" | "Courses & progress" | "Coding & DataLab" | "Projects & proof";
 
-const ContactUs: React.FC = () => {
+type Question = {
+  question: string;
+  answer: string;
+  category: Exclude<Category, "All">;
+  icon: ComponentType<{ size?: number; strokeWidth?: number }>;
+};
+
+const categories: Category[] = [
+  "All",
+  "Account & learning plan",
+  "Billing & premium",
+  "Courses & progress",
+  "Coding & DataLab",
+  "Projects & proof",
+];
+
+const questions: Question[] = [
+  {
+    question: "What is the recode hive?",
+    answer: "recode hive is a platform that provides learning resources, data engineering tutorials, blogs, and opportunities for open-source contribution.",
+    category: "Account & learning plan",
+    icon: CircleHelp,
+  },
+  {
+    question: "What features do the recode hive provides?",
+    answer: "We provide tutorials, documentation, hands-on projects, open-source contribution opportunities, earning opportunities, and community support.",
+    category: "Courses & progress",
+    icon: BookOpen,
+  },
+  {
+    question: "How can I contribute tutorials?",
+    answer: "Fork the recode hive repository, review the contribution guidelines, create your tutorial content, and submit a pull request.",
+    category: "Projects & proof",
+    icon: ExternalLink,
+  },
+  {
+    question: "What all resources are available here?",
+    answer: "Available resources include SQL, GitHub, Postman API testing, and Next.js development guides, with more technologies coming soon.",
+    category: "Courses & progress",
+    icon: FileText,
+  },
+  {
+    question: "How can I contribute as a beginner?",
+    answer: "Start with the GitHub Basics guide, join the Discord community, look for good first issues, and follow the contribution guide.",
+    category: "Account & learning plan",
+    icon: CircleHelp,
+  },
+  {
+    question: "How can I earn from this recode hive organisation?",
+    answer: "You can earn through the GitHub sponsorship program by making meaningful contributions and following the contribution guidelines.",
+    category: "Billing & premium",
+    icon: CreditCard,
+  },
+  {
+    question: "How will I stay up to date with the latest news from this organisation?",
+    answer: "Subscribe to the newsletter and follow recode hive on Instagram, Twitter, LinkedIn, YouTube, and Discord for updates.",
+    category: "Account & learning plan",
+    icon: MessageCircle,
+  },
+];
+
+const ContactUs: FC = () => {
   const { siteConfig } = useDocusaurusContext();
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState<FormStatus>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  const [search, setSearch] = useState("");
+  const [activeCategory, setActiveCategory] = useState<Category>("All");
+  const [openQuestion, setOpenQuestion] = useState<string | null>(null);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const visibleQuestions = questions.filter(({ question, answer, category }) => {
+    const matchesCategory = activeCategory === "All" || category === activeCategory;
+    const query = search.trim().toLowerCase();
+    return (
+      matchesCategory &&
+      (!query || `${question} ${answer} ${category}`.toLowerCase().includes(query))
+    );
+  });
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!formRef.current) return;
 
@@ -56,188 +140,110 @@ const ContactUs: React.FC = () => {
       title="Contact Us"
       description="Get in touch with the recode hive team. We're here to help with your questions, feedback, and collaboration opportunities."
     >
-      <div className="enhanced-contact-container">
-        <div className="contact-content-wrapper">
-          {/* Header Section */}
-          <div className="contact-header">
-            <h1 className="contact-title">Get In Touch</h1>
-            <p className="contact-description">
-              Have questions, feedback, or want to collaborate? We'd love to
-              hear from you. Reach out to us and we'll get back to you as soon
-              as possible.
+      <div className="help-center">
+        <main className="help-center__content">
+          <header className="help-center__header">
+            <p className="help-center__eyebrow">Help center</p>
+            <h1>Find an answer or reach the team.</h1>
+            <p className="help-center__intro">
+              Search account, learning, coding, project and billing guidance. If the answer is not here, send the details below.
             </p>
+          </header>
+
+          <div className="help-center__search">
+            <Search size={18} aria-hidden="true" />
+            <input
+              type="search"
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
+              placeholder="Search for progress, billing, coding, projects..."
+              aria-label="Search help center"
+            />
           </div>
 
-          <div className="contact-grid">
-            {/* Contact Information */}
-            <div className="contact-info-section">
-              <div>
-                <h2 className="contact-info-title">Contact Information</h2>
+          <div className="help-center__categories" aria-label="FAQ categories">
+            {categories.map((category) => (
+              <button
+                key={category}
+                type="button"
+className={activeCategory === category ? "is-active" : ""}
+                aria-pressed={activeCategory === category}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
 
-                <div className="contact-info-items">
-                  {/* Email */}
-                  <div className="contact-info-item">
-                    <div className="contact-icon-wrapper">
-                      <Mail
-                        className="h-6 w-6"
-                        style={{ color: "var(--contact-accent-primary)" }}
-                      />
-                    </div>
-                    <div className="contact-info-details">
-                      <h3>Email</h3>
-                      <a href="mailto:sanjay@recodehive.com">
-                        sanjay@recodehive.com
-                      </a>
-                      <p>General inquiries and support</p>
-                    </div>
-                  </div>
+          <section className="faq-grid" aria-label="Frequently asked questions">
+            {visibleQuestions.map(({ question, answer, icon: Icon }) => {
+              const isOpen = openQuestion === question;
+              return (
+                <article className={`faq-item ${isOpen ? "is-open" : ""}`} key={question}>
+                  <button
+                    type="button"
+                    className="faq-item__trigger"
+                    aria-expanded={isOpen}
+                    onClick={() => setOpenQuestion(isOpen ? null : question)}
+                  >
+                    <Icon size={17} strokeWidth={1.8} aria-hidden="true" />
+                    <span>{question}</span>
+                    <ChevronDown size={16} aria-hidden="true" />
+                  </button>
+                  {isOpen && <p className="faq-item__answer">{answer}</p>}
+                </article>
+              );
+            })}
+            {visibleQuestions.length === 0 && (
+              <p className="faq-empty">No matching questions yet. Send the team a message below.</p>
+            )}
+          </section>
 
-                  {/* Response Time */}
-                  <div className="contact-info-item">
-                    <div className="contact-icon-wrapper">
-                      <Clock
-                        className="h-6 w-6"
-                        style={{ color: "var(--contact-accent-primary)" }}
-                      />
-                    </div>
-                    <div className="contact-info-details">
-                      <h3>Response Time</h3>
-                      <p
-                        style={{
-                          marginTop: 0,
-                          color: "var(--contact-text-secondary)",
-                        }}
-                      >
-                        Within 24-48 hours
-                      </p>
-                      <p>We'll get back to you promptly</p>
-                    </div>
-                  </div>
-
-                  {/* Location */}
-                  <div className="contact-info-item">
-                    <div className="contact-icon-wrapper">
-                      <MapPin
-                        className="h-6 w-6"
-                        style={{ color: "var(--contact-accent-primary)" }}
-                      />
-                    </div>
-                    <div className="contact-info-details">
-                      <h3>Location</h3>
-                      <p
-                        style={{
-                          marginTop: 0,
-                          color: "var(--contact-text-secondary)",
-                        }}
-                      >
-                        Online & Global
-                      </p>
-                      <p>Serving developers worldwide</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Additional Information */}
-              <div className="contact-info-box">
-                <h3>What we can help you with:</h3>
-                <ul>
-                  <li>
-                    <span className="bullet"></span>
-                    <span>Learning resources and tutorials</span>
-                  </li>
-                  <li>
-                    <span className="bullet"></span>
-                    <span>Technical support and guidance</span>
-                  </li>
-                  <li>
-                    <span className="bullet"></span>
-                    <span>Collaboration opportunities</span>
-                  </li>
-                  <li>
-                    <span className="bullet"></span>
-                    <span>Partnership inquiries</span>
-                  </li>
-                  <li>
-                    <span className="bullet"></span>
-                    <span>Content suggestions and feedback</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Contact Form */}
-            <div className="contact-form-section">
-              <h2 className="contact-form-title">Send us a message</h2>
+          <section className="support-panel">
+            <div className="support-form">
+              <h2>Still need help?</h2>
+              <p>Include the page URL and what you expected to happen. That helps the team resolve it faster.</p>
 
               {status === "success" ? (
                 <div className="form-success-message">
-                  <div className="form-success-icon">✅</div>
-                  <h3>Message Sent!</h3>
-                  <p>
-                    Thank you for reaching out. We'll get back to you within
-                    24-48 hours.
-                  </p>
-                  <button
-                    className="submit-button form-success-button"
-                    onClick={() => setStatus("idle")}
-                  >
-                    Send Another Message
+                  <Send size={22} aria-hidden="true" />
+                  <h3>Message sent</h3>
+                  <p>Thanks for reaching out. We&apos;ll get back to you within 24-48 hours.</p>
+                  <button type="button" className="submit-button" onClick={() => setStatus("idle")}>
+                    Send another message
                   </button>
                 </div>
               ) : (
-                <form
-                  ref={formRef}
-                  className="contact-form"
-                  onSubmit={handleSubmit}
-                >
+                <form ref={formRef} className="contact-form" onSubmit={handleSubmit}>
+                  <input type="hidden" name="lastName" value="" readOnly />
+                  <input type="hidden" name="subject" value="support" readOnly />
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="firstName" className="form-label">
-                        First Name
-                      </label>
+                      <label htmlFor="firstName" className="form-label">Name</label>
                       <input
                         type="text"
                         id="firstName"
                         name="firstName"
                         className="form-input"
-                        placeholder="Your first name"
+                        placeholder="Your name"
                         required
                       />
                     </div>
                     <div className="form-group">
-                      <label htmlFor="lastName" className="form-label">
-                        Last Name
-                      </label>
-                      <input
-                        type="text"
-                        id="lastName"
-                        name="lastName"
-                        className="form-input"
-                        placeholder="Your last name"
-                        required
-                      />
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="email" className="form-label">
-                      Email Address
-                    </label>
+                      <label htmlFor="email" className="form-label">Email</label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       className="form-input"
-                      placeholder="your.email@example.com"
+                      placeholder="you@example.com"
                       required
                     />
                   </div>
+                </div>
 
                   <div className="form-group">
-                    <label htmlFor="subject" className="form-label">
-                      Subject
-                    </label>
+                    <label htmlFor="subject" className="form-label">What is this about?</label>
                     <select
                       id="subject"
                       name="subject"
@@ -255,15 +261,13 @@ const ContactUs: React.FC = () => {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="message" className="form-label">
-                      Message
-                    </label>
+                    <label htmlFor="message" className="form-label">How can we help?</label>
                     <textarea
                       id="message"
                       name="message"
                       rows={6}
                       className="form-textarea"
-                      placeholder="Tell us more about your inquiry..."
+                      placeholder="Tell us what happened and what you expected..."
                       required
                     ></textarea>
                   </div>
@@ -281,37 +285,22 @@ const ContactUs: React.FC = () => {
                       status === "sending" ? "Sending message…" : "Send message"
                     }
                   >
-                    {status === "sending" ? "Sending…" : "Send Message"}
+                    {status === "sending" ? "Sending…" : "Send to support"}
                   </button>
                 </form>
               )}
             </div>
-          </div>
-
-          {/* Additional Resources */}
-          <div className="contact-resources">
-            <h2 className="resources-title">Other Ways to Connect</h2>
-            <div className="resources-grid">
-              <a href="/community" className="resource-card">
-                <div className="resource-icon">📚</div>
-                <h3>Community</h3>
-                <p>Join our community and connect with fellow developers</p>
+            <aside className="support-direct">
+              <p className="support-direct__eyebrow">Faster for quick questions</p>
+              <h2>Chat on WhatsApp</h2>
+              <p>For account access or a quick clarification, message the team directly.</p>
+              <a href="https://chat.whatsapp.com/D1CZ7BrLMVw4OzwsdVNdos?mode=gi_t" target="_blank" rel="noreferrer">
+                <MessageCircle size={17} aria-hidden="true" /> Open WhatsApp
               </a>
-
-              <a href="/docs" className="resource-card">
-                <div className="resource-icon">📖</div>
-                <h3>Documentation</h3>
-                <p>Explore our comprehensive learning resources</p>
-              </a>
-
-              <a href="/blogs" className="resource-card">
-                <div className="resource-icon">✍️</div>
-                <h3>Blog</h3>
-                <p>Read our latest articles and tutorials</p>
-              </a>
-            </div>
-          </div>
-        </div>
+              <p className="support-direct__note">Never share passwords, OTPs or payment card details with support.</p>
+            </aside>
+          </section>
+        </main>
       </div>
     </Layout>
   );

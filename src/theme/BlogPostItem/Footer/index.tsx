@@ -8,6 +8,8 @@ import type { WrapperProps } from "@docusaurus/types";
 import GiscusComments from "../../../components/giscus";
 import SocialShare from "../../../components/SocialShare";
 import { getAuthorProfile } from "../../../utils/authors";
+import ReadingTimeIndicator from "../../../components/ReadingTimeIndicator";
+
 
 
 import styles from "./styles.module.css";
@@ -100,7 +102,13 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
       {!isBlogPostPage && <BlogPostItemFooterOriginal {...props} />}
       {isBlogPostPage && (
         <SocialShare permalink={metadata.permalink} title={metadata.title} />
-       )}
+             )}
+      {isBlogPostPage && (
+        <ReadingTimeIndicator
+          totalReadTime={roundedReadTime}
+          authorCardRef={authorCardRef}
+        />
+      )}
       {showAuthorCard && (
         <section ref={authorCardRef} className={styles.authorCard} aria-label="Post author details">
           <div className={styles.authorBody}>

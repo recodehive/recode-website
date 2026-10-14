@@ -9,6 +9,7 @@ import {
   Gift,
   BookOpen,
   Smile,
+  HelpCircle,
   Bell,
   ChevronDown,
   PanelLeft,
@@ -38,14 +39,25 @@ const TAB_ITEMS: Array<{
 const LINK_ITEMS: Array<{ href: string; label: string; icon: React.ReactNode }> = [
   { href: "/blogs", label: "Blogs", icon: <BookOpen size={16} /> },
   { href: "/community", label: "Community", icon: <Smile size={16} /> },
+  { href: "/contact-us", label: "Help Center", icon: <HelpCircle size={16} /> },
 ];
 
 export default function DashboardSidebar({
   activeTab,
   onTabChange,
 }: DashboardSidebarProps): React.JSX.Element {
-  const { user } = useUser();
-  const { signOut, openUserProfile } = useClerk();
+  let user: ReturnType<typeof useUser>["user"] | undefined;
+  let signOut: ReturnType<typeof useClerk>["signOut"] | undefined;
+  let openUserProfile: ReturnType<typeof useClerk>["openUserProfile"] | undefined;
+
+  try {
+    user = useUser().user;
+    const clerk = useClerk();
+    signOut = clerk.signOut;
+    openUserProfile = clerk.openUserProfile;
+  } catch {
+    // The dashboard remains usable in local builds without Clerk configuration.
+  }
 
   const [collapsed, setCollapsed] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -121,7 +133,7 @@ export default function DashboardSidebar({
               role="menuitem"
               onClick={() => {
                 setIsProfileMenuOpen(false);
-                openUserProfile();
+                  openUserProfile?.();
               }}
             >
               Manage account
@@ -132,7 +144,7 @@ export default function DashboardSidebar({
               className="dashboard-rail-profile-menu-danger"
               onClick={() => {
                 setIsProfileMenuOpen(false);
-                signOut();
+                signOut?.();
               }}
             >
               Sign out

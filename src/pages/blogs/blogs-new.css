@@ -182,6 +182,13 @@
   display: block;
   height: 320px;
   border-radius: 16px;
+/* =====================================================
+   LATEST ARTICLES SECTION
+   ===================================================== */
+.latest-articles-section {
+  padding: 60px 20px 80px;
+  background: #F3F3F3;
+  position: relative;
   overflow: hidden;
   background: var(--q-soft);
   animation: qFade 0.45s ease both;
@@ -198,6 +205,13 @@
   position: absolute;
   left: 0;
   bottom: 12px;
+.latest-articles-section::before {
+  display: none;
+}
+
+.articles-container-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
   display: flex;
   gap: 10px;
 }
