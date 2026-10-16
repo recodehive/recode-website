@@ -63,7 +63,7 @@ const FAQs: React.FC = () => {
         padding: "2rem 0",
       }}
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="rh-container">
         <div className="w-full">
           <div className="m-0 flex w-full flex-col items-center p-0 text-center">
             <h3

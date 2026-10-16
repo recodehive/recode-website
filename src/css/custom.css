@@ -1,3 +1,18 @@
+/* ── Homepage-only centred container ─────────────────────
+   Scoped under .rh-home so it never touches docs/blog/navbar/footer. */
+.rh-home {
+  --rh-container-max: 1280px;
+  --rh-container-pad: 24px;
+}
+
+.rh-home .rh-container {
+  width: 100%;
+  max-width: var(--rh-container-max);
+  margin-inline: auto;
+  padding-inline: var(--rh-container-pad);
+  box-sizing: border-box;
+}
+
 [data-theme="light"] .interview-prep-page p,
 [data-theme="light"] .interview-prep-page li,
 [data-theme="light"] .interview-prep-page span,

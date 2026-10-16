@@ -43,7 +43,7 @@ export function BlogCarousel() {
   }, [api]);
 
   return (
-    <div className="max-w-8xl mx-auto w-full px-4">
+    <div className="w-full">
       {/* Section Header */}
       <div className="blog-section-header">
         <div>
