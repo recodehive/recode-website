@@ -142,7 +142,14 @@ export default function CommunityStats({
           <article className={`${styles.card} ${styles.tile}`}>
             <div className={styles.cells} aria-hidden="true">
               {CELLS.map((lv, i) => (
-                <span key={i} className={`${styles.cell} ${LEVELS[lv]}`} />
+                <span
+                  key={i}
+                  className={`${styles.cell} ${LEVELS[lv]}`}
+                  style={{
+                    animationDelay: `${((i * 37) % 100) * 0.04}s`,
+                    animationDuration: `${2.4 + ((i * 13) % 5) * 0.4}s`,
+                  }}
+                />
               ))}
             </div>
             <div className={styles.tileBody}>

@@ -18,7 +18,7 @@
 .eyebrow {
   margin: 0;
   font-family: "Inter", sans-serif;
-  font-size: 12px;
+  font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -48,6 +48,16 @@
   border-radius: 50%;
   background: #2e8555;
   box-shadow: 0 0 6px #2e8555;
+  animation: liveBlink 1.8s ease-in-out infinite;
+}
+@keyframes liveBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
 }
 
 .grid {
@@ -141,6 +151,21 @@
 .cell {
   aspect-ratio: 1;
   border-radius: 3px;
+  animation: cellBlink 3s ease-in-out infinite;
+}
+@keyframes cellBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    animation: none;
+  }
 }
 .lv0 {
   background: #161b22;
@@ -228,6 +253,9 @@
   }
   .card:hover {
     transform: none;
+  }
+  .liveDot {
+    animation: none;
   }
 }
 

@@ -65,7 +65,10 @@ const FAQs: React.FC = () => {
     >
       <div className="rh-container">
         <div className="w-full">
-          <div className="m-0 flex w-full flex-col items-center p-0 text-center">
+          <div
+            className="m-0 flex w-full flex-col items-center p-0 text-center"
+            style={{ marginBottom: "32px" }}
+          >
             <h3
               className="m-0 inline-flex items-center gap-2 p-0 text-center text-xs font-semibold tracking-widest uppercase"
               style={{

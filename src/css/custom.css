@@ -13,6 +13,22 @@
   box-sizing: border-box;
 }
 
+/* Homepage navbar: align the inner row with the 1280px content column.
+   !important is needed to beat the existing full-bleed navbar overrides. */
+@media (min-width: 997px) {
+  .rh-home-page .navbar {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .rh-home-page .navbar .navbar__inner {
+    max-width: 1280px !important;
+    margin-inline: auto;
+    padding-inline: 24px;
+    box-sizing: border-box;
+  }
+}
+
 [data-theme="light"] .interview-prep-page p,
 [data-theme="light"] .interview-prep-page li,
 [data-theme="light"] .interview-prep-page span,
@@ -1845,10 +1861,10 @@ html {
   align-items: center !important;
   justify-content: space-between !important;
   box-sizing: border-box !important;
-  width: 250px;
+  width: 190px;
   height: 36px !important;
-  min-width: 250px !important;
-  padding: 0 12px 0 48px !important;
+  min-width: 190px !important;
+  padding: 0 10px 0 38px !important;
   line-height: 1 !important;
   transform: none !important;
   white-space: nowrap;
@@ -1862,7 +1878,7 @@ html {
 .algolia-sitesearch-navbar .sitesearch-button .search-icon {
   position: absolute !important;
   top: 50% !important;
-  left: 16px !important;
+  left: 12px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;

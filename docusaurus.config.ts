@@ -170,21 +170,6 @@ const config: Config = {
           position: "left",
         },
         {
-          type: "dropdown",
-          html: '<span class="nav-emoji">👩🏻‍💻</span> Devfolio',
-          position: "left",
-          items: [
-            {
-              label: "💻GitHub Profiles",
-              to: "https://dev.recodehive.com/devfolio",
-            },
-            {
-              label: "🎖️ GitHub Badges",
-              to: "/badges/github-badges/",
-            },
-          ],
-        },
-        {
           to: "/blogs",
           html: '<span class="nav-emoji">📰</span> Blogs',
           position: "left",
@@ -221,6 +206,14 @@ const config: Config = {
             {
               label: "🛍️ Merch Store",
               to: "/merch",
+            },
+            {
+              label: "💻GitHub Profiles",
+              to: "https://dev.recodehive.com/devfolio",
+            },
+            {
+              label: "🎖️ GitHub Badges",
+              to: "/badges/github-badges/",
             },
           ],
         },
