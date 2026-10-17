@@ -48,6 +48,16 @@
   border-radius: 50%;
   background: #2e8555;
   box-shadow: 0 0 6px #2e8555;
+  animation: liveBlink 1.8s ease-in-out infinite;
+}
+@keyframes liveBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
 }
 
 .grid {
@@ -228,6 +238,9 @@
   }
   .card:hover {
     transform: none;
+  }
+  .liveDot {
+    animation: none;
   }
 }
 
