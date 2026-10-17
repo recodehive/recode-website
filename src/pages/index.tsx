@@ -12,6 +12,7 @@ import TopMateSection from "../components/topmate/TopMateSection";
 import { TestimonialCarousel } from "../components/testimonials/TestimonialCarousel";
 import { CommunityStatsProvider } from "../lib/statsProvider";
 import { LandingCommunity } from "../components/Community";
+import FounderSection from "../components/FounderSection";
 import FAQs from "../components/faqs/faqs";
 
 export default function Home(): ReactNode {
@@ -72,16 +73,8 @@ export default function Home(): ReactNode {
             </div>
           </div>
 
-          <div className="rh-container my-4">
-            <div
-              onClick={() => (window.location.href = "https://www.sanjaykv.com/")}
-            >
-              <img
-                src="/selfhero.png"
-                alt="recodehive"
-                className="h-full w-full cursor-pointer rounded-2xl object-cover"
-              />
-            </div>
+          <div className="my-4">
+            <FounderSection />
           </div>
 
           {/* Mentorship (left) + Testimonials (right) — side by side */}
