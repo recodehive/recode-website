@@ -10,6 +10,7 @@ import {
   BookOpen,
   Smile,
   HelpCircle,
+  Sparkles,
   Bell,
   ChevronDown,
   PanelLeft,
@@ -40,6 +41,7 @@ const LINK_ITEMS: Array<{ href: string; label: string; icon: React.ReactNode }> 
   { href: "/blogs", label: "Blogs", icon: <BookOpen size={16} /> },
   { href: "/community", label: "Community", icon: <Smile size={16} /> },
   { href: "/contact-us", label: "Help Center", icon: <HelpCircle size={16} /> },
+  { href: "/updates", label: "Updates", icon: <Sparkles size={16} /> },
 ];
 
 export default function DashboardSidebar({
