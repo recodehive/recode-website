@@ -23,7 +23,6 @@ import {
   Book,
   Database,
   Github,
-  PanelRight,
   Code2,
   Zap,
   Container,
@@ -60,12 +59,6 @@ const getIcon = (
   } else if (label.includes("Docker") || className?.includes("docker")) {
     return (
       <Container className={`${styles.categoryIcon} ${styles.dockerIcon}`} />
-    );
-  } else if (label.includes("Technical") || className?.includes("technical")) {
-    return (
-      <PanelRight
-        className={`${styles.categoryIcon} ${styles.technicalIcon}`}
-      />
     );
   } else {
     return <Book className={styles.categoryIcon} />;
@@ -154,11 +147,6 @@ function DocSidebarItemCategory({
       return "custom-sidebar-nextjs";
     } else if (label.includes("Docker") || className?.includes("docker")) {
       return "custom-sidebar-docker";
-    } else if (
-      label.includes("Technical") ||
-      className?.includes("technical")
-    ) {
-      return "custom-sidebar-technical";
     }
     return "";
   };

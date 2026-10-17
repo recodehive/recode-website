@@ -22,7 +22,7 @@ const faqData = [
   {
     question: "What all resources are available here?",
     answer:
-      "We offer a comprehensive range of learning resources across multiple technologies:<br><br><strong>Currently Available:</strong><br>•🗄️ <a href='/docs/sql/intro-sql' class='text-green-600 hover:text-green-800 underline'>SQL Resources</a> - Database management and queries<br>• 🐙 <a href='/docs/GitHub/intro-github' class='text-green-600 hover:text-green-800 underline'>GitHub Guides</a> - Version control and collaboration<br>• 📮 <a href='/docs/Technical' class='text-green-600 hover:text-green-800 underline'>Postman API Testing</a><br>• ⚛️ <a href='/docs/Nextjs/intro-nextjs' class='text-green-600 hover:text-green-800 underline'>Next.js Development</a><br><br><strong>Coming Soon:</strong> Advanced data tools tutorials, cloud technologies, and more!",
+      "We offer a comprehensive range of learning resources across multiple technologies:<br><br><strong>Currently Available:</strong><br>•🗄️ <a href='/docs/sql/intro-sql' class='text-green-600 hover:text-green-800 underline'>SQL Resources</a> - Database management and queries<br>• 🐙 <a href='/docs/GitHub/intro-github' class='text-green-600 hover:text-green-800 underline'>GitHub Guides</a> - Version control and collaboration<br>• ⚛️ <a href='/docs/Nextjs/intro-nextjs' class='text-green-600 hover:text-green-800 underline'>Next.js Development</a><br><br><strong>Coming Soon:</strong> Advanced data tools tutorials, cloud technologies, and more!",
   },
   {
     question: "How can I contribute as a beginner?",
@@ -63,7 +63,7 @@ const FAQs: React.FC = () => {
         padding: "2rem 0",
       }}
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="rh-container">
         <div className="w-full">
           <div className="m-0 flex w-full flex-col items-center p-0 text-center">
             <h3

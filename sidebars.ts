@@ -172,13 +172,6 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
-  
-    {
-      type: "category",
-      label: "🔧 Technical",
-      className: "custom-sidebar-technical",
-      items: ["Technical/intro-github"],
-    },
   ],
 };
 

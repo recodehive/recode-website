@@ -197,7 +197,7 @@ const HeaderToaster = () => {
 const Header: React.FC = () => {
   return (
     <div className="chh__header--body">
-      <div className="chh__header">
+      <div className="chh__header rh-container">
         <HeaderContent />
         <HeaderToaster />
       </div>

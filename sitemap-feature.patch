@@ -1,0 +1,413 @@
+diff --git a/docusaurus.config.ts b/docusaurus.config.ts
+index 5d348ba..502a3f6 100644
+--- a/docusaurus.config.ts
++++ b/docusaurus.config.ts
+@@ -101,6 +101,13 @@ const config: Config = {
+           trackingID: "G-W02Z2VJYCR",
+           anonymizeIP: false,
+         },
++        sitemap: {
++          lastmod: "date",
++          changefreq: "weekly",
++          priority: 0.5,
++          ignorePatterns: ["/tags/**", "/dashboard/**"],
++          filename: "sitemap.xml",
++        },
+       } satisfies Preset.Options,
+     ],
+   ],
+diff --git a/src/pages/sitemap/index.css b/src/pages/sitemap/index.css
+new file mode 100644
+index 0000000..2f0ce69
+--- /dev/null
++++ b/src/pages/sitemap/index.css
+@@ -0,0 +1,199 @@
++.sitemap__page {
++  max-width: 860px;
++  margin: 0 auto;
++  padding: 3rem 1.5rem 5rem;
++}
++
++.sitemap__header {
++  text-align: center;
++  margin-bottom: 3rem;
++}
++
++.sitemap__header h1 {
++  font-family:
++    "Space Grotesk",
++    Inter,
++    -apple-system,
++    BlinkMacSystemFont,
++    "Segoe UI",
++    sans-serif;
++  font-weight: 700;
++  font-size: 2.75rem;
++  letter-spacing: -0.03em;
++  margin-bottom: 0.75rem;
++}
++
++.sitemap__header-brand {
++  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
++  color: #16a34a;
++  font-weight: 700;
++}
++
++[data-theme="dark"] .sitemap__header-brand {
++  color: #4ade80;
++}
++
++.sitemap__header p {
++  font-family: var(--font-family);
++  color: var(--ifm-color-emphasis-600);
++  font-size: 1.05rem;
++  margin-bottom: 1.5rem;
++}
++
++.sitemap__search {
++  width: 100%;
++  max-width: 360px;
++  padding: 0.6rem 0.9rem;
++  font-family: var(--font-family);
++  font-size: 0.95rem;
++  color: var(--ifm-font-color-base);
++  background: var(--ifm-background-surface-color);
++  border: 1px solid var(--ifm-color-emphasis-300);
++  border-radius: 8px;
++  outline: none;
++}
++
++.sitemap__search:focus {
++  border-color: #16a34a;
++}
++
++.sitemap__timeline {
++  position: relative;
++  padding-left: 1.5rem;
++  border-left: 2px solid var(--ifm-color-emphasis-300);
++}
++
++.sitemap__entry {
++  position: relative;
++  margin-bottom: 2rem;
++}
++
++.sitemap__entry:last-child {
++  margin-bottom: 0;
++}
++
++.sitemap__dot {
++  position: absolute;
++  left: -1.6rem;
++  top: 1.6rem;
++  width: 10px;
++  height: 10px;
++  border-radius: 50%;
++  background: var(--ifm-color-emphasis-800);
++  border: 2px solid var(--ifm-background-color);
++}
++
++.sitemap__card {
++  border: 1px solid var(--ifm-color-emphasis-300);
++  border-radius: 12px;
++  background: var(--ifm-background-surface-color);
++  padding: 1.5rem 1.75rem;
++}
++
++.sitemap__card-header {
++  display: flex;
++  align-items: center;
++  gap: 0.75rem;
++  margin-bottom: 0.9rem;
++}
++
++.sitemap__badge {
++  display: inline-flex;
++  align-items: center;
++  gap: 0.35rem;
++  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
++  font-size: 0.7rem;
++  font-weight: 700;
++  letter-spacing: 0.03em;
++  color: #16a34a;
++  background: var(--ifm-color-success-contrast-background);
++  border: 1px solid var(--ifm-color-success-light);
++  border-radius: 6px;
++  padding: 0.2rem 0.55rem;
++}
++
++[data-theme="dark"] .sitemap__badge {
++  color: #4ade80;
++}
++
++.sitemap__count {
++  font-size: 0.85rem;
++  color: var(--ifm-color-emphasis-600);
++  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
++}
++
++.sitemap__title {
++  font-family:
++    "Space Grotesk",
++    Inter,
++    -apple-system,
++    BlinkMacSystemFont,
++    "Segoe UI",
++    sans-serif;
++  font-size: 1.35rem;
++  font-weight: 700;
++  letter-spacing: -0.01em;
++  margin-bottom: 0.75rem;
++}
++
++.sitemap__list {
++  list-style: none;
++  margin: 0;
++  padding: 0;
++}
++
++.sitemap__item {
++  padding: 0.7rem 0;
++  border-top: 1px solid var(--ifm-color-emphasis-200);
++}
++
++.sitemap__item:first-child {
++  border-top: none;
++  padding-top: 0;
++}
++
++.sitemap__link {
++  font-family:
++    "Space Grotesk",
++    Inter,
++    -apple-system,
++    BlinkMacSystemFont,
++    "Segoe UI",
++    sans-serif;
++  font-size: 1.05rem;
++  font-weight: 700;
++  color: var(--ifm-font-color-base);
++  text-decoration: none;
++}
++
++.sitemap__link:hover {
++  color: var(--ifm-color-primary);
++}
++
++.sitemap__path {
++  margin-left: 0.6rem;
++  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
++  font-size: 0.78rem;
++  color: var(--ifm-color-emphasis-600);
++  word-break: break-all;
++}
++
++.sitemap__desc {
++  font-family: var(--font-family);
++  color: var(--ifm-color-emphasis-700);
++  font-size: 0.92rem;
++  line-height: 1.5;
++  margin: 0.2rem 0 0;
++}
++
++.sitemap__empty {
++  font-family: var(--font-family);
++  text-align: center;
++  color: var(--ifm-color-emphasis-600);
++}
++
++@media screen and (max-width: 768px) {
++  .sitemap__header h1 {
++    font-size: 2rem;
++  }
++}
+diff --git a/src/pages/sitemap/index.tsx b/src/pages/sitemap/index.tsx
+new file mode 100644
+index 0000000..6fff14d
+--- /dev/null
++++ b/src/pages/sitemap/index.tsx
+@@ -0,0 +1,162 @@
++import React, { useMemo, useState } from "react";
++import Layout from "@theme/Layout";
++import Link from "@docusaurus/Link";
++import "./index.css";
++
++type SitemapLink = {
++  label: string;
++  to: string;
++  description: string;
++  external?: boolean;
++};
++
++type SitemapSection = {
++  title: string;
++  links: SitemapLink[];
++};
++
++const SECTIONS: SitemapSection[] = [
++  {
++    title: "Learn",
++    links: [
++      { label: "Documentation", to: "/docs", description: "Tutorials and guides on SQL, GitHub, Docker, Pandas and more." },
++      { label: "Get Started", to: "/get-started", description: "New here? Begin your recode hive journey." },
++      { label: "Video Courses", to: "/courses", description: "Browse our video course library." },
++      { label: "Explore Courses", to: "/courses/explore", description: "Find a course that fits your goals." },
++      { label: "E-Books", to: "/ebooks", description: "Free downloadable e-books." },
++      { label: "Interview Prep", to: "/interview-prep", description: "Prepare for your next technical interview." },
++      { label: "GitHub Badges", to: "/badges/github-badges", description: "Earn and showcase GitHub badges." },
++    ],
++  },
++  {
++    title: "Community",
++    links: [
++      { label: "Community", to: "/community", description: "Meet the people behind recode hive." },
++      { label: "Our Blog", to: "/blogs", description: "Articles written by the community." },
++      { label: "Broadcasts", to: "/broadcasts", description: "Live sessions and recordings." },
++      { label: "Podcasts", to: "/podcasts", description: "Conversations with developers and creators." },
++      { label: "Showcase", to: "/showcase", description: "Projects built by our community." },
++      { label: "Our Sponsors", to: "/our-sponsors", description: "The people who support our mission." },
++    ],
++  },
++  {
++    title: "Company",
++    links: [
++      { label: "Home", to: "/", description: "Back to the recode hive homepage." },
++      { label: "Careers", to: "/careers", description: "Open roles at recode hive." },
++      { label: "Changelog", to: "/changelog", description: "What's new in recode hive." },
++      { label: "Merch", to: "/merch", description: "Official recode hive merchandise." },
++      { label: "Contact Us", to: "/contact-us", description: "Get in touch with the team." },
++      {
++        label: "Roadmap",
++        to: "https://github.com/orgs/recodehive/projects/9",
++        description: "See what we are building next.",
++        external: true,
++      },
++    ],
++  },
++  {
++    title: "Legal",
++    links: [
++      { label: "Privacy Policy", to: "/privacy-policy", description: "How we handle your data." },
++      { label: "Terms of Service", to: "/terms-service", description: "The rules of using recode hive." },
++      { label: "Code of Conduct", to: "/code-of-conduct", description: "Our community standards." },
++      { label: "License", to: "/License", description: "Open-source license information." },
++    ],
++  },
++  {
++    title: "For Crawlers",
++    links: [
++      { label: "sitemap.xml", to: "/sitemap.xml", description: "Machine-readable sitemap for search engines.", external: true },
++      { label: "RSS Feed", to: "/blog/rss.xml", description: "Subscribe to blog updates via RSS.", external: true },
++    ],
++  },
++];
++
++export default function SitemapPage(): JSX.Element {
++  const [query, setQuery] = useState("");
++
++  const sections = useMemo(() => {
++    const q = query.trim().toLowerCase();
++    if (!q) return SECTIONS;
++    return SECTIONS.map((section) => ({
++      ...section,
++      links: section.links.filter(
++        (l) =>
++          l.label.toLowerCase().includes(q) ||
++          l.to.toLowerCase().includes(q) ||
++          l.description.toLowerCase().includes(q),
++      ),
++    })).filter((section) => section.links.length > 0);
++  }, [query]);
++
++  return (
++    <Layout
++      title="Sitemap"
++      description="Find every page on recode hive in one place."
++    >
++      <div className="sitemap__page">
++        <div className="sitemap__header">
++          <h1>
++            <span className="sitemap__header-brand">&lt;Sitemap/&gt;</span>
++          </h1>
++          <p>Find every page on recode hive in one place.</p>
++          <input
++            type="search"
++            className="sitemap__search"
++            placeholder="Filter pages..."
++            aria-label="Filter pages"
++            value={query}
++            onChange={(e) => setQuery(e.target.value)}
++          />
++        </div>
++
++        <div className="sitemap__timeline">
++          {sections.length === 0 ? (
++            <p className="sitemap__empty">No pages match your search.</p>
++          ) : (
++            sections.map((section) => (
++              <div className="sitemap__entry" key={section.title}>
++                <span className="sitemap__dot" aria-hidden="true" />
++                <div className="sitemap__card">
++                  <div className="sitemap__card-header">
++                    <span className="sitemap__badge">
++                      <span aria-hidden="true">&gt;_</span> SITEMAP
++                    </span>
++                    <span className="sitemap__count">
++                      {section.links.length}{" "}
++                      {section.links.length === 1 ? "page" : "pages"}
++                    </span>
++                  </div>
++                  <h3 className="sitemap__title">{section.title}</h3>
++                  <ul className="sitemap__list">
++                    {section.links.map((link) => (
++                      <li className="sitemap__item" key={link.to}>
++                        {link.external ? (
++                          <a
++                            href={link.to}
++                            target="_blank"
++                            rel="noopener noreferrer"
++                            className="sitemap__link"
++                          >
++                            {link.label}
++                          </a>
++                        ) : (
++                          <Link to={link.to} className="sitemap__link">
++                            {link.label}
++                          </Link>
++                        )}
++                        <span className="sitemap__path">{link.to}</span>
++                        <p className="sitemap__desc">{link.description}</p>
++                      </li>
++                    ))}
++                  </ul>
++                </div>
++              </div>
++            ))
++          )}
++        </div>
++      </div>
++    </Layout>
++  );
++}
+diff --git a/src/theme/Footer/Layout/index.tsx b/src/theme/Footer/Layout/index.tsx
+index 91bb1df..7c2051e 100644
+--- a/src/theme/Footer/Layout/index.tsx
++++ b/src/theme/Footer/Layout/index.tsx
+@@ -63,6 +63,7 @@ const LEGAL: FooterLink[] = [
+   { label: "Terms of Service", to: "/terms-service" },
+   { label: "Code of Conduct", to: "/code-of-conduct" },
+   { label: "License", to: "/License" },
++  { label: "Sitemap", to: "/sitemap" },
+ ];
+ 
+ export default function FooterLayout(): ReactNode {
+diff --git a/static/robots.txt b/static/robots.txt
+new file mode 100644
+index 0000000..87959c7
+--- /dev/null
++++ b/static/robots.txt
+@@ -0,0 +1,4 @@
++User-agent: *
++Allow: /
++
++Sitemap: https://www.recodehive.com/sitemap.xml

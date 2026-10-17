@@ -78,10 +78,6 @@
   color: #38a169;
 }
 
-.technicalIcon {
-  color: #9ae6b4;
-}
-
 /* Scale up icons on hover */
 .categoryLink:hover .categoryIcon {
   transform: scale(1.15);
