@@ -22,7 +22,7 @@
   position: relative;
   gap: 2rem;
   width: 100%;
-  padding: 3rem 2rem;
+  padding-block: 3rem;
 }
 
 .chh__header-content {

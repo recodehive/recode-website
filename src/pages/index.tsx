@@ -57,34 +57,35 @@ export default function Home(): ReactNode {
         }}
       >
         <main
-          className="page-enter transition-colors duration-300"
+          className="rh-home page-enter transition-colors duration-300"
           style={{
             backgroundColor: "var(--ifm-background-color)",
             color: "var(--ifm-font-color-base)",
           }}
         >
           <CommunityStatsProvider>
-          <div className="m-4">
-            <Header />
-          </div>
+          <Header />
 
           <div className="blog-carousel-section">
-            <BlogCarousel />
+            <div className="rh-container">
+              <BlogCarousel />
+            </div>
           </div>
 
-          <div
-            className="m-4"
-            onClick={() => (window.location.href = "https://www.sanjaykv.com/")}
-          >
-            <img
-              src="/selfhero.png"
-              alt="recodehive"
-              className="h-full w-full cursor-pointer rounded-2xl object-cover"
-            />
+          <div className="rh-container my-4">
+            <div
+              onClick={() => (window.location.href = "https://www.sanjaykv.com/")}
+            >
+              <img
+                src="/selfhero.png"
+                alt="recodehive"
+                className="h-full w-full cursor-pointer rounded-2xl object-cover"
+              />
+            </div>
           </div>
 
           {/* Mentorship (left) + Testimonials (right) — side by side */}
-          <div className="ml-4 w-full">
+          <div className="rh-container">
             <div className="grid grid-cols-1 items-stretch gap-6 lg:grid-cols-5">
               {showTopmate && (
                 <div className="lg:col-span-2">
@@ -99,15 +100,12 @@ export default function Home(): ReactNode {
             </div>
           </div>
 
-          <div className="m-4">
+          <div className="rh-container my-4">
             <LandingCommunity className="recodehive" />
           </div>
           </CommunityStatsProvider>
 
-          <div
-            className="m-0"
-            style={{ border: "none", boxShadow: "none", outline: "none" }}
-          >
+          <div style={{ border: "none", boxShadow: "none", outline: "none" }}>
             <FAQs />
           </div>
         </main>

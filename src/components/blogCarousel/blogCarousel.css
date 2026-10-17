@@ -564,7 +564,7 @@
 /* ── Blog carousel section ── */
 .blog-carousel-section {
   background: #fafaf8;
-  padding: 64px 24px 48px;
+  padding-block: 64px 48px;
   position: relative;
   overflow: hidden;
   transition: background 0.4s ease;
