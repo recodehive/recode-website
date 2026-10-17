@@ -141,6 +141,21 @@
 .cell {
   aspect-ratio: 1;
   border-radius: 3px;
+  animation: cellBlink 3s ease-in-out infinite;
+}
+@keyframes cellBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cell {
+    animation: none;
+  }
 }
 .lv0 {
   background: #161b22;
