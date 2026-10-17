@@ -13,14 +13,14 @@ type Props = {
   linkedinUrl?: string;
 };
 
-const STACK = ["SQL", "Power BI", "Azure", "Spark", "Python", "dbt", "Jira"];
+const STACK = ["OpenSource", "Python", "Program Management", "Jira"];
 
 export default function FounderSection({
   avatarSrc = "/img/memoji.png",
-  kicker = "A Data Engineer who",
+  kicker = "A Forward Deployed Engineer who",
   bookingUrl = "https://topmate.io/sanjaykv",
   blogUrl = "/blogs",
-  portfolioUrl = "https://www.sanjaykv.com/",
+  portfolioUrl = "https://www.nomadbrains.dev/",
   githubUrl = "https://github.com/sanjay-kv",
   linkedinUrl = "https://www.linkedin.com/in/sanjay-k-v/",
 }: Props) {
@@ -110,7 +110,7 @@ export default function FounderSection({
                   <span className={styles.cmd}>focus --now</span>
                   <br />
                   <span className={styles.out}>
-                    Business analysis, program delivery, data
+                    Launch of recode Winter of Code
                   </span>
                 </div>
                 <div className={styles.stackBlock}>
@@ -136,7 +136,7 @@ export default function FounderSection({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    sanjaykv.com
+                    nomadbrains.dev
                   </a>
                   <span className={styles.sep}> · </span>
                   <a
