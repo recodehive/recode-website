@@ -231,7 +231,7 @@ export function TestimonialCarousel() {
             fontFamily: "'Inter', -apple-system, sans-serif",
           }}
         >
-          Our builders go on to do incredible things — from OpenAI to becoming
+          Our builders go on to do incredible things from OpenAI to becoming
           AI engineers and founders.
         </motion.p>
       </motion.div>

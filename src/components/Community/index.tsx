@@ -25,7 +25,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
         stat: githubStarCount,
         statText: githubStarCountText,
         description:
-          "Stars across our GitHub repositories — community support and appreciation.",
+          "Stars across our GitHub repositories community support and appreciation.",
         href: "https://github.com/recodehive/Support",
         label: "GitHub Stars",
       },
@@ -49,7 +49,7 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
         stat: githubForksCount,
         statText: githubForksCountText,
         description:
-          "Forks of our repositories — the community extends and builds on our work.",
+          "Forks of our repositories the community extends and builds on our work.",
         href: "https://github.com/orgs/recodehive/discussions",
         label: "Community Forks",
       },
