@@ -63,6 +63,7 @@ export default function Home(): ReactNode {
       description="Welcome to recode hive. Learn the basics to advanced concepts of web development. sql, python, Cloud, GitHub and more."
     >
       <Head>
+        <body className="rh-home-page" />
         <script
           async
           custom-element="amp-auto-ads"
