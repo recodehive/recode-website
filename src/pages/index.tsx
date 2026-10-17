@@ -10,10 +10,31 @@ import ScrollBottomToTop from "../components/scroll/bottom-to-top";
 import { BlogCarousel } from "../components/blogCarousel/blogCarousel";
 import TopMateSection from "../components/topmate/TopMateSection";
 import { TestimonialCarousel } from "../components/testimonials/TestimonialCarousel";
-import { CommunityStatsProvider } from "../lib/statsProvider";
-import { LandingCommunity } from "../components/Community";
+import { CommunityStatsProvider, useCommunityStatsContext } from "../lib/statsProvider";
+import CommunityStats from "../components/CommunityStats";
 import FounderSection from "../components/FounderSection";
 import FAQs from "../components/faqs/faqs";
+
+function CommunitySection() {
+  const {
+    githubStarCount,
+    githubReposCount,
+    githubContributorsCount,
+    githubForksCount,
+  } = useCommunityStatsContext();
+
+  return (
+    <CommunityStats
+      stats={{
+        stars: githubStarCount,
+        projects: githubReposCount,
+        contributors: githubContributorsCount,
+        forks: githubForksCount,
+      }}
+      githubUrl="https://github.com/recodehive"
+    />
+  );
+}
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
@@ -93,8 +114,8 @@ export default function Home(): ReactNode {
             </div>
           </div>
 
-          <div className="rh-container my-4">
-            <LandingCommunity className="recodehive" />
+          <div className="my-4">
+            <CommunitySection />
           </div>
           </CommunityStatsProvider>
 
