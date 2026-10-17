@@ -1,3 +1,18 @@
+/* ── Homepage-only centred container ─────────────────────
+   Scoped under .rh-home so it never touches docs/blog/navbar/footer. */
+.rh-home {
+  --rh-container-max: 1280px;
+  --rh-container-pad: 24px;
+}
+
+.rh-home .rh-container {
+  width: 100%;
+  max-width: var(--rh-container-max);
+  margin-inline: auto;
+  padding-inline: var(--rh-container-pad);
+  box-sizing: border-box;
+}
+
 [data-theme="light"] .interview-prep-page p,
 [data-theme="light"] .interview-prep-page li,
 [data-theme="light"] .interview-prep-page span,
@@ -304,15 +319,6 @@ a.menu__link.menu__link--active div span:first-child {
   font-weight: 600;
 }
 
-/* Technical theme */
-.custom-sidebar-technical>.menu__list-item-collapsible>.menu__link {
-  background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-  color: white;
-  border-radius: 8px;
-  margin: 4px 0;
-  font-weight: 600;
-}
-
 /* Custom subcategory styling */
 .custom-sidebar-setup>.menu__list-item-collapsible>.menu__link,
 .custom-sidebar-basics>.menu__list-item-collapsible>.menu__link,
@@ -328,8 +334,7 @@ a.menu__link.menu__link--active div span:first-child {
 .custom-sidebar-python>.menu__list-item-collapsible>.menu__link:hover,
 .custom-sidebar-sql>.menu__list-item-collapsible>.menu__link:hover,
 .custom-sidebar-nextjs>.menu__list-item-collapsible>.menu__link:hover,
-.custom-sidebar-gsa>.menu__list-item-collapsible>.menu__link:hover,
-.custom-sidebar-technical>.menu__list-item-collapsible>.menu__link:hover {
+.custom-sidebar-gsa>.menu__list-item-collapsible>.menu__link:hover {
   transform: translateX(4px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
