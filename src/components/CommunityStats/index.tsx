@@ -144,11 +144,17 @@ export default function CommunityStats({
               {CELLS.map((lv, i) => (
                 <span
                   key={i}
-                  className={`${styles.cell} ${LEVELS[lv]}`}
-                  style={{
-                    animationDelay: `${((i * 37) % 100) * 0.04}s`,
-                    animationDuration: `${2.4 + ((i * 13) % 5) * 0.4}s`,
-                  }}
+                  className={`${styles.cell} ${LEVELS[lv]} ${
+                    (i * 7) % 4 === 0 ? styles.blink : ""
+                  }`}
+                  style={
+                    (i * 7) % 4 === 0
+                      ? {
+                          animationDelay: `${((i * 37) % 100) * 0.09}s`,
+                          animationDuration: `${4 + ((i * 13) % 7) * 0.9}s`,
+                        }
+                      : undefined
+                  }
                 />
               ))}
             </div>
