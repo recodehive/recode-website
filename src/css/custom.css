@@ -13,6 +13,22 @@
   box-sizing: border-box;
 }
 
+/* Homepage navbar: align the inner row with the 1280px content column.
+   !important is needed to beat the existing full-bleed navbar overrides. */
+@media (min-width: 997px) {
+  .rh-home-page .navbar {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .rh-home-page .navbar .navbar__inner {
+    max-width: 1280px !important;
+    margin-inline: auto;
+    padding-inline: 24px;
+    box-sizing: border-box;
+  }
+}
+
 [data-theme="light"] .interview-prep-page p,
 [data-theme="light"] .interview-prep-page li,
 [data-theme="light"] .interview-prep-page span,
