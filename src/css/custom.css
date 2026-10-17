@@ -1845,10 +1845,10 @@ html {
   align-items: center !important;
   justify-content: space-between !important;
   box-sizing: border-box !important;
-  width: 250px;
+  width: 190px;
   height: 36px !important;
-  min-width: 250px !important;
-  padding: 0 12px 0 48px !important;
+  min-width: 190px !important;
+  padding: 0 10px 0 38px !important;
   line-height: 1 !important;
   transform: none !important;
   white-space: nowrap;
@@ -1862,7 +1862,7 @@ html {
 .algolia-sitesearch-navbar .sitesearch-button .search-icon {
   position: absolute !important;
   top: 50% !important;
-  left: 16px !important;
+  left: 12px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
