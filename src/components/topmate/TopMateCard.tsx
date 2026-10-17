@@ -120,7 +120,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
 
       {/* Description */}
       <p
-        className="mt-4 text-[13.5px] leading-relaxed"
+        className="mt-4 text-center text-[13.5px] leading-relaxed"
         style={{ color: isDark ? "#94a3b8" : "#64748b" }}
       >
         {description}
