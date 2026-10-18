@@ -13,12 +13,6 @@ interface Testimonial {
 // --- Data ---
 const testimonials: Testimonial[] = [
   {
-    text: "The Recode Hive team are amazing to work with, very responsive. I'm a newbie to AI and they stepped us through the process",
-    image: "https://github.com/sanjay-kv.png",
-    name: "Sanjay K V",
-    role: "Project Maintainer @ Recode Hive",
-  },
-  {
     text: "The tech talent in Recode Hive is unparalleled. We worked with consultants who work in companies like Palantir, OpenAI, Relevance AI and more",
     image: "https://github.com/Rohitdey45.png",
     name: "Rohit Dey",
