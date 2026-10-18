@@ -54,7 +54,7 @@ const FAQs: React.FC = () => {
     <section
       className="relative overflow-hidden py-8 transition-all duration-300"
       style={{
-        background: isDark ? "#161616" : "#FFFFFF",
+        background: "transparent",
         border: "none",
         borderTop: "none",
         boxShadow: "none",

@@ -114,7 +114,16 @@ export default function Home(): ReactNode {
           </div>
           </CommunityStatsProvider>
 
-          <div style={{ border: "none", boxShadow: "none", outline: "none" }}>
+          <div
+            style={{
+              border: "none",
+              boxShadow: "none",
+              outline: "none",
+              // spacing as padding (not margin) so no strip shows above the footer
+              margin: 0,
+              paddingBlock: "2rem",
+            }}
+          >
             <FAQs />
           </div>
         </main>
