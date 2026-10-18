@@ -133,14 +133,14 @@
 
 /* Tile tokens: light mode (default) */
 .tile {
-  /* Halloween palette: pale pumpkin base, orange ramp, purple peak */
+  /* Halloween palette: pale pumpkin base, orange ramp, green peak */
   --t-bg: #fff7ed;
   --t-border: #fed7aa;
   --t-lv0: #efe6f5;
   --t-lv1: #fdd9a8;
   --t-lv2: #f9a64a;
   --t-lv3: #ea7a12;
-  --t-lv4: #7c3aed;
+  --t-lv4: #2e8555;
   --t-glow: rgba(234, 122, 18, 0.7);
   --t-link: #9a3412;
   --t-text: #1e1233;
@@ -161,8 +161,8 @@
   --t-bg: #110b1a;
   --t-border: #110b1a;
   --t-lv0: #1b1426;
-  --t-lv1: #3b1f5e;
-  --t-lv2: #7c3aed;
+  --t-lv1: #12321f;
+  --t-lv2: #2e8555;
   --t-lv3: #f97316;
   --t-lv4: #ffa31a;
   --t-glow: rgba(255, 163, 26, 0.85);
