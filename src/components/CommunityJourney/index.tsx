@@ -213,7 +213,7 @@ export default function CommunityJourney({
 
             <div className={styles.credit}>
               <img src={avatarUrl} alt="" className={styles.creditAvatar} />
-              <span>Started by <Link to={founderUrl} className={styles.creditLink}>Sanjay Viswanathan</Link>. Grown by every contributor who opened a pull request.</span>
+              <span>Founded by <Link to={founderUrl} className={styles.creditLink}>Sanjay Viswanathan</Link>. Grown by every contributor who opened a pull request.</span>
             </div>
           </div>
         </div>
