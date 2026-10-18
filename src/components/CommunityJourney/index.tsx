@@ -89,7 +89,7 @@ type Props = {
 export default function CommunityJourney({
   steps = STEPS,
   firstIssueUrl = GOOD_FIRST_ISSUES,
-  communityUrl = 'https://discord.gg/dh3TA8U55Q',
+  communityUrl = 'https://github.com/recodehive/Support/issues/new?assignees=&labels=invite+me+to+the+community&projects=&template=invitation.yml&title=Please+invite+me+to+the+Recode-Hive+GitHub+Community+Organization',
   founderUrl = 'https://nomadbrains.dev/',
   avatarSrc = '/img/memoji.png',
 }: Props) {
