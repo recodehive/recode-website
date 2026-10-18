@@ -133,15 +133,17 @@
 
 /* Tile tokens: light mode (default) */
 .tile {
-  --t-bg: #f3faf6;
-  --t-border: #d3ecdf;
-  --t-lv0: #e1ebe5;
-  --t-lv1: #bfe3cd;
-  --t-lv2: #7cc79f;
-  --t-lv3: #3cad6e;
-  --t-lv4: #2e8555;
-  --t-link: #205d3b;
-  --t-text: #0f172a;
+  /* Halloween palette: pale pumpkin base, orange ramp, purple peak */
+  --t-bg: #fff7ed;
+  --t-border: #fed7aa;
+  --t-lv0: #efe6f5;
+  --t-lv1: #fdd9a8;
+  --t-lv2: #f9a64a;
+  --t-lv3: #ea7a12;
+  --t-lv4: #7c3aed;
+  --t-glow: rgba(234, 122, 18, 0.7);
+  --t-link: #9a3412;
+  --t-text: #1e1233;
 
   grid-column: 3 / span 2;
   grid-row: 1 / span 2;
@@ -156,14 +158,15 @@
 
 /* Tile tokens: dark mode (keeps the previous look) */
 :global(html[data-theme="dark"]) .tile {
-  --t-bg: #0d1117;
-  --t-border: #0d1117;
-  --t-lv0: #161b22;
-  --t-lv1: #12321f;
-  --t-lv2: #1d5c3a;
-  --t-lv3: #2e8555;
-  --t-lv4: #4cc184;
-  --t-link: #6fd39a;
+  --t-bg: #110b1a;
+  --t-border: #110b1a;
+  --t-lv0: #1b1426;
+  --t-lv1: #3b1f5e;
+  --t-lv2: #7c3aed;
+  --t-lv3: #f97316;
+  --t-lv4: #ffa31a;
+  --t-glow: rgba(255, 163, 26, 0.85);
+  --t-link: #fb923c;
   --t-text: #ffffff;
 }
 .cells {
@@ -178,14 +181,23 @@
 .blink {
   animation: cellBlink 5s ease-in-out infinite;
 }
+/* Cells dim out almost fully, then flare with a glow */
 @keyframes cellBlink {
   0%,
-  60%,
+  45%,
   100% {
     opacity: 1;
+    transform: scale(1);
+    box-shadow: none;
+  }
+  60% {
+    opacity: 0.12;
+    transform: scale(0.8);
   }
   80% {
-    opacity: 0.7;
+    opacity: 1;
+    transform: scale(1.12);
+    box-shadow: 0 0 10px 2px var(--t-glow);
   }
 }
 @media (prefers-reduced-motion: reduce) {

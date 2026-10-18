@@ -145,10 +145,10 @@ export default function CommunityStats({
                 <span
                   key={i}
                   className={`${styles.cell} ${LEVELS[lv]} ${
-                    (i * 7) % 4 === 0 ? styles.blink : ""
+                    (i * 7) % 3 === 0 ? styles.blink : ""
                   }`}
                   style={
-                    (i * 7) % 4 === 0
+                    (i * 7) % 3 === 0
                       ? {
                           animationDelay: `${((i * 37) % 100) * 0.09}s`,
                           animationDuration: `${4 + ((i * 13) % 7) * 0.9}s`,
