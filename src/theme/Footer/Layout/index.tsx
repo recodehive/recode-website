@@ -214,7 +214,7 @@ export default function FooterLayout(): ReactNode {
           <div className="rh-footer__newsletter">
             <h3 className="rh-footer__label">Stay in the Loop</h3>
             <p className="rh-footer__newsletter-pitch">
-              Join 50K+ developers getting weekly insights, tutorials, and exclusive content.
+              Weekly insights, tutorials and exclusive content from the community.
             </p>
             <form className="rh-footer__form" onSubmit={handleSubscribe} noValidate>
               <input
@@ -234,7 +234,7 @@ export default function FooterLayout(): ReactNode {
               </button>
               {error && <p className="rh-footer__error">{error}</p>}
             </form>
-            <p className="rh-footer__micro">1.2K+ developers joined this week</p>
+            <p className="rh-footer__micro">200+ joined this week</p>
           </div>
         </div>
 
