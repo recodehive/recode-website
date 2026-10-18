@@ -73,18 +73,12 @@ export default function Home(): ReactNode {
 
       {/* ✅ Wrap in solid background to fix light mode */}
       <div
-        className="transition-colors duration-300"
-        style={{
-          backgroundColor: "var(--ifm-background-color)",
-          color: "var(--ifm-font-color-base)",
-        }}
+        className="homepage transition-colors duration-300"
+        style={{ color: "var(--ifm-font-color-base)" }}
       >
         <main
           className="rh-home page-enter transition-colors duration-300"
-          style={{
-            backgroundColor: "var(--ifm-background-color)",
-            color: "var(--ifm-font-color-base)",
-          }}
+          style={{ color: "var(--ifm-font-color-base)" }}
         >
           <CommunityStatsProvider>
           <Header />
@@ -120,7 +114,16 @@ export default function Home(): ReactNode {
           </div>
           </CommunityStatsProvider>
 
-          <div style={{ border: "none", boxShadow: "none", outline: "none" }}>
+          <div
+            style={{
+              border: "none",
+              boxShadow: "none",
+              outline: "none",
+              // spacing as padding (not margin) so no strip shows above the footer
+              margin: 0,
+              paddingBlock: "2rem",
+            }}
+          >
             <FAQs />
           </div>
         </main>
