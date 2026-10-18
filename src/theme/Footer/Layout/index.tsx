@@ -22,7 +22,6 @@ const LINK_COLUMNS: FooterColumn[] = [
     title: "Learning",
     links: [
       { label: "Documentation", to: "/docs", badge: { text: "Popular", variant: "green" } },
-      { label: "Get Started", to: "/get-started" },
       { label: "GitHub Badges", to: "/badges/github-badges" },
       { label: "GitHub Profiles", to: "https://dev.recodehive.com/devfolio", external: true },
       { label: "Video Courses", to: "/courses", badge: { text: "New", variant: "green" } },
@@ -241,8 +240,8 @@ export default function FooterLayout(): ReactNode {
         {/* Meta row: quick links + socials */}
         <div className="rh-footer__meta">
           <div className="rh-footer__meta-links">
-            <Link to="/get-started" className="rh-footer__meta-link">
-              Get Started
+            <Link to="/courses" className="rh-footer__meta-link">
+              Courses
             </Link>
             <Link to="/dashboard" className="rh-footer__meta-link">
               Dashboard
