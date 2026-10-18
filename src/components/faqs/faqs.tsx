@@ -7,7 +7,7 @@ const faqData = [
   {
     question: "What is recode hive?",
     answer:
-      "recodehive helps you to learn and master the skills on GitHub, and encourage you to code for opensource. <br><br>🌐 <a href='https://recodehive.com/' target='_blank' rel='noopener noreferrer' class='text-green-600 hover:text-green-800 underline'>Visit our official website</a> | 📚 <a href='/docs' class='text-green-600 hover:text-green-800 underline'>Explore our documentation</a>",
+      "recode hive is a comprehensive platform focused on providing students with the right resources at the right time. We help you focus on important topics and tools used in current industry standards compared to traditional university curricula. This includes data engineering tutorials, blogs, and opportunities for open-source contribution with earning potential. <br><br>🌐 <a href='https://recodehive.com/' target='_blank' rel='noopener noreferrer' class='text-green-600 hover:text-green-800 underline'>Visit our official website</a> | 📚 <a href='/docs' class='text-green-600 hover:text-green-800 underline'>Explore our documentation</a>",
   },
   {
     question: "What features do the recode hive provides?",
