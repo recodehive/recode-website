@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-// Active Oct 24 to Nov 1 in the visitor's local time.
+// Active Oct 18 to Nov 1 in the visitor's local time.
 // Testing: add ?halloween=1 to force on, ?halloween=0 to force off.
 // Decided in useEffect so server and client render the same HTML (no hydration mismatch).
 export function useHalloween(): boolean {
@@ -11,7 +11,7 @@ export function useHalloween(): boolean {
     if (q === '0') { setOn(false); return; }
     const now = new Date();
     const y = now.getFullYear();
-    const start = new Date(y, 9, 24, 0, 0, 0);
+    const start = new Date(y, 9, 18, 0, 0, 0);
     const end = new Date(y, 10, 1, 23, 59, 59);
     setOn(now >= start && now <= end);
   }, []);
