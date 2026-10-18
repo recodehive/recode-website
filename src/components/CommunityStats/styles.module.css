@@ -317,3 +317,70 @@
   background: rgba(46, 133, 85, 0.18);
   color: #4cc184;
 }
+
+/* ---------- Halloween tile (only applied when .halloween is on the tile) ---------- */
+.tile.halloween {
+  --t-bg: #fff6ec;
+  --t-border: #f5dcc0;
+  --t-link: #9a3412;
+  --t-text: #1c1917;
+  position: relative;
+  overflow: hidden;
+}
+:global(html[data-theme='dark']) .tile.halloween {
+  --t-bg: #1c1410;
+  --t-border: #3b2a1a;
+  --t-link: #fdba74;
+  --t-text: #ffffff;
+}
+.tile.halloween .cells, .tile.halloween .tileBody { position: relative; z-index: 1; }
+
+.h0 { background: #ede9fe; } .h1 { background: #fde6c8; } .h2 { background: #fdba74; }
+.h3 { background: #fb923c; } .h4 { background: #ea7a17; } .h5 { background: #2e8555; }
+:global(html[data-theme='dark']) .h0 { background: #2e2640; }
+:global(html[data-theme='dark']) .h1 { background: #4a2a10; }
+:global(html[data-theme='dark']) .h2 { background: #9a4a12; }
+:global(html[data-theme='dark']) .h3 { background: #ea7a17; }
+:global(html[data-theme='dark']) .h4 { background: #fb923c; }
+
+.glow { animation: hCandle 2.2s ease-in-out infinite; box-shadow: 0 0 10px 3px rgba(251, 146, 60, 0.55); }
+.g1 { animation-delay: 0s; } .g2 { animation-delay: -0.7s; } .g3 { animation-delay: -1.4s; }
+@keyframes hCandle {
+  0%, 100% { box-shadow: 0 0 6px 2px rgba(251, 146, 60, 0.35); filter: brightness(1); }
+  45% { box-shadow: 0 0 14px 5px rgba(251, 146, 60, 0.7); filter: brightness(1.08); }
+  60% { box-shadow: 0 0 9px 3px rgba(251, 146, 60, 0.5); }
+}
+
+/* spider */
+.hSpider { position: absolute; z-index: 3; top: 0; left: 83%; display: flex; flex-direction: column; align-items: center; transform-origin: top center; animation: hSway 3s ease-in-out infinite alternate; pointer-events: none; }
+.hThread { width: 1.5px; height: 26px; background: #78716c; animation: hDrop 6s ease-in-out infinite; }
+.hLegsL { transform-box: fill-box; transform-origin: 100% 50%; animation: hWiggle 0.5s ease-in-out infinite alternate; }
+.hLegsR { transform-box: fill-box; transform-origin: 0% 50%; animation: hWiggle 0.5s ease-in-out infinite alternate-reverse; }
+:global(html[data-theme='dark']) .hThread { background: #a8a29e; }
+@keyframes hSway { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
+@keyframes hDrop { 0%, 12% { height: 26px; } 42%, 58% { height: 96px; } 88%, 100% { height: 26px; } }
+@keyframes hWiggle { from { transform: rotate(-7deg); } to { transform: rotate(7deg); } }
+
+/* bee + sparkles (percent-based path so it works at any tile width) */
+.hBee { position: absolute; z-index: 4; width: 58px; height: 58px; left: 4%; top: 16px; animation: hLoop 10s ease-in-out infinite; pointer-events: none; }
+.hSpark { position: absolute; z-index: 2; width: 10px; height: 10px; margin: 24px 0 0 22px; left: 4%; top: 16px; animation: hLoop 10s ease-in-out infinite; pointer-events: none; }
+.hBob { animation: hBob 1.1s ease-in-out infinite alternate; }
+.hWing { transform-box: fill-box; transform-origin: 50% 100%; animation: hFlap 0.16s ease-in-out infinite alternate; }
+.hTwinkle { animation: hTwinkle 1.2s ease-in-out infinite; }
+@keyframes hLoop {
+  0% { left: 4%; top: 16px; transform: rotate(-6deg); }
+  25% { left: 30%; top: 6px; transform: rotate(6deg); }
+  50% { left: 56%; top: 52px; transform: rotate(4deg); }
+  75% { left: 28%; top: 76px; transform: rotate(-8deg); }
+  100% { left: 4%; top: 16px; transform: rotate(-6deg); }
+}
+@keyframes hBob { from { transform: translateY(0); } to { transform: translateY(-6px); } }
+@keyframes hFlap { from { transform: scaleY(1); } to { transform: scaleY(0.35); } }
+@keyframes hTwinkle { 0%, 100% { opacity: 0.2; transform: scale(0.6); } 50% { opacity: 1; transform: scale(1); } }
+
+@media (max-width: 480px) { .hBee { transform: scale(0.8); } .hSpark { display: none; } }
+@media (prefers-reduced-motion: reduce) {
+  .glow, .hSpider, .hThread, .hLegsL, .hLegsR, .hBee, .hSpark, .hBob, .hWing, .hTwinkle { animation: none; }
+  .hSpark { display: none; }
+}
+@media print { .hSpider, .hBee, .hSpark { display: none; } }
