@@ -58,7 +58,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
           style={{ color: isDark ? "#e2e8f0" : "#334155" }}
         >
           <Star size={12} style={{ fill: "currentColor" }} />
-          5.0 rating
+          5 star rating
         </span>
       </div>
 
@@ -80,7 +80,7 @@ const TopMateCard: React.FC<TopMateCardProps> = ({
             className="mt-0.5 truncate text-[13px] font-medium"
             style={{ color: green }}
           >
-            200+ sessions completed ·{" "}
+            400+ sessions completed ·{" "}
             <a
               href={`https://topmate.io/${username}`}
               target="_blank"
