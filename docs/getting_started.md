@@ -105,7 +105,7 @@ sanjay-kv:
     linkedin: sanjay-k-v
     github: sanjay-kv
     stackoverflow: 8332327
-    instagram: nomad_brains
+    instagram: nomadbrains.dev
     newsletter: https://recodehive.substack.com
     bluesky: sanjaykv.bsky.social
 ```
