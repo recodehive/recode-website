@@ -147,7 +147,7 @@ export default function CommunityJourney({
                 <h2 id="journey-heading" className={styles.title}>
                   From first commit to <span className={styles.accent}>maintainer</span>.
                 </h2>
-                <p className={styles.sub}>recode hive is built by its contributors.<br />This is how people grow here, one step at a time.</p>
+                <p className={styles.sub}>recode hive is built by its contributors. This is how people grow here, one step at a time.</p>
               </div>
               <div className={styles.actions}>
                 <a className={styles.btnPrimary} href={firstIssueUrl} target="_blank" rel="noopener noreferrer">
