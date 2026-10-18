@@ -11,18 +11,20 @@ export const Users: User[] = [
     website: "https://machine-learning-repos.vercel.app/",
     source: "https://github.com/recodehive/machine-learning-repos",
     tags: ["opensource", "ml", "favorite", "react"],
+    stack: "React",
   },
 
   //  Opesource project
 
   {
-    title: "Opesource Practice",
+    title: "Open Source Practice",
     description:
       "A beginner-friendly repository designed for newcomers to  learn , collaborate and practice open-source contributions.",
     preview: require("./showcase/opesource-project.png"),
     website: "https://github.com/recodehive/Opensource-practice",
     source: "https://github.com/recodehive/Opensource-practice",
     tags: ["opensource", "clone", "templates"],
+    stack: "Template",
   },
 
   // Scrape ML
@@ -35,6 +37,7 @@ export const Users: User[] = [
     website: "https://scrape-ml.streamlit.app/",
     source: "https://github.com/recodehive/Scrape-ML",
     tags: ["opensource", "templates", "clone"],
+    stack: "Streamlit",
   },
 
   // StackOverflow Analysis
@@ -47,6 +50,7 @@ export const Users: User[] = [
     website: "https://github.com/recodehive/Stackoverflow-Analysis",
     source: null,
     tags: ["opensource", "product", "nextjs", "javascript"],
+    stack: "Data analysis",
   },
 
   // Awesome GitHub Profiles"
@@ -59,5 +63,6 @@ export const Users: User[] = [
     website: "https://dev.recodehive.com/devfolio",
     source: "https://github.com/recodehive/awesome-github-profiles",
     tags: ["opensource", "nextjs", "typescript", "ai", "favorite"],
+    stack: "Next.js",
   },
 ];
