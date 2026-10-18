@@ -20,9 +20,9 @@ const faqData = [
       "Our community is completely open-source, and the entire codebase is available on GitHub for forking and contributing. <br><br><strong>Getting Started:</strong><br>1. Fork our <a href='https://github.com/recodehive/recode-website' target='_blank' rel='noopener noreferrer' class='text-green-600 hover:text-green-800 underline'>main repository</a><br>2. Check our <a href='/docs/GitHub/Maintainer-guide/github-labels' class='text-green-600 hover:text-green-800 underline'>contribution guidelines</a><br>3. Create your changes <br>4. Submit a pull request<br><br>📖 <a href='/docs/GitHub/GitHub-basics/first-opensource-code' class='text-green-600 hover:text-green-800 underline'>Learn how to make your first contribution</a>",
   },
   {
-    question: "What all resources are available here?",
+    question: "What resources are available here?",
     answer:
-      "We offer a comprehensive range of learning resources across multiple technologies:<br><br><strong>Currently Available:</strong><br>•🗄️ <a href='/docs/sql/intro-sql' class='text-green-600 hover:text-green-800 underline'> 🐙 <a href='/docs/GitHub/intro-github' class='text-green-600 hover:text-green-800 underline'>GitHub Guides</a> - Version control and collaboration<br> <br> <strong>Coming Soon:</strong> Advanced data tools tutorials, cloud technologies, and more!",
+      "We offer a comprehensive range of learning resources across multiple technologies:<br><br><strong>Currently Available:</strong><br>• 🐙 <a href='/docs/GitHub/intro-github' class='text-green-600 hover:text-green-800 underline'>GitHub Guides</a> - Version control and collaboration<br> <br> <strong>Coming Soon:</strong> Advanced data tools tutorials, cloud technologies, and more!",
   },
   {
     question: "How can I contribute as a beginner?",
