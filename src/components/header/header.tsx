@@ -75,8 +75,8 @@ const HeaderContent = () => {
           delay: 0.2,
         }}
       >
-        Get started with open-source contributions in an inclusive, worldwide
-        community. Earn while learning simpler and more practical.
+        Get started with open-source contributions in an inclusive, worldwide community. 
+        Learn by shipping real projects with real reviewers.
       </motion.p>
 
       <div className="chh__header-content__input">
