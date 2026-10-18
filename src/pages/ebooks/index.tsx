@@ -351,10 +351,6 @@ export default function Ebooks(): React.ReactElement {
   const [suggestLink, setSuggestLink] = useState("");
   const [suggestSuccess, setSuggestSuccess] = useState(false);
 
-  // Newsletter state
-  const [newsletterEmail, setNewsletterEmail] = useState("");
-  const [newsletterStatus, setNewsletterStatus] = useState<"idle" | "subscribed">("idle");
-
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   // Load favorites from localStorage
@@ -400,15 +396,6 @@ export default function Ebooks(): React.ReactElement {
       e.stopPropagation();
     }
     window.open(link, "_blank", "noopener,noreferrer");
-  };
-
-  const handleNewsletterSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newsletterEmail || !newsletterEmail.includes("@")) return;
-    setNewsletterStatus("subscribed");
-    setTimeout(() => {
-      setNewsletterEmail("");
-    }, 2000);
   };
 
   const handleSuggestSubmit = (e: React.FormEvent) => {
@@ -457,7 +444,6 @@ export default function Ebooks(): React.ReactElement {
     <Layout
       title="Open Knowledge for Builders | Recode Hive Ebooks"
       description="A curated collection of free programming ebooks, tools, and guides that inspire, educate, and help you master new skills."
-      noFooter
     >
       <Head>
         <title>Open Knowledge for Builders | recode hive</title>
@@ -783,123 +769,10 @@ export default function Ebooks(): React.ReactElement {
           </div>
         </section>
 
-        {/* =========================================================================
-            6. PAGE 2: STAY IN THE LOOP (NEWSLETTER SECTION)
-            ========================================================================= */}
-        <section className="ebook-newsletter-section">
-          <div className="ebook-exact-container ebook-newsletter-inner">
-            <div className="newsletter-text-content">
-              <h3 className="newsletter-title">Stay in the Loop</h3>
-              <p className="newsletter-subtitle">
-                Get new ebooks, tutorials, and guides in your inbox.
-              </p>
-            </div>
-            <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
-              <input
-                type="email"
-                className="newsletter-input"
-                placeholder="you@example.com"
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                required
-              />
-              <button
-                type="submit"
-                className="newsletter-submit-btn"
-                disabled={newsletterStatus === "subscribed"}
-              >
-                {newsletterStatus === "subscribed" ? "Subscribed!" : "Subscribe"}
-              </button>
-            </form>
-          </div>
-        </section>
+
 
         {/* =========================================================================
-            7. PAGE 2: CLEAN MINIMAL FOOTER
-            ========================================================================= */}
-        <footer className="ebook-clean-footer">
-          <div className="ebook-exact-container ebook-footer-inner">
-            {/* Left Brand */}
-            <div className="ebook-footer-brand">
-              <span className="footer-brand-name">recode hive</span>
-              <p className="footer-brand-tagline">
-                Collaboration first, code second.
-              </p>
-            </div>
-
-            {/* Right Nav Columns */}
-            <div className="ebook-footer-links-grid">
-              {/* Learning */}
-              <div className="footer-col">
-                <h4 className="footer-col-title">Learning</h4>
-                <ul className="footer-col-list">
-                  <li>
-                    <Link to="/docs" className="footer-link">
-                      Docs
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/blogs" className="footer-link">
-                      Blogs
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/ebooks" className="footer-link">
-                      Ebooks
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Company */}
-              <div className="footer-col">
-                <h4 className="footer-col-title">Company</h4>
-                <ul className="footer-col-list">
-                  <li>
-                    <Link to="/community" className="footer-link">
-                      About
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/contact-us" className="footer-link">
-                      Contact
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/privacy-policy" className="footer-link">
-                      Privacy Policy
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Support */}
-              <div className="footer-col">
-                <h4 className="footer-col-title">Support</h4>
-                <ul className="footer-col-list">
-                  <li>
-                    <Link to="/our-sponsors" className="footer-link">
-                      Donate
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/terms-service" className="footer-link">
-                      Terms
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/terms-service" className="footer-link">
-                      Disclaimer
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </footer>
-
-        {/* =========================================================================
-            8. MODAL: SUGGEST AN EBOOK
+            6. MODAL: SUGGEST AN EBOOK
             ========================================================================= */}
         {showSuggestModal && (
           <div className="suggest-modal-backdrop" onClick={() => setShowSuggestModal(false)}>

@@ -1034,168 +1034,10 @@
   transform: translateY(-1px);
 }
 
-/* ==========================================================================
-   7. PAGE 2: STAY IN THE LOOP (NEWSLETTER SECTION)
-   ========================================================================== */
-.ebook-newsletter-section {
-  background: #0b0d14;
-  color: #ffffff;
-  padding: 48px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
 
-.ebook-newsletter-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-}
-
-.newsletter-text-content {
-  max-width: 500px;
-}
-
-.newsletter-title {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0 0 6px;
-  letter-spacing: -0.02em;
-}
-
-.newsletter-subtitle {
-  font-size: 14px;
-  color: #94a3b8;
-  margin: 0;
-}
-
-.newsletter-form {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
-
-.newsletter-input {
-  width: 290px;
-  padding: 11px 16px;
-  background: #161822;
-  border: 1px solid #272a38;
-  border-radius: 8px;
-  font-size: 14px;
-  color: #ffffff;
-  outline: none;
-  transition: border-color 0.15s ease;
-}
-
-.newsletter-input:focus {
-  border-color: #a855f7;
-}
-
-.newsletter-input::placeholder {
-  color: #64748b;
-}
-
-.newsletter-submit-btn {
-  padding: 11px 22px;
-  background: #a855f7;
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  white-space: nowrap;
-}
-
-.newsletter-submit-btn:hover:not(:disabled) {
-  background: #9333ea;
-  transform: translateY(-1px);
-}
-
-.newsletter-submit-btn:disabled {
-  background: #10b981;
-  cursor: default;
-}
 
 /* ==========================================================================
-   8. PAGE 2: CLEAN MINIMAL FOOTER
-   ========================================================================== */
-.ebook-clean-footer {
-  background: var(--ebook-bg);
-  border-top: 1px solid var(--ebook-border);
-  padding: 56px 0 64px;
-}
-
-.ebook-footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 48px;
-}
-
-.ebook-footer-brand {
-  max-width: 320px;
-}
-
-.footer-brand-name {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--ebook-text-main);
-  display: block;
-  margin-bottom: 6px;
-  letter-spacing: -0.01em;
-}
-
-.footer-brand-tagline {
-  font-size: 14px;
-  color: var(--ebook-text-muted);
-  margin: 0;
-}
-
-.ebook-footer-links-grid {
-  display: flex;
-  gap: 64px;
-}
-
-.footer-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-col-title {
-  font-family: "Plus Jakarta Sans", sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ebook-text-main);
-  margin: 0 0 16px;
-}
-
-.footer-col-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-link {
-  font-size: 13.5px;
-  color: var(--ebook-text-muted) !important;
-  text-decoration: none !important;
-  transition: color 0.15s ease;
-}
-
-.footer-link:hover {
-  color: var(--ebook-text-main) !important;
-}
-
-/* ==========================================================================
-   9. MODAL: SUGGEST AN EBOOK
+   7. MODAL: SUGGEST AN EBOOK
    ========================================================================== */
 .suggest-modal-backdrop {
   position: fixed;
@@ -1348,7 +1190,7 @@
 }
 
 /* ==========================================================================
-   10. RESPONSIVE MEDIA QUERIES
+   8. RESPONSIVE MEDIA QUERIES
    ========================================================================== */
 @media (max-width: 960px) {
   .ebook-cards-grid {
@@ -1392,26 +1234,5 @@
   }
   .contribute-btn {
     width: 100%;
-  }
-  .ebook-newsletter-inner {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .newsletter-form {
-    width: 100%;
-    flex-direction: column;
-  }
-  .newsletter-input {
-    width: 100%;
-  }
-  .newsletter-submit-btn {
-    width: 100%;
-  }
-  .ebook-footer-inner {
-    flex-direction: column;
-  }
-  .ebook-footer-links-grid {
-    flex-direction: column;
-    gap: 24px;
   }
 }
