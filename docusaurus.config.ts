@@ -131,10 +131,8 @@ const config: Config = {
               value: `<div class="grid grid-cols-3 gap-4 w-xl">
                  <a class="border-r col-span-1" href="/docs/">Tutorials</a>
                  <div class="grid grid-cols-4 col-span-2">
-                   <a href="/docs/sql/intro-sql" class="nav__icons"> <img src="/icons/sql.svg" title="SQL" alt="SQL" /> </a>
                    <a href="/docs/GitHub/intro-github" class="nav__icons" > <img src="/icons/github.svg" title="GitHub" alt="GitHub" /> </a>
                    <a href="/docs" class="nav__icons"> <img src="/icons/Logo-512X512.png" title="Docs" alt="Docs" /> </a>
-                   <a href="/docs/Docker/intro" class="nav__icons"> <img src="/icons/docker.svg" title="Docker" alt="Docker" /> </a>
                  </div>
                </div>`,
             },
