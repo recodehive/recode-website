@@ -153,9 +153,20 @@ const config: Config = {
           ],
         },
         {
+          type: "dropdown",
           to: "/showcase",
           html: '<span class="nav-emoji">🌍</span> Showcase',
           position: "left",
+          items: [
+            {
+              label: "💻 GitHub Profiles",
+              to: "https://dev.recodehive.com/devfolio",
+            },
+            {
+              label: "🎖️ GitHub Badges",
+              to: "/badges/github-badges/",
+            },
+          ],
         },
         {
           to: "/dashboard",
@@ -204,14 +215,6 @@ const config: Config = {
             {
               label: "🛍️ Merch Store",
               to: "/merch",
-            },
-            {
-              label: "💻GitHub Profiles",
-              to: "https://dev.recodehive.com/devfolio",
-            },
-            {
-              label: "🎖️ GitHub Badges",
-              to: "/badges/github-badges/",
             },
           ],
         },
