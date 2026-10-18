@@ -22,7 +22,7 @@ const TopMateSection = ({ setShowTopmate }) => {
   const { isDark } = useSafeColorMode();
 
   const profileData = {
-    title: "1:1 Mentorship Call",
+    title: "Mentorship Call with Founder",
     description: "Book a slot free for recode hive Community Members.",
     duration: "30 mins",
     profileImage: "/sanjay-mentor.jpg",
