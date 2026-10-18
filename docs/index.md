@@ -163,8 +163,8 @@ For full details, read the [Contributing Guidelines](https://github.com/recodehi
 | Website | [recodehive.com](https://recodehive.com/) |
 | YouTube | [@RecodeHive](https://www.youtube.com/@RecodeHive) |
 | LinkedIn | [Sanjay K V](https://www.linkedin.com/in/sanjay-k-v/) |
-| Twitter / X | [@sanjay_kv_](https://x.com/sanjay_kv_) |
-| Instagram | [@nomad_brains](https://www.instagram.com/nomad_brains/) |
+| Twitter / X | [@nomadbrainsdev](https://x.com/nomadbrainsdev) |
+| Instagram | [@nomadbrains.dev](https://www.instagram.com/nomadbrains.dev/) |
 | Newsletter | [recodehive.substack.com](https://recodehive.substack.com/) |
 | Discord | [discord.gg/Yxv9RA3r](https://discord.gg/Yxv9RA3r) |
 

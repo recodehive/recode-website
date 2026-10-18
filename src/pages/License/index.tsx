@@ -36,7 +36,7 @@ const Licensing: React.FC = () => {
               </h2>
               <div className="lic-section-content">
                 <p>
-                  <strong>Copyright (c) 2025 RecodeHive</strong>
+                  <strong>Copyright (c) 2026 RecodeHive</strong>
                 </p>
                 <p>
                   Permission is hereby granted, free of charge, to any person

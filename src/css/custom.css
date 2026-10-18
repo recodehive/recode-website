@@ -13,6 +13,22 @@
   box-sizing: border-box;
 }
 
+/* Homepage navbar: align the inner row with the 1280px content column.
+   !important is needed to beat the existing full-bleed navbar overrides. */
+@media (min-width: 997px) {
+  .rh-home-page .navbar {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .rh-home-page .navbar .navbar__inner {
+    max-width: 1280px !important;
+    margin-inline: auto;
+    padding-inline: 24px;
+    box-sizing: border-box;
+  }
+}
+
 [data-theme="light"] .interview-prep-page p,
 [data-theme="light"] .interview-prep-page li,
 [data-theme="light"] .interview-prep-page span,
@@ -1845,10 +1861,10 @@ html {
   align-items: center !important;
   justify-content: space-between !important;
   box-sizing: border-box !important;
-  width: 250px;
+  width: 190px;
   height: 36px !important;
-  min-width: 250px !important;
-  padding: 0 12px 0 48px !important;
+  min-width: 190px !important;
+  padding: 0 10px 0 38px !important;
   line-height: 1 !important;
   transform: none !important;
   white-space: nowrap;
@@ -1862,7 +1878,7 @@ html {
 .algolia-sitesearch-navbar .sitesearch-button .search-icon {
   position: absolute !important;
   top: 50% !important;
-  left: 16px !important;
+  left: 12px !important;
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
@@ -2074,32 +2090,24 @@ main {
     transform 0.6s ease-out;
 }
 
+/* Homepage: one continuous background from navbar to blog (scoped; docs/blog untouched) */
+.homepage {
+  background-color: #f8fafc;
+}
+
+html[data-theme="dark"] .homepage {
+  background-color: #17181c;
+}
+
 /* Blog carousel section background */
 .blog-carousel-section {
-  background: linear-gradient(135deg, #f8f9ff 0%, #f0f2ff 50%, #e8ebff 100%);
+  background: transparent;
   position: relative;
   overflow: hidden;
 }
 
 [data-theme="dark"] .blog-carousel-section {
-  background: linear-gradient(135deg, #1b1b1d 0%, #121212 50%, #1a202c 100%);
-}
-
-.blog-carousel-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background:
-    radial-gradient(circle at 20% 30%,
-      rgba(99, 102, 241, 0.08) 0%,
-      transparent 40%),
-    radial-gradient(circle at 80% 70%,
-      rgba(168, 85, 247, 0.06) 0%,
-      transparent 45%);
-  pointer-events: none;
+  background: transparent;
 }
 
 /* Enhanced link transitions */
@@ -2354,8 +2362,9 @@ main>div:not(.m-0) {
 }
 
 .blog-carousel-section {
-  padding: 2rem 0 !important;
-  margin: 2rem 0 !important;
+  /* former 2rem top margin folded into padding so no gap shows between hero and blog */
+  padding: 4rem 0 2rem !important;
+  margin: 0 0 2rem !important;
 }
 
 /* Responsive: reduce spacing on mobile devices */
@@ -2366,8 +2375,8 @@ main>div:not(.m-0) {
   }
 
   .blog-carousel-section {
-    padding: 1.5rem 0 !important;
-    margin: 1.5rem 0 !important;
+    padding: 3rem 0 1.5rem !important;
+    margin: 0 0 1.5rem !important;
   }
 
   /* Reduce section padding on mobile */

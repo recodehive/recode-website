@@ -50,7 +50,7 @@ export function BlogCarousel() {
           <p className="blog-section-eyebrow">✦ Blog</p>
           <h2 className="blog-section-title">From the Blog</h2>
           <p className="blog-section-subtitle">
-            Latest articles from our contributors
+            Latest articles from our contributors.
           </p>
         </div>
         <Link to="/blogs" className="blog-section-viewall">
@@ -64,6 +64,8 @@ export function BlogCarousel() {
         opts={{
           align: "start",
           loop: true,
+          // one scroll position (and one dot) per article at every screen width
+          containScroll: false,
         }}
         plugins={[
           Autoplay({
@@ -96,7 +98,10 @@ export function BlogCarousel() {
 
         {/* Carousel Controls */}
         <div className="mt-8 flex items-center justify-center gap-4">
-          <CarouselPrevious className="static h-10 w-10 translate-y-0 border border-green-200 transition-all duration-300 hover:scale-110 hover:border-green-500 dark:border-green-900 dark:hover:border-green-600" />
+          <CarouselPrevious
+            aria-label="Previous articles"
+            className="static h-11 w-11 translate-y-0 border border-slate-300 bg-white text-slate-900 transition-all duration-300 hover:border-[#2e8555] hover:text-[#2e8555] hover:shadow-[0_0_6px_rgba(46,133,85,0.5)] dark:border-slate-600 dark:bg-[#1e1f20] dark:text-slate-100"
+          />
 
           {/* Dot indicators */}
           <div className="flex items-center gap-2">
@@ -105,15 +110,19 @@ export function BlogCarousel() {
                 key={index}
                 onClick={() => api?.scrollTo(index)}
                 aria-label={`Go to slide ${index + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${current === index + 1
-                  ? "w-5 bg-green-600 dark:bg-green-400"
-                  : "w-2 bg-gray-300 hover:bg-gray-400 dark:bg-gray-600 dark:hover:bg-gray-500"
-                  }`}
+                className="hb-dot h-2 rounded-full"
+                style={{
+                  width: current === index + 1 ? "24px" : "8px",
+                  backgroundColor: current === index + 1 ? "#2e8555" : "#cbd5e1",
+                }}
               />
             ))}
           </div>
 
-          <CarouselNext className="static h-10 w-10 translate-y-0 border border-green-200 transition-all duration-300 hover:scale-110 hover:border-green-500 dark:border-green-900 dark:hover:border-green-600" />
+          <CarouselNext
+            aria-label="Next articles"
+            className="static h-11 w-11 translate-y-0 border border-slate-300 bg-white text-slate-900 transition-all duration-300 hover:border-[#2e8555] hover:text-[#2e8555] hover:shadow-[0_0_6px_rgba(46,133,85,0.5)] dark:border-slate-600 dark:bg-[#1e1f20] dark:text-slate-100"
+          />
         </div>
       </Carousel>
     </div>

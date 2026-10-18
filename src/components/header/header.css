@@ -1,10 +1,12 @@
 .chh__header--body {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  padding: 3rem auto;
-  background-color: #FAFAF8;
+  /* top spacing lives here as padding (was a 2rem margin that exposed the body background) */
+  padding-top: 2rem;
+  background-color: transparent;
   color: #111827;
   transition:
     background 0.4s ease,
@@ -12,14 +14,50 @@
 }
 
 [data-theme="dark"] .chh__header--body {
-  background: #17181c;
+  background: transparent;
   color: #f9fafb;
+}
+
+/* Beats the generic `main > div` section margins so no gap shows above/below the hero */
+.rh-home > .chh__header--body {
+  margin-block: 0;
+}
+
+/* Seasonal: room for the pumpkins that hang below the live activity card */
+.chh__header--body.chh__header--halloween {
+  padding-bottom: 2.5rem;
+}
+
+.chh__hero-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    linear-gradient(#e7edf3 1px, transparent 1px),
+    linear-gradient(90deg, #e7edf3 1px, transparent 1px);
+  background-size: 44px 44px;
+  -webkit-mask-image:
+    radial-gradient(ellipse 60% 100% at 78% 20%, #000 20%, transparent 75%),
+    linear-gradient(to bottom, #000 70%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    radial-gradient(ellipse 60% 100% at 78% 20%, #000 20%, transparent 75%),
+    linear-gradient(to bottom, #000 70%, transparent 100%);
+  mask-composite: intersect;
+}
+
+html[data-theme="dark"] .chh__hero-grid {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
 }
 
 .chh__header {
   display: flex;
   flex-direction: row;
   position: relative;
+  z-index: 1;
   gap: 2rem;
   width: 100%;
   padding-block: 3rem;

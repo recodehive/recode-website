@@ -93,7 +93,7 @@ Replace my name with your name and respective website links of yours.
 sanjay-kv:
   name: Sanjay Viswanthan
   title: Founder at recode hive
-  url: www.sanjaykv.com
+  url: https://nomadbrains.dev
   image_url: https://avatars.githubusercontent.com/u/30715153?v=4
   email: sanjay@recodehive.com
   page: true # Turns the feature on
@@ -101,11 +101,11 @@ sanjay-kv:
     I'm a Software Engineer turned into a Data Engineer and Program Manager🚀, 🏆 Google ML Facilitator & Ex- GitHub CE who delivered 100+ talks on ML and open source and developer advocacy at various events and platforms.
 
   socials:
-    x: https://x.com/sanjay_kv_
+    x: https://x.com/nomadbrainsdev
     linkedin: sanjay-k-v
     github: sanjay-kv
     stackoverflow: 8332327
-    instagram: nomad_brains
+    instagram: nomadbrains.dev
     newsletter: https://recodehive.substack.com
     bluesky: sanjaykv.bsky.social
 ```

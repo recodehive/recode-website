@@ -10,9 +10,31 @@ import ScrollBottomToTop from "../components/scroll/bottom-to-top";
 import { BlogCarousel } from "../components/blogCarousel/blogCarousel";
 import TopMateSection from "../components/topmate/TopMateSection";
 import { TestimonialCarousel } from "../components/testimonials/TestimonialCarousel";
-import { CommunityStatsProvider } from "../lib/statsProvider";
-import { LandingCommunity } from "../components/Community";
+import { CommunityStatsProvider, useCommunityStatsContext } from "../lib/statsProvider";
+import CommunityStats from "../components/CommunityStats";
+import CommunityJourney from "../components/CommunityJourney";
 import FAQs from "../components/faqs/faqs";
+
+function CommunitySection() {
+  const {
+    githubStarCount,
+    githubReposCount,
+    githubContributorsCount,
+    githubForksCount,
+  } = useCommunityStatsContext();
+
+  return (
+    <CommunityStats
+      stats={{
+        stars: githubStarCount,
+        projects: githubReposCount,
+        contributors: githubContributorsCount,
+        forks: githubForksCount,
+      }}
+      githubUrl="https://github.com/recodehive"
+    />
+  );
+}
 
 export default function Home(): ReactNode {
   const { siteConfig } = useDocusaurusContext();
@@ -41,6 +63,7 @@ export default function Home(): ReactNode {
       description="Welcome to recode hive. Learn the basics to advanced concepts of web development. sql, python, Cloud, GitHub and more."
     >
       <Head>
+        <body className="rh-home-page" />
         <script
           async
           custom-element="amp-auto-ads"
@@ -50,37 +73,21 @@ export default function Home(): ReactNode {
 
       {/* ✅ Wrap in solid background to fix light mode */}
       <div
-        className="transition-colors duration-300"
-        style={{
-          backgroundColor: "var(--ifm-background-color)",
-          color: "var(--ifm-font-color-base)",
-        }}
+        className="homepage transition-colors duration-300"
+        style={{ color: "var(--ifm-font-color-base)" }}
       >
         <main
           className="rh-home page-enter transition-colors duration-300"
-          style={{
-            backgroundColor: "var(--ifm-background-color)",
-            color: "var(--ifm-font-color-base)",
-          }}
+          style={{ color: "var(--ifm-font-color-base)" }}
         >
           <CommunityStatsProvider>
           <Header />
 
+          <CommunityJourney />
+
           <div className="blog-carousel-section">
             <div className="rh-container">
               <BlogCarousel />
-            </div>
-          </div>
-
-          <div className="rh-container my-4">
-            <div
-              onClick={() => (window.location.href = "https://www.sanjaykv.com/")}
-            >
-              <img
-                src="/selfhero.png"
-                alt="recodehive"
-                className="h-full w-full cursor-pointer rounded-2xl object-cover"
-              />
             </div>
           </div>
 
@@ -100,12 +107,21 @@ export default function Home(): ReactNode {
             </div>
           </div>
 
-          <div className="rh-container my-4">
-            <LandingCommunity className="recodehive" />
+          <div className="my-4">
+            <CommunitySection />
           </div>
           </CommunityStatsProvider>
 
-          <div style={{ border: "none", boxShadow: "none", outline: "none" }}>
+          <div
+            style={{
+              border: "none",
+              boxShadow: "none",
+              outline: "none",
+              // spacing as padding (not margin) so no strip shows above the footer
+              margin: 0,
+              paddingBlock: "2rem",
+            }}
+          >
             <FAQs />
           </div>
         </main>

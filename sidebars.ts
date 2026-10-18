@@ -31,6 +31,7 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "🐙 GitHub",
       className: "custom-sidebar-github",
+      collapsed: false,
       items: [
         "GitHub/intro-github",
         
@@ -38,6 +39,7 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "⚙️ Setup Environment",
           className: "custom-sidebar-setup",
+          collapsed: false,
           items: [
             "GitHub/setup-environment/setup-environment",
             "GitHub/setup-environment/setup-git-on-windows",
@@ -49,6 +51,7 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "📚 GitHub Basics",
           className: "custom-sidebar-basics",
+          collapsed: false,
           items: [
             "GitHub/GitHub-basics/create-github-repo",
             "GitHub/GitHub-basics/github-repo-command-line",
@@ -61,6 +64,7 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "👨‍💼 Maintainer Guide",
           className: "custom-sidebar-maintainer",
+          collapsed: false,
           items: [
             "GitHub/Maintainer-guide/github-labels",
             "GitHub/Maintainer-guide/milestone",
@@ -72,102 +76,12 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "Fun Proflie Customizations",
           className: "custom-sidebar-fun",
+          collapsed: false,
           items: [
             "GitHub/Fun-Profile-Customizations/Why-Customize",
             "GitHub/Fun-Profile-Customizations/Anurag-Hazra's-GitHub-Readme-Cards",
             "GitHub/Fun-Profile-Customizations/Trophy-Case-Streaks",
             "GitHub/Fun-Profile-Customizations/Snake-Contribution-Animation",
-          ],
-        },
-      ],
-    },
-    {
-      type: "category",
-      label: "🗄️ SQL",
-      className: "custom-sidebar-sql",
-      items: [
-        "sql/intro-sql",
-        "sql/setup-environment",
-        {
-          type: "category",
-          label: "📊 SQL Basics",
-          className: "custom-sidebar-sql-basics",
-          items: [
-            "sql/SQL-basics/sql-constraints",
-            "sql/SQL-basics/selecting-data",
-            "sql/SQL-basics/filtering-data",
-            "sql/SQL-basics/ordering-data",
-            "sql/SQL-basics/grouping-data",
-            "sql/SQL-basics/sql-having-vs-group-by",
-            "sql/SQL-basics/the-inequality-operator",
-            "sql/SQL-basics/sql-datatypes",
-            "sql/SQL-basics/primary-key-foreign-key",
-            "sql/SQL-basics/sql-operators",
-            "sql/SQL-basics/sql-clauses",
-          ],
-        },
-        {
-          type: "category",
-          label: "🔄 Table Transformation",
-          className: "custom-sidebar-sql-transform",
-          items: [
-            "sql/table-transformation/table-creation",
-            "sql/table-transformation/alter-table",
-            "sql/table-transformation/data-operations",
-            "sql/table-transformation/list-drop-table",
-          ],
-        },
-        {
-          type: "category",
-          label: "SQL Joins",
-          className: "custom-sidebar-sql-joins",
-          items: [
-            "sql/SQL-joins/intro-sql-joins",
-            "sql/SQL-joins/inner-join",
-            "sql/SQL-joins/left-join",
-            "sql/SQL-joins/right-join",
-            "sql/SQL-joins/full-outer-join",
-            "sql/SQL-joins/cross-join",
-            "sql/SQL-joins/self-join",
-          ],
-        },
-        {
-          type: "category",
-          label: "SQL Advance",
-          className: "custom-sidebar-sql-advance",
-          items: [
-            "sql/SQL-Advance/sql-subqueries",
-            "sql/SQL-Advance/common-table-expressions",
-            "sql/SQL-Advance/window-functions",
-            "sql/SQL-Advance/sql-indexes",
-            "sql/SQL-Advance/sql-advanced-analytics",
-            "sql/SQL-Advance/sql-procedures-functions-triggers",
-            "sql/SQL-Advance/dimensional-modelling",
-            "sql/SQL-Advance/sql-transactions-concurrency",
-          ],
-        },
-      ],
-    },
-
-    {
-      type: "category",
-      label: "Docker",
-      className: "custom-sidebar-docker",
-      customProps: {
-        icon: "/icons/docker.svg"
-      },
-      items: [
-        "Docker/intro",
-        "Docker/setup-environment",
-        "Docker/docker-commands",
-        "Docker/dockerfile-guide",
-        {
-          type: "category",
-          label: "Docker Compose",
-          className: "custom-sidebar-docker-compose",
-          items: [
-            "Docker/docker-compose",
-            "Docker/docker-compose-advanced",
           ],
         },
       ],

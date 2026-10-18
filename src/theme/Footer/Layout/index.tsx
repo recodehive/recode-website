@@ -3,6 +3,8 @@ import Link from "@docusaurus/Link";
 import { createPortal } from "react-dom";
 import "./footer.css";
 
+import { subscribeToSubstack } from "../../../lib/substack";
+
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type FooterLink = {
@@ -22,7 +24,6 @@ const LINK_COLUMNS: FooterColumn[] = [
     title: "Learning",
     links: [
       { label: "Documentation", to: "/docs", badge: { text: "Popular", variant: "green" } },
-      { label: "Get Started", to: "/get-started" },
       { label: "GitHub Badges", to: "/badges/github-badges" },
       { label: "GitHub Profiles", to: "https://dev.recodehive.com/devfolio", external: true },
       { label: "Video Courses", to: "/courses", badge: { text: "New", variant: "green" } },
@@ -52,8 +53,8 @@ const LINK_COLUMNS: FooterColumn[] = [
 
 const SOCIALS: FooterLink[] = [
   { label: "GitHub", to: "https://github.com/recodehive" },
-  { label: "X", to: "https://x.com/sanjay_kv_" },
-  { label: "Instagram", to: "https://www.instagram.com/nomad_brains/" },
+  { label: "X", to: "https://x.com/nomadbrainsdev" },
+  { label: "Instagram", to: "https://www.instagram.com/nomadbrains.dev/" },
   { label: "LinkedIn", to: "https://www.linkedin.com/in/sanjay-k-v/" },
   { label: "YouTube", to: "https://www.youtube.com/@RecodeHive" },
 ];
@@ -86,6 +87,7 @@ export default function FooterLayout(): ReactNode {
     }
 
     setError("");
+    subscribeToSubstack(email);
     setIsSubscribed(true);
     setShowToast(true);
 
@@ -105,8 +107,8 @@ export default function FooterLayout(): ReactNode {
               ✓
             </span>
             <div>
-              <h4 className="rh-toast__title">Successfully Subscribed!</h4>
-              <p className="rh-toast__text">Thank you for joining our newsletter.</p>
+              <h4 className="rh-toast__title">Almost there!</h4>
+              <p className="rh-toast__text">Confirm your email in the new tab to join our newsletter.</p>
             </div>
             <button
               className="rh-toast__close"
@@ -241,8 +243,8 @@ export default function FooterLayout(): ReactNode {
         {/* Meta row: quick links + socials */}
         <div className="rh-footer__meta">
           <div className="rh-footer__meta-links">
-            <Link to="/get-started" className="rh-footer__meta-link">
-              Get Started
+            <Link to="/courses" className="rh-footer__meta-link">
+              Courses
             </Link>
             <Link to="/dashboard" className="rh-footer__meta-link">
               Dashboard

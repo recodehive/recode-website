@@ -47,6 +47,9 @@ export type User = {
   website: string | null;
   source: string | null;
   tags: TagType[];
+  /** Defaults to 'flagship' for entries tagged 'favorite', otherwise 'community'. */
+  type?: "flagship" | "community" | "client";
+  stack?: string;
 };
 
 export const Tags: { [type in TagType]: Tag } = {

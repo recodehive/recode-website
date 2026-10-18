@@ -201,7 +201,7 @@ export function TestimonialCarousel() {
       >
         <motion.div custom={0} variants={revealVariants} className="mb-2.5">
           <span
-            className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase"
+            className="inline-flex items-center gap-2 text-xl font-semibold tracking-widest uppercase"
             style={{
               color: isDark ? "#4ade80" : "#16a34a",
               fontFamily:
@@ -231,7 +231,7 @@ export function TestimonialCarousel() {
             fontFamily: "'Inter', -apple-system, sans-serif",
           }}
         >
-          Our builders go on to do incredible things — from OpenAI to becoming
+          Our builders go on to do incredible things from OpenAI to becoming
           AI engineers and founders.
         </motion.p>
       </motion.div>

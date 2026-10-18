@@ -230,7 +230,7 @@ Need assistance? We're here to help!
 
 - **Website:** [recodehive.com](https://recodehive.com/)
 - **LinkedIn:** [Sanjay K V](https://www.linkedin.com/in/sanjay-k-v/)
-- **Twitter:** [@sanjay_kv_](https://x.com/sanjay_kv_)
+- **Twitter:** [@nomadbrainsdev](https://x.com/nomadbrainsdev)
 - **YouTube:** [@RecodeHive](https://www.youtube.com/@RecodeHive)
 - **Newsletter:** [Subscribe](https://recodehive.substack.com/)
 
