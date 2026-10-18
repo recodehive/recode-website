@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { subscribeToSubstack } from "../lib/substack";
 
 const NewsletterPopup = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     const hasSubscribed = localStorage.getItem("recodehive_newsletter_popup");
@@ -77,13 +79,15 @@ const NewsletterPopup = () => {
           className="mb-4 flex w-full items-stretch overflow-hidden rounded-xl border-2 border-gray-300 bg-white shadow-inner focus-within:ring-2 focus-within:ring-blue-500"
           onSubmit={(e) => {
             e.preventDefault();
-            alert("Subscribed! (Integrate with Substack API)");
+            subscribeToSubstack(email.trim());
             handleClose();
           }}
         >
           <input
             type="email"
             required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Type your email..."
             className="flex-1 bg-transparent px-4 py-2 text-sm text-gray-800 placeholder-gray-400 focus:outline-none"
           />

@@ -3,6 +3,8 @@ import Link from "@docusaurus/Link";
 import { createPortal } from "react-dom";
 import "./footer.css";
 
+import { subscribeToSubstack } from "../../../lib/substack";
+
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type FooterLink = {
@@ -85,6 +87,7 @@ export default function FooterLayout(): ReactNode {
     }
 
     setError("");
+    subscribeToSubstack(email);
     setIsSubscribed(true);
     setShowToast(true);
 
@@ -104,8 +107,8 @@ export default function FooterLayout(): ReactNode {
               ✓
             </span>
             <div>
-              <h4 className="rh-toast__title">Successfully Subscribed!</h4>
-              <p className="rh-toast__text">Thank you for joining our newsletter.</p>
+              <h4 className="rh-toast__title">Almost there!</h4>
+              <p className="rh-toast__text">Confirm your email in the new tab to join our newsletter.</p>
             </div>
             <button
               className="rh-toast__close"
