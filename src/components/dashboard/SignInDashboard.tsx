@@ -1,11 +1,14 @@
-import React from 'react'
+import { useState } from 'react'
 import { Flame, Calendar, Trophy, Activity, Share2, Check, Play } from 'lucide-react'
 import { useUser } from '@clerk/react'
 import { useCommunityStatsContext } from "@site/src/lib/statsProvider"
 import { getWeekBuckets, getCurrentStreak } from "@site/src/lib/streakUtils"
+import TourPopUp from './TourPopUp'
 import '../../styles/globals.css'
 
 export default function SignInDashboard(): JSX.Element {
+  const [showPopUp, setShowPopUp] = useState<boolean>(false)
+  
   const { user } = useUser()
   const displayName = user?.firstName
 
@@ -56,10 +59,11 @@ export default function SignInDashboard(): JSX.Element {
           </span>
         </div>
 
-        <button className="flex w-full shrink-0 items-center justify-center gap-1 rounded-xl bg-[#16a34a] px-5 py-2 text-sm font-semibold text-white transition hover:bg-green-700 sm:w-auto">
+        <button onClick={()=>setShowPopUp(true)} className="flex w-full shrink-0 items-center justify-center gap-1 rounded-xl bg-[#16a34a] px-5 py-2 text-sm font-semibold text-white transition hover:bg-green-700 sm:w-auto">
           <Play size={16}/>
           Watch the tour
         </button>
+
       </section>
 
       <h2 className="text-start text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
@@ -262,6 +266,10 @@ export default function SignInDashboard(): JSX.Element {
           </div>
         </div>
       </section>
+      {
+          showPopUp && 
+          <TourPopUp onClose={()=>setShowPopUp(false)}/>
+        }
     </div>
   )
 }
