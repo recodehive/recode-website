@@ -156,7 +156,8 @@
   display: block;
   width: 100%;
   height: 170px;
-  object-fit: cover;
+  /* show the whole cover so text in the artwork is never cropped */
+  object-fit: contain;
 }
 
 /* ── Content ── */
