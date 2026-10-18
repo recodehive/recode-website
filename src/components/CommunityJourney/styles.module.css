@@ -157,7 +157,6 @@
 /* ---------- Responsive + motion ---------- */
 @media (min-width: 700px) { .head { grid-template-columns: minmax(0, 1fr) auto; } }
 @media (min-width: 900px) { .title { white-space: nowrap; } }
-@media (min-width: 1200px) { .sub { white-space: nowrap; } }
 @media (max-width: 560px) { .section { padding-block: 3rem 0; } .inner { padding: 48px 24px 28px; } }
 @media (prefers-reduced-motion: reduce) {
   .line { animation: none; clip-path: none; }
