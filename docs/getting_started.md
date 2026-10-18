@@ -93,7 +93,7 @@ Replace my name with your name and respective website links of yours.
 sanjay-kv:
   name: Sanjay Viswanthan
   title: Founder at recode hive
-  url: www.sanjaykv.com
+  url: https://nomadbrains.dev
   image_url: https://avatars.githubusercontent.com/u/30715153?v=4
   email: sanjay@recodehive.com
   page: true # Turns the feature on

@@ -90,7 +90,7 @@ export default function CommunityJourney({
   steps = STEPS,
   firstIssueUrl = GOOD_FIRST_ISSUES,
   communityUrl = 'https://discord.gg/dh3TA8U55Q',
-  founderUrl = 'https://www.sanjaykv.com/',
+  founderUrl = 'https://nomadbrains.dev/',
   avatarSrc = '/img/memoji.png',
 }: Props) {
   const [active, setActive] = useState(0);
