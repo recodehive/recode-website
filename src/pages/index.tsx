@@ -12,7 +12,7 @@ import TopMateSection from "../components/topmate/TopMateSection";
 import { TestimonialCarousel } from "../components/testimonials/TestimonialCarousel";
 import { CommunityStatsProvider, useCommunityStatsContext } from "../lib/statsProvider";
 import CommunityStats from "../components/CommunityStats";
-import FounderSection from "../components/FounderSection";
+import CommunityJourney from "../components/CommunityJourney";
 import FAQs from "../components/faqs/faqs";
 
 function CommunitySection() {
@@ -83,14 +83,12 @@ export default function Home(): ReactNode {
           <CommunityStatsProvider>
           <Header />
 
+          <CommunityJourney />
+
           <div className="blog-carousel-section">
             <div className="rh-container">
               <BlogCarousel />
             </div>
-          </div>
-
-          <div className="my-4">
-            <FounderSection />
           </div>
 
           {/* Mentorship (left) + Testimonials (right) — side by side */}
