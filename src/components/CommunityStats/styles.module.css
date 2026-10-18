@@ -131,17 +131,40 @@
   font-weight: 700;
 }
 
+/* Tile tokens: light mode (default) */
 .tile {
+  --t-bg: #f3faf6;
+  --t-border: #d3ecdf;
+  --t-lv0: #e1ebe5;
+  --t-lv1: #bfe3cd;
+  --t-lv2: #7cc79f;
+  --t-lv3: #3cad6e;
+  --t-lv4: #2e8555;
+  --t-link: #205d3b;
+  --t-text: #0f172a;
+
   grid-column: 3 / span 2;
   grid-row: 1 / span 2;
-  background: #0d1117;
-  border-color: #0d1117;
-  color: #e2e8f0;
+  background: var(--t-bg);
+  border-color: var(--t-border);
   padding: 28px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   overflow: hidden;
+}
+
+/* Tile tokens: dark mode (keeps the previous look) */
+:global(html[data-theme="dark"]) .tile {
+  --t-bg: #0d1117;
+  --t-border: #0d1117;
+  --t-lv0: #161b22;
+  --t-lv1: #12321f;
+  --t-lv2: #1d5c3a;
+  --t-lv3: #2e8555;
+  --t-lv4: #4cc184;
+  --t-link: #6fd39a;
+  --t-text: #ffffff;
 }
 .cells {
   display: grid;
@@ -171,19 +194,19 @@
   }
 }
 .lv0 {
-  background: #161b22;
+  background: var(--t-lv0);
 }
 .lv1 {
-  background: #12321f;
+  background: var(--t-lv1);
 }
 .lv2 {
-  background: #1d5c3a;
+  background: var(--t-lv2);
 }
 .lv3 {
-  background: #2e8555;
+  background: var(--t-lv3);
 }
 .lv4 {
-  background: #4cc184;
+  background: var(--t-lv4);
 }
 .tileBody {
   margin-top: auto;
@@ -194,7 +217,7 @@
 .tileLink {
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 12px;
-  color: #6fd39a;
+  color: var(--t-link);
 }
 .tileText {
   margin: 0;
@@ -202,7 +225,7 @@
   font-size: 22px;
   line-height: 1.35;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--t-text);
 }
 
 .btn {
