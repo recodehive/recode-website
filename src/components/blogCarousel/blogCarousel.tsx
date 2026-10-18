@@ -64,6 +64,8 @@ export function BlogCarousel() {
         opts={{
           align: "start",
           loop: true,
+          // one scroll position (and one dot) per article at every screen width
+          containScroll: false,
         }}
         plugins={[
           Autoplay({
