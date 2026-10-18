@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./styles.module.css";
+import { useHalloween } from "../Halloween/useHalloween";
+import { HALLOWEEN_CELLS, HalloweenTileDecor } from "./HalloweenTile";
 
 type Stats = {
   stars: number;
@@ -97,6 +99,7 @@ export default function CommunityStats({
   stats: Stats;
   githubUrl?: string;
 }) {
+  const halloween = useHalloween();
   return (
     <section className={styles.section} aria-labelledby="community-heading">
       <div className="rh-container">
@@ -139,16 +142,23 @@ export default function CommunityStats({
             icon={<ForkIcon />}
           />
 
-          <article className={`${styles.card} ${styles.tile}`}>
+          <article
+            className={`${styles.card} ${styles.tile}${halloween ? ` ${styles.halloween}` : ""}`}
+          >
+            {halloween && <HalloweenTileDecor />}
             <div className={styles.cells} aria-hidden="true">
               {CELLS.map((lv, i) => (
                 <span
                   key={i}
-                  className={`${styles.cell} ${LEVELS[lv]} ${
-                    (i * 7) % 3 === 0 ? styles.blink : ""
-                  }`}
+                  className={
+                    halloween
+                      ? `${styles.cell} ${HALLOWEEN_CELLS[i]}`
+                      : `${styles.cell} ${LEVELS[lv]} ${
+                          (i * 7) % 3 === 0 ? styles.blink : ""
+                        }`
+                  }
                   style={
-                    (i * 7) % 3 === 0
+                    !halloween && (i * 7) % 3 === 0
                       ? {
                           animationDelay: `${((i * 37) % 100) * 0.09}s`,
                           animationDuration: `${4 + ((i * 13) % 7) * 0.9}s`,
