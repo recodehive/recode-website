@@ -20,7 +20,7 @@ export default function FounderSection({
   kicker = "A Data Engineer who",
   bookingUrl = "https://topmate.io/sanjaykv",
   blogUrl = "/blogs",
-  portfolioUrl = "https://www.sanjaykv.com/",
+  portfolioUrl = "https://nomadbrains.dev/",
   githubUrl = "https://github.com/sanjay-kv",
   linkedinUrl = "https://www.linkedin.com/in/sanjay-k-v/",
 }: Props) {
@@ -136,7 +136,7 @@ export default function FounderSection({
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    sanjaykv.com
+                    nomadbrains.dev
                   </a>
                   <span className={styles.sep}> · </span>
                   <a
