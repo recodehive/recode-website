@@ -97,13 +97,15 @@
 .inner { position: relative; padding: 72px 56px 36px; display: flex; flex-direction: column; gap: 48px; }
 
 /* ---------- Header ---------- */
-.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 32px; }
-.headText { display: flex; flex-direction: column; gap: 16px; }
+/* Path + title span the full row; the subtitle sits left and the buttons right, on the same row */
+.head { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px 32px; align-items: end; }
+.headText { display: contents; }
+.path, .title { grid-column: 1 / -1; }
 .path { margin: 0; font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: var(--j-accent); }
 .title { margin: 0; font-family: "Space Grotesk", "Inter", sans-serif; font-size: clamp(40px, 5vw, 60px); line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; color: var(--j-title); }
 .accent { color: var(--j-accent); }
 .sub { margin: 0; font-family: "Inter", sans-serif; font-size: 17px; line-height: 1.6; color: var(--j-text); }
-.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
 .btnPrimary, .btnGhost { min-height: 48px; border-radius: 8px; font-family: "Inter", sans-serif; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; transition: box-shadow 280ms cubic-bezier(0.2, 0.9, 0.2, 1), background 280ms ease, border-color 280ms ease; }
 .btnPrimary { padding: 0 22px; background: var(--j-btn-bg); color: #ffffff; }
 .btnPrimary:hover { background: var(--j-btn-bg-hover); color: #ffffff; text-decoration: none; box-shadow: 0 0 8px var(--j-btn-glow); }
@@ -153,7 +155,8 @@
 .creditLink:hover { color: var(--j-credit-strong); text-decoration: underline; }
 
 /* ---------- Responsive + motion ---------- */
-@media (min-width: 900px) { .title, .sub { white-space: nowrap; } }
+@media (min-width: 700px) { .head { grid-template-columns: minmax(0, 1fr) auto; } }
+@media (min-width: 900px) { .title { white-space: nowrap; } }
 @media (max-width: 560px) { .section { padding-block: 3rem 0; } .inner { padding: 48px 24px 28px; } }
 @media (prefers-reduced-motion: reduce) {
   .line { animation: none; clip-path: none; }
