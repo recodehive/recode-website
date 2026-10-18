@@ -1,6 +1,6 @@
 /* ── Blog carousel section ──────────────────────────────── */
 .blog-carousel-section {
-  background: #f8fafc;
+  background: transparent;
   padding-block: 64px 48px;
   position: relative;
   overflow: hidden;
@@ -8,7 +8,7 @@
 }
 
 [data-theme="dark"] .blog-carousel-section {
-  background: #17181c;
+  background: transparent;
 }
 
 /* ── Section header ── */

@@ -73,18 +73,12 @@ export default function Home(): ReactNode {
 
       {/* ✅ Wrap in solid background to fix light mode */}
       <div
-        className="transition-colors duration-300"
-        style={{
-          backgroundColor: "var(--ifm-background-color)",
-          color: "var(--ifm-font-color-base)",
-        }}
+        className="homepage transition-colors duration-300"
+        style={{ color: "var(--ifm-font-color-base)" }}
       >
         <main
           className="rh-home page-enter transition-colors duration-300"
-          style={{
-            backgroundColor: "var(--ifm-background-color)",
-            color: "var(--ifm-font-color-base)",
-          }}
+          style={{ color: "var(--ifm-font-color-base)" }}
         >
           <CommunityStatsProvider>
           <Header />
