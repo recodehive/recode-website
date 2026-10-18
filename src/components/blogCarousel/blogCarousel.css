@@ -155,7 +155,9 @@
 .hb-card-image img {
   display: block;
   width: 100%;
-  height: 170px;
+  /* blog covers are about 1.9:1; size the frame to match so the whole cover shows at every card width */
+  height: auto;
+  aspect-ratio: 1.9 / 1;
   /* show the whole cover so text in the artwork is never cropped */
   object-fit: contain;
 }
