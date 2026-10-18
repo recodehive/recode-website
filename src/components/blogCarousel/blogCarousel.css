@@ -386,3 +386,21 @@
   transform: translateY(-20px);
   transition: opacity 0.4s ease-in, transform 0.4s ease-in;
 }
+
+/* ── Carousel arrows in light mode ──
+   Tailwind's `dark:` variant follows the OS setting here (the site toggle is not wired
+   to it), so a dark-OS visitor on the light theme got dark arrow buttons. Pin the light
+   look to the site theme instead. */
+html:not([data-theme="dark"]) .blog-carousel-section [data-slot="carousel-previous"],
+html:not([data-theme="dark"]) .blog-carousel-section [data-slot="carousel-next"] {
+  background-color: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+html:not([data-theme="dark"]) .blog-carousel-section [data-slot="carousel-previous"]:hover:not(:disabled),
+html:not([data-theme="dark"]) .blog-carousel-section [data-slot="carousel-next"]:hover:not(:disabled) {
+  background-color: #ffffff;
+  border-color: #2e8555;
+  color: #2e8555;
+}
