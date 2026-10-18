@@ -31,6 +31,7 @@ const sidebars: SidebarsConfig = {
       type: "category",
       label: "🐙 GitHub",
       className: "custom-sidebar-github",
+      collapsed: false,
       items: [
         "GitHub/intro-github",
         
@@ -38,6 +39,7 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "⚙️ Setup Environment",
           className: "custom-sidebar-setup",
+          collapsed: false,
           items: [
             "GitHub/setup-environment/setup-environment",
             "GitHub/setup-environment/setup-git-on-windows",
@@ -49,6 +51,7 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "📚 GitHub Basics",
           className: "custom-sidebar-basics",
+          collapsed: false,
           items: [
             "GitHub/GitHub-basics/create-github-repo",
             "GitHub/GitHub-basics/github-repo-command-line",
@@ -61,6 +64,7 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "👨‍💼 Maintainer Guide",
           className: "custom-sidebar-maintainer",
+          collapsed: false,
           items: [
             "GitHub/Maintainer-guide/github-labels",
             "GitHub/Maintainer-guide/milestone",
@@ -72,6 +76,7 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "Fun Proflie Customizations",
           className: "custom-sidebar-fun",
+          collapsed: false,
           items: [
             "GitHub/Fun-Profile-Customizations/Why-Customize",
             "GitHub/Fun-Profile-Customizations/Anurag-Hazra's-GitHub-Readme-Cards",
