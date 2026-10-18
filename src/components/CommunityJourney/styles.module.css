@@ -153,7 +153,7 @@
 .creditLink:hover { color: var(--j-credit-strong); text-decoration: underline; }
 
 /* ---------- Responsive + motion ---------- */
-@media (min-width: 900px) { .title { white-space: nowrap; } }
+@media (min-width: 900px) { .title, .sub { white-space: nowrap; } }
 @media (max-width: 560px) { .section { padding-block: 3rem 0; } .inner { padding: 48px 24px 28px; } }
 @media (prefers-reduced-motion: reduce) {
   .line { animation: none; clip-path: none; }
