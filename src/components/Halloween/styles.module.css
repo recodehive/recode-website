@@ -1,0 +1,65 @@
+/* ---------- Bats ---------- */
+.batLayer { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.bat { position: absolute; left: 105%; animation-name: batFly; animation-timing-function: linear; animation-iteration-count: infinite; }
+.b1 { fill: #1e293b; } .b2 { fill: #334155; } .b3 { fill: #475569; }
+.batIn { animation: batWave 1.8s ease-in-out infinite alternate; }
+.wl { transform-box: fill-box; transform-origin: 100% 50%; animation: flap 0.22s ease-in-out infinite alternate; }
+.wr { transform-box: fill-box; transform-origin: 0% 50%; animation: flap 0.22s ease-in-out infinite alternate; }
+@keyframes batFly { from { left: 105%; } to { left: -8%; } }
+@keyframes batWave { from { transform: translateY(0); } to { transform: translateY(18px); } }
+@keyframes flap { from { transform: scaleY(1); } to { transform: scaleY(0.35); } }
+
+/* ---------- Ghost (sits BEHIND the card: z-index 0, rendered before the card in the DOM) ---------- */
+.ghost { position: absolute; z-index: 0; top: -78px; right: 48px; width: 92px; pointer-events: none; animation: peek 8s ease-in-out infinite; }
+.ghostIn { animation: bob 1.6s ease-in-out infinite alternate; }
+.ghostBody { fill: #ffffff; stroke: #cbd5e1; }
+.ghostArm { stroke: #cbd5e1; }
+.eye { transform-box: fill-box; transform-origin: center; animation: blink 4s infinite; }
+.bubble { position: absolute; z-index: 2; top: -90px; right: 150px; white-space: nowrap; pointer-events: none; background: #0f172a; color: #ffffff; font: 500 12px "JetBrains Mono", ui-monospace, monospace; padding: 8px 12px; border-radius: 10px; opacity: 0; animation: say 8s ease-in-out infinite; }
+.bubble::after { content: ''; position: absolute; right: -6px; top: 50%; margin-top: -6px; border: 6px solid transparent; border-right: 0; border-left-color: #0f172a; }
+@keyframes peek { 0%, 12% { transform: translateY(70px); } 22%, 72% { transform: translateY(0); } 84%, 100% { transform: translateY(70px); } }
+@keyframes bob { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-7px) rotate(3deg); } }
+@keyframes blink { 0%, 46%, 50%, 100% { transform: scaleY(1); } 48% { transform: scaleY(0.1); } }
+@keyframes say { 0%, 26% { opacity: 0; transform: translateY(6px); } 32%, 66% { opacity: 1; transform: translateY(0); } 72%, 100% { opacity: 0; transform: translateY(6px); } }
+
+/* ---------- Pumpkins ---------- */
+.patch { position: absolute; z-index: 2; bottom: -104px; left: -30px; display: flex; align-items: flex-end; gap: 4px; pointer-events: none; }
+.pumpkin { position: relative; }
+.pumpkinSvg { position: relative; display: block; }
+.glow { position: absolute; left: 50%; top: 55%; width: 150%; height: 110%; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(closest-side, rgba(249, 115, 22, 0.35), rgba(249, 115, 22, 0)); animation: pulse 2.4s ease-in-out infinite; }
+.face { animation: flicker 1.7s infinite; }
+.hop { animation: hop 4.5s ease-in-out infinite; }
+@keyframes pulse { 0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); } 50% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); } }
+@keyframes flicker { 0%, 100% { opacity: 1; } 12% { opacity: 0.75; } 18% { opacity: 0.95; } 35% { opacity: 0.8; } 52% { opacity: 1; } 70% { opacity: 0.7; } 78% { opacity: 0.95; } }
+@keyframes hop { 0%, 78%, 100% { transform: translateY(0); } 84% { transform: translateY(-16px); } 90% { transform: translateY(0); } 94% { transform: translateY(-6px); } 97% { transform: translateY(0); } }
+
+/* ---------- Pill ---------- */
+.pill { margin-left: auto; font: 500 10px "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 999px; background: #ffedd5; color: #9a3412; white-space: nowrap; }
+/* the close button also has margin-left: auto; keep it next to the pill */
+.pill + :global(.floating-contributors-close) { margin-left: 8px; }
+
+/* ---------- Dark mode ---------- */
+:global(html[data-theme='dark']) .b1 { fill: #94a3b8; }
+:global(html[data-theme='dark']) .b2 { fill: #64748b; }
+:global(html[data-theme='dark']) .b3 { fill: #475569; }
+:global(html[data-theme='dark']) .ghostBody { fill: #e2e8f0; stroke: #94a3b8; }
+:global(html[data-theme='dark']) .ghostArm { stroke: #94a3b8; }
+:global(html[data-theme='dark']) .bubble { background: #f8fafc; color: #0f172a; }
+:global(html[data-theme='dark']) .bubble::after { border-left-color: #f8fafc; }
+:global(html[data-theme='dark']) .pill { background: rgba(249, 115, 22, 0.15); color: #fdba74; }
+
+/* ---------- Small screens ---------- */
+@media (max-width: 600px) {
+  .bubble, .ghost { display: none; }
+  .patch { left: -8px; transform: scale(0.8); transform-origin: left bottom; }
+}
+
+/* ---------- Reduced motion: keep the decorations, stop the movement ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .bat, .batIn, .wl, .wr, .ghost, .ghostIn, .eye, .bubble, .glow, .face, .hop { animation: none; }
+  .bat { display: none; }
+  .ghost { transform: none; }
+  .bubble { opacity: 1; }
+}
+
+@media print { .batLayer, .ghost, .bubble, .patch, .pill { display: none; } }

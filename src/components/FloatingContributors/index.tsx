@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./FloatingContributors.css";
+import { HalloweenPill } from "../Halloween";
 
 // Bot accounts (dependabot, github-actions, etc.) are excluded from the feed
 const isBotAccount = (login: string): boolean => {
@@ -112,11 +113,13 @@ interface ContributorActivity {
 interface FloatingContributorsProps {
   headerEmbedded?: boolean;
   onClose?: () => void;
+  halloween?: boolean;
 }
 
 const FloatingContributors: React.FC<FloatingContributorsProps> = ({
   headerEmbedded = false,
   onClose,
+  halloween = false,
 }) => {
   const [contributors, setContributors] = useState<Contributor[]>([]);
   const [activities, setActivities] = useState<ContributorActivity[]>([]);
@@ -595,6 +598,7 @@ const FloatingContributors: React.FC<FloatingContributorsProps> = ({
               <span className="floating-contributors-titlebar-label">
                 ~/recodehive — live activity
               </span>
+              {halloween && <HalloweenPill />}
               <button
                 className="floating-contributors-close"
                 onClick={() => (onClose ? onClose() : setIsVisible(false))}

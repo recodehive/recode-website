@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import FloatingContributors from "../FloatingContributors";
 import MockTerminal from "../MockTerminal";
 import { useCommunityStatsContext } from "../../lib/statsProvider";
+import { useHalloween } from "../Halloween/useHalloween";
+import { HalloweenBats, HalloweenCardDecor } from "../Halloween";
 
 const HeaderStats = () => {
   const {
@@ -122,7 +124,7 @@ const HeaderContent = () => {
   );
 };
 
-const HeaderToaster = () => {
+const HeaderToaster = ({ halloween = false }: { halloween?: boolean }) => {
   // Terminal shows first; Live Activity auto-opens after 10s (or on prompt click)
   const [showActivity, setShowActivity] = useState(false);
   const autoOpenTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -175,9 +177,12 @@ const HeaderToaster = () => {
           zIndex: 1,
         }}
       >
+        {/* Rendered before the card so the ghost paints behind it */}
+        {halloween && <HalloweenCardDecor />}
         {showActivity ? (
           <FloatingContributors
             headerEmbedded={true}
+            halloween={halloween}
             onClose={() => setShowActivity(false)}
           />
         ) : (
@@ -195,12 +200,16 @@ const HeaderToaster = () => {
 };
 
 const Header: React.FC = () => {
+  const halloween = useHalloween();
   return (
-    <div className="chh__header--body">
+    <div
+      className={`chh__header--body${halloween ? " chh__header--halloween" : ""}`}
+    >
       <div className="chh__hero-grid" aria-hidden="true" />
+      {halloween && <HalloweenBats />}
       <div className="chh__header rh-container">
         <HeaderContent />
-        <HeaderToaster />
+        <HeaderToaster halloween={halloween} />
       </div>
     </div>
   );

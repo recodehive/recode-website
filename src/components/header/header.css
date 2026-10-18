@@ -23,6 +23,11 @@
   margin-block: 0;
 }
 
+/* Seasonal: room for the pumpkins that hang below the live activity card */
+.chh__header--body.chh__header--halloween {
+  padding-bottom: 2.5rem;
+}
+
 .chh__hero-grid {
   position: absolute;
   inset: 0;
