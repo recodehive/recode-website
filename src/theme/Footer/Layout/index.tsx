@@ -53,7 +53,7 @@ const LINK_COLUMNS: FooterColumn[] = [
 const SOCIALS: FooterLink[] = [
   { label: "GitHub", to: "https://github.com/recodehive" },
   { label: "X", to: "https://x.com/sanjay_kv_" },
-  { label: "Instagram", to: "https://www.instagram.com/nomad_brains/" },
+  { label: "Instagram", to: "https://www.instagram.com/nomadbrains.dev/" },
   { label: "LinkedIn", to: "https://www.linkedin.com/in/sanjay-k-v/" },
   { label: "YouTube", to: "https://www.youtube.com/@RecodeHive" },
 ];
