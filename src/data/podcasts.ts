@@ -73,26 +73,26 @@ export const picks: Pick[] = [
   },
   {
     id: 'pick2',
-    show: 'The Ranveer Show',
-    initials: 'RS',
+    show: 'Figuring Out',
+    initials: 'FO',
     color: 'amber',
-    title: 'The Reality of Brain Chips with Dr. Alok Sharma',
-    meta: 'May 24 · 1:19:22',
-    duration: '1:19:22',
-    topic: 'AI & Tech',
+    title: "A Neuroscientist's Guide to 10X Your Focus and Memory with Dr Sahar Yousef",
+    meta: 'FO559', // TODO(sanjay): add the release date and duration
+    duration: '',
+    topic: 'Science',
     why: '', // TODO(sanjay): what listeners will take away
-    spotifyId: '1zbmUPmGRjC8o8YIMMx2Z6',
+    spotifyId: '34EFm7MNHYQzYaa7KBwTCv',
   },
   {
     id: 'pick3',
-    show: 'Lex Fridman Podcast',
-    initials: 'LF',
+    show: 'Figuring Out',
+    initials: 'FO',
     color: 'blue',
-    title: 'Janna Levin: Black Holes, Wormholes and Extra Dimensions',
-    meta: '#468 · May 9 · 3:06:43',
-    duration: '3:06:43',
+    title: 'Andrew Huberman on the Science of Peak Performance, Motivation and Sleep',
+    meta: 'FO556', // TODO(sanjay): add the release date and duration
+    duration: '',
     topic: 'Science',
     why: '', // TODO(sanjay): what listeners will take away
-    spotifyId: '3KSOxrjalScxHFQF9u8M46',
+    spotifyId: '4mRaJOxCdMpxL6aBDOMNAO',
   },
 ];
