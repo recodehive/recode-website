@@ -8,7 +8,6 @@ date: 2025-09-17
 description: GitHub bought power of GitHub Copilot coding agent directly to your terminal, with GitHub Copilot CLI, you can work locally and synchronously with an AI agent.
 
 draft: false
-canonical_url:
 ---
  <!-- truncate -->
 

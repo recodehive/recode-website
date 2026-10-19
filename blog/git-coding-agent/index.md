@@ -7,7 +7,6 @@ date: 2025-07-04
 
 description: An overview of the GitHub Copilot Coding Agent, an AI-powered tool that automates software engineering tasks by taking GitHub Issues as input to write code, run tests, and create pull requests.
 draft: false
-canonical_url: 
 # meta:
 #   - name: "robots"
 #     content: "index, follow"

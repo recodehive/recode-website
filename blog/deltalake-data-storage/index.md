@@ -8,7 +8,6 @@ date: 2026-05-01
 description: Delta Lake is an open-source storage framework that enables building a format agnostic Lakehouse architecture with compute engines including Spark, PrestoDB, Flink, Trino, Hive, Snowflake, Google BigQuery, Athena, Redshift, Databricks, Azure Fabric and APIs for Scala, Java, Rust, and Python. With Delta Universal Format aka UniForm, you can read now Delta tables with Iceberg and Hudi clients.
 
 draft: false
-canonical_url:
 # meta:
 #   - name: "robots"
 #     content: "index, follow"

@@ -8,7 +8,6 @@ date: 2025-09-17
 description: N8N revolutionizes automation by integrating AI capabilities into visual workflows. Learn how to build intelligent automation pipelines that can process data, make decisions, and interact with multiple services seamlessly.
 
 draft: false
-canonical_url:
 # meta:
 #   - name: "robots"
 #     content: "index, follow"

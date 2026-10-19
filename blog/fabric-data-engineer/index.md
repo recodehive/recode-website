@@ -8,7 +8,6 @@ date: 2026-05-01
 description: "A comprehensive guide to clearing the Microsoft Fabric Data Engineer Associate (DP-700) certification. Learn the preparation strategy, key concepts, hands-on practice tips, and real exam experience from someone who passed it. Discover why Lakehouse, Delta Tables, Dataflows, and DirectLake mode matter, and how to approach scenario-based questions effectively."
 
 draft: false
-canonical_url:
 # meta:
 #   - name: "robots"
 #     content: "index, follow"

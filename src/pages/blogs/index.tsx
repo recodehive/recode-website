@@ -12,6 +12,8 @@ import BlogSearch from "../../components/BlogSearch";
 import "./blogs-new.css";
 
 const POSTS_PER_PAGE = 12;
+const BLOG_DESCRIPTION =
+  "Practical guides and honest field notes on data engineering, cloud platforms, GitHub, AI tools, and modern software development from the recode hive community.";
 
 // Stable color per tag label (cycles through palette)
 const TAG_COLORS = [
@@ -86,10 +88,38 @@ export default function Blogs() {
 
   return (
     <Layout
-      title={`Blogs from ${siteConfig.title}`}
-      description="Welcome to recode hive Blogs. Learn the basics to advanced concepts of web development including HTML, CSS, JavaScript, React, Node.js, DSA, and more."
+      title={`Engineering Blog | ${siteConfig.title}`}
+      description={BLOG_DESCRIPTION}
     >
       <Head>
+        <link rel="canonical" href={`${siteConfig.url}/blogs`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${siteConfig.url}/blogs`} />
+        <meta property="og:title" content={`Engineering Blog | ${siteConfig.title}`} />
+        <meta property="og:description" content={BLOG_DESCRIPTION} />
+        <meta property="og:image" content={`${siteConfig.url}/img/og-image.png`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`Engineering Blog | ${siteConfig.title}`} />
+        <meta name="twitter:description" content={BLOG_DESCRIPTION} />
+        <meta name="twitter:image" content={`${siteConfig.url}/img/og-image.png`} />
+        <meta
+          name="keywords"
+          content="data engineering, cloud, Azure, Apache Spark, GitHub, AI, software development"
+        />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: `Engineering Blog | ${siteConfig.title}`,
+            description: BLOG_DESCRIPTION,
+            url: `${siteConfig.url}/blogs`,
+            isPartOf: {
+              "@type": "WebSite",
+              name: siteConfig.title,
+              url: siteConfig.url,
+            },
+          })}
+        </script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
@@ -121,9 +151,9 @@ export default function Blogs() {
           <div className="blog-hero-container">
             <div className="hero-content">
               <h1 className="blog-main-title">
-                Engineering <span className="gradient-text">uptime</span>{" "}
+                Engineering <span className="gradient-text">insights</span>{" "}
               </h1>
-              <p className="blog-main-subtitle">blog by recode community.</p>
+              <p className="blog-main-subtitle">Practical notes from the recode hive community.</p>
               <div style={{ width: "100%", marginTop: "24px" }}>
                 <BlogSearch initialSearchTerm={searchTerm} onSearchSubmit={setSearchTerm} />
               </div>
