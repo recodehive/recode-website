@@ -169,14 +169,16 @@ const config: Config = {
           ],
         },
         {
-          to: "/hire-developers",
-          html: '<span class="nav-emoji">🧑‍💻</span> Hire developers',
-          position: "left",
-        },
-        {
+          type: "dropdown",
           to: "/dashboard",
           html: '<span class="nav-emoji">📊</span> Dashboard',
           position: "left",
+          items: [
+            {
+              label: "🧑‍💻 Hire developers",
+              to: "/hire-developers",
+            },
+          ],
         },
         {
           to: "/our-sponsors/",
