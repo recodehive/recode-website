@@ -1,0 +1,91 @@
+.section {
+  --t-card: #ffffff; --t-border: #e2e8f0; --t-text: #0f172a; --t-text-2: #475569; --t-muted: #64748b;
+  --t-accent: #2e8555; --t-rule: #e2e8f0; --t-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+:global(html[data-theme='dark']) .section {
+  --t-card: #111827; --t-border: #1f2937; --t-text: #f1f5f9; --t-text-2: #cbd5e1; --t-muted: #94a3b8;
+  --t-accent: #4ade80; --t-rule: #334155; --t-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.header { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 0 16px; }
+.eyebrow { margin: 0; font: 700 18px/1.2 "Space Grotesk", "Inter", sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: var(--t-accent); }
+.h2 { margin: 0; font-family: "Space Grotesk", "Inter", sans-serif; font-size: 32px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; color: var(--t-text); }
+.sub { margin: 0; max-width: 460px; font-size: 15px; line-height: 1.6; color: var(--t-text-2); }
+
+/* scrolling window with soft top and bottom fades, like before */
+.window {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  height: 468px;
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+}
+.column { flex: 1 1 0; min-width: 0; max-width: 360px; height: 100%; overflow: hidden; }
+.list { display: flex; flex-direction: column; list-style: none; margin: 0; padding: 0; }
+
+.card {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--t-card);
+  border: 1px solid var(--t-border);
+  border-radius: 1rem;
+  box-shadow: var(--t-shadow);
+  cursor: default;
+}
+.quoteBlock { margin: 0; padding: 0 0 0 16px; border: 0; border-left: 1px solid var(--t-rule); overflow: hidden; }
+.quote { margin: 0; font-family: "Inter", sans-serif; font-size: 15px; line-height: 1.6; color: var(--t-text-2); display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; overflow: hidden; }
+
+.person { display: flex; align-items: center; gap: 12px; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; flex-shrink: 0; box-shadow: 0 0 0 2px var(--t-border); }
+.personText { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.name { font-style: normal; font-size: 14px; font-weight: 700; color: var(--t-text); }
+.role { font-size: 12px; line-height: 1.3; color: var(--t-muted); }
+.gh { width: 36px; height: 36px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--t-border); border-radius: 8px; color: var(--t-text-2); background: var(--t-card); transition: border-color 280ms ease, color 280ms ease; }
+.gh:hover { border-color: var(--t-accent); color: var(--t-text); text-decoration: none; }
+.gh:focus-visible { outline: 2px solid var(--t-accent); outline-offset: 2px; }
+
+/* call to action card, one item in the scrolling column */
+.cta {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+  cursor: default;
+  border-radius: 1rem;
+  background-color: #1f5c3d;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+.ctaEyebrow { margin: 0; font: 500 11px "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.14em; color: #86efac; }
+.ctaTitle { margin: 0; max-width: 360px; font-family: "Space Grotesk", sans-serif; font-size: 24px; line-height: 1.25; font-weight: 700; color: #ffffff; }
+.ctaBtn { min-height: 44px; padding: 0 20px; border-radius: 8px; background: #ffffff; color: #1f5c3d; font: 600 15px "Inter", sans-serif; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; transition: box-shadow 280ms ease; }
+.ctaBtn:hover { color: #1f5c3d; text-decoration: none; box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.35); }
+.ctaBtn:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
+
+@media (max-width: 640px) {
+  .hideSm { display: none; }
+  .window { height: 440px; }
+  .h2 { font-size: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gh, .ctaBtn { transition: none; }
+}
