@@ -36,7 +36,6 @@ const LINK_COLUMNS: FooterColumn[] = [
       { label: "Hire Developers", to: "/hire-developers" },
       { label: "Community", to: "/community" },
       { label: "Our Blog", to: "/blogs" },
-      { label: "Our Sponsors", to: "/our-sponsors" },
       { label: "Showcase", to: "/showcase" },
     ],
   },
