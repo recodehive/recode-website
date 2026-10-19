@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "@docusaurus/Link";
+import Head from "@docusaurus/Head";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { useBlogPost } from "@docusaurus/plugin-content-blog/client";
 import BlogPostItemHeaderOriginal from "@theme-original/BlogPostItem/Header";
@@ -70,8 +71,45 @@ export default function BlogPostItemHeaderWrapper(props: Props): JSX.Element {
     .map((t) => (typeof t === "string" ? t : (t as { label?: string }).label ?? ""))
     .filter(Boolean);
 
+  const permalink = new URL(metadata.permalink, siteConfig.url).toString();
+  const socialImage = `${siteConfig.url}/img/og-image.png`;
+  const authorNames = (metadata.authors ?? [])
+    .map((author) => author.name)
+    .filter(Boolean);
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: metadata.title,
+    description: metadata.description,
+    url: permalink,
+    datePublished: metadata.date,
+    dateModified: metadata.lastUpdatedAt || metadata.date,
+    author: authorNames.map((name) => ({
+      "@type": "Person",
+      name,
+    })),
+    keywords: tags,
+    image: socialImage,
+  };
+
   return (
     <>
+      <Head>
+        <link rel="canonical" href={permalink} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={permalink} />
+        <meta property="og:title" content={metadata.title} />
+        {metadata.description && <meta property="og:description" content={metadata.description} />}
+        <meta property="og:image" content={socialImage} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={metadata.title} />
+        {metadata.description && <meta name="twitter:description" content={metadata.description} />}
+        <meta name="twitter:image" content={socialImage} />
+        {tags.length > 0 && <meta name="keywords" content={tags.join(", ")} />}
+        <script type="application/ld+json">
+          {JSON.stringify(articleSchema)}
+        </script>
+      </Head>
       {/* Render only the title — Info and Authors are replaced by our compact bar */}
       <BlogPostItemHeaderTitle />
       <div className={styles.metaSection}>

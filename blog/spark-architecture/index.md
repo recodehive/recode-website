@@ -8,7 +8,6 @@ date: 2025-08-22
 description: Apache Spark is a fast, open-source big data framework that leverages in-memory computing for high performance. Its architecture powers scalable distributed processing across clusters, making it essential for analytics and machine learning.
 
 draft: false
-canonical_url:
 # meta:
 #   - name: "robots"
 #     content: "index, follow"

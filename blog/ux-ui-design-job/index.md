@@ -9,7 +9,6 @@ tags:
 date: 2025-06-05 10:32:00
 description: Are you passionate about design and dreaming of a career in it? Or maybe you’re already in the design space and looking to pivot into UI/UX? .
 draft: false
-canonical_url: 
 # meta:
 #   - name: "robots"
 #     content: "index, follow"

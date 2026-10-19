@@ -8,7 +8,6 @@ date: 2025-10-15
 description: OpenAI's AgentKit revolutionizes how developers build AI agents with its visual Agent Builder, integrated ChatKit, comprehensive evaluation tools, and seamless third-party integrations. Learn how this complete toolkit takes agents from prototype to production with minimal friction.
 
 draft: false
-canonical_url:
 ---
  <!-- truncate -->
 # OpenAI AgentKit: Democratizing AI Agent Development for Everyone
