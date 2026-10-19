@@ -1,0 +1,77 @@
+.rail {
+  --accent: #2e8555; --accent-tint: #f0fdf4; --accent-border: #b7dcc6;
+  --text: #0f172a; --muted: #78716c; --card: #ffffff; --border: #e7e5e4;
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  width: 320px;
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+}
+:global(html[data-theme='dark']) .rail {
+  --accent: #60a5fa; --accent-tint: rgba(96, 165, 250, 0.1); --accent-border: rgba(96, 165, 250, 0.35);
+  --text: #f1f5f9; --muted: #94a3b8; --card: #111827; --border: #1f2937;
+}
+/* the rail only shows on wide screens; the card stacks cover smaller ones */
+@media (min-width: 1200px) { .rail { display: flex; } }
+
+.eyebrow { margin: 0; font: 700 10px/1 "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+.versionRow { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.version { font-family: "Space Grotesk", sans-serif; font-size: 30px; line-height: 1.1; font-weight: 700; color: var(--text); }
+.date { font: 400 12px "JetBrains Mono", ui-monospace, monospace; color: var(--muted); }
+
+/* fixed height so the rail never shifts layout */
+.cloud { position: relative; width: 320px; height: 350px; }
+
+.bubble {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  text-decoration: none;
+  opacity: 0;
+  animation: pop 560ms cubic-bezier(0.2, 0.9, 0.2, 1.25) forwards;
+}
+.bubble:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.float { position: relative; display: block; width: 100%; height: 100%; animation: bob 3.4s ease-in-out infinite alternate; }
+.avatarWrap { display: block; width: 100%; height: 100%; border-radius: 50%; box-sizing: border-box; border: 3px solid #ffffff; box-shadow: 0 8px 22px rgba(15, 23, 42, 0.14); overflow: hidden; background: #ffffff; transition: transform 280ms cubic-bezier(0.2, 0.9, 0.2, 1), box-shadow 280ms ease; }
+:global(html[data-theme='dark']) .avatarWrap { border-color: #111827; background: #111827; }
+.avatar { width: 100%; height: 100%; }
+.bubble:hover .avatarWrap, .bubble:focus-visible .avatarWrap { transform: scale(1.1); box-shadow: 0 0 0 3px var(--accent), 0 8px 22px rgba(15, 23, 42, 0.14); }
+
+.badge { position: absolute; left: 50%; bottom: -9px; transform: translateX(-50%); padding: 2px 8px; border-radius: 999px; background: var(--accent); color: #ffffff; font: 700 10px/1.5 "JetBrains Mono", ui-monospace, monospace; white-space: nowrap; }
+.crown { position: absolute; left: 50%; top: -16px; transform: translateX(-50%); z-index: 1; }
+
+.tip { position: absolute; left: 50%; top: calc(100% + 14px); transform: translateX(-50%); padding: 4px 9px; border-radius: 6px; background: #0f172a; color: #ffffff; font: 500 11px "JetBrains Mono", ui-monospace, monospace; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 200ms ease; z-index: 2; }
+.bubble:hover .tip, .bubble:focus-visible .tip { opacity: 1; }
+
+.overflow { position: absolute; display: flex; align-items: center; justify-content: center; box-sizing: border-box; border: 2px dashed var(--accent); border-radius: 50%; background: var(--accent-tint); color: var(--accent); font: 700 13px "JetBrains Mono", ui-monospace, monospace; text-decoration: none; opacity: 0; animation: pop 560ms cubic-bezier(0.2, 0.9, 0.2, 1.25) 480ms forwards; }
+.overflow:hover { text-decoration: none; box-shadow: 0 0 0 3px var(--accent-border); }
+.overflow:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+@keyframes pop {
+  from { opacity: 0; transform: translateY(26px) scale(0.4); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes bob {
+  from { transform: translateY(-5px) rotate(-2deg); }
+  to { transform: translateY(6px) rotate(2deg); }
+}
+
+.summary { margin: 0; font-size: 14px; color: var(--muted); }
+.summary b { color: var(--text); font-weight: 700; }
+.bots { margin: 0; font: 400 11px "JetBrains Mono", ui-monospace, monospace; color: var(--muted); }
+
+.progress { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill { width: 18px; height: 4px; border-radius: 999px; background: var(--border); transition: width 280ms cubic-bezier(0.2, 0.9, 0.2, 1), background 280ms ease; }
+.pillOn { width: 30px; background: var(--accent); }
+
+.cta { display: block; padding: 14px 16px; border: 1px dashed var(--accent); border-radius: 12px; background: var(--accent-tint); color: var(--text); font-size: 13px; line-height: 1.5; font-weight: 500; text-decoration: none; transition: box-shadow 280ms ease; }
+.cta:hover { color: var(--text); text-decoration: none; box-shadow: 0 0 0 3px var(--accent-border); }
+.cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble, .overflow { animation: none; opacity: 1; }
+  .float { animation: none; }
+  .pill, .avatarWrap { transition: none; }
+}

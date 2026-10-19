@@ -39,6 +39,10 @@
   font-size: 1.05rem;
 }
 
+.changelog__layout {
+  display: block;
+}
+
 .changelog__timeline {
   position: relative;
   padding-left: 1.5rem;
@@ -70,6 +74,37 @@
   border-radius: 12px;
   background: var(--ifm-background-surface-color);
   padding: 1.5rem 1.75rem;
+  transition:
+    border-color 280ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    box-shadow 280ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+/* the release currently in view (only the wide layout has a rail to match) */
+.changelog__entry--active .changelog__card {
+  border-color: #b7dcc6;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="dark"] .changelog__entry--active .changelog__card {
+  border-color: rgba(96, 165, 250, 0.35);
+}
+
+.changelog__entry--active .changelog__dot {
+  background: #2e8555;
+  animation: changelog-dot-pulse 1.8s ease-out infinite;
+}
+
+[data-theme="dark"] .changelog__entry--active .changelog__dot {
+  background: #60a5fa;
+}
+
+@keyframes changelog-dot-pulse {
+  0% {
+    box-shadow: 0 0 0 3px rgba(46, 133, 85, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 8px rgba(46, 133, 85, 0);
+  }
 }
 
 .changelog__card-header {
@@ -181,6 +216,13 @@
   border-top: 1px solid var(--ifm-color-emphasis-300);
 }
 
+.changelog__footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .changelog__author {
   font-family: var(--font-family);
   font-size: 0.85rem;
@@ -197,5 +239,53 @@
 @media screen and (max-width: 768px) {
   .changelog__header h1 {
     font-size: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .changelog__card {
+    transition: none;
+  }
+  .changelog__entry--active .changelog__dot {
+    animation: none;
+  }
+}
+
+/* Wide screens: widen the page so the timeline keeps its 860px card and the
+   contributor rail sits to its right. The header stays centred. */
+@media (min-width: 1200px) {
+  .changelog__page {
+    max-width: 1480px;
+  }
+
+  .changelog__header {
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .changelog__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 860px) 320px;
+    column-gap: 48px;
+  }
+
+  .changelog__layout > .changelog__timeline {
+    grid-column: 2;
+  }
+
+  .changelog__layout > aside {
+    grid-column: 3;
+  }
+}
+
+/* Very wide screens: room for a symmetric layout, so the timeline is exactly centred */
+@media (min-width: 1700px) {
+  .changelog__layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 860px) minmax(320px, 1fr);
+  }
+
+  .changelog__layout > aside {
+    justify-self: start;
   }
 }
