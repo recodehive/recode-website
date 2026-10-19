@@ -1,6 +1,6 @@
 import React from "react";
-import { motion, Variants } from "framer-motion";
-import { useSafeColorMode } from "../../utils/useSafeColorMode";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
+import styles from "./testimonials.module.css";
 
 // --- Types ---
 interface Testimonial {
@@ -8,155 +8,117 @@ interface Testimonial {
   image: string;
   name: string;
   role: string;
+  github: string; // GitHub handle, used for the profile link
 }
 
 // --- Data ---
-const testimonials: Testimonial[] = [
+// Order matters: the first column gets entries 1 and 3, the second column gets 2 and 4.
+// An entry with an empty `text` is not shown, so placeholder copy never reaches the page.
+// Add a new entry here (name, role, image, github and a real quote) to show another card.
+export const testimonials: Testimonial[] = [
   {
-    text: "The tech talent in Recode Hive is unparalleled. We worked with consultants who work in companies like Palantir, OpenAI, Relevance AI and more",
-    image: "https://github.com/Rohitdey45.png",
-    name: "Rohit Dey",
-    role: "Open Source Contributor",
-  },
-  {
-    text: "We were able to get our project scoped, matched and kicked off in one day. Our invoicing is now 10x faster, thanks to Recode Hive's automation.",
-    image: "https://github.com/Adez017.png",
-    name: "Adez",
-    role: "Project Maintainer @ Recode Hive",
-  },
-  {
-    text: "You're constantly inspiring me to get applying for jobs and help me to improve my resume for 90+ ATS score and improve my LinkedIn profile.",
+    text: "You are constantly inspiring me to keep applying for jobs. The mentorship helped me take my resume to a 90+ ATS score and rebuild my LinkedIn profile.",
     image: "https://github.com/iitzIrFan.png",
     name: "Irfan",
     role: "Recode Hive Contributor",
+    github: "iitzIrFan",
   },
   {
-    text: "Pointing out that my contributions all points back to my personal projects is an eye opener, especially now that I want to start building towards open source.",
+    text: "Pointing out that my contributions all pointed back to my personal projects was an eye opener, especially now that I want to start building in open source.",
     image: "https://github.com/codewithdhruba01.png",
     name: "Dhruba",
     role: "Recode Hive Contributor",
+    github: "codewithdhruba01",
   },
 ];
 
-// Distribute testimonials across 3 columns dynamically to avoid hardcoded indices
-const col1 = testimonials.filter((_, i) => i % 3 === 0);
-const col2 = testimonials.filter((_, i) => i % 3 === 1);
-const col3 = testimonials.filter((_, i) => i % 3 === 2);
+const GOOD_FIRST_ISSUES =
+  "https://github.com/recodehive/recode-website/issues?q=is%3Aopen+label%3A%22good+first+issue%22";
 
-// --- Vertical scrolling column ---
+const visible = testimonials.filter((t) => t.text.trim() !== "");
+const col1 = visible.filter((_, i) => i % 2 === 0);
+const col2 = visible.filter((_, i) => i % 2 === 1);
+
+const GithubMark = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.37-3.87-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.62 1.58.23 2.75.11 3.04.74.81 1.18 1.83 1.18 3.09 0 4.42-2.7 5.4-5.27 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z" />
+  </svg>
+);
+
+// --- Vertical scrolling column (same linear loop as before) ---
 function TestimonialsColumn({
   testimonialsList,
   className,
   duration = 15,
-  isDark,
 }: {
   testimonialsList: Testimonial[];
   className?: string;
   duration?: number;
-  isDark: boolean;
 }) {
-  const cardHeight = 160;
-  const gap = 16;
+  const reduceMotion = useReducedMotion();
+  const cardHeight = 216;
+  const gap = 20;
   const itemHeight = cardHeight + gap;
   const cycleHeight = testimonialsList.length * itemHeight;
   const offset = itemHeight / 2;
 
+  if (testimonialsList.length === 0) return null;
+
   return (
-    <div className={`overflow-hidden h-[352px] ${className || ""}`}>
+    <div className={`${styles.column} ${className || ""}`}>
       <motion.ul
-        initial={{ y: -offset }}
-        animate={{ y: -offset - cycleHeight }}
+        initial={{ y: reduceMotion ? 0 : -offset }}
+        animate={reduceMotion ? { y: 0 } : { y: -offset - cycleHeight }}
         transition={{
           duration,
           repeat: Infinity,
           ease: "linear",
           repeatType: "loop",
         }}
-        className="flex flex-col list-none m-0 p-0"
-        style={{
-          gap: `${gap}px`,
-        }}
+        className={styles.list}
+        style={{ gap: `${gap}px` }}
       >
-        {[...new Array(2).fill(0)].map((_, index) => (
+        {(reduceMotion ? [0] : [0, 1]).map((index) => (
           <React.Fragment key={index}>
-            {testimonialsList.map(({ text, image, name, role }, i) => (
+            {testimonialsList.map(({ text, image, name, role, github }, i) => (
               <motion.li
                 key={`${index}-${i}`}
                 aria-hidden={index === 1 ? "true" : "false"}
                 whileHover={{
                   scale: 1.03,
                   y: -4,
-                  boxShadow: isDark
-                    ? "0 20px 40px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1)"
-                    : "0 20px 40px -12px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.05)",
-                  transition: {
-                    type: "spring",
-                    stiffness: 400,
-                    damping: 17,
-                  },
+                  transition: { type: "spring", stiffness: 400, damping: 17 },
                 }}
-                className="p-5 rounded-2xl w-full max-w-[280px] cursor-default select-none group transition-all duration-300 flex flex-col justify-between overflow-hidden"
-                style={{
-                  height: `${cardHeight}px`,
-                  minHeight: `${cardHeight}px`,
-                  maxHeight: `${cardHeight}px`,
-                  background: isDark ? "#111111" : "#ffffff",
-                  border: isDark
-                    ? "1px solid rgba(255,255,255,0.08)"
-                    : "1px solid rgba(0,0,0,0.08)",
-                  boxShadow: isDark
-                    ? "0 2px 16px rgba(0,0,0,0.3)"
-                    : "0 2px 12px rgba(0,0,0,0.04)",
-                }}
+                className={styles.card}
+                style={{ height: `${cardHeight}px`, minHeight: `${cardHeight}px` }}
               >
-                <blockquote className="m-0 p-0 flex flex-col h-full justify-between">
-                  <p
-                    className="leading-relaxed font-normal m-0 text-[12px] overflow-hidden line-clamp-3"
-                    style={{
-                      color: isDark
-                        ? "rgba(255,255,255,0.65)"
-                        : "rgba(0,0,0,0.6)",
-                      fontFamily: "'Inter', -apple-system, sans-serif",
-                    }}
-                  >
-                    {text}
-                  </p>
-                  <footer className="flex items-center gap-2.5 mt-auto pt-2 flex-shrink-0">
-                    <img
-                      width={32}
-                      height={32}
-                      src={image}
-                      alt={`Avatar of ${name}`}
-                      className="h-8 w-8 rounded-full object-cover"
-                      style={{
-                        boxShadow: isDark
-                          ? "0 0 0 2px rgba(255,255,255,0.08)"
-                          : "0 0 0 2px rgba(0,0,0,0.06)",
-                      }}
-                    />
-                    <div className="flex flex-col">
-                      <cite
-                        className="font-semibold not-italic tracking-tight leading-4 text-[12px]"
-                        style={{
-                          color: isDark ? "#ffffff" : "#0f172a",
-                          fontFamily: "'Inter', -apple-system, sans-serif",
-                        }}
-                      >
-                        {name}
-                      </cite>
-                      <span
-                        className="text-[10px] leading-4 tracking-tight mt-0.5"
-                        style={{
-                          color: isDark
-                            ? "rgba(255,255,255,0.4)"
-                            : "rgba(0,0,0,0.45)",
-                        }}
-                      >
-                        {role}
-                      </span>
-                    </div>
-                  </footer>
+                <blockquote className={styles.quoteBlock}>
+                  <p className={styles.quote}>{text}</p>
                 </blockquote>
+                <footer className={styles.person}>
+                  <img
+                    width={40}
+                    height={40}
+                    src={image}
+                    alt={`Avatar of ${name}`}
+                    className={styles.avatar}
+                    loading="lazy"
+                  />
+                  <div className={styles.personText}>
+                    <cite className={styles.name}>{name}</cite>
+                    <span className={styles.role}>{role}</span>
+                  </div>
+                  <a
+                    className={styles.gh}
+                    href={`https://github.com/${github}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${name} on GitHub`}
+                    tabIndex={index === 1 ? -1 : 0}
+                  >
+                    <GithubMark />
+                  </a>
+                </footer>
               </motion.li>
             ))}
           </React.Fragment>
@@ -182,82 +144,44 @@ const revealVariants: Variants = {
 
 // --- Main component ---
 export function TestimonialCarousel() {
-  const { isDark } = useSafeColorMode();
-
   return (
-    <section className="relative w-full h-full overflow-hidden flex flex-col">
-      {/* Premium symmetric header — unified height & centered alignment */}
+    <section className={styles.section} aria-labelledby="testimonials-heading">
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="min-h-[150px] flex flex-col justify-center items-center text-center flex-shrink-0 mb-4 px-4"
+        className={styles.header}
       >
-        <motion.div custom={0} variants={revealVariants} className="mb-2.5">
-          <span
-            className="inline-flex items-center gap-2 text-xl font-semibold tracking-widest uppercase"
-            style={{
-              color: isDark ? "#4ade80" : "#16a34a",
-              fontFamily:
-                "'Space Grotesk', 'Inter', -apple-system, sans-serif",
-            }}
-          >
-            ✦ Testimonials
-          </span>
-        </motion.div>
+        <motion.p custom={0} variants={revealVariants} className={styles.eyebrow}>
+          ✦ TESTIMONIALS
+        </motion.p>
         <motion.h2
+          id="testimonials-heading"
           custom={1}
           variants={revealVariants}
-          className="mb-2 text-2xl sm:text-3xl font-bold leading-tight tracking-tight"
-          style={{
-            color: isDark ? "#ffffff" : "#0f172a",
-            fontFamily: "'Space Grotesk', 'Inter', -apple-system, sans-serif",
-          }}
+          className={styles.h2}
         >
           Builders <span aria-label="love">&hearts;</span> Recode Hive
         </motion.h2>
-        <motion.p
-          custom={2}
-          variants={revealVariants}
-          className="text-xs sm:text-sm leading-relaxed mx-auto max-w-lg"
-          style={{
-            color: isDark ? "#94a3b8" : "#64748b",
-            fontFamily: "'Inter', -apple-system, sans-serif",
-          }}
-        >
-          Our builders go on to do incredible things from OpenAI to becoming
-          AI engineers and founders.
+        <motion.p custom={2} variants={revealVariants} className={styles.sub}>
+          What contributors say after shipping real work with the hive.
         </motion.p>
       </motion.div>
 
-      {/* 3-column vertical scroll — premium alignment */}
-      <div
-        className="flex justify-center gap-4 overflow-hidden relative"
-        style={{
-          height: "352px",
-          maskImage:
-            "linear-gradient(to bottom, transparent, black 8%, black 92%, transparent)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, transparent, black 8%, black 92%, transparent)",
-        }}
-      >
-        <TestimonialsColumn
-          testimonialsList={col1}
-          duration={8}
-          isDark={isDark}
-        />
-        <TestimonialsColumn
-          testimonialsList={col2}
-          className="hidden sm:block"
-          duration={11}
-          isDark={isDark}
-        />
-        <TestimonialsColumn
-          testimonialsList={col3}
-          className="hidden lg:block"
-          duration={9}
-          isDark={isDark}
-        />
+      {/* 2-column vertical scroll */}
+      <div className={styles.window}>
+        <TestimonialsColumn testimonialsList={col1} duration={11} />
+        <TestimonialsColumn testimonialsList={col2} className={styles.hideSm} duration={13} />
+      </div>
+
+      <div className={styles.ctaRow}>
+        <div className={styles.cta}>
+          <p className={styles.ctaEyebrow}>✦ YOUR STORY NEXT</p>
+          <p className={styles.ctaTitle}>Ship your first PR and tell us what changed for you.</p>
+          <a className={styles.ctaBtn} href={GOOD_FIRST_ISSUES} target="_blank" rel="noopener noreferrer">
+            Find a good first issue <span aria-hidden="true">→</span>
+          </a>
+        </div>
       </div>
     </section>
   );
