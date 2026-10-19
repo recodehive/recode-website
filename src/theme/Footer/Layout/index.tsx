@@ -27,6 +27,7 @@ const LINK_COLUMNS: FooterColumn[] = [
       { label: "GitHub Badges", to: "/badges/github-badges" },
       { label: "GitHub Profiles", to: "https://dev.recodehive.com/devfolio", external: true },
       { label: "Video Courses", to: "/courses", badge: { text: "New", variant: "green" } },
+      { label: "Dashboard", to: "/dashboard" },
     ],
   },
   {
