@@ -169,6 +169,11 @@ const config: Config = {
           ],
         },
         {
+          to: "/hire-developers",
+          html: '<span class="nav-emoji">🧑‍💻</span> Hire developers',
+          position: "left",
+        },
+        {
           to: "/dashboard",
           html: '<span class="nav-emoji">📊</span> Dashboard',
           position: "left",
