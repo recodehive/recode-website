@@ -36,8 +36,13 @@ const GOOD_FIRST_ISSUES =
   "https://github.com/recodehive/recode-website/issues?q=is%3Aopen+label%3A%22good+first+issue%22";
 
 const visible = testimonials.filter((t) => t.text.trim() !== "");
-const col1 = visible.filter((_, i) => i % 2 === 0);
-const col2 = visible.filter((_, i) => i % 2 === 1);
+// A column holds quote cards and, in the second column, the call to action card
+type Item = { kind: "quote"; t: Testimonial } | { kind: "cta" };
+const col1: Item[] = visible.filter((_, i) => i % 2 === 0).map((t) => ({ kind: "quote", t }));
+const col2: Item[] = [
+  ...visible.filter((_, i) => i % 2 === 1).map((t): Item => ({ kind: "quote", t })),
+  { kind: "cta" },
+];
 
 const GithubMark = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
@@ -47,11 +52,11 @@ const GithubMark = () => (
 
 // --- Vertical scrolling column (same linear loop as before) ---
 function TestimonialsColumn({
-  testimonialsList,
+  items,
   className,
   duration = 15,
 }: {
-  testimonialsList: Testimonial[];
+  items: Item[];
   className?: string;
   duration?: number;
 }) {
@@ -59,10 +64,10 @@ function TestimonialsColumn({
   const cardHeight = 216;
   const gap = 20;
   const itemHeight = cardHeight + gap;
-  const cycleHeight = testimonialsList.length * itemHeight;
+  const cycleHeight = items.length * itemHeight;
   const offset = itemHeight / 2;
 
-  if (testimonialsList.length === 0) return null;
+  if (items.length === 0) return null;
 
   return (
     <div className={`${styles.column} ${className || ""}`}>
@@ -80,7 +85,37 @@ function TestimonialsColumn({
       >
         {(reduceMotion ? [0] : [0, 1]).map((index) => (
           <React.Fragment key={index}>
-            {testimonialsList.map(({ text, image, name, role, github }, i) => (
+            {items.map((item, i) => {
+              const dup = index === 1;
+              if (item.kind === "cta") {
+                return (
+                  <motion.li
+                    key={`${index}-${i}`}
+                    aria-hidden={dup ? "true" : "false"}
+                    whileHover={{
+                      scale: 1.03,
+                      y: -4,
+                      transition: { type: "spring", stiffness: 400, damping: 17 },
+                    }}
+                    className={styles.cta}
+                    style={{ height: `${cardHeight}px`, minHeight: `${cardHeight}px` }}
+                  >
+                    <p className={styles.ctaEyebrow}>✦ YOUR STORY NEXT</p>
+                    <p className={styles.ctaTitle}>Ship your first PR and tell us what changed for you.</p>
+                    <a
+                      className={styles.ctaBtn}
+                      href={GOOD_FIRST_ISSUES}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      tabIndex={dup ? -1 : 0}
+                    >
+                      Find a good first issue <span aria-hidden="true">→</span>
+                    </a>
+                  </motion.li>
+                );
+              }
+              const { text, image, name, role, github } = item.t;
+              return (
               <motion.li
                 key={`${index}-${i}`}
                 aria-hidden={index === 1 ? "true" : "false"}
@@ -120,7 +155,8 @@ function TestimonialsColumn({
                   </a>
                 </footer>
               </motion.li>
-            ))}
+              );
+            })}
           </React.Fragment>
         ))}
       </motion.ul>
@@ -170,18 +206,8 @@ export function TestimonialCarousel() {
 
       {/* 2-column vertical scroll */}
       <div className={styles.window}>
-        <TestimonialsColumn testimonialsList={col1} duration={11} />
-        <TestimonialsColumn testimonialsList={col2} className={styles.hideSm} duration={13} />
-      </div>
-
-      <div className={styles.ctaRow}>
-        <div className={styles.cta}>
-          <p className={styles.ctaEyebrow}>✦ YOUR STORY NEXT</p>
-          <p className={styles.ctaTitle}>Ship your first PR and tell us what changed for you.</p>
-          <a className={styles.ctaBtn} href={GOOD_FIRST_ISSUES} target="_blank" rel="noopener noreferrer">
-            Find a good first issue <span aria-hidden="true">→</span>
-          </a>
-        </div>
+        <TestimonialsColumn items={col1} duration={11} />
+        <TestimonialsColumn items={col2} className={styles.hideSm} duration={13} />
       </div>
     </section>
   );

@@ -58,17 +58,18 @@
 .gh:hover { border-color: var(--t-accent); color: var(--t-text); text-decoration: none; }
 .gh:focus-visible { outline: 2px solid var(--t-accent); outline-offset: 2px; }
 
-/* call to action card (static, under the scrolling columns) */
-.ctaRow { width: 100%; max-width: 740px; margin: 0 auto; display: flex; justify-content: flex-end; padding: 0 0; }
+/* call to action card, one item in the scrolling column */
 .cta {
   box-sizing: border-box;
   width: 100%;
-  max-width: 360px;
-  padding: 28px;
+  margin: 0;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 14px;
+  justify-content: center;
+  gap: 12px;
+  cursor: default;
   border-radius: 1rem;
   background-color: #1f5c3d;
   background-image: linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
@@ -82,7 +83,6 @@
 
 @media (max-width: 640px) {
   .hideSm { display: none; }
-  .ctaRow { justify-content: center; }
   .window { height: 440px; }
   .h2 { font-size: 28px; }
 }
