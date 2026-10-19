@@ -11,7 +11,7 @@ type FooterLink = {
   label: string;
   to: string;
   external?: boolean;
-  badge?: { text: string; variant: "green" | "amber" };
+  badge?: { text: string; variant: "green" | "amber" | "orange" };
 };
 
 type FooterColumn = {
@@ -43,7 +43,7 @@ const LINK_COLUMNS: FooterColumn[] = [
     links: [
       { label: "Contact Us", to: "/contact-us" },
       { label: "Roadmap", to: "https://github.com/orgs/recodehive/projects/9", external: true },
-      { label: "Changelog", to: "/changelog" },
+      { label: "Changelog", to: "/changelog", badge: { text: "Latest update", variant: "orange" } },
     ],
   },
 ];

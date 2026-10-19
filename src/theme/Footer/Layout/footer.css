@@ -219,6 +219,16 @@
   background: var(--rhf-amber-tint);
 }
 
+.rh-badge--orange {
+  color: #c2410c;
+  background: rgba(249, 115, 22, 0.16);
+}
+
+[data-theme="dark"] .rh-footer .rh-badge--orange {
+  color: #fdba74;
+  background: rgba(249, 115, 22, 0.2);
+}
+
 /* Newsletter column */
 
 .rh-footer__newsletter-pitch {
