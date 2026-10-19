@@ -11,7 +11,7 @@ type FooterLink = {
   label: string;
   to: string;
   external?: boolean;
-  badge?: { text: string; variant: "green" | "amber" };
+  badge?: { text: string; variant: "green" | "amber" | "orange" };
 };
 
 type FooterColumn = {
@@ -27,25 +27,24 @@ const LINK_COLUMNS: FooterColumn[] = [
       { label: "GitHub Badges", to: "/badges/github-badges" },
       { label: "GitHub Profiles", to: "https://dev.recodehive.com/devfolio", external: true },
       { label: "Video Courses", to: "/courses", badge: { text: "New", variant: "green" } },
+      { label: "Dashboard", to: "/dashboard" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "Careers", to: "/careers", badge: { text: "We're Hiring!", variant: "amber" } },
+      { label: "Careers", to: "/careers" },
       { label: "Community", to: "/community" },
-      { label: "Our Blog", to: "/blogs" },
+      { label: "Our Blog", to: "/blogs", badge: { text: "New", variant: "green" } },
       { label: "Showcase", to: "/showcase" },
     ],
   },
   {
     title: "Support",
     links: [
-      { label: "Broadcasts", to: "/broadcasts" },
       { label: "Contact Us", to: "/contact-us" },
-      { label: "Podcasts", to: "/podcasts" },
       { label: "Roadmap", to: "https://github.com/orgs/recodehive/projects/9", external: true },
-      { label: "Changelog", to: "/changelog" },
+      { label: "Changelog", to: "/changelog", badge: { text: "Latest updates", variant: "orange" } },
     ],
   },
 ];
@@ -213,7 +212,7 @@ export default function FooterLayout(): ReactNode {
           <div className="rh-footer__newsletter">
             <h3 className="rh-footer__label">Stay in the Loop</h3>
             <p className="rh-footer__newsletter-pitch">
-              Join 50K+ developers getting weekly insights, tutorials, and exclusive content.
+              Join 30K+ developers getting weekly insights, tutorials, and exclusive content.
             </p>
             <form className="rh-footer__form" onSubmit={handleSubscribe} noValidate>
               <input
@@ -233,7 +232,7 @@ export default function FooterLayout(): ReactNode {
               </button>
               {error && <p className="rh-footer__error">{error}</p>}
             </form>
-            <p className="rh-footer__micro">1.2K+ developers joined this week</p>
+            <p className="rh-footer__micro">200+ developers joined this week</p>
           </div>
         </div>
 
