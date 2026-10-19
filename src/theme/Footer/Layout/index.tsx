@@ -33,7 +33,6 @@ const LINK_COLUMNS: FooterColumn[] = [
     title: "Company",
     links: [
       { label: "Careers", to: "/careers", badge: { text: "We're Hiring!", variant: "amber" } },
-      { label: "Hire Developers", to: "/hire-developers" },
       { label: "Community", to: "/community" },
       { label: "Our Blog", to: "/blogs" },
       { label: "Showcase", to: "/showcase" },
