@@ -1,0 +1,21 @@
+.img { display: block; border-radius: 50%; object-fit: cover; background: #e2e8f0; }
+.initials { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; font-family: "Space Grotesk", sans-serif; font-weight: 700; line-height: 1; }
+
+/* 8 tint pairs, each with at least 4.5:1 text contrast (light and dark) */
+.tone0 { background: #dcfce7; color: #14532d; }
+.tone1 { background: #dbeafe; color: #1e3a8a; }
+.tone2 { background: #ede9fe; color: #4c1d95; }
+.tone3 { background: #fef3c7; color: #78350f; }
+.tone4 { background: #fce7f3; color: #831843; }
+.tone5 { background: #ccfbf1; color: #134e4a; }
+.tone6 { background: #ffedd5; color: #7c2d12; }
+.tone7 { background: #e0e7ff; color: #312e81; }
+
+:global(html[data-theme='dark']) .tone0 { background: #14532d; color: #dcfce7; }
+:global(html[data-theme='dark']) .tone1 { background: #1e3a8a; color: #dbeafe; }
+:global(html[data-theme='dark']) .tone2 { background: #4c1d95; color: #ede9fe; }
+:global(html[data-theme='dark']) .tone3 { background: #78350f; color: #fef3c7; }
+:global(html[data-theme='dark']) .tone4 { background: #831843; color: #fce7f3; }
+:global(html[data-theme='dark']) .tone5 { background: #134e4a; color: #ccfbf1; }
+:global(html[data-theme='dark']) .tone6 { background: #7c2d12; color: #ffedd5; }
+:global(html[data-theme='dark']) .tone7 { background: #312e81; color: #e0e7ff; }

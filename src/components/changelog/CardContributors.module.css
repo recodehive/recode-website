@@ -1,0 +1,37 @@
+.details {
+  --accent: #2e8555; --accent-tint: #f0fdf4; --accent-border: #b7dcc6;
+  --muted: #78716c; --card: #ffffff; --border: #e7e5e4; --text: #0f172a;
+  margin-left: auto;
+  min-width: 0;
+}
+:global(html[data-theme='dark']) .details {
+  --accent: #60a5fa; --accent-tint: rgba(96, 165, 250, 0.1); --accent-border: rgba(96, 165, 250, 0.35);
+  --muted: #94a3b8; --card: #111827; --border: #1f2937; --text: #f1f5f9;
+}
+
+.summary { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; list-style: none; border-radius: 8px; padding: 2px 4px; }
+.summary::-webkit-details-marker { display: none; }
+.summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.stack { display: inline-flex; align-items: center; }
+.stack > * + * { margin-left: -6px; }
+.stackAvatar { border: 2px solid var(--card); box-sizing: content-box; }
+.count { font: 400 12px "JetBrains Mono", ui-monospace, monospace; color: var(--muted); }
+.caret { width: 7px; height: 7px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); margin-top: -3px; transition: transform 200ms ease; }
+.details[open] .caret { transform: rotate(-135deg); margin-top: 3px; }
+
+.chips { list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chips li { margin: 0; }
+.chip { display: inline-flex; align-items: center; gap: 6px; min-height: 32px; padding: 3px 10px 3px 4px; border: 1px solid var(--border); border-radius: 999px; background: var(--card); color: var(--text); font-size: 12px; font-weight: 500; text-decoration: none; }
+.chip:hover { border-color: var(--accent-border); background: var(--accent-tint); color: var(--text); text-decoration: none; }
+.chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.chipCount { font: 700 10px "JetBrains Mono", ui-monospace, monospace; color: var(--accent); }
+
+/* wide screens: a static stack, the sticky rail lists everyone */
+@media (min-width: 1200px) {
+  .summary { cursor: default; pointer-events: none; }
+  .caret { display: none; }
+  .chips { display: none; }
+}
+@media (max-width: 1199px) {
+  .details { flex: 1 1 100%; margin-left: 0; }
+}
