@@ -7,6 +7,7 @@ import CardContributors from "../../components/changelog/CardContributors";
 import {
   getBotCount,
   getContributors,
+  splitBotLines,
   type Contributor,
 } from "../../utils/releaseContributors";
 import "./index.css";
@@ -54,7 +55,12 @@ function ReleaseCard({
   contributors: Contributor[];
 }): JSX.Element {
   const [expanded, setExpanded] = useState(false);
-  const lineCount = release.body.split("\n").filter((l) => l.trim() !== "").length;
+  // Bot and AI lines are tucked into one collapsed line at the end of the list
+  const { humanBody, botLines } = useMemo(
+    () => splitBotLines(release.body),
+    [release.body],
+  );
+  const lineCount = humanBody.split("\n").filter((l) => l.trim() !== "").length;
   const canCollapse = lineCount > BODY_PREVIEW_LINES;
 
   return (
@@ -71,7 +77,13 @@ function ReleaseCard({
         </a>
       </h3>
       <div className={`changelog__body-wrap ${!expanded && canCollapse ? "changelog__body-wrap--clamped" : ""}`}>
-        <ReleaseBody body={release.body} />
+        <ReleaseBody body={humanBody} />
+        {botLines.length > 0 && (
+          <details className="changelog__bots">
+            <summary>+ {getBotCount(release.body)} dependency updates</summary>
+            <ReleaseBody body={botLines.join("\n")} />
+          </details>
+        )}
       </div>
       {canCollapse && (
         <button

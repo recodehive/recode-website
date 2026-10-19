@@ -195,6 +195,28 @@
   padding-left: 1.2rem;
 }
 
+.changelog__bots {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-family);
+}
+
+.changelog__bots summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ifm-color-emphasis-600);
+  padding: 0.2rem 0;
+}
+
+.changelog__bots summary:hover {
+  color: var(--ifm-color-primary);
+}
+
+.changelog__bots summary:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
 .changelog__toggle {
   font-family: var(--font-family);
   background: none;
