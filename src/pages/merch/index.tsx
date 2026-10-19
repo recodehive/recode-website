@@ -1,369 +1,301 @@
-import React, { useState, useEffect } from "react";
-import type { ReactNode } from "react";
-import Layout from "@theme/Layout";
-import { motion, type Variants } from "framer-motion";
-import ProductGrid from "../../components/merch/ProductGrid";
-import FilterBar from "../../components/merch/FilterBar";
-import ShoppingCart from "../../components/merch/ShoppingCart";
-import { ShoppingBag, Truck, RefreshCw, Leaf, ShieldCheck, Globe, Medal } from "lucide-react";
-import { getProducts, isShopifyConfigured } from "../../lib/shopify";
-import "./merch.css";
+import React, { useMemo, useState, type ReactNode } from 'react';
+import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import { Hexagon, Printer, RotateCcw, ShieldCheck, Truck } from 'lucide-react';
+import ProductImage from './_components/ProductImage';
+import ProductCard from './_components/ProductCard';
+import {
+  products, bundle, store, faqs, heroImage, wideImage,
+  type Category, type Product,
+} from '../../data/merch';
+import styles from './styles.module.css';
 
-export interface Product {
-  id: string;
-  title: string;
-  description: string;
-  price: number;
-  image: string;
-  category: string;
-  variants?: {
-    size?: string[];
-    color?: string[];
-  };
-  shopifyId?: string;
+type Sort = 'featured' | 'low' | 'high';
+const SORT_LABEL: Record<Sort, string> = {
+  featured: 'Featured',
+  low: 'Price: low to high',
+  high: 'Price: high to low',
+};
+const MANIFESTO = ['Learn.', 'Collaborate.', 'Build.', 'Earn.', 'Grow.'];
+const CONTACT_URL = '/contact-us';
+const money = (n: number) => `$${n.toFixed(2)}`;
+
+const byId = (id: string): Product | undefined => products.find((p) => p.id === id);
+
+function scrollToId(id: string) {
+  const reduce = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.getElementById(id)?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
 }
 
-// Sample products - Replace with actual Shopify data
-const sampleProducts: Product[] = [
-  {
-    id: "1",
-    title: "Recode Hive Classic T-Shirt",
-    description: "Premium cotton t-shirt with Recode Hive logo",
-    price: 29.99,
-    image: "/img/merch/tshirt.jpeg",
-    category: "t-shirts",
-    variants: {
-      size: ["S", "M", "L", "XL", "XXL"],
-      color: ["Black", "White", "Navy"],
-    },
-  },
-  {
-    id: "2",
-    title: "Code & Coffee Hoodie",
-    description: "Cozy hoodie perfect for coding sessions",
-    price: 49.99,
-    image: "/img/merch/hoodie.jpeg",
-    category: "hoodies",
-    variants: {
-      size: ["S", "M", "L", "XL", "XXL"],
-      color: ["Navy", "Gray", "Black"],
-    },
-  },
-  {
-    id: "3",
-    title: "Recode Laptop Sticker Pack",
-    description: "Set of 5 waterproof vinyl stickers",
-    price: 9.99,
-    image: "/img/merch/sticker.jpeg",
-    category: "accessories",
-  },
-  {
-    id: "4",
-    title: "Developer's Mug",
-    description: "Ceramic mug with inspiring code quotes",
-    price: 14.99,
-    image: "/img/merch/mug.jpeg",
-    category: "accessories",
-  },
-  {
-    id: "5",
-    title: "Recode Tote Bag",
-    description: "Durable canvas tote for your laptop and books",
-    price: 19.99,
-    image: "/img/merch/bag.jpeg",
-    category: "accessories",
-  },
-  {
-    id: "6",
-    title: "Recode Cap",
-    description: "Adjustable snapback cap with embroidered logo",
-    price: 24.99,
-    image: "/img/merch/cap.jpeg",
-    category: "accessories",
-  },
-];
+function ManifestoStack({ size }: { size: 'md' | 'lg' }) {
+  return (
+    <div className={size === 'lg' ? styles.wordsLg : styles.wordsMd} aria-label={MANIFESTO.join(' ')}>
+      {MANIFESTO.map((w, i) => (
+        <span key={w} aria-hidden="true" className={i === MANIFESTO.length - 1 ? styles.accent : undefined}>{w}</span>
+      ))}
+    </div>
+  );
+}
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 }
-  }
-};
+export default function Merch(): ReactNode {
+  const [category, setCategory] = useState<'all' | Category>('all');
+  const [sort, setSort] = useState<Sort>('featured');
+  const [openFaq, setOpenFaq] = useState(0);
 
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
-};
-
-export default function MerchPage(): ReactNode {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
-  const [sortBy, setSortBy] = useState<string>("featured");
-  const [products, setProducts] = useState<Product[]>(sampleProducts);
-  const [filteredProducts, setFilteredProducts] =
-    useState<Product[]>(sampleProducts);
-  const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState<
-    Array<Product & { quantity: number }>
-  >([]);
-  const [loading, setLoading] = useState(true);
-
-  // Fetch products from Shopify on mount
-  useEffect(() => {
-    async function fetchShopifyProducts() {
-      try {
-        if (isShopifyConfigured()) {
-          const shopifyProducts = await getProducts(20);
-
-          if (shopifyProducts && shopifyProducts.length > 0) {
-            // Convert Shopify products to our Product interface
-            const formattedProducts: Product[] = shopifyProducts.map((p) => {
-              const imageUrl = p.images.edges[0]?.node.url || "";
-              const price = parseFloat(p.priceRange.minVariantPrice.amount);
-
-              return {
-                id: p.id,
-                title: p.title,
-                description: p.description || "",
-                price: price,
-                image: imageUrl,
-                category: "accessories", // Default category, you can use Shopify tags
-                shopifyId: p.id,
-                variants: {
-                  size: p.variants.edges
-                    .map((v) => v.node.title)
-                    .filter((t) => t !== "Default Title"),
-                },
-              };
-            });
-
-            setProducts(formattedProducts);
-            setFilteredProducts(formattedProducts);
-          } else {
-            setProducts(sampleProducts);
-            setFilteredProducts(sampleProducts);
-          }
-        } else {
-          setProducts(sampleProducts);
-          setFilteredProducts(sampleProducts);
-        }
-      } catch (error) {
-        console.error("Error fetching products from Shopify:", error);
-        // Fallback to sample products on error
-        setProducts(sampleProducts);
-        setFilteredProducts(sampleProducts);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchShopifyProducts();
+  const categories = useMemo(() => {
+    const cats = Array.from(new Set(products.map((p) => p.category)));
+    return cats.map((c) => ({ key: c, count: products.filter((p) => p.category === c).length }));
   }, []);
 
-  // Filter and sort products
-  useEffect(() => {
-    let filtered = [...products];
+  const shown = useMemo(() => {
+    const list = products.filter((p) => category === 'all' || p.category === category);
+    if (sort === 'low') return [...list].sort((a, b) => a.price - b.price);
+    if (sort === 'high') return [...list].sort((a, b) => b.price - a.price);
+    return list;
+  }, [category, sort]);
 
-    // Filter by category
-    if (selectedCategory !== "all") {
-      filtered = filtered.filter((p) => p.category === selectedCategory);
-    }
-
-    // Sort products
-    switch (sortBy) {
-      case "price-low":
-        filtered.sort((a, b) => a.price - b.price);
-        break;
-      case "price-high":
-        filtered.sort((a, b) => b.price - a.price);
-        break;
-      case "name":
-        filtered.sort((a, b) => a.title.localeCompare(b.title));
-        break;
-      default:
-        // featured - keep original order
-        break;
-    }
-
-    setFilteredProducts(filtered);
-  }, [selectedCategory, sortBy, products]);
-
-  const addToCart = (product: Product) => {
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.id === product.id);
-      if (existing) {
-        return prev.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item,
-        );
-      }
-      return [...prev, { ...product, quantity: 1 }];
-    });
-    setCartOpen(true);
+  const goShop = (cat: 'all' | Category) => {
+    setCategory(cat);
+    scrollToId('shop');
+  };
+  const goProduct = (p: Product) => {
+    setCategory(p.category);
+    // wait for the filter to render, then jump to the card
+    window.setTimeout(() => scrollToId(`product-${p.id}`), 50);
   };
 
-  const removeFromCart = (productId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== productId));
-  };
+  // Trust strip: built only from filled store fields
+  const trust = [
+    (store.shipsTo || store.shippingDays) && {
+      key: 'ship', Icon: Truck,
+      title: store.shipsTo ? `Ships to ${store.shipsTo}` : 'Shipping',
+      sub: store.shippingDays ? `Delivery in ${store.shippingDays}` : '',
+    },
+    store.returnDays && {
+      key: 'returns', Icon: RotateCcw,
+      title: `${store.returnDays}-day returns`,
+      sub: '',
+    },
+    store.printPartner && {
+      key: 'print', Icon: Printer,
+      title: `Printed by ${store.printPartner}`,
+      sub: '',
+    },
+    store.checkoutProvider && {
+      key: 'checkout', Icon: ShieldCheck,
+      title: 'Secure checkout',
+      sub: `Powered by ${store.checkoutProvider}`,
+    },
+  ].filter(Boolean) as { key: string; Icon: typeof Truck; title: string; sub: string }[];
 
-  const updateQuantity = (productId: string, quantity: number) => {
-    if (quantity === 0) {
-      removeFromCart(productId);
-      return;
-    }
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === productId ? { ...item, quantity } : item,
-      ),
-    );
-  };
+  const heroHoodie = byId('hoodie');
+  const heroTee = byId('tee');
 
-  const cartItemCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const bundleItems = bundle.items.map(byId).filter((p): p is Product => Boolean(p));
+  const separateTotal = bundleItems.reduce((sum, p) => sum + p.price, 0);
+  const savedPct = Math.max(0, Math.round((1 - bundle.price / separateTotal) * 100));
+
+  const answered = faqs.filter((f) => f.a.trim() !== '');
+  const links = [
+    store.policyLinks.shipping && { label: 'Shipping policy', href: store.policyLinks.shipping },
+    store.policyLinks.returns && { label: 'Returns policy', href: store.policyLinks.returns },
+    store.policyLinks.terms && { label: 'Terms', href: store.policyLinks.terms },
+  ].filter(Boolean) as { label: string; href: string }[];
 
   return (
     <Layout
-      title="Official Merch Store"
-      description="Get your official Recode Hive swag - t-shirts, hoodies, stickers and more!"
+      title="Merch"
+      description="Official recode hive merch: oversized tees, manifesto hoodie, hex logo cap, mug, bottle, notebook and tote for developers in the community."
     >
-      <div className="merch-page">
-        {/* Hero Section */}
-        <section className="merch-hero">
-          <motion.div
-            className="merch-hero-content"
-            variants={containerVariants}
-            initial="hidden"
-            animate="show"
-          >
-            <motion.div className="hero-left" variants={itemVariants}>
-              <h1 className="merch-hero-title">
-                Official Recode Merch
-              </h1>
-              <p className="merch-hero-description">
-                Wear your code pride! Premium quality apparel and accessories for
-                developers who love open source.
+      <main className={styles.page}>
+        {/* Hero */}
+        <section className={styles.hero} aria-labelledby="merch-heading">
+          <div className={styles.heroGrid} aria-hidden="true" />
+          <div className={`${styles.container} ${styles.heroInner}`}>
+            <div className={styles.heroText}>
+              <p className={styles.eyebrow}>✦ OFFICIAL RECODE HIVE MERCH</p>
+              <h1 id="merch-heading" className={styles.h1}>Wear the <span className={styles.accent}>hive.</span></h1>
+              <p className={styles.lead}>
+                Tees, hoodies and desk gear with the hex logo and the five words the community runs on.
               </p>
-              <div className="hero-buttons">
-                <button
-                  className="hero-button hero-button-primary"
-                  onClick={() => {
-                    const section = document.querySelector(".merch-products-section");
-                    if (section) section.scrollIntoView({ behavior: "smooth" });
-                  }}
-                >
-                  Shop Collection
-                </button>
-                <button
-                  className="hero-button hero-button-secondary"
-                  onClick={() => setSelectedCategory("accessories")}
-                >
-                  View Accessories
-                </button>
+              <div className={styles.actions}>
+                <button type="button" className={styles.btnPrimary} onClick={() => goShop('all')}>Shop the collection</button>
+                <button type="button" className={styles.btnOutline} onClick={() => goShop('Apparel')}>Shop apparel</button>
               </div>
-            </motion.div>
-            <motion.div className="hero-right" variants={itemVariants}>
-              <div className="merch-hero-stats">
-                <motion.div className="stat-item stat-item-highlighted" whileHover={{ scale: 1.05 }} variants={itemVariants}>
-                  <Medal className="stat-icon" size={28} color="var(--ifm-color-primary)" />
-                  <span className="stat-label">Quality</span>
-                </motion.div>
-                <motion.div className="stat-item stat-item-highlighted" whileHover={{ scale: 1.05 }} variants={itemVariants}>
-                  <Globe className="stat-icon" size={28} color="var(--ifm-color-primary)" />
-                  <span className="stat-label">Worldwide Shipping</span>
-                </motion.div>
-                <motion.div className="stat-item stat-item-highlighted" whileHover={{ scale: 1.05 }} variants={itemVariants}>
-                  <Leaf className="stat-icon" size={28} color="var(--ifm-color-primary)" />
-                  <span className="stat-label">Eco-Friendly</span>
-                </motion.div>
+              <div className={styles.manifestoRow}>
+                <ManifestoStack size="md" />
+                <span className={styles.vRule} aria-hidden="true" />
+                <p className={styles.manifestoCaption}>The manifesto print, on the hoodie, the mug and the tote.</p>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+
+            <div className={styles.heroVisual}>
+              <ProductImage src={heroImage.src} alt={heroImage.alt} name="Manifesto Hoodie" width={1300} height={1040} className={styles.heroMain} eager />
+              {heroTee && (
+                <ProductImage src={heroTee.image} alt={heroTee.alt} name={heroTee.name} width={210} height={262} className={styles.heroTee} eager />
+              )}
+              <span className={`${styles.floatTag} ${styles.tagTop}`}>
+                <Hexagon size={18} aria-hidden="true" />
+                {products.length} items · Apparel, drinkware, desk
+              </span>
+              {heroHoodie && (
+                <span className={`${styles.floatTag} ${styles.tagBottom}`}>
+                  <ProductImage src={heroHoodie.image} alt="" name="" width={44} height={44} className={styles.tagThumb} />
+                  <span>
+                    <span className={styles.tagName}>{heroHoodie.name}</span>
+                    <span className={styles.tagPrice}>{money(heroHoodie.price)}</span>
+                  </span>
+                </span>
+              )}
+            </div>
+          </div>
         </section>
 
-        {/* Main Content Area with Sidebar */}
-        <div className="merch-main-content">
-          {/* Sidebar with Filters */}
-          <aside className="merch-sidebar">
-            <FilterBar
-              selectedCategory={selectedCategory}
-              onCategoryChange={setSelectedCategory}
-              sortBy={sortBy}
-              onSortChange={setSortBy}
-            />
-          </aside>
+        {trust.length > 0 && (
+          <section className={styles.container} aria-label="Store information">
+            <ul className={styles.trust}>
+              {trust.map(({ key, Icon, title, sub }) => (
+                <li key={key} className={styles.trustItem}>
+                  <span className={styles.trustIcon}><Icon size={18} aria-hidden="true" /></span>
+                  <span className={styles.trustText}>
+                    <span className={styles.trustTitle}>{title}</span>
+                    {sub && <span className={styles.trustSub}>{sub}</span>}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-          {/* Products Grid */}
-          <section className="merch-products-section">
-            {loading ? (
-              <div style={{ textAlign: "center", padding: "4rem 0" }}>
-                <p
-                  style={{
-                    fontSize: "1.2rem",
-                    color: "var(--ifm-color-primary)",
-                  }}
-                >
-                  Loading products...
+        {/* Shop */}
+        <section id="shop" className={`${styles.container} ${styles.section}`} aria-labelledby="shop-heading">
+          <div className={styles.headRow}>
+            <div className={styles.head}>
+              <p className={styles.eyebrow}>✦ SHOP</p>
+              <h2 id="shop-heading" className={styles.h2}>The collection</h2>
+            </div>
+            <label className={styles.sort}>
+              <span className={styles.srOnly}>Sort products</span>
+              <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} aria-label="Sort products">
+                {(Object.keys(SORT_LABEL) as Sort[]).map((k) => (
+                  <option key={k} value={k}>{SORT_LABEL[k]}</option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <div role="group" aria-label="Category" className={styles.chips}>
+            <button type="button" aria-pressed={category === 'all'} className={`${styles.chip} ${category === 'all' ? styles.chipOn : ''}`} onClick={() => setCategory('all')}>
+              All <span className={styles.count}>{products.length}</span>
+            </button>
+            {categories.map((c) => (
+              <button key={c.key} type="button" aria-pressed={category === c.key} className={`${styles.chip} ${category === c.key ? styles.chipOn : ''}`} onClick={() => setCategory(c.key)}>
+                {c.key} <span className={styles.count}>{c.count}</span>
+              </button>
+            ))}
+          </div>
+
+          <div className={styles.grid}>
+            {shown.map((p) => <ProductCard key={p.id} p={p} />)}
+          </div>
+        </section>
+
+        {/* Manifesto band */}
+        <section className={`${styles.container} ${styles.section}`} aria-labelledby="manifesto-heading">
+          <div className={styles.band}>
+            <div className={styles.bandMedia}>
+              <ProductImage src={wideImage.src} alt={wideImage.alt} name="Hive Oversized Tee" width={1300} height={1040} className={styles.bandImg} />
+            </div>
+            <div className={styles.bandText}>
+              <p className={`${styles.eyebrow} ${styles.eyebrowLight}`}>✦ THE MANIFESTO COLLECTION</p>
+              <h2 id="manifesto-heading" className={styles.srOnly}>The manifesto collection</h2>
+              <ManifestoStack size="lg" />
+              {store.manifestoNote && <p className={styles.bandNote}>{store.manifestoNote}</p>}
+              <div className={styles.bandChips}>
+                {['hoodie', 'mug', 'tote'].map(byId).filter((p): p is Product => Boolean(p)).map((p) => (
+                  <button key={p.id} type="button" className={styles.bandChip} onClick={() => goProduct(p)}>
+                    <ProductImage src={p.image} alt="" name="" width={40} height={50} className={styles.bandThumb} />
+                    {p.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Bundle */}
+        <section className={`${styles.container} ${styles.section}`} aria-labelledby="bundle-heading">
+          <div className={`${styles.card} ${styles.bundle}`}>
+            <div className={styles.bundleMedia}>
+              {bundleItems.map((p, i) => (
+                <ProductImage key={p.id} src={p.image} alt={p.alt} name={p.name} width={400} height={500} className={i === 0 ? styles.bundleTall : styles.bundleSmall} />
+              ))}
+            </div>
+            <div className={styles.bundleBody}>
+              <p className={styles.eyebrow}>✦ BUNDLE</p>
+              <h2 id="bundle-heading" className={styles.h2Sm}>{bundle.name}</h2>
+              <p className={styles.sub}>Notebook, mug and bottle, packed together. Built for the desk you code at.</p>
+              <ul className={styles.checklist}>
+                {bundleItems.map((p) => (
+                  <li key={p.id}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5" /></svg>
+                    <span>{p.name}</span>
+                    <span className={styles.itemPrice}>{money(p.price)}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className={styles.bundlePrice}>
+                <span className={styles.bundleNow}>{money(bundle.price)}</span>
+                <s className={styles.bundleWas}>{money(separateTotal)}</s>
+                {savedPct > 0 && <span className={styles.saveChip}>save {savedPct}% vs separately</span>}
+              </div>
+              <a className={styles.btnPrimary} href={store.notifyUrl} target="_blank" rel="noopener noreferrer" aria-label={`Get notified when ${bundle.name} is available`}>
+                Notify me
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        {answered.length > 0 && (
+          <section className={`${styles.container} ${styles.section}`} aria-labelledby="faq-heading">
+            <div className={styles.faqWrap}>
+              <div className={styles.faqIntro}>
+                <p className={styles.eyebrow}>✦ BEFORE YOU ORDER</p>
+                <h2 id="faq-heading" className={styles.h2}>Shipping, sizing and returns</h2>
+                <p className={styles.sub}>
+                  Still unsure? <Link to={CONTACT_URL}>Contact us</Link> and a human from the hive will reply.
                 </p>
               </div>
-            ) : (
-              <ProductGrid products={filteredProducts} onAddToCart={addToCart} />
-            )}
+              <div className={styles.faqList}>
+                {answered.map((f, i) => {
+                  const open = openFaq === i;
+                  return (
+                    <div key={f.q} className={styles.faqItem}>
+                      <h3 className={styles.faqQ}>
+                        <button type="button" aria-expanded={open} aria-controls={`faq-panel-${i}`} id={`faq-btn-${i}`} className={styles.faqBtn} onClick={() => setOpenFaq(open ? -1 : i)}>
+                          <span>{f.q}</span>
+                          <span className={`${styles.plus} ${open ? styles.plusOpen : ''}`} aria-hidden="true">+</span>
+                        </button>
+                      </h3>
+                      <div id={`faq-panel-${i}`} role="region" aria-labelledby={`faq-btn-${i}`} hidden={!open} className={styles.faqA}>
+                        <p>{f.a}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+                {links.length > 0 && (
+                  <div className={styles.policyLinks}>
+                    {links.map((l) => (
+                      <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
           </section>
-        </div>
-
-        {/* Shopping Cart */}
-        <ShoppingCart
-          isOpen={cartOpen}
-          onClose={() => setCartOpen(false)}
-          items={cartItems}
-          onUpdateQuantity={updateQuantity}
-          onRemoveItem={removeFromCart}
-        />
-
-        {/* Floating Cart Button */}
-        <button
-          className="floating-cart-button"
-          onClick={() => setCartOpen(true)}
-          aria-label="Open shopping cart"
-        >
-          <ShoppingBag size={24} />
-          {cartItemCount > 0 && (
-            <span className="cart-badge">{cartItemCount}</span>
-          )}
-        </button>
-
-        {/* Info Section */}
-        <section className="merch-info-section">
-          <motion.div
-            className="info-grid"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-          >
-            <motion.div className="info-card info-card-highlighted" variants={itemVariants}>
-              <div className="info-card-icon"><Truck size={32} color="var(--ifm-color-primary)" /></div>
-              <h3>Free Shipping</h3>
-              <p>Free shipping on orders over $50</p>
-            </motion.div>
-            <motion.div className="info-card info-card-highlighted" variants={itemVariants}>
-              <div className="info-card-icon"><RefreshCw size={32} color="var(--ifm-color-primary)" /></div>
-              <h3>Easy Returns</h3>
-              <p>30-day return policy, no questions asked</p>
-            </motion.div>
-            <motion.div className="info-card info-card-highlighted" variants={itemVariants}>
-              <div className="info-card-icon"><Leaf size={32} color="var(--ifm-color-primary)" /></div>
-              <h3>Sustainable</h3>
-              <p>Eco-friendly materials and ethical production</p>
-            </motion.div>
-            <motion.div className="info-card info-card-highlighted" variants={itemVariants}>
-              <div className="info-card-icon"><ShieldCheck size={32} color="var(--ifm-color-primary)" /></div>
-              <h3>Quality Guarantee</h3>
-              <p>Premium materials, built to last</p>
-            </motion.div>
-          </motion.div>
-        </section>
-      </div>
+        )}
+      </main>
     </Layout>
   );
 }
