@@ -4,6 +4,8 @@ authors: [sanjay-kv]
 sidebar_label: "GitHub Copilot CLI"
 tags: [GitHub, CLI, tech, updates, Copilot, Coding, Assistant]
 date: 2025-09-17
+image: /img/blogs/github-cli-agent-cover.png
+category: GITHUB
 
 description: GitHub bought power of GitHub Copilot coding agent directly to your terminal, with GitHub Copilot CLI, you can work locally and synchronously with an AI agent.
 

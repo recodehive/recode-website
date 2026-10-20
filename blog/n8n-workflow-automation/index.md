@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "N8N AI Workflows Explained"
 tags: [N8N, AI Automation, Workflow Automation, No-Code, Integration, Machine Learning, API Integration]
 date: 2025-09-17
+image: /img/blogs/n8n-logo.png
+category: AUTOMATION
 
 description: N8N revolutionizes automation by integrating AI capabilities into visual workflows. Learn how to build intelligent automation pipelines that can process data, make decisions, and interact with multiple services seamlessly.
 

@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "Microsoft Fabric"
 tags: [microsoft-fabric, onelake, data-engineering, lakehouse, delta-lake, big-data, cloud, power-bi]
 date: 2026-05-01
+image: /img/blogs/microsoft-farbic-blog-image.png
+category: MICROSOFT FABRIC
 
 description: Microsoft Fabric is a unified analytics platform that brings together data engineering, data science, real-time analytics, and business intelligence under a single roof — all built on OneLake. Learn how Fabric is architected, how data flows through it, and why it matters for modern data teams.
 

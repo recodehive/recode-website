@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore, sanjay-kv]
 sidebar_label: "How SSO Works - Case Study"
 tags: [sso, single-sign-on, authentication, identity-provider, oauth, openid-connect, saml, security, web]
 date: 2026-05-04
+image: /img/blogs/sso_cover.png
+category: SECURITY
  
 description: SSO lets you log into dozens of apps with a single set of credentials. But how does it actually work under the hood? This beginner-friendly guide walks through the full flow — from clicking "Sign in with Google" to getting access — step by step.
  

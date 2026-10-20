@@ -91,7 +91,7 @@ Replace my name with your name and respective website links of yours.
 
 ```yaml
 sanjay-kv:
-  name: Sanjay Viswanthan
+  name: Sanjay Viswanathan
   title: Founder at recode hive
   url: https://nomadbrains.dev
   image_url: https://avatars.githubusercontent.com/u/30715153?v=4
