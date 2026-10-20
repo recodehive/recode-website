@@ -153,6 +153,11 @@ const config: Config = {
           ],
         },
         {
+          to: "/learn",
+          html: '<span class="nav-emoji">🎓</span> Learn',
+          position: "left",
+        },
+        {
           type: "dropdown",
           to: "/showcase",
           html: '<span class="nav-emoji">🌍</span> Showcase',
@@ -282,6 +287,19 @@ const config: Config = {
   themes: ["@docusaurus/theme-mermaid"],
 
   plugins: [
+    // Free Learn section: one MDX file per lesson, each with its own URL
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "learn",
+        path: "learn",
+        routeBasePath: "learn",
+        docRootComponent: "@site/src/learn/LearnRoot",
+        docItemComponent: "@site/src/learn/LearnDoc",
+      },
+    ],
+    // Counts lesson words at build time; thin lessons get noindex
+    "./plugins/learn-words",
     [
       "@docusaurus/plugin-ideal-image",
       {

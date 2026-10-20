@@ -1,6 +1,7 @@
 // src/components/dashboard/Sidebar/DashboardSidebar.tsx
 import React, { useEffect, useRef, useState } from "react";
 import Link from "@docusaurus/Link";
+import { useLocation } from "@docusaurus/router";
 import { SignInButton, useUser, useClerk } from "@clerk/react";
 import {
   LayoutGrid,
@@ -11,6 +12,7 @@ import {
   Smile,
   HelpCircle,
   Sparkles,
+  GraduationCap,
   Bell,
   ChevronDown,
   PanelLeft,
@@ -21,7 +23,8 @@ import "./DashboardSidebar.css";
 export type DashboardTab = "home" | "discuss" | "giveaway" | "contributors";
 
 interface DashboardSidebarProps {
-  activeTab: DashboardTab;
+  /** null on pages outside the dashboard, such as the Learn section */
+  activeTab: DashboardTab | null;
   onTabChange: (tab: DashboardTab) => void;
 }
 
@@ -43,7 +46,9 @@ const LINK_ITEMS: Array<{
   label: string;
   icon: React.ReactNode;
   badge?: boolean;
+  free?: boolean;
 }> = [
+  { href: "/learn", label: "Learn", icon: <GraduationCap size={16} />, free: true },
   { href: "/blogs", label: "Blogs", icon: <BookOpen size={16} /> },
   { href: "/community", label: "Community", icon: <Smile size={16} /> },
   { href: "/contact-us", label: "Help center", icon: <HelpCircle size={16} /> },
@@ -80,6 +85,7 @@ export default function DashboardSidebar({
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const profileMenuRef = useRef<HTMLDivElement>(null);
   const latestTag = getLatestRelease()?.tag;
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const stored = window.localStorage.getItem(COLLAPSE_STORAGE_KEY);
@@ -221,11 +227,14 @@ export default function DashboardSidebar({
           <p className="dashboard-rail-group">RESOURCES</p>
         )}
 
-        {LINK_ITEMS.map((item) => (
+        {LINK_ITEMS.map((item) => {
+          const active = item.free ? pathname.startsWith("/learn") : false;
+          return (
           <Link
             key={item.href}
             to={item.href}
-            className="dashboard-rail-item"
+            className={`dashboard-rail-item ${active ? "active" : ""}`}
+            aria-current={active ? "page" : undefined}
             title={collapsed ? item.label : undefined}
           >
             <span className="dashboard-rail-item-icon">{item.icon}</span>
@@ -235,10 +244,12 @@ export default function DashboardSidebar({
                 {item.badge && latestTag && (
                   <span className="dashboard-rail-badge">{latestTag}</span>
                 )}
+                {item.free && <span className="dashboard-rail-badge">FREE</span>}
               </>
             )}
           </Link>
-        ))}
+          );
+        })}
       </nav>
 
       <div className="dashboard-rail-bottom">
