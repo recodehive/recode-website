@@ -178,7 +178,7 @@ const DashboardContent: React.FC = () => {
 
       <DashboardSidebar activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <div className={`dashboard-main-content${activeTab === "home" ? " dashboard-main-content--home" : ""}${activeTab === "discuss" ? " dashboard-main-content--discuss" : ""}`}>
+      <div className={`dashboard-main-content${activeTab === "home" ? " dashboard-main-content--home" : ""}${activeTab === "discuss" ? " dashboard-main-content--discuss" : ""}${activeTab === "giveaway" ? " dashboard-main-content--giveaway" : ""}`}>
         <Head>
           <title>Dashboard | recode hive</title>
         </Head>

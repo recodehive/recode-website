@@ -266,6 +266,11 @@ html[data-theme="dark"] .dashboard-layout {
   }
 }
 
+.dashboard-main-content--giveaway {
+  padding: 0;
+  overflow-x: clip;
+}
+
 /* Stat card pieces still used by the Giveaways tab */
 .dashboard-stat-card:hover {
   transform: translateY(-4px);
