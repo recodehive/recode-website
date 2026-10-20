@@ -68,10 +68,11 @@
 .tileValue { font-family: "Space Grotesk", sans-serif; font-size: 34px; line-height: 1.1; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
 .tileHint { font-size: 12.5px; line-height: 1.45; color: var(--muted); }
 .tileIcon { position: absolute; top: 16px; right: 16px; width: 38px; height: 38px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; background: var(--accent-tint); color: var(--accent-dark); }
-.tileDark { background: #205d3b; border-color: #205d3b; }
-.tileDark .tileLabel, .tileDark .tileValue { color: #ffffff; }
-.tileDark .tileHint { color: #bbf7d0; }
-.tileDark .tileIcon { background: rgba(255, 255, 255, 0.16); color: #ffffff; }
+/* Doubled class names so the green tile beats .card regardless of the order the CSS is bundled in */
+.tile.tileDark { background: #205d3b; border-color: #205d3b; }
+.tile.tileDark .tileLabel, .tile.tileDark .tileValue { color: #ffffff; }
+.tile.tileDark .tileHint { color: #bbf7d0; }
+.tile.tileDark .tileIcon { background: rgba(255, 255, 255, 0.16); color: #ffffff; }
 
 .skel { display: block; border-radius: 8px; background: linear-gradient(90deg, var(--border) 25%, var(--accent-tint) 50%, var(--border) 75%); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; }
 @keyframes shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
