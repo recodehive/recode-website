@@ -158,6 +158,13 @@
 @media (min-width: 700px) { .head { grid-template-columns: minmax(0, 1fr) auto; } }
 @media (min-width: 900px) { .title { white-space: nowrap; } }
 @media (max-width: 560px) { .section { padding-block: 3rem 0; } .inner { padding: 48px 24px 28px; } }
+/* Phones: no card. The section runs edge to edge and flows with the page background, in light and dark mode.
+   The extra :global(.rh-home) beats the homepage container padding rule without !important. */
+@media (max-width: 720px) {
+  :global(.rh-home) .section .wrap { padding-inline: 0; }
+  .band { border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+  .inner { padding: 40px 20px 28px; }
+}
 @media (prefers-reduced-motion: reduce) {
   .line { animation: none; clip-path: none; }
   .bar, .cursor { animation: none; }

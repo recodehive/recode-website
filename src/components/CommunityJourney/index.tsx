@@ -135,7 +135,7 @@ export default function CommunityJourney({
 
   return (
     <section className={styles.section} aria-labelledby="journey-heading">
-      <div className="rh-container">
+      <div className={`rh-container ${styles.wrap}`}>
         <div className={styles.band}>
           <div className={styles.grid} aria-hidden="true" />
           <div className={styles.glow} aria-hidden="true" />
