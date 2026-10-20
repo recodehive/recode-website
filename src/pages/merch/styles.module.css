@@ -37,6 +37,9 @@
 .btnOutline:hover { border-color: var(--accent); color: var(--accent-dark); text-decoration: none; box-shadow: 0 0 8px var(--accent); }
 .btnPrimary:focus-visible, .btnOutline:focus-visible, .chip:focus-visible, .notifyBtn:focus-visible, .bandChip:focus-visible, .faqBtn:focus-visible, .sort select:focus-visible, .policyLinks a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
+/* placeholder for a missing image. Declared before the hero, thumbnail and band sizing rules so those keep their own width and height. */
+.placeholder { display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px; box-sizing: border-box; background: #f1f5f9; color: #475569; font: 600 14px "Space Grotesk", sans-serif; width: 100%; height: 100%; min-height: 40px; border-radius: inherit; }
+
 /* hero */
 .hero { position: relative; overflow: hidden; }
 .heroGrid { position: absolute; top: 0; left: 0; width: 70%; height: 100%; pointer-events: none; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 44px 44px; -webkit-mask-image: radial-gradient(ellipse 80% 90% at 0% 0%, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse 80% 90% at 0% 0%, #000 20%, transparent 75%); }
@@ -60,8 +63,6 @@
 .tagPrice { display: block; font: 500 12px "JetBrains Mono", ui-monospace, monospace; color: #475569; }
 @keyframes bob { from { transform: translateY(-4px); } to { transform: translateY(6px); } }
 
-/* placeholder for a missing image */
-.placeholder { display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px; box-sizing: border-box; background: #f1f5f9; color: #475569; font: 600 14px "Space Grotesk", sans-serif; width: 100%; height: 100%; min-height: 40px; border-radius: inherit; }
 
 /* trust strip */
 .trust { list-style: none; margin: 40px 0 0; padding: 0; display: flex; background: var(--card); border: 1px solid var(--border); border-radius: 1rem; box-shadow: var(--shadow); }
