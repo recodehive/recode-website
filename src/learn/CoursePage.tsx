@@ -2,13 +2,15 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import { ArrowRight, Check } from 'lucide-react';
-import { allLessons, lessonKey, lessonPath, playableLessons, type Course } from '../data/learn';
+import { allLessons, lessonKey, lessonPath, type Course } from '../data/learn';
+import { usePublished } from './usePublished';
 import { useProgress } from './useProgress';
 import styles from './learn.module.css';
 
 export default function CoursePage({ course }: { course: Course }) {
   const { done } = useProgress();
-  const playable = playableLessons(course);
+  const { isPublished, published } = usePublished();
+  const playable = published(course);
   const first = playable[0];
   const doneCount = playable.filter((l) => done.includes(lessonKey(course.slug, l.slug))).length;
 
@@ -17,7 +19,7 @@ export default function CoursePage({ course }: { course: Course }) {
     '@type': 'Course',
     name: course.title,
     description: course.description,
-    provider: { '@type': 'Organization', name: 'recode hive', sameAs: 'https://www.recodehive.com' },
+    provider: { '@type': 'Organization', name: 'recodehive', sameAs: 'https://www.recodehive.com' },
   };
 
   return (
@@ -55,7 +57,7 @@ export default function CoursePage({ course }: { course: Course }) {
             </h2>
             <ul className={styles.lessonList}>
               {m.lessons.map((l) => {
-                const ready = Boolean(l.youtubeId);
+                const ready = isPublished(course.slug, l);
                 const isDone = done.includes(lessonKey(course.slug, l.slug));
                 const inner = (
                   <>
@@ -77,7 +79,13 @@ export default function CoursePage({ course }: { course: Course }) {
           </section>
         ))}
       </div>
-      <p className={styles.mono}>{allLessons(course).length} lessons planned, {playable.length} ready to watch.</p>
+      <p className={styles.mono}>{allLessons(course).length} lessons, {playable.length} published.</p>
+      {course.fullCourseVideoId && (
+        <p className={styles.fullCourse}>
+          Prefer one long video?{' '}
+          <a href={`https://www.youtube.com/watch?v=${course.fullCourseVideoId}`} target="_blank" rel="noopener noreferrer">Watch the full course<span className={styles.srOnly}> (opens in a new tab)</span></a>.
+        </p>
+      )}
     </div>
   );
 }

@@ -172,3 +172,10 @@ a.outlineRow:hover { background: var(--soft); color: var(--text); text-decoratio
   .card, .barFill, .play { transition: none; }
   .cardLink:hover { transform: none; }
 }
+
+.fullCourse { margin: 18px 0 0; font-size: 14.5px; color: var(--text-2); }
+.fullCourse a { color: var(--accent); font-weight: 600; }
+.moreVideos { margin-top: 28px; }
+.moreGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.moreItem { margin: 0; }
+.moreItem figcaption { margin-top: 8px; font-size: 13.5px; font-weight: 600; color: var(--text); }

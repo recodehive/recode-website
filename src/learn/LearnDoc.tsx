@@ -7,7 +7,7 @@ import CoursePage from './CoursePage';
 import LessonPage from './LessonPage';
 import { allLessons, getCourse } from '../data/learn';
 
-type WordData = { thin: string[] };
+type WordData = { unpublished: string[] };
 
 /** docItemComponent for the "learn" docs instance: picks the page type from the document. */
 export default function LearnDoc(props: { content: any }) {
@@ -26,8 +26,8 @@ export default function LearnDoc(props: { content: any }) {
     page = <CoursePage course={course} />;
   } else {
     const lesson = course && allLessons(course).find((l) => l.slug === lessonSlug);
-    if (course && lesson && lesson.youtubeId) {
-      const thin = Boolean(words?.thin.includes(`${courseSlug}/${lessonSlug}`));
+    if (course && lesson && (lesson.videos?.length ?? 0) > 0) {
+      const thin = Boolean(words?.unpublished.includes(`${courseSlug}/${lessonSlug}`));
       page = <LessonPage course={course} lesson={lesson} thin={thin}><Content /></LessonPage>;
     } else {
       // A notes file without a playable lesson behind it: never index placeholder pages
@@ -39,7 +39,7 @@ export default function LearnDoc(props: { content: any }) {
     <DocProvider content={props.content}>
       {/* Generic metadata; the lesson page sets its own, more specific title below this */}
       <Head>
-        <title>{`${metadata.title} | recode hive Learn`}</title>
+        <title>{`${metadata.title} | recodehive Learn`}</title>
         <meta name="description" content={metadata.description} />
       </Head>
       {page}

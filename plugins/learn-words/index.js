@@ -5,6 +5,8 @@ const fs = require('fs');
 const path = require('path');
 
 const MIN_WORDS = 300;
+// A skeleton page keeps this marker until real content replaces it. Pages that contain it are drafts.
+const TODO_MARKER = 'TODO: write original content';
 
 function walk(dir) {
   const out = [];
@@ -32,22 +34,33 @@ module.exports = function learnWords(context) {
 
     async loadContent() {
       const counts = {};
-      if (!fs.existsSync(learnDir)) return { counts, thin: [], min: MIN_WORDS };
+      const drafts = [];
+      if (!fs.existsSync(learnDir)) return { counts, thin: [], drafts, files: [], unpublished: [], min: MIN_WORDS };
 
       for (const file of walk(learnDir)) {
         const rel = path.relative(learnDir, file).split(path.sep).join('/');
         // index pages are the catalog and course overviews, not lessons
         if (/(^|\/)index\.mdx?$/.test(rel)) continue;
         const key = rel.replace(/\.mdx?$/, '');
-        counts[key] = countWords(fs.readFileSync(file, 'utf8'));
+        const source = fs.readFileSync(file, 'utf8');
+        counts[key] = countWords(source);
+        if (source.includes(TODO_MARKER)) drafts.push(key);
       }
 
       const thin = Object.keys(counts).filter((k) => counts[k] < MIN_WORDS);
-      return { counts, thin, min: MIN_WORDS };
+      // Unpublished lessons are not linked, are noindex and are left out of the sitemap.
+      const unpublished = Array.from(new Set([...thin, ...drafts]));
+      return { counts, thin, drafts, files: Object.keys(counts), unpublished, min: MIN_WORDS };
     },
 
     async contentLoaded({ content, actions }) {
       actions.setGlobalData(content);
+      if (content.drafts.length > 0) {
+        console.warn(
+          `[learn] ${content.drafts.length} lesson(s) are drafts (still contain the TODO marker):\n` +
+            content.drafts.map((k) => `  - ${k}`).join('\n'),
+        );
+      }
       if (content.thin.length > 0) {
         console.warn(
           `[learn] ${content.thin.length} lesson(s) have fewer than ${content.min} words and will be noindex:\n` +
