@@ -1,1002 +1,337 @@
-// src/components/dashboard/LeaderBoard/leaderboard.tsx
-import React, { JSX, useState, useCallback } from "react";
-import { motion } from "framer-motion";
-import { FaGithub, FaSearch } from "react-icons/fa";
-import { ChevronRight, ChevronLeft, Info } from "lucide-react";
-import { useUser } from "@clerk/react";
-import { useSafeColorMode } from "@site/src/utils/useSafeColorMode";
-import { useCommunityStatsContext, EXCLUDED_USERS } from "@site/src/lib/statsProvider";
-import PRListModal from "./PRListModal";
-import BadgeModal from "./BadgeModal";
-import PersonalStats from "./PersonalStats";
-import StreakCard from "./StreakCard";
-import PointsInfoModal from "./PointsInfoModal";
-import SupportBanner from "./SupportBanner";
-import { BADGE_CONFIG } from "./badgeConfig";
-import { mockContributors } from "./mockData";
-import "./leaderboard.css";
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useUser } from '@clerk/react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { Search } from 'lucide-react';
+import { useCommunityStatsContext, type TimeFilter } from '@site/src/lib/statsProvider';
+import { BADGE_CONFIG } from './badgeConfig';
+import Podium, { Hex, type Row } from './Podium';
+import { HiveActivity, HowToEarn, YourRank, type Viewer } from './Rail';
+import {
+  PERIOD_LABEL,
+  REFRESH_EVERY_HOURS,
+  STALE_AFTER_MS,
+  avatarSrc,
+  nextScheduledRun,
+  rangeLabel,
+  timeOfDay,
+  updatedStamp,
+  type Period,
+} from './leaderboardUtils';
+import { useReducedMotion } from './leaderboardHooks';
+import styles from './leaderboard.module.css';
 
-const GITHUB_ORG = "recodehive";
-
-function formatUpdateTime(date: Date): string {
-  return date.toLocaleString("en-US", {
-    day: "numeric",
-    month: "short",
-    hour: "numeric",
-    minute: "2-digit",
-    hour12: true,
-  });
-}
-
-interface PRDetails {
-  title: string;
-  url: string;
-  mergedAt: string;
-  repoName: string;
-  number: number;
-  points: number;
-}
-
+// Kept for BadgeModal, which still types its props with it.
 export interface Contributor {
   username: string;
   avatar: string;
   profile: string;
   points: number;
   prs: number;
-  prDetails?: PRDetails[];
-  badges?: string[]; // Array of badge image paths
+  prDetails?: { title: string; url: string; mergedAt: string; repoName: string; number: number; points: number }[];
+  badges?: string[];
 }
 
-interface Stats {
-  flooredTotalPRs: number;
-  totalContributors: number;
-  flooredTotalPoints: number;
-}
+const PERIODS: Period[] = ['week', 'month', 'all'];
+const PAGE = 20;
+const SPONSOR_URL = 'https://github.com/sponsors/sanjay-kv';
+const REPO_URL = 'https://github.com/recodehive/recode-website';
 
-/**
- * Determines which badges a contributor should have based on their stats.
- * A badge only appears when its own criteria is actually met — no rank-based
- * overrides, so the badge shown always matches what it claims to represent.
- */
-function getContributorBadges(
-  contributor: Contributor,
-  _rank: number,
-): string[] {
-  return BADGE_CONFIG.filter((badge) =>
-    badge.criteria(contributor.prs, contributor.points),
-  ).map((badge) => badge.image);
-}
+const periodWord = (p: Period, fallback: boolean) => (fallback ? 'last week' : p === 'all' ? 'all time' : p === 'week' ? 'this week' : 'this month');
+const topBeesTitle = (p: Period, fallback: boolean) =>
+  fallback ? "Last week's top bees" : p === 'week' ? "This week's top bees" : p === 'month' ? "This month's top bees" : 'All-time top bees';
 
-/**
- * Badge display component
- */
-function ContributorBadges({
-  badges,
-  onClick,
-}: {
-  badges: string[];
-  onClick?: () => void;
-}) {
-  if (!badges || badges.length === 0) return null;
-
-  return (
-    <div className="contributor-badges" onClick={onClick}>
-      {badges.map((badge, index) => (
-        <img
-          key={index}
-          src={badge}
-          alt={`Badge ${index + 1}`}
-          className="contributor-badge-icon"
-          title={
-            BADGE_CONFIG.find((b) => b.image === badge)?.name ||
-            "Achievement Badge"
-          }
-        />
-      ))}
-    </div>
-  );
-}
-
-function Badge({
-  count,
-  label,
-  color,
-  onClick,
-  clickable = false,
-}: {
-  count: number;
-  label: string;
-  color: { background: string; color: string };
-  onClick?: () => void;
-  clickable?: boolean;
-}) {
-  const badgeStyle = {
-    ...color,
-    cursor: clickable ? "pointer" : "default",
-    transition: clickable ? "all 0.2s ease" : "none",
-  };
-
-  const handleClick = () => {
-    if (clickable && onClick) {
-      onClick();
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (clickable && (e.key === "Enter" || e.key === " ")) {
-      e.preventDefault();
-      if (onClick) onClick();
-    }
-  };
-
-  return (
-    <span
-      className={`badge ${clickable ? "clickable" : ""}`}
-      style={badgeStyle}
-      onClick={handleClick}
-      onKeyDown={handleKeyDown}
-      tabIndex={clickable ? 0 : -1}
-      role={clickable ? "button" : undefined}
-      aria-label={clickable ? `View ${label.toLowerCase()} details` : undefined}
-    >
-      {count} {label}
-    </span>
-  );
-}
-
-function TopPerformerCard({
-  contributor,
-  rank,
-  onPRClick,
-  onBadgeClick,
-}: {
-  contributor: Contributor;
-  rank: number;
-  onPRClick: (contributor: Contributor) => void;
-  onBadgeClick?: (contributor: Contributor) => void;
-}) {
-  const { isDark } = useSafeColorMode();
-  const rankClass = rank === 1 ? "top-1" : rank === 2 ? "top-2" : "top-3";
-  const badges = getContributorBadges(contributor, rank);
-
-  return (
-    <div className={`top-performer-card ${isDark ? "dark" : "light"}`}>
-      <img
-        src={contributor.avatar}
-        alt={contributor.username}
-        className="avatar large"
-      />
-      <div className={`rank-overlay ${rankClass}`}>
-        <span className="rank-text">{rank}</span>
-      </div>
-      <div className="performer-info">
-        <a
-          href={contributor.profile}
-          target="_blank"
-          rel="noreferrer"
-          className="username-link"
-        >
-          {contributor.username}
-        </a>
-        <ContributorBadges
-          badges={badges}
-          onClick={() => onBadgeClick?.(contributor)}
-        />
-        <div className="badges-container">
-          <Badge
-            count={contributor.prs}
-            label="PRs"
-            color={{ background: "#dbeafe", color: "#2563eb" }}
-            onClick={() => onPRClick(contributor)}
-            clickable={true}
-          />
-          <Badge
-            count={contributor.points}
-            label="Points"
-            color={{ background: "#ede9fe", color: "#7c3aed" }}
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function LeaderBoard(): JSX.Element {
-  // Get time filter functions from context
+export default function LeaderBoard() {
   const {
-    contributors,
-    stats,
-    hasContributorsData,
-    isFallbackPeriod,
-    fallbackLabel,
-    loading,
-    error,
-    lastUpdated,
-    currentTimeFilter,
-    setTimeFilter,
+    contributors, stats, hasContributorsData, isFallbackPeriod, loading, error,
+    lastUpdated, currentTimeFilter, setTimeFilter, allTimeRanking, clearCache,
   } = useCommunityStatsContext();
+  const { siteConfig } = useDocusaurusContext();
+  const reduced = useReducedMotion();
 
-  const { isDark } = useSafeColorMode();
-  // useUser() throws if no ClerkProvider is mounted (e.g. Clerk not configured
-  // locally); guard so the leaderboard still renders without personalization.
-  let clerkUser: ReturnType<typeof useUser>["user"] | undefined;
+  // useUser() throws when no ClerkProvider is mounted; keep the board usable without it.
+  let clerkUser: ReturnType<typeof useUser>['user'] | undefined;
   try {
     clerkUser = useUser().user;
   } catch {
     clerkUser = undefined;
   }
-  const viewerLogin =
-    clerkUser?.externalAccounts?.find((a) => a.provider === "github")
-      ?.username ?? null;
+  const githubLogin = clerkUser?.externalAccounts?.find((a) => a.provider === 'github')?.username ?? null;
+  const viewer: Viewer = githubLogin && clerkUser ? { login: githubLogin, imageUrl: clerkUser.imageUrl } : null;
+  const canSignIn = Boolean(siteConfig.customFields?.clerkPublishableKey);
 
-  const [searchQuery, setSearchQuery] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedContributor, setSelectedContributor] =
-    useState<Contributor | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [badgeModalContributor, setBadgeModalContributor] =
-    useState<Contributor | null>(null);
-  const [isBadgeModalOpen, setIsBadgeModalOpen] = useState(false);
-  const [isPointsInfoOpen, setIsPointsInfoOpen] = useState(false);
-  const [isSelectChanged, setIsSelectChanged] = useState(false);
-  const itemsPerPage = 20;
+  // Default to the monthly board.
+  useEffect(() => {
+    setTimeFilter('month');
+  }, []);
+  const period: Period = (PERIODS as string[]).includes(currentTimeFilter) ? (currentTimeFilter as Period) : 'month';
 
-  // Modal handlers
-  const handlePRClick = (contributor: Contributor) => {
-    setSelectedContributor(contributor);
-    setIsModalOpen(true);
+  const [query, setQuery] = useState('');
+  const [shown, setShown] = useState(PAGE);
+  const [barsReady, setBarsReady] = useState(false);
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const now = useMemo(() => new Date(), []);
+
+  useEffect(() => {
+    setShown(PAGE);
+    setBarsReady(false);
+    const id = requestAnimationFrame(() => setBarsReady(true));
+    return () => cancelAnimationFrame(id);
+  }, [period, hasContributorsData]);
+
+  const allTime = useMemo(() => {
+    const m = new Map<string, { prs: number; points: number }>();
+    for (const r of allTimeRanking) m.set(r.username.toLowerCase(), { prs: r.prs, points: r.points });
+    return m;
+  }, [allTimeRanking]);
+
+  const badgesFor = (login: string): string[] => {
+    const t = allTime.get(login.toLowerCase());
+    if (!t) return [];
+    return BADGE_CONFIG.filter((b) => b.criteria(t.prs, t.points)).map((b) => b.name);
   };
 
-  const handleCloseModal = useCallback(() => {
-    setIsModalOpen(false);
-    setSelectedContributor(null);
-  }, []);
-
-  // Badge modal handlers
-  const handleBadgeClick = useCallback(
-    (contributor: Contributor) => {
-      setBadgeModalContributor(contributor);
-      setIsBadgeModalOpen(true);
-    },
-    [],
+  const rows: Row[] = useMemo(
+    () =>
+      contributors.map((c) => ({
+        username: c.username,
+        avatar: c.avatar,
+        profile: c.profile,
+        points: c.points,
+        prs: c.prs,
+        badgeNames: badgesFor(c.username),
+      })),
+    [contributors, allTime],
   );
 
-  const handleCloseBadgeModal = useCallback(() => {
-    setIsBadgeModalOpen(false);
-    setBadgeModalContributor(null);
-  }, []);
-
-  // Use mock data only when there's a fetch error or no data has ever loaded —
-  // NOT when the current time filter just happens to match zero contributors.
-  const displayContributors =
-    error || !hasContributorsData ? mockContributors : contributors;
-
-  // Excluded-only view (bots etc. removed, no search applied) — the true
-  // ranking order, used for personal rank/streak/badges so it always matches
-  // the visible leaderboard regardless of the search box.
-  const rankedContributors = displayContributors.filter(
-    (contributor) =>
-      !EXCLUDED_USERS.some(
-        (excludedUser) =>
-          contributor.username.toLowerCase() === excludedUser.toLowerCase(),
-      ),
-  );
-
-  // Filter out excluded users and apply search filter
-  const filteredContributors = rankedContributors.filter((contributor) =>
-    contributor.username.toLowerCase().includes(searchQuery.toLowerCase()),
-  );
-
-  const totalPages = Math.ceil(filteredContributors.length / itemsPerPage);
-  const indexOfLast = currentPage * itemsPerPage;
-  const indexOfFirst = indexOfLast - itemsPerPage;
-  const currentItems = filteredContributors.slice(indexOfFirst, indexOfLast);
-
-  const paginate = (pageNumber: number) =>
-    setCurrentPage(Math.max(1, Math.min(pageNumber, totalPages)));
-
-  const renderPaginationButtons = () => {
-    const pages = [];
-    const maxVisibleButtons = 5; // Maximum number of page buttons to show directly
-
-    // Special case: if we have 7 or fewer pages, show all of them without ellipsis
-    if (totalPages <= 7) {
-      for (let i = 1; i <= totalPages; i++) {
-        pages.push(
-          <button
-            key={i}
-            onClick={() => paginate(i)}
-            className={`page-btn ${currentPage === i ? "active" : ""}`}
-          >
-            {i}
-          </button>,
-        );
+  const earliest = useMemo(() => {
+    if (period !== 'all') return null;
+    let min: number | null = null;
+    for (const c of contributors) {
+      for (const pr of c.prDetails ?? []) {
+        const t = new Date(pr.mergedAt).getTime();
+        if (min === null || t < min) min = t;
       }
-      return pages;
     }
+    return min === null ? null : new Date(min);
+  }, [contributors, period]);
 
-    // For more than 7 pages, use the ellipsis approach
+  const range = rangeLabel(period, isFallbackPeriod, earliest, now);
+  const word = periodWord(period, isFallbackPeriod);
+  const topPoints = rows[0]?.points ?? 0;
+  const stale = lastUpdated ? now.getTime() - lastUpdated.getTime() > STALE_AFTER_MS : false;
 
-    // Always show first page
-    pages.push(
-      <button
-        key={1}
-        onClick={() => paginate(1)}
-        className={`page-btn ${currentPage === 1 ? "active" : ""}`}
-      >
-        1
-      </button>,
-    );
+  const filtered = rows.filter((r) => r.username.toLowerCase().includes(query.trim().toLowerCase()));
+  const visible = filtered.slice(0, shown);
+  const viewerIdx = viewer ? rows.findIndex((r) => r.username.toLowerCase() === viewer.login.toLowerCase()) : -1;
+  const showViewerRow = Boolean(viewer) && viewerIdx === -1 && !query.trim();
 
-    // Calculate the range of pages to show (middle section)
-    // We want to show current page and 1-2 pages before and after when possible
-    let startPage = Math.max(2, currentPage - 1);
-    let endPage = Math.min(totalPages - 1, currentPage + 1);
-
-    // Adjust start and end page if we're near the beginning or end
-    if (currentPage <= 3) {
-      // Near the beginning, show pages 2, 3, 4
-      startPage = 2;
-      endPage = Math.min(4, totalPages - 1);
-    } else if (currentPage >= totalPages - 2) {
-      // Near the end, show the three pages before the last page
-      endPage = totalPages - 1;
-      startPage = Math.max(2, totalPages - 3);
-    }
-
-    // Show ellipsis if needed before the middle range
-    if (startPage > 2) {
-      pages.push(
-        <span key="ellipsis-1" className="pagination-ellipsis">
-          ...
-        </span>,
-      );
-    }
-
-    // Show pages in the middle range
-    for (let i = startPage; i <= endPage; i++) {
-      pages.push(
-        <button
-          key={i}
-          onClick={() => paginate(i)}
-          className={`page-btn ${currentPage === i ? "active" : ""}`}
-        >
-          {i}
-        </button>,
-      );
-    }
-
-    // Show ellipsis if needed after the middle range
-    if (endPage < totalPages - 1) {
-      pages.push(
-        <span key="ellipsis-2" className="pagination-ellipsis">
-          ...
-        </span>,
-      );
-    }
-
-    // Always show last page
-    pages.push(
-      <button
-        key={totalPages}
-        onClick={() => paginate(totalPages)}
-        className={`page-btn ${currentPage === totalPages ? "active" : ""}`}
-      >
-        {totalPages}
-      </button>,
-    );
-
-    return pages;
-  };
-
-  const getRankClass = (index: number) => {
-    if (index === 0) return "top-1";
-    if (index === 1) return "top-2";
-    if (index === 2) return "top-3";
-    return "regular";
-  };
-
-  // Helper function for time filter display
-  const getTimeFilterLabel = (filter: string) => {
-    switch (filter) {
-      case "week":
-        return "📊 This Week";
-      case "month":
-        return "📆 This Month";
-      case "year":
-        return "📅 This Year";
-      case "all":
-        return "🏆 All Time";
-      default:
-        return "🏆 All Time";
+  const onTabKey = (e: React.KeyboardEvent, i: number) => {
+    const last = PERIODS.length - 1;
+    const map: Record<string, number> = { ArrowRight: i === last ? 0 : i + 1, ArrowLeft: i === 0 ? last : i - 1, Home: 0, End: last };
+    if (e.key in map) {
+      e.preventDefault();
+      setTimeFilter(PERIODS[map[e.key]] as TimeFilter);
+      tabRefs.current[map[e.key]]?.focus();
     }
   };
 
-  // Viewer's entry in the same excluded-only ranking order shown on the
-  // leaderboard, so personal rank/badges always match what's visible.
-  const viewerContributorIndex = viewerLogin
-    ? rankedContributors.findIndex(
-        (c) => c.username.toLowerCase() === viewerLogin.toLowerCase(),
-      )
-    : -1;
-  const viewerBadges =
-    viewerContributorIndex !== -1
-      ? getContributorBadges(
-          rankedContributors[viewerContributorIndex],
-          viewerContributorIndex + 1,
-        )
-      : [];
+  const noData = !loading && !hasContributorsData;
 
   return (
-    <div className={`leaderboard-container ${isDark ? "dark" : "light"}`}>
-      <div className="leaderboard-layout">
-      <div className="leaderboard-content">
-        {/* Header */}
-        <motion.div
-          className="header"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <h1 className="title">Recode Hive Leaderboard</h1>
-          <p className={`subtitle ${isDark ? "dark" : "light"}`}>
-            Top contributors across the <strong>{GITHUB_ORG}</strong>{" "}
-            organization
+    <div className={styles.page}>
+      <header className={styles.header}>
+        <div className={styles.headerText}>
+          <p className={styles.eyebrow}>{'✦'} LEADERBOARD</p>
+          <h1 className={styles.h1}>Who&rsquo;s shipping in <span className={styles.accent}>the hive</span></h1>
+          <p className={styles.lede}>
+            Top contributors across the recodehive organization. Points come from merged PRs with the{' '}
+            <code className={styles.codeChip}>recode</code> label. <a href="#how-points-work">How points work</a>
           </p>
+        </div>
+        {lastUpdated && (
+          <div className={styles.updated}>
+            <span className={styles.liveLine}>
+              <span className={`${styles.dot} ${stale ? styles.dotStale : ''}`} aria-hidden="true" />
+              {stale ? 'Data may be delayed' : `Updated ${updatedStamp(lastUpdated)}`}
+            </span>
+            <span className={styles.refresh}>
+              {stale
+                ? `Last update ${updatedStamp(lastUpdated)}`
+                : `Refreshes every ${REFRESH_EVERY_HOURS} hours · next ~${timeOfDay(nextScheduledRun(now))}`}
+            </span>
+          </div>
+        )}
+      </header>
+
+      <div className={styles.tabs} role="tablist" aria-label="Leaderboard period">
+        {PERIODS.map((p, i) => (
           <button
+            key={p}
+            ref={(el) => { tabRefs.current[i] = el; }}
             type="button"
-            className="points-info-trigger"
-            onClick={() => setIsPointsInfoOpen(true)}
+            role="tab"
+            aria-selected={period === p}
+            tabIndex={period === p ? 0 : -1}
+            className={`${styles.tab} ${period === p ? styles.tabOn : ''}`}
+            onClick={() => setTimeFilter(p as TimeFilter)}
+            onKeyDown={(e) => onTabKey(e, i)}
           >
-            <Info size={14} />
-            How points &amp; badges are calculated
+            {PERIOD_LABEL[p]}
           </button>
-        </motion.div>
-
-        {/* Personal stats strip */}
-        <PersonalStats
-          contributors={rankedContributors}
-          viewerLogin={viewerLogin}
-          isDark={isDark}
-        />
-
-        {/* Top 3 Performers Section */}
-        {!loading && filteredContributors.length > 2 && (
-          <div className="top-performers-container">
-            <div className="title-filter-container">
-              <h2
-                className={`top-performers-title ${isDark ? "dark" : "light"}`}
-              >
-                recode hive Top Performers
-              </h2>
-              <div className="time-filter-wrapper top-title-filter">
-                <label htmlFor="time-period-filter" className="filter-label">
-                </label>
-                <select
-                  id="time-period-filter"
-                  value={currentTimeFilter}
-                  onChange={(e) => {
-                    // Use setTimeFilter from context
-                    setTimeFilter(e.target.value as any);
-                    setCurrentPage(1);
-                    setIsSelectChanged(true);
-                    setTimeout(() => setIsSelectChanged(false), 1200);
-                  }}
-                  className={`time-filter-select ${isDark ? "dark" : "light"} ${isSelectChanged ? "highlight-change" : ""}`}
-                >
-                  <option value="all">🏆 All Time</option>
-                  <option value="year">📅 This Year</option>
-                  <option value="month">📆 This Month</option>
-                  <option value="week">📊 This Week</option>
-                </select>
-              </div>
-            </div>
-            <div className="top-performers-grid">
-              {/* Podium-style top performers — adapted from index.html's leaderboard-podium */}
-              <div className="leaderboard-podium">
-                {/* Second place */}
-                {filteredContributors[1] && (
-                  <div className="podium-card second-place">
-                    <span className="rank-badge">2</span>
-                    <img
-                      src={filteredContributors[1].avatar}
-                      alt={filteredContributors[1].username}
-                      className="user-photo"
-                    />
-                    <div className="details">
-                      <p className="username">
-                        {filteredContributors[1].username}
-                      </p>
-                      <ContributorBadges
-                        badges={getContributorBadges(
-                          filteredContributors[1],
-                          2,
-                        )}
-                        onClick={() => handleBadgeClick(filteredContributors[1])}
-                      />
-                      <div className="stats">
-                        <button
-                          className="prs"
-                          onClick={() => handlePRClick(filteredContributors[1])}
-                          aria-label={`View PRs for ${filteredContributors[1].username}`}
-                        >
-                          {filteredContributors[1].prs} PRs
-                        </button>
-                        <span className="points">
-                          {filteredContributors[1].points} Points
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* First place */}
-                {filteredContributors[0] && (
-                  <div className="podium-card first-place">
-                    <span className="rank-badge">1</span>
-                    <img
-                      src={filteredContributors[0].avatar}
-                      alt={filteredContributors[0].username}
-                      className="user-photo"
-                    />
-                    <div className="details">
-                      <p className="username">
-                        {filteredContributors[0].username}
-                      </p>
-                      <ContributorBadges
-                        badges={getContributorBadges(
-                          filteredContributors[0],
-                          1,
-                        )}
-                        onClick={() => handleBadgeClick(filteredContributors[0])}
-                      />
-                      <div className="stats">
-                        <button
-                          className="prs"
-                          onClick={() => handlePRClick(filteredContributors[0])}
-                          aria-label={`View PRs for ${filteredContributors[0].username}`}
-                        >
-                          {filteredContributors[0].prs} PRs
-                        </button>
-                        <span className="points">
-                          {filteredContributors[0].points} Points
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Third place */}
-                {filteredContributors[2] && (
-                  <div className="podium-card third-place">
-                    <span className="rank-badge">3</span>
-                    <img
-                      src={filteredContributors[2].avatar}
-                      alt={filteredContributors[2].username}
-                      className="user-photo"
-                    />
-                    <div className="details">
-                      <p className="username">
-                        {filteredContributors[2].username}
-                      </p>
-                      <ContributorBadges
-                        badges={getContributorBadges(
-                          filteredContributors[2],
-                          3,
-                        )}
-                        onClick={() => handleBadgeClick(filteredContributors[2])}
-                      />
-                      <div className="stats">
-                        <button
-                          className="prs"
-                          onClick={() => handlePRClick(filteredContributors[2])}
-                          aria-label={`View PRs for ${filteredContributors[2].username}`}
-                        >
-                          {filteredContributors[2].prs} PRs
-                        </button>
-                        <span className="points">
-                          {filteredContributors[2].points} Points
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Search */}
-        <div className="search-container">
-          <div className="search-wrapper">
-            <FaSearch className={`search-icon ${isDark ? "dark" : "light"}`} />
-            <input
-              type="text"
-              placeholder="Search contributors..."
-              value={searchQuery}
-              onChange={(e) => {
-                setSearchQuery(e.target.value);
-                setCurrentPage(1);
-              }}
-              className={`search-input ${isDark ? "dark" : "light"}`}
-            />
-          </div>
-        </div>
-
-        {/* Update cadence notice */}
-        <div className={`update-notice ${isDark ? "dark" : "light"}`}>
-          <p className="update-notice-text">
-            <strong>Updates every 2 hours.</strong> Merged PRs may take up to
-            2 hours to appear. Every PR with the{" "}
-            <code className="update-notice-code">recode</code> label and a
-            level label earns points based on that level.
-          </p>
-          {lastUpdated && (
-            <div className="update-notice-times">
-              <div>Last updated: {formatUpdateTime(lastUpdated)}</div>
-              <div>
-                Next update: ~
-                {formatUpdateTime(
-                  new Date(lastUpdated.getTime() + 2 * 60 * 60 * 1000),
-                )}
-              </div>
-            </div>
-          )}
-        </div>
-
-        {!loading && isFallbackPeriod && (
-          <div className={`update-notice fallback-notice ${isDark ? "dark" : "light"}`}>
-            <p className="update-notice-text">
-              <strong>No merged recode-labeled PRs this week yet.</strong>{" "}
-              Showing {fallbackLabel}&apos;s activity instead.
-            </p>
-          </div>
-        )}
-
-        {loading && (
-          <div className={`skeleton-loader ${isDark ? "dark" : "light"}`}>
-            <div className="skeleton-header">
-              <div>#</div>
-              <div>Contributor</div>
-              <div>Contributions</div>
-            </div>
-            {[...Array(itemsPerPage)].map((_, i) => (
-              <div key={i} className="skeleton-row">
-                <div className="skeleton-avatar" />
-                <div className="skeleton-avatar large" />
-                <div className="skeleton-info">
-                  <div className="skeleton-bar" />
-                  <div className="skeleton-badges">
-                    <div className="skeleton-badge" />
-                    <div className="skeleton-badge" />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {error && displayContributors.length === 0 && (
-          <div className="no-contributors">
-            <p>Error: {error}</p>
-          </div>
-        )}
-
-        {!loading && filteredContributors.length === 0 && (
-          <div className="no-contributors">
-            <p>No contributors found.</p>
-          </div>
-        )}
-
-        {!loading && filteredContributors.length > 0 && (
-          <div
-            className={`contributors-container ${isDark ? "dark" : "light"}`}
-          >
-            {error && (
-              <div
-                className="error-banner"
-                style={{
-                  padding: "12px",
-                  backgroundColor: isDark ? "#fee8e7" : "#fee8e7",
-                  color: "#dc2626",
-                  borderRadius: "8px",
-                  marginBottom: "16px",
-                  fontSize: "14px",
-                  textAlign: "center",
-                }}
-              >
-                Demo Mode: Showing sample data due to API configuration issue
-              </div>
-            )}
-            <div className="contributors-header">
-              <div className="contributor-cell rank">Rank</div>
-              <div className="contributor-cell avatar-cell">Avatar</div>
-              <div className="contributor-cell username-cell">User</div>
-              <div className="contributor-cell prs-cell">PRs</div>
-              <div className="contributor-cell points-cell">Points</div>
-              <div className="contributor-cell badges-cell">Badges</div>
-            </div>
-            {currentItems.map((contributor, index) => {
-              const isViewer =
-                !!viewerLogin &&
-                contributor.username.toLowerCase() ===
-                  viewerLogin.toLowerCase();
-              return (
-              <motion.div
-                key={contributor.username}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
-                className={`contributor-row ${isDark ? (index % 2 === 0 ? "even" : "odd") : index % 2 === 0 ? "even" : "odd"} ${isViewer ? "you-row" : ""}`}
-              >
-                {/*
-                  This avoids indexOf() issues and is O(1).
-                */}
-                <div className={`contributor-cell rank-cell`}>
-                  {(() => {
-                    const rankIndex = indexOfFirst + index; // zero-based global index
-                    return (
-                      <div className={`rank-badge ${getRankClass(rankIndex)}`}>
-                        {rankIndex + 1}
-                      </div>
-                    );
-                  })()}
-                </div>
-                <div className="contributor-cell avatar-cell">
-                  <img
-                    src={contributor.avatar}
-                    alt={contributor.username}
-                    className={`avatar ${isDark ? "dark" : "light"}`}
-                  />
-                </div>
-                <div className="contributor-cell username-cell">
-                  <a
-                    href={contributor.profile}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={`username-link ${isDark ? "dark" : "light"}`}
-                  >
-                    {contributor.username}
-                  </a>
-                  {isViewer && <span className="you-chip">YOU</span>}
-                </div>
-                <div className="contributor-cell prs-cell">
-                  <Badge
-                    count={contributor.prs}
-                    label="PRs"
-                    color={{ background: "#dbeafe", color: "#2563eb" }}
-                    onClick={() => handlePRClick(contributor)}
-                    clickable={true}
-                  />
-                </div>
-                <div className="contributor-cell points-cell">
-                  <Badge
-                    count={contributor.points}
-                    label="Points"
-                    color={{ background: "#ede9fe", color: "#7c3aed" }}
-                  />
-                </div>
-                <div className="contributor-cell badges-cell">
-                  <ContributorBadges
-                    badges={getContributorBadges(
-                      contributor,
-                      indexOfFirst + index + 1,
-                    )}
-                    onClick={() => handleBadgeClick(contributor)}
-                  />
-                </div>
-              </motion.div>
-              );
-            })}
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className={`pagination ${isDark ? "dark" : "light"}`}>
-                <button
-                  onClick={() => paginate(currentPage - 1)}
-                  disabled={currentPage === 1}
-                  className={`pagination-btn ${currentPage === 1 ? "disabled" : ""}`}
-                  aria-label="Previous page"
-                  title="Previous page"
-                >
-                  <ChevronLeft size={20} />
-                </button>
-                <div className="page-numbers">{renderPaginationButtons()}</div>
-                <button
-                  onClick={() => paginate(currentPage + 1)}
-                  disabled={currentPage === totalPages}
-                  className={`pagination-btn ${currentPage === totalPages ? "disabled" : ""}`}
-                  aria-label="Next page"
-                  title="Next page"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </div>
-            )}
-
-            {/* CTA Footer */}
-            <div className={`cta-footer ${isDark ? "dark" : "light"}`}>
-              <p className={`cta-text ${isDark ? "dark" : "light"}`}>
-                Want to get on this leaderboard?
-              </p>
-              <a
-                href={`https://github.com/${GITHUB_ORG}`}
-                target="_blank"
-                rel="noreferrer"
-                className="cta-button"
-              >
-                <FaGithub style={{ marginRight: 8 }} />
-                Contribute on GitHub
-              </a>
-            </div>
-          </div>
-        )}
-
-        <SupportBanner />
+        ))}
       </div>
 
-      {/* Sidebar */}
-      <div className="leaderboard-sidebar">
-        {stats && (
-          <div className="sidebar-card">
-            <div className="sidebar-card-title">
-              Hive activity
-              <span
-                className={`sidebar-card-badge ${isFallbackPeriod ? "fallback" : ""}`}
-              >
-                {isFallbackPeriod
-                  ? "Last Week"
-                  : getTimeFilterLabel(currentTimeFilter).replace(/^\S+\s/, "")}
-              </span>
-            </div>
-            <div className="hive-activity-stats">
-              <div className="hive-activity-stat">
-                <div className="hive-activity-value">
-                  {stats.totalContributors}
-                </div>
-                <div className="hive-activity-label">Contributors</div>
-              </div>
-              <div className="hive-activity-stat">
-                <div className="hive-activity-value">
-                  {stats.flooredTotalPRs}
-                </div>
-                <div className="hive-activity-label">Merged PRs</div>
-              </div>
-              <div className="hive-activity-stat">
-                <div className="hive-activity-value">
-                  {stats.flooredTotalPoints}
-                </div>
-                <div className="hive-activity-label">Total Points</div>
-              </div>
-            </div>
-          </div>
-        )}
+      {loading && !hasContributorsData && <div className={styles.stateCard} role="status">Loading the leaderboard...</div>}
 
-        <div className="sidebar-card">
-          <div className="sidebar-card-title">How to earn points</div>
-          <div className="points-callout">
-            Points count only when your merged PR carries the{" "}
-            <span className="points-recode-badge">recode</span> label and a
-            level label.
-          </div>
-          <div className="points-level-row">
-            <span>
-              <span className="points-level-badge level-1">level 1</span>
-              Good first issue
-            </span>
-            <span className="points-level-value">+10</span>
-          </div>
-          <div className="points-level-row">
-            <span>
-              <span className="points-level-badge level-2">level 2</span>
-              Feature / fix
-            </span>
-            <span className="points-level-value">+30</span>
-          </div>
-          <div className="points-level-row">
-            <span>
-              <span className="points-level-badge level-3">level 3</span>
-              Major contribution
-            </span>
-            <span className="points-level-value">+50</span>
-          </div>
-          <div className="points-footnote">
-            PRs without a level label earn 0 points.
+      {noData && (
+        <div className={styles.stateCard} role="alert">
+          <h2 className={styles.stateTitle}>The leaderboard could not load</h2>
+          <p>{error || 'No leaderboard data came back from the server.'}</p>
+          <div className={styles.stateActions}>
+            <button type="button" className={styles.btnPrimary} onClick={() => clearCache()}>Try again</button>
+            <a className={styles.btnOutline} href={REPO_URL} target="_blank" rel="noopener noreferrer">
+              View the repo<span className={styles.srOnly}> (opens in a new tab)</span>
+            </a>
           </div>
         </div>
+      )}
 
-        <div className="sidebar-card">
-          <div className="sidebar-card-title">
-            Your badges
-            {viewerContributorIndex !== -1 && (
-              <button
-                type="button"
-                className="sidebar-card-link"
-                onClick={() =>
-                  handleBadgeClick(rankedContributors[viewerContributorIndex])
-                }
-              >
-                View all
-              </button>
-            )}
+      {hasContributorsData && (
+        <>
+          {isFallbackPeriod && (
+            <div className={styles.status}>
+              <strong>No merged recode PRs this week yet.</strong> Showing last week&rsquo;s board ({range}). The first merged PR this week takes the top spot.
+            </div>
+          )}
+          {!isFallbackPeriod && rows.length === 0 && (
+            <div className={styles.status}>
+              <strong>No merged recode PRs {word} yet.</strong> The first merged PR takes the top spot.
+            </div>
+          )}
+
+          <div className={styles.grid}>
+            <div className={styles.mainCol}>
+              <Podium rows={rows} title={topBeesTitle(period, isFallbackPeriod)} range={range} />
+
+              <section className={styles.tableCard} aria-label="Full ranking">
+                <header className={styles.tableHead}>
+                  <h2 className={styles.h2}>Full ranking</h2>
+                  <label className={styles.search}>
+                    <Search size={16} aria-hidden="true" />
+                    <span className={styles.srOnly}>Search contributors</span>
+                    <input type="search" placeholder="Search contributors..." value={query} onChange={(e) => { setQuery(e.target.value); setShown(PAGE); }} />
+                  </label>
+                </header>
+                <div className={styles.tableScroll}>
+                  <table className={styles.table}>
+                    <thead>
+                      <tr>
+                        <th scope="col">Rank</th>
+                        <th scope="col">Contributor</th>
+                        <th scope="col">Merged PRs</th>
+                        <th scope="col">Points</th>
+                        <th scope="col">Badges</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {visible.map((r) => {
+                        const rank = rows.indexOf(r) + 1;
+                        const mine = viewer && r.username.toLowerCase() === viewer.login.toLowerCase();
+                        return (
+                          <tr key={r.username} className={mine ? styles.rowMine : ''}>
+                            <td><span className={`${styles.rank} ${rank === 1 ? styles.rank1 : rank === 2 ? styles.rank2 : ''}`}>{rank}</span></td>
+                            <td>
+                              <a className={styles.person} href={r.profile} target="_blank" rel="noopener noreferrer">
+                                <img src={avatarSrc(r.avatar)} alt="" width={36} height={36} loading="lazy" />
+                                <span>@{r.username}{mine ? ' (you)' : ''}</span>
+                                <span className={styles.srOnly}> (opens in a new tab)</span>
+                              </a>
+                            </td>
+                            <td className={styles.mono}>{r.prs}</td>
+                            <td>
+                              <div className={styles.pointsCell}>
+                                <span className={styles.barTrack} aria-hidden="true">
+                                  <span className={styles.barFill} style={{ width: reduced || barsReady ? `${topPoints ? (r.points / topPoints) * 100 : 0}%` : '0%' }} />
+                                </span>
+                                <strong className={styles.pts}>{r.points.toLocaleString('en-US')}</strong>
+                              </div>
+                            </td>
+                            <td>
+                              {r.badgeNames.length > 0 ? (
+                                <span className={styles.badgeChip} title={r.badgeNames.join(', ')} aria-label={`${r.badgeNames.length} badges: ${r.badgeNames.join(', ')}`}>
+                                  <Hex />{r.badgeNames.length}
+                                </span>
+                              ) : (
+                                <span className={styles.muted}>None yet</span>
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      })}
+                      {showViewerRow && viewer && (
+                        <tr className={`${styles.rowMine} ${styles.rowYou}`}>
+                          <td><span className={styles.rankUnknown}>?</span></td>
+                          <td>
+                            <span className={styles.person}>
+                              <img src={avatarSrc(viewer.imageUrl)} alt="" width={36} height={36} loading="lazy" />
+                              <span>@{viewer.login} <span className={styles.muted}>(you)</span></span>
+                            </span>
+                          </td>
+                          <td className={styles.mono}>0</td>
+                          <td className={styles.mono}>0</td>
+                          <td className={styles.muted}>Merge a recode PR to rank</td>
+                        </tr>
+                      )}
+                      {filtered.length === 0 && !showViewerRow && (
+                        <tr><td colSpan={5} className={styles.emptyRow}>No contributors match your search.</td></tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+                {filtered.length > shown && (
+                  <div className={styles.more}>
+                    <button type="button" className={styles.btnOutline} onClick={() => setShown((n) => n + PAGE)}>
+                      Show more ({filtered.length - shown} left)
+                    </button>
+                  </div>
+                )}
+                <ol className={styles.steps}>
+                  <li><span>1</span><div><strong>Pick an issue</strong>Look for the recode and level labels.</div></li>
+                  <li><span>2</span><div><strong>Open a PR</strong>Link the issue so the labels carry over.</div></li>
+                  <li><span>3</span><div><strong>Get merged</strong>Points appear within {REFRESH_EVERY_HOURS} hours.</div></li>
+                </ol>
+              </section>
+
+              <section className={`${styles.support} ${styles.darkGrid}`}>
+                <div>
+                  <p className={styles.supportEyebrow}>{'✦'} SUPPORT THE MISSION</p>
+                  <h2 className={styles.supportTitle}>recode hive is free because of builders like you.</h2>
+                  <p className={styles.supportText}>Donations fund swag for top contributors and keep the platform free.</p>
+                </div>
+                <a className={styles.supportBtn} href={SPONSOR_URL} target="_blank" rel="noopener noreferrer">
+                  Donate to recode hive<span className={styles.srOnly}> (opens in a new tab)</span>
+                </a>
+              </section>
+            </div>
+
+            <aside className={styles.rail} aria-label="Leaderboard sidebar">
+              <YourRank
+                viewer={viewer}
+                canSignIn={canSignIn}
+                rows={rows}
+                periodWord={word}
+                viewerBadges={viewer ? badgesFor(viewer.login).length : 0}
+              />
+              <HowToEarn />
+              <HiveActivity
+                chip={isFallbackPeriod ? 'Last week' : PERIOD_LABEL[period]}
+                contributors={stats?.totalContributors ?? 0}
+                prs={stats?.flooredTotalPRs ?? 0}
+                points={stats?.flooredTotalPoints ?? 0}
+              />
+            </aside>
           </div>
-          {viewerBadges.length > 0 ? (
-            <div className="sidebar-badges-grid">
-              {viewerBadges.map((badge, i) => {
-                const badgeName =
-                  BADGE_CONFIG.find((b) => b.image === badge)?.name ||
-                  "Achievement Badge";
-                return (
-                  <button
-                    key={i}
-                    type="button"
-                    className="sidebar-badge-item"
-                    onClick={() =>
-                      handleBadgeClick(rankedContributors[viewerContributorIndex])
-                    }
-                    aria-label={`View badges — ${badgeName}`}
-                  >
-                    <img
-                      src={badge}
-                      alt={badgeName}
-                      className="sidebar-badge-icon"
-                    />
-                    <span className="sidebar-badge-tooltip" aria-hidden="true">
-                      <img src={badge} alt="" />
-                      <span>{badgeName}</span>
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          ) : (
-            <div className="sidebar-badges-empty">
-              {viewerLogin
-                ? "No badges yet, merge a recode-labeled PR to earn one."
-                : "Connect your GitHub account to see your badges."}
-            </div>
-          )}
-        </div>
-
-        <StreakCard
-          contributors={rankedContributors}
-          viewerLogin={viewerLogin}
-        />
-      </div>
-      </div>
-
-      {/* Points & Badges Info Modal */}
-      <PointsInfoModal
-        isOpen={isPointsInfoOpen}
-        onClose={() => setIsPointsInfoOpen(false)}
-      />
-
-      {/* PR List Modal */}
-      <PRListModal
-        contributor={selectedContributor}
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
-
-      {/* Badge Modal */}
-      {badgeModalContributor && (
-        <BadgeModal
-          isOpen={isBadgeModalOpen}
-          onClose={handleCloseBadgeModal}
-          earnedBadges={getContributorBadges(
-            badgeModalContributor,
-            filteredContributors.findIndex(
-              (c) => c.username === badgeModalContributor.username,
-            ) + 1,
-          )}
-          allBadges={BADGE_CONFIG}
-          contributor={badgeModalContributor}
-          rank={
-            filteredContributors.findIndex(
-              (c) => c.username === badgeModalContributor.username,
-            ) + 1
-          }
-        />
+        </>
       )}
     </div>
   );
