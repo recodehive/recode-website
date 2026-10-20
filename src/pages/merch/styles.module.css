@@ -60,7 +60,9 @@
 .tagBottom { right: 16px; bottom: 28px; animation-delay: -2s; }
 .tagThumb { width: 44px; height: 44px; border-radius: 8px; object-fit: cover; }
 .tagName { display: block; font-size: 13px; font-weight: 700; }
-.tagPrice { display: block; font: 500 12px "JetBrains Mono", ui-monospace, monospace; color: #475569; }
+.tagPrice { display: block; font: 500 12px "JetBrains Mono", ui-monospace, monospace; color: #2e8555; }
+.tagIcon { width: 36px; height: 36px; border-radius: 10px; background: #e8f5ee; color: #2e8555; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tagSub { display: block; font-size: 12px; font-weight: 500; color: #64748b; }
 @keyframes bob { from { transform: translateY(-4px); } to { transform: translateY(6px); } }
 
 

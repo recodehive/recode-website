@@ -135,8 +135,11 @@ export default function Merch(): ReactNode {
                 <ProductImage src={heroTee.image} alt={heroTee.alt} name={heroTee.name} width={210} height={262} className={styles.heroTee} eager />
               )}
               <span className={`${styles.floatTag} ${styles.tagTop}`}>
-                <Hexagon size={18} aria-hidden="true" />
-                {products.length} items · Apparel, drinkware, desk
+                <span className={styles.tagIcon}><Hexagon size={18} aria-hidden="true" /></span>
+                <span>
+                  <span className={styles.tagName}>{products.length} items</span>
+                  <span className={styles.tagSub}>Apparel, drinkware, desk</span>
+                </span>
               </span>
               {heroHoodie && (
                 <span className={`${styles.floatTag} ${styles.tagBottom}`}>
