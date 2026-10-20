@@ -50,8 +50,6 @@ const LINK_ITEMS: Array<{
 }> = [
   { href: "/learn", label: "Learn", icon: <GraduationCap size={16} />, free: true },
   { href: "/blogs", label: "Blogs", icon: <BookOpen size={16} /> },
-  { href: "/community", label: "Community", icon: <Smile size={16} /> },
-  { href: "/contact-us", label: "Help center", icon: <HelpCircle size={16} /> },
   { href: "/updates", label: "Updates", icon: <Sparkles size={16} />, badge: true },
 ];
 
@@ -261,6 +259,22 @@ export default function DashboardSidebar({
         >
           <Bell size={16} />
           {!collapsed && <span>Notifications</span>}
+        </Link>
+        <Link
+          to="/community"
+          className="dashboard-rail-bottom-item"
+          title={collapsed ? "Community" : undefined}
+        >
+          <Smile size={16} />
+          {!collapsed && <span>Community</span>}
+        </Link>
+        <Link
+          to="/contact-us"
+          className="dashboard-rail-bottom-item"
+          title={collapsed ? "Help center" : undefined}
+        >
+          <HelpCircle size={16} />
+          {!collapsed && <span>Help center</span>}
         </Link>
         <button
           type="button"
