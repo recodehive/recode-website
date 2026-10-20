@@ -51,9 +51,13 @@ interface LatestProps {
   posts: Post[];
   page: number;
   onPage: (n: number) => void;
+  topic: string;
+  query: string;
+  onClear: () => void;
 }
 
-export function Latest({ posts, page, onPage }: LatestProps) {
+export function Latest({ posts, page, onPage, topic, query, onClear }: LatestProps) {
+  const filtering = topic !== 'All' || query.trim() !== '';
   const pages = Math.max(1, Math.ceil(posts.length / PAGE_SIZE));
   const start = posts.length === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;
   const end = Math.min(page * PAGE_SIZE, posts.length);
@@ -66,6 +70,14 @@ export function Latest({ posts, page, onPage }: LatestProps) {
         <h2 id="latest-title" className={styles.h2}>Latest</h2>
         <Link className={styles.greenLink} to="/blog">View all {'→'}</Link>
       </div>
+      {filtering && (
+        <p className={styles.filterNote} role="status">
+          {posts.length} {posts.length === 1 ? 'article' : 'articles'}
+          {topic !== 'All' && <> in <strong>{topic}</strong></>}
+          {query.trim() && <> matching &ldquo;<strong>{query.trim()}</strong>&rdquo;</>}
+          <button type="button" onClick={onClear}>Clear filters</button>
+        </p>
+      )}
       {slice.length === 0 ? (
         <p className={styles.empty}>No articles match your search. Try a different word or topic.</p>
       ) : (
