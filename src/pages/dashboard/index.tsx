@@ -30,10 +30,8 @@ import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 import LeaderBoard from "@site/src/components/dashboard/LeaderBoard/leaderboard";
 import Overview from "@site/src/components/dashboard/overview/Overview";
-// Tailwind layer (and its dark variant) used by the leaderboard and giveaway tabs
-import "@site/src/styles/globals.css";
-import GiveawayPage from "@site/src/components/dashboard/giveaway";
 
+import GiveawayPage from "@site/src/components/dashboard/giveaway";
 
 type DiscussionTab = "discussions" | "trending" | "unanswered";
 type SortOption = "most_popular" | "latest" | "oldest";
