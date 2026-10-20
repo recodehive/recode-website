@@ -3,13 +3,27 @@ id: docs
 title: Welcome to recode hive
 sidebar_label: Welcome to recode hive
 sidebar_position: 1
+hide_title: true
+description: "The story behind recode hive: why we started, how the community grew from one repo to 100+ contributors, and how to make your first contribution."
 ---
 
-# Welcome to recode hive
+import {
+  StoryHero,
+  NameCards,
+  JourneyTimeline,
+  ImpactCounters,
+  FounderNote,
+  ContributorWall,
+  CtaBand,
+} from '@site/src/components/docsStory';
 
-**Collaboration 1st, code 2nd.**
-
-recode hive is an open-source educational platform built to help developers master essential technologies through interactive tutorials, practical guides, and community-driven learning. Whether you are a beginner taking your first steps in programming or an experienced developer sharpening your skills, recode hive provides the resources you need to grow.
+<StoryHero />
+<NameCards />
+<JourneyTimeline />
+<ImpactCounters />
+<FounderNote />
+<ContributorWall />
+<CtaBand />
 
 ---
 
