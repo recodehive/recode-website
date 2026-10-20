@@ -8,49 +8,18 @@ import { CommunityStatsProvider } from "@site/src/lib/statsProvider";
 import { useLocation, useHistory } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import {
-  githubService,
-  GitHubDiscussion,
-} from "@site/src/services/githubService";
-import DiscussionCard from "@site/src/components/discussions/DiscussionCard";
-import {
-  Megaphone,
-  Lightbulb,
-  HelpCircle,
-  Star,
-  MessageCircle,
-  Search,
-  TrendingUp,
   Home,
   Users,
   Gift,
-  RefreshCw,
+  MessageCircle,
 } from "lucide-react";
+import DiscussionsView from "@site/src/components/discussions/DiscussionsView";
 import DashboardSidebar from "@site/src/components/dashboard/Sidebar/DashboardSidebar";
-import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 import LeaderBoard from "@site/src/components/dashboard/LeaderBoard/leaderboard";
 import Overview from "@site/src/components/dashboard/overview/Overview";
 
 import GiveawayPage from "@site/src/components/dashboard/giveaway";
-
-type DiscussionTab = "discussions" | "trending" | "unanswered";
-type SortOption = "most_popular" | "latest" | "oldest";
-type Category =
-  | "all"
-  | "announcements"
-  | "ideas"
-  | "q-a"
-  | "show-and-tell"
-  | "general";
-
-const categories: Category[] = [
-  "all",
-  "announcements",
-  "ideas",
-  "q-a",
-  "show-and-tell",
-  "general",
-];
 
 const LeaderboardAuthGate: React.FC = () => {
   const { isLoaded, isSignedIn } = useAuth();
@@ -91,25 +60,8 @@ const DashboardContent: React.FC = () => {
     "home" | "discuss" | "giveaway" | "contributors"
   >("home");
 
-  // Discussion state management
-  const [activeDiscussionTab, setActiveDiscussionTab] =
-    useState<DiscussionTab>("discussions");
-  const [selectedCategory, setSelectedCategory] = useState<Category>("all");
-  const [sortBy, setSortBy] = useState<SortOption>("most_popular");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [discussions, setDiscussions] = useState<GitHubDiscussion[]>([]);
-  const [discussionsLoading, setDiscussionsLoading] = useState(true);
-  const [discussionsError, setDiscussionsError] = useState<string | null>(null);
   const [showDashboardMenu, setShowDashboardMenu] = useState(false);
   const { isLoaded, isSignedIn } = useAuth();
-
-  // Initialize GitHub service with token from Docusaurus config
-  useEffect(() => {
-    const token = customFields?.gitToken as string;
-    if (token) {
-      githubService.setToken(token);
-    }
-  }, [customFields?.gitToken]);
 
   // Close dashboard menu when clicking outside
   useEffect(() => {
@@ -145,171 +97,6 @@ const DashboardContent: React.FC = () => {
       setActiveTab("home");
     }
   }, [location]);
-
-  // Fetch discussions when discuss tab is active
-  useEffect(() => {
-    if (activeTab === "discuss") {
-      fetchDiscussions();
-    }
-  }, [activeTab]);
-
-  const fetchDiscussions = async () => {
-    try {
-      setDiscussionsLoading(true);
-      setDiscussionsError(null);
-      const discussionsData = await githubService.fetchDiscussions(20);
-      setDiscussions(discussionsData);
-    } catch (error) {
-      console.error("Failed to fetch discussions:", error);
-      setDiscussionsError(
-        error instanceof Error ? error.message : "Failed to load discussions",
-      );
-    } finally {
-      setDiscussionsLoading(false);
-    }
-  };
-
-  const handleRefreshDiscussions = () => {
-    fetchDiscussions();
-  };
-
-  // Discussion handlers
-  const handleDiscussionTabChange = (tab: DiscussionTab) => {
-    setActiveDiscussionTab(tab);
-  };
-
-  const handleCategoryChange = (category: Category) => {
-    setSelectedCategory(category);
-  };
-
-  const getCategoryIcon = (category: string) => {
-    const iconMap = {
-      all: null,
-      announcements: <Megaphone size={14} />,
-      ideas: <Lightbulb size={14} />,
-      "q-a": <HelpCircle size={14} />,
-      "show-and-tell": <Star size={14} />,
-      general: <MessageCircle size={14} />,
-    };
-    return iconMap[category] || null;
-  };
-
-  const getCategoryDisplayName = (category: string) => {
-    const categoryMap = {
-      all: "All",
-      announcements: "Announcements",
-      ideas: "Ideas",
-      "q-a": "Q&A",
-      "show-and-tell": "Show & Tell",
-      general: "General",
-    };
-    return categoryMap[category] || category;
-  };
-
-  const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSortBy(event.target.value as SortOption);
-  };
-
-  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(event.target.value);
-  };
-
-  const handleNewDiscussion = () => {
-    window.open(
-      "https://github.com/recodehive/recode-website/discussions/new",
-      "_blank",
-    );
-  };
-
-  // Filter discussions based on current state and tab
-  const getFilteredDiscussions = (discussions: GitHubDiscussion[]) => {
-    return discussions
-      .filter((discussion) => {
-        // First apply tab filter
-        switch (activeDiscussionTab) {
-          case "trending":
-            return discussion.reactions.total_count > 5;
-          case "unanswered":
-            return discussion.comments === 0;
-          default:
-            return true;
-        }
-      })
-      .filter((discussion) => {
-        // Then apply category filter
-        if (selectedCategory !== "all") {
-          const categoryName = discussion.category.name.toLowerCase();
-          const selectedCat = selectedCategory.toLowerCase();
-
-          // Map GitHub discussion categories to our filter categories
-          if (
-            selectedCat === "q-a" &&
-            (categoryName.includes("q&a") || categoryName.includes("question"))
-          ) {
-            return true;
-          }
-          if (
-            selectedCat === "show-and-tell" &&
-            categoryName.includes("show")
-          ) {
-            return true;
-          }
-          if (
-            selectedCat === "announcements" &&
-            categoryName.includes("announcement")
-          ) {
-            return true;
-          }
-          if (selectedCat === "ideas" && categoryName.includes("idea")) {
-            return true;
-          }
-          if (
-            selectedCat === "general" &&
-            (categoryName.includes("general") ||
-              categoryName.includes("discussion"))
-          ) {
-            return true;
-          }
-
-          return categoryName.includes(selectedCat);
-        }
-        return true;
-      })
-      .filter((discussion) => {
-        // Then apply search filter
-        if (searchQuery) {
-          return (
-            discussion.title
-              .toLowerCase()
-              .includes(searchQuery.toLowerCase()) ||
-            discussion.body.toLowerCase().includes(searchQuery.toLowerCase())
-          );
-        }
-        return true;
-      })
-      .sort((a, b) => {
-        // Finally sort the results
-        switch (sortBy) {
-          case "latest":
-            return (
-              new Date(b.created_at).getTime() -
-              new Date(a.created_at).getTime()
-            );
-          case "oldest":
-            return (
-              new Date(a.created_at).getTime() -
-              new Date(b.created_at).getTime()
-            );
-          default:
-            return b.reactions.total_count - a.reactions.total_count;
-        }
-      });
-  };
-
-  const filteredDiscussions = React.useMemo(
-    () => getFilteredDiscussions(discussions),
-    [discussions, activeDiscussionTab, selectedCategory, searchQuery, sortBy],
-  );
 
   const handleTabChange = (
     tab: "home" | "discuss" | "giveaway" | "contributors",
@@ -420,140 +207,14 @@ const DashboardContent: React.FC = () => {
 
       <DashboardSidebar activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <div className={`dashboard-main-content${activeTab === "home" ? " dashboard-main-content--home" : ""}`}>
+      <div className={`dashboard-main-content${activeTab === "home" ? " dashboard-main-content--home" : ""}${activeTab === "discuss" ? " dashboard-main-content--discuss" : ""}`}>
         <Head>
           <title>Dashboard | recode hive</title>
         </Head>
 
         {activeTab === "home" && <Overview />}
 
-        {activeTab === "discuss" && (
-          <motion.div
-            className="dashboard-discussions"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="discussions-header">
-              <h1>Community Discussions</h1>
-              <p>
-                Engage with the community, ask questions, and share your
-                projects.
-              </p>
-            </div>
-            <div className="discussions-controls">
-              <div className="discussion-tabs">
-                <button
-                  onClick={() => handleDiscussionTabChange("discussions")}
-                  className={`tab-button ${activeDiscussionTab === "discussions" ? "active" : ""
-                    }`}
-                >
-                  <MessageCircle size={18} /> All Discussions
-                </button>
-                <button
-                  onClick={() => handleDiscussionTabChange("trending")}
-                  className={`tab-button ${activeDiscussionTab === "trending" ? "active" : ""
-                    }`}
-                >
-                  <TrendingUp size={18} /> Trending
-                </button>
-                <button
-                  onClick={() => handleDiscussionTabChange("unanswered")}
-                  className={`tab-button ${activeDiscussionTab === "unanswered" ? "active" : ""
-                    }`}
-                >
-                  <HelpCircle size={18} /> Unanswered
-                </button>
-              </div>
-              <div className="search-and-sort">
-                <div className="search-bar">
-                  <Search size={16} />
-                  <input
-                    type="text"
-                    placeholder="Search discussions..."
-                    value={searchQuery}
-                    onChange={handleSearchChange}
-                  />
-                </div>
-                <select onChange={handleSortChange} value={sortBy}>
-                  <option value="most_popular">Most Popular</option>
-                  <option value="latest">Latest</option>
-                  <option value="oldest">Oldest</option>
-                </select>
-                <button
-                  className="refresh-discussions-btn"
-                  onClick={handleRefreshDiscussions}
-                  disabled={discussionsLoading}
-                  title="Refresh discussions"
-                >
-                  <RefreshCw
-                    size={16}
-                    className={discussionsLoading ? "spinning" : ""}
-                  />
-                </button>
-                <button
-                  className="new-discussion-btn"
-                  onClick={handleNewDiscussion}
-                >
-                  New Discussion
-                </button>
-              </div>
-            </div>
-            <div className="discussions-main-content">
-              <div className="category-sidebar">
-                <h3>Categories</h3>
-                <ul>
-                  {categories.map((cat) => (
-                    <li
-                      key={cat}
-                      className={selectedCategory === cat ? "active" : ""}
-                      onClick={() => handleCategoryChange(cat)}
-                    >
-                      {getCategoryIcon(cat)} {getCategoryDisplayName(cat)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="discussion-list">
-                {discussionsLoading && (
-                  <div className="loading-spinner-container">
-                    <div className="loading-spinner"></div>
-                  </div>
-                )}
-                {discussionsError && (
-                  <div className="discussions-error-message">
-                    <p>{discussionsError}</p>
-                    <p>
-                      <a
-                        href="https://github.com/recodehive/recode-website/discussions"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        View discussions on GitHub →
-                      </a>
-                    </p>
-                  </div>
-                )}
-                {!discussionsLoading &&
-                  !discussionsError &&
-                  filteredDiscussions.length === 0 && (
-                    <div className="no-discussions-found">
-                      <p>No discussions found matching your criteria.</p>
-                    </div>
-                  )}
-                {!discussionsLoading &&
-                  !discussionsError &&
-                  filteredDiscussions.map((discussion, i) => (
-                    <DiscussionCard
-                      index={i}
-                      key={discussion.id}
-                      discussion={discussion}
-                    />
-                  ))}
-              </div>
-            </div>
-          </motion.div>
-        )}
+        {activeTab === "discuss" && <DiscussionsView />}
 
         {/* Contributors section with new LeaderBoard component */}
         {activeTab === "contributors" && (
