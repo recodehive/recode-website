@@ -7,7 +7,7 @@
     "dev": "docusaurus start",
     "start": "docusaurus start",
     "prestart": "node scripts/fetch-releases.js",
-    "prebuild": "node scripts/fetch-releases.js && node scripts/fetch-sponsors.mjs",
+    "prebuild": "node scripts/fetch-releases.js && node scripts/fetch-sponsors.mjs && node scripts/fetch-community-prs.mjs",
     "fetch:releases": "node scripts/fetch-releases.js",
     "fetch:sponsors": "node scripts/fetch-sponsors.mjs",
     "test:contributors": "node --test src/utils/releaseContributors.test.mjs",
