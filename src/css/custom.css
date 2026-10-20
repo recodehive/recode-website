@@ -1,3 +1,11 @@
+/* Tailwind is compiled once, here, together with the shadcn theme in styles/globals.css.
+   Importing Tailwind in two files produced duplicate theme and base layers; the build minifier
+   dropped the earlier copies, so the base reset (padding: 0) ended up above the utilities
+   (p-6, pl-4, mx-auto) and flattened them on the live site. */
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "../styles/globals.css";
+
 /* ── Homepage-only centred container ─────────────────────
    Scoped under .rh-home so it never touches docs/blog/navbar/footer. */
 .rh-home {
@@ -193,7 +201,6 @@
 }
 
 /* You can override the default Infima variables here. */
-@import "tailwindcss";
 
 /* ===== UNIFIED SIDEBAR STYLING ===== */
 /**
