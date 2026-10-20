@@ -2,13 +2,9 @@ import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import BrowserOnly from "@docusaurus/BrowserOnly";
-import { Show, SignInButton, useAuth } from "@clerk/react";
+import { SignInButton, useAuth } from "@clerk/react";
 import { motion } from "framer-motion";
-import {
-  useCommunityStatsContext,
-  CommunityStatsProvider,
-} from "@site/src/lib/statsProvider";
-import SlotCounter from "react-slot-counter";
+import { CommunityStatsProvider } from "@site/src/lib/statsProvider";
 import { useLocation, useHistory } from "@docusaurus/router";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import {
@@ -27,14 +23,15 @@ import {
   Home,
   Users,
   Gift,
-  GitFork,
   RefreshCw,
 } from "lucide-react";
 import DashboardSidebar from "@site/src/components/dashboard/Sidebar/DashboardSidebar";
 import "@site/src/components/discussions/discussions.css";
 import "./dashboard.css";
 import LeaderBoard from "@site/src/components/dashboard/LeaderBoard/leaderboard";
-import SignInDashboard from "@site/src/components/dashboard/SignInDashboard";
+import Overview from "@site/src/components/dashboard/overview/Overview";
+// Tailwind layer (and its dark variant) used by the leaderboard and giveaway tabs
+import "@site/src/styles/globals.css";
 import GiveawayPage from "@site/src/components/dashboard/giveaway";
 
 
@@ -335,46 +332,6 @@ const DashboardContent: React.FC = () => {
     }
   };
 
-  const {
-    githubStarCountText,
-    githubContributorsCountText,
-    githubForksCountText,
-    loading,
-  } = useCommunityStatsContext();
-
-  const StatCard: React.FC<{
-    icon: React.ReactNode;
-    title: string;
-    valueText: string;
-    description: string;
-  }> = ({ icon, title, valueText, description }) => (
-    <motion.div
-      className="dashboard-stat-card"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
-      whileHover={{ scale: 1.02 }}
-    >
-      <div className="dashboard-stat-icon">{icon}</div>
-      <div className="dashboard-stat-content">
-        <h3 className="dashboard-stat-title">{title}</h3>
-        <div className="dashboard-stat-value">
-          {loading ? (
-            <div className="loading-spinner"></div>
-          ) : (
-            <SlotCounter
-              value={valueText}
-              autoAnimationStart={true}
-              duration={1}
-            />
-          )}
-        </div>
-        <p className="dashboard-stat-description">{description}</p>
-      </div>
-    </motion.div>
-  );
-
   return (
     <div className="dashboard-layout">
       {/* Dashboard Menu Button - Only visible on mobile */}
@@ -421,7 +378,7 @@ const DashboardContent: React.FC = () => {
               <span className="menu-icon">
                 <Home size={18} />
               </span>{" "}
-              Home
+              Overview
             </div>
             <div
               className={`menu-item ${activeTab === "discuss" ? "active" : ""}`}
@@ -445,7 +402,7 @@ const DashboardContent: React.FC = () => {
               <span className="menu-icon">
                 <Users size={18} />
               </span>{" "}
-              LeaderBoard
+              Leaderboard
             </div>
             <div
               className={`menu-item ${activeTab === "giveaway" ? "active" : ""}`}
@@ -465,84 +422,12 @@ const DashboardContent: React.FC = () => {
 
       <DashboardSidebar activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <div className="dashboard-main-content">
+      <div className={`dashboard-main-content${activeTab === "home" ? " dashboard-main-content--home" : ""}`}>
         <Head>
           <title>Dashboard | recode hive</title>
         </Head>
 
-        {activeTab === "home" && (
-          <>
-            {isLoaded ? (
-              <>
-              {isSignedIn ? (
-                <SignInDashboard />
-              ) : (
-                <motion.div
-                  className="dashboard-home-container"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <h1 className="dashboard-main-title">
-                    Recode Hive Community Dashboard
-                  </h1>
-                  <div className="dashboard-description">
-                    <p>
-                      Welcome to the Recode Hive community hub! Explore our stats,
-                      engage in discussions, and connect with fellow contributors.
-                    </p>
-                    <p className="dashboard-sign-in-prompt text-xl font-bold">
-                      Sign in to view your stats
-                    </p>
-                    <Show when="signed-out">
-                      <SignInButton mode="modal">
-                        <button
-                          type="button"
-                          className="bg-[#16a34a] text-white px-7 py-2 rounded-3xl text-[0.875rem] font-medium "
-                          aria-label="Sign in to recode hive"
-                        >
-                          Sign in
-                        </button>
-                      </SignInButton>
-                    </Show>
-                  </div>
-
-                  <section className="dashboard-stats-section">
-                    <h2 className="section-title">Community At a Glance</h2>
-                    <div className="stat-cards-container">
-                      <StatCard
-                        icon={<Star size={24} />}
-                        title="Total Stars"
-                        valueText={githubStarCountText || "937"}
-                        description="Stars across all our public repositories"
-                      />
-                      <StatCard
-                        icon={<Users size={24} />}
-                        title="Contributors"
-                        valueText={githubContributorsCountText || "444"}
-                        description="Amazing community members"
-                      />
-                      <StatCard
-                        icon={<GitFork size={24} />}
-                        title="Forks"
-                        valueText={githubForksCountText || "1.03K"}
-                        description="Community contributions"
-                      />
-                    </div>
-                  </section>
-                </motion.div>
-              )}
-              </>
-            ):
-              (
-              <div>
-                Loading...
-              </div>
-            )
-            }
-          </>
-        )
-      }
+        {activeTab === "home" && <Overview />}
 
         {activeTab === "discuss" && (
           <motion.div
