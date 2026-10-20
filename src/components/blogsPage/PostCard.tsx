@@ -4,22 +4,39 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import { categoryOf, formatDate, initials, tagText, type Post, type PostAuthor } from './blogData';
 import styles from './blogsPage.module.css';
 
-const PILLS = ['pillGreen', 'pillTeal', 'pillOrange', 'pillBlue', 'pillRose'] as const;
-const pillClass = (label: string): string => {
+// The same eight tag colours (and the same label hash) the previous Blogs page used.
+const TAG_COLORS = [
+  { dot: '#f59e0b', border: '#fde68a', bg: '#fffbeb', text: '#92400e' },
+  { dot: '#6366f1', border: '#c7d2fe', bg: '#eef2ff', text: '#3730a3' },
+  { dot: '#ec4899', border: '#fbcfe8', bg: '#fdf2f8', text: '#9d174d' },
+  { dot: '#10b981', border: '#a7f3d0', bg: '#ecfdf5', text: '#065f46' },
+  { dot: '#3b82f6', border: '#bfdbfe', bg: '#eff6ff', text: '#1e40af' },
+  { dot: '#8b5cf6', border: '#ddd6fe', bg: '#f5f3ff', text: '#5b21b6' },
+  { dot: '#f97316', border: '#fed7aa', bg: '#fff7ed', text: '#9a3412' },
+  { dot: '#14b8a6', border: '#99f6e4', bg: '#f0fdfa', text: '#134e4a' },
+];
+const tagColor = (label: string) => {
   let h = 0;
   for (let i = 0; i < label.length; i++) h = label.charCodeAt(i) + ((h << 5) - h);
-  return styles[PILLS[Math.abs(h) % PILLS.length]];
+  return TAG_COLORS[Math.abs(h) % TAG_COLORS.length];
 };
 
 export function Pills({ post, max = 3 }: { post: Post; max?: number }) {
   if (post.tags.length === 0) return null;
   return (
     <ul className={styles.pills} aria-label="Tags">
-      {post.tags.slice(0, max).map((t) => (
-        <li key={t.permalink} className={`${styles.pill} ${pillClass(t.label)}`}>
-          <i aria-hidden="true" />{tagText(t.label)}
-        </li>
-      ))}
+      {post.tags.slice(0, max).map((t) => {
+        const c = tagColor(t.label);
+        return (
+          <li
+            key={t.permalink}
+            className={styles.pill}
+            style={{ ['--tag-bg' as string]: c.bg, ['--tag-text' as string]: c.text, ['--tag-border' as string]: c.border, ['--tag-dot' as string]: c.dot }}
+          >
+            <i aria-hidden="true" />{tagText(t.label)}
+          </li>
+        );
+      })}
     </ul>
   );
 }

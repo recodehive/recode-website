@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
@@ -28,6 +28,29 @@ export default function Blogs(): React.JSX.Element {
   }, [posts, topic, query]);
 
   useEffect(() => setPage(1), [topic, query]);
+
+  // The results grid sits below the hero, so bring it into view when a filter or search changes.
+  // Typing waits a moment so the page does not jump on every key.
+  const firstRun = useRef(true);
+  useEffect(() => {
+    if (firstRun.current) {
+      firstRun.current = false;
+      return;
+    }
+    if (topic === 'All' && !query.trim()) return;
+    const id = window.setTimeout(() => {
+      const el = document.getElementById('latest');
+      if (!el) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    }, 350);
+    return () => window.clearTimeout(id);
+  }, [topic, query]);
+
+  const clearFilters = () => {
+    setTopic('All');
+    setQuery('');
+  };
 
   const goPage = (n: number) => {
     setPage(n);
@@ -64,7 +87,7 @@ export default function Blogs(): React.JSX.Element {
         <Hero posts={posts} query={query} onQuery={setQuery} topic={topic} onTopic={setTopic} />
         <div className={styles.wrap}>
           <Spotlight posts={posts} />
-          <Latest posts={filtered} page={page} onPage={goPage} />
+          <Latest posts={filtered} page={page} onPage={goPage} topic={topic} query={query} onClear={clearFilters} />
           <Featured posts={posts} total={posts.length} onBackToAll={backToAll} />
           <ChangelogStrip posts={posts} />
           <WriteBanner />
