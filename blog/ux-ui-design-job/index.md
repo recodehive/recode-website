@@ -7,6 +7,8 @@ tags:
   - AI
 
 date: 2025-06-05 10:32:00
+image: /img/blogs/04-ux-job-design.png
+category: CAREER
 description: Are you passionate about design and dreaming of a career in it? Or maybe you’re already in the design space and looking to pivot into UI/UX? .
 draft: false
 # meta:

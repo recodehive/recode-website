@@ -297,6 +297,8 @@ const config: Config = {
     "./plugins/learn-words",
     // Publish dates for the Broadcasts page from YouTube public RSS feeds (no API key)
     "./plugins/broadcasts-feed",
+    // Exposes every blog post to the /blogs listing page
+    "./plugins/blog-listing",
     // Real GitHub Discussions, fetched at build time (token never reaches the browser)
     "./plugins/github-discussions",
     [

@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "Azure Data Pipeline Cost Optimization"
 tags: [azure, cost-optimization, data-pipeline, adls-gen2, azure-synapse, apache-spark, azure-data-factory, delta-lake, data-engineering, cloud-cost]
 date: 2026-05-15
+image: /img/blogs/cost_optimzation_cover.png
+category: CLOUD COST
 
 description: Six costly mistakes in a 2GB Azure data pipeline drove a $4,200 monthly bill. Here's every mistake, root cause, and fix — with before-and-after numbers for each.
 

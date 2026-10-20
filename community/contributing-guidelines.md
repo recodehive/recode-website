@@ -161,6 +161,15 @@ We welcome contributions! Follow these steps to get started.
 
    > Tip: If your branch falls behind main, you can fetch and merge updates from upstream again before pushing.
 
+## Blog banners
+
+Every blog post needs a banner so it looks right on the Blogs page.
+
+- Set it in the post's front matter with `image: /img/blogs/your-banner.png`, and add a `category:` (a short label such as ARCHITECTURE or TUTORIAL).
+- Banners should be **1600 x 900 pixels (16:9)**, with **one big headline of 3 to 5 words**. The Blogs page shows the whole banner without cropping, so a banner in another shape gets empty bars on its sides.
+- Keep important text away from the edges and keep the file small (under 300 KB where you can).
+- Add `featured: true` only to the post the editors pick for the Featured spot.
+
 ## Formatting
 
 To ensure consistent code style and catch errors before committing, please follow these steps:

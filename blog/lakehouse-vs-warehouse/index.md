@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "Lakehouse vs Data Warehouse"
 tags: [lakehouse, data-warehouse, data-engineering, big-data, delta-lake, spark, analytics, snowflake, databricks]
 date: 2026-05-01
+image: /img/blogs/datalake_vs_warehouse.png
+category: ARCHITECTURE
 
 description: Lakehouse and Data Warehouse are two of the most debated architectures in modern data engineering. This article breaks down how they differ, where each fits in the data lifecycle, and how to choose between them, without the platform bias.
 

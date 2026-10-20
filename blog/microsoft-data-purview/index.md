@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "Microsoft Purview Data Catalog"
 tags: [azure, microsoft-purview, data-catalog, data-governance, onboarding, data-lineage, metadata, data-engineering, azure-data-factory, delta-lake]
 date: 2026-05-19
+image: /img/blogs/purview_cover.png
+category: DATA GOVERNANCE
 
 description: "Learn how Microsoft Purview Data Catalog improves data discovery, lineage, ownership, and governance. This practical case study shows how we reduced data engineer onboarding from 2 weeks to 3 days — including the configuration that made it work."
 

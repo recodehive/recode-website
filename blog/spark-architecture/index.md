@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore,sanjay-kv]
 sidebar_label: "Spark Architecture Explained"
 tags: [Apache Spark, Spark Architecture, Big Data, Distributed Computing, Data Engineering]
 date: 2025-08-22
+image: /img/blogs/07-spark-blog-banner.png
+category: ARCHITECTURE
 
 description: Apache Spark is a fast, open-source big data framework that leverages in-memory computing for high performance. Its architecture powers scalable distributed processing across clusters, making it essential for analytics and machine learning.
 
