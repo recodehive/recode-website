@@ -295,6 +295,8 @@ const config: Config = {
     ],
     // Counts lesson words at build time; thin lessons get noindex
     "./plugins/learn-words",
+    // Publish dates for the Broadcasts page from YouTube public RSS feeds (no API key)
+    "./plugins/broadcasts-feed",
     // Real GitHub Discussions, fetched at build time (token never reaches the browser)
     "./plugins/github-discussions",
     [
