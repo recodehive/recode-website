@@ -56,7 +56,7 @@ const sidebars: SidebarsConfig = {
           type: "category",
           label: "📚 GitHub Basics",
           className: "custom-sidebar-basics",
-          collapsed: true,
+          collapsed: false,
           items: [
             "GitHub/GitHub-basics/create-github-repo",
             "GitHub/GitHub-basics/github-repo-command-line",
