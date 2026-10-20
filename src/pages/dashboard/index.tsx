@@ -60,7 +60,7 @@ const DashboardContent: React.FC = () => {
     // Set active tab based on URL hash
     if (location.hash === "#discuss") {
       setActiveTab("discuss");
-    } else if (location.hash === "#leaderboard") {
+    } else if (location.hash === "#leaderboard" || location.hash.startsWith("#badge=")) {
       setActiveTab("contributors");
     } else if (location.hash === "#giveaway") {
       setActiveTab("giveaway");

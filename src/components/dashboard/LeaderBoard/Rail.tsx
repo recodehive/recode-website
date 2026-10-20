@@ -1,8 +1,7 @@
 import React from 'react';
 import { SignInButton } from '@clerk/react';
-import { BADGE_CONFIG } from './badgeConfig';
 import { MIN_BOARD_POINTS, NO_LEVEL_POINTS, POINT_LEVELS, REQUIRED_LABEL } from './pointsConfig';
-import { avatarSrc, describeBadge } from './leaderboardUtils';
+import { avatarSrc } from './leaderboardUtils';
 import { GOOD_FIRST_ISSUES, type Row } from './Podium';
 import styles from './leaderboard.module.css';
 
@@ -96,15 +95,6 @@ export function HowToEarn() {
         ))}
       </ul>
       <p className={styles.note}>PRs without a level label earn {NO_LEVEL_POINTS} points.</p>
-      <h3 className={styles.subTitle}>Badges</h3>
-      <ul className={styles.badgeList}>
-        {BADGE_CONFIG.map((b) => (
-          <li key={b.name}>
-            <span>{b.name}</span>
-            <span className={styles.mono}>{describeBadge(b)}</span>
-          </li>
-        ))}
-      </ul>
     </section>
   );
 }

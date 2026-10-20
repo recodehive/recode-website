@@ -7,6 +7,7 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     "noEmit": true,
     "strict": false,
