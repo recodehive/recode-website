@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "Azure Data Factory — Build Your First ETL"
 tags: [azure-data-factory, adf, etl, data-pipeline, data-engineering, azure, blob-storage, adls, copy-activity, linked-service, dataset, trigger]
 date: 2026-05-06
+image: /img/blogs/adf-cover_image.png
+category: TUTORIAL
 
 description: Azure Data Factory is Microsoft's cloud-native ETL service — a visual, no-code platform for moving and transforming data at scale. This step-by-step guide walks you through building your first real pipeline in under 10 minutes, explaining every concept along the way.
 

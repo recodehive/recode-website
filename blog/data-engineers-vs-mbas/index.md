@@ -4,6 +4,9 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "Data Engineers vs MBAs as Business Analysts"
 tags: [data-engineering, career, business-analysis, data-driven, analytics, data-strategy, opinion, leadership]
 date: 2026-05-19
+image: /img/blogs/ba_de_cover_image.png
+category: CAREER
+featured: true
 
 description: MBAs learn to analyze businesses. Data engineers live inside the data those businesses actually run on. Here's why that difference matters more than any credential — and what both sides should learn from each other.
 

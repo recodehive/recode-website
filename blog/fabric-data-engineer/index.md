@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "Fabric Data Engineer"
 tags: [DP-700,azure, Big Data, cloud,certification,Data Engineering, fabric,experience]
 date: 2026-05-01
+image: /img/blogs/microsoft-certified-associate-badge.png
+category: CERTIFICATION
 
 description: "A comprehensive guide to clearing the Microsoft Fabric Data Engineer Associate (DP-700) certification. Learn the preparation strategy, key concepts, hands-on practice tips, and real exam experience from someone who passed it. Discover why Lakehouse, Delta Tables, Dataflows, and DirectLake mode matter, and how to approach scenario-based questions effectively."
 

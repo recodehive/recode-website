@@ -1,6 +1,6 @@
 export const authorsMap = {
   "ajay-dhangar": "Ajay Dhangar",
-  "sanjay-kv": "Sanjay Viswanthan",
+  "sanjay-kv": "Sanjay Viswanathan",
   "hitesh-gahanolia": "Hitesh Gahanolia",
   "sowmiya-v": "Sowmiya Venkatesan",
   "abhijith-m-s": "Abhijith M S",
@@ -25,7 +25,7 @@ export interface AuthorProfile {
 const authorProfiles: Record<string, AuthorProfile> = {
   "sanjay-kv": {
     id: "sanjay-kv",
-    name: "Sanjay Viswanthan",
+    name: "Sanjay Viswanathan",
     title: "Founder at recode hive",
     description:
       "Software Engineer turned Data Engineer and Program Manager. Google ML Facilitator and former GitHub CE.",

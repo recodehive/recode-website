@@ -135,14 +135,6 @@ declare module "@site/src/components/ui/button" {
   export const Button: any;
 }
 
-declare module "@site/src/database/sponsors" {
-  export interface Sponsor {
-    [key: string]: any;
-  }
-  const sponsors: Sponsor[];
-  export default sponsors;
-}
-
 declare module "@site/src/data/users" {
   export type Tag = import("../data/users").Tag;
   export type TagType = import("../data/users").TagType;

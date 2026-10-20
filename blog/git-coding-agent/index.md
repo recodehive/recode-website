@@ -4,6 +4,8 @@ sidebar_label: GitHub Copilot Coding Agent
 authors: [sanjay-kv]
 tags: [GitHub, SEO, Coding agent,Copilot, AI, Automation]
 date: 2025-07-04
+image: /img/blogs/06-github-agent.png
+category: AI TOOLS
 
 description: An overview of the GitHub Copilot Coding Agent, an AI-powered tool that automates software engineering tasks by taking GitHub Issues as input to write code, run tests, and create pull requests.
 draft: false

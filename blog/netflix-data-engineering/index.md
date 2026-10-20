@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "How Netflix Handles 2 Trillion Events Every Day"
 tags: [netflix, data-engineering, kafka, apache-flink, real-time, event-streaming, data-pipeline, cassandra, avro, iceberg, keystone]
 date: 2026-05-04
+image: /img/blogs/thumbnail.png
+category: CASE STUDY
 
 description: Every click, pause, search, and scroll on Netflix generates an event. With 300 million subscribers across 190 countries, Netflix processes 2 trillion events every single day through a pipeline called Keystone. Here's a deep dive into how Kafka, Flink, Cassandra, and Iceberg make it all work in real time.
 

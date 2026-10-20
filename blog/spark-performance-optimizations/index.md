@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "PySpark Optimization Techniques"
 tags: [pyspark, spark, optimization, data-engineering, delta-lake, performance, partitioning, joins, caching, cluster-config]
 date: 2026-05-16
+image: /img/blogs/pyspark_optimization_cover.png
+category: PERFORMANCE
 
 description: Six PySpark mistakes that silently kill pipeline performance and how to fix every one of them. Covering partitioning, shuffle tuning, caching, join strategies, UDFs, predicate pushdown, and cluster config. Explained from scratch.
 

@@ -36,7 +36,7 @@ const PrivacyPolicy: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Sanjay Viswanthan
+                Sanjay Viswanathan
               </a>
               . We are committed to protecting your privacy and ensuring the
               security of your personal information. This Privacy Policy

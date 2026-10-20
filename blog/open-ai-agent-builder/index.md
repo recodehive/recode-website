@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "OpenAI AgentKit Explained"
 tags: [OpenAI, AgentKit, AI Agents, Agent Builder, Agentic AI, Developer Tools]
 date: 2025-10-15
+image: /img/blogs/Agent_Builder.png
+category: AI AGENTS
 
 description: OpenAI's AgentKit revolutionizes how developers build AI agents with its visual Agent Builder, integrated ChatKit, comprehensive evaluation tools, and seamless third-party integrations. Learn how this complete toolkit takes agents from prototype to production with minimal friction.
 

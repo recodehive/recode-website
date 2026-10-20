@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Monthss"
 tags: [batch-processing, stream-processing, data-engineering, apache-kafka, apache-flink, apache-spark, data-pipeline, real-time, azure, medallion-architecture, data-architecture]
 date: 2026-05-06
+image: /img/blogs/batch-vs-stream-cover.png
+category: STREAMING
 
 description: Everyone talks about the benefits of streaming pipelines — real-time insights, millisecond latency, live dashboards. Nobody talks about what it actually costs you. I rebuilt a working batch pipeline as a streaming system. Here's what I learned the hard way.
 

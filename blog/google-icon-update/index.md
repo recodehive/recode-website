@@ -4,6 +4,7 @@ description: "Google redesigned its Workspace icons in 2026, dropping the four-c
 authors: [sanjay-kv]
 tags: [google-workspace, ui-design, ux]
 date: 2026-05-21
+category: DESIGN
 image: /img/blogs/cover-google-icon.jpg
 ---
 

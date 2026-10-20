@@ -4,6 +4,8 @@ authors: [Aditya-Singh-Rathore]
 sidebar_label: "Azure Storage & ADLS Gen2: Complete Guide"
 tags: [azure-storage, blob-storage, adls-gen2, azure-data-lake, queue-storage, table-storage, file-storage, data-engineering, azure, big-data, medallion-architecture]
 date: 2026-05-06
+image: /img/blogs/azure-storage-cover.png
+category: AZURE
 
 description: Every Azure data pipeline needs a place to store data. But Azure gives you four different storage types and choosing the wrong one is easier than you think. This guide explains all four, shows how they work together in a real pipeline, and goes deep on ADLS Gen2, the storage layer that powers modern Azure data engineering.
 
