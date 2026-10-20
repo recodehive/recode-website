@@ -126,7 +126,8 @@ export default function Podcasts(): ReactNode {
             <div className={styles.heroText}>
               <p className={styles.eyebrow}>✦ PODCASTS</p>
               <h1 id="podcasts-heading" className={styles.h1}>
-                Listen and learn with <span className={styles.accent}>the hive</span>
+                Listen and learn<br />
+                with <span className={styles.accent}>the hive</span>
               </h1>
               <p className={styles.lead}>
                 Our own show about careers, comebacks and building in tech, plus a short list of episodes our community actually recommends, with notes on why.
