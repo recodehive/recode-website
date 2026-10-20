@@ -23,6 +23,11 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: "doc",
+      id: "first-time-setup",
+      label: "🧭 First-Time Setup",
+    },
+    {
+      type: "doc",
       id: "Getting-Started",
       label: "🚀 Getting Started",
       className: "custom-sidebar-contributing",
