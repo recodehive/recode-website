@@ -452,6 +452,11 @@
     gap: 32px;
   }
 
+  /* Phones: hide the Learning, Company and Support link columns */
+  .rh-footer__col {
+    display: none;
+  }
+
   .rh-footer__meta,
   .rh-footer__bottom {
     flex-direction: column;
