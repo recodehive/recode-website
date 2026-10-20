@@ -726,6 +726,20 @@
   }
 }
 
+/* Phones: the embedded live activity card fills the content width.
+   Declared after the other responsive blocks so it wins at equal specificity. */
+@media (max-width: 640px) {
+  .floating-contributors-container.header-embedded {
+    max-width: none;
+    width: 100%;
+  }
+
+  .floating-contributors-container.header-embedded .floating-contributors-card {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
 /* Accessibility improvements */
 @media (prefers-reduced-motion: reduce) {
   .status-dot {

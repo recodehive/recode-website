@@ -273,6 +273,17 @@ html[data-theme="dark"] .chh__hero-grid {
 }
 
 @media screen and (max-width: 650px) {
+  /* The stats line wraps on phones, so centre it instead of leaving the last item on the left */
+  .chh__header-stats {
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Let the live activity card (or terminal) take the full content width */
+  .chh__header-image > div {
+    width: 100%;
+  }
+
   .chh__header-content h1 {
     font-size: 44px;
   }
