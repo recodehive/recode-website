@@ -3,9 +3,10 @@ import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import { ArrowRight, Database, GitBranch, Hexagon, Plug } from 'lucide-react';
 import {
-  GOOD_FIRST_ISSUES, NOTIFY_URL, allLessons, comingSoon, courseIsLive, coursePath, courses, playableLessons,
+  GOOD_FIRST_ISSUES, NOTIFY_URL, allLessons, comingSoon, coursePath, courses,
   type Course,
 } from '../data/learn';
+import { usePublished } from './usePublished';
 import styles from './learn.module.css';
 
 const ICONS = { git: GitBranch, api: Plug } as const;
@@ -17,6 +18,7 @@ const matches = (c: Course, q: string) =>
 export default function Catalog() {
   const [q, setQ] = useState('');
   const [topic, setTopic] = useState<string>('all');
+  const { published, courseIsLive } = usePublished();
 
   const topics = useMemo(() => {
     const all = [...courses.map((c) => c.topic), ...comingSoon.map((c) => c.topic)];
@@ -41,7 +43,7 @@ export default function Catalog() {
         '@type': 'Course',
         name: c.title,
         description: c.description,
-        provider: { '@type': 'Organization', name: 'recode hive', sameAs: 'https://www.recodehive.com' },
+        provider: { '@type': 'Organization', name: 'recodehive', sameAs: 'https://www.recodehive.com' },
       },
     })),
   };
@@ -86,19 +88,19 @@ export default function Catalog() {
           <ul className={styles.promoList}>
             <li>Watch every lesson without an account</li>
             <li>Written notes and commands under each video</li>
-            <li>Practice on real recode hive issues</li>
+            <li>Practice on real recodehive issues</li>
           </ul>
           {firstLive && (
             <Link className={styles.promoBtn} to={coursePath(firstLive.slug)}>Start the GitHub course <ArrowRight size={16} aria-hidden="true" /></Link>
           )}
-          <p className={styles.promoNote}>Made by the recode hive community</p>
+          <p className={styles.promoNote}>Made by the recodehive community</p>
         </section>
 
         {shownCourses.map((c) => {
           const Icon = ICONS[c.icon];
           const live = courseIsLive(c);
           const lessons = allLessons(c).length;
-          const available = playableLessons(c).length;
+          const available = published(c).length;
           const body = (
             <>
               <div className={styles.cardTop}>
@@ -148,7 +150,7 @@ export default function Catalog() {
         <ol className={styles.pathList}>
           <li><span className={styles.pathNum}>1</span><span><b>GitHub for Beginners</b><br />Ship your first pull request</span></li>
           <li><span className={styles.pathNum}>2</span><span><b>Postman API Testing</b><br />Test the APIs you build</span></li>
-          <li><span className={`${styles.pathNum} ${styles.pathNumDark}`}>3</span><span><b>Contribute to recode hive</b><br /><a href={GOOD_FIRST_ISSUES} target="_blank" rel="noopener noreferrer">Pick a good first issue</a></span></li>
+          <li><span className={`${styles.pathNum} ${styles.pathNumDark}`}>3</span><span><b>Contribute to recodehive</b><br /><a href={GOOD_FIRST_ISSUES} target="_blank" rel="noopener noreferrer">Pick a good first issue</a></span></li>
         </ol>
       </section>
     </div>

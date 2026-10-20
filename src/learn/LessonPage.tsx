@@ -3,10 +3,11 @@ import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import { ArrowRight, Check } from 'lucide-react';
 import {
-  DISCUSSIONS_URL, GOOD_FIRST_ISSUES, lessonKey, lessonPath, playableLessons, type Course, type Lesson,
+  DISCUSSIONS_URL, GOOD_FIRST_ISSUES, allLessons, lessonKey, lessonPath, videosOf, type Course, type Lesson,
 } from '../data/learn';
 import { useProgress } from './useProgress';
 import VideoFacade from './VideoFacade';
+import { usePublished } from './usePublished';
 import styles from './learn.module.css';
 
 type Props = {
@@ -20,9 +21,14 @@ export default function LessonPage({ course, lesson, thin, children }: Props) {
   const { done, toggle } = useProgress();
   const key = lessonKey(course.slug, lesson.slug);
   const isDone = done.includes(key);
-  const playable = playableLessons(course);
-  const index = playable.findIndex((l) => l.slug === lesson.slug);
-  const next = playable[index + 1];
+  const { isPublished, published } = usePublished();
+  const playable = published(course);
+  const videos = videosOf(lesson);
+  const mainVideo = videos[0];
+  const extraVideos = videos.slice(1);
+  const order = allLessons(course);
+  const here = order.findIndex((l) => l.slug === lesson.slug);
+  const next = order.slice(here + 1).find((l) => isPublished(course.slug, l));
   const doneCount = playable.filter((l) => done.includes(lessonKey(course.slug, l.slug))).length;
   const pct = playable.length ? Math.round((doneCount / playable.length) * 100) : 0;
 
@@ -35,14 +41,14 @@ export default function LessonPage({ course, lesson, thin, children }: Props) {
     '@type': 'VideoObject',
     name: lesson.title,
     description: lesson.summary,
-    thumbnailUrl: `https://i.ytimg.com/vi/${lesson.youtubeId}/hqdefault.jpg`,
-    embedUrl: `https://www.youtube-nocookie.com/embed/${lesson.youtubeId}`,
+    thumbnailUrl: `https://i.ytimg.com/vi/${mainVideo.id}/hqdefault.jpg`,
+    embedUrl: `https://www.youtube-nocookie.com/embed/${mainVideo.id}`,
   };
 
   return (
     <div className={styles.page}>
       <Head>
-        <title>{`${lesson.title} | ${course.title} | recode hive Learn`}</title>
+        <title>{`${lesson.title} | ${course.title} | recodehive Learn`}</title>
         <meta name="description" content={lesson.summary} />
         {thin && <meta name="robots" content="noindex" />}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
@@ -63,7 +69,7 @@ export default function LessonPage({ course, lesson, thin, children }: Props) {
           </div>
           <h1 className={`${styles.h1} ${styles.h1Lesson}`}>{lesson.title}</h1>
 
-          <VideoFacade youtubeId={lesson.youtubeId as string} title={lesson.title} duration={lesson.duration} />
+          <VideoFacade youtubeId={mainVideo.id} title={lesson.title} duration={lesson.duration} />
 
           <div className={styles.actions}>
             <button type="button" aria-pressed={isDone} className={`${styles.btnPrimary} ${isDone ? styles.btnDone : ''}`} onClick={() => toggle(key)}>
@@ -77,11 +83,25 @@ export default function LessonPage({ course, lesson, thin, children }: Props) {
             <span className={styles.mono}>{doneCount} of {playable.length} lessons done</span>
           </div>
 
-          <section className={styles.notes} aria-label="Lesson notes">
-            <h2 className={styles.h2}>What you will learn</h2>
-            <p>{lesson.summary}</p>
+          {extraVideos.length > 0 && (
+            <section className={styles.moreVideos} aria-labelledby="more-videos">
+              <h2 id="more-videos" className={styles.h2}>More videos</h2>
+              <div className={styles.moreGrid}>
+                {extraVideos.map((v) => (
+                  <figure key={v.id} className={styles.moreItem}>
+                    <VideoFacade youtubeId={v.id} title={`${lesson.title}: ${v.label ?? 'video'}`} />
+                    {v.label && <figcaption>{v.label}</figcaption>}
+                  </figure>
+                ))}
+              </div>
+            </section>
+          )}
 
-            {lesson.commands && lesson.commands.length > 0 && (
+          <section className={styles.notes} aria-label="Lesson notes">
+            {!thin && <h2 className={styles.h2}>What you will learn</h2>}
+            {!thin && <p>{lesson.summary}</p>}
+
+            {!thin && lesson.commands && lesson.commands.length > 0 && (
               <>
                 <h2 className={styles.h2}>Key commands</h2>
                 <p className={styles.cmds}>
@@ -92,8 +112,8 @@ export default function LessonPage({ course, lesson, thin, children }: Props) {
 
             <div className={styles.mdx}>{children}</div>
 
-            <h2 className={styles.h2}>Resources</h2>
-            <ul className={styles.resources}>
+            {!thin && <h2 className={styles.h2}>Resources</h2>}
+            {!thin && <ul className={styles.resources}>
               {lesson.resources?.map((r) => (
                 <li key={r.url}>
                   {r.url.startsWith('/') ? <Link to={r.url}>{r.label}</Link> : <a href={r.url} target="_blank" rel="noopener noreferrer">{r.label}</a>}
@@ -101,7 +121,7 @@ export default function LessonPage({ course, lesson, thin, children }: Props) {
               ))}
               <li><a href={GOOD_FIRST_ISSUES} target="_blank" rel="noopener noreferrer">Practice on a good first issue</a></li>
               <li><a href={DISCUSSIONS_URL} target="_blank" rel="noopener noreferrer">Ask a question in Discussions</a></li>
-            </ul>
+            </ul>}
           </section>
         </article>
 
@@ -116,7 +136,7 @@ export default function LessonPage({ course, lesson, thin, children }: Props) {
               <p className={styles.outlineName}>{m.title}</p>
               <ul className={styles.outlineList}>
                 {m.lessons.map((l) => {
-                  const ready = Boolean(l.youtubeId);
+                  const ready = isPublished(course.slug, l);
                   const current = l.slug === lesson.slug;
                   const lDone = done.includes(lessonKey(course.slug, l.slug));
                   const inner = (
