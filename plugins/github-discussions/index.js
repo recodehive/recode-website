@@ -66,25 +66,30 @@ module.exports = function githubDiscussionsPlugin() {
     name: 'github-discussions',
     async loadContent() {
       const empty = { ok: false, fetchedAt: new Date().toISOString(), categories: [], discussions: [] };
-      const token = process.env.GITHUB_TOKEN || process.env.DOCUSAURUS_GIT_TOKEN;
-      if (!token) {
-        console.warn('[github-discussions] no GITHUB_TOKEN set, the page will show its empty state');
+      // Try each configured token; skip placeholder values copied from .env.example
+      const tokens = [process.env.GITHUB_TOKEN, process.env.DOCUSAURUS_GIT_TOKEN].filter(
+        (t) => t && t.trim() && !/^your/i.test(t.trim()),
+      );
+      if (tokens.length === 0) {
+        console.warn("[github-discussions] no real GITHUB_TOKEN or DOCUSAURUS_GIT_TOKEN set, the page will show its empty state");
         return empty;
       }
-      try {
-        const res = await fetch('https://api.github.com/graphql', {
-          method: 'POST',
-          headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json', 'User-Agent': 'recode-hive-site' },
-          body: JSON.stringify({ query: QUERY, variables: { owner: OWNER, repo: REPO } }),
-          signal: AbortSignal.timeout(20000),
-        });
-        const json = await res.json();
-        if (!res.ok || json.errors || !json.data) throw new Error(JSON.stringify(json.errors || res.status));
-        return { ok: true, fetchedAt: new Date().toISOString(), ...normalise(json.data.repository) };
-      } catch (err) {
-        console.warn('[github-discussions] fetch failed:', String(err.message || err).slice(0, 200));
-        return empty;
+      for (const token of tokens) {
+        try {
+          const res = await fetch("https://api.github.com/graphql", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token.trim()}`, "Content-Type": "application/json", "User-Agent": "recode-hive-site" },
+            body: JSON.stringify({ query: QUERY, variables: { owner: OWNER, repo: REPO } }),
+            signal: AbortSignal.timeout(20000),
+          });
+          const json = await res.json();
+          if (!res.ok || json.errors || !json.data) throw new Error(JSON.stringify(json.errors || res.status));
+          return { ok: true, fetchedAt: new Date().toISOString(), ...normalise(json.data.repository) };
+        } catch (err) {
+          console.warn("[github-discussions] fetch failed:", String(err.message || err).slice(0, 200));
+        }
       }
+      return empty;
     },
     async contentLoaded({ content, actions }) {
       actions.setGlobalData(content);
