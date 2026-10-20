@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
 import BrowserOnly from "@docusaurus/BrowserOnly";
-import { SignInButton, useAuth } from "@clerk/react";
+import { useAuth } from "@clerk/react";
 import { motion } from "framer-motion";
 import { CommunityStatsProvider } from "@site/src/lib/statsProvider";
 import { useLocation, useHistory } from "@docusaurus/router";
@@ -21,41 +21,12 @@ import Overview from "@site/src/components/dashboard/overview/Overview";
 
 import GiveawayPage from "@site/src/components/dashboard/giveaway";
 
-const LeaderboardAuthGate: React.FC = () => {
-  const { isLoaded, isSignedIn } = useAuth();
-
-  if (!isLoaded) {
-    return <div className="leaderboard-auth-state">Loading leaderboard...</div>;
-  }
-
-  if (!isSignedIn) {
-    return (
-      <div className="leaderboard-auth-state">
-        <h1>Leaderboard</h1>
-        <p>Sign in to view the leaderboard.</p>
-        <SignInButton mode="modal">
-          <button
-            type="button"
-            className="leaderboard-auth-button"
-            aria-label="Sign in to view the leaderboard"
-          >
-            Sign in
-          </button>
-        </SignInButton>
-      </div>
-    );
-  }
-
-  return <LeaderBoard />;
-};
-
 const DashboardContent: React.FC = () => {
   const location = useLocation();
   const history = useHistory();
   const {
     siteConfig: { customFields },
   } = useDocusaurusContext();
-  const isClerkConfigured = Boolean(customFields?.clerkPublishableKey);
   const [activeTab, setActiveTab] = useState<
     "home" | "discuss" | "giveaway" | "contributors"
   >("home");
@@ -224,14 +195,7 @@ const DashboardContent: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {isClerkConfigured ? (
-              <LeaderboardAuthGate />
-            ) : (
-              <div className="leaderboard-auth-state">
-                <h1>Leaderboard</h1>
-                <p>Leaderboard access is unavailable right now.</p>
-              </div>
-            )}
+            <LeaderBoard />
           </motion.div>
         )}
 

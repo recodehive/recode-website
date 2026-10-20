@@ -11,6 +11,8 @@ import { githubService, type GitHubOrgStats } from "../services/githubService";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 // Time filter types
+import { POINTS_BY_LEVEL } from "../components/dashboard/LeaderBoard/pointsConfig";
+
 export type TimeFilter = "week" | "month" | "year" | "all";
 
 interface ICommunityStatsContext {
@@ -141,11 +143,7 @@ const calculatePointsForPR = (labels?: Array<{ name: string }>): number => {
   }
 
   // Check for level labels and assign points accordingly with new point system
-  const levelPointsMap: { [key: string]: number } = {
-    "level 1": 10,
-    "level 2": 30,
-    "level 3": 50,
-  };
+  const levelPointsMap = POINTS_BY_LEVEL;
   const matchedLevel = labelNames.find((label) =>
     levelPointsMap.hasOwnProperty(label),
   );
@@ -194,6 +192,38 @@ const isPRInPreviousWeek = (mergedAt: string): boolean => {
   const prDate = new Date(mergedAt);
   return prDate >= previousWeekStart && prDate < weekStart;
 };
+
+const LB_CACHE_KEY = "rh-leaderboard-cache-v1";
+const LB_CACHE_MS = 10 * 60 * 1000;
+
+// Backend responses are cached in sessionStorage for 10 minutes so page switches stay instant.
+async function loadBackendData(base: string, signal: AbortSignal) {
+  try {
+    const raw = sessionStorage.getItem(LB_CACHE_KEY);
+    if (raw) {
+      const c = JSON.parse(raw);
+      if (c.base === base && Date.now() - c.t < LB_CACHE_MS) {
+        return c.data as { leaderboardData: any; statsData: any };
+      }
+    }
+  } catch {
+    // storage unavailable or corrupt: fall through to the network
+  }
+  const [leaderboardResp, statsResp] = await Promise.all([
+    fetch(`${base}/api/leaderboard`, { signal }),
+    fetch(`${base}/api/stats`, { signal }),
+  ]);
+  if (!leaderboardResp.ok || !statsResp.ok) {
+    throw new Error("Failed to fetch leaderboard data from backend server");
+  }
+  const data = { leaderboardData: await leaderboardResp.json(), statsData: await statsResp.json() };
+  try {
+    sessionStorage.setItem(LB_CACHE_KEY, JSON.stringify({ t: Date.now(), base, data }));
+  } catch {
+    // quota or privacy mode: ignore
+  }
+  return data;
+}
 
 export function CommunityStatsProvider({
   children,
@@ -406,17 +436,7 @@ export function CommunityStatsProvider({
       setError(null);
 
       try {
-        const [leaderboardResp, statsResp] = await Promise.all([
-          fetch(`${backendApiUrl}/api/leaderboard`, { signal }),
-          fetch(`${backendApiUrl}/api/stats`, { signal })
-        ]);
-
-        if (!leaderboardResp.ok || !statsResp.ok) {
-          throw new Error("Failed to fetch leaderboard data from backend server");
-        }
-
-        const leaderboardData = await leaderboardResp.json();
-        const statsData = await statsResp.json();
+        const { leaderboardData, statsData } = await loadBackendData(backendApiUrl, signal);
 
         // Set org stats immediately
         setGithubStarCount(statsData.totalStars);
@@ -468,6 +488,11 @@ export function CommunityStatsProvider({
   );
 
   const clearCache = useCallback(() => {
+    try {
+      sessionStorage.removeItem(LB_CACHE_KEY);
+    } catch {
+      // ignore
+    }
     githubService.clearCache();
     setCache({ data: null, timestamp: 0 });
     const abortController = new AbortController();
