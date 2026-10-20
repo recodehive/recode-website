@@ -47,6 +47,8 @@ interface ICommunityStatsContext {
   getFilteredPRsForContributor: (username: string) => PRDetails[];
   getAllTimePRsForContributor: (username: string) => PRDetails[];
   getAllTimeContributor: (username: string) => Contributor | undefined;
+  // All-time ranking by points (bots excluded), best first. Empty until data loads.
+  allTimeRanking: { username: string; points: number; prs: number }[];
 }
 
 // Define types for leaderboard data
@@ -359,6 +361,21 @@ export function CommunityStatsProvider({
   [allContributors],
 );
 
+  // All-time ranking by points, independent of the leaderboard's time filter
+  const allTimeRanking = useMemo(
+    () =>
+      allContributors
+        .filter((c) => !isExcludedUser(c.username))
+        .map((c) => ({
+          username: c.username,
+          points: c.allPRDetails.reduce((sum, pr) => sum + pr.points, 0),
+          prs: c.allPRDetails.length,
+        }))
+        .filter((c) => c.prs > 0)
+        .sort((a, b) => b.points - a.points || b.prs - a.prs),
+    [allContributors],
+  );
+
   // Time filter setter function
   const setTimeFilter = useCallback((filter: TimeFilter) => {
     setCurrentTimeFilter(filter);
@@ -512,7 +529,8 @@ export function CommunityStatsProvider({
     setTimeFilter,
     getFilteredPRsForContributor,
     getAllTimePRsForContributor,
-    getAllTimeContributor
+    getAllTimeContributor,
+    allTimeRanking,
   };
 
   return (

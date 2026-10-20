@@ -1,13 +1,20 @@
 /* Dashboard Layout Styles */
 .dashboard-layout {
-  --dashboard-accent: #8b5cf6;
-  --dashboard-accent-dark: #7c3aed;
-  --dashboard-accent-soft: rgba(139, 92, 246, 0.14);
-  --dashboard-accent-softer: rgba(139, 92, 246, 0.08);
+  --dashboard-accent: #2e8555;
+  --dashboard-accent-dark: #205d3b;
+  --dashboard-accent-soft: rgba(46, 133, 85, 0.14);
+  --dashboard-accent-softer: rgba(46, 133, 85, 0.08);
   display: flex;
   min-height: 100vh;
   background: var(--ifm-background-color);
   position: relative;
+}
+
+html[data-theme="dark"] .dashboard-layout {
+  --dashboard-accent: #3b82f6;
+  --dashboard-accent-dark: #2563eb;
+  --dashboard-accent-soft: rgba(96, 165, 250, 0.16);
+  --dashboard-accent-softer: rgba(96, 165, 250, 0.08);
 }
 
 /* Dashboard Menu Button - Mobile Only */
@@ -145,7 +152,7 @@
 /* Sidebar Styles */
 .dashboard-sidebar {
   width: 280px;
-  background: color-mix(in srgb, var(--ifm-background-color) 97%, #8b5cf6 3%);
+  background: color-mix(in srgb, var(--ifm-background-color) 97%, var(--dashboard-accent) 3%);
   border-right: 1px solid var(--ifm-color-emphasis-200);
   padding: 20px;
   flex-shrink: 0;
@@ -238,94 +245,21 @@
   overflow-x: hidden;
 }
 
-/* Home Dashboard Styles */
-.dashboard-home-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  background: color-mix(
-    in srgb,
-    var(--ifm-background-surface-color) 88%,
-    transparent
-  );
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 24px;
-  padding: 2.25rem;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+.dashboard-main-content--home {
+  padding: 28px 40px 80px;
 }
 
-.dashboard-main-title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 16px;
-  color: var(--ifm-color-content);
-  text-align: center;
-  line-height: 1.2;
+@media (max-width: 768px) {
+  .dashboard-main-content--home {
+    padding: 20px 16px 64px;
+  }
 }
 
-.highlight {
-  color: inherit;
-  font-weight: inherit;
-}
-
-.dashboard-description {
-  font-size: 1.1rem;
-  color: var(--ifm-color-content-secondary);
-  text-align: center;
-  margin-bottom: 60px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.dashboard-sign-in-prompt {
-  color: #111827;
-}
-
-.dashboard-stats-section {
-  margin-bottom: 60px;
-}
-
-.section-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 30px;
-  text-align: center;
-  color: var(--ifm-color-content);
-}
-
-.stat-cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  margin-bottom: 40px;
-}
-
-.dashboard-stat-card {
-  background: var(--ifm-background-surface-color);
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 16px;
-  padding: 32px 24px;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.dashboard-stat-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, #8b5cf6, #667eea);
-}
-
+/* Stat card pieces still used by the Giveaways tab */
 .dashboard-stat-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-  border-color: rgba(139, 92, 246, 0.35);
+  border-color: color-mix(in srgb, var(--dashboard-accent) 35%, transparent);
 }
 
 .dashboard-stat-icon {
@@ -334,7 +268,7 @@
   justify-content: center;
   width: 64px;
   height: 64px;
-  background: rgba(139, 92, 246, 0.12);
+  background: var(--dashboard-accent-soft);
   color: var(--dashboard-accent);
   border-radius: 16px;
   margin-bottom: 16px;
@@ -346,17 +280,6 @@
   font-weight: 600;
   margin-bottom: inherit;
   color: var(--ifm-color-content-secondary);
-}
-
-.dashboard-stat-value {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 8px;
-  color: var(--ifm-color-content);
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .dashboard-stat-description {
@@ -438,13 +361,13 @@
 
 .tab-button:hover {
   background: var(--ifm-color-emphasis-100);
-  border-color: rgba(139, 92, 246, 0.35);
+  border-color: color-mix(in srgb, var(--dashboard-accent) 35%, transparent);
 }
 
 .tab-button.active {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: var(--dashboard-accent);
   color: #ffffff;
-  border-color: #8b5cf6;
+  border-color: var(--dashboard-accent);
 }
 
 .search-and-sort {
@@ -494,7 +417,7 @@
 
 .new-discussion-btn {
   padding: 12px 20px;
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: var(--dashboard-accent);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -504,7 +427,7 @@
 }
 
 .new-discussion-btn:hover {
-  background: #6d28d9;
+  background: var(--dashboard-accent-dark);
   transform: translateY(-1px);
 }
 
@@ -789,7 +712,7 @@
 }
 
 [data-theme="dark"] .dashboard-stat-icon {
-  background: rgba(139, 92, 246, 0.22);
+  background: var(--dashboard-accent-soft);
 }
 
 [data-theme="dark"] .loading-spinner {
