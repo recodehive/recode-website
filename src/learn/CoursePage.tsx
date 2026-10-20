@@ -25,6 +25,7 @@ export default function CoursePage({ course }: { course: Course }) {
   return (
     <div className={styles.page}>
       <Head>
+        {playable.length === 0 && <meta name="robots" content="noindex" />}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
       <nav className={styles.crumbs} aria-label="Breadcrumb">

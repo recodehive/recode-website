@@ -149,7 +149,7 @@ export default function Catalog() {
         <span className={styles.pathLabel}>SUGGESTED PATH</span>
         <ol className={styles.pathList}>
           <li><span className={styles.pathNum}>1</span><span><b>GitHub for Beginners</b><br />Ship your first pull request</span></li>
-          <li><span className={styles.pathNum}>2</span><span><b>Postman API Testing</b><br />Test the APIs you build</span></li>
+          <li><span className={styles.pathNum}>2</span><span><b>Postman API Fundamentals</b><br />Work with real API requests</span></li>
           <li><span className={`${styles.pathNum} ${styles.pathNumDark}`}>3</span><span><b>Contribute to recodehive</b><br /><a href={GOOD_FIRST_ISSUES} target="_blank" rel="noopener noreferrer">Pick a good first issue</a></span></li>
         </ol>
       </section>
