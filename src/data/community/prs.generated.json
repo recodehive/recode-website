@@ -1,0 +1,40 @@
+{
+  "fetchedAt": "2026-10-20T22:21:15.424Z",
+  "prs": [
+    {
+      "number": 2345,
+      "title": "Fixes on Padcast Page",
+      "url": "https://github.com/recodehive/recode-website/pull/2345",
+      "author": "steam-bell-92",
+      "mergedAt": "2026-10-20T22:15:14Z"
+    },
+    {
+      "number": 2347,
+      "title": "Navbar: Learn links to /docs and docs pages no longer crash",
+      "url": "https://github.com/recodehive/recode-website/pull/2347",
+      "author": "sanjay-kv",
+      "mergedAt": "2026-10-20T15:31:29Z"
+    },
+    {
+      "number": 2346,
+      "title": "Redesign the navbar: grouped mega menu and full-screen mobile sheet",
+      "url": "https://github.com/recodehive/recode-website/pull/2346",
+      "author": "sanjay-kv",
+      "mergedAt": "2026-10-20T15:28:32Z"
+    },
+    {
+      "number": 2344,
+      "title": "Replace the Ebooks page with the single ebook design",
+      "url": "https://github.com/recodehive/recode-website/pull/2344",
+      "author": "sanjay-kv",
+      "mergedAt": "2026-10-20T14:34:49Z"
+    },
+    {
+      "number": 2343,
+      "title": "Blogs: make search and topic chips visible, restore card font and tag colours",
+      "url": "https://github.com/recodehive/recode-website/pull/2343",
+      "author": "sanjay-kv",
+      "mergedAt": "2026-10-20T14:25:20Z"
+    }
+  ]
+}
