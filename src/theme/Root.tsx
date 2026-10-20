@@ -41,7 +41,8 @@ export default function Root({ children }: { children: React.ReactNode }) {
   const [isDark, setIsDark] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const location = useLocation();
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
+  // The toast shows once per visit, and only on the home page.
+  const toastShown = useRef(false);
   const clerkPublishableKey = customFields?.clerkPublishableKey as
     | string
     | undefined;
@@ -119,10 +120,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
     },
   };
 
-  // Check if current page is sponsors page
-  const isSponsorsPage =
-    location.pathname === "/our-sponsors/" ||
-    location.pathname === "/our-sponsors";
+  const isHome = location.pathname === "/";
 
   // Theme detection logic
   useEffect(() => {
@@ -145,47 +143,30 @@ export default function Root({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // Show the toast 12 seconds after the first load (on all pages), then hide it after 10 seconds
+  // Show the toast 12 seconds after arriving on the home page (once per visit), then hide it after
+  // 10 seconds. Leaving the home page hides it right away.
   useEffect(() => {
+    if (!isHome) {
+      setShowToast(false);
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+        timerRef.current = null;
+      }
+      return;
+    }
+    if (toastShown.current) return;
+
     const showTimer = setTimeout(() => {
+      toastShown.current = true;
       setShowToast(true);
       timerRef.current = setTimeout(() => {
         setShowToast(false);
         timerRef.current = null;
       }, 10000);
     }, 12000);
-    setIsInitialLoad(false);
 
-    return () => {
-      clearTimeout(showTimer);
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-        timerRef.current = null;
-      }
-    };
-  }, []);
-
-  // Show toast on navigation only for sponsors page
-  useEffect(() => {
-    if (!isInitialLoad && isSponsorsPage) {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-
-      setShowToast(false);
-      const showTimer = setTimeout(() => {
-        setShowToast(true);
-        timerRef.current = setTimeout(() => setShowToast(false), 10000);
-      }, 200);
-
-      return () => {
-        clearTimeout(showTimer);
-        if (timerRef.current) {
-          clearTimeout(timerRef.current);
-        }
-      };
-    }
-  }, [location.pathname, isInitialLoad]);
+    return () => clearTimeout(showTimer);
+  }, [isHome]);
 
   // Handle manual close
   const handleCloseToast = () => {
@@ -199,7 +180,7 @@ export default function Root({ children }: { children: React.ReactNode }) {
     <>
       {children}
 
-      {showToast && (
+      {showToast && isHome && (
         <div
           // Use clsx to combine base class with theme-specific class
           className={clsx(
@@ -209,23 +190,11 @@ export default function Root({ children }: { children: React.ReactNode }) {
         >
           <TrophyIcon />
           <div className={styles.toastContent}>
-            {isSponsorsPage ? (
-              <>
-                Do u want to get{" "}
-                <Link to="/dashboard#leaderboard" className={styles.toastLink}>
-                  sponsored
-                </Link>
-                ?
-              </>
-            ) : (
-              <>
-                Check out our latest{" "}
-                <Link to="/dashboard#leaderboard" className={styles.toastLink}>
-                  leaderboard
-                </Link>
-                !
-              </>
-            )}
+            Check out our latest{" "}
+            <Link to="/dashboard#leaderboard" className={styles.toastLink}>
+              leaderboard
+            </Link>
+            !
           </div>
           <button
             onClick={handleCloseToast}
