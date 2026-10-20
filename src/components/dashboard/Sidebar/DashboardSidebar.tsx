@@ -50,7 +50,6 @@ const LINK_ITEMS: Array<{
 }> = [
   { href: "/learn", label: "Learn", icon: <GraduationCap size={16} />, free: true },
   { href: "/blogs", label: "Blogs", icon: <BookOpen size={16} /> },
-  { href: "/updates", label: "Updates", icon: <Sparkles size={16} />, badge: true },
 ];
 
 const GithubMark = () => (
@@ -259,6 +258,19 @@ export default function DashboardSidebar({
         >
           <Bell size={16} />
           {!collapsed && <span>Notifications</span>}
+        </Link>
+        <Link
+          to="/updates"
+          className="dashboard-rail-bottom-item"
+          title={collapsed ? "Updates" : undefined}
+        >
+          <Sparkles size={16} />
+          {!collapsed && (
+            <>
+              <span className="dashboard-rail-item-label">Updates</span>
+              {latestTag && <span className="dashboard-rail-badge">{latestTag}</span>}
+            </>
+          )}
         </Link>
         <Link
           to="/community"
