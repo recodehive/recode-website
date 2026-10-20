@@ -157,34 +157,35 @@ export const courses: Course[] = [
     ],
   },
   {
-    slug: 'postman-api-testing',
-    title: 'Postman API Testing',
+    slug: 'postman-api-fundamentals',
+    title: 'Postman API Fundamentals',
     level: 'Beginner',
     topic: 'APIs',
-    description: 'Send, organize and test API requests in Postman, then run your collection automatically in CI.',
+    description: "Send your first API request, work with parameters, variables and request methods, then earn Postman's Student Expert badge.",
     icon: 'api',
-    // No lesson videos exist yet, so every lesson is "Coming soon" and the course is not clickable.
+    // Every lesson starts as a draft, so the card stays "Coming soon" until one lesson is published.
     modules: [
       {
-        title: 'API basics',
+        title: 'Get started',
         lessons: [
-          { slug: 'how-apis-work', title: 'How APIs work', summary: 'Requests, responses and what travels between them.' },
-          { slug: 'methods-and-status-codes', title: 'HTTP methods and status codes', summary: 'GET, POST, PUT and DELETE, and what the numbers mean.' },
+          { slug: 'student-expert-program', title: 'What Postman\'s Student Expert program is and how to join', videos: [{ id: 'O1ahDsq8DU0' }], summary: 'What Postman\'s Student Expert program is, who it is for and how to join it.' },
+          { slug: 'first-api-request', title: 'Send your first API request', videos: [{ id: 'qjbL72odpPE' }], summary: 'Send your first API request in Postman and read the response.' },
         ],
       },
       {
-        title: 'Working in Postman',
+        title: 'Build real requests',
         lessons: [
-          { slug: 'first-request', title: 'Your first request', summary: 'Send a request and read the response.' },
-          { slug: 'environments', title: 'Environments and variables', summary: 'Reuse values across requests.' },
-          { slug: 'auth', title: 'Auth: API keys and tokens', summary: 'Send credentials the right way.' },
+          { slug: 'query-and-path-parameters', title: 'Work with query and path parameters', videos: [{ id: 'GfTTuLN4gpI' }], summary: 'Use query and path parameters in Postman to ask an API for exactly the data you want.' },
+          { slug: 'post-requests', title: 'Send data with POST requests', videos: [{ id: 'KasLQclJu6c' }], summary: 'Send data to an API with a POST request and check what the server sends back.' },
+          { slug: 'variables-and-common-errors', title: 'Use variables and fix common errors', videos: [{ id: 'mNS6jG5nRqM' }, { id: 'e99s27I4aXQ', label: 'Halfway check: finding and fixing a bug' }], summary: 'Reuse values with Postman variables and learn to spot and fix the most common request errors.' },
+          { slug: 'patch-and-delete', title: 'Update and delete data with PATCH and DELETE', videos: [{ id: '6G4UAtnvnKo' }], summary: 'Change and remove data on an API with PATCH and DELETE requests in Postman.' },
         ],
       },
       {
-        title: 'Testing and automation',
+        title: 'Get your badge',
         lessons: [
-          { slug: 'first-tests', title: 'Write your first tests', summary: 'Check status codes and response data.' },
-          { slug: 'ci', title: 'Run collections in CI', summary: 'Run your tests on every push.' },
+          { slug: 'final-collection-check', title: 'Pass the final collection check', videos: [{ id: '_kIw5xA9uis' }], summary: 'How the final check in Postman\'s Student Expert program works and which concepts it tests.' },
+          { slug: 'claim-your-badge', title: 'Claim and share your Student Expert badge', videos: [{ id: 'SGTu5Ck01C8' }], summary: 'Claim your badge from Postman\'s Student Expert program and share it on your profile.' },
         ],
       },
     ],
