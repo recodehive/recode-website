@@ -153,11 +153,6 @@ const config: Config = {
           ],
         },
         {
-          to: "/learn",
-          html: '<span class="nav-emoji">🎓</span> Learn',
-          position: "left",
-        },
-        {
           type: "dropdown",
           to: "/showcase",
           html: '<span class="nav-emoji">🌍</span> Showcase',
