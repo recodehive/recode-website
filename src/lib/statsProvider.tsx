@@ -51,6 +51,8 @@ interface ICommunityStatsContext {
   getAllTimeContributor: (username: string) => Contributor | undefined;
   // All-time ranking by points (bots excluded), best first. Empty until data loads.
   allTimeRanking: { username: string; points: number; prs: number }[];
+  // Same shape, counting only PRs merged in the last month. Used when badges rank monthly.
+  monthlyRanking: { username: string; points: number; prs: number }[];
 }
 
 // Define types for leaderboard data
@@ -391,6 +393,17 @@ export function CommunityStatsProvider({
   [allContributors],
 );
 
+  // Ranking over the last month, independent of the leaderboard's time filter
+  const monthlyRanking = useMemo(
+    () =>
+      buildFilteredContributors((mergedAt) => isPRInTimeRange(mergedAt, "month")).map((c) => ({
+        username: c.username,
+        points: c.points,
+        prs: c.prs,
+      })),
+    [buildFilteredContributors],
+  );
+
   // All-time ranking by points, independent of the leaderboard's time filter
   const allTimeRanking = useMemo(
     () =>
@@ -556,6 +569,7 @@ export function CommunityStatsProvider({
     getAllTimePRsForContributor,
     getAllTimeContributor,
     allTimeRanking,
+    monthlyRanking,
   };
 
   return (

@@ -10,6 +10,7 @@
     "prebuild": "node scripts/fetch-releases.js",
     "fetch:releases": "node scripts/fetch-releases.js",
     "test:contributors": "node --test src/utils/releaseContributors.test.mjs",
+    "test:badges": "node --test src/utils/badges.test.mjs",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",

@@ -1,5 +1,3 @@
-import type { BadgeDef } from './badgeConfig';
-
 export type Period = 'week' | 'month' | 'all';
 
 export const PERIOD_LABEL: Record<Period, string> = {
@@ -41,11 +39,4 @@ export function rangeLabel(period: Period, fallback: boolean, earliest: Date | n
     return `${shortDate(start)} to ${shortDate(now)}`;
   }
   return earliest ? `Since ${shortDate(earliest)}, ${earliest.getFullYear()}` : 'All time';
-}
-
-export function describeBadge(def: BadgeDef): string {
-  const { type, value, altPointsValue } = def.requirement;
-  if (type === 'points') return `${value.toLocaleString('en-US')} points`;
-  const prs = `${value.toLocaleString('en-US')} merged ${value === 1 ? 'PR' : 'PRs'}`;
-  return altPointsValue ? `${prs} or ${altPointsValue.toLocaleString('en-US')} points` : prs;
 }

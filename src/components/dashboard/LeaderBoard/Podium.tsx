@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useInView, useReducedMotion } from './leaderboardHooks';
 import { avatarSrc } from './leaderboardUtils';
+import type { Badge } from '../../../data/badges';
+import { NameChip } from '../../leaderboard/BadgeChip';
 import styles from './leaderboard.module.css';
 
 export type Row = {
@@ -9,7 +11,8 @@ export type Row = {
   profile: string;
   points: number;
   prs: number;
-  badgeNames: string[];
+  badgeCount: number;
+  topBadge: Badge | null;
 };
 
 export const GOOD_FIRST_ISSUES =
@@ -67,22 +70,12 @@ function Spot({ row, rank, play }: { row: Row | undefined; rank: 1 | 2 | 3; play
       <p className={styles.podiumPts}><CountUp value={row.points} play={play} /> pts</p>
       <p className={styles.podiumMeta}>
         {row.prs} merged {row.prs === 1 ? 'PR' : 'PRs'}
-        {row.badgeNames.length > 0 && (
-          <> {'·'} <span className={styles.badgeChip} title={row.badgeNames.join(', ')}>
-            <Hex />{row.badgeNames.length} {row.badgeNames.length === 1 ? 'badge' : 'badges'}
-          </span></>
+        {row.topBadge && (
+          <> {'\u00B7'} <NameChip badge={row.topBadge} /></>
         )}
       </p>
       <div className={styles.block}><span>{rank}</span></div>
     </div>
-  );
-}
-
-export function Hex() {
-  return (
-    <svg viewBox="0 0 24 24" width="11" height="11" aria-hidden="true" focusable="false" className={styles.hexIcon}>
-      <polygon points="12,2 21,7 21,17 12,22 3,17 3,7" fill="none" stroke="currentColor" strokeWidth="2.5" />
-    </svg>
   );
 }
 

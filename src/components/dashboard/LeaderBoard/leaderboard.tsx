@@ -3,8 +3,11 @@ import { useUser } from '@clerk/react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { Search } from 'lucide-react';
 import { useCommunityStatsContext, type TimeFilter } from '@site/src/lib/statsProvider';
-import { BADGE_CONFIG } from './badgeConfig';
-import Podium, { Hex, type Row } from './Podium';
+import { getTopMilestone, getUserBadges } from '../../../utils/badges';
+import { BadgesProvider, useBadges } from '../../leaderboard/BadgeContext';
+import BadgeRail from '../../leaderboard/BadgeRail';
+import { CountChip } from '../../leaderboard/BadgeChip';
+import Podium, { type Row } from './Podium';
 import { HiveActivity, HowToEarn, YourRank, type Viewer } from './Rail';
 import {
   PERIOD_LABEL,
@@ -20,17 +23,6 @@ import {
 import { useReducedMotion } from './leaderboardHooks';
 import styles from './leaderboard.module.css';
 
-// Kept for BadgeModal, which still types its props with it.
-export interface Contributor {
-  username: string;
-  avatar: string;
-  profile: string;
-  points: number;
-  prs: number;
-  prDetails?: { title: string; url: string; mergedAt: string; repoName: string; number: number; points: number }[];
-  badges?: string[];
-}
-
 const PERIODS: Period[] = ['week', 'month', 'all'];
 const PAGE = 20;
 const SPONSOR_URL = 'https://github.com/sponsors/sanjay-kv';
@@ -40,7 +32,7 @@ const periodWord = (p: Period, fallback: boolean) => (fallback ? 'last week' : p
 const topBeesTitle = (p: Period, fallback: boolean) =>
   fallback ? "Last week's top bees" : p === 'week' ? "This week's top bees" : p === 'month' ? "This month's top bees" : 'All-time top bees';
 
-export default function LeaderBoard() {
+function LeaderBoardView({ viewer }: { viewer: Viewer }) {
   const {
     contributors, stats, hasContributorsData, isFallbackPeriod, loading, error,
     lastUpdated, currentTimeFilter, setTimeFilter, allTimeRanking, clearCache,
@@ -48,15 +40,6 @@ export default function LeaderBoard() {
   const { siteConfig } = useDocusaurusContext();
   const reduced = useReducedMotion();
 
-  // useUser() throws when no ClerkProvider is mounted; keep the board usable without it.
-  let clerkUser: ReturnType<typeof useUser>['user'] | undefined;
-  try {
-    clerkUser = useUser().user;
-  } catch {
-    clerkUser = undefined;
-  }
-  const githubLogin = clerkUser?.externalAccounts?.find((a) => a.provider === 'github')?.username ?? null;
-  const viewer: Viewer = githubLogin && clerkUser ? { login: githubLogin, imageUrl: clerkUser.imageUrl } : null;
   const canSignIn = Boolean(siteConfig.customFields?.clerkPublishableKey);
 
   // Default to the monthly board.
@@ -84,10 +67,10 @@ export default function LeaderBoard() {
     return m;
   }, [allTimeRanking]);
 
-  const badgesFor = (login: string): string[] => {
-    const t = allTime.get(login.toLowerCase());
-    if (!t) return [];
-    return BADGE_CONFIG.filter((b) => b.criteria(t.prs, t.points)).map((b) => b.name);
+  const { statsFor } = useBadges();
+  const badgeInfo = (login: string) => {
+    const stats = statsFor(login);
+    return { badgeCount: getUserBadges(stats).count, topBadge: getTopMilestone(stats) };
   };
 
   const rows: Row[] = useMemo(
@@ -98,7 +81,7 @@ export default function LeaderBoard() {
         profile: c.profile,
         points: c.points,
         prs: c.prs,
-        badgeNames: badgesFor(c.username),
+        ...badgeInfo(c.username),
       })),
     [contributors, allTime],
   );
@@ -257,13 +240,7 @@ export default function LeaderBoard() {
                               </div>
                             </td>
                             <td>
-                              {r.badgeNames.length > 0 ? (
-                                <span className={styles.badgeChip} title={r.badgeNames.join(', ')} aria-label={`${r.badgeNames.length} badges: ${r.badgeNames.join(', ')}`}>
-                                  <Hex />{r.badgeNames.length}
-                                </span>
-                              ) : (
-                                <span className={styles.muted}>None yet</span>
-                              )}
+                              <CountChip badge={r.topBadge} count={r.badgeCount} />
                             </td>
                           </tr>
                         );
@@ -320,8 +297,9 @@ export default function LeaderBoard() {
                 canSignIn={canSignIn}
                 rows={rows}
                 periodWord={word}
-                viewerBadges={viewer ? badgesFor(viewer.login).length : 0}
+                viewerBadges={viewer ? getUserBadges(statsFor(viewer.login)).count : 0}
               />
+              <BadgeRail />
               <HowToEarn />
               <HiveActivity
                 chip={isFallbackPeriod ? 'Last week' : PERIOD_LABEL[period]}
@@ -334,5 +312,22 @@ export default function LeaderBoard() {
         </>
       )}
     </div>
+  );
+}
+
+export default function LeaderBoard() {
+  // useUser() throws when no ClerkProvider is mounted; keep the board usable without it.
+  let clerkUser: ReturnType<typeof useUser>['user'] | undefined;
+  try {
+    clerkUser = useUser().user;
+  } catch {
+    clerkUser = undefined;
+  }
+  const githubLogin = clerkUser?.externalAccounts?.find((a) => a.provider === 'github')?.username ?? null;
+  const viewer: Viewer = githubLogin && clerkUser ? { login: githubLogin, imageUrl: clerkUser.imageUrl } : null;
+  return (
+    <BadgesProvider viewerLogin={viewer?.login ?? null}>
+      <LeaderBoardView viewer={viewer} />
+    </BadgesProvider>
   );
 }
