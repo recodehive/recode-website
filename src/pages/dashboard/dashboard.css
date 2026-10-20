@@ -255,6 +255,17 @@ html[data-theme="dark"] .dashboard-layout {
   }
 }
 
+.dashboard-main-content--discuss {
+  padding: 36px 40px 80px;
+  overflow-x: clip;
+}
+
+@media (max-width: 768px) {
+  .dashboard-main-content--discuss {
+    padding: 20px 16px 64px;
+  }
+}
+
 /* Stat card pieces still used by the Giveaways tab */
 .dashboard-stat-card:hover {
   transform: translateY(-4px);

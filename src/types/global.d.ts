@@ -117,7 +117,6 @@ declare module "@site/src/services/github" {
 declare module "@site/src/services/githubService" {
   export const githubService: {
     setToken(token: string): void;
-    fetchDiscussions(limit?: number, signal?: AbortSignal): Promise<any[]>;
   };
   export interface GitHubDiscussion {
     [key: string]: any;
