@@ -3149,3 +3149,13 @@ div[class*='sidebarViewport_'] {
   opacity: 0.4 !important;
   cursor: not-allowed !important;
 }
+
+/* Navbar height used for page offsets (set here because the new navbar lives in src/components/navbar) */
+:root {
+  --ifm-navbar-height: 64px;
+}
+@media (max-width: 996px) {
+  :root {
+    --ifm-navbar-height: 54px;
+  }
+}
