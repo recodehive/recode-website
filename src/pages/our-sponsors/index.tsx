@@ -1,299 +1,48 @@
-import React, { useState, useRef, useEffect } from "react";
-import SponsorCard from "./SponsorCard";
-import "./Sponsors.css";
-import Layout from "@theme/Layout";
-import { FaPlusCircle, FaTimes } from "react-icons/fa";
-import Head from "@docusaurus/Head";
-import sponsors from "@site/src/database/sponsors";
-import { useHistory } from "@docusaurus/router";
+import React, { useState } from 'react';
+import Layout from '@theme/Layout';
+import Confetti from '../../components/sponsors/Confetti';
+import Hero from '../../components/sponsors/Hero';
+import HowItWorks from '../../components/sponsors/HowItWorks';
+import Wall, { type WallTab } from '../../components/sponsors/Wall';
+import ClosingCta from '../../components/sponsors/ClosingCta';
+import styles from '../../components/sponsors/sponsors.module.css';
 
-type TabType = "current" | "past";
+export default function OurSponsors(): React.JSX.Element {
+  const [tab, setTab] = useState<WallTab>('sponsors');
 
-const OurSponsors: React.FC = () => {
-  const [showScanner, setShowScanner] = useState<boolean>(false);
-  const [activeTab, setActiveTab] = useState<TabType>("current");
-  const modalRef = useRef<HTMLDivElement>(null);
-  const history = useHistory();
-
-  // Filter for current sponsors (exclude isWeSponsor)
-  const currentSponsors = sponsors.filter(
-    (s) => !s.isPastSponsor && !s.isWeSponsor,
-  );
-  const pastSponsors = sponsors.filter((s) => s.isPastSponsor);
-
-  // Filter for people we sponsor
-  const weSponsorPeople = sponsors.filter((s) => s.isWeSponsor);
-
-  const handleJoinSponsor = () => setShowScanner(true);
-
-  const handlePaymentSuccess = () => {
-    setShowScanner(false);
-    alert(
-      "Thanks, we will redirect to Github Sponsors page, upon sponsoring you will be added to our sponsors list.",
-    );
-    window.location.href = "https://github.com/sponsors/sanjay-kv?o=esb";
+  const seeWho = () => {
+    setTab('sponsored');
+    // Wait a frame so the tab switch has rendered before scrolling.
+    window.requestAnimationFrame(() => {
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.getElementById('the-wall')?.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+    });
   };
-
-  const handleCloseModal = () => setShowScanner(false);
-
-  const handleTabChange = (tab: TabType) => {
-    setActiveTab(tab);
-  };
-
-  // Handle popup modal close on Escape key and click outside
-  useEffect(() => {
-    if (!showScanner) return;
-
-    const controller = new AbortController();
-    const { signal } = controller;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") handleCloseModal();
-    };
-
-    const handleClickOutside = (e: MouseEvent) => {
-      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-        handleCloseModal();
-      }
-    };
-
-    document.addEventListener("keydown", handleKeyDown, { signal });
-    document.addEventListener("mousedown", handleClickOutside, { signal });
-
-    return () => controller.abort();
-  }, [showScanner]);
-
-  // Auto-switch tab if hash is "#people-we-sponsored"
-  useEffect(() => {
-    if (window.location.hash === "#people-we-sponsored") {
-      setActiveTab("past");
-      // Optionally scroll into view for a nice effect
-      const el = document.getElementById("people-we-sponsored");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }
-  }, []);
 
   return (
-    <Layout>
-      <Head>
-        <script
-          async
-          custom-element="amp-auto-ads"
-          src="https://cdn.ampproject.org/v0/amp-auto-ads-0.1.js"
-        />
-      </Head>
-      <div className="sponsor-page">
-        <div className="sponsor-header">
-          <h1 className="TitleText">Our Valued Sponsors</h1>
-          <p>
-            Join us in empowering the open-source community through your
-            generous support. Your sponsorship directly fuels innovation by
-            enabling developers to create valuable resources and maintain our
-            growing knowledge base.
-            <br />
-            <br />
-            We deeply appreciate your commitment to advancing open-source
-            technology and education.
-          </p>
-        </div>
-        <div className="sponsors-section">
-          <div className="tabs">
-            <button
-              className={`tab-button ${activeTab === "current" ? "active" : ""}`}
-              onClick={() => handleTabChange("current")}
-            >
-              <span className="tab-label">Current Sponsors</span>
-              <span className="tab-badge">{currentSponsors.length}</span>
-            </button>
-            <button
-              className={`tab-button ${activeTab === "past" ? "active" : ""}`}
-              onClick={() => handleTabChange("past")}
-            >
-              <span className="tab-label">People We Sponsored</span>
-              {weSponsorPeople.length > 0 && (
-                <span className="tab-badge">{weSponsorPeople.length}</span>
-              )}
-            </button>
-          </div>
-
-          <div
-            className={`tab-content ${activeTab === "current" ? "active" : ""}`}
-          >
-            <div className="sponsors-section">
-              <div className="sponsors-list">
-                {currentSponsors.length > 0 ? (
-                  currentSponsors.map((sponsor) => (
-                    <SponsorCard key={`${sponsor.name}-current`} {...sponsor} />
-                  ))
-                ) : (
-                  <div className="no-sponsors">
-                    <p>
-                      We're actively seeking visionary sponsors to partner with
-                      us in supporting the open-source community.
-                    </p>
-                  </div>
-                )}
-
-                <div
-                  className="sponsor-card empty-card group"
-                  onClick={handleJoinSponsor}
-                  role="button"
-                  tabIndex={0}
-                >
-                  <div className="p-4 text-center">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-indigo-50 transition-colors duration-200 group-hover:bg-indigo-100">
-                      <FaPlusCircle className="text-3xl text-indigo-500 transition-colors duration-200 group-hover:text-indigo-600" />
-                    </div>
-                    <h3 className="mb-1 text-lg font-semibold text-indigo-700 transition-colors duration-200 group-hover:text-indigo-800">
-                      Partner With Us
-                    </h3>
-                    <p className="text-sm text-gray-500 transition-colors duration-200 group-hover:text-gray-600">
-                      Support innovation in open-source development
-                    </p>
-                    <div className="mt-3 inline-flex items-center text-sm font-medium text-indigo-600 transition-colors duration-200 group-hover:text-indigo-700">
-                      Join us
-                      <svg
-                        className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M14 5l7 7m0 0l-7 7m7-7H3"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {pastSponsors.length > 0 && (
-                <>
-                  <h3 className="mt-12 mb-4 text-xl font-semibold text-gray-800">
-                    <span className="past-heading">
-                      <span className="past-title">Past Sponsors</span>
-                      <span className="past-heart" aria-hidden="true">
-                        <svg
-                          stroke="currentColor"
-                          fill="currentColor"
-                          strokeWidth="0"
-                          viewBox="0 0 512 512"
-                          height="1em"
-                          width="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" />
-                        </svg>
-                      </span>
-                      <span className="tab-badge">34</span>
-                    </span>
-                  </h3>
-                  <div className="sponsors-list">
-                    {pastSponsors.map((sponsor) => (
-                      <SponsorCard
-                        key={`${sponsor.name}-past-in-current`}
-                        {...sponsor}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
+    <Layout
+      title="Sponsors: fund the hive, keep learning free"
+      description="Every course, guide and video on recode hive is free. Meet the sponsors who keep it that way, see the open source developers we sponsor, and learn how to back the hive on GitHub."
+    >
+      <main className={styles.root}>
+        <div className={styles.top}>
+          <Confetti />
+          <div className={styles.heroBand}>
+            <div className={styles.inner}>
+              <Hero onSeeWho={seeWho} />
             </div>
           </div>
-
-          {/* --- Explicit anchor for "People We Sponsored" --- */}
-          <div
-            id="people-we-sponsored"
-            className={`tab-content ${activeTab === "past" ? "active" : ""}`}
-          >
-            {weSponsorPeople.length > 0 ? (
-              <div className="sponsors-list">
-                {weSponsorPeople.map((sponsor) => (
-                  <SponsorCard key={`${sponsor.name}-wesponsor`} {...sponsor} />
-                ))}
-              </div>
-            ) : (
-              <div className="no-sponsors">
-                <p>We look forward to recognizing our future sponsors here.</p>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {showScanner && (
-          <div className="scanner-popup" role="dialog" aria-modal="true">
-            <div className="scanner-content" ref={modalRef}>
-              <button
-                className="close-button"
-                aria-label="Close"
-                onClick={handleCloseModal}
-              >
-                <FaTimes size={20} />
-              </button>
-              <h2 className="TitleText">Become a Valued Partner</h2>
-              <p className="mb-6 text-gray-600">
-                Join our mission to advance open-source innovation and education
-                through your sponsorship
-              </p>
-              <div className="relative inline-flex">
-                <button
-                  className="scanner-button group"
-                  onClick={handlePaymentSuccess}
-                >
-                  <span className="absolute left-4 opacity-0 transition-all duration-300 group-hover:left-6 group-hover:opacity-100">
-                    <svg
-                      className="h-5 w-5"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.1-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.58.688.48A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                  <span className="relative transition-all duration-300 group-hover:translate-x-2">
-                    Sponsor on GitHub
-                  </span>
-                  <span className="absolute right-4 opacity-0 transition-all duration-300 group-hover:right-6 group-hover:opacity-100">
-                    <svg
-                      className="h-4 w-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M14 5l7 7m0 0l-7 7m7-7H3"
-                      />
-                    </svg>
-                  </span>
-                </button>
-              </div>
+          <div className={styles.howBand}>
+            <div className={styles.inner}>
+              <HowItWorks />
             </div>
           </div>
-        )}
-        <div className="support-links mt-6">
-          <iframe
-            src="https://github.com/sponsors/sanjay-kv/button"
-            title="Sponsor Sanjay Viswanathan on GitHub"
-            height="32"
-            width="114"
-            style={{ border: 0, borderRadius: "6px" }}
-          />
         </div>
-      </div>
+        <div className={styles.inner}>
+          <Wall tab={tab} onTab={setTab} />
+          <ClosingCta />
+        </div>
+      </main>
     </Layout>
   );
-};
-
-export default OurSponsors;
+}
