@@ -50,6 +50,8 @@ export default function RhNavbar(): React.JSX.Element {
   return (
     <>
       <nav ref={barRef} className={styles.nav} aria-label="Main">
+        {/* Docusaurus' table of contents highlight reads the height of an element with the class "navbar" */}
+        <div className={`navbar ${styles.probe}`} aria-hidden="true" />
         <div className={styles.inner}>
           <div className={styles.left}>
             <Logo />

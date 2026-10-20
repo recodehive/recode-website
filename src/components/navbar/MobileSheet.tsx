@@ -102,8 +102,8 @@ export default function MobileSheet({ open, onClose, isActive }: Props) {
               </button>
               {isOpen && (
                 <div id={`sheet-${t.id}`} className={styles.sheetGroup}>
-                  {t.id === 'showcase' && (
-                    <Link className={styles.sheetOverview} to="/showcase" onClick={onClose}>Showcase overview {'→'}</Link>
+                  {t.to && (
+                    <Link className={styles.sheetOverview} to={t.to} onClick={onClose}>{t.label} overview {'→'}</Link>
                   )}
                   {links.map((l) => <MenuLinkRow key={l.title} link={l} compact onNavigate={onClose} />)}
                 </div>
