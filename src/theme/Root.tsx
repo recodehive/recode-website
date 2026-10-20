@@ -145,16 +145,19 @@ export default function Root({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
-  // Show toast on initial load for all pages
+  // Show the toast 12 seconds after the first load (on all pages), then hide it after 10 seconds
   useEffect(() => {
-    setShowToast(true);
-    timerRef.current = setTimeout(() => {
-      setShowToast(false);
-      timerRef.current = null;
-    }, 10000);
+    const showTimer = setTimeout(() => {
+      setShowToast(true);
+      timerRef.current = setTimeout(() => {
+        setShowToast(false);
+        timerRef.current = null;
+      }, 10000);
+    }, 12000);
     setIsInitialLoad(false);
 
     return () => {
+      clearTimeout(showTimer);
       if (timerRef.current) {
         clearTimeout(timerRef.current);
         timerRef.current = null;
