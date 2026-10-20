@@ -71,7 +71,7 @@ export type TopItem =
 
 /** The top level order, used by both the desktop bar and the mobile sheet. */
 export const TOP_ITEMS: TopItem[] = [
-  { kind: 'menu', id: 'learn', emoji: '\u{1F4DA}', label: 'Learn', prefixes: ['/learn', '/docs', '/courses'] },
+  { kind: 'menu', id: 'learn', emoji: '\u{1F4DA}', label: 'Learn', to: '/docs', prefixes: ['/learn', '/docs', '/courses'] },
   { kind: 'menu', id: 'showcase', emoji: '\u{1F30D}', label: 'Showcase', to: '/showcase', prefixes: ['/showcase', '/badges', '/hire-developers'] },
   { kind: 'link', id: 'dashboard', emoji: '\u{1F4CA}', label: 'Dashboard', to: '/dashboard', prefixes: ['/dashboard'] },
   { kind: 'link', id: 'donate', emoji: '\u{1F4B0}', label: 'Donate', to: '/our-sponsors/', prefixes: ['/our-sponsors'] },
