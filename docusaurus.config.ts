@@ -153,11 +153,6 @@ const config: Config = {
           ],
         },
         {
-          to: "/learn",
-          html: '<span class="nav-emoji">🎓</span> Learn',
-          position: "left",
-        },
-        {
           type: "dropdown",
           to: "/showcase",
           html: '<span class="nav-emoji">🌍</span> Showcase',
@@ -300,6 +295,8 @@ const config: Config = {
     ],
     // Counts lesson words at build time; thin lessons get noindex
     "./plugins/learn-words",
+    // Real GitHub Discussions, fetched at build time (token never reaches the browser)
+    "./plugins/github-discussions",
     [
       "@docusaurus/plugin-ideal-image",
       {
@@ -315,7 +312,6 @@ const config: Config = {
   // Custom fields exposed to client-side code (browser-visible at build time)
   customFields: {
     backendApiUrl: process.env.BACKEND_API_URL || "https://leaderboard-production-6143.up.railway.app",
-    gitToken: process.env.DOCUSAURUS_GIT_TOKEN,
     clerkPublishableKey: process.env.VITE_CLERK_PUBLISHABLE_KEY || "",
     // Shopify credentials for merch store
     SHOPIFY_STORE_DOMAIN:
