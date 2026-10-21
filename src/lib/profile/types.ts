@@ -20,7 +20,7 @@ export interface ProfileExtras {
   }[];
   credentials?: { name: string; issuer: string; type: 'certification' | 'program' | 'degree'; url?: string }[];
   skillsDeclared?: string[];
-  /** Opt-in. Not rendered yet. */
+  /** Opt-in. Shown only when open is true. */
   hire?: {
     open: boolean;
     roles?: string[];
@@ -29,6 +29,8 @@ export interface ProfileExtras {
     bookingUrl?: string;
     cvUrl?: string;
   };
+  /** Added by an admin after review. Only from GitHub users with a merged PR. */
+  endorsements?: { by: string; skill: string; text: string; date: string }[];
 }
 
 export interface ProfilePR {
@@ -64,6 +66,8 @@ export interface ProfileSite {
   extras: ProfileExtras | null;
   /** True when this page may be indexed by search engines. */
   indexable: boolean;
+  /** Share image URL (1200x630), or null when the backend is not configured. */
+  ogImage: string | null;
   /** When the leaderboard data was read. */
   builtAt: string;
 }

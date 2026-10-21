@@ -20,6 +20,8 @@ const EXCLUDED = new Set([
   'github-actions[bot]', 'renovate[bot]', 'dependabot-preview[bot]',
 ]);
 const MIN_PRS_TO_INDEX = 3;
+const SUPABASE_URL = (process.env.SUPABASE_URL || '').replace(/\/$/, '');
+const ENGAGEMENT = ['contract', 'full-time', 'freelance', 'mentoring'];
 
 const str = (v, max) => (typeof v === 'string' ? v.trim().slice(0, max) : undefined) || undefined;
 const strList = (v, max, each) => (Array.isArray(v) ? v.map((x) => str(x, each)).filter(Boolean).slice(0, max) : undefined);
@@ -55,6 +57,27 @@ function cleanExtras(raw) {
         url: https(c && c.url),
       })).filter((c) => c.name && c.issuer)
     : undefined;
+  // Hire details are opt-in: the whole block is dropped unless the owner set open to true.
+  const hireRaw = raw.hire && typeof raw.hire === 'object' && raw.hire.open === true ? raw.hire : null;
+  const hire = hireRaw
+    ? {
+        open: true,
+        roles: strList(hireRaw.roles, 6, 60),
+        engagement: Array.isArray(hireRaw.engagement) ? hireRaw.engagement.filter((e) => ENGAGEMENT.includes(e)) : undefined,
+        workRights: str(hireRaw.workRights, 200),
+        bookingUrl: https(hireRaw.bookingUrl),
+        cvUrl: https(hireRaw.cvUrl),
+      }
+    : undefined;
+  // Endorsements are reviewed by an admin before they are added, and only from real GitHub handles.
+  const endorsements = Array.isArray(raw.endorsements)
+    ? raw.endorsements.slice(0, 20).map((e) => ({
+        by: str(e && e.by, 39),
+        skill: str(e && e.skill, 60),
+        text: str(e && e.text, 400),
+        date: /^\d{4}-\d{2}-\d{2}$/.test(String(e && e.date)) ? e.date : undefined,
+      })).filter((e) => e.by && HANDLE_RE.test(e.by.toLowerCase()) && e.skill && e.text && e.date)
+    : undefined;
   const out = {
     headline: str(raw.headline, 140),
     bio: str(raw.bio, 600),
@@ -63,6 +86,8 @@ function cleanExtras(raw) {
     featuredWork: featuredWork && featuredWork.length ? featuredWork : undefined,
     credentials: credentials && credentials.length ? credentials : undefined,
     skillsDeclared: strList(raw.skillsDeclared, 30, 40),
+    hire,
+    endorsements: endorsements && endorsements.length ? endorsements : undefined,
   };
   return Object.values(out).some((v) => v !== undefined) ? out : null;
 }
@@ -84,6 +109,11 @@ function readExtras(siteDir) {
     }
   }
   return map;
+}
+
+/** The share image is made by the og edge function. The date in the URL gives new shares fresh numbers despite LinkedIn's cache. */
+function ogImageFor(handle, builtAt) {
+  return SUPABASE_URL ? `${SUPABASE_URL}/functions/v1/og?handle=${handle}&d=${String(builtAt).slice(0, 10)}` : null;
 }
 
 function githubHandleOf(author) {
@@ -170,6 +200,7 @@ module.exports = function developerProfilesPlugin(context) {
           posts: (postsByHandle.get(handle) || []).sort((a, b) => b.date.localeCompare(a.date)).slice(0, 6),
           extras,
           indexable: prs >= MIN_PRS_TO_INDEX && Boolean(extras && (extras.headline || extras.bio)),
+          ogImage: ogImageFor(handle, builtAt),
           builtAt,
         });
       });
@@ -180,7 +211,7 @@ module.exports = function developerProfilesPlugin(context) {
         seen.add(handle);
         sites.push({
           handle, username: handle, avatar: `https://github.com/${handle}.png`, rank: 0, points: 0, prs: 0,
-          recentPrs: [], repos: [], firstPrAt: null, posts: postsByHandle.get(handle) || [], extras, indexable: false, builtAt,
+          recentPrs: [], repos: [], firstPrAt: null, posts: postsByHandle.get(handle) || [], extras, indexable: false, ogImage: ogImageFor(handle, builtAt), builtAt,
         });
       }
 

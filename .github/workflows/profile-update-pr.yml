@@ -1,0 +1,54 @@
+name: Profile update to PR
+
+# When an admin adds the `profile-update` label to a "Profile update" issue, this turns the simple answers
+# into src/data/profiles/<handle>.json and opens a PR for review. Nothing is merged automatically.
+# Needs the repository setting "Allow GitHub Actions to create and approve pull requests".
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  profile-pr:
+    if: github.event.label.name == 'profile-update'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Read the issue form
+        id: form
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_AUTHOR: ${{ github.event.issue.user.login }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: node scripts/profile-from-issue.mjs
+      - name: Explain why nothing was changed
+        if: steps.form.outputs.ok != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REASON: ${{ steps.form.outputs.reason }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: gh issue comment "$ISSUE_NUMBER" --body "No pull request was opened. $REASON"
+      - name: Open the pull request
+        if: steps.form.outputs.ok == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          HANDLE: ${{ steps.form.outputs.handle }}
+          NOTES: ${{ steps.form.outputs.notes }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: |
+          branch="profile/${HANDLE}-${ISSUE_NUMBER}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add "src/data/profiles/${HANDLE}.json"
+          git commit -m "Profile update for @${HANDLE} (from #${ISSUE_NUMBER})"
+          git push origin "$branch"
+          { echo "Profile details for @${HANDLE}, taken from #${ISSUE_NUMBER}."; echo; echo "The issue author matches the handle and ticked the ownership box. Only the simple fields were copied."; echo; cat "$NOTES"; } > "$RUNNER_TEMP/pr-body.md"
+          gh pr create --title "Profile update: @${HANDLE}" --body-file "$RUNNER_TEMP/pr-body.md" --base main --head "$branch"
