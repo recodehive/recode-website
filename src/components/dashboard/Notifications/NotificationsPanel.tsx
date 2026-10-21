@@ -175,8 +175,7 @@ export default function NotificationsPanel({
                           onClose();
                         }}
                       >
-                        Click here
-                        <span className={styles.srOnly}>: {n.title}</span>
+                        <span className={styles.srOnly}>Open: {n.title}</span>
                       </Link>
                     )}
                     <time
