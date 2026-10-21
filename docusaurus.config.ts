@@ -3,6 +3,7 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import * as dotenv from "dotenv";
 import giscusInjector from "./src/plugins/giscus-injector";
+import stripHeadingEmoji from "./src/plugins/strip-heading-emoji";
 dotenv.config({ path: ".env.local" });
 dotenv.config();
 
@@ -85,6 +86,8 @@ const config: Config = {
         },
         blog: {
           showReadingTime: true,
+          // Blog only: no emoji at the start of headings, so the contents list stays clean
+          remarkPlugins: [stripHeadingEmoji],
           feedOptions: {
             type: ["rss", "atom"],
             xslt: true,
