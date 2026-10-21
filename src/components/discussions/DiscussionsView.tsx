@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Link from '@docusaurus/Link';
 import { usePluginData } from '@docusaurus/useGlobalData';
-import { ChevronUp, MessageCircle, Search } from 'lucide-react';
+import { ChevronUp, MessageCircle, Search, X } from 'lucide-react';
 import styles from './discussionsView.module.css';
 
 const REPO_URL = 'https://github.com/recodehive/recode-website';
@@ -16,6 +17,8 @@ type Discussion = {
   title: string;
   url: string;
   excerpt: string;
+  /** Sanitised HTML from GitHub. Empty when the post has no body. */
+  bodyHtml?: string;
   createdAt: string;
   updatedAt: string;
   upvotes: number;
@@ -35,6 +38,71 @@ type Data = {
 };
 type Tab = 'latest' | 'trending' | 'unanswered';
 type Sort = 'upvotes' | 'newest' | 'replies';
+
+function Reader({ d, now, onClose }: { d: Discussion; now: number; onClose: () => void }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const prev = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    ref.current?.focus();
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'Tab' && ref.current) {
+        const f = ref.current.querySelectorAll<HTMLElement>('a[href], button:not([disabled])');
+        if (f.length === 0) return;
+        const first = f[0];
+        const last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      }
+    };
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('keydown', onKey);
+      document.body.style.overflow = overflow;
+      prev?.focus();
+    };
+  }, [onClose]);
+
+  return createPortal(
+    <div className={styles.modalRoot}>
+      <div className={styles.backdrop} onMouseDown={(e) => { if (e.target === e.currentTarget) onClose(); }}>
+        <div ref={ref} className={styles.dialog} role="dialog" aria-modal="true" aria-labelledby="disc-title" tabIndex={-1}>
+          <button type="button" className={styles.closeBtn} onClick={onClose} aria-label="Close">
+            <X size={16} aria-hidden="true" />
+          </button>
+          <div className={styles.meta}>
+            <span className={`${styles.pill} ${categoryClass(d.category.name)}`}>
+              <span aria-hidden="true">{d.category.emoji}</span> {d.category.name}
+            </span>
+            {d.labels.map((l) => (
+              <span key={l} className={styles.label}>{l}</span>
+            ))}
+          </div>
+          <h2 id="disc-title" className={styles.dialogTitle}>{d.title}</h2>
+          <p className={styles.byline}>
+            <Avatar person={d.author} size={22} />
+            <strong>@{d.author?.login ?? 'ghost'}</strong>
+            <span>opened {relative(d.createdAt, now)}</span>
+            <span>{'\u00B7'} {d.upvotes} upvotes {'\u00B7'} {d.replies} replies</span>
+          </p>
+          {d.bodyHtml ? (
+            <div className={styles.prose} dangerouslySetInnerHTML={{ __html: d.bodyHtml }} />
+          ) : (
+            <p className={styles.excerpt}>{d.excerpt || 'No description.'}</p>
+          )}
+          <div className={styles.dialogFoot}>
+            <External href={d.url} className={styles.btnPrimary}>
+              Reply or upvote on GitHub {'\u2197'}
+            </External>
+          </div>
+        </div>
+      </div>
+    </div>,
+    document.body,
+  );
+}
 
 const needsAnswer = (d: Discussion) => d.category.isAnswerable && !d.answered;
 const trendScore = (d: Discussion) => d.upvotes + d.replies;
@@ -99,6 +167,7 @@ export default function DiscussionsView() {
   const [category, setCategory] = useState<string>('all');
   const [query, setQuery] = useState('');
   const [sort, setSort] = useState<Sort | null>(null);
+  const [open, setOpen] = useState<Discussion | null>(null);
 
   const categoryCounts = useMemo(() => {
     const counts = new Map<string, { name: string; emoji: string; count: number }>();
@@ -149,6 +218,7 @@ export default function DiscussionsView() {
 
   return (
     <div className={styles.page}>
+      {open && <Reader d={open} now={now} onClose={() => setOpen(null)} />}
       <header className={styles.header}>
         <div className={styles.headerText}>
           <p className={styles.eyebrow}>{'✦'} COMMUNITY DISCUSSIONS</p>
@@ -256,9 +326,9 @@ export default function DiscussionsView() {
                     ))}
                   </div>
                   <h2 className={styles.title}>
-                    <External href={d.url}>{d.title}</External>
+                    <button type="button" className={styles.titleBtn} onClick={() => setOpen(d)}>{d.title}</button>
                   </h2>
-                  {d.excerpt && <p className={styles.excerpt}>{d.excerpt}</p>}
+                  {d.excerpt && <p className={styles.excerpt} onClick={() => setOpen(d)}>{d.excerpt}</p>}
                   <p className={styles.byline}>
                     <Avatar person={d.author} size={22} />
                     <strong>@{d.author?.login ?? 'ghost'}</strong>
