@@ -24,8 +24,9 @@ export function NameChip({ badge }: { badge: Badge | null }) {
 export function BadgesCell({ badges, login }: { badges: Badge[]; login: string }) {
   const { openBadge } = useBadges();
   if (badges.length === 0) return <span className={styles.noBadges}>None yet</span>;
-  const top = badges.slice(0, 3);
-  const more = badges.length > 3;
+  // Up to four badges; more than that opens the full list from the arrow.
+  const top = badges.slice(0, 4);
+  const more = badges.length > 4;
 
   return (
     <div className={styles.badgesCell}>
@@ -38,7 +39,6 @@ export function BadgesCell({ badges, login }: { badges: Badge[]; login: string }
           </li>
         ))}
       </ul>
-      <span className={styles.badgeTotal} aria-label={`${badges.length} badges in total`}>{badges.length}</span>
       {more && (
         <button type="button" className={styles.moreBtn} aria-haspopup="dialog" aria-label={`Show all ${badges.length} badges`} onClick={() => openBadge(badges[0].id, login)}>
           <ChevronRight size={16} aria-hidden="true" />
