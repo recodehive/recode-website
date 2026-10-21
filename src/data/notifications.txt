@@ -25,7 +25,7 @@ date: 2026-10-21
 link: /dashboard#discuss
 
 title: Badges on the leaderboard
-message: The leaderboard now shows each contributor's three best badges with a total, and an arrow opens the full badge list.
+message: The leaderboard now shows each contributor's best badges, and an arrow opens the full badge list.
 date: 2026-10-21
 link: /dashboard#leaderboard
 
