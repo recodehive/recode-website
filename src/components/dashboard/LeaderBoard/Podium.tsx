@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Link from '@docusaurus/Link';
+import { profilePath } from '../../../lib/profile/path';
 import { useInView, useReducedMotion } from './leaderboardHooks';
 import { avatarSrc } from './leaderboardUtils';
 import type { Badge } from '../../../data/badges';
@@ -49,6 +51,7 @@ function Crown() {
 function Spot({ row, rank, play }: { row: Row | undefined; rank: 1 | 2 | 3; play: boolean }) {
   const cls = rank === 1 ? styles.first : rank === 2 ? styles.second : styles.third;
   const size = rank === 1 ? 92 : 72;
+  const profileTo = row ? profilePath(row.username) : null;
   if (!row) {
     return (
       <div className={`${styles.spot} ${cls}`}>
@@ -66,9 +69,13 @@ function Spot({ row, rank, play }: { row: Row | undefined; rank: 1 | 2 | 3; play
     <div className={`${styles.spot} ${cls}`}>
       {rank === 1 && <Crown />}
       <img className={styles.podiumAvatar} src={avatarSrc(row.avatar)} alt="" width={size} height={size} loading="lazy" style={{ width: size, height: size }} />
-      <a className={styles.podiumName} href={row.profile} target="_blank" rel="noopener noreferrer">
-        @{row.username}<span className={styles.srOnly}> (opens in a new tab)</span>
-      </a>
+      {profileTo ? (
+        <Link className={styles.podiumName} to={profileTo}>@{row.username}</Link>
+      ) : (
+        <a className={styles.podiumName} href={row.profile} target="_blank" rel="noopener noreferrer">
+          @{row.username}<span className={styles.srOnly}> (opens in a new tab)</span>
+        </a>
+      )}
       <p className={styles.podiumPts}><CountUp value={row.points} play={play} /> pts</p>
       <p className={styles.podiumMeta}>
         {row.prs} merged {row.prs === 1 ? 'PR' : 'PRs'}

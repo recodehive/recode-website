@@ -168,6 +168,8 @@ const config: Config = {
     "./plugins/github-discussions",
     // Dashboard notifications, read from src/data/notifications.txt
     "./plugins/notifications",
+    // One static public profile page per contributor at /u/<handle>
+    "./plugins/developer-profiles",
     [
       "@docusaurus/plugin-ideal-image",
       {

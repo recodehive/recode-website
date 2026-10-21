@@ -1,0 +1,81 @@
+name: Profile update
+description: Add or change the details on your public recode hive profile (recodehive.com/u/your-handle)
+title: "Profile update: @your-handle"
+labels: ["profile-update"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Your profile is built from public GitHub data. Fill in only what you want shown. Anything you leave empty stays hidden.
+        An admin turns this into `src/data/profiles/<handle>.json`. Only `https:` links are used.
+  - type: input
+    id: handle
+    attributes:
+      label: GitHub handle
+      placeholder: your-handle
+    validations:
+      required: true
+  - type: checkboxes
+    id: owner
+    attributes:
+      label: Ownership
+      options:
+        - label: I am the owner of this GitHub account
+          required: true
+  - type: input
+    id: headline
+    attributes:
+      label: Headline
+      description: One line under your name.
+      placeholder: Program Analyst · Founder of recode hive
+  - type: textarea
+    id: bio
+    attributes:
+      label: Bio
+      description: Two or three sentences. Replaces your GitHub bio on this page.
+  - type: input
+    id: timezone
+    attributes:
+      label: Time zone
+      description: An IANA name. It is used to count your streak by your own days.
+      placeholder: Australia/Sydney
+  - type: input
+    id: linkedin
+    attributes:
+      label: LinkedIn URL
+  - type: input
+    id: website
+    attributes:
+      label: Website URL
+  - type: input
+    id: x
+    attributes:
+      label: X URL
+  - type: textarea
+    id: projects
+    attributes:
+      label: Featured projects (up to 3)
+      description: For each one give a title, your role, a one or two sentence summary, tags and a link.
+  - type: textarea
+    id: credentials
+    attributes:
+      label: Credentials
+      description: Certifications, programs or degrees. Include the issuer and a link if there is one.
+  - type: textarea
+    id: skills
+    attributes:
+      label: Skills you want to declare
+      description: Comma separated. These show as self-declared. Skills proven by merged PRs are added automatically.
+  - type: dropdown
+    id: open_to_work
+    attributes:
+      label: Open to work
+      description: Hire details are not shown on profiles yet. Tell us now and we will add them when they are ready.
+      options:
+        - "No"
+        - "Yes"
+  - type: textarea
+    id: hire_details
+    attributes:
+      label: Roles, engagement type, work rights, booking link, CV link
+      description: Only if you chose Yes.

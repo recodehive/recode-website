@@ -5,3 +5,7 @@ project_id = "recodehive-giveaway"
 
 [functions.giveaway]
 verify_jwt = false
+
+# Public read-only data from GitHub, cached for a week. No sign-in needed.
+[functions.profile]
+verify_jwt = false
