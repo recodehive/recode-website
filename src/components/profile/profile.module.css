@@ -13,31 +13,31 @@
 .mono { font: 400 12px "JetBrains Mono", ui-monospace, monospace; color: var(--muted); }
 
 /* Cover */
-.cover { position: relative; min-height: 300px; overflow: hidden; background: radial-gradient(60% 90% at 85% 10%, rgba(57, 211, 83, 0.18), transparent 60%), linear-gradient(120deg, #0b1f17, #123527 55%, #0d241b); }
+.cover { position: relative; overflow: hidden; background: radial-gradient(60% 90% at 85% 10%, rgba(57, 211, 83, 0.18), transparent 60%), linear-gradient(120deg, #0b1f17, #123527 55%, #0d241b); }
 .coverGrid { position: absolute; inset: 0; opacity: 0.35; background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px); background-size: 44px 44px; }
-.coverInner { position: relative; max-width: 1160px; margin: 0 auto; padding: 36px 24px 90px; display: flex; justify-content: flex-end; }
-.streakBox { width: min(100%, 780px); padding: 22px 26px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; background: rgba(6, 18, 13, 0.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; }
-.skeleton { min-height: 200px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04)); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; }
+.coverInner { position: relative; max-width: 1160px; margin: 0 auto; padding: 20px 24px 40px; display: flex; justify-content: flex-end; }
+.streakBox { width: min(100%, 900px); padding: 14px 22px 16px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; background: rgba(6, 18, 13, 0.55); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; }
+.skeleton { min-height: 150px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04)); background-size: 200% 100%; animation: shimmer 1.6s linear infinite; }
 @keyframes shimmer { to { background-position: -200% 0; } }
-.streakTop { display: flex; justify-content: space-between; gap: 12px; margin: 0 0 14px; font: 500 11px "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.08em; color: #86efac; }
+.streakTop { display: flex; justify-content: space-between; gap: 12px; margin: 0 0 8px; font: 500 11px "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.08em; color: #86efac; }
 .streakTop span:last-child { color: #94a3b8; letter-spacing: 0; }
 .liveDot { display: inline-block; width: 7px; height: 7px; margin-right: 4px; border-radius: 50%; background: #39d353; box-shadow: 0 0 8px #39d353; animation: pulse 2s ease-in-out infinite; }
 @keyframes pulse { 50% { opacity: 0.45; } }
 .streakBody { display: flex; gap: 28px; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; }
 .streakLeft { min-width: 0; }
 .streakHead { display: flex; align-items: center; gap: 12px; }
-.flame { font-size: 46px; line-height: 1; animation: flicker 2.4s ease-in-out infinite; }
+.flame { font-size: 36px; line-height: 1; animation: flicker 2.4s ease-in-out infinite; }
 @keyframes flicker { 0%, 100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.06) rotate(-3deg); } }
-.streakNum { margin: 0; font: 700 40px/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em; color: #fff; }
-.streakSub { margin: 4px 0 0; font-size: 13.5px; color: #cbd5e1; }
-.streakStats { display: flex; gap: 22px; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.12); }
-.streakStats dt { font: 700 20px "Space Grotesk", sans-serif; color: #fff; }
-.streakStats dd { margin: 2px 0 0; font-size: 12px; color: #94a3b8; max-width: 130px; }
-.heat { min-width: 0; }
-.heatMonths { display: grid; grid-template-columns: repeat(26, 14px); gap: 3px; margin-bottom: 4px; font: 400 10.5px "JetBrains Mono", monospace; color: #94a3b8; white-space: nowrap; }
+.streakNum { margin: 0; font: 700 34px/1.05 "Space Grotesk", sans-serif; letter-spacing: -0.02em; color: #fff; }
+.streakSub { margin: 2px 0 0; font-size: 13px; color: #cbd5e1; }
+.streakStats { display: flex; gap: 20px; margin: 10px 0 0; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+.streakStats dt { font: 700 18px "Space Grotesk", sans-serif; color: #fff; }
+.streakStats dd { margin: 1px 0 0; font-size: 11.5px; color: #94a3b8; max-width: 130px; }
+.heat { min-width: 0; flex: none; }
+.heatMonths { display: grid; grid-template-columns: repeat(26, 12px); gap: 3px; margin-bottom: 3px; font: 400 10.5px "JetBrains Mono", monospace; color: #94a3b8; white-space: nowrap; }
 .heatGrid { display: flex; gap: 3px; }
 .heatCol { display: flex; flex-direction: column; gap: 3px; }
-.cell { width: 14px; height: 14px; border-radius: 3px; background: rgba(255, 255, 255, 0.08); }
+.cell { width: 12px; height: 12px; border-radius: 3px; background: rgba(255, 255, 255, 0.08); }
 .cellFuture { background: transparent; }
 .cellToday { outline: 1.5px solid #fff; outline-offset: 0; }
 .lv0 { background: rgba(255, 255, 255, 0.08); }
@@ -45,7 +45,7 @@
 .lv2 { background: #006d32; }
 .lv3 { background: #26a641; }
 .lv4 { background: #39d353; }
-.heatKey { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; font: 400 10.5px "JetBrains Mono", monospace; color: #94a3b8; }
+.heatKey { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font: 400 10.5px "JetBrains Mono", monospace; color: #94a3b8; }
 .heatLegend { display: inline-flex; align-items: center; gap: 3px; }
 .heatLegend i { display: inline-block; width: 11px; height: 11px; border-radius: 2px; }
 
@@ -206,13 +206,15 @@ div.root .name, .root h1.name { margin: 0; font: 700 28px/1.15 "Space Grotesk", 
   .side { position: static; }
 }
 @media (max-width: 768px) {
-  .coverInner { padding: 24px 16px 80px; }
+  .coverInner { padding: 16px 16px 36px; }
   .wrap { padding: 0 16px; }
   .streakBox { padding: 18px 16px; }
   .streakNum { font-size: 30px; }
-  .heatMonths { grid-template-columns: repeat(12, 14px); }
+  .heatMonths { grid-template-columns: repeat(12, 12px); }
   /* 12 weeks on phones: hide the 14 oldest of the 26 */
   .heatCol:nth-child(-n + 14), .heatMonths span:nth-child(-n + 14) { display: none; }
+  .heatKey > span:first-child { display: none; }
+  .heatKey { justify-content: flex-end; }
   .work, .creds { grid-template-columns: minmax(0, 1fr); }
   .badgeGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .post { flex-direction: column; align-items: flex-start; }
