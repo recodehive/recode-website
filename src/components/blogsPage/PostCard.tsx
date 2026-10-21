@@ -67,11 +67,28 @@ export function Thumb({ post, className = '' }: { post: Post; className?: string
   );
 }
 
+const MAX_STACK = 3;
+
 export function Byline({ post, stacked = false }: { post: Post; stacked?: boolean }) {
   const first = post.authors[0];
+  const many = post.authors.length > 1;
+  const shown = post.authors.slice(0, MAX_STACK);
+  const extra = post.authors.length - shown.length;
   return (
     <div className={`${styles.byline} ${stacked ? styles.bylineStacked : ''}`}>
-      {first && <AuthorAvatar author={first} size={32} />}
+      {many ? (
+        <ul className={styles.avatarStack} aria-hidden="true">
+          {shown.map((a) => (
+            <li key={a.key} className={styles.stackItem}>
+              <AuthorAvatar author={a} size={28} />
+              <span className={styles.stackTip}>{a.name}</span>
+            </li>
+          ))}
+          {extra > 0 && <li className={styles.stackMore}>+{extra}</li>}
+        </ul>
+      ) : (
+        first && <AuthorAvatar author={first} size={32} />
+      )}
       <span className={styles.bylineText}>
         <strong>{post.authors.map((a) => a.name).join(', ') || 'recode hive'}</strong>
         <span>{formatDate(post.date)} {'·'} {post.readingTime} min read</span>

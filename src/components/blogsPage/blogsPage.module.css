@@ -107,7 +107,7 @@ main.root .spotTitleSm { font-family: "Space Grotesk", sans-serif; font-size: 20
 .byline { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .bylineText { display: flex; flex-direction: column; min-width: 0; font-size: 12px; color: var(--muted); }
 .bylineText strong { color: var(--text); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.bylineStacked .avatar, .bylineStacked .avatarFallback { display: none; }
+.bylineStacked .avatar, .bylineStacked .avatarFallback, .bylineStacked .avatarStack { display: none; }
 .bylineStacked .bylineText { flex-direction: row; flex-wrap: wrap; gap: 4px; font-size: 13px; }
 .bylineStacked .bylineText strong { font-weight: 500; color: var(--text-2); }
 
@@ -222,3 +222,16 @@ main.root .writeTitle { margin: 0 0 6px; max-width: 520px; font-family: "Space G
   .card, .ghTile, .spotCard, .thumb img, .av, .av > a { transition: none; }
   .card:hover, .ghTile:hover, .spotCard:hover { transform: none; }
 }
+
+/* Several authors: overlapping avatars with a lift, ring and name tooltip on hover (like the sponsors page) */
+.avatarStack { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; flex: none; position: relative; z-index: 2; }
+.stackItem { position: relative; margin-left: -9px; transition: margin 0.2s; }
+.stackItem:first-child { margin-left: 0; }
+.stackItem .avatar, .stackItem .avatarFallback { border: 2px solid var(--card); box-sizing: content-box; transition: transform 0.2s, box-shadow 0.2s; }
+.stackItem:hover { margin-left: 2px; z-index: 4; }
+.stackItem:hover + .stackItem { margin-left: 2px; }
+.stackItem:hover .avatar, .stackItem:hover .avatarFallback { transform: translateY(-4px) scale(1.15); box-shadow: 0 0 0 3px rgba(46, 133, 85, 0.35); }
+.stackTip { position: absolute; left: 50%; bottom: calc(100% + 10px); transform: translateX(-50%) translateY(4px); padding: 4px 9px; border-radius: 6px; background: #0f172a; color: #fff; font: 500 11px "Inter", sans-serif; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s, transform 0.15s; z-index: 6; }
+.stackItem:hover .stackTip { opacity: 1; transform: translateX(-50%) translateY(0); }
+.stackMore { margin-left: -9px; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 2px solid var(--card); border-radius: 50%; background: var(--hair); color: var(--muted); font: 600 11px "Inter", sans-serif; box-sizing: border-box; }
+@media (prefers-reduced-motion: reduce) { .stackItem, .stackItem .avatar, .stackItem .avatarFallback, .stackTip { transition: none; } .stackItem:hover .avatar, .stackItem:hover .avatarFallback { transform: none; } }
