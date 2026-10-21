@@ -84,7 +84,7 @@ function SocialQuest({ action, done, onDo }: { action: GiveawayAction; done: boo
       <h3 className={styles.questTitle}>{action.label.replace('Star recode-website on GitHub', 'Star recode-website')}</h3>
       <p className={styles.questSub}>{action.sub}</p>
       <a className={`${styles.doBtn} ${done ? styles.doBtnDone : ''}`} href={action.url} target="_blank" rel="noopener noreferrer" aria-pressed={done} onClick={onDo}>
-        {done ? '✓ Done' : 'Do it ↗'}
+        {done ? '✓ Done' : 'Claim ↗'}
         <span className={styles.srOnly}>{` ${action.label} (opens in a new tab)`}</span>
       </a>
     </li>

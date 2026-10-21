@@ -29,7 +29,7 @@ export const GIVEAWAY = {
     { id: 'star', label: 'Star recode-website on GitHub', sub: 'github.com/recodehive/recode-website', url: 'https://github.com/recodehive/recode-website', entries: 2, verify: 'github-star' },
     { id: 'follow-gh', label: 'Follow recode hive on GitHub', sub: 'github.com/recodehive', url: 'https://github.com/recodehive', entries: 1, verify: 'honor' },
     { id: 'discord', label: 'Join the Discord', sub: 'Say hi in #introductions', url: 'https://discord.gg/dh3TA8U55Q', entries: 1, verify: 'honor' },
-    { id: 'linkedin', label: 'Follow Sanjay on LinkedIn', sub: 'linkedin.com/in/sanjay-k-v', url: 'https://www.linkedin.com/in/sanjay-k-v/', entries: 1, verify: 'honor' },
+    { id: 'linkedin', label: 'Follow on LinkedIn', sub: 'linkedin.com/in/sanjay-k-v', url: 'https://www.linkedin.com/in/sanjay-k-v/', entries: 1, verify: 'honor' },
     // TODO: confirm channel URL before launch
     { id: 'youtube', label: 'Subscribe on YouTube', sub: 'GitHub tutorials every week', url: 'https://www.youtube.com/@RecodeHive', entries: 1, verify: 'honor' },
     { id: 'x', label: 'Follow on X', sub: 'x.com/nomadbrainsdev', url: 'https://x.com/nomadbrainsdev', entries: 1, verify: 'honor' },
