@@ -114,7 +114,10 @@
   cursor: pointer;
   font: inherit;
   font-size: 0.86rem;
-  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    color 160ms ease;
 }
 
 .help-center__categories button:hover,
@@ -265,7 +268,9 @@
   font-size: 0.95rem;
   font-weight: 800;
   text-decoration: none;
-  transition: filter 160ms ease, transform 160ms ease;
+  transition:
+    filter 160ms ease,
+    transform 160ms ease;
 }
 
 .support-direct a:hover {
@@ -315,7 +320,9 @@
   font: inherit;
   font-size: 0.96rem;
   outline: 0;
-  transition: border-color 160ms ease, box-shadow 160ms ease;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease;
 }
 
 .form-textarea {
@@ -347,7 +354,9 @@
   font: inherit;
   font-size: 0.96rem;
   font-weight: 800;
-  transition: filter 160ms ease, transform 160ms ease;
+  transition:
+    filter 160ms ease,
+    transform 160ms ease;
 }
 
 .submit-button:hover:not(:disabled) {
