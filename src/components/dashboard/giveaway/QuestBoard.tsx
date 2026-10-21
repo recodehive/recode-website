@@ -255,7 +255,7 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
               )}
 
               {SOCIAL_ACTIONS.map((a) => (
-                <SocialQuest key={a.id} action={a} done={isDone(a)} onDo={() => g.markDone(a.id)} />
+                <SocialQuest key={a.id} action={a} done={isDone(a)} onDo={() => g.claim(a.id)} />
               ))}
 
               <li className={styles.bonus}>
