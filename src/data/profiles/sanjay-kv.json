@@ -1,0 +1,64 @@
+{
+  "headline": "Program Analyst · Founder of recode hive · GitHub Campus Expert",
+  "bio": "Data engineer turned program analyst. I build data pipelines on Azure and Spark, run programs at scale, and maintain recode hive, an open source community that teaches GitHub and data engineering.",
+  "timezone": "Australia/Sydney",
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/sanjay-k-v",
+    "website": "https://sanjaykv.com",
+    "x": "https://x.com/nomadbrainsdev"
+  },
+  "featuredWork": [
+    {
+      "title": "recode hive website",
+      "role": "Founder and maintainer",
+      "summary": "Open source learning platform with blogs, a contributor leaderboard and achievement badges.",
+      "tags": ["Docusaurus", "React", "TypeScript"],
+      "links": [
+        { "label": "Repo", "url": "https://github.com/recodehive/recode-website" },
+        { "label": "Live site", "url": "https://www.recodehive.com" }
+      ]
+    },
+    {
+      "title": "Google AI program at scale",
+      "role": "Program Analyst · Ping Network MCN",
+      "summary": "Scaling a Google AI program across more than 1,500 universities.",
+      "tags": ["Program delivery", "Stakeholders"],
+      "links": []
+    },
+    {
+      "title": "Data Scientist Cheatsheet",
+      "role": "Author",
+      "summary": "An ebook for aspiring data scientists, published on Gumroad.",
+      "tags": ["Data science", "Ebook"],
+      "links": []
+    }
+  ],
+  "credentials": [
+    { "name": "GitHub Foundations", "issuer": "GitHub", "type": "certification" },
+    { "name": "GitHub Copilot", "issuer": "GitHub", "type": "certification" },
+    { "name": "GitHub Campus Expert", "issuer": "GitHub Education", "type": "program" },
+    { "name": "ML Facilitator", "issuer": "Google", "type": "program" },
+    { "name": "MSc Data Science", "issuer": "Macquarie University", "type": "degree" },
+    { "name": "BTech Computer Science", "issuer": "SRM University", "type": "degree" }
+  ],
+  "skillsDeclared": [
+    "SQL",
+    "Python",
+    "Spark",
+    "Delta Lake",
+    "Azure Data Factory",
+    "Synapse",
+    "ADLS Gen2",
+    "Snowflake",
+    "Airflow",
+    "dbt",
+    "Power BI",
+    "Jira / Confluence"
+  ],
+  "hire": {
+    "open": true,
+    "roles": ["Business Analyst", "Technical Program Manager"],
+    "engagement": ["contract", "full-time"],
+    "workRights": "Full Australian working rights, no sponsorship needed"
+  }
+}
