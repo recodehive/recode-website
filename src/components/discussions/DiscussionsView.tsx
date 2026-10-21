@@ -104,6 +104,9 @@ function Reader({ d, now, onClose }: { d: Discussion; now: number; onClose: () =
   );
 }
 
+// "All" plus the four busiest categories, so the chips fit on one row.
+const MAX_CATEGORY_CHIPS = 4;
+
 const needsAnswer = (d: Discussion) => d.category.isAnswerable && !d.answered;
 const trendScore = (d: Discussion) => d.upvotes + d.replies;
 
