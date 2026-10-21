@@ -288,7 +288,7 @@ export default function DiscussionsView() {
               >
                 {'\u{1F5C2}️'} All <span className={styles.chipCount}>{all.length}</span>
               </button>
-              {categoryCounts.map((c) => (
+              {categoryCounts.slice(0, MAX_CATEGORY_CHIPS).map((c) => (
                 <button
                   key={c.name}
                   type="button"
@@ -391,7 +391,7 @@ export default function DiscussionsView() {
                     <span className={styles.chipCount}>{all.length}</span>
                   </button>
                 </li>
-                {categoryCounts.map((c) => (
+                {categoryCounts.slice(0, MAX_CATEGORY_CHIPS).map((c) => (
                   <li key={c.name}>
                     <button
                       type="button"
