@@ -213,7 +213,7 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
                         <th scope="col">Contributor</th>
                         <th scope="col">Merged PRs</th>
                         <th scope="col">Points</th>
-                        <th scope="col">Badges</th>
+                        <th scope="col">Badges earned</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -240,7 +240,7 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
                               </div>
                             </td>
                             <td>
-                              <BadgesCell badges={r.earned} />
+                              <BadgesCell badges={r.earned} login={r.username} />
                             </td>
                           </tr>
                         );

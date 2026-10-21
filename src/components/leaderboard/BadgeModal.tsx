@@ -14,11 +14,13 @@ interface Props {
   onClose: () => void;
   signedIn: boolean;
   stats: BadgeStats;
+  /** GitHub login when the popup shows another contributor's badges. */
+  subject?: string | null;
 }
 
 const FOCUSABLE = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
 
-export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, stats }: Props) {
+export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, stats, subject = null }: Props) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const [filter, setFilter] = useState<Filter>('all');
@@ -79,10 +81,10 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
         </button>
         <p className={styles.kicker}>{'✦'} ACHIEVEMENT BADGE SYSTEM</p>
         <h2 id="badge-modal-title" className={styles.modalTitle}>
-          {signedIn ? `${count} of ${total} badges unlocked` : `${total} badges to earn`}
+          {subject ? `@${subject} has ${count} of ${total} badges` : signedIn ? `${count} of ${total} badges unlocked` : `${total} badges to earn`}
         </h2>
         <p className={styles.modalSub}>
-          From your first merged PR to the top of the leaderboard.
+          From the first merged PR to the top of the leaderboard.
           {!signedIn && ' Sign in with GitHub to track your badges.'}
         </p>
 
@@ -102,7 +104,7 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
             {signedIn ? (
               <div className={styles.progress}>
                 <div className={styles.progressRow}>
-                  <span>Your progress</span>
+                  <span>{subject ? 'Progress' : 'Your progress'}</span>
                   <span>{progress.label}</span>
                 </div>
                 <div className={styles.progressBar} role="progressbar" aria-label="Progress toward this badge" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress.pct)}>
