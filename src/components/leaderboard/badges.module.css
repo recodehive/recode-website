@@ -63,7 +63,8 @@ div.panel .detailName::after { content: ""; position: absolute; left: 0; bottom:
 .progress { max-width: 520px; }
 .progressRow { display: flex; justify-content: space-between; gap: 12px; margin: 0 0 8px; font: 400 14px "JetBrains Mono", ui-monospace, monospace; color: #cbd5e1; }
 .progressBar { height: 7px; border-radius: 3px; background: #1e293b; overflow: hidden; }
-.progressBar span { display: block; height: 100%; border-radius: 3px; background: #a3e635; transition: width 0.5s; }
+.progressBar span { display: block; width: var(--w, 0%); height: 100%; border-radius: 3px; background: #a3e635; animation: barfill 0.5s ease-out; }
+@keyframes barfill { from { width: 0; } }
 
 .path { list-style: none; display: flex; justify-content: space-between; margin: 20px 0 6px; padding: 0 6px; }
 .pathNode { position: relative; display: flex; flex-direction: column; align-items: center; gap: 4px; flex: 1; }
@@ -86,7 +87,7 @@ div.panel .groupHeading { margin: 0 0 12px; padding: 0; font: 600 16px "Inter", 
 .tiles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
 .tile { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 100%; height: 100%; padding: 14px 8px; border: 1px solid #1f2a22; border-radius: 14px; background: rgba(15, 21, 18, 0.8); color: #e2e8f0; text-align: center; cursor: pointer; font: inherit; }
 .tile:hover { border-color: #334155; }
-.tileOn { border-color: #a3e635; box-shadow: 0 0 0 2px rgba(163, 230, 53, 0.35); }
+.tileOn { outline: 2px solid rgba(var(--g, 163, 230, 53), 0.9); outline-offset: 3px; }
 .tileName { font: 600 13.5px/1.3 "JetBrains Mono", ui-monospace, monospace; color: #f1f5f9; }
 .tileCrit { font: 400 12.5px/1.35 "JetBrains Mono", ui-monospace, monospace; color: #cbd5e1; }
 .tileLocked .tileName { color: #cbd5e1; }
@@ -157,7 +158,8 @@ div.panel .groupHead .groupHeading { margin: 0; }
 .tileEarned .tileName { color: #fff; }
 .tileEarned .tileCrit { color: var(--c); opacity: 0.85; }
 
-.tileLocked { background: #0a0e0c; border: 1px dashed #1f2a24; }
+.tileLocked { background: #0a0e0c; border: 1px dashed #243029; }
+.tileEarned, .tileLocked { padding-top: 28px; }
 .tileLocked:hover { border-color: #2e3b34; }
 .tileLocked .tileName { color: #8b9a92; }
 .tileLocked:hover .tileName { color: #a8b5ad; }
@@ -200,4 +202,18 @@ div.panel .groupHead .groupHeading { margin: 0; }
   .spark { opacity: 0; }
   .tileEarned { transition: none; }
   .tileEarned:hover { transform: none; }
+}
+
+/* Featured card: tier tint and stronger effects when the featured badge is earned */
+.detailEarned { background: radial-gradient(60% 120% at 10% 50%, rgba(var(--g), 0.2), transparent 70%), linear-gradient(180deg, #101814, #0b110e); border-color: rgba(var(--g), 0.45); box-shadow: 0 18px 44px -22px rgba(var(--g), 0.7); }
+.bigBadge .bigFx.fxOn { filter: drop-shadow(0 0 22px rgba(var(--g), 0.55)); }
+.bigFx .sparkA { font-size: 14px; }
+.bigFx .sparkB { font-size: 12px; }
+.bigFx .sparkC { font-size: 9px; }
+
+/* Cards scrolled out of view stop animating (set by an IntersectionObserver in the modal) */
+.tile[data-off="true"], .tile[data-off="true"] *, .tileRarest[data-off="true"]::after { animation-play-state: paused !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .progressBar span { animation: none !important; }
 }
