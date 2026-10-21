@@ -297,6 +297,8 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
                   <ul className={styles.work}>
                     {extras.featuredWork.map((w) => (
                       <li key={w.title} className={styles.workCard}>
+                        {w.image && <img className={styles.workImg} src={w.image} alt="" loading="lazy" width={640} height={300} />}
+                        <div className={styles.workBody}>
                         <p className={styles.workRole}>{w.role.toUpperCase()}</p>
                         <h3>{w.title}</h3>
                         <p className={styles.workSummary}>{w.summary}</p>
@@ -304,6 +306,7 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
                         <p className={styles.workLinks}>
                           {w.links.map((l) => <a key={l.url} href={l.url} target="_blank" rel="noopener nofollow ugc">{l.label} <ArrowUpRight size={12} aria-hidden="true" /></a>)}
                         </p>
+                        </div>
                       </li>
                     ))}
                   </ul>

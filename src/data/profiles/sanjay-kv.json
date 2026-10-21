@@ -13,6 +13,7 @@
       "role": "Founder and maintainer",
       "summary": "Open source learning platform with blogs, a contributor leaderboard and achievement badges.",
       "tags": ["Docusaurus", "React", "TypeScript"],
+      "image": "/img/profiles/sanjay-kv-recode-hive.webp",
       "links": [
         { "label": "Repo", "url": "https://github.com/recodehive/recode-website" },
         { "label": "Live site", "url": "https://www.recodehive.com" }
@@ -23,6 +24,7 @@
       "role": "Program Analyst · Ping Network MCN",
       "summary": "Scaling a Google AI program across more than 1,500 universities.",
       "tags": ["Program delivery", "Stakeholders"],
+      "image": "/img/profiles/sanjay-kv-google-ai.webp",
       "links": []
     },
     {
@@ -30,6 +32,7 @@
       "role": "Author",
       "summary": "An ebook for aspiring data scientists, published on Gumroad.",
       "tags": ["Data science", "Ebook"],
+      "image": "/img/profiles/sanjay-kv-ebook.webp",
       "links": []
     }
   ],

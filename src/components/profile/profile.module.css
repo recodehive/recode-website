@@ -114,7 +114,9 @@ div.root .name, .root h1.name { margin: 0; font: 700 28px/1.15 "Space Grotesk", 
 
 /* Featured work */
 .work { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.workCard { padding: 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--soft); }
+.workCard { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 14px; background: var(--soft); }
+.workImg { display: block; width: 100%; height: auto; aspect-ratio: 640 / 300; object-fit: cover; }
+.workBody { padding: 16px; }
 .workRole { margin: 0 0 6px; font: 500 10.5px "JetBrains Mono", monospace; letter-spacing: 0.08em; color: var(--accent); }
 .workCard h3 { margin: 0 0 6px; font: 700 16px "Space Grotesk", sans-serif; color: var(--text); text-align: left; }
 .workSummary { margin: 0 0 10px; font-size: 13.5px; line-height: 1.5; color: var(--text2); }
