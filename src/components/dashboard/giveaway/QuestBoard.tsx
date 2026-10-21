@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { Github, GitPullRequest, Linkedin, Lock, Star, Youtube } from 'lucide-react';
 import { DiscordIcon } from '../../navbar/Icons';
 import { GIVEAWAY, SOCIAL_ACTIONS, endsMs, startsMs, type GiveawayAction } from '../../../data/giveaway';
@@ -6,7 +7,7 @@ import { useGiveaway } from './useGiveaway';
 import styles from './questboard.module.css';
 
 const ISSUES = 'https://github.com/recodehive/recode-website/issues?q=is%3Aopen+label%3A%22good+first+issue%22';
-const ENTRY_TARGET = 37; // one merged PR, every other action and 5 referrals
+const ENTRY_TARGET = 33; // star 2 + follow 1 + bonus 5 + one merged PR 10 + 5 referrals 15
 const SOCIAL_TOTAL = SOCIAL_ACTIONS.length;
 
 const XMark = ({ size = 18 }: { size?: number }) => (
@@ -74,12 +75,13 @@ function Pumpkin() {
 
 function SocialQuest({ action, done, onDo }: { action: GiveawayAction; done: boolean; onDo: () => void }) {
   const icon = ICON[action.id];
+  const counts = action.entries > 0;
   return (
     <li className={`${styles.quest} ${done ? styles.questDone : ''}`}>
-      {done && <span className={styles.stamp} aria-hidden="true">COLLECTED</span>}
+      {done && <span className={styles.stamp} aria-hidden="true">{counts ? 'VERIFIED' : 'THANKS'}</span>}
       <div className={styles.questTop}>
         <span className={styles.tile} style={{ background: icon.bg }} aria-hidden="true">{icon.node}</span>
-        <span className={styles.points}>+{action.entries}</span>
+        <span className={`${styles.points} ${counts ? '' : styles.pointsMuted}`}>{counts ? `+${action.entries}` : 'Link'}</span>
       </div>
       <h3 className={styles.questTitle}>{action.label.replace('Star recode-website on GitHub', 'Star recode-website')}</h3>
       <p className={styles.questSub}>{action.sub}</p>
@@ -137,7 +139,7 @@ function Bring({ login }: { login: string | null }) {
       <ul className={styles.slots} aria-label="Referral slots">
         {Array.from({ length: GIVEAWAY.referral.maxFriends }, (_, i) => <li key={i} className={styles.slot} />)}
       </ul>
-      <p className={styles.fine}>Counts when a friend signs in with GitHub and finishes one quest. Up to {GIVEAWAY.referral.maxFriends} friends. Referrals are confirmed when the draw runs.</p>
+      <p className={styles.fine}>Counts when a friend with a GitHub account at least 30 days old signs in and finishes one verified quest. Up to {GIVEAWAY.referral.maxFriends} friends.</p>
     </section>
   );
 }
@@ -146,10 +148,15 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
   const g = useGiveaway();
   const target = phase === 'upcoming' ? startsMs : endsMs;
   const pr = GIVEAWAY.actions.find((a) => a.perPr);
-  const doneCount = SOCIAL_ACTIONS.filter((a) => g.saved.done[a.id]).length;
+  const doneCount = g.socialDone;
+  const isDone = (a: GiveawayAction) => (a.verify === 'honor' ? Boolean(g.saved.done[a.id]) : g.verified(a.id));
+  const { siteConfig } = useDocusaurusContext();
+  const sbUrl = String(siteConfig.customFields?.supabaseUrl ?? '').replace(/\/$/, '');
+  const sbKey = String(siteConfig.customFields?.supabaseAnonKey ?? '');
+  const ledgerUrl = sbUrl && sbKey ? `${sbUrl}/rest/v1/giveaway_ledger?giveaway_id=eq.${GIVEAWAY.id}&order=created_at.desc&apikey=${sbKey}` : null;
   const prCount = g.prCount ?? 0;
   const pct = Math.min(100, (g.entries / ENTRY_TARGET) * 100);
-  const bonusState = g.saved.bonus ? 'claimed' : g.allSocialDone ? 'ready' : 'locked';
+  const bonusState = g.bonus ? 'claimed' : 'locked';
 
   return (
     <div className={styles.root}>
@@ -188,7 +195,7 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
                   <span className={`${styles.tile} ${styles.prTile}`} aria-hidden="true"><GitPullRequest size={22} /></span>
                   <div className={styles.prText}>
                     <h3 className={styles.questTitle}>{pr.label} <span className={styles.points}>+{pr.entries} each</span></h3>
-                    <p className={styles.questSub}>The big one. Every merged PR in any recodehive repo between Oct 21 and Nov 1 adds {pr.entries} entries.</p>
+                    <p className={styles.questSub}>The big one. Every merged PR with the recode label in any recodehive repo between Oct 21 and Nov 1 adds {pr.entries} entries.</p>
                   </div>
                   <a className={`${styles.prBtn} ${prCount > 0 ? styles.doBtnDone : ''}`} href={ISSUES} target="_blank" rel="noopener noreferrer" aria-pressed={prCount > 0}>
                     {prCount > 0 ? `✓ ${prCount} PR${prCount === 1 ? '' : 's'} merged` : 'Find a good first issue ↗'}
@@ -198,18 +205,18 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
               )}
 
               {SOCIAL_ACTIONS.map((a) => (
-                <SocialQuest key={a.id} action={a} done={Boolean(g.saved.done[a.id])} onDo={() => g.markDone(a.id)} />
+                <SocialQuest key={a.id} action={a} done={isDone(a)} onDo={() => g.markDone(a.id)} />
               ))}
 
               <li className={styles.bonus}>
                 <span className={`${styles.tile} ${styles.bonusTile}`} aria-hidden="true"><Star size={18} fill="currentColor" /></span>
                 <div className={styles.prText}>
-                  <h3 className={styles.questTitle}>Complete every social quest</h3>
-                  <p className={styles.questSub}>Unlocks {GIVEAWAY.bonus.entries} bonus entries</p>
+                  <h3 className={styles.questTitle}>{GIVEAWAY.bonus.label}</h3>
+                  <p className={styles.questSub}>Both checked with GitHub. Unlocks {GIVEAWAY.bonus.entries} bonus entries</p>
                 </div>
-                <button type="button" className={`${styles.bonusBtn} ${bonusState === 'claimed' ? styles.doBtnDone : ''}`} disabled={bonusState !== 'ready'} aria-pressed={bonusState === 'claimed'} onClick={g.claimBonus}>
-                  {bonusState === 'claimed' ? `✓ +${GIVEAWAY.bonus.entries}` : bonusState === 'ready' ? `+${GIVEAWAY.bonus.entries}` : <><Lock size={13} aria-hidden="true" /> +{GIVEAWAY.bonus.entries}</>}
-                </button>
+                <span className={`${styles.bonusBtn} ${bonusState === 'claimed' ? styles.doBtnDone : styles.bonusLocked}`}>
+                  {bonusState === 'claimed' ? `\u2713 +${GIVEAWAY.bonus.entries}` : <><Lock size={13} aria-hidden="true" /> +{GIVEAWAY.bonus.entries}</>}
+                </span>
               </li>
             </ul>
           </section>
@@ -233,9 +240,15 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
                   <dl className={styles.breakdown}>
                     <div><dt>Social quests</dt><dd>{doneCount}/{SOCIAL_TOTAL}</dd></div>
                     <div><dt>Merged PRs</dt><dd>{prCount}</dd></div>
-                    <div><dt>Referrals</dt><dd>0/{GIVEAWAY.referral.maxFriends}</dd></div>
-                    <div><dt>Bonus</dt><dd>{bonusState === 'claimed' ? `+${GIVEAWAY.bonus.entries}` : bonusState}</dd></div>
+                    <div><dt>Referrals</dt><dd>{g.referrals}/{GIVEAWAY.referral.maxFriends}</dd></div>
+                    <div><dt>Bonus</dt><dd>{bonusState === 'claimed' ? `+${GIVEAWAY.bonus.entries}` : 'locked'}</dd></div>
                   </dl>
+                  <p className={styles.syncNote} role="status">
+                    {g.status === 'checking' && 'Checking with GitHub...'}
+                    {g.status === 'unconfigured' && 'Entry checking is not connected yet.'}
+                    {g.status === 'idle' && 'Entries are checked with GitHub.'}
+                    {g.status === 'error' && <>Could not check right now. <button type="button" className={styles.retry} onClick={() => void g.sync()}>Try again</button></>}
+                  </p>
                 </>
               ) : (
                 <div className={styles.signIn}>
@@ -253,7 +266,7 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
           <section className={styles.card} aria-labelledby="how-title">
             <h2 id="how-title" className={styles.cardTitle}>{GIVEAWAY.winners === 1 ? 'How the winner is picked' : 'How winners are picked'}</h2>
             <ol className={styles.steps}>
-              <li><span>1</span>Collect entries from quests, merged PRs and friends.</li>
+              <li><span>1</span>Collect entries from verified quests, merged PRs and friends. Every entry is checked with GitHub.</li>
               <li><span>2</span>After Nov 1, {GIVEAWAY.winners === 1 ? 'one winner is' : `${GIVEAWAY.winners} winners are`} drawn at random. More entries, more chances.</li>
               <li><span>3</span>{GIVEAWAY.winners === 1 ? 'The winner is' : 'Winners are'} announced on Discord and LinkedIn and contacted through GitHub.</li>
             </ol>
@@ -265,9 +278,15 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
               <li>Free to enter. No purchase necessary.</li>
               <li>One GitHub account per person. Duplicate or fake accounts are disqualified.</li>
               <li>recodehive maintainers and staff can take part but cannot win.</li>
-              <li>Spam pull requests do not count. Only PRs merged by a maintainer earn entries.</li>
+              <li>Only PRs with the recode label, merged by a maintainer, earn entries. Spam pull requests do not count.</li>
+              <li>Entries come only from what GitHub confirms. Links to Discord, LinkedIn, YouTube and X are worth no entries.</li>
               <li>{GIVEAWAY.winners === 1 ? 'The winner has' : 'Winners have'} 7 days to reply before a new winner is drawn.</li>
             </ul>
+            {ledgerUrl && (
+              <p className={styles.fine}>
+                Every awarded entry is public. <a href={ledgerUrl} target="_blank" rel="noopener noreferrer">See the full entries list {'\u2197'}</a>
+              </p>
+            )}
           </section>
         </div>
       </div>

@@ -1,6 +1,7 @@
 // Single source of truth for the dashboard giveaway. Edit this file to run the next one.
 
-export type GiveawayVerify = 'github-star' | 'honor' | 'github-merged-pr';
+/** github-* are verified on the server with GitHub. honor is a link we cannot verify, so it earns no entries. */
+export type GiveawayVerify = 'github-star' | 'github-follow' | 'honor' | 'github-merged-pr';
 
 export interface GiveawayAction {
   id: string;
@@ -27,15 +28,15 @@ export const GIVEAWAY = {
   referral: { entriesPerFriend: 3, maxFriends: 5 },
   actions: [
     { id: 'star', label: 'Star recode-website on GitHub', sub: 'github.com/recodehive/recode-website', url: 'https://github.com/recodehive/recode-website', entries: 2, verify: 'github-star' },
-    { id: 'follow-gh', label: 'Follow recode hive on GitHub', sub: 'github.com/recodehive', url: 'https://github.com/recodehive', entries: 1, verify: 'honor' },
-    { id: 'discord', label: 'Join the Discord', sub: 'Say hi in #introductions', url: 'https://discord.gg/dh3TA8U55Q', entries: 1, verify: 'honor' },
-    { id: 'linkedin', label: 'Follow on LinkedIn', sub: 'linkedin.com/in/sanjay-k-v', url: 'https://www.linkedin.com/in/sanjay-k-v/', entries: 1, verify: 'honor' },
+    { id: 'follow-gh', label: 'Follow recode hive on GitHub', sub: 'github.com/recodehive', url: 'https://github.com/recodehive', entries: 1, verify: 'github-follow' },
+    { id: 'discord', label: 'Join the Discord', sub: 'Say hi in #introductions', url: 'https://discord.gg/dh3TA8U55Q', entries: 0, verify: 'honor' },
+    { id: 'linkedin', label: 'Follow on LinkedIn', sub: 'linkedin.com/in/sanjay-k-v', url: 'https://www.linkedin.com/in/sanjay-k-v/', entries: 0, verify: 'honor' },
     // TODO: confirm channel URL before launch
-    { id: 'youtube', label: 'Subscribe on YouTube', sub: 'GitHub tutorials every week', url: 'https://www.youtube.com/@RecodeHive', entries: 1, verify: 'honor' },
-    { id: 'x', label: 'Follow on X', sub: 'x.com/nomadbrainsdev', url: 'https://x.com/nomadbrainsdev', entries: 1, verify: 'honor' },
-    { id: 'pr', label: 'Get a pull request merged', sub: 'Any recode hive repo, between Oct 21 and Nov 1', url: 'https://github.com/recodehive/recode-website/issues', entries: 10, verify: 'github-merged-pr', perPr: true },
+    { id: 'youtube', label: 'Subscribe on YouTube', sub: 'GitHub tutorials every week', url: 'https://www.youtube.com/@RecodeHive', entries: 0, verify: 'honor' },
+    { id: 'x', label: 'Follow on X', sub: 'x.com/nomadbrainsdev', url: 'https://x.com/nomadbrainsdev', entries: 0, verify: 'honor' },
+    { id: 'pr', label: 'Get a pull request merged', sub: 'Any recodehive repo, with the recode label, merged between Oct 21 and Nov 1', url: 'https://github.com/recodehive/recode-website/issues', entries: 10, verify: 'github-merged-pr', perPr: true },
   ] as GiveawayAction[],
-  bonus: { label: 'Complete every social quest', entries: 5 },
+  bonus: { label: 'Star and follow on GitHub', entries: 5 },
   /** GitHub logins of the winners. Fill this in after the draw and the closed page lists them. */
   winnersAnnounced: [] as string[],
 };
