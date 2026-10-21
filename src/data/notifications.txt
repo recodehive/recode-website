@@ -14,6 +14,36 @@
 #
 # Lines starting with # are notes for editors and are not shown on the site.
 
+title: Halloween giveaway is live
+message: Collect entries on the new Quest board for a chance to win a ₹500 Amazon voucher. It runs from Oct 21 to Nov 1, Sydney time.
+date: 2026-10-21
+link: /dashboard#giveaway
+
+title: Read discussions in a popup
+message: Open any post in Community Discussions and read it in full without leaving the page.
+date: 2026-10-21
+link: /dashboard#discuss
+
+title: Badges on the leaderboard
+message: The leaderboard now shows each contributor's three best badges with a total, and an arrow opens the full badge list.
+date: 2026-10-21
+link: /dashboard#leaderboard
+
+title: Achievement badges
+message: 13 achievement badges are here, from your first merged PR to the top of the leaderboard.
+date: 2026-10-20
+link: https://github.com/recodehive/recode-website/pull/2338
+
+title: Free Learn section
+message: Start the GitHub for Beginners course with videos and lessons, free for everyone.
+date: 2026-10-20
+link: /learn
+
+title: New navbar
+message: A grouped menu for finding pages faster, and a full-screen menu on phones.
+date: 2026-10-20
+link: https://github.com/recodehive/recode-website/pull/2346
+
 title: Looking for your first PR?
 message: Pick an open issue labeled good first issue and ask to be assigned before you start working on it.
 date: 2026-10-21
