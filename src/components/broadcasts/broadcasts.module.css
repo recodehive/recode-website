@@ -30,6 +30,15 @@ div.page h1, div.page h2, div.page h3 { margin: 0; padding: 0; text-align: left;
   -webkit-mask-image: radial-gradient(ellipse at 100% 0%, #000 0%, transparent 70%); mask-image: radial-gradient(ellipse at 100% 0%, #000 0%, transparent 70%);
 }
 .heroText { display: flex; flex-direction: column; gap: 14px; max-width: 600px; min-width: 0; }
+.heroTitleBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;     
+  align-self: flex-start;  
+  gap: 14px;               
+  width: fit-content;      
+  max-width: 100%;
+}
 .eyebrow { margin: 0; font: 700 12px/1 "Inter", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
 .page .h1 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 46px; line-height: 1.08; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
 .accent { color: var(--accent); }
