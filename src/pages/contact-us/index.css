@@ -27,7 +27,7 @@
 .support-direct__eyebrow {
   margin: 0 0 0.85rem;
   color: var(--help-green);
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   font-weight: 800;
   letter-spacing: 0.16em;
   line-height: 1;
@@ -48,24 +48,22 @@
   font-weight: 700;
   letter-spacing: -0.03em;
   line-height: 1.05;
-  white-space: nowrap;
 }
 
 .help-center__intro {
   max-width: none;
   margin: 1rem 0 0;
   color: var(--help-muted);
-  font-size: 0.88rem;
+  font-size: 1.05rem;
   line-height: 1.65;
-  white-space: nowrap;
 }
 
 .help-center__search {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  height: 2.75rem;
-  padding: 0 0.85rem;
+  height: 3.1rem;
+  padding: 0 1rem;
   border: 1px solid var(--help-line);
   border-radius: 0.65rem;
   background: #fff;
@@ -85,11 +83,11 @@
   background: transparent;
   color: var(--help-ink);
   font: inherit;
-  font-size: 0.78rem;
+  font-size: 0.98rem;
 }
 
 .help-center__search input::placeholder {
-  color: #a0a8b2;
+  color: #6b7685;
 }
 
 .help-center__categories {
@@ -107,15 +105,15 @@
 
 .help-center__categories button {
   flex: 0 0 auto;
-  min-height: 1.7rem;
-  padding: 0.35rem 0.75rem;
+  min-height: 2.1rem;
+  padding: 0.4rem 0.9rem;
   border: 1px solid var(--help-line);
   border-radius: 999px;
   background: #fff;
-  color: #566170;
+  color: #3f4a5a;
   cursor: pointer;
   font: inherit;
-  font-size: 0.68rem;
+  font-size: 0.86rem;
   transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
 }
 
@@ -158,16 +156,16 @@
   align-items: center;
   gap: 0.6rem;
   width: 100%;
-  min-height: 3.2rem;
-  padding: 0.75rem 0.9rem;
+  min-height: 3.6rem;
+  padding: 0.85rem 1rem;
   border: 0;
   background: transparent;
   color: var(--help-ink);
   cursor: pointer;
   font: inherit;
-  font-size: 0.76rem;
+  font-size: 0.96rem;
   font-weight: 700;
-  line-height: 1.35;
+  line-height: 1.4;
   text-align: left;
 }
 
@@ -192,15 +190,15 @@
 .faq-item__answer {
   margin: 1rem 2.5rem 0.85rem 2.5rem;
   color: var(--help-muted);
-  font-size: 0.74rem;
-  line-height: 1.55;
+  font-size: 0.94rem;
+  line-height: 1.6;
 }
 
 .faq-empty {
   grid-column: 1 / -1;
   margin: 1rem 0;
   color: var(--help-muted);
-  font-size: 0.82rem;
+  font-size: 0.98rem;
 }
 
 .support-panel {
@@ -229,7 +227,7 @@
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.45rem;
   font-weight: 700;
   letter-spacing: -0.01em;
 }
@@ -238,8 +236,8 @@
 .support-direct > p {
   margin: 0.7rem 0 1.35rem;
   color: var(--help-muted);
-  font-size: 0.76rem;
-  line-height: 1.55;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .support-direct {
@@ -248,11 +246,11 @@
 }
 
 .support-direct__eyebrow {
-  color: #8b96a4;
+  color: #5b6675;
 }
 
 .support-direct h2 {
-  font-size: 1rem;
+  font-size: 1.25rem;
 }
 
 .support-direct a {
@@ -264,7 +262,7 @@
   border-radius: 0.45rem;
   background: var(--help-green);
   color: #fff;
-  font-size: 0.76rem;
+  font-size: 0.95rem;
   font-weight: 800;
   text-decoration: none;
   transition: filter 160ms ease, transform 160ms ease;
@@ -299,8 +297,8 @@
 }
 
 .form-label {
-  color: #273244;
-  font-size: 0.68rem;
+  color: #1f2937;
+  font-size: 0.88rem;
   font-weight: 700;
 }
 
@@ -309,13 +307,13 @@
 .form-textarea {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.72rem 0.8rem;
-  border: 1px solid #dfe3e8;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid #cfd5dc;
   border-radius: 0.45rem;
   background: #fff;
   color: var(--help-ink);
   font: inherit;
-  font-size: 0.76rem;
+  font-size: 0.96rem;
   outline: 0;
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
@@ -327,7 +325,7 @@
 
 .form-input::placeholder,
 .form-textarea::placeholder {
-  color: #a7afb9;
+  color: #6b7685;
 }
 
 .form-input:focus,
@@ -347,7 +345,7 @@
   color: #fff;
   cursor: pointer;
   font: inherit;
-  font-size: 0.76rem;
+  font-size: 0.96rem;
   font-weight: 800;
   transition: filter 160ms ease, transform 160ms ease;
 }
@@ -368,7 +366,7 @@
   border-radius: 0.45rem;
   background: #fff6f6;
   color: #b42318;
-  font-size: 0.74rem;
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
@@ -398,7 +396,7 @@
 .form-success-message p {
   margin: 0 0 0.5rem;
   color: var(--help-muted);
-  font-size: 0.76rem;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 700px) {
