@@ -2,11 +2,23 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { BADGES, GROUP_COPY, GROUP_ORDER, PATH_PRS, type Badge } from '../../data/badges';
-import { getProgress, getUserBadges, isUnlocked, type BadgeStats } from '../../utils/badges';
+import { getClosestLocked, getProgress, getRarestEarned, getUserBadges, isUnlocked, type BadgeStats } from '../../utils/badges';
 import BadgeImage from './BadgeImage';
 import styles from './badges.module.css';
 
 type Filter = 'all' | 'unlocked' | 'locked';
+
+const EMPTY_STATS: BadgeStats = { prs: 0, points: 0, rank: null };
+
+/** Tier colours and a staggered delay for one card. Only used for glows, borders and tags. */
+function tierVars(b: Badge, index: number): React.CSSProperties {
+  return {
+    '--c': b.tier.light,
+    '--d': b.tier.dark,
+    '--g': b.tier.rgb,
+    '--dl': `${(index * 0.35).toFixed(2)}s`,
+  } as React.CSSProperties;
+}
 
 interface Props {
   selectedId: string;
@@ -31,6 +43,10 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
   const unlockedOf = (b: Badge) => signedIn && isUnlocked(b, stats);
   const selectedUnlocked = unlockedOf(selected);
   const progress = getProgress(selected, stats);
+  const eff = signedIn ? stats : EMPTY_STATS;
+  const rarest = signedIn ? getRarestEarned(stats) : null;
+  const nextUp = getClosestLocked(eff);
+  const nextProgress = nextUp ? getProgress(nextUp, eff) : null;
 
   // Focus the dialog, lock page scroll, close on Escape and keep Tab inside.
   useEffect(() => {
@@ -136,9 +152,41 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
           </ol>
         )}
 
+        <div className={styles.summary}>
+          <div className={styles.sumCount}>
+            <strong>{unlockedCount}<span> / {total}</span></strong>
+            <span className={styles.sumLabel}>BADGES UNLOCKED</span>
+          </div>
+          <ol className={styles.segments} aria-label={`${unlockedCount} of ${total} badges unlocked`}>
+            {BADGES.map((b) => {
+              const on = unlockedOf(b);
+              return (
+                <li
+                  key={b.id}
+                  className={on ? styles.segOn : styles.seg}
+                  style={on ? ({ '--c': b.tier.light, '--d': b.tier.dark, '--g': b.tier.rgb } as React.CSSProperties) : undefined}
+                  title={`${b.name}: ${on ? 'earned' : 'locked'}`}
+                />
+              );
+            })}
+          </ol>
+          <div className={styles.sumNext}>
+            <span className={styles.sumLabel}>NEXT UP</span>
+            {nextUp ? (
+              <p>
+                <strong>{nextUp.name}</strong> at {nextUp.criteria}
+                {nextProgress && <span> ({nextProgress.label})</span>}
+              </p>
+            ) : (
+              <p><strong>All badges unlocked</strong></p>
+            )}
+          </div>
+        </div>
+
         <div className={styles.tabs} role="tablist" aria-label="Filter badges">
           {(['all', 'unlocked', 'locked'] as Filter[]).map((f) => (
             <button key={f} type="button" role="tab" aria-selected={filter === f} className={`${styles.tab} ${filter === f ? styles.tabOn : ''}`} onClick={() => setFilter(f)}>
+              {f === 'unlocked' && <span className={styles.liveDot} aria-hidden="true" />}
               {f[0].toUpperCase() + f.slice(1)}{' '}
               <span className={styles.tabCount}>{f === 'all' ? total : f === 'unlocked' ? unlockedCount : total - unlockedCount}</span>
             </button>
@@ -154,18 +202,33 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
             if (items.length === 0) return null;
             return (
               <section key={g} aria-label={GROUP_COPY[g].title}>
-                <h3 className={styles.groupHeading}>
-                  {GROUP_COPY[g].title} <span>{GROUP_COPY[g].subtitle}</span>
-                </h3>
+                <div className={styles.groupHead}>
+                  <h3 className={styles.groupHeading}>
+                    {GROUP_COPY[g].title} <span>{GROUP_COPY[g].subtitle}</span>
+                  </h3>
+                  <span className={styles.groupCount}>
+                    {BADGES.filter((b) => b.group === g && unlockedOf(b)).length} of {BADGES.filter((b) => b.group === g).length} earned
+                  </span>
+                </div>
                 <ul className={styles.tiles}>
                   {items.map((b) => {
                     const on = unlockedOf(b);
+                    const isRarest = rarest?.id === b.id;
                     return (
                       <li key={b.id}>
-                        <button type="button" className={`${styles.tile} ${b.id === selected.id ? styles.tileOn : ''} ${on ? '' : styles.tileLocked}`} aria-pressed={b.id === selected.id} onClick={() => onSelect(b.id)}>
-                          <BadgeImage badge={b} size={72} locked={!on} />
+                        <button
+                          type="button"
+                          className={`${styles.tile} ${on ? styles.tileEarned : styles.tileLocked} ${isRarest ? styles.tileRarest : ''} ${b.id === selected.id ? styles.tileOn : ''}`}
+                          style={tierVars(b, BADGES.indexOf(b))}
+                          aria-pressed={b.id === selected.id}
+                          onClick={() => onSelect(b.id)}
+                        >
+                          {isRarest && <span className={styles.rareBg} aria-hidden="true" />}
+                          <span className={`${styles.tag} ${on ? styles.tagOn : ''}`}>{on ? '\u2713 EARNED' : 'LOCKED'}</span>
+                          <BadgeImage badge={b} size={72} locked={!on} fx={on} />
                           <span className={styles.tileName}>{b.name}</span>
                           <span className={styles.tileCrit}>{b.criteria}</span>
+                          {isRarest && <span className={styles.rarePill}>RAREST EARNED</span>}
                         </button>
                       </li>
                     );
@@ -175,6 +238,12 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
             );
           })}
         </div>
+
+        <ul className={styles.legend} aria-label="Legend">
+          <li><span className={styles.swEarned} aria-hidden="true" /> Earned: tier colour, glow, shine</li>
+          <li><span className={styles.swLocked} aria-hidden="true" /> Locked: grey, dashed, lock</li>
+          <li><span className={styles.swRare} aria-hidden="true" /> Rarest earned: animated border</li>
+        </ul>
       </div>
     </div>
   );

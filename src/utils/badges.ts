@@ -99,3 +99,21 @@ export function getEarnedByPrestige(stats: BadgeStats, badges: Badge[] = BADGES)
       return a.group === 'leaderboard' ? a.threshold - b.threshold : b.threshold - a.threshold;
     });
 }
+
+/** The unlocked badge with the highest rarity, or null when nothing is unlocked. */
+export function getRarestEarned(stats: BadgeStats, badges: Badge[] = BADGES): Badge | null {
+  const earned = badges.filter((b) => isUnlocked(b, stats)).sort((a, b) => b.rarity - a.rarity);
+  return earned[0] ?? null;
+}
+
+/**
+ * The locked PR or points badge you are closest to unlocking (highest progress, then the lower
+ * threshold). Rank badges are skipped because they depend on other people. Null when none are left.
+ */
+export function getClosestLocked(stats: BadgeStats, badges: Badge[] = BADGES): Badge | null {
+  const open = badges
+    .filter((b) => b.metric !== 'rank' && !isUnlocked(b, stats))
+    .map((b) => ({ b, pct: getProgress(b, stats).pct }))
+    .sort((x, y) => y.pct - x.pct || x.b.threshold - y.b.threshold);
+  return open[0]?.b ?? null;
+}

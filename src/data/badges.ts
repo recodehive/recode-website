@@ -4,6 +4,14 @@
 export type BadgeMetric = 'prs' | 'points' | 'rank';
 export type BadgeGroup = 'milestone' | 'mastery' | 'leaderboard';
 
+/** Colours used for glows, borders and tags. Never used to recolour the badge artwork. */
+export interface BadgeTier {
+  light: string;
+  dark: string;
+  /** "r,g,b" for rgba() */
+  rgb: string;
+}
+
 export interface Badge {
   id: string;
   name: string;
@@ -17,12 +25,15 @@ export interface Badge {
   threshold: number;
   /** An alternative way to unlock the same badge. */
   altThreshold?: { metric: 'points'; value: number };
+  tier: BadgeTier;
+  /** Higher is rarer. Decides the "rarest earned" spotlight. */
+  rarity: number;
 }
 
 /** Which ranking decides the Rank #1, #2 and #3 badges. */
 export const RANK_PERIOD: 'all-time' | 'monthly' = 'all-time';
 
-export const BADGES: Badge[] = [
+const BASE_BADGES: Omit<Badge, 'tier' | 'rarity'>[] = [
   {
     id: 'first-contribution', name: 'First Contribution', group: 'milestone', image: '/img/badges/first-contribution.png',
     description: "The first milestone in every contributor's journey. Awarded after your first successfully merged pull request.",
@@ -89,6 +100,28 @@ export const BADGES: Badge[] = [
     criteria: 'Finish #3 on the leaderboard', metric: 'rank', threshold: 3,
   },
 ];
+
+const TIERS: Record<string, { tier: BadgeTier; rarity: number }> = {
+  'first-contribution': { tier: { light: '#d9f99d', dark: '#4d7c0f', rgb: '163,230,53' }, rarity: 1 },
+  bronze: { tier: { light: '#f5c08f', dark: '#8a4b1f', rgb: '224,145,90' }, rarity: 2 },
+  silver: { tier: { light: '#f1f5f9', dark: '#64748b', rgb: '203,213,225' }, rarity: 3 },
+  gold: { tier: { light: '#fde047', dark: '#a16207', rgb: '250,204,21' }, rarity: 4 },
+  platinum: { tier: { light: '#e0e7ff', dark: '#5b5f97', rgb: '165,180,252' }, rarity: 5 },
+  'points-master': { tier: { light: '#ddd6fe', dark: '#6d28d9', rgb: '167,139,250' }, rarity: 6 },
+  diamond: { tier: { light: '#a5f3fc', dark: '#0e7490', rgb: '103,232,249' }, rarity: 7 },
+  'rank-3': { tier: { light: '#f5c08f', dark: '#8a4b1f', rgb: '224,145,90' }, rarity: 8 },
+  elite: { tier: { light: '#bbf7d0', dark: '#15803d', rgb: '74,222,128' }, rarity: 9 },
+  'rank-2': { tier: { light: '#f1f5f9', dark: '#64748b', rgb: '203,213,225' }, rarity: 10 },
+  legendary: { tier: { light: '#fed7aa', dark: '#c2410c', rgb: '251,146,60' }, rarity: 11 },
+  'rank-1': { tier: { light: '#fde047', dark: '#a16207', rgb: '250,204,21' }, rarity: 12 },
+  'hall-of-fame': { tier: { light: '#fde68a', dark: '#b45309', rgb: '251,191,36' }, rarity: 13 },
+};
+
+export const BADGES: Badge[] = BASE_BADGES.map((b) => {
+  const t = TIERS[b.id];
+  if (!t) throw new Error('Missing tier for badge ' + b.id);
+  return { ...b, ...t };
+});
 
 export const GROUP_COPY: Record<BadgeGroup, { title: string; subtitle: string }> = {
   milestone: { title: 'Contribution milestones', subtitle: 'Every journey starts somewhere' },
