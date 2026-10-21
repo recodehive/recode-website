@@ -4,6 +4,7 @@ import { useBlogPost } from '@docusaurus/plugin-content-blog/client';
 import { Clock, Link2, Linkedin } from 'lucide-react';
 import type { TocItem } from './ContentsCard';
 import { noEmoji } from './emoji';
+import { useAuthorLink, type PostAuthor } from './authorUtils';
 import styles from './blogPost.module.css';
 
 const SITE = 'https://www.recodehive.com';
@@ -57,6 +58,22 @@ export function ShareButtons({ url, title }: { url: string; title: string }) {
   );
 }
 
+/** One author's avatar in the stack. Hovering lifts it with a pink ring and shows their name, like the sponsors page. */
+function StackAvatar({ author }: { author: PostAuthor }) {
+  const link = useAuthorLink(author);
+  const img = author.imageURL ? <img src={author.imageURL} alt="" width={40} height={40} /> : <span className={styles.stackInitial}>{author.name?.[0]}</span>;
+  return (
+    <li className={styles.stackItem}>
+      {link ? (
+        <a href={link.href} className={styles.stackLink} aria-label={`${author.name}${link.internal ? ', recode hive profile' : ', GitHub profile (opens in a new tab)'}`} {...(link.internal ? {} : { target: '_blank', rel: 'noopener' })}>{img}</a>
+      ) : (
+        <span className={styles.stackLink}>{img}</span>
+      )}
+      <span className={styles.stackTip} aria-hidden="true">{author.name}</span>
+    </li>
+  );
+}
+
 const dateFmt = (d: string | Date) => new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
 export default function PostHeader({ toc }: { toc: readonly TocItem[] }) {
@@ -83,10 +100,16 @@ export default function PostHeader({ toc }: { toc: readonly TocItem[] }) {
 
       <div className={styles.authorRow}>
         <div className={styles.authorMeta}>
-          {avatar && <img src={avatar} alt="" width={40} height={40} className={styles.avatar} />}
+          {authors.length > 1 ? (
+            <ul className={styles.stack} aria-label="Authors">
+              {authors.map((a) => <StackAvatar key={a.key ?? a.name} author={a} />)}
+            </ul>
+          ) : (
+            avatar && <img src={avatar} alt="" width={40} height={40} className={styles.avatar} />
+          )}
           <div>
             <strong>{names}</strong>
-            {first?.title && <span>{first.title.replace(/^Founder at /, 'Founder, ')}</span>}
+            {authors.length === 1 && first?.title && <span>{first.title.replace(/^Founder at /, 'Founder, ')}</span>}
           </div>
           <span className={styles.metaText}>
             <i aria-hidden="true" />

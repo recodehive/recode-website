@@ -5,21 +5,13 @@ import { useBlogPost } from '@docusaurus/plugin-content-blog/client';
 import { ArrowLeft, ArrowRight, BookOpen, Github, Linkedin, Pencil } from 'lucide-react';
 import GiscusComments from '../giscus';
 import { ShareButtons } from './PostHeader';
+import { githubHandle } from './authorUtils';
 import styles from './blogPost.module.css';
 
 const SITE = 'https://www.recodehive.com';
 const CONTRIBUTING = 'https://github.com/recodehive/recode-website/blob/main/CONTRIBUTING.md';
 
 type Author = ReturnType<typeof useBlogPost>['metadata']['authors'][number];
-
-/** The author's GitHub handle: from their socials, else their GitHub url, else the author key. */
-function githubHandle(a: Author): string | null {
-  const s = (a as { socials?: Record<string, string> }).socials?.github;
-  if (s) return s.replace(/^https?:\/\/github\.com\//i, '').replace(/\/$/, '').toLowerCase();
-  const m = a.url?.match(/github\.com\/([A-Za-z0-9-]+)/i);
-  if (m) return m[1].toLowerCase();
-  return a.key ? a.key.toLowerCase() : null;
-}
 
 function linkedinUrl(a: Author): string | null {
   const l = (a as { socials?: Record<string, string> }).socials?.linkedin;
