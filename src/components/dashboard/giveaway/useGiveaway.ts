@@ -134,7 +134,7 @@ export function useGiveaway() {
       document.removeEventListener('visibilitychange', onVisible);
       window.removeEventListener('focus', onVisible);
     };
-  }, [user?.id, sync]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [user?.id, sync]);
 
   const signIn = useCallback(() => {
     clerk?.openSignIn?.({});
