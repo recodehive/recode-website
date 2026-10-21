@@ -225,6 +225,9 @@ module.exports = function developerProfilesPlugin(context) {
         });
       }
 
+      // The list of handles that have a page, so other parts of the site only link to profiles that exist
+      actions.setGlobalData({ handles: sites.map((x) => x.handle) });
+
       // Fallback for any other handle. Never indexed.
       actions.addRoute({ path: '/u/_', component: '@site/src/components/profile/ProfilePage', exact: true });
       console.log(`[developer-profiles] built ${sites.length} profile pages`);

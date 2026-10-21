@@ -2,14 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import { BlogPostProvider, useBlogPost } from '@docusaurus/plugin-content-blog/client';
 import Layout from '@theme/Layout';
 import BlogPostItemContent from '@theme/BlogPostItem/Content';
-import BlogPostItemFooter from '@theme/BlogPostItem/Footer';
-import BlogPostPaginator from '@theme/BlogPostPaginator';
 import BlogPostPageMetadata from '@theme/BlogPostPage/Metadata';
-import BlogPostPageStructuredData from '@theme/BlogPostPage/StructuredData';
+import StructuredData from '../../components/blogPost/StructuredData';
 import ContentVisibility from '@theme/ContentVisibility';
 import PostHeader from '../../components/blogPost/PostHeader';
 import LeftSidebar, { RecentPosts } from '../../components/blogPost/LeftSidebar';
 import ContentsCard from '../../components/blogPost/ContentsCard';
+import EndOfPost from '../../components/blogPost/EndOfPost';
+import { AdSlot, useAdsEnabled, useInArticleAdSlots } from '../../components/blogPost/ads';
 import styles from '../../components/blogPost/blogPost.module.css';
 
 const ARTICLE_ID = 'post-article';
@@ -38,9 +38,10 @@ function useCodeLabels(ref: React.RefObject<HTMLElement | null>) {
 
 function PostPageContent({ children }: { children: React.ReactNode }) {
   const { metadata, toc } = useBlogPost();
-  const { nextItem, prevItem, frontMatter, tags, permalink } = metadata;
+  const { frontMatter, tags, permalink } = metadata;
   const bodyRef = useRef<HTMLDivElement>(null);
   useCodeLabels(bodyRef);
+  useInArticleAdSlots(bodyRef, useAdsEnabled());
   const showToc = !(frontMatter as { hide_table_of_contents?: boolean }).hide_table_of_contents && toc.length > 0;
 
   return (
@@ -61,9 +62,8 @@ function PostPageContent({ children }: { children: React.ReactNode }) {
           </div>
         </article>
         <div className={styles.endCell}>
-          <BlogPostItemFooter />
+          <EndOfPost adSlot={<AdSlot id="before-end" />} />
           <div className={styles.recentEnd}><RecentPosts permalink={permalink} /></div>
-          {(nextItem || prevItem) && <BlogPostPaginator nextItem={nextItem} prevItem={prevItem} />}
         </div>
         {showToc && <ContentsCard toc={toc} articleId={ARTICLE_ID} variant="card" />}
       </div>
@@ -78,7 +78,7 @@ export default function BlogPostPage(props: { content: React.ComponentType; side
     <BlogPostProvider content={props.content as never} isBlogPostPage>
       <>
         <BlogPostPageMetadata />
-        <BlogPostPageStructuredData />
+        <StructuredData />
         <PostPageContent>
           <BlogPostContent />
         </PostPageContent>

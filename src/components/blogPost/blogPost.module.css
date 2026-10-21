@@ -158,3 +158,66 @@ div.page .title, .page h1.title { margin: 0 0 18px; font: 700 44px/1.1 "Space Gr
   .progress span { transition: none; }
   .actBtn, .actIcon, .recent a { transition: none; }
 }
+
+/* End of post */
+.endTags { display: flex; align-items: flex-start; gap: 14px; padding-top: 24px; border-top: 1px solid var(--line); }
+.endTags > span { flex: none; margin-top: 6px; font: 700 11.5px "Inter", sans-serif; letter-spacing: 0.1em; color: var(--faint); }
+.endTags ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.endTags a { display: inline-flex; align-items: center; height: 28px; padding: 0 11px; border: 1px solid var(--border); border-radius: 999px; background: var(--chip); color: var(--text2); font: 600 12.5px "Inter", sans-serif; text-decoration: none; }
+.endTags a:hover { border-color: var(--green); color: var(--green); text-decoration: none; }
+.shareBar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 14px 18px; border: 1px solid var(--border); border-radius: 14px; background: #f8fafc; }
+:global(html[data-theme='dark']) .shareBar { background: #161b22; }
+.shareBar strong { font-size: 14.5px; color: var(--text); }
+.authorCard { display: flex; gap: 20px; padding: 22px; border: 1px solid var(--border); border-radius: 16px; background: var(--card); }
+.authorImg { flex: none; width: 72px; height: 72px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 3px #e8f5ee; }
+.authorBody { min-width: 0; }
+.writtenBy { margin: 0 0 4px; font: 700 11.5px "Inter", sans-serif; letter-spacing: 0.1em; color: var(--green); }
+.authorBody h3 { margin: 0; font: 700 19px "Space Grotesk", sans-serif; color: var(--text); }
+.handle { margin: 2px 0 8px; font: 500 12.5px "JetBrains Mono", ui-monospace, monospace; color: var(--muted); }
+.bio { margin: 0 0 14px; font-size: 14.5px; line-height: 1.6; color: var(--text2); }
+.authorBtns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.bio + .authorBtns { margin-top: 0; }
+.btnGreen, .btnOutline, .btnDark { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 14px; border-radius: 9px; font: 600 13px "Inter", sans-serif; text-decoration: none; }
+.btnGreen { background: #2e8555; color: #fff; border: 1px solid #2e8555; }
+.btnGreen:hover { color: #fff; filter: brightness(0.95); text-decoration: none; }
+.btnOutline { border: 1px solid var(--border); background: var(--card); color: var(--text2); }
+.btnOutline:hover { border-color: var(--green); color: var(--green); text-decoration: none; }
+.btnDark { background: #0f172a; color: #fff; border: 1px solid #0f172a; }
+.btnDark:hover { color: #fff; text-decoration: none; filter: brightness(1.15); }
+:global(html[data-theme='dark']) .btnDark { background: #e6edf3; color: #0d1117; border-color: #e6edf3; }
+:global(html[data-theme='dark']) .btnDark:hover { color: #0d1117; }
+.helpful { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 16px 20px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); }
+.helpful strong { font-size: 15px; color: var(--text); }
+.helpful p { margin: 2px 0 0; font-size: 13px; color: var(--muted); }
+.voteBtns { display: flex; gap: 8px; }
+.voteBtns button { height: 34px; padding: 0 14px; border: 1px solid var(--border); border-radius: 9px; background: var(--card); color: var(--text2); font: 600 13px "Inter", sans-serif; cursor: pointer; }
+.voteBtns button:hover:not(:disabled) { border-color: var(--green); }
+.voteBtns button[aria-pressed='true'] { background: var(--tint); border-color: var(--tint-border); color: var(--green-dark); }
+.voteBtns button:disabled { cursor: default; opacity: 0.8; }
+.improve { display: flex; gap: 14px; padding: 18px 20px; border: 1px solid #bbf7d0; border-radius: 14px; background: #f0fdf4; }
+:global(html[data-theme='dark']) .improve { background: rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.35); }
+.improveIcon { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; background: #2e8555; color: #fff; }
+.improve strong { font: 700 16px "Space Grotesk", sans-serif; color: var(--text); }
+.improve p { margin: 4px 0 0; font-size: 14px; line-height: 1.55; color: var(--text2); }
+.comments { border: 1px solid var(--border); border-radius: 16px; background: var(--card); padding: 18px 20px; }
+.commentsHead { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
+.commentsHead h2 { margin: 0; font: 700 17px "Space Grotesk", sans-serif; color: var(--text); }
+.commentsHead span { font-size: 12.5px; color: var(--muted); }
+.commentsBody { min-height: 260px; }
+.pagers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.pager { display: flex; flex-direction: column; gap: 6px; padding: 16px 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--card); text-decoration: none; transition: transform 0.15s, border-color 0.15s; }
+.pager:hover { transform: translateY(-2px); border-color: var(--green); text-decoration: none; }
+.pager span { display: inline-flex; align-items: center; gap: 4px; font: 700 11.5px "Inter", sans-serif; letter-spacing: 0.08em; color: var(--green); }
+.pager strong { font: 700 15.5px/1.35 "Space Grotesk", sans-serif; color: var(--text); }
+.pagerOlder { text-align: right; }
+.pagerOlder span { justify-content: flex-end; }
+
+/* Reserved ad containers: only rendered when adsEnabled is on */
+.adSlot { display: flex; align-items: flex-start; justify-content: center; min-height: 250px; margin: 28px 0; border: 1px dashed var(--border); border-radius: 12px; }
+.adSlot span { margin-top: 6px; font: 500 11px "Inter", sans-serif; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
+
+@media (max-width: 640px) {
+  .pagers { grid-template-columns: minmax(0, 1fr); }
+  .authorCard { flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) { .pager { transition: none; } .pager:hover { transform: none; } }
