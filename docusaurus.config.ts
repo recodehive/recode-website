@@ -182,6 +182,9 @@ const config: Config = {
   customFields: {
     backendApiUrl: process.env.BACKEND_API_URL || "https://leaderboard-production-6143.up.railway.app",
     clerkPublishableKey: process.env.VITE_CLERK_PUBLISHABLE_KEY || "",
+    // Giveaway backend (public values). The anon key only reads the public ledger views.
+    supabaseUrl: process.env.SUPABASE_URL || "",
+    supabaseAnonKey: process.env.SUPABASE_ANON_KEY || "",
     // Shopify credentials for merch store
     SHOPIFY_STORE_DOMAIN:
       process.env.SHOPIFY_STORE_DOMAIN || "junh9v-gw.myshopify.com",

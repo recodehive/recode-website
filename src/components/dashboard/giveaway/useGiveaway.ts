@@ -1,16 +1,30 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useClerk, useUser } from '@clerk/react';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { GIVEAWAY, SOCIAL_ACTIONS, phaseAt, type Phase } from '../../../data/giveaway';
 
 const REF_KEY = 'rh-giveaway-ref';
 const REF_DAYS = 30;
 const LOGIN_RE = /^[A-Za-z0-9-]{1,39}$/;
 
+/** Only used for the quests that cannot be verified (the "support" links). Never counted as entries. */
 interface Saved {
   done: Record<string, string>;
-  bonus?: string;
-  referredBy?: string;
 }
+
+/** What the server verified with GitHub. The browser never computes these. */
+export interface ServerState {
+  phase: Phase;
+  login: string;
+  entries: number;
+  star: boolean;
+  follow: boolean;
+  prs: number;
+  referrals: number;
+  bonus: boolean;
+}
+
+export type SyncStatus = 'idle' | 'checking' | 'error' | 'unconfigured';
 
 /** The clock, read on the client only (the server render shows a static label). */
 export function useNow(): number | null {
@@ -29,39 +43,26 @@ export function usePhase(now: number | null): Phase {
 
 function readSaved(meta: Record<string, unknown> | undefined): Saved {
   const g = (meta?.giveaway as Record<string, Saved> | undefined)?.[GIVEAWAY.id];
-  return { done: g?.done ?? {}, bonus: g?.bonus, referredBy: g?.referredBy };
+  return { done: g?.done ?? {} };
 }
 
-async function countMergedPrs(login: string): Promise<number | null> {
-  const key = `rh-giveaway-prs-v2-${login}`;
+function readRef(login: string | null): string | null {
   try {
-    const raw = sessionStorage.getItem(key);
-    if (raw) {
-      const c = JSON.parse(raw) as { t: number; n: number };
-      if (Date.now() - c.t < 3600000) return c.n;
-    }
-  } catch {
-    // storage unavailable: fall through to the network
-  }
-  // GitHub reads merged: dates in UTC, so pass exact instants to match the Sydney window.
-  const instant = (iso: string) => new Date(iso).toISOString().replace(/.d{3}Z$/, 'Z');
-  const q = `org:recodehive is:pr is:merged author:${login} merged:${instant(GIVEAWAY.startsAt)}..${instant(GIVEAWAY.endsAt)}`;
-  try {
-    const res = await fetch(`https://api.github.com/search/issues?per_page=1&q=${encodeURIComponent(q)}`, { headers: { Accept: 'application/vnd.github+json' } });
-    if (!res.ok) return null;
-    const n = ((await res.json()) as { total_count?: number }).total_count ?? 0;
-    try {
-      sessionStorage.setItem(key, JSON.stringify({ t: Date.now(), n }));
-    } catch {
-      // ignore
-    }
-    return n;
+    const raw = localStorage.getItem(REF_KEY);
+    if (!raw) return null;
+    const { ref, at } = JSON.parse(raw) as { ref: string; at: number };
+    if (Date.now() - at > REF_DAYS * 86400000) return null;
+    if (!LOGIN_RE.test(ref) || (login && ref.toLowerCase() === login.toLowerCase())) return null;
+    return ref;
   } catch {
     return null;
   }
 }
 
 export function useGiveaway() {
+  const { siteConfig } = useDocusaurusContext();
+  const supabaseUrl = String(siteConfig.customFields?.supabaseUrl ?? '').replace(/\/$/, '');
+
   // useUser throws when no ClerkProvider is mounted; keep the page viewable without it.
   let user: ReturnType<typeof useUser>['user'] | undefined;
   let clerk: ReturnType<typeof useClerk> | undefined;
@@ -75,8 +76,9 @@ export function useGiveaway() {
   const login = user?.externalAccounts?.find((a) => a.provider === 'github')?.username ?? null;
   const avatar = user?.imageUrl ?? null;
   const saved = useMemo(() => readSaved(user?.unsafeMetadata), [user?.unsafeMetadata]);
-  const [prCount, setPrCount] = useState<number | null>(null);
-  const [saving, setSaving] = useState(false);
+  const [server, setServer] = useState<ServerState | null>(null);
+  const [status, setStatus] = useState<SyncStatus>(supabaseUrl ? 'idle' : 'unconfigured');
+  const inFlight = useRef(false);
 
   // Remember a referral link visit for 30 days.
   useEffect(() => {
@@ -89,54 +91,56 @@ export function useGiveaway() {
     }
   }, []);
 
-  const persist = useCallback(
-    async (patch: Partial<Saved>) => {
-      if (!user) return;
-      setSaving(true);
-      try {
-        const all = (user.unsafeMetadata?.giveaway as Record<string, Saved> | undefined) ?? {};
-        const cur = readSaved(user.unsafeMetadata);
-        await user.update({
-          unsafeMetadata: { ...user.unsafeMetadata, giveaway: { ...all, [GIVEAWAY.id]: { ...cur, ...patch } } },
-        });
-      } finally {
-        setSaving(false);
-      }
-    },
-    [user],
-  );
-
-  // Save the referrer once, on the first visit after signing in.
-  useEffect(() => {
-    if (!user || !login || saved.referredBy) return;
-    try {
-      const raw = localStorage.getItem(REF_KEY);
-      if (!raw) return;
-      const { ref, at } = JSON.parse(raw) as { ref: string; at: number };
-      if (Date.now() - at > REF_DAYS * 86400000) return;
-      if (!LOGIN_RE.test(ref) || ref.toLowerCase() === login.toLowerCase()) return;
-      void persist({ referredBy: ref });
-    } catch {
-      // ignore
-    }
-  }, [user, login, saved.referredBy, persist]);
-
-  useEffect(() => {
-    if (!login) {
-      setPrCount(null);
+  /** Ask the server to verify with GitHub and return the totals. */
+  const sync = useCallback(async () => {
+    if (!supabaseUrl) {
+      setStatus('unconfigured');
       return;
     }
-    let cancelled = false;
-    countMergedPrs(login).then((n) => !cancelled && setPrCount(n));
-    return () => {
-      cancelled = true;
+    if (!clerk?.session || inFlight.current) return;
+    inFlight.current = true;
+    setStatus('checking');
+    try {
+      const token = await clerk.session.getToken();
+      if (!token) throw new Error('no token');
+      const res = await fetch(`${supabaseUrl}/functions/v1/giveaway`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'x-clerk-token': token },
+        body: JSON.stringify({ ref: readRef(login) }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setServer((await res.json()) as ServerState);
+      setStatus('idle');
+    } catch {
+      setStatus('error');
+    } finally {
+      inFlight.current = false;
+    }
+  }, [supabaseUrl, clerk, login]);
+
+  // Check on sign in, and again whenever the visitor comes back to this tab (after starring on GitHub).
+  useEffect(() => {
+    if (!user) {
+      setServer(null);
+      return;
+    }
+    void sync();
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') void sync();
     };
-  }, [login]);
+    document.addEventListener('visibilitychange', onVisible);
+    window.addEventListener('focus', onVisible);
+    return () => {
+      document.removeEventListener('visibilitychange', onVisible);
+      window.removeEventListener('focus', onVisible);
+    };
+  }, [user?.id, sync]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const signIn = useCallback(() => {
     clerk?.openSignIn?.({});
   }, [clerk]);
 
+  /** Records that a support link was opened. Worth no entries. */
   const markDone = useCallback(
     (id: string) => {
       if (!user) {
@@ -144,25 +148,41 @@ export function useGiveaway() {
         return;
       }
       if (saved.done[id]) return;
-      void persist({ done: { ...saved.done, [id]: new Date().toISOString() } });
+      const all = (user.unsafeMetadata?.giveaway as Record<string, Saved> | undefined) ?? {};
+      void user.update({
+        unsafeMetadata: { ...user.unsafeMetadata, giveaway: { ...all, [GIVEAWAY.id]: { done: { ...saved.done, [id]: new Date().toISOString() } } } },
+      });
     },
-    [user, signIn, saved.done, persist],
+    [user, signIn, saved.done],
   );
 
-  const allSocialDone = SOCIAL_ACTIONS.every((a) => saved.done[a.id]);
-  const claimBonus = useCallback(() => {
-    if (!user || !allSocialDone || saved.bonus) return;
-    void persist({ bonus: new Date().toISOString() });
-  }, [user, allSocialDone, saved.bonus, persist]);
+  const verified = useCallback(
+    (id: string): boolean => {
+      if (!server) return false;
+      if (id === 'star') return server.star;
+      if (id === 'follow-gh') return server.follow;
+      return false;
+    },
+    [server],
+  );
 
-  const entries = useMemo(() => {
-    let n = 0;
-    for (const a of SOCIAL_ACTIONS) if (saved.done[a.id]) n += a.entries;
-    if (saved.bonus) n += GIVEAWAY.bonus.entries;
-    const pr = GIVEAWAY.actions.find((a) => a.perPr);
-    if (pr && prCount) n += prCount * pr.entries;
-    return n;
-  }, [saved, prCount]);
+  const socialDone = SOCIAL_ACTIONS.filter((a) => (a.verify === 'honor' ? Boolean(saved.done[a.id]) : verified(a.id))).length;
 
-  return { signedIn: Boolean(user), login, avatar, saved, prCount, entries, saving, allSocialDone, signIn, markDone, claimBonus };
+  return {
+    signedIn: Boolean(user),
+    login,
+    avatar,
+    saved,
+    server,
+    status,
+    entries: server?.entries ?? 0,
+    prCount: server?.prs ?? 0,
+    referrals: server?.referrals ?? 0,
+    bonus: server?.bonus ?? false,
+    socialDone,
+    verified,
+    sync,
+    signIn,
+    markDone,
+  };
 }

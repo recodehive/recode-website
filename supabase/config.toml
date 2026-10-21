@@ -1,0 +1,7 @@
+# Minimal Supabase CLI config for the giveaway backend.
+# The function checks the visitor's Clerk token itself (sent in the x-clerk-token header), so the
+# gateway's own JWT check is switched off for it.
+project_id = "recodehive-giveaway"
+
+[functions.giveaway]
+verify_jwt = false
