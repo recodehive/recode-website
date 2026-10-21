@@ -33,7 +33,7 @@ function readSaved(meta: Record<string, unknown> | undefined): Saved {
 }
 
 async function countMergedPrs(login: string): Promise<number | null> {
-  const key = `rh-giveaway-prs-${login}`;
+  const key = `rh-giveaway-prs-v2-${login}`;
   try {
     const raw = sessionStorage.getItem(key);
     if (raw) {
@@ -43,8 +43,9 @@ async function countMergedPrs(login: string): Promise<number | null> {
   } catch {
     // storage unavailable: fall through to the network
   }
-  const day = (iso: string) => new Date(iso).toLocaleDateString('en-CA', { timeZone: 'Australia/Sydney' });
-  const q = `org:recodehive is:pr is:merged author:${login} merged:${day(GIVEAWAY.startsAt)}..${day(GIVEAWAY.endsAt)}`;
+  // GitHub reads merged: dates in UTC, so pass exact instants to match the Sydney window.
+  const instant = (iso: string) => new Date(iso).toISOString().replace(/.d{3}Z$/, 'Z');
+  const q = `org:recodehive is:pr is:merged author:${login} merged:${instant(GIVEAWAY.startsAt)}..${instant(GIVEAWAY.endsAt)}`;
   try {
     const res = await fetch(`https://api.github.com/search/issues?per_page=1&q=${encodeURIComponent(q)}`, { headers: { Accept: 'application/vnd.github+json' } });
     if (!res.ok) return null;
