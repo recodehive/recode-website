@@ -14,20 +14,6 @@ interface Blog {
 const blogs: Blog[] = [
 
   {
-    id: 1,
-    title: "Land a Job in UI/UX Design",
-    image: "/img/blogs/04-ux-job-design.png",
-    description:
-      " Are you passionate about design and dreaming of a career in it? Or maybe you are already in the design space and looking to pivot into UI/UX? ",
-    slug: "ux-ui-design-job",
-    date: "2025-06-05",
-    readingTime: 9,
-    authors: ["sowmiya-v", "sanjay-kv"],
-    category: "Design",
-    tags: ["UX", "UI", "design", "Job"],
-  },
-
-  {
     id: 2,
     title: "What is GitHub Copilot",
     image: "/img/blogs/06-github-agent.png",
