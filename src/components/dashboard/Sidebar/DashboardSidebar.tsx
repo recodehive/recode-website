@@ -344,6 +344,8 @@ export default function DashboardSidebar({
           unreadCount={notifications.unreadCount}
           isUnread={notifications.isUnread}
           onRead={notifications.markRead}
+          onMarkUnread={notifications.markUnread}
+          onDismiss={notifications.dismiss}
           onReadAll={notifications.markAllRead}
           onClose={closeNotifications}
           collapsed={collapsed}

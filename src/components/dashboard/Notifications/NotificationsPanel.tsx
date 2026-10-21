@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Link from "@docusaurus/Link";
-import { Bell, CheckCheck, X } from "lucide-react";
+import { Archive, Bell, CheckCheck, Mail, MailOpen, X } from "lucide-react";
 import type { Notification } from "./useNotifications";
 import styles from "./notifications.module.css";
 
@@ -10,6 +10,8 @@ interface NotificationsPanelProps {
   unreadCount: number;
   isUnread: (id: string) => boolean;
   onRead: (id: string) => void;
+  onMarkUnread: (id: string) => void;
+  onDismiss: (id: string) => void;
   onReadAll: () => void;
   onClose: () => void;
   /** Sidebar is collapsed, so the panel opens closer to the left edge */
@@ -52,6 +54,8 @@ export default function NotificationsPanel({
   unreadCount,
   isUnread,
   onRead,
+  onMarkUnread,
+  onDismiss,
   onReadAll,
   onClose,
   collapsed,
@@ -166,7 +170,10 @@ export default function NotificationsPanel({
                       <Link
                         to={n.link}
                         className={styles.link}
-                        onClick={() => onRead(n.id)}
+                        onClick={() => {
+                          onRead(n.id);
+                          onClose();
+                        }}
                       >
                         Click here
                         <span className={styles.srOnly}>: {n.title}</span>
@@ -185,6 +192,30 @@ export default function NotificationsPanel({
                     </time>
                   </div>
                   {unread && <span className={styles.dot} aria-hidden="true" />}
+                  <div className={styles.actions}>
+                    <button
+                      type="button"
+                      className={styles.action}
+                      title={unread ? "Mark as read" : "Mark as unread"}
+                      aria-label={`${unread ? "Mark as read" : "Mark as unread"}: ${n.title}`}
+                      onClick={() => (unread ? onRead(n.id) : onMarkUnread(n.id))}
+                    >
+                      {unread ? (
+                        <MailOpen size={16} aria-hidden="true" />
+                      ) : (
+                        <Mail size={16} aria-hidden="true" />
+                      )}
+                    </button>
+                    <button
+                      type="button"
+                      className={styles.action}
+                      title="Dismiss"
+                      aria-label={`Dismiss: ${n.title}`}
+                      onClick={() => onDismiss(n.id)}
+                    >
+                      <Archive size={16} aria-hidden="true" />
+                    </button>
+                  </div>
                 </li>
               );
             })}
