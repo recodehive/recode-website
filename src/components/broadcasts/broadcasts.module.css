@@ -39,7 +39,7 @@ div.page h1, div.page h2, div.page h3 { margin: 0; padding: 0; text-align: left;
   width: fit-content;      
   max-width: 100%;
 }
-.eyebrow { margin: 0; font: 700 12px/1 "Inter", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.eyebrow { margin: 0; font: 700 16px/1 "Inter", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
 .page .h1 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 46px; line-height: 1.08; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
 .accent { color: var(--accent); }
 .lede { margin: 0; font-size: 16.5px; line-height: 1.6; color: var(--text-2); }
