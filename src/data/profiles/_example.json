@@ -19,5 +19,16 @@
   "credentials": [
     { "name": "Certificate name", "issuer": "Issuer", "type": "certification", "url": "https://example.com/cert" }
   ],
-  "skillsDeclared": ["SQL", "Python"]
+  "skillsDeclared": ["SQL", "Python"],
+  "hire": {
+    "open": true,
+    "roles": ["Software Engineer"],
+    "engagement": ["contract", "full-time"],
+    "workRights": "Only if you want to say it",
+    "bookingUrl": "https://calendly.com/your-name",
+    "cvUrl": "https://example.com/cv.pdf"
+  },
+  "endorsements": [
+    { "by": "a-github-handle", "skill": "Docusaurus", "text": "One or two sentences about work they saw.", "date": "2026-10-21" }
+  ]
 }

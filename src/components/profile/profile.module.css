@@ -225,3 +225,57 @@ div.root .name, .root h1.name { margin: 0; font: 700 28px/1.15 "Space Grotesk", 
 @media (prefers-reduced-motion: reduce) {
   .flame, .liveDot, .skeleton { animation: none !important; }
 }
+
+/* Hire card and message form */
+.hire { border-top: 3px solid var(--accent); }
+.openPill { display: inline-flex; align-items: center; gap: 7px; margin: 0 0 10px; padding: 3px 11px; border-radius: 999px; background: var(--accent-tint); color: var(--accent); font-size: 12.5px; font-weight: 700; }
+.liveDotGreen { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
+.hireRows { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.hireRows li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 10px; font-size: 13.5px; color: var(--text2); }
+.hireRows strong { color: var(--text); display: inline-flex; align-items: center; gap: 4px; }
+.hireButtons { display: flex; flex-wrap: wrap; gap: 8px; }
+.hireNote { margin: 12px 0 0; font-size: 12.5px; color: var(--muted); text-align: center; }
+.msgBox { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--soft); font-size: 13.5px; color: var(--text2); }
+.msgBox p { margin: 0; }
+.msgBox label { display: flex; flex-direction: column; gap: 4px; font-weight: 600; color: var(--text); }
+.msgBox input, .msgBox textarea { padding: 9px 11px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); font: 400 14px "Inter", sans-serif; }
+.msgError { color: #b42318; }
+:global(html[data-theme='dark']) .msgError { color: #fca5a5; }
+.hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+/* Share card: QR, LinkedIn preview and Add to profile */
+.shares4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 12px; }
+.shares4 a, .shares4 button { display: inline-flex; align-items: center; justify-content: center; height: 38px; border: 1px solid var(--border); border-radius: 10px; color: var(--text); background: var(--card); cursor: pointer; }
+.shares4 a:hover, .shares4 button:hover { border-color: var(--accent); color: var(--accent); }
+.qr { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 12px; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: #fff; }
+.qr img { border-radius: 6px; }
+.previewLabel { margin: 16px 0 8px; font: 500 10.5px "JetBrains Mono", monospace; letter-spacing: 0.08em; color: var(--muted); }
+.preview { margin-bottom: 10px; overflow: hidden; border: 1px solid var(--border); border-radius: 10px; background: var(--card); }
+.preview img { display: block; width: 100%; height: auto; }
+.preview p { display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 8px 12px; background: var(--soft); font-size: 13px; color: var(--text); }
+.preview small { font-size: 11.5px; color: var(--muted); }
+.liCard { border-top: 3px solid #0a66c2; }
+.liText { margin: 0 0 12px; font-size: 13.5px; line-height: 1.55; color: var(--text2); }
+.liBtn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; width: 100%; height: 40px; border-radius: 10px; background: #0a66c2; color: #fff; font: 700 14px "Inter", sans-serif; text-decoration: none; }
+.liBtn:hover { color: #fff; filter: brightness(1.08); text-decoration: none; }
+.liHelp { margin: 12px 0 8px; font-size: 12.5px; color: var(--muted); }
+.copyRow { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.copyRow button { height: 34px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); font: 600 13px "Inter", sans-serif; cursor: pointer; }
+.copyRow button:hover { border-color: var(--accent); }
+
+/* Badges: per-badge download and the footer */
+.badgeDl { display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; padding: 3px 9px; border: 1px solid var(--border); border-radius: 8px; color: var(--text); font: 600 11px "Inter", sans-serif; text-decoration: none; background: var(--card); }
+.badgeDl:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.badgeFoot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin: 12px 0 0; font-size: 12.5px; color: var(--muted); }
+.badgeFoot a { display: inline-flex; align-items: center; gap: 5px; color: #0a66c2; font-weight: 600; text-decoration: none; }
+:global(html[data-theme='dark']) .badgeFoot a { color: #7cb7ff; }
+
+/* Endorsements */
+.endorse { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.endorse li { padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--soft); }
+.endorse p { margin: 0 0 6px; font-size: 14.5px; line-height: 1.55; color: var(--text); }
+.endorse small { font-size: 12.5px; color: var(--muted); }
+.endorse small a { color: var(--link); }
+.endorseEmpty { margin-bottom: 14px; padding: 14px 16px; border: 1px dashed var(--border); border-radius: 12px; background: var(--soft); }
+.endorseEmpty p { margin: 0 0 4px; font-size: 13.5px; line-height: 1.5; color: var(--text2); }
+.endorseEmpty strong { color: var(--text); }

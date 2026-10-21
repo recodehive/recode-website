@@ -4,13 +4,15 @@ import Head from '@docusaurus/Head';
 import Link from '@docusaurus/Link';
 import { useLocation } from '@docusaurus/router';
 import { useUser } from '@clerk/react';
-import { ArrowUpRight, Building2, Clock, Github, Globe, Linkedin, Mail, MapPin, Share2 } from 'lucide-react';
+import { ArrowUpRight, Briefcase, Building2, Clock, Download, Github, Globe, Linkedin, MapPin, Share2 } from 'lucide-react';
 import { BADGES, type Badge } from '../../data/badges';
 import { getClosestLocked, getProgress, getRarestEarned, isUnlocked, type BadgeStats } from '../../utils/badges';
 import type { ProfileSite } from '../../lib/profile/types';
 import { computeStreak } from '../../lib/profile/streak';
 import BadgeImage from '../leaderboard/BadgeImage';
 import Cover from './Cover';
+import HireCard from './HireCard';
+import ShareCard from './ShareCard';
 import { useGithubProfile } from './useGithubProfile';
 import styles from './profile.module.css';
 
@@ -49,7 +51,7 @@ function tierVars(b: Badge, i: number): React.CSSProperties {
 function blankSite(handle: string): ProfileSite {
   return {
     handle, username: handle, avatar: `https://github.com/${handle}.png`, rank: 0, points: 0, prs: 0, recentPrs: [], repos: [],
-    firstPrAt: null, posts: [], extras: null, indexable: false, builtAt: new Date().toISOString(),
+    firstPrAt: null, posts: [], extras: null, indexable: false, ogImage: null, builtAt: new Date().toISOString(),
   };
 }
 
@@ -106,7 +108,6 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
   const bio = extras?.bio || user?.bio || null;
   const tz = extras?.timezone || 'UTC';
   const profileUrl = `${SITE}/u/${site.handle}`;
-  const [copied, setCopied] = useState(false);
   const [tab, setTab] = useState<'earned' | 'all'>('earned');
 
   const stats: BadgeStats = { prs: site.prs, points: site.points, rank: site.rank > 0 ? site.rank : null };
@@ -147,8 +148,6 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
       document.execCommand('copy');
       document.body.removeChild(t);
     }
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 2000);
   };
 
   // Skills with proof
@@ -166,11 +165,14 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
   const declared = extras?.skillsDeclared ?? [];
   const hasSkills = proven.length + certified.length + declared.length > 0;
 
+  const hire = extras?.hire?.open ? extras.hire : null;
+  const firstName = name.split(' ')[0] || site.username;
   const website = safeHref(extras?.links?.website || user?.blog);
   const linkedin = safeHref(extras?.links?.linkedin);
   const xUrl = safeHref(extras?.links?.x) ?? (user?.twitter ? `https://x.com/${user.twitter}` : null);
   const thin = !extras?.headline && !extras?.featuredWork?.length;
   const issueUrl = `${REPO_ISSUES}?template=profile-update.yml&title=${encodeURIComponent(`Profile update: @${site.handle}`)}`;
+  const endorseUrl = `${REPO_ISSUES}?template=endorsement.yml&title=${encodeURIComponent(`Endorsement for @${site.handle}`)}`;
   const reportUrl = `${REPO_ISSUES}?title=${encodeURIComponent(`Report profile: @${site.handle}`)}&body=${encodeURIComponent(`Profile: ${profileUrl}\n\nWhat is wrong?`)}`;
 
   // Journey: newest first, dated events before undated ones
@@ -203,8 +205,10 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:url" content={profileUrl} />
-        <meta property="og:image" content={site.avatar} />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:image" content={site.ogImage ?? site.avatar} />
+        {site.ogImage && <meta property="og:image:width" content="1200" />}
+        {site.ogImage && <meta property="og:image:height" content="630" />}
+        <meta name="twitter:card" content={site.ogImage ? 'summary_large_image' : 'summary'} />
         {noindex && <meta name="robots" content="noindex" />}
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
@@ -217,6 +221,7 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
             <img className={styles.avatar} src={site.avatar} alt={`${name} avatar`} width={132} height={132} />
             <div className={styles.headActions}>
               <button type="button" className={styles.btnOutline} onClick={() => void share()}><Share2 size={15} aria-hidden="true" /> Share</button>
+              {hire && <a className={styles.btnPrimary} href="#hire"><Briefcase size={15} aria-hidden="true" /> Hire {firstName}</a>}
             </div>
           </div>
 
@@ -357,10 +362,15 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
                           <strong>{b.name}</strong>
                           <span className={styles.badgeCrit}>{b.criteria}</span>
                           <em>{rarityLabel(b.rarity)}</em>
+                          {on && <a className={styles.badgeDl} href={b.image} download={`${b.id}.png`} aria-label={`Download the ${b.name} badge`}><Download size={12} aria-hidden="true" /> Download</a>}
                         </li>
                       );
                     })}
                   </ul>
+                  <p className={styles.badgeFoot}>
+                    <span>Each badge can link back to this profile as proof.</span>
+                    <a href="https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME" target="_blank" rel="noopener"><Linkedin size={13} aria-hidden="true" /> Add badges to LinkedIn</a>
+                  </p>
                 </section>
               )}
 
@@ -400,21 +410,31 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
                   </ol>
                 </section>
               )}
+
+              <section className={styles.card} aria-labelledby="en">
+                <div className={styles.cardHead}><h2 id="en" className={styles.h2}>Endorsements</h2><span className={styles.mono}>From maintainers and collaborators</span></div>
+                {extras?.endorsements && extras.endorsements.length > 0 ? (
+                  <ul className={styles.endorse}>
+                    {extras.endorsements.map((e) => (
+                      <li key={`${e.by}-${e.skill}-${e.date}`}>
+                        <p>{'\u201C'}{e.text}{'\u201D'}</p>
+                        <small><a href={`https://github.com/${e.by}`} target="_blank" rel="noopener">@{e.by}</a> endorsed <strong>{e.skill}</strong> {'\u00B7'} {dateFmt(e.date)}</small>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className={styles.endorseEmpty}>
+                    <p><strong>No endorsements yet</strong></p>
+                    <p>Worked with {firstName} on a recode hive project? Endorse a skill. You need a GitHub account with a merged PR. An admin reviews each one before it appears.</p>
+                  </div>
+                )}
+                <a className={styles.btnOutline} href={endorseUrl} target="_blank" rel="noopener">Endorse {firstName}</a>
+              </section>
             </div>
 
             <aside className={styles.side} aria-label="Share and trust">
-              <section className={styles.card} aria-labelledby="sh">
-                <h2 id="sh" className={styles.h2}>Share this profile</h2>
-                <div className={styles.urlBox}>
-                  <code>recodehive.com/u/{site.handle}</code>
-                  <button type="button" className={`${styles.copyBtn} ${copied ? styles.copied : ''}`} onClick={() => void copy()}>{copied ? 'Copied!' : 'Copy'}</button>
-                </div>
-                <div className={styles.shares}>
-                  <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(profileUrl)}`} target="_blank" rel="noopener" aria-label="Share on LinkedIn (opens in a new tab)"><Linkedin size={16} aria-hidden="true" /></a>
-                  <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(profileUrl)}&text=${encodeURIComponent(`${name} on recode hive`)}`} target="_blank" rel="noopener" aria-label="Share on X (opens in a new tab)"><XMark /></a>
-                  <a href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(profileUrl)}`} aria-label="Share by email"><Mail size={16} aria-hidden="true" /></a>
-                </div>
-              </section>
+              {hire && <HireCard firstName={firstName} handle={site.handle} hire={hire} timezone={extras?.timezone} profileUrl={profileUrl} />}
+              <ShareCard handle={site.handle} name={name} title={title} profileUrl={profileUrl} ogImage={site.ogImage} rank={site.rank} />
 
               <section className={styles.card} aria-labelledby="tr">
                 <h2 id="tr" className={styles.h2}>Why you can trust this page</h2>

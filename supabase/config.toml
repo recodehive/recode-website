@@ -9,3 +9,7 @@ verify_jwt = false
 # Public read-only data from GitHub, cached for a week. No sign-in needed.
 [functions.profile]
 verify_jwt = false
+
+# Public share image for developer profiles.
+[functions.og]
+verify_jwt = false
