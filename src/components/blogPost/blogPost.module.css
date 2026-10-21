@@ -221,3 +221,18 @@ div.page .title, .page h1.title { margin: 0 0 18px; font: 700 44px/1.1 "Space Gr
   .authorCard { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) { .pager { transition: none; } .pager:hover { transform: none; } }
+
+/* Author avatar stack (posts with more than one author) */
+.stack { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; }
+.stackItem { position: relative; margin-left: -10px; transition: margin 0.2s; }
+.stackItem:first-child { margin-left: 0; }
+.stackLink { display: block; width: 40px; height: 40px; border: 2px solid var(--card); border-radius: 50%; background: var(--chip); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+.stackLink img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.stackInitial { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; font: 600 15px "Inter", sans-serif; color: var(--text2); }
+.stackItem:hover { margin-left: 2px; z-index: 4; }
+.stackItem:hover + .stackItem { margin-left: 2px; }
+.stackLink:hover, .stackLink:focus-visible { transform: translateY(-5px) scale(1.15); box-shadow: 0 0 0 3px rgba(236, 72, 153, 0.35); outline: none; }
+.stackTip { position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translateX(-50%) translateY(4px); padding: 4px 9px; border-radius: 6px; background: #0f172a; color: #fff; font: 500 11px "Inter", sans-serif; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s, transform 0.15s; z-index: 6; }
+:global(html[data-theme='dark']) .stackTip { background: #e6edf3; color: #0d1117; }
+.stackItem:hover .stackTip, .stackItem:focus-within .stackTip { opacity: 1; transform: translateX(-50%) translateY(0); }
+@media (prefers-reduced-motion: reduce) { .stackItem, .stackLink, .stackTip { transition: none; } .stackLink:hover, .stackLink:focus-visible { transform: none; } }
