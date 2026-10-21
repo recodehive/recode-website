@@ -144,3 +144,5 @@ div.root .cardTitle { font: 700 17px "Space Grotesk", sans-serif; color: #1c1917
 .entryList a { color: #1c1917; font-weight: 600; text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .entryList a:hover { color: #9a3412; text-decoration: underline; }
 .entryRank { font: 600 12px "JetBrains Mono", ui-monospace, monospace; color: #78716c; }
+
+.questDone .pointsMuted { visibility: hidden; }
