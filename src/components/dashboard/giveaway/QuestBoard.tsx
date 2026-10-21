@@ -78,7 +78,7 @@ function SocialQuest({ action, done, onDo }: { action: GiveawayAction; done: boo
   const counts = action.entries > 0;
   return (
     <li className={`${styles.quest} ${done ? styles.questDone : ''}`}>
-      {done && <span className={styles.stamp} aria-hidden="true">{counts ? 'VERIFIED' : 'THANKS'}</span>}
+      {done && <span className={styles.stamp} aria-hidden="true">{counts ? 'VERIFIED' : 'COMPLETED'}</span>}
       <div className={styles.questTop}>
         <span className={styles.tile} style={{ background: icon.bg }} aria-hidden="true">{icon.node}</span>
         <span className={`${styles.points} ${counts ? '' : styles.pointsMuted}`}>{counts ? `+${action.entries}` : 'Link'}</span>
