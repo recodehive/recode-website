@@ -82,8 +82,8 @@ div.page .title, .page h1.title { margin: 0 0 18px; font: 700 44px/1.1 "Space Gr
 .tocBar { display: none; }
 
 /* Article body: scoped to the blog post so docs pages are not affected */
-.post { font-size: 17px; line-height: 1.75; color: var(--text2); }
-.post :global(.markdown) > p, .post p { font-size: 17px; line-height: 1.75; color: var(--text2); margin: 0 0 20px; }
+.post { font-size: 16px; line-height: 1.75; color: var(--text2); }
+.post :global(.markdown) > p, .post p { font-size: 16px; line-height: 1.75; color: var(--text2); margin: 0 0 24px; }
 .post a { color: #2e8555; text-decoration: underline; text-decoration-color: rgba(46, 133, 85, 0.35); text-underline-offset: 3px; }
 :global(html[data-theme='dark']) .post a { color: #4cc184; }
 .post h2 { margin: 40px 0 14px; font: 700 28px/1.2 "Space Grotesk", sans-serif; color: var(--text); scroll-margin-top: 90px; }
