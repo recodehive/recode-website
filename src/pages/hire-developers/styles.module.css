@@ -44,7 +44,7 @@
 .roleRow small, .openNote { color: var(--muted); font-size: .68rem; }
 .openNote { display: block; margin: 1rem .3rem .2rem; }
 .intro { padding-top: 6rem; }
-.builders { padding-top: 7rem; }
+.builders { padding-top: 7rem; scroll-margin-top: calc(54px + env(safe-area-inset-top, 0px) + 1rem); }
 .centerHeading { max-width: 650px; margin: 0 auto 2.5rem; text-align: center; }
 .centerHeading .eyebrow { justify-content: center; }
 .centerHeading h2 { margin: .8rem 0 .7rem; font-family: "Space Grotesk", sans-serif; font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -.04em; line-height: 1.05; }
@@ -128,7 +128,25 @@
 .joinCta { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 1.5rem; padding: 2rem 0; border-top: 1px solid var(--line); }
 .joinCta > div { display: flex; flex-direction: column; gap: .75rem; }
 .joinCta p:last-child { max-width: 560px; margin: 0; color: var(--muted); line-height: 1.6; }
+@media (max-width: 996px) {
+  main.page > section.hero,
+  main.page > .hero,
+  .page .hero {
+    padding-top: calc(54px + env(safe-area-inset-top, 0px) + 2.5rem) !important;
+  }
+}
 @media (max-width: 850px) { .workGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 850px) { .heroLayout, .planner, .faq { grid-template-columns: 1fr; } .talentGrid, .whyGrid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 620px) { .container { width: min(100% - 2rem, 1180px); } .hero { padding-top: 4.5rem; } .heroLayout { gap: 2rem; } .steps, .workGrid, .talentGrid, .whyGrid, .timeline { grid-template-columns: 1fr; } .plannerFields { grid-template-columns: 1fr; } .cta, .joinCta { align-items: flex-start; flex-direction: column; padding: 1.5rem; } }
+@media (max-width: 620px) {
+  .container { width: min(100% - 2rem, 1180px); }
+  main.page > section.hero,
+  main.page > .hero,
+  .page .hero {
+    padding-top: calc(54px + env(safe-area-inset-top, 0px) + 2rem) !important;
+  }
+  .heroLayout { gap: 2rem; }
+  .steps, .workGrid, .talentGrid, .whyGrid, .timeline { grid-template-columns: 1fr; }
+  .plannerFields { grid-template-columns: 1fr; }
+  .cta, .joinCta { align-items: flex-start; flex-direction: column; padding: 1.5rem; }
+}
 @media (prefers-reduced-motion: reduce) { .primaryButton, .workCard { transition: none; } .primaryButton:hover, .workCard:hover { transform: none; } }
