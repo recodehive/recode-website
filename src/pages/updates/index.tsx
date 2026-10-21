@@ -1,109 +1,114 @@
+import React from "react";
 import Layout from "@theme/Layout";
-import {
-  ArrowUpRight,
-  CheckCircle2,
-  Clock3,
-  Sparkles,
-} from "lucide-react";
+import Link from "@docusaurus/Link";
+import { useHistory } from "@docusaurus/router";
+import { ArrowRight, Sparkles } from "lucide-react";
+import DashboardSidebar, {
+  type DashboardTab,
+} from "../../components/dashboard/Sidebar/DashboardSidebar";
+import { UPDATES, type SiteUpdate } from "../../data/updates";
 import "./index.css";
 
-type UpdateStatus = "Now shipping" | "In progress" | "Coming next";
-
-type Update = {
-  title: string;
-  description: string;
-  status: UpdateStatus;
-  date: string;
-  icon: typeof CheckCircle2;
+const HASH: Record<DashboardTab, string> = {
+  home: "/dashboard",
+  discuss: "/dashboard#discuss",
+  contributors: "/dashboard#leaderboard",
+  giveaway: "/dashboard#giveaway",
 };
 
-// Keep this list manually curated so it highlights meaningful product updates,
-// rather than every dependency or maintenance change in the repository.
-const updates: Update[] = [
-  {
-    title: "A clearer dashboard experience",
-    description:
-      "The dashboard brings discussions, giveaways, contributor stats, and community resources together in one focused workspace.",
-    status: "Now shipping",
-    date: "October 2026",
-    icon: CheckCircle2,
-  },
-  {
-    title: "Better ways to discover the community",
-    description:
-      "We are improving the community feed and contributor experience so it is easier to find conversations, events, and ways to get involved.",
-    status: "In progress",
-    date: "Coming soon",
-    icon: Clock3,
-  },
-  {
-    title: "More practical learning resources",
-    description:
-      "New tutorials, projects, and data engineering resources are on the way, with a continued focus on learning by building.",
-    status: "Coming next",
-    date: "Up next",
-    icon: Sparkles,
-  },
-];
+// "2026-10-21" becomes "October 21, 2026", written the same for every visitor
+function formatDate(iso: string): string {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d)).toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
 
-const statusClasses: Record<UpdateStatus, string> = {
-  "Now shipping": "updates__status--shipping",
-  "In progress": "updates__status--progress",
-  "Coming next": "updates__status--next",
-};
+function UpdateRow({ u }: { u: SiteUpdate }): React.JSX.Element {
+  return (
+    <article className="updates__row">
+      <div className="updates__when">
+        <time dateTime={u.date}>{formatDate(u.date)}</time>
+        {u.isNew && <span className="updates__new">New</span>}
+      </div>
+      <div className="updates__card">
+        <h2>{u.title}</h2>
+        <p className="updates__desc">{u.description}</p>
+        {u.video ? (
+          <div className="updates__media updates__media--video">
+            <iframe
+              src={u.video}
+              title={u.title}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        ) : u.image ? (
+          <div className="updates__media">
+            <img src={u.image} alt={u.imageAlt ?? ""} loading="lazy" />
+          </div>
+        ) : null}
+        {u.bullets && u.bullets.length > 0 && (
+          <ul className="updates__bullets">
+            {u.bullets.map((b) => (
+              <li key={b}>{b}</li>
+            ))}
+          </ul>
+        )}
+        {u.link && (
+          <Link to={u.link.url} className="updates__link">
+            {u.link.label} <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+        )}
+      </div>
+    </article>
+  );
+}
 
-export default function UpdatesPage(): JSX.Element {
+export default function UpdatesPage(): React.JSX.Element {
+  const history = useHistory();
   return (
     <Layout
       title="Updates"
       description="Important updates and improvements from the recode hive team."
     >
-      <main className="updates">
-        <header className="updates__hero">
-          <span className="updates__eyebrow">
-            <Sparkles size={15} aria-hidden="true" />
-            What&apos;s new
-          </span>
-          <h1>Building in public, one update at a time.</h1>
-          <p>
-            Follow the important changes and improvements we&apos;re making to
-            recode hive. This page is updated manually with progress that
-            matters to the community.
-          </p>
-        </header>
+      <div className="updates__shell">
+        <DashboardSidebar
+          activeTab={null}
+          onTabChange={(tab) => history.push(HASH[tab])}
+        />
+        <main className="updates">
+          <header className="updates__hero">
+            <span className="updates__eyebrow">
+              <Sparkles size={15} aria-hidden="true" />
+              What&apos;s new
+            </span>
+            <h1>Building in public, one update at a time.</h1>
+            <p>
+              Follow the important changes and improvements we&apos;re making to
+              recode hive. This page is updated manually with progress that
+              matters to the community.
+            </p>
+          </header>
 
-        <section className="updates__list" aria-label="Website updates">
-          {updates.map(({ title, description, status, date, icon: Icon }) => (
-            <article className="updates__card" key={title}>
-              <div className="updates__card-icon" aria-hidden="true">
-                <Icon size={20} />
-              </div>
-              <div className="updates__card-content">
-                <div className="updates__meta">
-                  <span className={`updates__status ${statusClasses[status]}`}>
-                    {status}
-                  </span>
-                  <span>{date}</span>
-                </div>
-                <h2>{title}</h2>
-                <p>{description}</p>
-              </div>
-              <ArrowUpRight
-                className="updates__card-arrow"
-                size={20}
-                aria-hidden="true"
-              />
-            </article>
-          ))}
-        </section>
+          <section className="updates__list" aria-label="Website updates">
+            {UPDATES.map((u) => (
+              <UpdateRow key={`${u.date}-${u.title}`} u={u} />
+            ))}
+          </section>
 
-        <footer className="updates__footer">
-          <p>Have an idea or spotted something we should improve?</p>
-          <a href="/contact-us">
-            Talk to the team <ArrowUpRight size={16} aria-hidden="true" />
-          </a>
-        </footer>
-      </main>
+          <footer className="updates__footer">
+            <p>Have an idea or spotted something we should improve?</p>
+            <Link to="/contact-us">
+              Talk to the team <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </footer>
+        </main>
+      </div>
     </Layout>
   );
 }
