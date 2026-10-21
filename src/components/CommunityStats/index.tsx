@@ -107,7 +107,8 @@ export default function CommunityStats({
           <div className={styles.headText}>
             <p className={styles.eyebrow}>✦ Community</p>
             <h2 id="community-heading" className={styles.title}>
-              Discover the strength of our amazing community
+              Discover the strength of our<br />
+                amazing community
             </h2>
           </div>
           <span className={styles.live}>
