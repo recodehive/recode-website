@@ -163,12 +163,14 @@ export default function BroadcastsView() {
     <div className={styles.page}>
       <header className={styles.hero}>
         <div className={styles.heroText}>
+        <div className={styles.heroTitleBlock}>
           <p className={styles.eyebrow}>{'✦'} BROADCASTS</p>
           <h1 className={styles.h1}>Watch it, then <span className={styles.accent}>ship it</span></h1>
-          <p className={styles.lede}>
-            Short GitHub tutorials and past live sessions from the recode hive channel. Every video ends with something you can do on a real repo today.
-          </p>
         </div>
+      <p className={styles.lede}>
+    Short GitHub tutorials and past live sessions from the recode hive channel. Every video ends with something you can do on a real repo today.
+  </p>
+</div>
         <div className={styles.heroActions}>
           <Link className={styles.btnOutline} to="/learn">Free courses {'→'}</Link>
           <a className={styles.btnDark} href={CHANNEL_URL} target="_blank" rel="noopener noreferrer">
