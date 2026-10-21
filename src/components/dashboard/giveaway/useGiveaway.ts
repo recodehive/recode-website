@@ -147,6 +147,8 @@ export function useGiveaway() {
         signIn();
         return;
       }
+      const action = SOCIAL_ACTIONS.find((item) => item.id === id);
+      if (action?.verify !== 'honor') return;
       if (saved.done[id]) return;
       const all = (user.unsafeMetadata?.giveaway as Record<string, Saved> | undefined) ?? {};
       void user.update({
@@ -154,6 +156,25 @@ export function useGiveaway() {
       });
     },
     [user, signIn, saved.done],
+  );
+
+  /** Open a quest and schedule server checks for GitHub actions after the user completes it. */
+  const claim = useCallback(
+    (id: string) => {
+      const action = SOCIAL_ACTIONS.find((item) => item.id === id);
+      if (action?.verify === 'honor') {
+        markDone(id);
+        return;
+      }
+      if (!user) {
+        signIn();
+        return;
+      }
+      void sync();
+      window.setTimeout(() => void sync(), 11_000);
+      window.setTimeout(() => void sync(), 22_000);
+    },
+    [markDone, signIn, sync, user],
   );
 
   const verified = useCallback(
@@ -184,5 +205,6 @@ export function useGiveaway() {
     sync,
     signIn,
     markDone,
+    claim,
   };
 }
