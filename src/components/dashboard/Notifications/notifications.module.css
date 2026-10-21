@@ -1,0 +1,281 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(15, 23, 42, 0.25);
+}
+
+.panel {
+  --accent: #2e8555;
+  --accent-dark: #205d3b;
+  --accent-tint: #e8f5ee;
+  --text: #0f172a;
+  --text-2: #475569;
+  --muted: #64748b;
+  --border: #e2e8f0;
+  --card: #ffffff;
+  --hover: #f1f5f9;
+  position: fixed;
+  left: 268px;
+  bottom: 16px;
+  width: 400px;
+  max-height: calc(100vh - var(--ifm-navbar-height) - 32px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  animation: pop 180ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+:global(html[data-theme="dark"]) .panel {
+  --accent: #60a5fa;
+  --accent-dark: #93c5fd;
+  --accent-tint: rgba(96, 165, 250, 0.12);
+  --text: #f1f5f9;
+  --text-2: #cbd5e1;
+  --muted: #94a3b8;
+  --border: #1e293b;
+  --card: #111827;
+  --hover: #1e293b;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* the rail is 72px wide when collapsed and 256px otherwise */
+.panelCollapsed {
+  left: 84px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 14px 14px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.title {
+  margin: 0;
+  font: 600 16px "Inter", sans-serif;
+  color: var(--text);
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.close:hover {
+  background: var(--hover);
+  color: var(--text);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px 8px 20px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.markAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  font: 500 13px "Inter", sans-serif;
+  color: var(--accent-dark);
+  cursor: pointer;
+}
+
+.markAll:hover:not(:disabled) {
+  background: var(--accent-tint);
+}
+
+.markAll:disabled {
+  color: var(--muted);
+  opacity: 0.6;
+  cursor: default;
+}
+
+.list {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  gap: 14px;
+  padding: 18px 40px 18px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--hover);
+  color: var(--text-2);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.itemTitle {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.unread .itemTitle {
+  font-weight: 600;
+}
+
+.message {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.link {
+  align-self: flex-start;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--accent-dark);
+}
+
+.link:hover {
+  color: var(--accent);
+}
+
+.time {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.dot {
+  position: absolute;
+  top: 26px;
+  right: 20px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.empty {
+  margin: 0;
+  padding: 40px 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.foot {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.footLink {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+.footLink:hover {
+  color: var(--accent);
+}
+
+.close:focus-visible,
+.markAll:focus-visible,
+.link:focus-visible,
+.footLink:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* custom.css outlines every :focus, which shows on the close button
+   as soon as the panel is opened with the mouse */
+.panel :focus:not(:focus-visible) {
+  outline: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    animation: none;
+  }
+}
+
+/* The rail is hidden below 1024px, so let the panel span the screen instead */
+@media (max-width: 1023px) {
+  .panel,
+  .panelCollapsed {
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
+}

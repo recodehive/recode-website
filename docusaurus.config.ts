@@ -166,6 +166,8 @@ const config: Config = {
     "./plugins/blog-listing",
     // Real GitHub Discussions, fetched at build time (token never reaches the browser)
     "./plugins/github-discussions",
+    // Dashboard notifications, read from src/data/notifications.txt
+    "./plugins/notifications",
     [
       "@docusaurus/plugin-ideal-image",
       {
