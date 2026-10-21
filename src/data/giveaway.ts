@@ -20,7 +20,7 @@ export const GIVEAWAY = {
   /** Sydney time (AEDT). The window is always read with this offset, never the visitor's local time. */
   startsAt: '2026-10-21T00:00:00+11:00',
   endsAt: '2026-11-01T23:59:59+11:00',
-  winners: 3,
+  winners: 1,
   prize: '₹500 Amazon voucher',
   /** Staff can enter but cannot win. */
   staff: ['sanjay-kv'],

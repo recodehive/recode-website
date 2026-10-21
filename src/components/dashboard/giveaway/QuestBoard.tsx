@@ -165,7 +165,7 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
             <h1 className={styles.h1}>Trick or commit. <span className={styles.orange}>Fill your bag.</span></h1>
             <p className={styles.prize}>
               <span className={styles.gift} aria-hidden="true">{'\u{1F381}'}</span>
-              <span><b>{GIVEAWAY.prize}</b> for each of {GIVEAWAY.winners} winners</span>
+              <span><b>{GIVEAWAY.prize}</b> {GIVEAWAY.winners === 1 ? 'for one lucky winner' : `for each of ${GIVEAWAY.winners} winners`}</span>
             </p>
           </div>
           <div className={styles.bannerTimer}>
@@ -251,11 +251,11 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
 
         <div className={styles.bottom}>
           <section className={styles.card} aria-labelledby="how-title">
-            <h2 id="how-title" className={styles.cardTitle}>How winners are picked</h2>
+            <h2 id="how-title" className={styles.cardTitle}>{GIVEAWAY.winners === 1 ? 'How the winner is picked' : 'How winners are picked'}</h2>
             <ol className={styles.steps}>
               <li><span>1</span>Collect entries from quests, merged PRs and friends.</li>
-              <li><span>2</span>After Nov 1, {GIVEAWAY.winners === 3 ? 'three' : GIVEAWAY.winners} winners are drawn at random. More entries, more chances.</li>
-              <li><span>3</span>Winners are announced on Discord and LinkedIn and contacted through GitHub.</li>
+              <li><span>2</span>After Nov 1, {GIVEAWAY.winners === 1 ? 'one winner is' : `${GIVEAWAY.winners} winners are`} drawn at random. More entries, more chances.</li>
+              <li><span>3</span>{GIVEAWAY.winners === 1 ? 'The winner is' : 'Winners are'} announced on Discord and LinkedIn and contacted through GitHub.</li>
             </ol>
           </section>
           <section id="giveaway-rules" className={styles.card} aria-labelledby="rules-title">
@@ -266,7 +266,7 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
               <li>One GitHub account per person. Duplicate or fake accounts are disqualified.</li>
               <li>recodehive maintainers and staff can take part but cannot win.</li>
               <li>Spam pull requests do not count. Only PRs merged by a maintainer earn entries.</li>
-              <li>Winners have 7 days to reply before a new winner is drawn.</li>
+              <li>{GIVEAWAY.winners === 1 ? 'The winner has' : 'Winners have'} 7 days to reply before a new winner is drawn.</li>
             </ul>
           </section>
         </div>
