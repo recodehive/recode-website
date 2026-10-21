@@ -124,7 +124,7 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
               return (
                 <li key={b.id} className={`${styles.pathNode} ${reached ? styles.pathReached : ''} ${b.id === selected.id ? styles.pathSelected : ''}`}>
                   <button type="button" onClick={() => onSelect(b.id)} aria-label={`${b.name}, ${b.threshold} merged PRs`}>
-                    <BadgeImage badge={b} size={34} locked={!reached} showLock={false} />
+                    <BadgeImage badge={b} size={48} locked={!reached} showLock={false} />
                   </button>
                   <span className={styles.pathNum}>{b.threshold}</span>
                   {next && <span className={`${styles.pathLine} ${lineOn ? styles.pathLineOn : ''}`} aria-hidden="true" />}
@@ -161,7 +161,7 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
                     return (
                       <li key={b.id}>
                         <button type="button" className={`${styles.tile} ${b.id === selected.id ? styles.tileOn : ''} ${on ? '' : styles.tileLocked}`} aria-pressed={b.id === selected.id} onClick={() => onSelect(b.id)}>
-                          <BadgeImage badge={b} size={64} locked={!on} />
+                          <BadgeImage badge={b} size={72} locked={!on} />
                           <span className={styles.tileName}>{b.name}</span>
                           <span className={styles.tileCrit}>{b.criteria}</span>
                         </button>
