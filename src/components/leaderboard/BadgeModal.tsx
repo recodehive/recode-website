@@ -79,6 +79,17 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
     };
   }, [onClose]);
 
+  // Pause the effects on cards that are scrolled out of view.
+  useEffect(() => {
+    const root = dialogRef.current;
+    if (!root || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) (e.target as HTMLElement).dataset.off = e.isIntersecting ? 'false' : 'true';
+    });
+    root.querySelectorAll<HTMLElement>('[data-fx="true"]').forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  });
+
   const visible = useMemo(
     () => BADGES.filter((b) => (filter === 'all' ? true : filter === 'unlocked' ? unlockedOf(b) : !unlockedOf(b))),
     [filter, signedIn, stats],
@@ -104,10 +115,10 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
           {!signedIn && ' Sign in with GitHub to track your badges.'}
         </p>
 
-        <section key={selected.id} className={styles.detail} aria-label={`${selected.name} details`}>
-          <div className={`${styles.bigBadge} ${selectedUnlocked ? styles.float : ''}`}>
-            <BadgeImage badge={selected} size={170} locked={!selectedUnlocked} eager showLock />
-            {selectedUnlocked && <span className={styles.shine} aria-hidden="true" />}
+        <div aria-live="polite" aria-atomic="true">
+        <section key={selected.id} className={`${styles.detail} ${selectedUnlocked ? styles.detailEarned : ''}`} style={tierVars(selected, 0)} aria-label={`${selected.name} details`}>
+          <div className={styles.bigBadge}>
+            <BadgeImage badge={selected} size={170} locked={!selectedUnlocked} eager showLock fx={selectedUnlocked} className={styles.bigFx} />
           </div>
           <div className={styles.detailText}>
             <p className={styles.groupLine}>
@@ -124,7 +135,7 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
                   <span>{progress.label}</span>
                 </div>
                 <div className={styles.progressBar} role="progressbar" aria-label="Progress toward this badge" aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(progress.pct)}>
-                  <span style={{ width: `${progress.pct}%` }} />
+                  <span style={{ '--w': `${progress.pct}%` } as React.CSSProperties} />
                 </div>
               </div>
             ) : (
@@ -132,6 +143,7 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
             )}
           </div>
         </section>
+        </div>
 
         {showPath && (
           <ol className={styles.path} aria-label="Contribution path">
@@ -220,6 +232,7 @@ export default function BadgeModal({ selectedId, onSelect, onClose, signedIn, st
                           type="button"
                           className={`${styles.tile} ${on ? styles.tileEarned : styles.tileLocked} ${isRarest ? styles.tileRarest : ''} ${b.id === selected.id ? styles.tileOn : ''}`}
                           style={tierVars(b, BADGES.indexOf(b))}
+                          data-fx={on ? 'true' : 'false'}
                           aria-pressed={b.id === selected.id}
                           onClick={() => onSelect(b.id)}
                         >

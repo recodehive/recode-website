@@ -1,6 +1,6 @@
 import React from 'react';
 import { BADGES } from '../../data/badges';
-import { getNextBadge, getUserBadges, isUnlocked, type BadgeStats } from '../../utils/badges';
+import { getRarestEarned, getUserBadges, isUnlocked, type BadgeStats } from '../../utils/badges';
 import BadgeImage from './BadgeImage';
 import { useBadges } from './BadgeContext';
 import styles from './badges.module.css';
@@ -19,7 +19,7 @@ export default function BadgeRail() {
   const stats = viewerStats ?? NO_STATS;
   const { count, total } = getUserBadges(stats);
   const railBadges = RAIL_IDS.map((id) => BADGES.find((b) => b.id === id)!).filter(Boolean);
-  const startId = signedIn ? (getNextBadge(stats) ?? BADGES[0]).id : BADGES[0].id;
+  const startId = signedIn ? (getRarestEarned(stats) ?? BADGES[0]).id : BADGES[0].id;
 
   return (
     <section className={styles.rail} aria-labelledby="badge-rail-title">
