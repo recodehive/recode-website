@@ -9,7 +9,8 @@ interface BadgeContextValue {
   signedIn: boolean;
   viewerStats: BadgeStats | null;
   statsFor: (login: string) => BadgeStats;
-  openBadge: (id: string) => void;
+  /** Opens the badge popup. Pass a login to show that contributor's badges instead of the viewer's. */
+  openBadge: (id: string, login?: string) => void;
 }
 
 const BadgeContext = createContext<BadgeContextValue | null>(null);
@@ -50,17 +51,20 @@ export function BadgesProvider({ viewerLogin, children }: { viewerLogin: string 
   const viewerStats = useMemo(() => (viewerLogin ? statsFor(viewerLogin) : null), [viewerLogin, statsFor]);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [subject, setSubject] = useState<string | null>(null);
   const openerRef = useRef<HTMLElement | null>(null);
 
-  const openBadge = useCallback((id: string) => {
+  const openBadge = useCallback((id: string, login?: string) => {
     if (!BADGES.some((b) => b.id === id)) return;
     openerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setSubject(login && login !== viewerLogin ? login : null);
     setSelectedId(id);
     window.history.replaceState(null, '', `${HASH_PREFIX}${id}`);
-  }, []);
+  }, [viewerLogin]);
 
   const close = useCallback(() => {
     setSelectedId(null);
+    setSubject(null);
     window.history.replaceState(null, '', FALLBACK_HASH);
     const el = openerRef.current;
     openerRef.current = null;
@@ -92,8 +96,9 @@ export function BadgesProvider({ viewerLogin, children }: { viewerLogin: string 
             window.history.replaceState(null, '', `${HASH_PREFIX}${id}`);
           }}
           onClose={close}
-          signedIn={Boolean(viewerLogin)}
-          stats={viewerStats ?? { prs: 0, points: 0, rank: null }}
+          signedIn={Boolean(viewerLogin) || subject !== null}
+          subject={subject}
+          stats={subject ? statsFor(subject) : viewerStats ?? { prs: 0, points: 0, rank: null }}
         />
       )}
     </BadgeContext.Provider>
