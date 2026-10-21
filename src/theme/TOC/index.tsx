@@ -1,25 +1,18 @@
 import clsx from "clsx";
-import TOCItems from "@theme/TOCItems";
-import type {Props} from "@theme/TOC"
-import ReadingPill from "@site/src/components/ReadingPill/ReadingPill";
-import styles from "./styles.module.css";
+import type { Props } from "@theme/TOC";
+import ContentsCard from "../../components/blogPost/ContentsCard";
 
-const LINK_CLASS_NAME = "table-of-contents__link toc-highlight";
-const LINK_ACTIVE_CLASS_NAME = "table-of-contents__link--active";
-
-
-export default function TOC({className,...props}:Props):JSX.Element{
-  return(
-    <div className={clsx(className)}>
-      <div className={styles.tocContainer}>
-
-      <ReadingPill/>
-      <TOCItems
-        {...props}
-        linkClassName={LINK_CLASS_NAME}
-        linkActiveClassName={LINK_ACTIVE_CLASS_NAME}
-        />
-        </div>
+/**
+ * The right-hand contents list for docs and learn pages. It is the same card as the blog posts, with a real
+ * read progress bar and the active section highlighted. (Blog posts render their own card in BlogPostPage.)
+ */
+export default function TOC({ className, toc, minHeadingLevel = 2, maxHeadingLevel = 3 }: Props): JSX.Element | null {
+  const items = toc.filter((t) => t.level >= minHeadingLevel && t.level <= maxHeadingLevel);
+  if (items.length === 0) return null;
+  return (
+    // The wrapper is what sticks, because its parent column is as tall as the page
+    <div className={clsx(className)} style={{ position: "sticky", top: "calc(var(--ifm-navbar-height, 60px) + 1rem)" }}>
+      <ContentsCard toc={items} articleId="doc-article" variant="docs" />
     </div>
-  )
+  );
 }
