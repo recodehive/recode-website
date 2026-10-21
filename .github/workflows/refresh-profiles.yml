@@ -1,0 +1,23 @@
+name: Refresh developer profiles
+
+# Public profiles (recodehive.com/u/<handle>) are built from the leaderboard and blog at build time,
+# and their GitHub data is cached for a week. This job triggers one fresh deploy a week so new
+# contributors get a page and the link-preview text stays current.
+on:
+  schedule:
+    - cron: "0 3 * * 1"
+  workflow_dispatch: {}
+
+jobs:
+  redeploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger a redeploy
+        env:
+          DEPLOY_HOOK_URL: ${{ secrets.DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$DEPLOY_HOOK_URL" ]; then
+            echo "DEPLOY_HOOK_URL secret is not set, skipping"
+            exit 0
+          fi
+          curl --fail --silent --show-error -X POST "$DEPLOY_HOOK_URL"

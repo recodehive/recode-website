@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useUser } from '@clerk/react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import { Search } from 'lucide-react';
+import Link from '@docusaurus/Link';
+import { Github, Search } from 'lucide-react';
+import { profilePath } from '../../../lib/profile/path';
 import { useCommunityStatsContext, type TimeFilter } from '@site/src/lib/statsProvider';
 import { getEarnedByPrestige, getTopMilestone, getUserBadges } from '../../../utils/badges';
 import { BadgesProvider, useBadges } from '../../leaderboard/BadgeContext';
@@ -219,16 +221,27 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
                     <tbody>
                       {visible.map((r) => {
                         const rank = rows.indexOf(r) + 1;
+                        const profileTo = profilePath(r.username);
                         const mine = viewer && r.username.toLowerCase() === viewer.login.toLowerCase();
                         return (
                           <tr key={r.username} className={mine ? styles.rowMine : ''}>
                             <td><span className={`${styles.rank} ${rank === 1 ? styles.rank1 : rank === 2 ? styles.rank2 : ''}`}>{rank}</span></td>
                             <td>
-                              <a className={styles.person} href={r.profile} target="_blank" rel="noopener noreferrer">
-                                <img src={avatarSrc(r.avatar)} alt="" width={36} height={36} loading="lazy" />
-                                <span>@{r.username}{mine ? ' (you)' : ''}</span>
-                                <span className={styles.srOnly}> (opens in a new tab)</span>
-                              </a>
+                              {profileTo ? (
+                                <div className={styles.personRow}>
+                                <Link className={styles.person} to={profileTo}>
+                                  <img src={avatarSrc(r.avatar)} alt="" width={36} height={36} loading="lazy" />
+                                  <span>@{r.username}{mine ? ' (you)' : ''}</span>
+                                </Link>
+                                  <a className={styles.ghBtn} href={r.profile} target="_blank" rel="noopener noreferrer" aria-label={`@${r.username} on GitHub (opens in a new tab)`}><Github size={15} aria-hidden="true" /></a>
+                                </div>
+                              ) : (
+                                <a className={styles.person} href={r.profile} target="_blank" rel="noopener noreferrer">
+                                  <img src={avatarSrc(r.avatar)} alt="" width={36} height={36} loading="lazy" />
+                                  <span>@{r.username}{mine ? ' (you)' : ''}</span>
+                                  <span className={styles.srOnly}> (opens in a new tab)</span>
+                                </a>
+                              )}
                             </td>
                             <td className={styles.mono}>{r.prs}</td>
                             <td>

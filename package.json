@@ -12,6 +12,7 @@
     "fetch:sponsors": "node scripts/fetch-sponsors.mjs",
     "test:contributors": "node --test src/utils/releaseContributors.test.mjs",
     "test:badges": "node --test src/utils/badges.test.mjs",
+    "test:profile": "node --test src/lib/profile/streak.test.mjs",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
