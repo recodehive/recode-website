@@ -572,8 +572,7 @@ html[data-theme="dark"] .dashboard-layout {
 
 /* Giveaway Section */
 .giveaway-section {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .giveaway-section h1 {
