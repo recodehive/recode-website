@@ -13,6 +13,7 @@
 .headText {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 12px;
 }
 .eyebrow {
@@ -26,7 +27,7 @@
 }
 .title {
   margin: 0;
-  max-width: 640px;
+  text-align: left;
   font-family: "Space Grotesk", "Inter", sans-serif;
   font-size: 44px;
   line-height: 1.1;
