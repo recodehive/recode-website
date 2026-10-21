@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { BADGES } from '../data/badges.ts';
-import { getNextBadge, getProgress, getTopMilestone, getUserBadges, isUnlocked } from './badges.ts';
+import { getEarnedByPrestige, getNextBadge, getProgress, getTopMilestone, getUserBadges, isUnlocked } from './badges.ts';
 
 const badge = (id) => BADGES.find((b) => b.id === id);
 const stats = (prs, points = 0, rank = null) => ({ prs, points, rank });
@@ -70,4 +70,13 @@ test('next badge is the next locked PR milestone', () => {
 test('top milestone is the highest unlocked milestone', () => {
   assert.equal(getTopMilestone(stats(0)), null);
   assert.equal(getTopMilestone(stats(30)).id, 'gold');
+});
+
+test('earned badges are ordered by prestige', () => {
+  assert.deepEqual(getEarnedByPrestige(stats(0)).map((b) => b.id), []);
+  assert.deepEqual(getEarnedByPrestige(stats(30)).map((b) => b.id), ['gold', 'silver', 'bronze', 'first-contribution']);
+  // Rank badges lead, and rank #1 comes before rank #3
+  const ids = getEarnedByPrestige(stats(30, 0, 1)).map((b) => b.id);
+  assert.equal(ids[0], 'rank-1');
+  assert.equal(ids[1], 'gold');
 });

@@ -3,10 +3,10 @@ import { useUser } from '@clerk/react';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { Search } from 'lucide-react';
 import { useCommunityStatsContext, type TimeFilter } from '@site/src/lib/statsProvider';
-import { getTopMilestone, getUserBadges } from '../../../utils/badges';
+import { getEarnedByPrestige, getTopMilestone, getUserBadges } from '../../../utils/badges';
 import { BadgesProvider, useBadges } from '../../leaderboard/BadgeContext';
 import BadgeRail from '../../leaderboard/BadgeRail';
-import { CountChip } from '../../leaderboard/BadgeChip';
+import { BadgesCell } from '../../leaderboard/BadgeChip';
 import Podium, { type Row } from './Podium';
 import { HiveActivity, HowToEarn, YourRank, type Viewer } from './Rail';
 import {
@@ -70,7 +70,7 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
   const { statsFor } = useBadges();
   const badgeInfo = (login: string) => {
     const stats = statsFor(login);
-    return { badgeCount: getUserBadges(stats).count, topBadge: getTopMilestone(stats) };
+    return { badgeCount: getUserBadges(stats).count, topBadge: getTopMilestone(stats), earned: getEarnedByPrestige(stats) };
   };
 
   const rows: Row[] = useMemo(
@@ -240,7 +240,7 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
                               </div>
                             </td>
                             <td>
-                              <CountChip badge={r.topBadge} count={r.badgeCount} />
+                              <BadgesCell badges={r.earned} />
                             </td>
                           </tr>
                         );

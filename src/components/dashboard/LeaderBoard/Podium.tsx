@@ -13,6 +13,8 @@ export type Row = {
   prs: number;
   badgeCount: number;
   topBadge: Badge | null;
+  /** Every earned badge, most impressive first. */
+  earned: Badge[];
 };
 
 export const GOOD_FIRST_ISSUES =

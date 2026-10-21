@@ -83,3 +83,19 @@ export function getTopMilestone(stats: BadgeStats, badges: Badge[] = BADGES): Ba
     .sort((a, b) => b.threshold - a.threshold);
   return earned[0] ?? null;
 }
+
+const GROUP_PRESTIGE: Record<string, number> = { leaderboard: 3, mastery: 2, milestone: 1 };
+
+/**
+ * Earned badges, most impressive first: leaderboard places (#1 before #2 before #3), then mastery and
+ * milestone badges from the hardest threshold down.
+ */
+export function getEarnedByPrestige(stats: BadgeStats, badges: Badge[] = BADGES): Badge[] {
+  return badges
+    .filter((b) => isUnlocked(b, stats))
+    .sort((a, b) => {
+      const g = (GROUP_PRESTIGE[b.group] ?? 0) - (GROUP_PRESTIGE[a.group] ?? 0);
+      if (g !== 0) return g;
+      return a.group === 'leaderboard' ? a.threshold - b.threshold : b.threshold - a.threshold;
+    });
+}
