@@ -1,0 +1,30 @@
+# Dashboard notifications
+#
+# Everything in this file shows up in the Notifications popup on the dashboard.
+# No code needed to add one:
+#
+#   1. Copy one of the blocks below and paste it at the top of the list.
+#   2. Change the text after each colon. Keep the word before the colon as it is.
+#   3. Leave one empty line between notifications.
+#
+#   title    short heading (required)
+#   message  one or two sentences (required)
+#   date     the day you add it, written as YYYY-MM-DD (required)
+#   link     where "Click here" goes, like a GitHub issue, PR or page on the site (optional)
+#
+# Lines starting with # are notes for editors and are not shown on the site.
+
+title: Looking for your first PR?
+message: Pick an open issue labeled good first issue and ask to be assigned before you start working on it.
+date: 2026-10-21
+link: https://github.com/recodehive/recode-website/issues?q=is%3Aopen+label%3A%22good+first+issue%22
+
+title: New dashboard
+message: The dashboard has a new overview with your merged PRs, current streak and leaderboard rank in one place.
+date: 2026-10-20
+link: https://github.com/recodehive/recode-website/pull/2321
+
+title: V1.1.0 released
+message: A refreshed homepage, a new Showcase page, the ebooks revamp and a developer hiring page.
+date: 2026-10-19
+link: https://github.com/recodehive/recode-website/releases/tag/V1.1.0-recode

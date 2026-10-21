@@ -1,5 +1,5 @@
 // src/components/dashboard/Sidebar/DashboardSidebar.tsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "@docusaurus/Link";
 import { useLocation } from "@docusaurus/router";
 import { SignInButton, useUser, useClerk } from "@clerk/react";
@@ -19,6 +19,8 @@ import {
   PanelLeft,
 } from "lucide-react";
 import { getLatestRelease } from "../overview/releaseData";
+import NotificationsPanel from "../Notifications/NotificationsPanel";
+import { useNotifications } from "../Notifications/useNotifications";
 import "./DashboardSidebar.css";
 
 export type DashboardTab = "home" | "discuss" | "giveaway" | "contributors";
@@ -82,7 +84,13 @@ export default function DashboardSidebar({
 
   const [collapsed, setCollapsed] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const profileMenuRef = useRef<HTMLDivElement>(null);
+  const notifications = useNotifications();
+  const closeNotifications = useCallback(
+    () => setIsNotificationsOpen(false),
+    [],
+  );
   const latestTag = getLatestRelease()?.tag;
   const { pathname } = useLocation();
 
@@ -252,15 +260,40 @@ export default function DashboardSidebar({
       </nav>
 
       <div className="dashboard-rail-bottom">
-        {/* No notifications data source exists yet, so no count badge is shown */}
-        <Link
-          to="/updates"
+        {/* Notifications come from src/data/notifications.txt */}
+        <button
+          type="button"
           className="dashboard-rail-bottom-item"
+          onClick={() => setIsNotificationsOpen(true)}
+          aria-haspopup="dialog"
+          aria-expanded={isNotificationsOpen}
+          aria-label={
+            collapsed
+              ? notifications.unreadCount > 0
+                ? `Notifications, ${notifications.unreadCount} unread`
+                : "Notifications"
+              : undefined
+          }
           title={collapsed ? "Notifications" : undefined}
         >
-          <Bell size={16} />
-          {!collapsed && <span>Notifications</span>}
-        </Link>
+          <span className="dashboard-rail-bell">
+            <Bell size={16} />
+            {collapsed && notifications.unreadCount > 0 && (
+              <span className="dashboard-rail-bell-dot" aria-hidden="true" />
+            )}
+          </span>
+          {!collapsed && (
+            <>
+              <span className="dashboard-rail-item-label">Notifications</span>
+              {notifications.unreadCount > 0 && (
+                <span className="dashboard-rail-badge">
+                  {notifications.unreadCount}
+                  <span className="dashboard-rail-sr-only"> unread</span>
+                </span>
+              )}
+            </>
+          )}
+        </button>
         <Link
           to="/updates"
           className="dashboard-rail-bottom-item"
@@ -304,6 +337,18 @@ export default function DashboardSidebar({
           {!collapsed && <span>Collapse sidebar</span>}
         </button>
       </div>
+
+      {isNotificationsOpen && (
+        <NotificationsPanel
+          items={notifications.items}
+          unreadCount={notifications.unreadCount}
+          isUnread={notifications.isUnread}
+          onRead={notifications.markRead}
+          onReadAll={notifications.markAllRead}
+          onClose={closeNotifications}
+          collapsed={collapsed}
+        />
+      )}
     </div>
   );
 }

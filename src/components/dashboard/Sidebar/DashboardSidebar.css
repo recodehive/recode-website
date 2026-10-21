@@ -315,6 +315,37 @@ html[data-theme="dark"] .dashboard-rail-badge {
   padding: 0;
 }
 
+.dashboard-rail-bell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Unread marker on the bell when the rail is collapsed and the count is hidden */
+.dashboard-rail-bell-dot {
+  position: absolute;
+  top: -2px;
+  right: -3px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--rail-accent);
+  box-shadow: 0 0 0 2px var(--rail-bg);
+}
+
+.dashboard-rail-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .dashboard-rail,
   .dashboard-rail-signin {
