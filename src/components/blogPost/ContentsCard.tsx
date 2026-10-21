@@ -15,7 +15,7 @@ function useArticleProgress(articleId: string): number {
     let raf = 0;
     const update = () => {
       raf = 0;
-      const el = document.getElementById(articleId);
+      const el = document.getElementById(articleId) ?? document.querySelector('article');
       if (!el) return;
       const r = el.getBoundingClientRect();
       const total = r.height - window.innerHeight * 0.6;
@@ -69,8 +69,8 @@ function useActiveHeading(ids: string[]): string | null {
 interface Props {
   toc: readonly TocItem[];
   articleId: string;
-  /** "card" is the right column on wide screens, "bar" is the sticky "On this page" bar on small ones. */
-  variant: 'card' | 'bar';
+  /** "card" is the right column on blog posts, "bar" is the sticky "On this page" bar on small ones, "docs" is the card for docs and learn pages. */
+  variant: 'card' | 'bar' | 'docs';
 }
 
 export default function ContentsCard({ toc, articleId, variant }: Props) {
@@ -158,6 +158,21 @@ export default function ContentsCard({ toc, articleId, variant }: Props) {
         </button>
         {bar}
         {open && <div className={styles.tocBarList}>{list}</div>}
+      </div>
+    );
+  }
+
+  if (variant === 'docs') {
+    return (
+      <div className={styles.tocVars}>
+        <div className={styles.tocCard}>
+          <div className={styles.tocHead}>
+            <strong>Contents</strong>
+            <span className={styles.mono}>{pct}% read</span>
+          </div>
+          {bar}
+          {list}
+        </div>
       </div>
     );
   }

@@ -1,4 +1,8 @@
 /* Blog post page: three-column Library layout. Scoped to this module, plus the body styles under .post. */
+/* The same colours for the contents card when it is used outside the blog post page (docs and learn) */
+.tocVars { --green: #2e8555; --green-dark: #205d3b; --text: #0f172a; --text2: #334155; --muted: #64748b; --faint: #94a3b8; --line: #eef2f0; --border: #e2e8f0; --chip: #f1f5f9; --card: #fff; --tint: #e8f5ee; }
+:global(html[data-theme='dark']) .tocVars { --text: #e6edf3; --text2: #c9d1d9; --muted: #8b949e; --faint: #6e7681; --line: #21262d; --border: #30363d; --chip: #21262d; --card: #161b22; --green: #4cc184; --green-dark: #86e0b0; --tint: rgba(76, 193, 132, 0.14); }
+.tocVars .tocCard { max-height: calc(100vh - var(--ifm-navbar-height, 60px) - 40px); }
 .pageWrap { background: #fff; }
 :global(html[data-theme='dark']) .pageWrap { background: #0d1117; }
 .page {
