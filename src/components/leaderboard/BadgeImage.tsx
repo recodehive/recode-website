@@ -44,7 +44,7 @@ export default function BadgeImage({ badge, size, locked, eager = false, showLoc
         />
       )}
       {locked && showLock && (
-        <span className={styles.lockDot} aria-hidden="true"><Lock size={Math.max(11, Math.round(size * 0.24))} strokeWidth={2.5} /></span>
+        <span className={styles.lockDot} aria-hidden="true"><Lock size={Math.max(9, Math.round(size * 0.16))} /></span>
       )}
     </span>
   );
