@@ -51,6 +51,7 @@
 .heroGrid { position: absolute; top: 0; right: 0; width: 70%; height: 100%; pointer-events: none; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 44px 44px; -webkit-mask-image: radial-gradient(ellipse 80% 90% at 100% 0%, #000 20%, transparent 75%); mask-image: radial-gradient(ellipse 80% 90% at 100% 0%, #000 20%, transparent 75%); }
 .heroInner { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 48px; padding-top: 80px; padding-bottom: 8px; }
 .heroText { flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 20px; align-items: flex-start; }
+.heroText .eyebrow { align-self: center; }
 .heroCard { flex: 0 1 440px; width: 100%; max-width: 440px; padding: 20px; box-sizing: border-box; background: var(--card); border: 1px solid var(--border); border-radius: 1rem; box-shadow: var(--shadow); }
 .coverImg { display: block; width: 100%; height: auto; aspect-ratio: 1; border-radius: 14px; object-fit: cover; }
 .coverSm { display: block; width: 132px; height: 132px; border-radius: 14px; object-fit: cover; }
