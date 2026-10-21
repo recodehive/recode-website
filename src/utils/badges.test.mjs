@@ -2,7 +2,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { BADGES } from '../data/badges.ts';
-import { getEarnedByPrestige, getNextBadge, getProgress, getTopMilestone, getUserBadges, isUnlocked } from './badges.ts';
+import { getClosestLocked, getEarnedByPrestige, getRarestEarned, getNextBadge, getProgress, getTopMilestone, getUserBadges, isUnlocked } from './badges.ts';
 
 const badge = (id) => BADGES.find((b) => b.id === id);
 const stats = (prs, points = 0, rank = null) => ({ prs, points, rank });
@@ -79,4 +79,18 @@ test('earned badges are ordered by prestige', () => {
   const ids = getEarnedByPrestige(stats(30, 0, 1)).map((b) => b.id);
   assert.equal(ids[0], 'rank-1');
   assert.equal(ids[1], 'gold');
+});
+
+test('rarest earned is the unlocked badge with the highest rarity', () => {
+  assert.equal(getRarestEarned(stats(0)), null);
+  assert.equal(getRarestEarned(stats(30)).id, 'gold');
+  assert.equal(getRarestEarned(stats(30, 0, 1)).id, 'rank-1');
+});
+
+test('closest locked badge is the one nearest to unlocking, never a rank badge', () => {
+  // 4 of 5 PRs is 80 percent, ahead of 1 of 1 which is already unlocked
+  assert.equal(getClosestLocked(stats(4)).id, 'bronze');
+  // nothing earned: all at 0 percent, so the lowest threshold wins
+  assert.equal(getClosestLocked(stats(0)).id, 'first-contribution');
+  assert.equal(getClosestLocked(stats(5000, 90000)), null);
 });
