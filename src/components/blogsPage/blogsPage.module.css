@@ -28,11 +28,11 @@ main.root .h2 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 28
 .rule { height: 1px; margin: 10px 0 18px; background: var(--text); opacity: 0.85; }
 
 /* Hero */
-.hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 600px); gap: 40px; align-items: center; max-width: none; padding: 56px max(24px, calc((100% - 1132px) / 2)) 48px; background: var(--hero-bg); border-bottom: 1px solid var(--line); overflow: hidden; }
+.hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: 40px; align-items: center; max-width: none; padding: 56px max(24px, calc((100% - 1132px) / 2)) 48px; background: var(--hero-bg); border-bottom: 1px solid var(--line); overflow: hidden; }
 .heroGridBg { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 40px 40px; -webkit-mask-image: radial-gradient(ellipse at 100% 0%, #000 0%, transparent 65%); mask-image: radial-gradient(ellipse at 100% 0%, #000 0%, transparent 65%); }
 .heroText, .heroRight { position: relative; z-index: 1; min-width: 0; }
 .eyebrow { margin: 0 0 14px; font: 700 12px/1 "Inter", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #2e8555; }
-main.root .h1 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 60px; line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
+main.root .h1 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 60px; line-height: 1.05; white-space: nowrap; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
 .accent { color: #2e8555; }
 .subtitle { margin: 14px 0 26px; font-size: 20px; color: var(--text-2); }
 .search { display: flex; align-items: center; gap: 12px; max-width: 520px; height: 56px; padding: 0 18px; border: 1px solid #d6dde6; border-radius: 12px; background: var(--card); color: var(--muted); box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05); }
@@ -206,7 +206,7 @@ main.root .writeTitle { margin: 0 0 6px; max-width: 520px; font-family: "Space G
   .tlLine { display: none; }
 }
 @media (max-width: 720px) {
-  main.root .h1 { font-size: 42px; }
+  main.root .h1 { font-size: 42px; white-space: normal; }
   .spotLead { grid-template-columns: minmax(0, 1fr); }
   .spotThumb { border-right: 0; border-bottom: 1px solid var(--line) !important; }
   .cards { grid-template-columns: minmax(0, 1fr); }
