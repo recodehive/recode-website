@@ -144,6 +144,57 @@ function Bring({ login }: { login: string | null }) {
   );
 }
 
+type Entrant = { login: string; entries: number };
+
+/** Read-only public list of who has how many entries. Fetched only when asked, and only the two public columns. */
+function PublicEntries({ baseUrl, anonKey }: { baseUrl: string; anonKey: string }) {
+  const [rows, setRows] = useState<Entrant[] | null>(null);
+  const [state, setState] = useState<'idle' | 'loading' | 'error'>('idle');
+
+  const load = async () => {
+    setState('loading');
+    try {
+      const q = `giveaway_id=eq.${GIVEAWAY.id}&select=login,entries&order=entries.desc&limit=500`;
+      const res = await fetch(`${baseUrl}/rest/v1/giveaway_totals?${q}`, { headers: { apikey: anonKey } });
+      if (!res.ok) throw new Error(String(res.status));
+      setRows((await res.json()) as Entrant[]);
+      setState('idle');
+    } catch {
+      setState('error');
+    }
+  };
+
+  return (
+    <section className={styles.card} aria-labelledby="public-title">
+      <div className={styles.cardHead}>
+        <h2 id="public-title" className={styles.cardTitle}>Public entries</h2>
+        {rows && <span className={styles.muted}>{rows.length} {rows.length === 1 ? 'person' : 'people'}</span>}
+      </div>
+      <p className={styles.fine}>
+        Anyone can see who has entered and how many entries they have. The list shows GitHub handles and totals only.
+        It is read-only: entries are written by our server after checking GitHub, never from this page.
+      </p>
+      {!rows && (
+        <button type="button" className={styles.entriesBtn} onClick={() => void load()} disabled={state === 'loading'}>
+          {state === 'loading' ? 'Loading...' : state === 'error' ? 'Could not load, try again' : 'Show the public entries list'}
+        </button>
+      )}
+      {rows && rows.length === 0 && <p className={styles.fine}>No entries yet.</p>}
+      {rows && rows.length > 0 && (
+        <ol className={styles.entryList}>
+          {rows.map((r, i) => (
+            <li key={r.login}>
+              <span className={styles.entryRank}>{i + 1}</span>
+              <a href={`https://github.com/${r.login}`} target="_blank" rel="noopener noreferrer">@{r.login}</a>
+              <strong>{r.entries}</strong>
+            </li>
+          ))}
+        </ol>
+      )}
+    </section>
+  );
+}
+
 export default function QuestBoard({ now, phase }: { now: number | null; phase: 'upcoming' | 'live' }) {
   const g = useGiveaway();
   const target = phase === 'upcoming' ? startsMs : endsMs;
@@ -153,7 +204,6 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
   const { siteConfig } = useDocusaurusContext();
   const sbUrl = String(siteConfig.customFields?.supabaseUrl ?? '').replace(/\/$/, '');
   const sbKey = String(siteConfig.customFields?.supabaseAnonKey ?? '');
-  const ledgerUrl = sbUrl && sbKey ? `${sbUrl}/rest/v1/giveaway_ledger?giveaway_id=eq.${GIVEAWAY.id}&order=created_at.desc&apikey=${sbKey}` : null;
   const prCount = g.prCount ?? 0;
   const pct = Math.min(100, (g.entries / ENTRY_TARGET) * 100);
   const bonusState = g.bonus ? 'claimed' : 'locked';
@@ -270,6 +320,9 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
               <li><span>2</span>After Nov 1, {GIVEAWAY.winners === 1 ? 'one winner is' : `${GIVEAWAY.winners} winners are`} drawn at random. More entries, more chances.</li>
               <li><span>3</span>{GIVEAWAY.winners === 1 ? 'The winner is' : 'Winners are'} announced on Discord and LinkedIn and contacted through GitHub.</li>
             </ol>
+            <p className={styles.fine}>
+              How entries are counted: sign in with GitHub and our server checks GitHub for your star, your follow and your merged pull requests. Nothing is taken from your browser.
+            </p>
           </section>
           <section id="giveaway-rules" className={styles.card} aria-labelledby="rules-title">
             <h2 id="rules-title" className={styles.cardTitle}>Rules</h2>
@@ -282,13 +335,14 @@ export default function QuestBoard({ now, phase }: { now: number | null; phase: 
               <li>Entries come only from what GitHub confirms. Links to Discord, LinkedIn, YouTube and X are worth no entries.</li>
               <li>{GIVEAWAY.winners === 1 ? 'The winner has' : 'Winners have'} 7 days to reply before a new winner is drawn.</li>
             </ul>
-            {ledgerUrl && (
-              <p className={styles.fine}>
-                Every awarded entry is public. <a href={ledgerUrl} target="_blank" rel="noopener noreferrer">See the full entries list {'\u2197'}</a>
-              </p>
-            )}
           </section>
         </div>
+
+        {sbUrl && sbKey && (
+          <div className={styles.publicRow}>
+            <PublicEntries baseUrl={sbUrl} anonKey={sbKey} />
+          </div>
+        )}
       </div>
     </div>
   );
