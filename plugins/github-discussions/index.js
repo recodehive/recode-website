@@ -11,7 +11,7 @@ query($owner: String!, $repo: String!) {
     pinnedDiscussions(first: 10) { nodes { discussion { number } } }
     discussions(first: 50, orderBy: { field: UPDATED_AT, direction: DESC }) {
       nodes {
-        number title url bodyText createdAt updatedAt upvoteCount answerChosenAt
+        number title url bodyText bodyHTML createdAt updatedAt upvoteCount answerChosenAt
         category { name emojiHTML isAnswerable }
         labels(first: 3) { nodes { name } }
         author { login avatarUrl }
@@ -21,6 +21,7 @@ query($owner: String!, $repo: String!) {
   }
 }`;
 
+const MAX_BODY = 12000;
 const clean = (s) => String(s || '').replace(/\\/g, '');
 const emojiOf = (html) => String(html || '').replace(/<[^>]*>/g, '').trim();
 const avatar = (a) => (a ? { login: a.login, avatarUrl: a.avatarUrl } : null);
@@ -45,6 +46,8 @@ function normalise(repo) {
       number: d.number,
       title: d.title,
       url: d.url,
+      // GitHub sanitises bodyHTML. Capped so one long post cannot bloat the global data.
+      bodyHtml: String(d.bodyHTML || '').slice(0, MAX_BODY),
       excerpt: d.bodyText.replace(/\s+/g, ' ').trim().slice(0, 200),
       createdAt: d.createdAt,
       updatedAt: d.updatedAt,
