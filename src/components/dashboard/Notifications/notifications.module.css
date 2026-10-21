@@ -130,7 +130,7 @@
   position: relative;
   display: flex;
   gap: 14px;
-  padding: 18px 40px 18px 20px;
+  padding: 18px 52px 18px 20px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -187,6 +187,22 @@
   color: var(--accent);
 }
 
+/* The link stretches over the whole tile, so the tile is clickable and keyboard users still get one link */
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.item:has(.link):hover {
+  background: var(--hair, rgba(0, 0, 0, 0.03));
+}
+
+.link:focus-visible::after {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
 .time {
   margin-top: 4px;
   font-size: 12px;
@@ -196,7 +212,7 @@
 .dot {
   position: absolute;
   top: 26px;
-  right: 20px;
+  left: 7px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -229,10 +245,13 @@
 
 .close:focus-visible,
 .markAll:focus-visible,
-.link:focus-visible,
 .footLink:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+.link:focus-visible {
+  outline: none;
 }
 
 /* custom.css outlines every :focus, which shows on the close button
@@ -277,5 +296,54 @@
     left: 16px;
     right: 16px;
     width: auto;
+  }
+}
+
+/* Side actions: mark as read or unread, and dismiss. Above the stretched link so they stay clickable. */
+.actions {
+  position: absolute;
+  top: 12px;
+  right: 10px;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-2);
+  cursor: pointer;
+}
+
+.action:hover,
+.action:focus-visible {
+  background: var(--border);
+  color: var(--text);
+}
+
+.action:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* On devices with a mouse the buttons appear when the tile is hovered or focused. */
+@media (hover: hover) {
+  .actions {
+    opacity: 0;
+    transition: opacity 0.15s;
+  }
+
+  .item:hover .actions,
+  .item:focus-within .actions {
+    opacity: 1;
   }
 }
