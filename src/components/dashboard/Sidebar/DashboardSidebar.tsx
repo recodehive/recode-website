@@ -13,6 +13,7 @@ import {
   HelpCircle,
   Sparkles,
   GraduationCap,
+  Rocket,
   Bell,
   ChevronDown,
   PanelLeft,
@@ -50,6 +51,7 @@ const LINK_ITEMS: Array<{
 }> = [
   { href: "/learn", label: "Learn", icon: <GraduationCap size={16} />, free: true },
   { href: "/blogs", label: "Blogs", icon: <BookOpen size={16} /> },
+  { href: "/docs", label: "Get started", icon: <Rocket size={16} /> },
 ];
 
 const GithubMark = () => (
