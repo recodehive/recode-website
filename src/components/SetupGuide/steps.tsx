@@ -255,13 +255,13 @@ function Step10() {
     <>
       <p>Prove to yourself that it is really your copy:</p>
       <ol className={s.list}>
-        <li>In VS Code, open <Code>docs/getting_started.md</Code>. It is the page called &quot;How to Contribute to Blogs&quot;.</li>
+        <li>In VS Code, open <Code>docs/getting_started.mdx</Code>. It is the page called &quot;How to Contribute to Blogs&quot;.</li>
         <li>Change one word in the first paragraph and save with <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> (<Kbd>Cmd</Kbd> + <Kbd>S</Kbd> on a Mac).</li>
-        <li>Open <Ext href="http://localhost:3000/docs/Getting-Started">localhost:3000/docs/Getting-Started</Ext>. The page reloads with your change in a second or two.</li>
+        <li>Open <Ext href="http://localhost:3000/docs/how-to-contribute-to-blogs">localhost:3000/docs/how-to-contribute-to-blogs</Ext>. The page reloads with your change in a second or two.</li>
       </ol>
       <Tip><strong>Do not worry about breaking anything.</strong> This is your copy. Nothing changes on recode hive until you open a pull request.</Tip>
       <p>To undo the experiment, run this in a second terminal in the same folder:</p>
-      <Cmd label="Terminal" code="git checkout -- docs/getting_started.md" />
+      <Cmd label="Terminal" code="git checkout -- docs/getting_started.mdx" />
     </>
   );
 }

@@ -38,7 +38,7 @@ const STEPS: Step[] = [
   },
   {
     n: '03', title: 'Share', desc: 'Publish a tutorial on the recode hive blog.',
-    dir: 'recode-website', cta: 'Contribute a tutorial', href: '/docs/Getting-Started',
+    dir: 'recode-website', cta: 'Contribute a tutorial', href: '/docs/how-to-contribute-to-blogs',
     lines: [
       { kind: 'cmd', text: 'git checkout -b blog/my-first-tutorial' },
       { kind: 'cmd', text: 'code blog/my-first-tutorial.md' },

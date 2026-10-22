@@ -192,7 +192,7 @@ export function WriteBanner() {
         <p className={styles.writeText}>Share what you built or learned. The strongest posts get the Featured spot on this page.</p>
       </div>
       <div className={styles.writeBtns}>
-        <a className={styles.btnGhost} href="https://www.recodehive.com/docs/Getting-Started" target="_blank" rel="noopener noreferrer">
+        <a className={styles.btnGhost} href="https://www.recodehive.com/docs/how-to-contribute-to-blogs" target="_blank" rel="noopener noreferrer">
           Getting started {'↗'}<span className={styles.srOnly}> (opens in a new tab)</span>
         </a>
         <a className={styles.btnWhite} href="https://www.recodehive.com/docs/first-time-setup" target="_blank" rel="noopener noreferrer">

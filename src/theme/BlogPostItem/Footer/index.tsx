@@ -210,7 +210,7 @@ export default function BlogPostItemFooterWrapper(props: Props): JSX.Element {
               )}
               <Link
                 className={styles.improveGuidelinesButton}
-                to="https://www.recodehive.com/docs/Getting-Started"
+                to="https://www.recodehive.com/docs/how-to-contribute-to-blogs"
                 target="_blank"
                 rel="noopener noreferrer"
               >

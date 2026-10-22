@@ -1,11 +1,323 @@
 ---
 id: Getting-Started
-title: How to Contribute to Blogs
+slug: /how-to-contribute-to-blogs
+title: "Write for recode hive: publish your first blog post"
 sidebar_label: How to Contribute to Blogs
 sidebar_position: 2
+description: "Step-by-step guide to writing and publishing a blog post on recode hive: pick a topic, write the post, add images and open a pull request."
+hide_title: true
 ---
 
-This guide walks you through everything you need to write and publish a blog post on recode hive, heads-up for you there is a lot of steps, our idea is not about <b>quantity</b>, lets focus on quality on the article you write the best one will be eligible for [GitHub Sponsorship](http://localhost:3000/our-sponsors/).
+import {
+  BlogGuide, Hero, BeforeYouStart, Phases, Step, Block, Cmd, DoDont, OpenButton, FileTree, Tabs2, Pane,
+  RequiredParts, SpecTiles, NameExamples, Callout, Reveal, ScreenshotToggle, Checklist, Legacy,
+} from '@site/src/components/blogGuide';
+import issueMenuImg from './assets/blog-02-new-issue.png';
+import localhostPreviewImg from './assets/blog-13-new-issue.png';
+
+<BlogGuide>
+
+<Hero />
+
+<BeforeYouStart />
+
+<Phases />
+
+<Step n={1} time="5 min">
+
+## 1. Raise an issue and get assigned
+
+Open a new issue on the repo using the **Documentation update** category. Describe the post you want to write and why it is useful.
+
+<DoDont
+  do={[
+    'Write from real experience: a project you built, a bug you fixed, a tool you compared',
+    'Plan real screenshots from your own setup',
+    'Wait until a maintainer assigns the issue to you',
+  ]}
+  dont={[
+    'Pick generic "Intro to X" topics that already exist everywhere',
+    'Start writing before you are assigned',
+    'Paste AI-generated text without your own experience',
+  ]}
+/>
+
+<OpenButton href="https://github.com/recodehive/recode-website/issues/new/choose">Open an issue</OpenButton>
+
+<ScreenshotToggle
+  label="See where to find Documentation update"
+  src={issueMenuImg}
+  alt="The Create new issue menu on GitHub with the Documentation Update option highlighted"
+/>
+
+</Step>
+
+<Step n={2} time="1 min">
+
+## 2. Create a new branch
+
+Never commit to `main`. Create a branch named after your post:
+
+<Cmd lang="Terminal" code="git checkout -b blog/intro-to-docker" />
+
+Not set up yet? Fork, clone and install the project first with the [First-time setup guide](/docs/first-time-setup).
+
+</Step>
+
+<Step n={3} time="3 min · optional">
+
+## 3. Add yourself as an author
+
+Add an entry to `blog/authors.yml` so your name, photo and links appear on the post. Copy this and replace every value with your own:
+
+<Cmd lang="YAML" code={`your-github-username:
+  name: Your Name
+  title: Your role, for example Data Engineer
+  url: https://github.com/your-github-username
+  image_url: https://github.com/your-github-username.png
+  socials:
+    linkedin: your-linkedin-id`} />
+
+The key at the top is your author id. You will use it again in the `authors` field of your post.
+
+</Step>
+
+<Step n={4} time="1 min">
+
+## 4. Create the post folder
+
+Each post lives in its own folder with its images next to it:
+
+<FileTree items={[
+  { name: 'blog/', depth: 0, type: 'dir' },
+  { name: 'your-blog-title/', depth: 1, type: 'dir' },
+  { name: 'index.md', depth: 2, type: 'file', note: 'your post', main: true },
+  { name: 'assets/', depth: 2, type: 'dir', note: 'screenshots and banner' },
+]} />
+
+Use lowercase words joined by hyphens for the folder name. It becomes the post's URL.
+
+</Step>
+
+<Step n={5} time="5 min">
+
+## 5. Write the frontmatter
+
+The frontmatter is the block at the very top of `index.md`. It sets the title, author, tags and search description.
+
+<Tabs2>
+<Pane label="Template">
+
+<Cmd lang="Markdown" code={`---
+title: "How I set up X in 10 minutes"
+authors: [your-github-username]
+tags: [docker, devops]
+date: 2026-10-22
+description: One or two sentences that make someone want to click.
+draft: false
+---`} />
+
+</Pane>
+<Pane label="Field guide">
+
+| Field | Required | What to write |
+|---|---|---|
+| `title` | Yes | The full post title. Check what people search for before you pick it. |
+| `authors` | Yes | Your author id from `blog/authors.yml`, in square brackets. |
+| `tags` | Yes | Two to four topics, for example `[docker, devops]`. |
+| `date` | Yes | Publication date as `YYYY-MM-DD`. |
+| `description` | Yes | One or two sentences, under 160 characters. It shows in search results. |
+| `draft` | Yes | `false` to publish, `true` to hide the post. |
+| `canonical_url` | No | Leave it out. Add it only if the post was published on another site first. |
+
+</Pane>
+</Tabs2>
+
+</Step>
+
+<Step n={6} time="1 to 3 hours">
+
+## 6. Write the content
+
+Keep paragraphs short and explain things the way you would to a friend. Every post needs these parts:
+
+<RequiredParts items={[
+  { title: 'Bulleted summary', text: <>3 to 5 bullets right after the intro. Put <code>{'<!-- truncate -->'}</code> after it so only this shows on the blog list.</> },
+  { title: 'The main content', text: 'Real steps, real screenshots, and your own lessons. More text than code.' },
+  { title: 'FAQ section', text: '3 to 5 questions people actually search for.' },
+]} />
+
+Use admonitions to highlight important points:
+
+<Cmd lang="Markdown" code={`:::tip
+Use tips for shortcuts and good habits.
+:::
+
+:::caution
+Use cautions for things that can break.
+:::`} />
+
+<Callout type="tip">
+  <strong>Quality bar.</strong> Accepted posts include at least <strong>5 links to other sites</strong> and <strong>5 links to other recode hive pages</strong>, use descriptive image names, and end with a FAQ.
+</Callout>
+
+<Reveal label="Show example: a query and its output in Tabs">
+
+Import the components once, right after the frontmatter:
+
+<Cmd lang="Markdown" code={`import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs>
+  <TabItem value="query" label="Query">
+
+\`\`\`sql title="friends.sql"
+SELECT id, name FROM friends;
+\`\`\`
+
+  </TabItem>
+  <TabItem value="output" label="Output">
+
+| id | name |
+|----|------|
+| 1  | Jane |
+
+  </TabItem>
+</Tabs>`} />
+
+</Reveal>
+
+<Reveal label="Show example: a centered table">
+
+Wrap a table in an `:::info` block to center it:
+
+<Cmd lang="Markdown" code={`:::info
+
+| Command     | Description       |
+|-------------|-------------------|
+| git init    | Initialize a repo |
+| git clone   | Clone a repo      |
+
+:::`} />
+
+</Reveal>
+
+</Step>
+
+<Step n={7} time="20 min">
+
+## 7. Add screenshots and a banner
+
+<SpecTiles items={[
+  { value: '1200 × 630', label: 'Cover banner' },
+  { value: '1280 wide', label: 'Full-step screenshots' },
+  { value: '800 × 450', label: 'Close-ups' },
+  { value: '500 KB', label: 'Max per image' },
+]} />
+
+Name images in lowercase with hyphens and a number, in the order they appear:
+
+<NameExamples good="blog-01-create-issue.png" bad="Screenshot 2026-10-22 at 10.41.png" />
+
+<Cmd lang="Markdown" code="![The new issue form on GitHub](./assets/blog-01-create-issue.png)" />
+
+Always write alt text that describes the image. It helps screen readers and Google Images. Compress images with [Squoosh](https://squoosh.app) or [TinyPNG](https://tinypng.com) to stay under 500 KB.
+
+<Callout type="tip">
+  Tools like <a href="https://www.techsmith.com/screen-capture.html">Snagit</a> make annotated screenshots easy. See <a href="/docs/GitHub/Maintainer-guide/milestone">this guide</a> for the image quality we aim for.
+</Callout>
+
+</Step>
+
+<Step n={8} time="3 min">
+
+## 8. Add your post to the blog list
+
+Add an entry to `src/database/blogs/index.tsx` so your post appears on the blog page:
+
+<Cmd lang="TSX" code={`{
+  id: 22,
+  title: "How I set up X in 10 minutes",
+  image: "/img/blogs/your-blog-title.png",
+  description: "One or two sentences about the post.",
+  slug: "your-blog-title",
+  date: "2026-10-22",
+  readingTime: 8,
+  authors: ["your-github-username"],
+  category: "DevOps",
+  tags: ["docker", "devops"],
+},`} />
+
+Use the next free `id` and the same slug as your folder name. Put the banner in `static/img/blogs/`. `readingTime` is in minutes and `tags` is optional. Every other field is needed for the blog card.
+
+</Step>
+
+<Step n={9} time="2 min">
+
+## 9. Preview your post
+
+<Cmd lang="Terminal" code="npm run start" />
+
+Open `localhost:3000/blog` and check your post: images load, links work, the summary shows above "Read more", and the FAQ is there.
+
+</Step>
+
+<Step n={10} time="2 min">
+
+## 10. Commit and push
+
+<Cmd lang="Terminal" code={`git add .
+git commit -m "blog: add <post title>"
+git push origin <branch>`} />
+
+Replace `<branch>` with the branch from step 2, for example `blog/intro-to-docker`.
+
+</Step>
+
+<Step n={11} time="5 min" last>
+
+## 11. Open a pull request
+
+On GitHub, open your fork and click **Compare & pull request**. The base must be `recodehive/recode-website` on `main`.
+
+1. Title: `blog: <post title>`
+2. Link your issue with `Closes #<issue>`.
+3. Add a screenshot of the post running on localhost.
+
+<ScreenshotToggle
+  label="See an example localhost screenshot"
+  src={localhostPreviewImg}
+  alt="A blog post open on localhost with the title, author, summary and contents list visible"
+/>
+
+</Step>
+
+<Block>
+
+## Keep your fork up to date
+
+Before you start a new post, pull in the latest changes from recode hive so your branch does not fall behind:
+
+<Cmd lang="Terminal" code={`git remote add upstream https://github.com/recodehive/recode-website.git
+git fetch upstream
+git checkout main
+git merge upstream/main`} />
+
+You only need the first line once.
+
+</Block>
+
+<Block>
+
+## Final checklist
+
+<Checklist />
+
+</Block>
+
+<Legacy>
+
+This guide walks you through everything you need to write and publish a blog post on recode hive, heads-up for you there is a lot of steps, our idea is not about <b>quantity</b>, lets focus on the quality of the post you write the best one will be eligible for [GitHub Sponsorship](https://www.recodehive.com/our-sponsors/).
 
 ---
 
@@ -13,18 +325,18 @@ This guide walks you through everything you need to write and publish a blog pos
 - 📦 [Node.js](https://nodejs.org/) (v18 or later)
 - 🔧 [Git](https://git-scm.com/)
 - 💻 [VS Code](https://code.visualstudio.com/) or your preferred editor
-- Refer the welcome page to install and setup the repository in your local system. [Check here](http://localhost:3000/docs/)
+- Refer the welcome page to install and setup the repository in your local system. [Check here](https://www.recodehive.com/docs/first-time-setup)
 :::
 ---
 
-## Step 1: Raise a New issue on GitHub
+#### Step 1: Raise a New issue on GitHub
 
-Head to the the GitHub issue on this [repository](https://github.com/recodehive/recode-website/issues), raise an new issue under documentation update. 
+Head to the GitHub issue on this [repository](https://github.com/recodehive/recode-website/issues), raise a new issue under documentation update. 
     :::info
     * Few things to remember, don't raise random generic topics.
     * Write from real experience, try to include real dashboard pictures, no copy paste articles.
     * You can generate AI pictures, but need to be edited any tools like Canva.
-    * Your article must teach something offical documentation doesnot. Means no Intro to X or What is X.
+    * Your article must teach something official documentation does not. Means no Intro to X or What is X.
     * Start working on Issue When its assigned to you by @sanjay-kv or any Maintainer. ref step 4.
 <Tabs>
   <TabItem value="Step 1" label="Step 1">
@@ -59,7 +371,7 @@ Head to the the GitHub issue on this [repository](https://github.com/recodehive/
 #### Just follow the steps on forking the repositories and installing the dependencies on your local repository, if you dont know refer the steps 2 to 6 on [welcome page](https://www.recodehive.com/docs/).
 ---
 
-## Step 5: Create a New Branch
+#### Step 5: Create a New Branch
 
 Open your code editor and head into terminal and check current branch
 Never commit directly to `main`. Create a dedicated branch for your blog post:
@@ -80,7 +392,7 @@ the best practice, Use a short, descriptive name  for example `blog/intro-to-doc
 
 ---
 
-## Step 6: Add your name to Author list : optional
+#### Step 6: Add your name to Author list : optional
 :::info
 If you are first time contributing to blog section, add yourself as author, this gives you good visibility on Google search and better career opportunities.
 We use [docusaurus](https://docusaurus.io/docs) for documentation.
@@ -118,7 +430,7 @@ The `your-author-id` value must exactly match what you put in the `authors` fiel
 
 ---
 
-## Step 7: Create the Blog Folder and File
+#### Step 7: Create the Blog Folder and File
 
 All blog posts live inside the `blog/` directory. Each post gets its own folder.
 
@@ -156,7 +468,7 @@ touch blog/your-blog-title/index.md
 </Tabs>
 ---
 
-## Step 9: Write the Frontmatter
+#### Step 9: Write the Frontmatter
 
 Open `blog/your-blog-title/index.md` and add the following frontmatter at the very top of the file:
 
@@ -165,7 +477,7 @@ Copy paste the below code into your index.md file you created, then before writi
 :::
 <Tabs>
   <TabItem value="Step 9" label="Step 9">
-  Don't change whatever in the highlighted red area, change the link same as folder name, so it will be easy to edit.
+  Keep the structure of the `meta` block as shown. Change only its values (title, description and URLs) to match your post and folder name.
     <BrowserWindow url="https://github.com/recodehive/recode-website/issues" bodyStyle={{padding: 0}}>    
      [![Github](assets/blog-09-new-issue.png)](https://github.com/recodehive/recode-website/issues)
     </BrowserWindow>
@@ -209,7 +521,6 @@ date: 2026-05-21
 description: Google Changed Workspace Icon after 6 years, What Changed, What Did Not, and Why It Took Six Years
 
 draft: false
-canonical_url: https://www.recodehive.com/blog/google-icon-update
 
 meta:
   - name: "robots"
@@ -290,10 +601,10 @@ Sanjay is a Data Engineer focused on building modern data platforms and writing 
 
 ---
 
-## Step 10: Write Your Blog Content : Guidelines
+#### Step 10: Write Your Blog Content : Guidelines
 
 :::tip Blog Quality Checklist
-Now here comes the crutial part, it doesnt matter how it get start, but you gotta finish it as good quality work.
+Now here comes the crucial part, it doesnt matter how it get start, but you gotta finish it as good quality work.
 Open the below taps to find most common errors and guidelines for beautification
 
 <Tabs>
@@ -317,7 +628,7 @@ Your introduction paragraph goes here. This will appear as the preview on the bl
 Body content continues here...
 ```
 
-### Formatting Guidelines
+#### Formatting Guidelines
 
 Use `##` and `###` headings to structure your content.
 
@@ -325,7 +636,7 @@ Use `##` and `###` headings to structure your content.
 
 #### Bulleted Summary Section (Required)
 
-Every techincal explanation blog eg: `how to run codeql on GitHub` must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
+Every technical explanation blog eg: `how to run codeql on GitHub` must begin with a bulleted summary right after the intro paragraph. This helps readers quickly understand what they'll learn.
 
 ```md
 **What you'll learn in this post:**
@@ -429,20 +740,20 @@ INSERT INTO friends (id, name, username) VALUES
 
 :::tip
 You can add as many `<TabItem>` tabs as needed for example separate tabs per subquery type, or one tab per language variant. 
-Just check the code base on `getting_started.md`
+See the Tabs example above for the full syntax.
 :::
 
 ---
 
 :::info
 Again a reminder, dont copy from the AI, the whole purpose of we writing this to give some step by step guidelines which AI can't do.
-Especially from an experienced engineers, it will be easy for new genertion coders to start easy with reference ss of every step.
+Especially from an experienced engineers, it will be easy for new generation coders to start easy with reference ss of every step.
 :::
 
 
-## Step 11: Add Screenshots and Banner
+#### Step 11: Add Screenshots and Banner
 
-### Recommended Screenshot Dimensions
+#### Recommended Screenshot Dimensions
 
 | Use Case | Recommended Size |
 |---|---|
@@ -453,7 +764,7 @@ Especially from an experienced engineers, it will be easy for new genertion code
 
 Use **PNG** for UI screenshots (crisp text) and **JPEG/WebP** for photos.
 
-### Naming Convention
+#### Naming Convention
 
 Use lowercase, hyphen-separated, numbered filenames so they sort correctly and are SEO-friendly. **Never use random or auto-generated names.**
 also never leave space on naming, it should be connected with hypen.
@@ -482,7 +793,7 @@ assets/
 
  
 </Tabs>
-### Embedding Images in Markdown
+#### Embedding Images in Markdown
 
 Reference images relative to `index.md`:
 
@@ -501,7 +812,7 @@ Tools like [Snagit](https://www.techsmith.com/screen-capture.html) make it easy 
 
 ---
 
-## Step 12: Update the Database
+#### Step 12: Update the Database
 
 All blog data is linked in the database folder (`\database\blogs\index.tsx`). Update it with the following details:
 
@@ -578,7 +889,7 @@ Plain Markdown tables are left-aligned by default in Docusaurus. Wrap your table
 :::
 ```
 
-### Rendered Output
+#### Rendered Output
 
 :::info
 
@@ -616,7 +927,7 @@ Before starting any development, make sure your blog meets **all** of the follow
 - 3. **No generic content** — avoid surface-level topics like "what is Azure" or "difference between X and Y". Write pure, high-depth technical articles with images. See [this example](https://www.recodehive.com/docs/GitHub/Maintainer-guide/milestone) for the standard we aim for. (Tip: tools like [Snagit](https://www.techsmith.com/screen-capture.html) help produce great annotated screenshots.)
 
 - 4. Image filenames must be descriptive and SEO-friendly — no random names like `screenshot123.png`.
-- 5. **Content-to-code ratio**: text should be more than code. Adsense flags pages at 60% code / 40% text - keep it the opposite. If code is long, link to GitHub and reference it in comments instead.
+- 5. **Content-to-code ratio**: text should be more than code. Keep the ratio the other way round. If code is long, link to GitHub and reference it in comments instead.
 
 - 6. Include a **bulleted summary section** at the top of the blog post.
 - 7. Include a **FAQ section** at the bottom.
@@ -628,9 +939,9 @@ Before starting any development, make sure your blog meets **all** of the follow
 :::
 
 
-## Step 10: Preview Your Post
+#### Step 10: Preview Your Post
 Do lint check and then build before push
-Make sure your dev server is still running (`npm start`), then navigate to [http://localhost:3000/blog](http://localhost:3000/blog) to see your post in the listing and click into it to read the full content. Verify:
+Make sure your dev server is still running (`npm start`), then navigate to `http://localhost:3000/blog` to see your post in the listing and click into it to read the full content. Verify:
 
 - The frontmatter title, date, and author show correctly.
 - The truncate preview looks right on the blog index.
@@ -644,7 +955,7 @@ Make sure your dev server is still running (`npm start`), then navigate to [http
 
 ---
 
-## Step 11: Commit and Push Your Changes
+#### Step 11: Commit and Push Your Changes
 
 Once you are happy with the preview, stage and commit your files:
 
@@ -662,7 +973,7 @@ git push origin blog/your-blog-title
 
 ---
 
-## Step 12: Open a Pull Request
+#### Step 12: Open a Pull Request
 
 - 1. Go to your fork on GitHub — you will see a **"Compare & pull request"** banner. Click it.
 - 2. Set the **base repository** to `recodehive/recode-website` and **base branch** to `main`.
@@ -674,7 +985,7 @@ A maintainer will review and merge your post. You may be asked to make small edi
 
 ---
 
-## Keeping Your Fork Up to Date
+#### Keeping Your Fork Up to Date
 
 Before starting a new post, pull the latest changes from upstream to avoid merge conflicts:
 
@@ -687,7 +998,7 @@ git push origin main
 
 ---
 
-## Quick Reference Checklist
+#### Quick Reference Checklist
 
 Before submitting your PR, go through this checklist:
 
@@ -712,3 +1023,7 @@ Before submitting your PR, go through this checklist:
 - 20. [ ] Database entry added in `\database\blogs\index.tsx`
 - 21. [ ] Committed on a feature branch (not `main`)
 - 22. [ ] Pull request targets `recodehive/recode-website` `main` branch
+
+</Legacy>
+
+</BlogGuide>

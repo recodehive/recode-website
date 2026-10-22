@@ -7,7 +7,7 @@ import s from './SetupGuide.module.css';
 const NEXT = [
   { title: 'Make your first pull request', sub: 'How to contribute, step by step', to: '/docs/GitHub/GitHub-basics/first-opensource-code', external: false },
   { title: 'Pick a good first issue', sub: 'Beginner-friendly tasks on GitHub', to: 'https://github.com/recodehive/recode-website/issues?q=is%3Aissue+state%3Aopen+label%3A%22good+first+issue%22', external: true },
-  { title: 'Write a blog post', sub: 'How to contribute to blogs', to: '/docs/Getting-Started', external: false },
+  { title: 'Write a blog post', sub: 'How to contribute to blogs', to: '/docs/how-to-contribute-to-blogs', external: false },
 ];
 
 const COLORS = ['#86efac', '#4cc184', '#fde68a', '#f9a8d4', '#a5b4fc'];
