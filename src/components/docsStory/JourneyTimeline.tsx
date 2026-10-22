@@ -9,7 +9,11 @@ const ERA_COLOR: Record<Milestone['era'], string> = {
   idea: '#94a3b8',
   early: '#8b5cf6',
   apr: '#2563eb',
+  recodenow: '#06b6d4',
+  feedbuffer: '#f59e0b',
   oct: '#2e8555',
+  'recode-v1-2-2': '#ec4899',
+  'recode-v1-2': '#10b981',
   next: '#f59e0b',
 };
 const INTERVAL_MS = 5000;
@@ -148,7 +152,7 @@ export default function JourneyTimeline() {
           <div className={styles.browser}>
             <div className={styles.browserBar}>
               <span className={styles.dots} aria-hidden="true"><i /><i /><i /></span>
-              <span className={styles.url}>recodehive.com</span>
+              <span className={styles.url}>{current.url || 'recodehive.com'}</span>
               <span className={styles.browserDate}>{current.date}</span>
             </div>
             <div className={styles.viewport}>

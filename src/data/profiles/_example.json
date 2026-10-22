@@ -1,0 +1,34 @@
+{
+  "headline": "One line under your name",
+  "bio": "Two or three sentences about you. Replaces your GitHub bio on this page.",
+  "timezone": "Australia/Sydney",
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/your-name",
+    "website": "https://example.com",
+    "x": "https://x.com/your-name"
+  },
+  "featuredWork": [
+    {
+      "title": "Project name",
+      "role": "Maintainer",
+      "summary": "One or two sentences about what it is and what you did.",
+      "tags": ["React", "TypeScript"],
+      "links": [{ "label": "Repo", "url": "https://github.com/your-name/project" }]
+    }
+  ],
+  "credentials": [
+    { "name": "Certificate name", "issuer": "Issuer", "type": "certification", "url": "https://example.com/cert" }
+  ],
+  "skillsDeclared": ["SQL", "Python"],
+  "hire": {
+    "open": true,
+    "roles": ["Software Engineer"],
+    "engagement": ["contract", "full-time"],
+    "workRights": "Only if you want to say it",
+    "bookingUrl": "https://calendly.com/your-name",
+    "cvUrl": "https://example.com/cv.pdf"
+  },
+  "endorsements": [
+    { "by": "a-github-handle", "skill": "Docusaurus", "text": "One or two sentences about work they saw.", "date": "2026-10-21" }
+  ]
+}

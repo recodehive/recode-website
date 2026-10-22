@@ -7,18 +7,18 @@ date: 2025-09-17
 image: /img/blogs/github-cli-agent-cover.png
 category: GITHUB
 
-description: GitHub bought power of GitHub Copilot coding agent directly to your terminal, with GitHub Copilot CLI, you can work locally and synchronously with an AI agent.
+description: GitHub brings the power of GitHub Copilot coding agent directly to your terminal, with GitHub Copilot CLI, you can work locally and synchronously with an AI agent.
 
 draft: false
 ---
  <!-- truncate -->
 
 GitHub Copilot CLI is now in public preview
-GitHub bought power of GitHub Copilot coding agent directly to your terminal, with [GitHub Copilot CLI](https://github.com/features/copilot/cli?utm_source=changelog-amp-linkedin&utm_campaign=agentic-copilot-cli-launch-2025), you can work locally and synchronously with an AI agent that understands your code and GitHub context in depth.
+GitHub brings the power of GitHub Copilot coding agent directly to your terminal, with [GitHub Copilot CLI](https://github.com/features/copilot/cli?utm_source=changelog-amp-linkedin&utm_campaign=agentic-copilot-cli-launch-2025), you can work locally and synchronously with an AI agent that understands your code and GitHub context in depth.
 
 ---
 
-## 📖 Overview
+## Overview
 
 GitHub Copilot CLI is now in `public preview`, and it’s designed to bring AI-powered development right to your command line. You can work locally and synchronously with an AI agent that understands your code and GitHub context no IDE switching required.
 
@@ -40,7 +40,7 @@ Execute coding tasks with an agent that knows your repositories, issues, and pul
 
 ---
 
-## 📦 Getting Started
+## Getting Started
 
 ### Supported Platforms
 
@@ -69,7 +69,7 @@ pwsh --version
 
 ---
 
-## 💽 Installation
+## Installation
 
 Install globally with npm:
 Powered by the same agentic harness as GitHub's Copilot coding agent, it provides intelligent assistance while staying deeply integrated with your GitHub workflow.
@@ -112,7 +112,7 @@ setx GH_TOKEN your_token_here
 
 ---
 
-## 🖥️ Usage
+## Usage
 Once installed, run copilot on your terminal, Image of the splash screen for the Copilot CLI. The usage is pretty straight forward you can use the arrow keys to navigate to proceed cancel instruction etc.
 
 Each time you submit a prompt to GitHub Copilot CLI, your monthly quota of premium requests is reduced by one. For information about premium requests,
@@ -156,35 +156,7 @@ Now let's get started with development, here fork this repo and activate GitHub 
 ### List of all commands in CLI
 I have linked the offical website repo to log any bugs or do direct PR. [GitHub CLI repo](https://github.com/github/copilot-cli?utm_source=changelog-amp-linkedin&utm_campaign=agentic-copilot-cli-launch-2025) and [Official Documentation](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli?utm_campaign=agentic-copilot-cli-launch-2025&utm_source=changelog-amp-linkedin)
 
-  `alias`
-  `api`
-  `attestation`
-  `auth`
-  `browse`
-  `cache`
-  `co`
-  `codespace`
-  `completion`
-  `config`
-  `extension`
-  `gist`
-  `gpg-key`
-  `issue`
-  `label`
-  `org`
-  `pr`
-  `preview`
-  `project`
-  `release`
-  `repo`
- ` ruleset`
-  `run`
-  `search`
-  `secret`
-  `ssh-key`
-  `status`
-  `variable`
-  `workflow`
+`alias` `api` `attestation` `auth` `browse` `cache` `co` `codespace` `completion` `config` `extension` `gist` `gpg-key` `issue` `label` `org` `pr` `preview` `project` `release` `repo` `ruleset` `run` `search` `secret` `ssh-key` `status` `variable` `workflow`
 
 For preview to run enter the following command. 👇🏻
 
@@ -237,13 +209,14 @@ gh copilot suggest "build docusaurus site for production"
 gh copilot suggest "deploy docusaurus site"
 ```
 
-# SEO and metadata
+### SEO and metadata
+
 ```bash
 gh copilot suggest "optimize SEO for docusaurus website"
 gh copilot suggest "add metadata to blog posts"
 ```
 
-## 🔗 Resources
+## Resources
 
 * [Official Documentation](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/use-copilot-cli)
 * [Copilot CLI GitHub Repository](https://github.com/github/copilot-cli)
@@ -251,7 +224,7 @@ gh copilot suggest "add metadata to blog posts"
 
 ---
 
-## ✅ Final Verdict
+## Final Verdict
 
 *GitHub Copilot CLI is the next step in developer productivity bringing AI assistance natively to your terminal. With support for repositories, workflows, testing, and documentation, it simplifies development without taking control away from you.*
 

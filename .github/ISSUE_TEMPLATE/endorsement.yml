@@ -1,0 +1,40 @@
+name: Endorse a contributor
+description: Endorse a skill of someone you worked with on recode hive
+title: "Endorsement for @their-handle"
+labels: ["endorsement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        An admin reviews every endorsement before it appears on the profile.
+        You need a GitHub account with at least one merged pull request in a recodehive repo. Your GitHub handle is shown with the endorsement.
+  - type: input
+    id: handle
+    attributes:
+      label: GitHub handle of the person you are endorsing
+      placeholder: their-handle
+    validations:
+      required: true
+  - type: input
+    id: skill
+    attributes:
+      label: Skill
+      placeholder: Docusaurus
+    validations:
+      required: true
+  - type: textarea
+    id: text
+    attributes:
+      label: What did you see them do?
+      description: One or two sentences about work you saw. Please be specific and honest.
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirm
+      options:
+        - label: I have a merged pull request in a recodehive repo
+          required: true
+        - label: I worked with this person
+          required: true

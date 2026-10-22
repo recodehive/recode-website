@@ -1,7 +1,7 @@
 ---
 title: "GitHub Copilot Coding Agent"
 sidebar_label: GitHub Copilot Coding Agent
-authors: [sanjay-kv]
+authors: [sanjay-kv, sowmiya-v]
 tags: [GitHub, SEO, Coding agent,Copilot, AI, Automation]
 date: 2025-07-04
 image: /img/blogs/06-github-agent.png

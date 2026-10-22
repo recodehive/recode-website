@@ -1876,10 +1876,20 @@ html {
   transform: none !important;
   white-space: nowrap;
   overflow: hidden;
+  border-radius: 8px !important;
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #64748b !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  transition: all 0.2s ease !important;
 }
 
 .algolia-sitesearch-navbar .sitesearch-button:hover {
   transform: none !important;
+  background: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
 }
 
 .algolia-sitesearch-navbar .sitesearch-button .search-icon {
@@ -1895,6 +1905,12 @@ html {
   line-height: 0 !important;
   pointer-events: none;
   transform: translateY(-50%) !important;
+  color: #64748b !important;
+  transition: color 0.2s ease;
+}
+
+.algolia-sitesearch-navbar .sitesearch-button:hover .search-icon {
+  color: #1e293b !important;
 }
 
 .algolia-sitesearch-navbar .sitesearch-button .search-icon svg {
@@ -1910,6 +1926,9 @@ html {
   overflow: hidden;
   text-align: left;
   text-overflow: ellipsis;
+  color: inherit !important;
+  font-size: 13.5px !important;
+  font-weight: 400 !important;
 }
 
 .algolia-sitesearch-navbar .sitesearch-button .keyboard-shortcut {
@@ -1919,13 +1938,15 @@ html {
   height: 20px;
   margin-left: 10px;
   padding: 0 6px !important;
-  border: 1px solid var(--ifm-color-emphasis-300) !important;
+  border: 1px solid #cbd5e1 !important;
   border-radius: 5px !important;
-  background: var(--ifm-color-emphasis-100) !important;
-  color: var(--ifm-color-emphasis-700) !important;
-  font-size: 12px !important;
+  background: #ffffff !important;
+  color: #64748b !important;
+  font-size: 11.5px !important;
+  font-weight: 500 !important;
   line-height: 1 !important;
   flex-shrink: 0;
+  transition: all 0.2s ease;
 }
 
 .algolia-sitesearch-navbar .sitesearch-button .keyboard-shortcut>* {
@@ -1939,6 +1960,113 @@ html {
   color: inherit !important;
   font: inherit !important;
   line-height: inherit !important;
+}
+
+/* ── Dark Mode for Search Bar in Navbar ────────────────── */
+html[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button,
+[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button,
+.algolia-sitesearch-navbar .sitesearch-button.dark {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+  color: #8b949e !important;
+  box-shadow: none !important;
+}
+
+html[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button:hover,
+[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button:hover,
+.algolia-sitesearch-navbar .sitesearch-button.dark:hover {
+  background: #1c2128 !important;
+  border-color: #4cc184 !important;
+  color: #e6edf3 !important;
+}
+
+html[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button .search-icon,
+[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button .search-icon,
+.algolia-sitesearch-navbar .sitesearch-button.dark .search-icon {
+  color: #8b949e !important;
+}
+
+html[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button:hover .search-icon,
+[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button:hover .search-icon,
+.algolia-sitesearch-navbar .sitesearch-button.dark:hover .search-icon {
+  color: #4cc184 !important;
+}
+
+html[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button .button-text,
+[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button .button-text,
+.algolia-sitesearch-navbar .sitesearch-button.dark .button-text {
+  color: #8b949e !important;
+}
+
+html[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button:hover .button-text,
+[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button:hover .button-text,
+.algolia-sitesearch-navbar .sitesearch-button.dark:hover .button-text {
+  color: #e6edf3 !important;
+}
+
+html[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button .keyboard-shortcut,
+[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button .keyboard-shortcut,
+.algolia-sitesearch-navbar .sitesearch-button.dark .keyboard-shortcut {
+  background: #21262d !important;
+  border: 1px solid #30363d !important;
+  color: #8b949e !important;
+}
+
+html[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button:hover .keyboard-shortcut,
+[data-theme="dark"] .algolia-sitesearch-navbar .sitesearch-button:hover .keyboard-shortcut,
+.algolia-sitesearch-navbar .sitesearch-button.dark:hover .keyboard-shortcut {
+  background: #21262d !important;
+  border-color: rgba(76, 193, 132, 0.4) !important;
+  color: #c9d1d9 !important;
+}
+
+/* ── Dark Mode for Algolia Search Modal / Dropdown ────── */
+html[data-theme="dark"] .ss-exp,
+html[data-theme="dark"] .modal-backdrop,
+html[data-theme="dark"] .sitesearch-button,
+[data-theme="dark"] .ss-exp,
+[data-theme="dark"] .modal-backdrop,
+[data-theme="dark"] .sitesearch-button {
+  --search-primary-color: #4cc184;
+  --search-secondary-color: #9aa1b2;
+  --search-background-color: #0d1117;
+  --search-neutral-color: #161b22;
+  --search-subtle-color: #94a3b8;
+  --search-text-color: #e5e7eb;
+  --search-subtle-text-color: #94a3b8;
+  --search-border-color: #30363d;
+  --search-hover-color: #1f2937;
+}
+
+html[data-theme="dark"] .modal-content,
+[data-theme="dark"] .modal-content {
+  background-color: #161b22 !important;
+  border: 1px solid #30363d !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7) !important;
+}
+
+html[data-theme="dark"] .ss-exp .ss-searchbox-form,
+[data-theme="dark"] .ss-exp .ss-searchbox-form {
+  background-color: #161b22 !important;
+  border-bottom: 1px solid #30363d !important;
+}
+
+html[data-theme="dark"] .ss-exp .ss-searchbox-form input,
+[data-theme="dark"] .ss-exp .ss-searchbox-form input {
+  color: #e5e7eb !important;
+}
+
+html[data-theme="dark"] .ss-exp .ss-hits-container,
+[data-theme="dark"] .ss-exp .ss-hits-container,
+html[data-theme="dark"] .ss-exp .ss-chat-root,
+[data-theme="dark"] .ss-exp .ss-chat-root {
+  background-color: #0d1117 !important;
+}
+
+html[data-theme="dark"] .ss-exp .ss-infinite-hits-item,
+[data-theme="dark"] .ss-exp .ss-infinite-hits-item {
+  background-color: #161b22 !important;
+  color: #e5e7eb !important;
 }
 
 [data-theme="dark"] .explore-btn:hover {

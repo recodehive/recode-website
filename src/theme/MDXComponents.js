@@ -6,6 +6,7 @@ import Comming from "../components/Comming";
 import Image from "@theme/IdealImage";
 import GiscusComments from "../components/giscus";
 import SocialShare from "../components/SocialShare";
+import { FeatureGrid, PlatformCards, RequirementsTable, ResourceCards, Verdict } from "../components/blog";
 
 export default {
   ...MDXComponents,
@@ -16,4 +17,9 @@ export default {
   Image,
   GiscusComments,
   SocialShare,
+  FeatureGrid,
+  PlatformCards,
+  RequirementsTable,
+  ResourceCards,
+  Verdict,
 };

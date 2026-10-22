@@ -1,40 +1,40 @@
 {
-  "fetchedAt": "2026-10-20T22:21:15.424Z",
+  "fetchedAt": "2026-10-22T00:40:02.679Z",
   "prs": [
     {
-      "number": 2345,
-      "title": "Fixes on Padcast Page",
-      "url": "https://github.com/recodehive/recode-website/pull/2345",
-      "author": "steam-bell-92",
-      "mergedAt": "2026-10-20T22:15:14Z"
+      "number": 2429,
+      "title": "chore: bump @docusaurus/theme-classic from 3.10.1 to 3.10.2",
+      "url": "https://github.com/recodehive/recode-website/pull/2429",
+      "author": "dependabot[bot]",
+      "mergedAt": "2026-10-21T22:42:16Z"
     },
     {
-      "number": 2347,
-      "title": "Navbar: Learn links to /docs and docs pages no longer crash",
-      "url": "https://github.com/recodehive/recode-website/pull/2347",
-      "author": "sanjay-kv",
-      "mergedAt": "2026-10-20T15:31:29Z"
+      "number": 2428,
+      "title": "chore: bump @radix-ui/react-avatar from 1.2.2 to 1.3.1",
+      "url": "https://github.com/recodehive/recode-website/pull/2428",
+      "author": "dependabot[bot]",
+      "mergedAt": "2026-10-21T22:42:07Z"
     },
     {
-      "number": 2346,
-      "title": "Redesign the navbar: grouped mega menu and full-screen mobile sheet",
-      "url": "https://github.com/recodehive/recode-website/pull/2346",
-      "author": "sanjay-kv",
-      "mergedAt": "2026-10-20T15:28:32Z"
+      "number": 2427,
+      "title": "chore: bump eslint from 10.12.0 to 10.13.0",
+      "url": "https://github.com/recodehive/recode-website/pull/2427",
+      "author": "dependabot[bot]",
+      "mergedAt": "2026-10-21T22:41:58Z"
     },
     {
-      "number": 2344,
-      "title": "Replace the Ebooks page with the single ebook design",
-      "url": "https://github.com/recodehive/recode-website/pull/2344",
-      "author": "sanjay-kv",
-      "mergedAt": "2026-10-20T14:34:49Z"
+      "number": 2426,
+      "title": "chore: bump postcss from 8.5.29 to 8.5.31",
+      "url": "https://github.com/recodehive/recode-website/pull/2426",
+      "author": "dependabot[bot]",
+      "mergedAt": "2026-10-21T22:39:52Z"
     },
     {
-      "number": 2343,
-      "title": "Blogs: make search and topic chips visible, restore card font and tag colours",
-      "url": "https://github.com/recodehive/recode-website/pull/2343",
+      "number": 2424,
+      "title": "Blogs hero: author tooltip is a rounded rectangle, not an oval",
+      "url": "https://github.com/recodehive/recode-website/pull/2424",
       "author": "sanjay-kv",
-      "mergedAt": "2026-10-20T14:25:20Z"
+      "mergedAt": "2026-10-21T22:36:58Z"
     }
   ]
 }

@@ -28,11 +28,11 @@ main.root .h2 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 28
 .rule { height: 1px; margin: 10px 0 18px; background: var(--text); opacity: 0.85; }
 
 /* Hero */
-.hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 600px); gap: 40px; align-items: center; max-width: none; padding: 56px max(24px, calc((100% - 1132px) / 2)) 48px; background: var(--hero-bg); border-bottom: 1px solid var(--line); overflow: hidden; }
+.hero { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 520px); gap: 40px; align-items: center; max-width: none; padding: 56px max(24px, calc((100% - 1132px) / 2)) 48px; background: var(--hero-bg); border-bottom: 1px solid var(--line); overflow: hidden; }
 .heroGridBg { position: absolute; inset: 0; pointer-events: none; background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 40px 40px; -webkit-mask-image: radial-gradient(ellipse at 100% 0%, #000 0%, transparent 65%); mask-image: radial-gradient(ellipse at 100% 0%, #000 0%, transparent 65%); }
 .heroText, .heroRight { position: relative; z-index: 1; min-width: 0; }
 .eyebrow { margin: 0 0 14px; font: 700 12px/1 "Inter", sans-serif; letter-spacing: 0.12em; text-transform: uppercase; color: #2e8555; }
-main.root .h1 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 60px; line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
+main.root .h1 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 60px; line-height: 1.05; white-space: nowrap; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
 .accent { color: #2e8555; }
 .subtitle { margin: 14px 0 26px; font-size: 20px; color: var(--text-2); }
 .search { display: flex; align-items: center; gap: 12px; max-width: 520px; height: 56px; padding: 0 18px; border: 1px solid #d6dde6; border-radius: 12px; background: var(--card); color: var(--muted); box-shadow: 0 4px 14px rgba(15, 23, 42, 0.05); }
@@ -69,8 +69,9 @@ main.root .h1 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 60
 .av > a:hover, .av > a:focus-visible, .av > span:focus-visible { transform: translateY(-6px) scale(1.2); box-shadow: 0 0 0 3px rgba(46, 133, 85, 0.35); position: relative; z-index: 3; }
 .av:hover + .av, .av:has(+ .av:hover) { margin-left: 4px; }
 .av:hover { margin-left: 4px; }
-.tip { position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translateX(-50%) translateY(4px); padding: 4px 9px; border-radius: 6px; background: #0f172a; color: #fff; font: 500 11px "Inter", sans-serif; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s, transform 0.15s; z-index: 5; }
-.av:hover .tip, .av:focus-within .tip { opacity: 1; transform: translateX(-50%) translateY(0); }
+.avatarRow .av .tip { position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translateX(-50%) translateY(4px); box-sizing: border-box; display: block; width: max-content; max-width: 220px; height: auto; padding: 4px 9px !important; border: 0 !important; border-radius: 6px !important; background: #0f172a; color: #fff; font: 500 11px/1.3 "Inter", sans-serif !important; letter-spacing: 0 !important; text-align: center; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s, transform 0.15s; z-index: 5; }
+.avatarRow .av .tip::after { content: ""; position: absolute; left: 50%; top: 100%; width: 8px; height: 8px; margin-top: -4px; background: inherit; border-radius: 1px; transform: translateX(-50%) rotate(45deg); }
+.avatarRow .av:hover .tip, .avatarRow .av:focus-within .tip { opacity: 1; transform: translateX(-50%) translateY(0); }
 .avatar { display: block; border-radius: 50%; object-fit: cover; background: var(--hair); }
 .avatarFallback { display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; background: linear-gradient(135deg, #bfe3cd, #7cc79f); color: #14532d; font-weight: 700; }
 .stripText { margin: 0; font-size: 13px; color: var(--text-2); }
@@ -107,7 +108,7 @@ main.root .spotTitleSm { font-family: "Space Grotesk", sans-serif; font-size: 20
 .byline { display: flex; align-items: center; gap: 10px; min-width: 0; }
 .bylineText { display: flex; flex-direction: column; min-width: 0; font-size: 12px; color: var(--muted); }
 .bylineText strong { color: var(--text); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.bylineStacked .avatar, .bylineStacked .avatarFallback { display: none; }
+.bylineStacked .avatar, .bylineStacked .avatarFallback, .bylineStacked .avatarStack { display: none; }
 .bylineStacked .bylineText { flex-direction: row; flex-wrap: wrap; gap: 4px; font-size: 13px; }
 .bylineStacked .bylineText strong { font-weight: 500; color: var(--text-2); }
 
@@ -206,7 +207,7 @@ main.root .writeTitle { margin: 0 0 6px; max-width: 520px; font-family: "Space G
   .tlLine { display: none; }
 }
 @media (max-width: 720px) {
-  main.root .h1 { font-size: 42px; }
+  main.root .h1 { font-size: 42px; white-space: normal; }
   .spotLead { grid-template-columns: minmax(0, 1fr); }
   .spotThumb { border-right: 0; border-bottom: 1px solid var(--line) !important; }
   .cards { grid-template-columns: minmax(0, 1fr); }
@@ -222,3 +223,17 @@ main.root .writeTitle { margin: 0 0 6px; max-width: 520px; font-family: "Space G
   .card, .ghTile, .spotCard, .thumb img, .av, .av > a { transition: none; }
   .card:hover, .ghTile:hover, .spotCard:hover { transform: none; }
 }
+
+/* Several authors: overlapping avatars with a lift, ring and name tooltip on hover (like the sponsors page) */
+.avatarStack { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; flex: none; position: relative; z-index: 2; }
+.stackItem { position: relative; margin-left: -9px; transition: margin 0.2s; }
+.stackItem:first-child { margin-left: 0; }
+.stackItem .avatar, .stackItem .avatarFallback { border: 2px solid var(--card); box-sizing: content-box; transition: transform 0.2s, box-shadow 0.2s; }
+.stackItem:hover { margin-left: 2px; z-index: 4; }
+.stackItem:hover + .stackItem { margin-left: 2px; }
+.stackItem:hover .avatar, .stackItem:hover .avatarFallback { transform: translateY(-4px) scale(1.15); box-shadow: 0 0 0 3px rgba(46, 133, 85, 0.35); }
+.avatarStack .stackItem .stackTip { position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translateX(-50%) translateY(4px); box-sizing: border-box; display: block; width: max-content; max-width: 220px; padding: 4px 9px !important; border-radius: 6px !important; background: #0f172a; color: #fff; font: 500 11px/1.3 "Inter", sans-serif !important; letter-spacing: 0 !important; text-transform: none !important; text-align: center; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.15s, transform 0.15s; z-index: 6; }
+.avatarStack .stackItem .stackTip::after { content: ""; position: absolute; left: 50%; top: 100%; width: 8px; height: 8px; margin-top: -4px; background: inherit; transform: translateX(-50%) rotate(45deg); border-radius: 1px; }
+.avatarStack .stackItem:hover .stackTip { opacity: 1; transform: translateX(-50%) translateY(0); }
+.stackMore { margin-left: -9px; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border: 2px solid var(--card); border-radius: 50%; background: var(--hair); color: var(--muted); font: 600 11px "Inter", sans-serif; box-sizing: border-box; }
+@media (prefers-reduced-motion: reduce) { .stackItem, .stackItem .avatar, .stackItem .avatarFallback, .stackTip { transition: none; } .stackItem:hover .avatar, .stackItem:hover .avatarFallback { transform: none; } }

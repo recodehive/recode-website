@@ -27,7 +27,7 @@ export function YourRank({ viewer, canSignIn, rows, periodWord, viewerBadges }: 
           </SignInButton>
         ) : (
           <a className={styles.railBtn} href={GOOD_FIRST_ISSUES} target="_blank" rel="noopener noreferrer">
-            Find your first recode issue {'→'}<span className={styles.srOnly}> (opens in a new tab)</span>
+            Find the open recode issues {'→'}<span className={styles.srOnly}> (opens in a new tab)</span>
           </a>
         )}
       </section>
@@ -71,7 +71,7 @@ export function YourRank({ viewer, canSignIn, rows, periodWord, viewerBadges }: 
         <span>{'\u{1F3C5}'} Badges <strong>{viewerBadges}</strong></span>
       </p>
       <a className={styles.railBtn} href={GOOD_FIRST_ISSUES} target="_blank" rel="noopener noreferrer">
-        {me ? 'Find your next issue' : 'Find your first recode issue'} {'→'}
+        {me ? 'Find your next issue' : 'Find the open recode issues'} {'→'}
         <span className={styles.srOnly}> (opens in a new tab)</span>
       </a>
     </section>

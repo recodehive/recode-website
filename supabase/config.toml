@@ -5,3 +5,13 @@ project_id = "recodehive-giveaway"
 
 [functions.giveaway]
 verify_jwt = false
+
+# Public read-only data from GitHub, cached for a week. No sign-in needed.
+[functions.profile]
+verify_jwt = false
+
+# Public share image for developer profiles.
+[functions.og]
+verify_jwt = false
+# The image function uses JSX, so its entry file is index.tsx, not the default index.ts
+entrypoint = "./functions/og/index.tsx"

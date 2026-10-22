@@ -3,6 +3,7 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import * as dotenv from "dotenv";
 import giscusInjector from "./src/plugins/giscus-injector";
+import stripHeadingEmoji from "./src/plugins/strip-heading-emoji";
 dotenv.config({ path: ".env.local" });
 dotenv.config();
 
@@ -85,11 +86,15 @@ const config: Config = {
         },
         blog: {
           showReadingTime: true,
+          // Blog only: no emoji at the start of headings, so the contents list stays clean
+          remarkPlugins: [stripHeadingEmoji],
           feedOptions: {
             type: ["rss", "atom"],
             xslt: true,
           },
-          editUrl: "https://github.com/recodehive/recode-website/tree/main",
+          // Each post links to its own source file, for example blog/<slug>/index.md
+          editUrl: ({ blogDirPath, blogPath }: { blogDirPath: string; blogPath: string }) =>
+            `https://github.com/recodehive/recode-website/tree/main/${blogDirPath}/${blogPath}`,
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
@@ -168,6 +173,10 @@ const config: Config = {
     "./plugins/github-discussions",
     // Dashboard notifications, read from src/data/notifications.txt
     "./plugins/notifications",
+    // One static public profile page per contributor at /u/<handle>
+    "./plugins/developer-profiles",
+    // Star and fork counts for the first-time setup guide (hidden if GitHub is unreachable)
+    "./plugins/repo-stats",
     [
       "@docusaurus/plugin-ideal-image",
       {
@@ -185,6 +194,8 @@ const config: Config = {
     backendApiUrl: process.env.BACKEND_API_URL || "https://leaderboard-production-6143.up.railway.app",
     clerkPublishableKey: process.env.VITE_CLERK_PUBLISHABLE_KEY || "",
     // Giveaway backend (public values). The anon key only reads the public ledger views.
+    // Reserved ad containers on blog posts stay empty and hidden until this is true
+    adsEnabled: false,
     supabaseUrl: process.env.SUPABASE_URL || "",
     supabaseAnonKey: process.env.SUPABASE_ANON_KEY || "",
     // Shopify credentials for merch store

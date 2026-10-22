@@ -31,9 +31,9 @@ export const CONTRIBUTORS = 106;
 // TODO(sanjay): total stars across the public repos (1.15K at the time of writing).
 export const STARS = 1150;
 // TODO(sanjay): learners reached by tutorials and sessions (your figure, 12,000+).
-export const LEARNERS = 12000;
+export const LEARNERS = 4500;
 
-export type Era = 'idea' | 'early' | 'apr' | 'oct' | 'next';
+export type Era = 'idea' | 'early' | 'apr' | 'recodenow' | 'feedbuffer' | 'oct' | 'recode-v1-2-2' | 'recode-v1-2' | 'next';
 
 export type Milestone = {
   id: string;
@@ -44,6 +44,7 @@ export type Milestone = {
   /** Path under /static. If the file is missing a tinted skeleton is shown instead. */
   screenshot?: string;
   caption?: string;
+  url?: string;
 };
 
 const ALL_MILESTONES: Milestone[] = [
@@ -55,42 +56,67 @@ const ALL_MILESTONES: Milestone[] = [
     text: '', // TODO(sanjay): one or two sentences about the moment you decided to start recode hive
     screenshot: '/img/journey/idea.webp',
     caption: '', // TODO(sanjay)
-  },
-  {
-    id: 'early',
-    era: 'early',
-    date: '', // TODO(sanjay): year of the first workshops
-    title: 'First workshops and learners',
-    text: '', // TODO(sanjay): a sentence about the first workshops. Keep the "12,000+ learners" claim only if it is accurate.
-    screenshot: '/img/journey/early.webp',
-    caption: '', // TODO(sanjay)
+    url: 'recodehive.com',
   },
   {
     id: 'apr',
     era: 'apr',
-    date: first ? monthYear(first.publishedAt) : '',
-    title: first ? `${formatVersion(first.tagName)}: the website goes open source` : '',
-    text: first
-      ? `The first tagged release ships with ${getContributors(first.body).length} contributors in its changelog.`
-      : '',
-    screenshot: '/img/journey/apr-2026.webp',
-    caption: 'The blue theme, at the first tagged release',
+    date: 'OCT 2010',
+    title: 'The first Blog for the School',
+    text: 'The IT club after school time kicked off blogging passion, we started with 10 people updating Tech news.',
+    screenshot: '/img/journey/school-blog.png',
+    caption: 'The first blog at school, where it all began',
+    url: 'bethanykkm.blogspot.com',
   },
   {
-    id: 'oct',
-    era: 'oct',
-    date: latest ? `${monthYear(latest.publishedAt)} · NOW` : '',
-    title: latest ? `${formatVersion(latest.tagName)} and ${CONTRIBUTORS} contributors` : '',
-    text: `${WORDS[releasesThisYear] ?? releasesThisYear} releases in ${year} and a contributor community that keeps growing with every merged PR.`,
-    screenshot: '/img/journey/oct-2026.webp',
-    caption: 'Today: the green theme since V1.0.7',
+    id: 'early',
+    era: 'early',
+    date: 'DEC 2012',
+    title: 'My 1st Independent Blog',
+    text: 'Started first independent blog, it was known as factnscience.blogger.com, then changed name to tutorialnow24.',
+    screenshot: '/img/journey/tutorialnow24.png',
+    caption: 'The beginning of tutorialnow24, sharing tech knowledge',
+    url: 'tutorialnow24.blogspot.com',
   },
   {
-    id: 'next',
-    era: 'next',
-    date: 'NEXT',
-    title: 'Your first PR',
-    text: 'The next milestone on this timeline could be yours.',
+    id: 'recodenow',
+    era: 'recodenow',
+    date: ' JAN 2016',
+    title: 'V1.1.0 1st version of recodehive',
+    text: 'This is the 1st version of named recodenow, running on blogger.com. Inspired from Silicon Valley series :P',
+    screenshot: '/img/journey/recodenow.png',
+    caption: 'The first version of recodehive,',
+    url: 'recodenow.com',
+  },
+  {
+    id: 'feedbuffer',
+    era: 'feedbuffer',
+    date: 'FEB 2021',
+    title: 'Crypto and Tech Blog',
+    text: 'Started Feedbuffer.blogspot.com, wanted to do it in side along with recodenow that point of time, it got shelved when my masters kicked in.',
+    screenshot: '/img/journey/feedbuffer.png',
+    caption: 'FeedBuffer: exploring crypto and tech',
+    url: 'feedbuffer.blogspot.com',
+  },
+  {
+    id: 'recode-v1-2-2',
+    era: 'recode-v1-2-2',
+    date: 'DEC 2023',
+    title: 'V1.2.2 Revamped recodehive',
+    text: 'It ran on blogger 1st, Wanted to do beyond writing content, but blogger made my hands tied.',
+    screenshot: '/img/journey/recode-v1-2-2.png',
+    caption: 'Revamped recodehive platform',
+    url: 'recodehive.com',
+  },
+  {
+    id: 'recode-v1-2',
+    era: 'recode-v1-2',
+    date: 'FEB 2025',
+    title: 'V2.2.0 and 120 contributors',
+    text: 'The current recodehive.com went live, shifted codebase to github and made opensource, so now its more than a blog. I call the recode community.',
+    screenshot: '/img/journey/recode-v1-2.png',
+    caption: 'The new recodehive launches on GitHub',
+    url: 'recodehive.com',
   },
 ];
 

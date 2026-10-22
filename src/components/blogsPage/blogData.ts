@@ -43,8 +43,6 @@ export const TOPICS: Topic[] = [
   { label: 'Data Engineering', tags: ['data-engineering'] },
   { label: 'Azure', tags: ['azure'] },
   { label: 'Big Data', tags: ['big-data'] },
-  { label: 'Career', tags: ['career'] },
-  { label: 'Design & UX', tags: ['ux', 'ui-design', 'ui', 'design'] },
 ];
 
 export const hasTag = (post: Post, tags: string[]): boolean => post.tags.some((t) => tags.includes(slugify(t.label)));
