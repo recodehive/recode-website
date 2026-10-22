@@ -3287,3 +3287,8 @@ div[class*='sidebarViewport_'] {
     --ifm-navbar-height: 54px;
   }
 }
+/* Fix white background on blog pages in dark mode */
+html[data-theme="dark"] .blog-wrapper,
+html[data-theme="dark"] .blog-wrapper .container > .row > .col {
+  background-color: #000000 !important;
+}
