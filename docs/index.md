@@ -22,11 +22,51 @@ import {
   <meta name="robots" content="noindex" />
 </Head>
 
+export const srOnly = {
+  position: 'absolute', width: 1, height: 1, padding: 0, margin: -1,
+  overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0,
+};
+
+<div style={srOnly}>
+
+## Our story
+
+</div>
 <StoryHero />
+
+<div style={srOnly}>
+
+## Why "recode hive"?
+
+</div>
 <NameCards />
+
+<div style={srOnly}>
+
+## How we got here
+
+</div>
 <JourneyTimeline />
+
+<div style={srOnly}>
+
+## Our impact
+
+</div>
 <ImpactCounters />
+
+<div style={srOnly}>
+
+## A note from the founder
+
+</div>
 <FounderNote />
+
+<div style={srOnly}>
+
+## Our contributors
+
+</div>
 <ContributorWall />
 <CtaBand />
 
