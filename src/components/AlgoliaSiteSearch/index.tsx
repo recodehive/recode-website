@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 const containerId = "algolia-sitesearch-navbar";
@@ -91,6 +91,28 @@ export default function AlgoliaSiteSearch(): React.ReactElement | null {
   const apiKey = toConfigString(config?.apiKey);
   const indexName = toConfigString(config?.indexName);
   const isConfigured = Boolean(applicationId && apiKey && indexName);
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const checkTheme = () => {
+      const isDarkTheme =
+        document.documentElement.getAttribute("data-theme") === "dark" ||
+        document.documentElement.classList.contains("dark");
+      setIsDark(isDarkTheme);
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme", "class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     ensureSiteSearchStylesheet();
@@ -126,7 +148,7 @@ export default function AlgoliaSiteSearch(): React.ReactElement | null {
             url: "url",
             image: "image",
           },
-          darkMode: document.documentElement.dataset.theme === "dark",
+          darkMode: isDark,
         });
       })
       .catch((error) => {
@@ -137,15 +159,15 @@ export default function AlgoliaSiteSearch(): React.ReactElement | null {
       cancelled = true;
       window.SiteSearch?.destroy?.(`#${containerId}`);
     };
-  }, [apiKey, applicationId, indexName, isConfigured]);
+  }, [apiKey, applicationId, indexName, isConfigured, isDark]);
 
   if (!isConfigured) {
     return (
       <div className="navbar__item algolia-sitesearch-navbar">
         <button
-          className="sitesearch-button"
-          style={{ opacity: 0.6, cursor: "not-allowed" }}
-          title="Search (Algolia SiteSearch credentials not configured)"
+          className={`sitesearch-button ${isDark ? "dark" : ""}`}
+          title="Search"
+          aria-label="Search"
         >
           <span className="search-icon">
             <svg
