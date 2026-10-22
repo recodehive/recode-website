@@ -179,9 +179,16 @@ export default function Merch(): ReactNode {
             </div>
             <label className={styles.sort}>
               <span className={styles.srOnly}>Sort products</span>
-              <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} aria-label="Sort products">
+              <select
+                value={sort}
+                onChange={(e) => setSort(e.target.value as Sort)}
+                aria-label="Sort products"
+                className={styles.sortSelect}
+              >
                 {(Object.keys(SORT_LABEL) as Sort[]).map((k) => (
-                  <option key={k} value={k}>{SORT_LABEL[k]}</option>
+                  <option key={k} value={k} className={styles.sortOption}>
+                    {SORT_LABEL[k]}
+                  </option>
                 ))}
               </select>
             </label>

@@ -76,7 +76,26 @@
 .trustSub { font-size: 13px; color: var(--muted); }
 
 /* shop */
-.sort select { min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--text); font: 500 14px "Inter", sans-serif; }
+.sort { cursor: pointer; display: inline-flex; align-items: center; }
+.sort select, .sortSelect {
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  color: var(--text);
+  font: 500 14px "Inter", sans-serif;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.sort select:hover, .sortSelect:hover {
+  border-color: var(--accent);
+}
+.sort select option, .sortOption {
+  cursor: pointer;
+  background: var(--card);
+  color: var(--text);
+}
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { min-height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--text-2); font: 500 14px "Inter", sans-serif; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
 .chip:hover { border-color: var(--accent); color: var(--accent-dark); }
