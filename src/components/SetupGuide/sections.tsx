@@ -13,7 +13,8 @@ export function Hero() {
     <section className={s.hero}>
       <p className={s.eyebrow}>{'✦'} First-time setup · For complete beginners</p>
       <h1 className={s.heroTitle}>
-        Zero to localhost: <span>run recode hive on your computer</span>
+        Zero to localhost:
+        <span>run recode hive on your computer</span>
       </h1>
       <p className={s.heroText}>
         Never used GitHub? Perfect. In about 30 minutes you will fork the project, download it, and see the recode hive website running on your own machine. Tick each step as you go. We save your progress.
@@ -88,7 +89,7 @@ export function Personalise() {
           />
         </div>
       </div>
-      <p className={s.personaNote} id={`${inputId}-note`}>Every command below updates to match. Nothing leaves your browser.</p>
+      <p className={s.personaNote} id={`${inputId}-note`}>Select your device from above, paste your GitHub username, and all the code to copy will be based on your selection below.</p>
     </section>
   );
 }

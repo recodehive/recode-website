@@ -32,6 +32,7 @@
   --tokenOkBg: #d1fae5;
   --tokenOkText: #14532d;
   --ghLink: #0969da;
+  --red: #b91c1c;
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--text);
   width: 100%;
@@ -69,6 +70,7 @@
   --tokenOkBg: #123a28;
   --tokenOkText: #86efac;
   --ghLink: #58a6ff;
+  --red: #f87171;
 }
 
 .setupGuide *,
@@ -88,19 +90,20 @@
   -webkit-text-fill-color: currentColor !important;
 }
 
-:global(html[data-theme='dark']) .setupGuide .eyebrow { color: #86efac !important; }
-:global(html[data-theme='dark']) .setupGuide .eyebrowGreen { color: var(--g) !important; }
-:global(html[data-theme='dark']) .setupGuide .stepDone .stepTitle { color: var(--g) !important; }
-:global(html[data-theme='dark']) .setupGuide .hint { color: var(--amber) !important; }
-:global(html[data-theme='dark']) .setupGuide .hand p { color: var(--purple) !important; }
+/* The fill is repeated on each of these: the global .container p rule outranks the reset above on specificity. */
+:global(html[data-theme='dark']) .setupGuide .eyebrow { color: #86efac !important; -webkit-text-fill-color: #86efac !important; }
+:global(html[data-theme='dark']) .setupGuide .eyebrowGreen { color: var(--g) !important; -webkit-text-fill-color: var(--g) !important; }
+:global(html[data-theme='dark']) .setupGuide .stepDone .stepTitle { color: var(--g) !important; -webkit-text-fill-color: var(--g) !important; }
+:global(html[data-theme='dark']) .setupGuide .hint { color: var(--amber) !important; -webkit-text-fill-color: var(--amber) !important; }
+:global(html[data-theme='dark']) .setupGuide .hand p { color: var(--purple) !important; -webkit-text-fill-color: var(--purple) !important; }
+:global(html[data-theme='dark']) .setupGuide .personaNote { color: var(--red) !important; -webkit-text-fill-color: var(--red) !important; }
 :global(html[data-theme='dark']) .setupGuide .muted,
-:global(html[data-theme='dark']) .setupGuide .personaNote,
 :global(html[data-theme='dark']) .setupGuide .preNote,
 :global(html[data-theme='dark']) .setupGuide .finishText,
 :global(html[data-theme='dark']) .setupGuide .node small,
 :global(html[data-theme='dark']) .setupGuide .toolCheck small,
-:global(html[data-theme='dark']) .setupGuide .checkNote { color: var(--muted) !important; }
-:global(html[data-theme='dark']) .setupGuide .finish.finishOn .finishText { color: #bfe5cf !important; }
+:global(html[data-theme='dark']) .setupGuide .checkNote { color: var(--muted) !important; -webkit-text-fill-color: var(--muted) !important; }
+:global(html[data-theme='dark']) .setupGuide .finish.finishOn .finishText { color: #bfe5cf !important; -webkit-text-fill-color: #bfe5cf !important; }
 
 /* custom.css forces z-index: 1 !important on every div and span inside docs content, so layered pieces need it back */
 .setupGuide .mobileBar { z-index: 20 !important; }
@@ -281,7 +284,11 @@
   text-align: left;
 }
 
-.setupGuide .heroTitle span { color: #86efac; }
+.setupGuide .heroTitle span {
+  display: block;
+  color: #86efac;
+  text-wrap: balance;
+}
 
 .setupGuide .heroText {
   margin: 0 0 20px;
@@ -427,7 +434,8 @@
   grid-column: 1 / -1;
   margin: 0;
   font-size: 12.5px;
-  color: var(--muted);
+  color: var(--red);
+  text-wrap: pretty;
 }
 
 /* ---------- Username token ---------- */
