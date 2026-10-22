@@ -1,7 +1,7 @@
-import React, { useMemo, useState, type ReactNode } from 'react';
+import React, { useMemo, useState, useRef, useEffect, type ReactNode } from 'react';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import { Hexagon, Printer, RotateCcw, ShieldCheck, Truck } from 'lucide-react';
+import { ChevronDown, Hexagon, Printer, RotateCcw, ShieldCheck, Truck } from 'lucide-react';
 import ProductImage from './_components/ProductImage';
 import ProductCard from './_components/ProductCard';
 import {
@@ -40,7 +40,27 @@ function ManifestoStack({ size }: { size: 'md' | 'lg' }) {
 export default function Merch(): ReactNode {
   const [category, setCategory] = useState<'all' | Category>('all');
   const [sort, setSort] = useState<Sort>('featured');
+  const [sortOpen, setSortOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(0);
+  const sortRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sortOpen) return;
+    const onDown = (e: MouseEvent) => {
+      if (sortRef.current && !sortRef.current.contains(e.target as Node)) {
+        setSortOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setSortOpen(false);
+    };
+    document.addEventListener('mousedown', onDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('mousedown', onDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [sortOpen]);
 
   const categories = useMemo(() => {
     const cats = Array.from(new Set(products.map((p) => p.category)));
@@ -177,14 +197,49 @@ export default function Merch(): ReactNode {
               <p className={styles.eyebrow}>✦ SHOP</p>
               <h2 id="shop-heading" className={styles.h2}>The collection</h2>
             </div>
-            <label className={styles.sort}>
-              <span className={styles.srOnly}>Sort products</span>
-              <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} aria-label="Sort products">
-                {(Object.keys(SORT_LABEL) as Sort[]).map((k) => (
-                  <option key={k} value={k}>{SORT_LABEL[k]}</option>
-                ))}
-              </select>
-            </label>
+            <div ref={sortRef} className={styles.sortWrapper}>
+              <button
+                type="button"
+                className={styles.sortButton}
+                onClick={() => setSortOpen((o) => !o)}
+                aria-haspopup="listbox"
+                aria-expanded={sortOpen}
+                aria-label="Sort products"
+              >
+                <span>{SORT_LABEL[sort]}</span>
+                <ChevronDown
+                  size={16}
+                  className={`${styles.sortChevron} ${sortOpen ? styles.sortChevronOpen : ''}`}
+                  aria-hidden="true"
+                />
+              </button>
+
+              {sortOpen && (
+                <ul className={styles.sortMenu} role="listbox" aria-label="Sort options">
+                  {(Object.keys(SORT_LABEL) as Sort[]).map((k) => (
+                    <li
+                      key={k}
+                      role="option"
+                      aria-selected={sort === k}
+                      className={`${styles.sortItem} ${sort === k ? styles.sortItemActive : ''}`}
+                      onClick={() => {
+                        setSort(k);
+                        setSortOpen(false);
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          setSort(k);
+                          setSortOpen(false);
+                        }
+                      }}
+                      tabIndex={0}
+                    >
+                      {SORT_LABEL[k]}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
           </div>
 
           <div role="group" aria-label="Category" className={styles.chips}>
