@@ -175,6 +175,8 @@ const config: Config = {
     "./plugins/notifications",
     // One static public profile page per contributor at /u/<handle>
     "./plugins/developer-profiles",
+    // Star and fork counts for the first-time setup guide (hidden if GitHub is unreachable)
+    "./plugins/repo-stats",
     [
       "@docusaurus/plugin-ideal-image",
       {
