@@ -8,7 +8,7 @@ import { EBOOKS, type Ebook } from '../../data/ebooks';
 import styles from './ebooks.module.css';
 
 const SUGGEST_URL = 'https://github.com/recodehive/recode-website/issues/new';
-const GUIDE_URL = 'https://www.recodehive.com/docs/Getting-Started';
+const GUIDE_URL = 'https://www.recodehive.com/docs/how-to-contribute-to-blogs';
 
 function External({ href, className, children }: { href: string; className: string; children: React.ReactNode }) {
   return (

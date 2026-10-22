@@ -30,7 +30,7 @@ export default function Community(): React.JSX.Element {
               <a className={styles.btnGreen} href={DISCORD} target="_blank" rel="noopener noreferrer">
                 <DiscordIcon size={18} /> Join the Discord<span className={styles.srOnly}> (opens in a new tab)</span>
               </a>
-              <Link className={styles.btnOutline} to="/docs/Getting-Started">Start contributing {'→'}</Link>
+              <Link className={styles.btnOutline} to="/docs/how-to-contribute-to-blogs">Start contributing {'→'}</Link>
             </div>
             {stats.posts > 0 && (
               <p className={styles.facts}>

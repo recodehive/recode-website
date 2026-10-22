@@ -57,7 +57,7 @@ function AuthorsStrip({ posts }: { posts: Post[] }) {
       <p className={styles.stripText}>
         <strong>{authors.length} authors</strong> have written {posts.length} posts
       </p>
-      <a className={styles.stripLink} href="https://www.recodehive.com/docs/Getting-Started" target="_blank" rel="noopener noreferrer">
+      <a className={styles.stripLink} href="https://www.recodehive.com/docs/how-to-contribute-to-blogs" target="_blank" rel="noopener noreferrer">
         Become one {'→'}<span className={styles.srOnly}> (opens in a new tab)</span>
       </a>
     </div>

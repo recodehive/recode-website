@@ -65,7 +65,7 @@ const WAYS: Way[] = [
     title: 'Docs and blogs',
     bullets: ['Improve a tutorial', 'Write a technical blog', 'Translate content'],
     links: [
-      { label: 'Getting started', href: '/docs/Getting-Started' },
+      { label: 'Getting started', href: '/docs/how-to-contribute-to-blogs' },
       { label: 'Blogs', href: '/blogs' },
     ],
   },

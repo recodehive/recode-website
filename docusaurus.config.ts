@@ -152,6 +152,11 @@ const config: Config = {
   themes: ["@docusaurus/theme-mermaid"],
 
   plugins: [
+    // The blog guide moved from /docs/Getting-Started, so old links keep working
+    [
+      "@docusaurus/plugin-client-redirects",
+      { redirects: [{ from: "/docs/Getting-Started", to: "/docs/how-to-contribute-to-blogs" }] },
+    ],
     // Free Learn section: one MDX file per lesson, each with its own URL
     [
       "@docusaurus/plugin-content-docs",
