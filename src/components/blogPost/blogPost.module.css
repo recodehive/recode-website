@@ -3,6 +3,16 @@
 .tocVars { --green: #2e8555; --green-dark: #205d3b; --text: #0f172a; --text2: #334155; --muted: #64748b; --faint: #94a3b8; --line: #eef2f0; --border: #e2e8f0; --chip: #f1f5f9; --card: #fff; --tint: #e8f5ee; }
 :global(html[data-theme='dark']) .tocVars { --text: #e6edf3; --text2: #c9d1d9; --muted: #8b949e; --faint: #6e7681; --line: #21262d; --border: #30363d; --chip: #21262d; --card: #161b22; --green: #4cc184; --green-dark: #86e0b0; --tint: rgba(76, 193, 132, 0.14); }
 .tocVars .tocCard { max-height: calc(100vh - var(--ifm-navbar-height, 60px) - 40px); }
+/* The footer pieces below, used at the end of docs pages. Same colours as .page, none of its grid. */
+.docEnd {
+  --green: #2e8555; --green-dark: #205d3b; --bg: #fff; --text: #0f172a; --text2: #334155; --muted: #64748b; --faint: #94a3b8;
+  --line: #eef2f0; --border: #e2e8f0; --chip: #f1f5f9; --card: #fff; --tint: #e8f5ee; --tint-border: #bfe5cf;
+  display: flex; flex-direction: column; gap: 16px; margin-top: 40px; font-family: "Inter", sans-serif; color: var(--text);
+}
+:global(html[data-theme='dark']) .docEnd {
+  --bg: #0d1117; --text: #e6edf3; --text2: #c9d1d9; --muted: #8b949e; --faint: #6e7681; --line: #21262d; --border: #30363d;
+  --chip: #21262d; --card: #161b22; --green: #4cc184; --green-dark: #86e0b0; --tint: rgba(76, 193, 132, 0.14); --tint-border: rgba(76, 193, 132, 0.4);
+}
 .pageWrap { background: #fff; }
 :global(html[data-theme='dark']) .pageWrap { background: #0d1117; }
 .page {
@@ -15,6 +25,12 @@
   --bg: #0d1117; --text: #e6edf3; --text2: #c9d1d9; --muted: #8b949e; --faint: #6e7681; --line: #21262d; --border: #30363d;
   --chip: #21262d; --card: #161b22; --green: #4cc184; --green-dark: #86e0b0; --tint: rgba(76, 193, 132, 0.14); --tint-border: rgba(76, 193, 132, 0.4);
 }
+/* The docs footer sits inside <article>, where custom.css turns every paragraph white in dark mode. Restore the footer's own colours. */
+:global(html[data-theme='dark']) .docEnd .helpful p,
+:global(html[data-theme='dark']) .docEnd .handle { color: var(--muted) !important; -webkit-text-fill-color: var(--muted) !important; }
+:global(html[data-theme='dark']) .docEnd .bio,
+:global(html[data-theme='dark']) .docEnd .improve p { color: var(--text2) !important; -webkit-text-fill-color: var(--text2) !important; }
+:global(html[data-theme='dark']) .docEnd .writtenBy { color: var(--green) !important; -webkit-text-fill-color: var(--green) !important; }
 .srOnly { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 .mono { font: 500 11.5px "JetBrains Mono", ui-monospace, monospace; color: var(--muted); }
 

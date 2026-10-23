@@ -4,7 +4,7 @@ import type { useBlogPost } from '@docusaurus/plugin-content-blog/client';
 export type PostAuthor = ReturnType<typeof useBlogPost>['metadata']['authors'][number];
 
 /** The author's GitHub handle: from their socials, else their GitHub url, else the author key. */
-export function githubHandle(a: PostAuthor): string | null {
+export function githubHandle(a: { url?: string; key?: string; socials?: unknown }): string | null {
   const s = (a as { socials?: Record<string, string> }).socials?.github;
   if (s) return s.replace(/^https?:\/\/github\.com\//i, '').replace(/\/$/, '').toLowerCase();
   const m = a.url?.match(/github\.com\/([A-Za-z0-9-]+)/i);
