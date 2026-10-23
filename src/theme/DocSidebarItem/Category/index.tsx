@@ -110,8 +110,11 @@ function DocSidebarItemCategory({
         return false;
       });
 
+      // The top-level category (GitHub) stays open when sidebars.ts says collapsed: false
+      const keepOpen = level === 0 && item.collapsed === false;
+
       // Only collapse if not active and no active children
-      if (!active && !hasActiveItem) {
+      if (!active && !hasActiveItem && !keepOpen) {
         setCollapsed(true);
       } else {
         // Keep expanded if active or has active children
