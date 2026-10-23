@@ -11,26 +11,35 @@ import styles from './blogPost.module.css';
 const SITE = 'https://www.recodehive.com';
 const CONTRIBUTING = 'https://github.com/recodehive/recode-website/blob/main/CONTRIBUTING.md';
 
-type Author = ReturnType<typeof useBlogPost>['metadata']['authors'][number];
+/** The author fields the card reads. A blog post author fits this, and so does the docs maintainer. */
+export interface FooterAuthor {
+  name?: string;
+  imageURL?: string;
+  key?: string;
+  url?: string;
+  title?: string;
+  description?: string;
+  socials?: unknown;
+}
 
-function linkedinUrl(a: Author): string | null {
-  const l = (a as { socials?: Record<string, string> }).socials?.linkedin;
+function linkedinUrl(a: FooterAuthor): string | null {
+  const l = (a.socials as Record<string, string> | undefined)?.linkedin;
   if (!l) return null;
   return /^https?:\/\//i.test(l) ? l : `https://www.linkedin.com/in/${l}`;
 }
 
-function AuthorCard({ author }: { author: Author }) {
+export function AuthorCard({ author, label = 'WRITTEN BY' }: { author: FooterAuthor; label?: string }) {
   const handle = githubHandle(author);
   const profiles = usePluginData('developer-profiles') as { handles?: string[] } | undefined;
   // Link to the recode hive profile when that page exists, otherwise to the author's GitHub
   const hasProfile = Boolean(handle && profiles?.handles?.includes(handle));
   const li = linkedinUrl(author);
-  const bio = (author as { description?: string }).description ?? author.title;
+  const bio = author.description ?? author.title;
   return (
     <section className={styles.authorCard} aria-label={`About ${author.name}`}>
       {author.imageURL && <img src={author.imageURL} alt="" width={72} height={72} className={styles.authorImg} loading="lazy" />}
       <div className={styles.authorBody}>
-        <p className={styles.writtenBy}>WRITTEN BY</p>
+        <p className={styles.writtenBy}>{label}</p>
         <h3>{author.name}</h3>
         {handle && <p className={styles.handle}>@{handle}</p>}
         {bio && <p className={styles.bio}>{bio}</p>}
@@ -44,19 +53,27 @@ function AuthorCard({ author }: { author: Author }) {
   );
 }
 
-function Helpful({ slug }: { slug: string }) {
+export function Helpful({
+  slug,
+  event = 'blog_feedback',
+  hint = 'Your vote helps us improve our posts.',
+}: {
+  slug: string;
+  event?: string;
+  hint?: string;
+}) {
   const [voted, setVoted] = useState<'yes' | 'no' | null>(null);
   const vote = (value: 'yes' | 'no') => {
     setVoted(value);
     // The site already loads Google Analytics. Counts are never shown.
     const gtag = (window as unknown as { gtag?: (...a: unknown[]) => void }).gtag;
-    gtag?.('event', 'blog_feedback', { slug, value });
+    gtag?.('event', event, { slug, value });
   };
   return (
     <section className={styles.helpful} aria-label="Feedback">
       <div>
         <strong>Was this helpful?</strong>
-        <p>{voted ? 'Thanks for the feedback.' : 'Your vote helps us improve our posts.'}</p>
+        <p>{voted ? 'Thanks for the feedback.' : hint}</p>
       </div>
       <div className={styles.voteBtns}>
         <button type="button" onClick={() => vote('yes')} aria-pressed={voted === 'yes'} disabled={voted !== null}>{'\u{1F44D}'} Yes</button>
@@ -67,7 +84,7 @@ function Helpful({ slug }: { slug: string }) {
 }
 
 /** Comments load only when they scroll into view. Space is reserved so the page does not jump. */
-function Comments() {
+export function Comments() {
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -96,12 +113,20 @@ function Comments() {
   );
 }
 
-function PostCard({ item, dir }: { item: { title: string; permalink: string }; dir: 'newer' | 'older' }) {
+export function PostCard({
+  item,
+  dir,
+  labels = { newer: 'NEWER POST', older: 'OLDER POST' },
+}: {
+  item: { title: string; permalink: string };
+  dir: 'newer' | 'older';
+  labels?: { newer: string; older: string };
+}) {
   return (
     <Link to={item.permalink} className={`${styles.pager} ${dir === 'older' ? styles.pagerOlder : ''}`}>
       <span>
         {dir === 'newer' && <ArrowLeft size={13} aria-hidden="true" />}
-        {dir === 'newer' ? ' NEWER POST' : 'OLDER POST '}
+        {dir === 'newer' ? ` ${labels.newer}` : `${labels.older} `}
         {dir === 'older' && <ArrowRight size={13} aria-hidden="true" />}
       </span>
       <strong>{item.title}</strong>
