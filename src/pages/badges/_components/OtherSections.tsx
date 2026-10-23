@@ -1,5 +1,5 @@
 import React from "react";
-import { Bug, Code2, GraduationCap, Shield, Star } from "lucide-react";
+import { GoCpu, GoLock, GoMortarBoard, GoShield, GoStar } from "react-icons/go";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import {
   CREDITS_URL,
@@ -12,12 +12,12 @@ import {
 } from "../../../data/githubBadges";
 import styles from "../github-badges.module.css";
 
-const ICONS: Record<HighlightIcon, typeof Star> = {
-  star: Star,
-  code: Code2,
-  bug: Bug,
-  cap: GraduationCap,
-  shield: Shield,
+const ICONS: Record<HighlightIcon, typeof GoStar> = {
+  star: GoStar,
+  cpu: GoCpu,
+  lock: GoLock,
+  "mortar-board": GoMortarBoard,
+  shield: GoShield,
 };
 
 export function Highlights() {
