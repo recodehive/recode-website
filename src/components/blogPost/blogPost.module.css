@@ -25,6 +25,11 @@
   --bg: #0d1117; --text: #e6edf3; --text2: #c9d1d9; --muted: #8b949e; --faint: #6e7681; --line: #21262d; --border: #30363d;
   --chip: #21262d; --card: #161b22; --green: #4cc184; --green-dark: #86e0b0; --tint: rgba(76, 193, 132, 0.14); --tint-border: rgba(76, 193, 132, 0.4);
 }
+/* Pages whose content is capped at 760px give their footer the same width (front matter: footer_width) */
+.docEndNarrow { width: 100%; max-width: 760px; margin-left: auto; margin-right: auto; }
+/* The setup guide centres a 1080px layout (760px content plus its progress rail) and keeps the content at its left edge */
+.docEndNarrowStart { width: 100%; max-width: 1080px; margin-left: auto; margin-right: auto; }
+.docEndNarrowStart > * { max-width: 760px; }
 /* The docs footer sits inside <article>, where custom.css turns every paragraph white in dark mode. Restore the footer's own colours. */
 :global(html[data-theme='dark']) .docEnd .helpful p,
 :global(html[data-theme='dark']) .docEnd .handle { color: var(--muted) !important; -webkit-text-fill-color: var(--muted) !important; }
