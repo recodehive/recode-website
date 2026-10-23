@@ -1,0 +1,77 @@
+---
+id: how-the-leaderboard-works
+title: How the leaderboard works
+sidebar_label: How the leaderboard works
+description: "How recode hive scores pull requests (recode label plus level 1, 2 or 3 for 10, 30 or 50 points), how ranks work, all 13 achievement badges, and the perks and free mentorship contributors unlock."
+hide_title: true
+---
+
+import {
+  LeaderboardGuide, GuideHero, ShortVersion, PointsFormula, ZeroRules, PointsTable, LabelSimulator, DoDont, Podium,
+  BadgeExplorer, ProgressChecker, WeeklyMvp, TierRows, FreeMentorship, SponsorFlow, Faq,
+} from '@site/src/components/leaderboardGuide';
+import { REFRESH_HOURS } from '@site/src/data/leaderboardGuide';
+
+<LeaderboardGuide>
+
+<GuideHero />
+
+## The short version
+
+<ShortVersion />
+
+## How points work
+
+Points come from the labels on your merged pull request. One formula decides everything:
+
+<PointsFormula />
+
+<ZeroRules />
+
+<PointsTable />
+
+<LabelSimulator />
+
+## What counts
+
+<DoDont />
+
+## Ranks and the leaderboard
+
+The leaderboard orders contributors by points. The top three earn the leaderboard recognition badges. When two contributors have the same points, the one with more merged PRs ranks higher. The leaderboard updates every {REFRESH_HOURS} hours, and the rank badges use the all-time ranking.
+
+<Podium />
+
+## Achievement badges
+
+13 badges, from your first merged pull request to the top of the leaderboard. The hexagon comes from a honeycomb: it connects every badge to the hive and stands for collaboration, structure and growing together. Merged PR counts include only pull requests that scored points. Tap a badge to see what it means.
+
+<BadgeExplorer />
+
+## Check your progress
+
+<ProgressChecker />
+
+## Perks and progression
+
+Badges recognise your work. Perks reward it. Keep contributing and you unlock real career opportunities, from free mentorship to paid client work.
+
+<WeeklyMvp />
+
+<TierRows />
+
+## Free mentorship
+
+<FreeMentorship />
+
+## Sponsorship
+
+recode hive is about education, not profit. It is funded by the founder, and sponsor money follows a **100% redistribution** model.
+
+<SponsorFlow />
+
+## FAQ
+
+<Faq />
+
+</LeaderboardGuide>
