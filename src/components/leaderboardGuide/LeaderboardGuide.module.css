@@ -20,7 +20,8 @@
   --lg-body: Inter, system-ui, -apple-system, sans-serif;
   --lg-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
   font-family: var(--lg-body);
 }
 
