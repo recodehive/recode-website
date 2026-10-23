@@ -14,6 +14,7 @@
 div.root h1, div.root h2, div.root h3, main.root h1, main.root h2, main.root h3 { margin: 0; padding: 0; text-align: left; max-width: none; }
 
 .top { position: relative; isolation: isolate; }
+ main.root > .top { margin-top: 0; }
 .heroBand { background: var(--hero-bg); }
 .howBand { background: var(--bg); }
 .inner { position: relative; z-index: 2; max-width: 1180px; margin: 0 auto; padding: 0 24px; }
