@@ -144,7 +144,8 @@ export const skinTones: SkinToneRow[] = [
   },
 ];
 
-export type HighlightIcon = 'star' | 'code' | 'bug' | 'cap' | 'shield';
+/** Octicon names, matching the icon GitHub shows for each highlight. */
+export type HighlightIcon = 'star' | 'cpu' | 'lock' | 'mortar-board' | 'shield';
 
 // No official artwork is bundled for highlights, so each one uses an icon tile
 export type Highlight = {
@@ -157,9 +158,9 @@ export type Highlight = {
 
 export const highlights: Highlight[] = [
   { name: 'Pro', icon: 'star', how: 'Subscribe to GitHub Pro, or get it free with the GitHub Student Developer Pack.', ctaLabel: 'Student Pack', url: 'https://education.github.com/pack' },
-  { name: 'Developer Program Member', icon: 'code', how: 'Register for the GitHub Developer Program.', ctaLabel: 'Join', url: 'https://github.com/developers' },
-  { name: 'Security Bug Bounty Hunter', icon: 'bug', how: 'Report a valid vulnerability through the GitHub Security Bug Bounty.', ctaLabel: 'Bug bounty', url: 'https://bounty.github.com/' },
-  { name: 'GitHub Campus Expert', icon: 'cap', how: 'Get accepted into and complete the GitHub Campus Expert program.', ctaLabel: 'Campus program', url: 'https://education.github.com/experts' },
+  { name: 'Developer Program Member', icon: 'cpu', how: 'Register for the GitHub Developer Program.', ctaLabel: 'Join', url: 'https://github.com/developers' },
+  { name: 'Security Bug Bounty Hunter', icon: 'lock', how: 'Report a valid vulnerability through the GitHub Security Bug Bounty.', ctaLabel: 'Bug bounty', url: 'https://bounty.github.com/' },
+  { name: 'GitHub Campus Expert', icon: 'mortar-board', how: 'Get accepted into and complete the GitHub Campus Expert program.', ctaLabel: 'Campus program', url: 'https://education.github.com/experts' },
   { name: 'Security advisory credit', icon: 'shield', how: 'Be credited on a security advisory accepted into the GitHub Advisory Database.', ctaLabel: 'Advisory database', url: 'https://github.com/advisories' },
 ];
 
