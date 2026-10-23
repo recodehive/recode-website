@@ -27,10 +27,6 @@ export const srOnly = {
   overflow: 'hidden', clip: 'rect(0,0,0,0)', whiteSpace: 'nowrap', border: 0,
 };
 
-export const narrow = { maxWidth: 760, margin: '0 auto' };
-
-<div style={narrow}>
-
 <div style={srOnly}>
 
 ## Our story
@@ -79,7 +75,5 @@ export const narrow = { maxWidth: 760, margin: '0 auto' };
 <div style={{textAlign: 'center'}}>
 
 Happy open-source contributions here's to your career success! 🎉
-
-</div>
 
 </div>
