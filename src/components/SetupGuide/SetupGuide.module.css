@@ -145,6 +145,9 @@
   grid-template-columns: minmax(0, 1fr) 280px;
   gap: 40px;
   align-items: start;
+  /* 760px of content + the gap + the 280px progress rail */
+  max-width: 1080px;
+  margin: 0 auto;
 }
 
 .setupGuide .main {

@@ -27,7 +27,8 @@
   --btnText: #fff;
   font-family: 'Inter', system-ui, sans-serif;
   color: var(--text2);
-  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
 }
 
 :global(html[data-theme='dark']) .blogGuide {
