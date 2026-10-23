@@ -26,5 +26,19 @@ export const POINTS_BY_LEVEL: Record<string, number> = Object.fromEntries(
   POINT_LEVELS.map((l) => [l.label, l.points]),
 );
 
+/**
+ * Points for one merged PR, the same rule as the backend's calculatePointsForPR: the recode label is required,
+ * "level 1", "level1" and "level-1" all match (any case), and with several level labels the lowest one counts.
+ */
+export function scorePR(labels: string[]): number {
+  const names = labels.map((l) => l.trim().toLowerCase());
+  if (!names.includes(REQUIRED_LABEL)) return 0;
+  for (const level of POINT_LEVELS) {
+    const spellings = [level.label, level.label.replace(' ', ''), level.label.replace(' ', '-')];
+    if (names.some((n) => spellings.includes(n))) return level.points;
+  }
+  return NO_LEVEL_POINTS;
+}
+
 /** The smallest score that gets someone onto the board. */
 export const MIN_BOARD_POINTS = Math.min(...POINT_LEVELS.map((l) => l.points));

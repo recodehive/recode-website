@@ -33,6 +33,11 @@ const sidebars: SidebarsConfig = {
       className: "custom-sidebar-contributing",
     },
     {
+      type: "doc",
+      id: "how-the-leaderboard-works",
+      label: "How the leaderboard works",
+    },
+    {
       type: "category",
       label: "🐙 GitHub",
       className: "custom-sidebar-github",
