@@ -1,40 +1,40 @@
 {
-  "fetchedAt": "2026-10-24T04:46:29.585Z",
+  "fetchedAt": "2026-10-24T22:39:09.652Z",
   "prs": [
+    {
+      "number": 2467,
+      "title": "Redesign Git commands page as an interactive cheatsheet",
+      "url": "https://github.com/recodehive/recode-website/pull/2467",
+      "author": "sanjay-kv",
+      "mergedAt": "2026-10-24T22:11:06Z"
+    },
+    {
+      "number": 2466,
+      "title": "Redesign Introduction of GitHub as an interactive lesson",
+      "url": "https://github.com/recodehive/recode-website/pull/2466",
+      "author": "sanjay-kv",
+      "mergedAt": "2026-10-24T14:27:59Z"
+    },
+    {
+      "number": 2464,
+      "title": "added leaderboard doc fix",
+      "url": "https://github.com/recodehive/recode-website/pull/2464",
+      "author": "sanjay-kv",
+      "mergedAt": "2026-10-24T08:53:17Z"
+    },
+    {
+      "number": 2463,
+      "title": "nonindexing docs",
+      "url": "https://github.com/recodehive/recode-website/pull/2463",
+      "author": "sanjay-kv",
+      "mergedAt": "2026-10-24T04:56:31Z"
+    },
     {
       "number": 2462,
       "title": "Match the docs footer width to pages with a 760px content column",
       "url": "https://github.com/recodehive/recode-website/pull/2462",
       "author": "sanjay-kv",
       "mergedAt": "2026-10-24T00:02:04Z"
-    },
-    {
-      "number": 2461,
-      "title": "Give docs pages the same footer as blog posts",
-      "url": "https://github.com/recodehive/recode-website/pull/2461",
-      "author": "sanjay-kv",
-      "mergedAt": "2026-10-23T23:26:20Z"
-    },
-    {
-      "number": 2460,
-      "title": "Center the personalise note on the first-time setup page",
-      "url": "https://github.com/recodehive/recode-website/pull/2460",
-      "author": "sanjay-kv",
-      "mergedAt": "2026-10-23T23:03:50Z"
-    },
-    {
-      "number": 2459,
-      "title": "chore: bump @clerk/react from 6.17.8 to 6.18.0",
-      "url": "https://github.com/recodehive/recode-website/pull/2459",
-      "author": "dependabot[bot]",
-      "mergedAt": "2026-10-23T23:02:45Z"
-    },
-    {
-      "number": 2456,
-      "title": "Fix white space below navbar on sponsorship page",
-      "url": "https://github.com/recodehive/recode-website/pull/2456",
-      "author": "Mittalnew",
-      "mergedAt": "2026-10-23T22:23:33Z"
     }
   ]
 }

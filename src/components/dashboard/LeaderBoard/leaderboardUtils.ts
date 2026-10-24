@@ -1,5 +1,11 @@
 export type Period = 'week' | 'month' | 'all';
 
+/** The founder and maintainer. They are listed under the ranked contributors, never ranked. Keys are lowercase GitHub logins. */
+export const TEAM_ROLES: Record<string, string> = {
+  'sanjay-kv': 'Founder',
+  adez017: 'Maintainer',
+};
+
 export const PERIOD_LABEL: Record<Period, string> = {
   week: 'This week',
   month: 'This month',
