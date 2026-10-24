@@ -1392,6 +1392,12 @@
   color: color-mix(in srgb, var(--c) 55%, #fff);
 }
 
+.rIcon,
+.rBody {
+  position: relative;
+  z-index: 1;
+}
+
 .rBody {
   display: flex;
   flex-direction: column;
@@ -1753,6 +1759,18 @@
   text-align: left;
   color: var(--lg-text);
   cursor: pointer;
+}
+
+.faqQ:focus,
+.faqQ:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.faqQ:focus-visible {
+  outline: none;
+  box-shadow: none;
+  background: color-mix(in srgb, var(--lg-green) 8%, transparent);
 }
 
 .chev,

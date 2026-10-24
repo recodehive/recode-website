@@ -42,7 +42,7 @@ export const BADGE_CREDIT = { name: 'Sowmiya V', role: 'Brand Designer' };
 
 export const WEEKLY_MVP = {
   title: 'Weekly MVP',
-  text: 'Top of the weekly dashboard, scored on PR volume, code quality and helping others.',
+  text: 'Top of the weekly dashboard, scored on PR volume. The MVP is not just about code quality, We look for collaboration &  helping others.',
   reward: '₹500',
   via: 'through GitHub Sponsors',
 };
