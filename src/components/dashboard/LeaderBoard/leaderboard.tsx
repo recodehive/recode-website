@@ -15,6 +15,7 @@ import {
   PERIOD_LABEL,
   REFRESH_EVERY_HOURS,
   STALE_AFTER_MS,
+  TEAM_ROLES,
   avatarSrc,
   nextScheduledRun,
   rangeLabel,
@@ -75,7 +76,7 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
     return { badgeCount: getUserBadges(stats).count, topBadge: getTopMilestone(stats), earned: getEarnedByPrestige(stats) };
   };
 
-  const rows: Row[] = useMemo(
+  const everyone: Row[] = useMemo(
     () =>
       contributors.map((c) => ({
         username: c.username,
@@ -87,6 +88,9 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
       })),
     [contributors, allTime],
   );
+  // The founder and maintainer are listed under the ranked contributors and never get a rank
+  const rows = useMemo(() => everyone.filter((r) => !TEAM_ROLES[r.username.toLowerCase()]), [everyone]);
+  const team = useMemo(() => everyone.filter((r) => TEAM_ROLES[r.username.toLowerCase()]), [everyone]);
 
   const earliest = useMemo(() => {
     if (period !== 'all') return null;
@@ -105,10 +109,44 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
   const topPoints = rows[0]?.points ?? 0;
   const stale = lastUpdated ? now.getTime() - lastUpdated.getTime() > STALE_AFTER_MS : false;
 
-  const filtered = rows.filter((r) => r.username.toLowerCase().includes(query.trim().toLowerCase()));
+  const matches = (r: Row) => r.username.toLowerCase().includes(query.trim().toLowerCase());
+  const filtered = rows.filter(matches);
+  const filteredTeam = team.filter(matches);
   const visible = filtered.slice(0, shown);
   const viewerIdx = viewer ? rows.findIndex((r) => r.username.toLowerCase() === viewer.login.toLowerCase()) : -1;
-  const showViewerRow = Boolean(viewer) && viewerIdx === -1 && !query.trim();
+  const viewerIsTeam = viewer ? team.some((r) => r.username.toLowerCase() === viewer.login.toLowerCase()) : false;
+  const showViewerRow = Boolean(viewer) && viewerIdx === -1 && !viewerIsTeam && !query.trim();
+
+  const renderPerson = (r: Row, mine: boolean | null | undefined) => {
+    const profileTo = profilePath(r.username);
+    const role = TEAM_ROLES[r.username.toLowerCase()];
+    // The founder and maintainer show their role in place of the @handle. The handle stays for screen readers.
+    const label = role ? (
+      <>
+        <span className={styles.teamPill}>{role}</span>
+        <span className={styles.srOnly}>@{r.username}{mine ? ' (you)' : ''}</span>
+      </>
+    ) : (
+      <span>@{r.username}{mine ? ' (you)' : ''}</span>
+    );
+    return profileTo ? (
+      <div className={styles.personRow}>
+        <Link className={styles.person} to={profileTo}>
+          <img src={avatarSrc(r.avatar)} alt="" width={36} height={36} loading="lazy" />
+          {label}
+        </Link>
+        <a className={styles.ghBtn} href={r.profile} target="_blank" rel="noopener noreferrer" aria-label={`@${r.username} on GitHub (opens in a new tab)`}><Github size={15} aria-hidden="true" /></a>
+      </div>
+    ) : (
+      <div className={styles.personRow}>
+        <a className={styles.person} href={r.profile} target="_blank" rel="noopener noreferrer">
+          <img src={avatarSrc(r.avatar)} alt="" width={36} height={36} loading="lazy" />
+          {label}
+          <span className={styles.srOnly}> (opens in a new tab)</span>
+        </a>
+      </div>
+    );
+  };
 
   const onTabKey = (e: React.KeyboardEvent, i: number) => {
     const last = PERIODS.length - 1;
@@ -221,28 +259,11 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
                     <tbody>
                       {visible.map((r) => {
                         const rank = rows.indexOf(r) + 1;
-                        const profileTo = profilePath(r.username);
                         const mine = viewer && r.username.toLowerCase() === viewer.login.toLowerCase();
                         return (
                           <tr key={r.username} className={mine ? styles.rowMine : ''}>
                             <td><span className={`${styles.rank} ${rank === 1 ? styles.rank1 : rank === 2 ? styles.rank2 : ''}`}>{rank}</span></td>
-                            <td>
-                              {profileTo ? (
-                                <div className={styles.personRow}>
-                                <Link className={styles.person} to={profileTo}>
-                                  <img src={avatarSrc(r.avatar)} alt="" width={36} height={36} loading="lazy" />
-                                  <span>@{r.username}{mine ? ' (you)' : ''}</span>
-                                </Link>
-                                  <a className={styles.ghBtn} href={r.profile} target="_blank" rel="noopener noreferrer" aria-label={`@${r.username} on GitHub (opens in a new tab)`}><Github size={15} aria-hidden="true" /></a>
-                                </div>
-                              ) : (
-                                <a className={styles.person} href={r.profile} target="_blank" rel="noopener noreferrer">
-                                  <img src={avatarSrc(r.avatar)} alt="" width={36} height={36} loading="lazy" />
-                                  <span>@{r.username}{mine ? ' (you)' : ''}</span>
-                                  <span className={styles.srOnly}> (opens in a new tab)</span>
-                                </a>
-                              )}
-                            </td>
+                            <td>{renderPerson(r, mine)}</td>
                             <td className={styles.mono}>{r.prs}</td>
                             <td>
                               <div className={styles.pointsCell}>
@@ -255,6 +276,18 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
                             <td>
                               <BadgesCell badges={r.earned} login={r.username} />
                             </td>
+                          </tr>
+                        );
+                      })}
+                      {filteredTeam.map((r) => {
+                        const mine = viewer && r.username.toLowerCase() === viewer.login.toLowerCase();
+                        return (
+                          <tr key={r.username} className={styles.rowTeam}>
+                            <td><span className={styles.rankTeam} title="Not ranked" aria-label="Not ranked">{'–'}</span></td>
+                            <td>{renderPerson(r, mine)}</td>
+                            <td className={styles.mono}>{r.prs}</td>
+                            <td><strong className={styles.ptsTeam}>{r.points.toLocaleString('en-US')}</strong></td>
+                            <td><BadgesCell badges={r.earned} login={r.username} /></td>
                           </tr>
                         );
                       })}
@@ -272,7 +305,7 @@ function LeaderBoardView({ viewer }: { viewer: Viewer }) {
                           <td className={styles.muted}>Merge a recode PR to rank</td>
                         </tr>
                       )}
-                      {filtered.length === 0 && !showViewerRow && (
+                      {filtered.length === 0 && filteredTeam.length === 0 && !showViewerRow && (
                         <tr><td colSpan={5} className={styles.emptyRow}>No contributors match your search.</td></tr>
                       )}
                     </tbody>

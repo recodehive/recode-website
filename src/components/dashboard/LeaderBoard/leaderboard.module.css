@@ -113,6 +113,12 @@ div.page h1, div.page h2, div.page h3 { margin: 0; padding: 0; text-align: left;
 .table tbody tr:hover { background: var(--hair); }
 .rowMine, .table tbody tr.rowMine:hover { background: var(--mine-bg); }
 .rank { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--border); font: 700 13px "JetBrains Mono", ui-monospace, monospace; color: var(--text-2); }
+.table tbody tr.rowTeam, .table tbody tr.rowTeam:hover { background: rgba(100, 116, 139, 0.14); }
+.table td:nth-child(2) { min-width: 240px; }
+.personWrap { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.rankTeam { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; border: 1px dashed var(--muted); color: var(--muted); font: 700 13px "JetBrains Mono", ui-monospace, monospace; }
+.teamPill { flex-shrink: 0; padding: 4px 12px; border-radius: 999px; background: #64748b; color: #fff; font: 700 12px "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.06em; text-transform: uppercase; }
+.ptsTeam { font: 700 14px "JetBrains Mono", ui-monospace, monospace; color: var(--muted); }
 .rank1 { background: #2e8555; border-color: #2e8555; color: #fff; }
 .rank2 { background: #64748b; border-color: #64748b; color: #fff; }
 .rankUnknown { display: inline-flex; align-items: center; justify-content: center; width: 30px; height: 30px; border-radius: 50%; border: 1px dashed var(--muted); color: var(--muted); font: 700 13px "JetBrains Mono", monospace; }
