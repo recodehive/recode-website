@@ -1,0 +1,1815 @@
+/* Every rule is scoped under .githubLesson, so nothing here reaches another page. */
+
+.githubLesson {
+  --g: #2e8555;
+  --gd: #205d3b;
+  --gl: #86efac;
+  --text: #0f172a;
+  --body: #334155;
+  --muted: #64748b;
+  --card: #ffffff;
+  --soft: #fbfcfb;
+  --line: #e3e9e6;
+  --divider: #eef2f0;
+  --tint: #e8f5ee;
+  --hdr-bg: #f6fbf8;
+  --hdr-border: #d7efe1;
+  --chip: #eef2f6;
+  --orange: #c2410c;
+  --orange-bg: #fff4e8;
+  --purple: #6d28d9;
+  --purple-bg: #f3effe;
+  --ok-bg: #effaf3;
+  --ok-border: #bbf7d0;
+  --head: 'Space Grotesk', Inter, system-ui, sans-serif;
+  --sans: Inter, system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  width: 100%;
+  max-width: 808px;
+  margin: 0 auto;
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--body);
+}
+
+:global(html[data-theme='dark']) .githubLesson {
+  --g: #4cc184;
+  --text: #e6edf3;
+  --body: #c9d1d9;
+  --muted: #9da7b3;
+  --card: #161b22;
+  --soft: #11161d;
+  --line: #30363d;
+  --divider: #21262d;
+  --tint: rgba(76, 193, 132, 0.14);
+  --hdr-bg: #11181a;
+  --hdr-border: #24402f;
+  --chip: #21262d;
+  --orange: #fdba74;
+  --orange-bg: rgba(251, 146, 60, 0.12);
+  --purple: #c4b5fd;
+  --purple-bg: rgba(139, 92, 246, 0.16);
+  --ok-bg: rgba(76, 193, 132, 0.1);
+  --ok-border: rgba(76, 193, 132, 0.35);
+}
+
+/* ---------- Page text (existing content) ---------- */
+
+.githubLesson p {
+  margin: 0 0 1.1rem;
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--body);
+}
+
+.githubLesson a {
+  color: var(--g);
+}
+
+.githubLesson h2 {
+  margin: 2.6rem 0 1rem;
+  padding-top: 20px;
+  border-top: 1px solid var(--divider);
+  font-family: var(--head);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.githubLesson h3 {
+  margin: 2rem 0 0.8rem;
+  font-family: var(--head);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.githubLesson h4 {
+  margin: 0;
+  font-family: var(--head);
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.label {
+  margin: 1.6rem 0 0.7rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--g);
+}
+
+/* ---------- Reveal on first view ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: none;
+  animation: fadeUp 0.6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Lesson header ---------- */
+
+.header {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1.6rem;
+  padding: 26px 28px 22px;
+  border: 1px solid var(--hdr-border);
+  border-radius: 22px;
+  background: radial-gradient(circle at 92% 0%, rgba(46, 133, 85, 0.16), transparent 46%), var(--hdr-bg);
+}
+
+.hTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.hPill {
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: var(--g);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.hMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.hMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.hCopy {
+  min-width: 0;
+}
+
+.githubLesson .hTitle {
+  margin: 14px 0 8px;
+  font-family: var(--head);
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.githubLesson .hIntro {
+  margin: 0;
+  font-size: 17.5px;
+  line-height: 1.65;
+  color: var(--body);
+}
+
+.graph {
+  flex-shrink: 0;
+}
+
+.gMain,
+.gBranch {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 3;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.gMain {
+  stroke: #2e8555;
+}
+
+.gBranch {
+  stroke: #4ade80;
+}
+
+.gDot {
+  fill: #2e8555;
+  stroke: var(--hdr-bg);
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+}
+
+.gMerged {
+  fill: #a3e635;
+}
+
+.gLabel {
+  font-family: var(--mono);
+  font-size: 9px;
+  fill: var(--muted);
+  opacity: 0;
+}
+
+.play .gMain { animation: draw 0.9s ease forwards; }
+.play .gBranch { animation: draw 0.9s ease 1s forwards; }
+.play .gDot { animation: pop 0.4s cubic-bezier(0.3, 1.6, 0.5, 1) forwards; }
+.play .gd1 { animation-delay: 0.1s; }
+.play .gd2 { animation-delay: 0.5s; }
+.play .gd3 { animation-delay: 1.4s; }
+.play .gd4 { animation-delay: 1.8s; }
+.play .gd5 { animation-delay: 2.1s; }
+.play .gMerged { animation: pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1) 2.3s forwards, glow 2.6s ease-in-out 2.8s infinite; }
+.play .gLabel { animation: show 0.5s ease 1s forwards; }
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes pop { to { transform: scale(1); } }
+@keyframes show { to { opacity: 1; } }
+@keyframes glow {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(163, 230, 53, 0)); }
+  50% { filter: drop-shadow(0 0 6px rgba(163, 230, 53, 0.95)); }
+}
+
+.track {
+  margin-top: 20px;
+}
+
+.segs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+}
+
+.seg,
+.segOn {
+  height: 5px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--muted) 28%, transparent);
+}
+
+.segOn {
+  background: var(--g);
+}
+
+.trackLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ---------- Git vs GitHub ---------- */
+
+.vs {
+  margin: 0 0 1.6rem;
+  padding: 18px 18px 16px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--soft);
+}
+
+.vs .label {
+  margin: 0 0 12px 4px;
+}
+
+.vsRow {
+  display: grid;
+  grid-template-columns: 1fr 96px 1fr;
+  align-items: center;
+  gap: 8px;
+}
+
+.vsCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  text-align: center;
+}
+
+.vsCard h4 {
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+.githubLesson .vsCard p {
+  margin: 8px 0 0;
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.vsWhere {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.vsIcon {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+}
+
+.vsOrange {
+  background: var(--orange-bg);
+  color: #ea580c;
+}
+
+.vsGreen {
+  background: var(--tint);
+  color: var(--g);
+}
+
+.lane {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.laneUp { color: var(--g); }
+.laneDown { color: #ea580c; }
+
+.laneTrack {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--muted) 50%, transparent) 50%, transparent 0) center / 8px 2px repeat-x;
+  overflow: hidden;
+}
+
+.laneBlock,
+.laneBack {
+  position: absolute;
+  top: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--g);
+  left: 0;
+  animation: laneX 3s linear infinite;
+}
+
+.laneBlock2 {
+  animation-delay: 1.5s;
+}
+
+.laneBack {
+  background: #f97316;
+  left: auto;
+  right: 0;
+  animation: laneBackX 3.4s linear infinite 0.7s;
+}
+
+@keyframes laneX {
+  from { transform: translateX(-10px); }
+  to { transform: translateX(96px); }
+}
+
+@keyframes laneBackX {
+  from { transform: translateX(10px); }
+  to { transform: translateX(-96px); }
+}
+
+@keyframes laneY {
+  from { transform: translateY(-10px); }
+  to { transform: translateY(60px); }
+}
+
+@keyframes laneBackY {
+  from { transform: translateY(10px); }
+  to { transform: translateY(-60px); }
+}
+
+.remember {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--ok-border);
+  border-radius: 12px;
+  background: var(--ok-bg);
+  font-size: 15px;
+  color: var(--text);
+}
+
+/* ---------- Feature cards, why cards, concept tiles ---------- */
+
+.featureGrid,
+.conceptGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 1.4rem;
+}
+
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin: 0.6rem 0 1.4rem;
+}
+
+.feature,
+.concept,
+.why {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.feature h4,
+.concept h4 {
+  margin-top: 12px;
+  font-size: 15.5px;
+}
+
+.why h4 {
+  font-size: 14.5px;
+}
+
+.githubLesson .feature p,
+.githubLesson .concept p {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.githubLesson .why p {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.whyNum {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--head);
+  font-size: 26px;
+  font-weight: 700;
+  color: #b7e4c7;
+}
+
+:global(html[data-theme='dark']) .githubLesson .whyNum {
+  color: #2f6b49;
+}
+
+.tile {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: var(--tint);
+  color: var(--g);
+}
+
+.tilePurple {
+  width: 36px;
+  height: 36px;
+  background: var(--purple-bg);
+  color: var(--purple);
+}
+
+/* ---------- Scenario (dark card) ---------- */
+
+.scenario {
+  margin: 1.4rem 0;
+  padding: 20px 22px;
+  border-radius: 18px;
+  background: #0f172a;
+  color: #cbd5e1;
+}
+
+.scLabel {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #7dd3fc;
+}
+
+.scText p {
+  margin: 10px 0 0;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #e2e8f0;
+}
+
+.scFlow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.scNode {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 130px;
+  padding: 12px 10px;
+  border: 1px solid #263248;
+  border-radius: 12px;
+  background: #162033;
+  font-size: 12.5px;
+  line-height: 1.3;
+  color: #94a3b8;
+  text-align: center;
+}
+
+.scRepo {
+  color: #f1f5f9;
+  animation: bob 3.4s ease-in-out infinite;
+}
+
+.avatars {
+  display: flex;
+}
+
+.avatars i {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  margin-left: -7px;
+  border: 2px solid #162033;
+  border-radius: 50%;
+  font-family: var(--head);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  color: #fff;
+  background: #2e8555;
+}
+
+.avatars i:first-child { margin-left: 0; }
+.avatars i:nth-child(2) { background: #0ea5e9; }
+.avatars i:nth-child(3) { background: #8b5cf6; }
+
+.scLine {
+  position: relative;
+  flex: 1;
+  min-width: 40px;
+  height: 22px;
+  border-top: 2px dashed #34435c;
+  margin-top: 6px;
+}
+
+.scLine em {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-style: normal;
+  color: #7dd3fc;
+}
+
+.scDot {
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 10px #f59e0b;
+  animation: travel 2.6s ease-in-out infinite;
+}
+
+.scDot2 {
+  background: #4ade80;
+  box-shadow: 0 0 10px #4ade80;
+  animation-delay: 1.3s;
+}
+
+.scCheck {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(74, 222, 128, 0.18);
+  color: #4ade80;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes travel {
+  from { left: 0; opacity: 0; }
+  15%, 85% { opacity: 1; }
+  to { left: calc(100% - 10px); opacity: 0; }
+}
+
+@keyframes travelY {
+  from { top: 0; opacity: 0; }
+  15%, 85% { opacity: 1; }
+  to { top: calc(100% - 10px); opacity: 0; }
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+/* ---------- Browser frame ---------- */
+
+.frame {
+  margin: 1.4rem 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: 0 18px 40px -22px rgba(15, 23, 42, 0.35);
+}
+
+.frameBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--soft);
+}
+
+.frameBar i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.frameBar i:nth-child(2) { background: #febc2e; }
+.frameBar i:nth-child(3) { background: #28c840; }
+
+.frameBar span {
+  margin-left: 10px;
+  padding: 2px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.frameBody img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.frameBody p {
+  margin: 0;
+}
+
+/* ---------- Split and facts ---------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 160px;
+  align-items: start;
+  gap: 22px;
+}
+
+.facts {
+  margin-top: 4px;
+  padding: 14px 16px;
+  border: 1px solid #fed7aa;
+  border-radius: 14px;
+  background: var(--orange-bg);
+}
+
+:global(html[data-theme='dark']) .githubLesson .facts {
+  border-color: rgba(251, 146, 60, 0.35);
+}
+
+.factsLabel {
+  margin-bottom: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--orange);
+}
+
+.fact {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.fact:last-child {
+  margin-bottom: 0;
+}
+
+.fact strong {
+  font-family: var(--head);
+  font-size: 18px;
+  color: var(--text);
+}
+
+.fact span {
+  font-size: 12.5px;
+  color: var(--orange);
+}
+
+/* ---------- Save points ---------- */
+
+.saves {
+  margin: 1.4rem 0;
+  padding: 16px 20px 18px;
+  border-radius: 16px;
+  background: #0d1117;
+  color: #9da7b3;
+}
+
+.savesTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.savesLabel {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #86efac;
+}
+
+.exampleTag {
+  padding: 1px 8px;
+  border: 1px solid #30363d;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #9da7b3;
+}
+
+.saveLine {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 14px 0 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.save {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+}
+
+.in .save {
+  animation: fadeUp 0.5s ease both;
+}
+
+.saveDot {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #3fb27f;
+  border-radius: 50%;
+  background: #1f6f4a;
+  font-family: var(--head);
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.saveNow .saveDot {
+  border-color: #a3e635;
+  background: #84cc16;
+  color: #0d1117;
+}
+
+.in .saveNow .saveDot {
+  animation: limePulse 2.4s ease-in-out 2s infinite;
+}
+
+@keyframes limePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(163, 230, 53, 0.55); }
+  50% { box-shadow: 0 0 0 8px rgba(163, 230, 53, 0); }
+}
+
+.save strong {
+  margin-top: 6px;
+  font-family: var(--head);
+  font-size: 13px;
+  color: #e6edf3;
+}
+
+.save small {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #6e7681;
+}
+
+.saveLink {
+  position: absolute;
+  top: 14px;
+  left: calc(50% + 24px);
+  width: calc(100% - 48px);
+  height: 2px;
+  background: #3fb27f;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.in .saveLink {
+  animation: grow 0.4s ease forwards;
+}
+
+@keyframes grow { to { transform: scaleX(1); } }
+
+.saveNote {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #9da7b3;
+}
+
+.githubLesson .saveNote {
+  margin: 0;
+  font-size: 13.5px;
+  color: #9da7b3;
+}
+
+/* ---------- VCS and DVCS ---------- */
+
+.vcsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 1.2rem 0;
+}
+
+.vcsCard {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--soft);
+}
+
+.vcsTag {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 6px;
+  background: #0f172a;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+
+.vcsTagGreen {
+  background: var(--g);
+}
+
+.vcsCard h4 {
+  margin: 10px 0 6px;
+  font-size: 17px;
+}
+
+.vcsText p {
+  margin: 0 0 0.6rem;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.vcsDiagram {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 14px 10px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.serverChip {
+  padding: 3px 12px;
+  border-radius: 6px;
+  background: #0f172a;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.serverStem {
+  width: 1px;
+  height: 12px;
+  background: var(--muted);
+}
+
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.chip {
+  padding: 2px 12px;
+  border-radius: 8px;
+  background: var(--chip);
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--body);
+  animation: bob 3s ease-in-out infinite;
+}
+
+.chipGreen {
+  background: var(--tint);
+  color: var(--g);
+}
+
+/* ---------- Tip ---------- */
+
+.tip {
+  display: flex;
+  gap: 12px;
+  margin: 1.4rem 0;
+  padding: 14px 18px;
+  border: 1px solid var(--ok-border);
+  border-radius: 14px;
+  background: var(--ok-bg);
+}
+
+.tipIcon {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+.tip strong {
+  font-size: 15px;
+  color: var(--text);
+}
+
+.githubLesson .tipText {
+  margin: 2px 0 0;
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* ---------- Glossary ---------- */
+
+.glossary {
+  margin: 1.4rem 0;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+}
+
+.glHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.glHead h4 {
+  font-size: 17px;
+}
+
+.glCount {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.glSearch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 250px;
+  max-width: 100%;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--soft);
+  color: var(--muted);
+}
+
+.glSearch input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+.glSearch:focus-within {
+  border-color: var(--g);
+}
+
+.glToggle {
+  display: inline-flex;
+  margin: 14px 0;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--chip);
+}
+
+.glToggle button {
+  padding: 5px 12px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.glToggle .glOn {
+  background: var(--card);
+  color: var(--text);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12);
+}
+
+.glGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.term {
+  padding: 10px 12px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--soft);
+}
+
+.termEssential {
+  border-color: var(--ok-border);
+  background: var(--ok-bg);
+}
+
+.term code {
+  display: inline-block;
+  padding: 0 7px;
+  border: 0;
+  border-radius: 5px;
+  background: #0f172a;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  color: #86efac;
+}
+
+.term strong {
+  display: block;
+  margin-top: 6px;
+  font-family: var(--head);
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+.githubLesson .term p {
+  margin: 3px 0 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.glEmpty {
+  margin: 0;
+  padding: 18px 0 6px;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ---------- Workflow stepper ---------- */
+
+.stepper {
+  margin: 1.4rem 0;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #0d1117;
+  color: #9da7b3;
+}
+
+/* custom.css forces every [role=tab] and [role=tablist] on the site, so these rules out-rank it for this stepper only */
+.githubLesson .tabs[role='tablist'] {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr);
+  justify-content: stretch !important;
+}
+
+.githubLesson .tab[role='tab'] {
+  justify-content: flex-start !important;
+  text-align: center !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #6e7681 !important;
+  font-weight: 400 !important;
+}
+
+.githubLesson .tab[role='tab']:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.githubLesson .tab[role='tab'][aria-selected='true'] {
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 6px 10px;
+  border: 0;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  color: #6e7681;
+  cursor: pointer;
+}
+
+.tabNum {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #30363d;
+  border-radius: 50%;
+  font-family: var(--head);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.tabDone .tabNum {
+  border-color: #2e8555;
+  background: #1f6f4a;
+  color: #fff;
+}
+
+.tabCur {
+  color: #fff;
+}
+
+.tabCur .tabNum {
+  border-color: #3fb27f;
+  background: #2e8555;
+  color: #fff;
+}
+
+.tab:focus-visible {
+  outline: 2px solid #86efac;
+  outline-offset: -2px;
+}
+
+.stepBar {
+  height: 3px;
+  background: #21262d;
+}
+
+.stepBar span {
+  display: block;
+  height: 100%;
+  background: #4ade80;
+  transition: width 0.4s ease;
+}
+
+.stepBody {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px 20px;
+}
+
+.stepText {
+  flex: 1;
+  min-width: 0;
+}
+
+.stepText h4 {
+  font-size: 18px;
+  color: #fff;
+}
+
+.githubLesson .stepText p {
+  margin: 4px 0 12px;
+  font-size: 14.5px;
+  color: #9da7b3;
+}
+
+.cmd {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  overflow-x: auto;
+  border-radius: 8px;
+  background: #161b22;
+  font-family: var(--mono);
+  font-size: 13.5px;
+}
+
+.prompt {
+  color: #6e7681;
+}
+
+.typed {
+  display: inline-block;
+  width: calc(var(--chars) * 1ch);
+  overflow: hidden;
+  padding: 0;
+  border: 0;
+  border-right: 2px solid #86efac;
+  background: transparent;
+  font-family: var(--mono);
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #86efac;
+  animation: typing calc(var(--chars) * 40ms) steps(var(--chars)) both, caret 0.9s step-end infinite;
+}
+
+@keyframes typing { from { width: 0; } }
+@keyframes caret { 50% { border-right-color: transparent; } }
+
+.next {
+  flex-shrink: 0;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 10px;
+  background: #2e8555;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+}
+
+.next:hover {
+  background: #36996a;
+}
+
+/* ---------- Video ---------- */
+
+.video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  margin: 0.6rem 0 1.4rem;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #0f172a;
+}
+
+.video iframe,
+.videoBtn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.videoBtn {
+  padding: 0;
+  background: #0f172a;
+  cursor: pointer;
+}
+
+.videoBtn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.videoShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.78));
+}
+
+.playBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 48px;
+  border-radius: 14px;
+  background: #ef4444;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s ease;
+}
+
+.videoBtn:hover .playBtn {
+  transform: translate(-50%, -50%) scale(1.08);
+}
+
+.videoBtn:focus-visible {
+  outline: 3px solid #86efac;
+  outline-offset: -3px;
+}
+
+.videoCap {
+  position: absolute;
+  bottom: 14px;
+  left: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  color: #fff;
+}
+
+.videoCap strong {
+  font-family: var(--head);
+  font-size: 16px;
+}
+
+.videoCap small {
+  font-size: 12.5px;
+  color: #cbd5e1;
+}
+
+/* ---------- Takeaways ---------- */
+
+.takeaways {
+  margin: 1.8rem 0;
+  padding: 16px 20px;
+  border: 1px solid var(--ok-border);
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--ok-bg), transparent 90%), var(--card);
+}
+
+.takeLabel {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--g);
+}
+
+.takeaways ul {
+  margin: 10px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.takeaways li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0 0 7px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.checkTile {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 6px;
+  background: var(--g);
+  color: #fff;
+}
+
+/* ---------- Quick check ---------- */
+
+.quiz {
+  margin: 1.4rem 0;
+  padding: 16px 20px 10px;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+}
+
+.quizTop {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--divider);
+  font-family: var(--mono);
+  font-size: 11px;
+}
+
+.quizLabel {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--g);
+}
+
+.quizCount {
+  color: var(--muted);
+}
+
+.question {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--divider);
+}
+
+.question:last-child {
+  border-bottom: 0;
+}
+
+.question h4 {
+  font-size: 15.5px;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.opt {
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.opt:hover:not(:disabled) {
+  border-color: var(--g);
+}
+
+.opt:focus-visible {
+  outline: 2px solid var(--g);
+  outline-offset: 2px;
+}
+
+.opt:disabled {
+  cursor: default;
+}
+
+.optOk {
+  border-color: #16a34a;
+  background: #dcfce7;
+  color: #14532d;
+}
+
+.optNo {
+  border-color: #dc2626;
+  background: #fee2e2;
+  color: #7f1d1d;
+}
+
+.optDim {
+  opacity: 0.55;
+}
+
+:global(html[data-theme='dark']) .githubLesson .optOk {
+  background: rgba(76, 193, 132, 0.18);
+  color: #86efac;
+}
+
+:global(html[data-theme='dark']) .githubLesson .optNo {
+  background: rgba(248, 113, 113, 0.16);
+  color: #fca5a5;
+}
+
+.shake {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+.githubLesson .why2 {
+  min-height: 0;
+  margin: 8px 0 0;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.why2:empty {
+  display: none;
+}
+
+/* ---------- Up next ---------- */
+
+.upNext {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 1.4rem 0;
+  padding: 16px 22px;
+  border-radius: 14px;
+  background: #2e8555;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.githubLesson .upNext {
+  color: #fff;
+}
+
+.upNext:hover {
+  background: #28774c;
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.upNext small {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: #d9f99d;
+}
+
+.upNext strong {
+  font-family: var(--head);
+  font-size: 19px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 995px) {
+  .graph {
+    display: none;
+  }
+
+  .vsRow {
+    grid-template-columns: 1fr;
+  }
+
+  .lane {
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .laneTrack {
+    width: 14px;
+    height: 72px;
+    background: linear-gradient(180deg, color-mix(in srgb, var(--muted) 50%, transparent) 50%, transparent 0) center / 2px 8px repeat-y;
+  }
+
+  .laneBlock,
+  .laneBack {
+    top: 0;
+    left: 3px;
+    animation-name: laneY;
+  }
+
+  .laneBack {
+    top: auto;
+    right: auto;
+    bottom: 0;
+    animation-name: laneBackY;
+  }
+
+  .split {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+  }
+
+  .factsLabel {
+    width: 100%;
+    margin-bottom: 2px;
+  }
+
+  .fact {
+    margin: 0;
+  }
+
+  .glGrid,
+  .conceptGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 639px) {
+  .header {
+    padding: 20px 18px 18px;
+  }
+
+  .githubLesson .hTitle {
+    font-size: 32px;
+  }
+
+  .githubLesson h2 {
+    font-size: 24px;
+  }
+
+  .featureGrid,
+  .whyGrid,
+  .conceptGrid,
+  .glGrid,
+  .vcsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .scFlow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .scNode {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .scLine {
+    align-self: center;
+    flex: none;
+    width: 0;
+    min-width: 0;
+    height: 40px;
+    margin: 0;
+    border-top: 0;
+    border-left: 2px dashed #34435c;
+  }
+
+  .scLine em {
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+  }
+
+  .scDot {
+    top: 0;
+    left: -6px;
+    animation-name: travelY;
+  }
+
+  .saveLine {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .save {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2px 12px;
+    text-align: left;
+  }
+
+  .save strong {
+    margin-top: 0;
+  }
+
+  .save small {
+    flex-basis: 100%;
+    padding-left: 42px;
+  }
+
+  .saveLink {
+    display: none;
+  }
+
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+  }
+
+  .tab {
+    flex: 0 0 auto;
+    min-width: 92px;
+  }
+
+  .stepBody {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .glHead {
+    flex-direction: column;
+  }
+
+  .glSearch {
+    width: 100%;
+  }
+
+  .takeaways li {
+    font-size: 14.5px;
+  }
+}
+
+/* ---------- Reduced motion: no animation, every element in its final state ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .githubLesson *,
+  .githubLesson *::before,
+  .githubLesson *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal,
+  .save {
+    opacity: 1;
+    transform: none;
+  }
+
+  .gMain,
+  .gBranch {
+    stroke-dashoffset: 0;
+  }
+
+  .gDot {
+    transform: scale(1);
+  }
+
+  .gLabel {
+    opacity: 1;
+  }
+
+  .saveLink {
+    transform: scaleX(1);
+  }
+
+  .laneBlock,
+  .laneBack {
+    display: none;
+  }
+
+  .typed {
+    border-right-color: transparent;
+  }
+}

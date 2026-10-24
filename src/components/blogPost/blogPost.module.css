@@ -27,6 +27,8 @@
 }
 /* Pages whose content is capped at 760px give their footer the same width (front matter: footer_width) */
 .docEndNarrow { width: 100%; max-width: 760px; margin-left: auto; margin-right: auto; }
+/* The GitHub lesson pages use the same 808px column as their content (front matter: footer_width: lesson) */
+.docEndLesson { width: 100%; max-width: 808px; margin-left: auto; margin-right: auto; }
 /* The setup guide centres a 1080px layout (760px content plus its progress rail) and keeps the content at its left edge */
 .docEndNarrowStart { width: 100%; max-width: 1080px; margin-left: auto; margin-right: auto; }
 .docEndNarrowStart > * { max-width: 760px; }

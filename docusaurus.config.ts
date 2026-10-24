@@ -3,6 +3,7 @@ import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 import * as dotenv from "dotenv";
 import stripHeadingEmoji from "./src/plugins/strip-heading-emoji";
+import lessonReadingTime from "./src/plugins/lesson-reading-time";
 dotenv.config({ path: ".env.local" });
 dotenv.config();
 
@@ -79,6 +80,8 @@ const config: Config = {
           path: "docs",
           routeBasePath: "docs",
           sidebarPath: require.resolve("./sidebars.ts"),
+          // Lessons only: gives <LessonHeader> the word count of its page, so the reading time is computed
+          remarkPlugins: [lessonReadingTime],
           editUrl: ({ docPath }) =>
             `https://github.com/recodehive/recode-website/tree/main/docs/${docPath}`,
         },

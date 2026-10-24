@@ -17,7 +17,7 @@ export default function DocFooter(): React.ReactElement {
   const { tags, title, permalink, editUrl, previous, next } = metadata;
   // Pages whose content is capped at 760px ask for a footer of the same width
   const width = (frontMatter as { footer_width?: string }).footer_width;
-  const widthClass = width === 'narrow' ? styles.docEndNarrow : width === 'narrow-start' ? styles.docEndNarrowStart : '';
+  const widthClass = width === 'narrow' ? styles.docEndNarrow : width === 'narrow-start' ? styles.docEndNarrowStart : width === 'lesson' ? styles.docEndLesson : '';
   return (
     <div className={`${styles.docEnd} ${widthClass}`}>
       {tags.length > 0 && (
