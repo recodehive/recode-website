@@ -13,10 +13,13 @@ const PAGER_LABELS = { newer: 'PREVIOUS', older: 'NEXT' };
 
 /** The end of every docs page, laid out like the end of a blog post. */
 export default function DocFooter(): React.ReactElement {
-  const { metadata } = useDoc();
+  const { metadata, frontMatter } = useDoc();
   const { tags, title, permalink, editUrl, previous, next } = metadata;
+  // Pages whose content is capped at 760px ask for a footer of the same width
+  const width = (frontMatter as { footer_width?: string }).footer_width;
+  const widthClass = width === 'narrow' ? styles.docEndNarrow : width === 'narrow-start' ? styles.docEndNarrowStart : '';
   return (
-    <div className={styles.docEnd}>
+    <div className={`${styles.docEnd} ${widthClass}`}>
       {tags.length > 0 && (
         <div className={styles.endTags}>
           <span>TAGGED</span>
