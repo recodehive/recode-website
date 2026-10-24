@@ -14,6 +14,7 @@ import {
   BADGE_CREDIT, BADGE_GROUPS, FAQ, HERO_BADGES, LEVEL_COPY, MENTORSHIP_CLAIM, OFFERINGS, RANK_TITLES, SHORT_STEPS,
   SPONSOR_POST_URL, SPONSOR_RECIPIENTS, TIERS, WEEKLY_MVP, type OfferingIcon, type RewardIcon,
 } from '../../data/leaderboardGuide';
+import SponsorBadge from '../sponsors/SponsorBadge';
 import s from './LeaderboardGuide.module.css';
 
 type CSSVars = React.CSSProperties & Record<`--${string}`, string | number>;
@@ -274,14 +275,15 @@ export function LabelSimulator() {
 /* ---------- 3d. What counts ---------- */
 
 const DOS = [
-  'Merged PRs with the recode label and a level label',
-  'Work on an issue you were assigned',
+  'Merged PRs with recode label and a level label',
+  'Only Work on an issue When it assigned assigned',
   'Reviewing PRs and helping others in discussions (counts toward Weekly MVP)',
 ];
 const DONTS = [
   'PRs without the recode label: 0 points',
   'PRs with no level label: 0 points',
   'PRs that are closed without merging',
+  'Issues get assigned FIFO format, if it goes stale it goes to the next person'
 ];
 
 export function DoDont() {
@@ -690,7 +692,7 @@ export function SponsorFlow() {
     <>
       <div className={s.flow}>
         <div className={s.fNode}>
-          <div className={s.fEmoji} aria-hidden="true">💚</div>
+          <SponsorBadge size={56} />
           <div className={s.fTitle}>Sponsors</div>
           <div className={s.fSub}>Support recode hive on GitHub Sponsors</div>
         </div>
