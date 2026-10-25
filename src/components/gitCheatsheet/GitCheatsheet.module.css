@@ -891,10 +891,12 @@
   margin: 1rem 0;
 }
 
-.tools {
+/* custom.css gives every div inside the docs markdown z-index: 1 !important, which put the command list above this bar.
+   The extra class out-ranks it, so the bar stays on top while the list scrolls under it. */
+.explorerWrap .tools {
   position: sticky;
   top: 64px;
-  z-index: 20;
+  z-index: 20 !important;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -1234,7 +1236,7 @@
     grid-template-columns: 1fr;
   }
 
-  .tools {
+  .explorerWrap .tools {
     position: static;
   }
 
