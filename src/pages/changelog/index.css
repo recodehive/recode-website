@@ -186,6 +186,11 @@
   font-size: 1rem;
   font-weight: 700;
   margin: 0.75rem 0 0.4rem;
+  color:black
+}
+
+[data-theme="dark"] .changelog__body-heading{
+  color: white;
 }
 
 .changelog__body-text,
