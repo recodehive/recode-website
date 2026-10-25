@@ -1,0 +1,768 @@
+/* Only the "Setup Git on Windows" page. Every rule starts from .gitWindows, the root class the page passes to <SetupLesson>. */
+
+.gitWindows {
+  --win-font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+.gitWindows .srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ---------- Header animation ---------- */
+
+.gitWindows .art {
+  position: relative;
+  width: 210px;
+  padding-bottom: 16px;
+}
+
+.gitWindows .artWin {
+  overflow: hidden;
+  border: 1px solid #c7ccd1;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 14px 30px -14px rgba(15, 23, 42, 0.45);
+  font-family: var(--win-font);
+}
+
+.gitWindows .artBar,
+.gitWindows .winBar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 10px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fff;
+  font-size: 11.5px;
+  color: #1f2328;
+}
+
+.gitWindows .artIcon,
+.gitWindows .winIcon {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, #f05133 0 50%, #3b82f6 50% 100%);
+  transform: rotate(45deg);
+}
+
+.gitWindows .artX,
+.gitWindows .winX {
+  margin-left: auto;
+  color: #6b7280;
+}
+
+.gitWindows .artBody {
+  padding: 10px 12px 12px;
+}
+
+.gitWindows .artHead {
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.gitWindows .artSub {
+  margin-bottom: 8px;
+  font-size: 10px;
+  color: #4b5563;
+}
+
+.gitWindows .artTrack {
+  height: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.gitWindows .artFill {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: repeating-linear-gradient(135deg, #2e8555 0 6px, #4cc184 6px 12px);
+}
+
+.gitWindows .artChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.gitWindows .artChips span {
+  padding: 1px 7px;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  background: #effaf3;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: #166534;
+  opacity: 0;
+}
+
+.gitWindows .artDone {
+  position: absolute;
+  right: -6px;
+  bottom: 0;
+  padding: 3px 11px;
+  border: 1px solid #86efac;
+  border-radius: 999px;
+  background: #dcfce7;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #166534;
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.gitWindows .play .artFill {
+  animation: gwFill 2.6s ease-out forwards;
+}
+
+.gitWindows .play .artChips span {
+  animation: gwShow 0.45s ease forwards;
+}
+
+.gitWindows .play .artChips span:nth-child(1) { animation-delay: 2.7s; }
+.gitWindows .play .artChips span:nth-child(2) { animation-delay: 3s; }
+.gitWindows .play .artChips span:nth-child(3) { animation-delay: 3.3s; }
+
+.gitWindows .play .artDone {
+  animation: gwPop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) 3.7s forwards;
+}
+
+@keyframes gwFill { to { width: 100%; } }
+@keyframes gwShow { to { opacity: 1; } }
+@keyframes gwPop { to { opacity: 1; transform: scale(1); } }
+
+/* ---------- Two ways to install ---------- */
+
+.gitWindows .approach {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.gitWindows .apCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.gitWindows .apOff {
+  opacity: 0.6;
+}
+
+.gitWindows .apOn {
+  border-color: var(--ok-border);
+  background: var(--ok-bg);
+}
+
+.gitWindows .apIcon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--chip);
+  font-size: 16px;
+}
+
+.gitWindows .apDark {
+  background: #0d1117;
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 700;
+  color: #86efac;
+}
+
+.gitWindows .apCard strong {
+  display: block;
+  font-family: var(--head);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.gitWindows .apSub {
+  display: block;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.gitWindows .apTag,
+.gitWindows .appTag,
+.gitWindows .brTag {
+  padding: 1px 9px;
+  border-radius: 999px;
+  background: #2e8555;
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.gitWindows .apTag {
+  position: absolute;
+  top: -9px;
+  right: 14px;
+}
+
+/* ---------- Installer picker ---------- */
+
+.gitWindows .picker {
+  margin: 1rem 0 1.3rem;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+.gitWindows .pkTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+}
+
+.gitWindows .pkLabel {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.gitWindows .pkHint {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.gitWindows .pkPath {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 12px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.gitWindows .pkPath li {
+  margin: 0;
+  padding: 0;
+}
+
+.gitWindows .pkChip {
+  padding: 3px 11px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--card);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.gitWindows .pkArrow {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.gitWindows .pkToggle {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--chip);
+}
+
+.gitWindows .pkToggle button {
+  padding: 5px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.gitWindows .pkToggle button.pkOn {
+  background: var(--card);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.18);
+  color: var(--g);
+}
+
+.gitWindows .pkResult {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #0d1117;
+}
+
+.gitWindows .pkResult > span:first-child {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: #86efac;
+}
+
+.gitWindows .pkWhere {
+  font-size: 13px;
+  color: #9da7b3;
+}
+
+/* ---------- Branch name preview ---------- */
+
+.gitWindows .branch {
+  display: grid;
+  gap: 8px;
+  margin: 1rem 0 1.2rem;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+.gitWindows .brRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  font-size: 14.5px;
+  color: var(--text);
+}
+
+.gitWindows .brOff {
+  opacity: 0.6;
+}
+
+.gitWindows .brOn {
+  border: 1.5px solid #2e8555;
+  background: var(--ok-bg);
+  font-weight: 600;
+}
+
+.gitWindows .brRadio {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--line);
+  border-radius: 50%;
+  background: var(--card);
+}
+
+.gitWindows .brRadioOn {
+  border-color: #2e8555;
+  background: #2e8555;
+  box-shadow: inset 0 0 0 3px var(--card);
+}
+
+.gitWindows .brInput {
+  display: inline-flex;
+  align-items: center;
+  min-width: 72px;
+  padding: 2px 10px;
+  border: 1px solid #2e8555;
+  border-radius: 8px;
+  background: var(--card);
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.gitWindows .brTyped {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.gitWindows .brCursor {
+  width: 1.5px;
+  height: 16px;
+  background: var(--text);
+  animation: gwBlink 1s steps(1) infinite;
+}
+
+.gitWindows .brTag {
+  margin-left: auto;
+}
+
+.gitWindows .play .brTyped {
+  animation: gwType 0.8s steps(4) 0.3s forwards;
+}
+
+@keyframes gwType { to { max-width: 4ch; } }
+@keyframes gwBlink { 50% { opacity: 0; } }
+
+/* ---------- Installer walkthrough ---------- */
+
+.gitWindows .wt {
+  margin: 1.4rem 0;
+  padding: 20px 22px 18px;
+  border: 1px solid #21262d;
+  border-radius: 18px;
+  background: #0d1117;
+  color: #c9d1d9;
+}
+
+.gitWindows .wtTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin-bottom: 14px;
+}
+
+.gitWindows .wtTitle {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: #86efac;
+}
+
+.gitWindows .wtCount {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #9da7b3;
+}
+
+.gitWindows .wtGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+/* custom.css styles every [role=tab] and [role=tablist] on the site with !important, so these out-rank it for this list only */
+.gitWindows .wtList[role='tablist'] {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px;
+}
+
+.gitWindows .wtTab[role='tab'] {
+  position: relative;
+  display: flex !important;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 11px 14px !important;
+  border: 1px solid #21262d !important;
+  border-radius: 12px;
+  background: #161b22 !important;
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 400 !important;
+  line-height: 1.55;
+  text-align: left !important;
+  color: #9da7b3 !important;
+  cursor: pointer;
+}
+
+.gitWindows .wtTab[role='tab']:hover {
+  border-color: #30363d !important;
+  background: #1b222b !important;
+}
+
+.gitWindows .wtTab[role='tab'][aria-selected='true'] {
+  border-color: #2e8555 !important;
+  background: #12301f !important;
+  font-weight: 400 !important;
+  color: #e6edf3 !important;
+}
+
+.gitWindows .wtActive::before {
+  content: '';
+  position: absolute;
+  top: 9px;
+  bottom: 9px;
+  left: 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: #4cc184;
+}
+
+.gitWindows .wtNum {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  margin-top: 1px;
+  border-radius: 8px;
+  background: #21262d;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: #9da7b3;
+}
+
+.gitWindows .wtPast .wtNum {
+  background: #14291d;
+  color: #4cc184;
+}
+
+.gitWindows .wtActive .wtNum {
+  background: #2e8555;
+  color: #fff;
+}
+
+.gitWindows .wtSide {
+  position: sticky;
+  top: 80px;
+}
+
+.gitWindows .win {
+  overflow: hidden;
+  border: 1px solid #c7ccd1;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 16px 34px -14px rgba(0, 0, 0, 0.7);
+  font-family: var(--win-font);
+}
+
+.gitWindows .winBar {
+  padding: 8px 12px;
+  font-size: 12.5px;
+}
+
+.gitWindows .winBody {
+  min-height: 200px;
+  padding: 16px 16px 10px;
+}
+
+.gitWindows .winTitle {
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #0f172a;
+}
+
+.gitWindows .winOptions {
+  display: grid;
+  gap: 7px;
+}
+
+.gitWindows .winOpt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 11px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: #1f2328;
+}
+
+.gitWindows .winOpt input {
+  flex-shrink: 0;
+  margin: 0;
+  accent-color: #2e8555;
+  pointer-events: none;
+}
+
+.gitWindows .winSel {
+  border-color: #86efac;
+  background: #e8f8ee;
+}
+
+.gitWindows .winOpt em {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding: 1px 9px;
+  border-radius: 999px;
+  background: #2e8555;
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 700;
+  color: #fff;
+}
+
+.gitWindows .winFoot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 11px 16px;
+  border-top: 1px solid #e5e7eb;
+  background: #f3f4f6;
+}
+
+.gitWindows .winBtn {
+  min-width: 78px;
+  padding: 5px 14px;
+  border: 1px solid #adb5bd;
+  border-radius: 6px;
+  background: #fff;
+  font-family: var(--win-font);
+  font-size: 13.5px;
+  text-align: center;
+  color: #1f2328;
+  cursor: pointer;
+}
+
+.gitWindows .winBtn:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.gitWindows .winPrimary {
+  border-color: #2e8555;
+  background: #2e8555;
+  font-weight: 600;
+  color: #fff;
+}
+
+span.winPrimary {
+  display: inline-block;
+}
+
+.gitWindows .wtNote {
+  margin-top: 14px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #9da7b3;
+}
+
+/* ---------- Apps the installer adds ---------- */
+
+.gitWindows .apps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 1rem 0 1.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.gitWindows .app {
+  position: relative;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  opacity: 0;
+}
+
+.gitWindows .appUse {
+  border-color: var(--ok-border);
+  background: var(--ok-bg);
+}
+
+.gitWindows .play .app {
+  animation: gwUp 0.6s ease both;
+}
+
+.gitWindows .appIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  background: #0d1117;
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: #86efac;
+}
+
+.gitWindows .app strong {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--head);
+  font-size: 15.5px;
+}
+
+.gitWindows .appText {
+  display: block;
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.gitWindows .appTag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
+@keyframes gwUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 996px) {
+  .gitWindows .wtGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gitWindows .wtSide {
+    position: static;
+    order: -1;
+  }
+
+  .gitWindows .apps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .gitWindows .approach,
+  .gitWindows .apps {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gitWindows .wt {
+    padding: 16px 14px;
+  }
+
+  .gitWindows .brRow {
+    flex-wrap: wrap;
+  }
+
+  .gitWindows .brTag {
+    margin-left: 26px;
+  }
+}
+
+/* Reduced motion: everything shows its final state and nothing moves */
+@media (prefers-reduced-motion: reduce) {
+  .gitWindows .artFill { width: 100%; animation: none; }
+  .gitWindows .artChips span { opacity: 1; animation: none; }
+  .gitWindows .artDone { opacity: 1; transform: none; animation: none; }
+  .gitWindows .brTyped { max-width: 4ch; animation: none; }
+  .gitWindows .brCursor { animation: none; }
+  .gitWindows .app { opacity: 1; animation: none; }
+}

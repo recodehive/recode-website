@@ -1,0 +1,894 @@
+/* Shared by the setup lessons. Every rule hangs off .setupLesson, so nothing here reaches another page. */
+
+.setupLesson {
+  --g: #2e8555;
+  --gd: #205d3b;
+  --gl: #86efac;
+  --lime: #4cc184;
+  --red: #e5484d;
+  --text: #0f172a;
+  --body: #334155;
+  --muted: #64748b;
+  --card: #ffffff;
+  --soft: #fbfcfb;
+  --line: #e3e9e6;
+  --divider: #eef2f0;
+  --tint: #e8f5ee;
+  --hdr-bg: #f6fbf8;
+  --hdr-border: #d7efe1;
+  --chip: #eef2f6;
+  --ok-bg: #effaf3;
+  --ok-border: #bbf7d0;
+  --dark: #0d1117;
+  --dark-2: #161b22;
+  --dark-line: #21262d;
+  --dark-line-2: #30363d;
+  --head: 'Space Grotesk', Inter, system-ui, sans-serif;
+  --sans: Inter, system-ui, -apple-system, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  width: 100%;
+  max-width: 808px;
+  margin: 0 auto;
+  font-family: var(--sans);
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--body);
+}
+
+:global(html[data-theme='dark']) .setupLesson {
+  --g: #4cc184;
+  --text: #e6edf3;
+  --body: #c9d1d9;
+  --muted: #9da7b3;
+  --card: #161b22;
+  --soft: #11161d;
+  --line: #30363d;
+  --divider: #21262d;
+  --tint: rgba(76, 193, 132, 0.14);
+  --hdr-bg: #11181a;
+  --hdr-border: #24402f;
+  --chip: #21262d;
+  --ok-bg: rgba(76, 193, 132, 0.1);
+  --ok-border: rgba(76, 193, 132, 0.35);
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Page text ---------- */
+
+.setupLesson p,
+.setupLesson li {
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--body);
+}
+
+.setupLesson p {
+  margin: 0 0 1.1rem;
+}
+
+.setupLesson a {
+  color: var(--g);
+}
+
+.setupLesson strong {
+  color: var(--text);
+}
+
+.setupLesson :not(pre) > code {
+  padding: 1px 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--chip);
+  font-family: var(--mono);
+  font-size: 0.86em;
+  color: var(--text);
+}
+
+.setupLesson h2 {
+  margin: 2.6rem 0 1rem;
+  padding-top: 20px;
+  border-top: 1px solid var(--divider);
+  font-family: var(--head);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.setupLesson h3 {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 0 0 0.7rem;
+  font-family: var(--head);
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.setupLesson h4 {
+  margin: 1.6rem 0 0.5rem;
+  font-family: var(--head);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+/* custom.css paints every paragraph, list item and link in dark mode with !important. These win on specificity, for this page only. */
+:global(html[data-theme='dark']) .setupLesson p,
+:global(html[data-theme='dark']) .setupLesson li {
+  color: var(--body) !important;
+  -webkit-text-fill-color: var(--body) !important;
+}
+
+:global(html[data-theme='dark']) .setupLesson h2,
+:global(html[data-theme='dark']) .setupLesson h3,
+:global(html[data-theme='dark']) .setupLesson h4 {
+  color: var(--text) !important;
+  -webkit-text-fill-color: var(--text) !important;
+}
+
+:global(html[data-theme='dark']) .setupLesson p a,
+:global(html[data-theme='dark']) .setupLesson li a {
+  color: var(--g) !important;
+}
+
+.setupLesson :focus-visible {
+  outline: 2px solid var(--g);
+  outline-offset: 2px;
+}
+
+/* Small mono label */
+.label {
+  margin: 1.4rem 0 0.6rem;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--g);
+}
+
+/* ---------- Lesson header ---------- */
+
+.header {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 1.4rem;
+  padding: 26px 28px 22px;
+  border: 1px solid var(--hdr-border);
+  border-radius: 22px;
+  background: radial-gradient(circle at 92% 0%, rgba(46, 133, 85, 0.16), transparent 46%), var(--hdr-bg);
+}
+
+.hTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+}
+
+.hPill {
+  padding: 3px 11px;
+  border-radius: 999px;
+  background: #2e8555;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.hMeta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.hMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.hCopy {
+  min-width: 0;
+}
+
+.setupLesson .hTitle {
+  display: block;
+  margin: 14px 0 6px !important;
+  font-family: var(--head);
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+:global(html[data-theme='dark']) .setupLesson .hTitle {
+  color: var(--text) !important;
+  -webkit-text-fill-color: var(--text) !important;
+}
+
+.hIntro p {
+  margin: 0;
+  font-size: 16.5px;
+  line-height: 1.7;
+}
+
+.hArt {
+  flex-shrink: 0;
+  width: 210px;
+}
+
+.hOptions {
+  margin-top: 18px;
+}
+
+.track {
+  margin-top: 20px;
+}
+
+.segs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+}
+
+.seg,
+.segPast,
+.segOn {
+  height: 5px;
+  border-radius: 999px;
+  background: var(--divider);
+}
+
+.segPast {
+  background: #86efac;
+}
+
+.segOn {
+  background: #2e8555;
+}
+
+:global(html[data-theme='dark']) .setupLesson .segPast {
+  background: #2f6f4b;
+}
+
+.trackLabels {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 7px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+/* ---------- Checklist ---------- */
+
+.checklist {
+  margin-bottom: 2.2rem;
+  padding: 18px 20px 20px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+}
+
+.clTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.setupLesson .clTitle {
+  margin: 0;
+  font-size: 17px;
+}
+
+.clHint {
+  margin-top: 2px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+
+.clCount {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--g);
+}
+
+.clBar {
+  height: 6px;
+  margin: 12px 0 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--divider);
+}
+
+.clBar span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #2e8555;
+  transition: width 0.4s ease;
+}
+
+.clTiles {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.clTiles li {
+  margin: 0;
+  padding: 0;
+}
+
+.clTile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  padding: 10px 12px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--soft);
+  font-family: inherit;
+  text-align: left;
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.clTile:hover {
+  border-color: var(--g);
+}
+
+.clBox {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-bottom: 4px;
+  border: 1.5px solid var(--line);
+  border-radius: 5px;
+  background: var(--card);
+  color: #fff;
+}
+
+.clNum {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.clLabel {
+  font-family: var(--head);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.clOn {
+  border-color: var(--ok-border);
+  background: var(--ok-bg);
+}
+
+.clOn .clBox {
+  border-color: #2e8555;
+  background: #2e8555;
+}
+
+.clDone {
+  margin-top: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--ok-border);
+  border-radius: 12px;
+  background: var(--ok-bg);
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ---------- Step timeline ---------- */
+
+.timeline {
+  margin-top: 0.4rem;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr);
+  column-gap: 18px;
+}
+
+.stepRail {
+  position: relative;
+}
+
+/* The dashed rail runs from under one circle to the next */
+.stepRail::before {
+  content: '';
+  position: absolute;
+  top: 48px;
+  bottom: 4px;
+  left: 21px;
+  border-left: 2px dashed var(--line);
+}
+
+.step:last-child .stepRail::before {
+  display: none;
+}
+
+.stepNum {
+  position: sticky;
+  top: 80px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid #2e8555;
+  border-radius: 50%;
+  background: var(--card);
+  font-family: var(--head);
+  font-size: 18px;
+  font-weight: 700;
+  color: #2e8555;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+:global(html[data-theme='dark']) .setupLesson .stepNum {
+  border-color: var(--g);
+  color: var(--g);
+}
+
+.stepDone .stepNum {
+  background: #2e8555;
+  color: #fff;
+}
+
+.stepBody {
+  min-width: 0;
+  padding-bottom: 2.4rem;
+}
+
+.markBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  padding: 6px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.markBtn:hover {
+  border-color: var(--g);
+  color: var(--g);
+}
+
+.markBtn[aria-pressed='true'] {
+  border-color: var(--ok-border);
+  background: var(--ok-bg);
+  color: var(--g);
+}
+
+/* Small numbered lists inside a step */
+.stepBody ol {
+  margin: 0 0 1.1rem;
+  padding: 0;
+  list-style: none;
+  counter-reset: item;
+}
+
+.stepBody ol > li {
+  position: relative;
+  margin: 0 0 0.5rem;
+  padding-left: 36px;
+  counter-increment: item;
+}
+
+.stepBody ol > li::before {
+  content: counter(item);
+  position: absolute;
+  top: 2.5px;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--tint);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--g);
+}
+
+/* ---------- Screenshot card ---------- */
+
+.shot {
+  margin: 1.1rem 0 1.3rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: 0 8px 24px -14px rgba(15, 23, 42, 0.28);
+}
+
+/* The page's own <BrowserWindow>, restyled from here. Its class names are generated, so these follow its structure. */
+.shotFrame > div {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.shotFrame > div > div:first-child {
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--chip);
+}
+
+.shotFrame > div > div:first-child > div:nth-child(2) {
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.shotFrame > div > div:first-child > div:nth-child(3) {
+  display: none;
+}
+
+.shotFrame > div > div:last-child {
+  padding: 0;
+}
+
+.shotFrame p {
+  margin: 0;
+}
+
+.shotFrame a {
+  display: block;
+  line-height: 0;
+}
+
+.shotFrame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.pins {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--line);
+  background: var(--soft);
+}
+
+.pinsLabel {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.pins ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pins li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 3px 12px 3px 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 13.5px;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+/* A recap of numbered items with longer text, one per row, in a card of its own */
+.pinsStacked {
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 1rem 0 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+
+.pinsStacked ul {
+  flex-direction: column;
+  width: 100%;
+}
+
+.pinsStacked li {
+  border-radius: 12px;
+}
+
+.pinNum,
+.pinDot {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.pinNum {
+  background: #e5484d;
+}
+
+.pinDot {
+  min-width: 0;
+  width: 8px;
+  height: 8px;
+  margin: 0 2px 0 8px;
+  background: #2e8555;
+}
+
+/* ---------- Admonition ---------- */
+
+.setupLesson :global(.theme-admonition) {
+  margin: 1.4rem 0;
+  padding: 14px 18px;
+  border: 0;
+  border-left: 4px solid #2e8555;
+  border-radius: 12px;
+  background: var(--ok-bg);
+  box-shadow: none;
+  color: var(--body);
+}
+
+.setupLesson :global(.theme-admonition) :global(.admonition-heading) {
+  margin-bottom: 4px;
+}
+
+.setupLesson :global(.theme-admonition) :global(.admonition-heading) h5,
+.setupLesson :global(.theme-admonition) :global(.admonition-heading) {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--g);
+}
+
+.setupLesson :global(.theme-admonition) :global(.admonition-heading) svg {
+  fill: var(--g);
+}
+
+.setupLesson :global(.theme-admonition) :global(.admonition-content) p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Tabs ---------- */
+
+.setupLesson :global(.tabs-container) {
+  margin: 1rem 0 1.4rem !important;
+}
+
+.setupLesson :global(.tabs) {
+  margin-bottom: 0 !important;
+  border-bottom: 1px solid var(--line);
+  box-shadow: none;
+}
+
+.setupLesson :global(.tabs__item) {
+  margin: 0 !important;
+  padding: 8px 16px !important;
+  border: 0 !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500 !important;
+  color: var(--muted) !important;
+}
+
+.setupLesson :global(.tabs__item:hover) {
+  background: transparent !important;
+  color: var(--text) !important;
+}
+
+.setupLesson :global(.tabs__item--active) {
+  border-bottom-color: #2e8555 !important;
+  background: transparent !important;
+  font-weight: 600 !important;
+  color: var(--g) !important;
+}
+
+.setupLesson :global(.tabs-container) > div:last-child {
+  padding-top: 14px;
+}
+
+/* ---------- Code block ---------- */
+
+.setupLesson :global([class*='codeBlockContainer']) {
+  margin: 0 0 1rem;
+  overflow: hidden;
+  border: 1px solid #30363d;
+  border-radius: 14px;
+  background: #0d1117;
+  box-shadow: none;
+}
+
+.setupLesson :global([class*='codeBlockTitle']) {
+  padding: 9px 16px;
+  border-bottom: 1px solid #21262d;
+  border-radius: 0;
+  background: #161b22;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  color: #9da7b3;
+}
+
+.setupLesson :global([class*='codeBlockContent']) pre,
+.setupLesson :global([class*='codeBlockContent']) pre code {
+  padding: 0;
+  border: 0;
+  background: #0d1117 !important;
+  font-family: var(--mono);
+  font-size: 14.5px;
+  color: #e6edf3 !important;
+}
+
+.setupLesson :global([class*='codeBlockContent']) pre {
+  padding: 14px 16px;
+}
+
+.setupLesson :global([class*='codeBlockContent']) pre code span {
+  color: #e6edf3 !important;
+  -webkit-text-fill-color: #e6edf3 !important;
+}
+
+/* ---------- Up next ---------- */
+
+.upNext {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 1.8rem 0 0;
+  padding: 16px 22px;
+  border-radius: 16px;
+  background: #2e8555;
+  text-decoration: none;
+  color: #fff !important;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.upNext:hover {
+  background: #266f46;
+  transform: translateY(-1px);
+  text-decoration: none;
+  color: #fff;
+}
+
+.upNext small {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: #d9f99d;
+}
+
+.upNext strong {
+  font-family: var(--head);
+  font-size: 19px;
+  color: #fff;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 996px) {
+  .hArt {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .header {
+    padding: 22px 18px 18px;
+  }
+
+  .setupLesson .hTitle {
+    font-size: 32px;
+  }
+
+  .clTiles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .step {
+    grid-template-columns: 34px minmax(0, 1fr);
+    column-gap: 12px;
+  }
+
+  .stepNum {
+    position: static;
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+  }
+
+  .stepRail::before {
+    top: 38px;
+    left: 16px;
+  }
+
+  .setupLesson h3 {
+    min-height: 34px;
+    font-size: 19px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clBar span,
+  .upNext,
+  .stepNum {
+    transition: none;
+  }
+}

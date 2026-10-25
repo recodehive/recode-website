@@ -1,0 +1,201 @@
+---
+id: setup-git-on-windows
+title: Setup your Git on Windows
+sidebar_label: Setup Git on Windows
+sidebar_position: 2
+hide_title: true
+footer_width: lesson
+tags:
+  [
+    github,
+    install-github,
+    git installation,
+    development-environment,
+    setup-environment,
+  ]
+description: In this tutorial, you will learn how to set up your development environment for Git And GitHub.
+---
+
+import {
+  SetupLesson, LessonHeader, SetupChecklist, StepTimeline, Step, Shot, UpNextCard,
+} from '@site/src/components/setupLesson';
+import {
+  rootClass, InstallerArt, ApproachCards, InstallerPicker, BranchNamePreview, InstallerWalkthrough, AppTiles, WALKTHROUGH_WORDS,
+} from '@site/src/components/gitWindows';
+
+<SetupLesson
+  className={rootClass}
+  storageKey="recodehive:setup-git-windows:done"
+  steps={['Download Git', 'Pick installer', 'Choose components', 'Name the branch', 'Set PATH and install']}
+  doneMessage="🎉 All 5 steps done. Git is installed on your Windows PC."
+>
+
+<LessonHeader title="Setup your Git on Windows" platform="🪟 Windows" extraWords={WALKTHROUGH_WORDS} art={<InstallerArt />} options={<ApproachCards />}>
+
+GitHub provides two ways of installation: GitHub Desktop, and the command line by installing the Git software on your system. Personally, from a developer perspective, I would suggest you use the command line, as it comes in handy and gives more flexibility in solving bugs and doing more with version control, especially when conflicts happen with Git. This tutorial is focused on the command line version.
+
+</LessonHeader>
+
+<SetupChecklist title="Your install checklist" />
+
+<StepTimeline>
+
+<Step n={1}>
+
+### Step 1: Let’s download Git {#step-1-lets-download-the-git}
+
+Go to the [Git Website](https://git-scm.com/) and click on the Download for Windows button.
+
+<Shot pins={[{ n: 11, label: 'Install: Download for Windows' }]}>
+<BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>
+
+[![git-scm.com home page with the Download for Windows button](./assets/6-git-setup.png)](https://git-scm.com/)
+
+</BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={2}>
+
+### Step 2: Select the version you want to install {#step-2-select-your-version-you-want-to-install}
+
+**Get your installer:** Based on your version of Windows, you can choose the standalone installer or the Windows installer to get started. As my system is 64-bit, I will choose 64-bit here. You can find out which system you are using by right-clicking the `This PC` icon, choosing `Properties` and checking the System type.
+
+<InstallerPicker />
+
+**Installer:** Get the Installer
+
+<Shot pins={[{ n: 12, label: 'This one: Git for Windows/x64 Setup' }]}>
+<BrowserWindow url="https://git-scm.com/downloads/win" bodyStyle={{padding: 0}}>
+
+[![Git for Windows download page with the x64 standalone installer link](./assets/7-git-installer.png)](https://git-scm.com/downloads/win)
+
+</BrowserWindow>
+</Shot>
+
+**Start Installation:** Open the installer once it has downloaded.
+
+<Shot pins={[{ n: 13, label: 'Click on Next' }]}>
+<BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>
+
+[![Git setup wizard showing the GNU General Public License screen](./assets/8-Git-setup01.png)](https://git-scm.com/)
+
+</BrowserWindow>
+</Shot>
+
+1. On the next screen, click Next on the Public Licence.
+2. Choose the default location and click Next.
+
+</Step>
+
+<Step n={3}>
+
+### Step 3: Understanding the Interface {#step-3-understanding-the-interface}
+
+Next, Git will ask you to install a couple of components. You can check Additional icons to add them on the Desktop, leave the rest as default and click Next.
+
+1. On the next screen, click Next, and make sure the Start Menu folder name is Git.
+2. Next, choose the default editor. You can use your own editor (I am using Visual Studio Code) or keep Vim as the default editor.
+
+<Shot pins={[{ n: 14, label: 'Additional icons, if required' }]}>
+<BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>
+
+[![Git setup Select Components screen with Additional icons checked](./assets/9-git-components.png)](https://github.com/sanjay-kv)
+
+</BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={4}>
+
+### Step 4: Adjusting the name of the repo setting in Git {#step-4--adjusting-name-of-the-repo-setting-in-git}
+
+At this stage, it will ask you to choose the initial branch name for new repositories. The ideal approach is to pick the second option, as it gives us the flexibility to change the initial branch name, like main, master or trunk.
+
+<BranchNamePreview />
+
+<Shot pins={[{ n: 14, label: 'Give main' }]}>
+<BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>
+
+[![Git setup screen to override the default branch name, with main typed in](./assets/10-default-git-branch.png)](https://github.com/sanjay-kv)
+
+</BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={5}>
+
+### Step 5: Adjusting your PATH environment {#step-5--adjusting-your-path-environment}
+
+This is where we specify the PATH environment for Git. Just go with the recommended option, which is option 2.
+
+<Shot pins={[{ n: 15, label: 'Select path: Git from the command line and also from 3rd-party software' }]}>
+<BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>
+
+[![Git setup Adjusting your PATH environment screen with the recommended option selected](./assets/11-git-path-env.png)](https://github.com/sanjay-kv)
+
+</BrowserWindow>
+</Shot>
+
+<InstallerWalkthrough />
+
+<Shot pins={[{ label: 'Launch Git Bash' }, { label: 'Finish' }]}>
+<BrowserWindow url="https://git-scm.com/" bodyStyle={{padding: 0}}>
+
+[![Completing the Git Setup Wizard with Launch Git Bash and Finish highlighted](./assets/12-git-final-setup.png)](https://github.com/sanjay-kv)
+
+</BrowserWindow>
+</Shot>
+
+</Step>
+
+</StepTimeline>
+
+:::tip[Congratulations]
+
+Congratulations! The Git setup is finished and you can now launch Git Bash.
+
+:::
+
+After setup, you will see a few new apps in your PC’s application list: Git Bash, Git GUI and Git CMD. However, we will mostly use Git Bash for uploading our projects.
+
+<AppTiles />
+
+#### Check your Git version
+
+Run the command below in Git CMD or the Windows Command Prompt to see your current version of Git. Git installation on Windows is complete.
+
+<Tabs>
+  <TabItem value="Git Code" label="Git Code">
+
+```bash title="Check your Git version"
+git --version
+```
+
+  </TabItem>
+
+  <TabItem value="how-git-works" label="Output on browser">
+
+<Shot pins={[{ label: 'Prints current version' }]}>
+<BrowserWindow url="Command Prompt" bodyStyle={{padding: 0}}>
+
+![Command Prompt showing the output of git --version](./assets/14-git-version.png)
+
+</BrowserWindow>
+</Shot>
+
+  </TabItem>
+</Tabs>
+
+## Conclusion
+
+In conclusion, I hope you enjoyed reading this article on “Setting up your Git environment”. In the next post, we will discuss using Git to create a repository and clone a project from GitHub.
+
+*Signing off, **Sanjay Viswanathan**.*
+
+<UpNextCard />
+
+</SetupLesson>
