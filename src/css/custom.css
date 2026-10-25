@@ -420,38 +420,6 @@ html[data-theme="dark"] .blog-post .markdown p a {
   color: #93c5fd !important;
 }
 
-/* Force article/blog post prose to white in dark mode without touching tag pills */
-html[data-theme="dark"] article h1,
-html[data-theme="dark"] article h2,
-html[data-theme="dark"] article h3,
-html[data-theme="dark"] article h4,
-html[data-theme="dark"] article h5,
-html[data-theme="dark"] article h6,
-html[data-theme="dark"] article p,
-html[data-theme="dark"] article li,
-html[data-theme="dark"] article blockquote,
-html[data-theme="dark"] article dd,
-html[data-theme="dark"] article dt,
-html[data-theme="dark"] article small,
-html[data-theme="dark"] article figcaption,
-html[data-theme="dark"] .blog-wrapper,
-html[data-theme="dark"] .blog-post-page,
-html[data-theme="dark"] .plugin-blog,
-html[data-theme="dark"] .container p,
-html[data-theme="dark"] .col--7 p,
-html[data-theme="dark"] .row p {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-}
-
-/* Also enforce for lists and blockquotes inside posts */
-html[data-theme="dark"] article li,
-html[data-theme="dark"] article ul,
-html[data-theme="dark"] article ol,
-html[data-theme="dark"] article blockquote {
-  color: #ffffff !important;
-  -webkit-text-fill-color: #ffffff !important;
-}
 
 /* Navbar styling and alignment */
 .navbar,
