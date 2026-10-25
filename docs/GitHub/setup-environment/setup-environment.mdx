@@ -3,6 +3,8 @@ id: setup-environment
 title: Setting up your development environment
 sidebar_label: Setup GitHub Account
 sidebar_position: 1
+hide_title: true
+footer_width: lesson
 tags:
   [
     github,
@@ -14,47 +16,101 @@ tags:
 description: In this tutorial, you will learn how to set up your development environment for Git And GitHub.
 ---
 
+import {
+  SetupLesson, LessonHeader, SetupChecklist, StepTimeline, Step, Shot, ScreenshotPins, UpNextCard,
+} from '@site/src/components/setupLesson';
+import AccountArt from '@site/src/components/githubAccount/AccountArt';
+
+<SetupLesson
+  storageKey="recodehive:setup-github-account:done"
+  steps={['Create account', 'Finish signup', 'Verify email', 'Personalize', 'Secure with 2FA']}
+  doneMessage="🎉 All 5 steps done. Your GitHub account is set up and secured."
+>
+
+<LessonHeader title="Setting up your development environment" platform="🌐 Web" art={<AccountArt />}>
+
 GitHub is a code hosting platform built on top of Git. It was founded in 2008 and acquired by Microsoft in 2018. If you are just getting started, the setup is simple, you create a free account on GitHub's website, install Git on your machine, and link the two together so your local changes can be pushed to the cloud.
 
-### Step 1: Let's create a GitHub Account
+</LessonHeader>
+
+<SetupChecklist title="Your setup checklist" />
+
+<StepTimeline>
+
+<Step n={1}>
+
+### Step 1: Let's create a GitHub Account {#step-1-lets-create-a-github-account}
 
 To create a GitHub account, go to the [GitHub Website](https://github.com/) and sign up using your email ID.
 
+<Shot>
 <BrowserWindow url="https://github.com/" bodyStyle={{padding: 0}}>
- [![GitHub](./assets/3-github-account.png)](https://github.com/)
-</BrowserWindow>
 
-### Step 2: Finishing the account creation
+[![GitHub sign up page with the email field for creating an account](./assets/3-github-account.png)](https://github.com/)
+
+</BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={2}>
+
+### Step 2: Finishing the account creation {#step-2-finishing-the-account-creation}
 
 Pick a username that is easy to read and remember, think of it the same way you would choose a professional username on LinkedIn. Once you complete the signup form, GitHub will ask you to solve a quick puzzle to confirm you are human.
 
-**Live Server:** GitHub signup screen  
-   <BrowserWindow url="https://github.com/" bodyStyle={{padding: 0}}>
-    [![GitHub](./assets/4-account-creation.png)](https://github.com/)
-   </BrowserWindow>
+**Live Server:** GitHub signup screen
+
+<Shot>
+<BrowserWindow url="https://github.com/" bodyStyle={{padding: 0}}>
+
+[![GitHub signup form where you pick a username and solve the puzzle](./assets/4-account-creation.png)](https://github.com/)
+
+</BrowserWindow>
+</Shot>
 
 **What you get with a free account:** Once registered, you can create unlimited public and private repositories, use GitHub Copilot for coding assistance, set up automated workflows with GitHub Actions, and access a large developer community for support and collaboration.
 
-   <BrowserWindow url="https://github.com/signin" bodyStyle={{padding: 0}}>
-    [![GitHub](./assets/4-github-signin.png)](https://github.com/)
-   </BrowserWindow>
+<Shot>
+<BrowserWindow url="https://github.com/signin" bodyStyle={{padding: 0}}>
+
+[![GitHub sign in page](./assets/4-github-signin.png)](https://github.com/)
+
+</BrowserWindow>
+</Shot>
 
 After signing in, you may be asked to authorize Giscus (the comment feature by GitHub). Click on "Authorize".
 Click the top right profile icon, then select "Your profile" to view your profile.
 
-### Step 3: Understanding the Interface
+</Step>
+
+<Step n={3}>
+
+### Step 3: Understanding the Interface {#step-3-understanding-the-interface}
 
 GitHub will send a verification email to the address you signed up with. Open that email and click the confirmation link. Once verified, you will be taken to your GitHub dashboard where your account status will show as confirmed.
 
+<Shot>
 <BrowserWindow url="https://github.com/sanjay-kv" bodyStyle={{padding: 0}}>
- [![GitHub](./assets/5-github-interface.png)](https://github.com/sanjay-kv)
-</BrowserWindow>
 
-### Step 4: Personalize and Secure Your Account
+[![GitHub dashboard with numbered markers on the username, repositories, Copilot, settings, activity graph and monthly summary](./assets/5-github-interface.png)](https://github.com/sanjay-kv)
+
+</BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={4}>
+
+### Step 4: Personalize and Secure Your Account {#step-4-personalize-and-secure-your-account}
 
 With your account verified, spend a few minutes making it your own. Upload a profile photo so collaborators can recognize you, write a short bio describing what you work on, and add links to your website or other profiles. While you are in settings, head over to the security section and turn on two-factor authentication this is covered in detail in the next step.
 
-### Step 5: Final Step: Secure Your GitHub Account
+</Step>
+
+<Step n={5}>
+
+### Step 5: Final Step: Secure Your GitHub Account {#step-5-final-step-secure-your-github-account}
 
 Congratulations on setting up your GitHub account! Before you start exploring, take a few minutes to turn on two-factor authentication (2FA). This is one of the most effective ways to protect your account.
 
@@ -71,23 +127,41 @@ When you log in with only a password, anyone who gets hold of that password can 
 6. GitHub will give you a set of recovery codes. Save these somewhere safe, a password manager or a printed copy stored securely. These are the only way back in if you ever lose access to your phone.
 7. Complete the setup and you are done.
 
+<Shot>
 <BrowserWindow url="https://github.com/sanjay-kv" bodyStyle={{padding: 0}}>
- [![GitHub](./assets/5-github-auth.png)](https://github.com/sanjay-kv)
+
+[![GitHub Password and authentication settings with the Two-factor authentication section](./assets/5-github-auth.png)](https://github.com/sanjay-kv)
+
 </BrowserWindow>
+</Shot>
 
 From this point on, every login will ask for both your password and a fresh code from your authenticator app.
 
 **Dashboard recap:**
 
-1. **5** – Displays your unique username.
-2. **6** – The section where you create and view all your projects and repositories.
-3. **7** – GitHub AI features that provide coding assistance, similar to ChatGPT.
-4. **8** – Advanced settings for changing your username, theme, and other preferences, including 2FA.
-5. **9** – Your activity on GitHub is tracked here, shown as green check boxes (visit around Halloween for a seasonal surprise!).
-6. **10** – Shows a summary of your monthly activity; you can set this visibility to private if desired.
+<ScreenshotPins
+  stacked
+  label="MARKERS ON THE DASHBOARD SCREENSHOT"
+  pins={[
+    { n: 5, label: 'Displays your unique username.' },
+    { n: 6, label: 'The section where you create and view all your projects and repositories.' },
+    { n: 7, label: 'GitHub AI features that provide coding assistance, similar to ChatGPT.' },
+    { n: 8, label: 'Advanced settings for changing your username, theme, and other preferences, including 2FA.' },
+    { n: 9, label: 'Your activity on GitHub is tracked here, shown as green check boxes (visit around Halloween for a seasonal surprise!).' },
+    { n: 10, label: 'Shows a summary of your monthly activity; you can set this visibility to private if desired.' },
+  ]}
+/>
+
+</Step>
+
+</StepTimeline>
 
 ## Conclusion
 
 Thank you for reading "How to create a GitHub Account?". In the next post, you'll learn how to use Git to create a repository and clone a project from GitHub.
 
-Signing off, Sanjay Viswanathan.
+*Signing off, **Sanjay Viswanathan**.*
+
+<UpNextCard />
+
+</SetupLesson>

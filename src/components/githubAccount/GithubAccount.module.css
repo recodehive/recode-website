@@ -1,0 +1,141 @@
+/* Only the "Setup GitHub Account" page. Used by its header animation. */
+
+.art {
+  position: relative;
+  width: 210px;
+  padding-bottom: 16px;
+}
+
+.win {
+  overflow: hidden;
+  border: 1px solid #c7ccd1;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 14px 30px -14px rgba(15, 23, 42, 0.45);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 10px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f6f8fa;
+  font-size: 11px;
+  color: #475569;
+}
+
+.bar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+.bar span {
+  margin-left: 6px;
+}
+
+.body {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px 14px;
+}
+
+.avatar {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 4px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2e8555, #86efac);
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #475569;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 3px 8px;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  color: #0f172a;
+}
+
+.typed {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.cursor {
+  width: 1.5px;
+  height: 13px;
+  background: #0f172a;
+  animation: gaBlink 1s steps(1) infinite;
+}
+
+.ghost {
+  width: 70px;
+  height: 6px;
+  border-radius: 999px;
+  background: #e5e7eb;
+}
+
+.btn {
+  margin-top: 6px;
+  padding: 5px 0;
+  border-radius: 6px;
+  background: #2e8555;
+  font-size: 11px;
+  font-weight: 700;
+  text-align: center;
+  color: #fff;
+  opacity: 0.45;
+}
+
+.done {
+  position: absolute;
+  right: -6px;
+  bottom: 0;
+  padding: 3px 11px;
+  border: 1px solid #86efac;
+  border-radius: 999px;
+  background: #dcfce7;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #166534;
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.play .typed {
+  animation: gaType 1.4s steps(13) 0.3s forwards;
+}
+
+.play .btn {
+  animation: gaBtn 0.4s ease 1.9s forwards;
+}
+
+.play .done {
+  animation: gaPop 0.5s cubic-bezier(0.3, 1.6, 0.5, 1) 2.4s forwards;
+}
+
+@keyframes gaType { to { max-width: 13ch; } }
+@keyframes gaBlink { 50% { opacity: 0; } }
+@keyframes gaBtn { to { opacity: 1; } }
+@keyframes gaPop { to { opacity: 1; transform: scale(1); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .typed { max-width: 13ch; animation: none; }
+  .cursor { animation: none; }
+  .btn { opacity: 1; animation: none; }
+  .done { opacity: 1; transform: none; animation: none; }
+}
