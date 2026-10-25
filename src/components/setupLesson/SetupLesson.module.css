@@ -337,7 +337,7 @@
 
 .clTiles {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(var(--cols, 5), 1fr);
   gap: 8px;
   margin: 0;
   padding: 0;

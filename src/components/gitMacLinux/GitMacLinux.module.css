@@ -1,0 +1,636 @@
+/* Only the "Setup Git on Mac and Linux" page. Every rule starts from .gitMacLinux, the root class of this page. */
+
+.gitMacLinux {
+  --amber: #92400e;
+  --amber-bg: #fff4e8;
+  --amber-line: #fed7aa;
+  --purple: #6d28d9;
+}
+
+:global(html[data-theme='dark']) .gitMacLinux {
+  --amber: #fdba74;
+  --amber-bg: rgba(251, 146, 60, 0.12);
+  --amber-line: rgba(251, 146, 60, 0.35);
+}
+
+.gitMacLinux .srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.gitMacLinux .newTag {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--purple);
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ---------- Header terminal ---------- */
+
+.gitMacLinux .art {
+  width: 210px;
+}
+
+.gitMacLinux .artWin {
+  overflow: hidden;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  background: #0d1117;
+  box-shadow: 0 14px 30px -14px rgba(15, 23, 42, 0.55);
+}
+
+.gitMacLinux .artBar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 10px;
+  border-bottom: 1px solid #21262d;
+  background: #161b22;
+}
+
+.gitMacLinux .artBar i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.gitMacLinux .artBar i:nth-child(2) { background: #febc2e; }
+.gitMacLinux .artBar i:nth-child(3) { background: #28c840; }
+
+.gitMacLinux .artBar span {
+  margin-left: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: #9da7b3;
+}
+
+.gitMacLinux .artBody {
+  display: grid;
+  gap: 3px;
+  padding: 10px 12px 12px;
+}
+
+.gitMacLinux .artLine {
+  overflow: hidden;
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.6;
+  white-space: nowrap;
+  color: #e6edf3;
+  opacity: 0;
+}
+
+.gitMacLinux .artLine b {
+  margin-right: 6px;
+  color: #4ade80;
+}
+
+.gitMacLinux .artTyped {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.gitMacLinux .l1 { --delay: 0.2s; --dur: 0.9s; }
+.gitMacLinux .l2 { --delay: 1.3s; --dur: 1.2s; }
+.gitMacLinux .l3 { --delay: 2.7s; --dur: 0.8s; }
+
+.gitMacLinux .artReady {
+  color: #86efac;
+}
+
+.gitMacLinux .play .artLine {
+  animation: gmShow 0.01s linear var(--delay, 3.7s) forwards;
+}
+
+.gitMacLinux .play .artReady {
+  animation: gmShow 0.4s ease 3.7s forwards;
+}
+
+.gitMacLinux .play .artTyped {
+  animation: gmType var(--dur) steps(var(--steps)) var(--delay) forwards;
+}
+
+.gitMacLinux .artPills {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.gitMacLinux .artPills span {
+  padding: 1px 10px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+@keyframes gmShow { to { opacity: 1; } }
+@keyframes gmType { to { max-width: var(--ch); } }
+
+/* ---------- System picker ---------- */
+
+.gitMacLinux .picker {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.gitMacLinux .sys {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.gitMacLinux .sys:hover {
+  border-color: var(--g);
+  text-decoration: none;
+  color: var(--text);
+}
+
+.gitMacLinux .sysOn {
+  border-color: #2e8555;
+  background: var(--ok-bg);
+}
+
+.gitMacLinux .sysIcon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--chip);
+  font-size: 17px;
+}
+
+.gitMacLinux .sys strong {
+  display: block;
+  font-family: var(--head);
+  font-size: 15px;
+  line-height: 1.3;
+}
+
+.gitMacLinux .sysSub {
+  display: block;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.gitMacLinux .sys .newTag {
+  position: absolute;
+  top: -9px;
+  right: 12px;
+}
+
+/* ---------- Switches (custom.css styles every [role=tab] with !important, so these out-rank it) ---------- */
+
+.gitMacLinux .seg[role='tablist'] {
+  display: inline-flex !important;
+  gap: 2px;
+  width: auto !important;
+  padding: 3px !important;
+  border-radius: 10px;
+  background: var(--chip);
+}
+
+.gitMacLinux .segBtn[role='tab'] {
+  padding: 5px 14px;
+  border: 0 !important;
+  border-radius: 8px;
+  background: transparent !important;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600 !important;
+  text-align: center !important;
+  color: var(--muted) !important;
+  cursor: pointer;
+}
+
+.gitMacLinux .segBtn[role='tab']:hover {
+  background: transparent !important;
+  color: var(--text) !important;
+}
+
+.gitMacLinux .segBtn[role='tab'][aria-selected='true'] {
+  background: var(--card) !important;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.18);
+  color: var(--g) !important;
+}
+
+.gitMacLinux .osSwitch {
+  margin: 12px 0 2px;
+}
+
+/* ---------- Section headings ---------- */
+
+.gitMacLinux .sectionHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 2.6rem 0 1.4rem;
+  padding-top: 22px;
+  border-top: 1px solid var(--divider);
+}
+
+.gitMacLinux .sectionHead h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.gitMacLinux .sectionIcon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--tint);
+  font-size: 20px;
+}
+
+/* ---------- Four ways to install ---------- */
+
+.gitMacLinux .ways {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 1rem 0 1.3rem;
+}
+
+.gitMacLinux .way {
+  position: relative;
+  padding: 14px 16px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+  opacity: 0;
+}
+
+.gitMacLinux .wayUsed {
+  border-color: var(--ok-border);
+  background: var(--ok-bg);
+}
+
+.gitMacLinux .play .way {
+  animation: gmUp 0.6s ease both;
+}
+
+.gitMacLinux .wayIcon {
+  display: block;
+  font-size: 20px;
+  line-height: 1.3;
+}
+
+.gitMacLinux .wayName {
+  margin: 4px 0 2px;
+  scroll-margin-top: 90px;
+  font-size: 15.5px;
+}
+
+.gitMacLinux .wayNum {
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.gitMacLinux .wayText {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.gitMacLinux .wayText code {
+  font-size: 12px;
+}
+
+.gitMacLinux .usedTag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 1px 9px;
+  border-radius: 999px;
+  background: #2e8555;
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 700;
+  color: #fff;
+}
+
+@keyframes gmUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Homebrew website strip ---------- */
+
+.gitMacLinux .site {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin: 1rem 0 1.1rem;
+  padding: 9px 14px;
+  border: 1px solid var(--amber-line);
+  border-radius: 10px;
+  background: var(--amber-bg);
+}
+
+.gitMacLinux .site span {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--amber);
+}
+
+.gitMacLinux .site a {
+  font-family: var(--mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+/* ---------- Homebrew next steps ---------- */
+
+.gitMacLinux .next {
+  margin: 1rem 0 1.3rem;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+.gitMacLinux .nextTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+}
+
+.gitMacLinux .nextLabel {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.gitMacLinux .term {
+  margin-top: 12px;
+  overflow: hidden;
+  border: 1px solid #21262d;
+  border-radius: 12px;
+  background: #0d1117;
+}
+
+.gitMacLinux .termBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-bottom: 1px solid #21262d;
+  background: #161b22;
+}
+
+.gitMacLinux .termBar i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.gitMacLinux .termBar i:nth-child(2) { background: #febc2e; }
+.gitMacLinux .termBar i:nth-child(3) { background: #28c840; }
+
+.gitMacLinux .termBar span {
+  margin-left: 6px;
+  font-family: var(--mono);
+  font-size: 11px;
+  color: #9da7b3;
+}
+
+.gitMacLinux .termBody {
+  margin: 0;
+  padding: 14px 0;
+  overflow-x: auto;
+  border: 0;
+  border-radius: 0;
+  background: #0d1117;
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre;
+  color: #e6edf3;
+}
+
+.gitMacLinux .tl {
+  display: block;
+  padding: 0 16px;
+  opacity: 0;
+}
+
+.gitMacLinux .play .tl {
+  animation: gmUp 0.5s ease both;
+}
+
+.gitMacLinux .hl {
+  border-left: 3px solid #4cc184;
+  background: rgba(46, 133, 85, 0.3);
+  padding-left: 13px;
+  color: #86efac;
+}
+
+.gitMacLinux .arrow {
+  color: #79c0ff;
+}
+
+.gitMacLinux .warn {
+  margin-top: 10px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--amber);
+}
+
+.gitMacLinux .warn strong {
+  color: inherit;
+}
+
+/* ---------- Code blocks ---------- */
+
+/* A green $ before every line. It is drawn by CSS, so it is not copied. */
+.gitMacLinux :global(.theme-code-block) :global(.token-line)::before {
+  content: '$ ';
+  color: #4ade80;
+  user-select: none;
+}
+
+.gitMacLinux :global(.theme-code-block) :global(pre) :global(code) {
+  font-size: 15px;
+  white-space: pre;
+}
+
+/* ---------- Note and details ---------- */
+
+.gitMacLinux :global(.theme-admonition-note) {
+  border-left-color: #64748b;
+  background: var(--chip);
+}
+
+.gitMacLinux :global(.theme-admonition-note) :global(.admonition-heading),
+.gitMacLinux :global(.theme-admonition-note) :global(.admonition-heading) h5 {
+  color: var(--muted);
+}
+
+.gitMacLinux :global(.theme-admonition-note) :global(.admonition-heading) svg {
+  fill: var(--muted);
+}
+
+.gitMacLinux details:global(.alert) {
+  --ifm-alert-background-color: var(--card);
+  --ifm-alert-border-color: var(--line);
+  --ifm-alert-foreground-color: var(--text);
+  --ifm-alert-border-left-width: 1px;
+  margin: 1rem 0 1.2rem;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.gitMacLinux details:global(.alert) > summary {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ---------- Linux distributions ---------- */
+
+.gitMacLinux .distro {
+  margin: 1rem 0 1.2rem;
+  padding: 14px 16px 12px;
+  border: 1px solid #21262d;
+  border-radius: 18px;
+  background: #0d1117;
+}
+
+.gitMacLinux .distro :global(.tabs-container) {
+  margin: 0 !important;
+}
+
+.gitMacLinux .distro :global(.tabs) {
+  flex-wrap: nowrap;
+  gap: 8px;
+  padding-bottom: 12px !important;
+  overflow-x: auto;
+  border-bottom: 0;
+}
+
+.gitMacLinux .distro :global(.tabs__item) {
+  flex-shrink: 0;
+  padding: 5px 14px !important;
+  border: 1px solid #30363d !important;
+  border-radius: 8px !important;
+  background: #161b22 !important;
+  font-size: 13.5px;
+  font-weight: 500 !important;
+  color: #c9d1d9 !important;
+}
+
+.gitMacLinux .distro :global(.tabs__item:hover) {
+  border-color: #4cc184 !important;
+  background: #161b22 !important;
+  color: #fff !important;
+}
+
+.gitMacLinux .distro :global(.tabs__item--active) {
+  border-color: #4cc184 !important;
+  background: #4cc184 !important;
+  font-weight: 600 !important;
+  color: #0d1117 !important;
+}
+
+.gitMacLinux .distro :global(.tabs-container) > div:last-child {
+  padding-top: 0;
+}
+
+.gitMacLinux .distro :global(.margin-top--md) {
+  margin-top: 0 !important;
+}
+
+.gitMacLinux .distro :global(.theme-code-block) {
+  margin-bottom: 8px;
+}
+
+.gitMacLinux .distroNote {
+  margin: 0 0 4px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #c9d1d9;
+}
+
+.gitMacLinux .distroNote code {
+  border-color: #30363d;
+  background: #161b22;
+  color: #e6edf3;
+}
+
+.gitMacLinux .distroFoot {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #8b949e;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 996px) {
+  .gitMacLinux .picker,
+  .gitMacLinux .ways {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* the checklist tiles are in the shared module, so this finds them by the column count they set */
+  .gitMacLinux ul[style*='--cols'] {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .gitMacLinux .sectionHead h2 {
+    font-size: 23px;
+  }
+}
+
+/* Reduced motion: everything shows its final state and nothing moves */
+@media (prefers-reduced-motion: reduce) {
+  .gitMacLinux .artLine,
+  .gitMacLinux .way,
+  .gitMacLinux .tl {
+    opacity: 1;
+    animation: none;
+  }
+
+  .gitMacLinux .artTyped {
+    max-width: var(--ch);
+    animation: none;
+  }
+}

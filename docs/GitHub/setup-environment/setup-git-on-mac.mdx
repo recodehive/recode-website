@@ -1,0 +1,259 @@
+---
+id: setup-git-on-mac
+title: Setup your Git on Mac and Linux
+sidebar_label: Setup Git on Mac & Linux
+sidebar_position: 3
+hide_title: true
+footer_width: lesson
+tags:
+  [
+    github,
+    install-github,
+    git installation,
+    development-environment,
+    setup-environment,
+    mac,
+    linux,
+    homebrew,
+  ]
+description: In this tutorial, you will learn how to install and set up Git on Mac using Homebrew, and on Linux using your package manager.
+---
+
+import { LessonHeader, StepTimeline, Step, MarkDone, Shot, UpNextCard } from '@site/src/components/setupLesson';
+import {
+  MacLinuxLesson, ProgressGroup, InstallChecklist, TerminalArt, SystemPicker, InstallWays, BrewNextSteps,
+  SectionHead, BrewSite, DistroPicker, DistroNote,
+} from '@site/src/components/gitMacLinux';
+
+<MacLinuxLesson>
+
+<LessonHeader title="Setup your Git on Mac and Linux" platform="🍎 macOS · 🐧 Linux" art={<TerminalArt />} options={<SystemPicker />}>
+
+In the last tutorial, you learned how to set up Git on Windows. In this tutorial, we will help you set it up on Mac. This may feel very different from the Windows setup, as we use Homebrew and Mac terminal commands to set it up. If you are wondering what Homebrew is, it is a package manager for Mac. Using Linux? Jump to the Linux section, where one command installs Git.
+
+</LessonHeader>
+
+<InstallChecklist />
+
+<SectionHead icon="🍎">
+
+## Install Git on Mac {#mac}
+
+</SectionHead>
+
+<ProgressGroup id="mac">
+
+<StepTimeline>
+
+<Step n={1}>
+
+### Step 1: Install Homebrew {#step-1-installing-git-on-mac}
+
+There are four ways we can install Git on Mac:
+
+<InstallWays />
+
+In this post, we will use Homebrew to install Git. Go to the Homebrew website and copy the install command. Once copied, go to the Mac Terminal and paste the command. Mac will ask you to enter your system password; type it and press Enter. It may take 2 to 3 minutes to install Homebrew.
+
+<BrewSite url="https://brew.sh/" />
+
+<Shot pins={[{ n: 1, label: 'Copy & paste on Mac Terminal' }]}>
+<BrowserWindow url="https://brew.sh/" bodyStyle={{padding: 0}}>
+
+[![Homebrew website with the Install Homebrew command highlighted](./assets/13-git-mac-terminal.png)](https://brew.sh/)
+
+</BrowserWindow>
+</Shot>
+
+```bash title="Copy paste this Homebrew command"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+</Step>
+
+<Step n={2}>
+
+### Step 2: Run the commands in the Mac Terminal {#step-3-run-the-commands-in-the-mac-terminal}
+
+When Homebrew finishes, the terminal shows a **Next steps** section. Copy and paste the commands it shows, one by one, and press Enter to run each one. Once all are done, enter `brew help` to check that Homebrew has been installed successfully.
+
+<BrewNextSteps />
+
+<Shot pins={[{ label: 'Run the PATH commands' }, { label: 'Type brew help' }]}>
+<BrowserWindow url="Terminal" bodyStyle={{padding: 0}}>
+
+![Mac Terminal showing Homebrew next steps and the brew help command](./assets/06-brew-help.png)
+
+</BrowserWindow>
+</Shot>
+
+Once installed, use the command below to check the version of Homebrew in the terminal.
+
+```bash title="Check your Homebrew version"
+brew -v
+```
+
+</Step>
+
+<Step n={3} marks={[3, 4]}>
+
+### Step 3: Install Git via Homebrew {#step-2--install-git-via-homebrew}
+
+Now you can install Git on your Mac by entering the command below in the terminal.
+
+```bash title="To install Git on Mac System"
+brew install git
+```
+
+In future, if you want to update the version of Git installed on your Mac, run this command in the terminal.
+
+```bash title="Update Git later"
+brew upgrade git
+```
+
+#### Check that Git is installed
+
+Once the setup is complete, open Visual Studio Code and run the command below in its terminal to check whether Git has been installed.
+
+```bash title="To Check git on Mac System"
+git --version
+```
+
+:::note[brew -v or git --version?]
+
+`brew -v` shows the Homebrew version. `git --version` shows the Git version, which is what confirms Git is installed.
+
+:::
+
+</Step>
+
+</StepTimeline>
+
+</ProgressGroup>
+
+<ProgressGroup id="linux">
+
+<SectionHead icon="🐧" tag="New">
+
+## Install Git on Linux {#linux}
+
+</SectionHead>
+
+<StepTimeline>
+
+<Step n={1}>
+
+### Linux step 1: Install Git with your package manager {#linux-step-1-install-git-with-your-package-manager}
+
+On Linux, Git is in your distribution’s package manager, so one command installs it. Pick your distribution, copy the command and run it in your terminal. Most commands start with `sudo` because installing software needs admin rights; enter your password when asked.
+
+<DistroPicker>
+<Tabs groupId="linux-distro" queryString defaultValue="ubuntu">
+<TabItem value="ubuntu" label="Ubuntu / Debian">
+
+```bash title="Install Git on Ubuntu / Debian"
+sudo apt-get install git
+```
+
+<DistroNote>Installs the Git version packaged for your release.</DistroNote>
+
+</TabItem>
+<TabItem value="fedora" label="Fedora">
+
+```bash title="Install Git on Fedora"
+sudo dnf install git
+```
+
+<DistroNote>Fedora 22 and later. Fedora 21 and older use sudo yum install git.</DistroNote>
+
+</TabItem>
+<TabItem value="arch" label="Arch Linux">
+
+```bash title="Install Git on Arch Linux"
+sudo pacman -S git
+```
+
+</TabItem>
+<TabItem value="opensuse" label="openSUSE">
+
+```bash title="Install Git on openSUSE"
+sudo zypper install git
+```
+
+</TabItem>
+<TabItem value="alpine" label="Alpine">
+
+```bash title="Install Git on Alpine"
+apk add git
+```
+
+<DistroNote>Run it as root.</DistroNote>
+
+</TabItem>
+<TabItem value="gentoo" label="Gentoo">
+
+```bash title="Install Git on Gentoo"
+sudo emerge --ask --verbose dev-vcs/git
+```
+
+</TabItem>
+</Tabs>
+</DistroPicker>
+
+<details>
+<summary>Want the newest Git on Ubuntu? Use the Git PPA</summary>
+
+The Git maintainers publish the latest stable version for Ubuntu in a PPA.
+
+```bash title="Latest stable Git on Ubuntu"
+sudo add-apt-repository ppa:git-core/ppa
+sudo apt update
+sudo apt install git
+```
+
+</details>
+
+</Step>
+
+<Step n={2}>
+
+### Linux step 2: Check that Git works {#linux-step-2-check-that-git-works}
+
+Run this in your terminal. If it prints a Git version number, Git is installed and ready.
+
+```bash title="Check your Git version"
+git --version
+```
+
+</Step>
+
+</StepTimeline>
+
+## Before your first commit {#before-your-first-commit}
+
+Git saves your name and email with every commit, and it will not let you commit until you set them. Do this once, on Mac or Linux (and Windows too). Use the same email as your GitHub account.
+
+```bash title="Set your name and email"
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+```
+
+Check what you saved:
+
+```bash title="See your Git settings"
+git config --list
+```
+
+<MarkDone marks={[3]} />
+
+</ProgressGroup>
+
+## Conclusion
+
+In conclusion, I hope you enjoyed reading this article on “Installing Git on Mac and Linux”. In the next post, we will discuss Git commands and their in-depth usage on GitHub.
+
+*Signing off, **Sanjay Viswanathan**.*
+
+<UpNextCard />
+
+</MacLinuxLesson>
