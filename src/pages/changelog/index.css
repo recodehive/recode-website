@@ -154,9 +154,15 @@
 }
 
 .changelog__title a {
-  color: var(--ifm-font-color-base);
+  color: black;
   text-decoration: none;
 }
+
+[data-theme="dark"] .changelog__title a{
+  color: white;
+}
+
+
 
 .changelog__title a:hover {
   color: var(--ifm-color-primary);
@@ -256,6 +262,10 @@
   font-family: var(--font-family);
   text-align: center;
   color: var(--ifm-color-emphasis-600);
+}
+
+[data-theme="dark"] .main-wrapper {
+  background-color: #000000;
 }
 
 @media screen and (max-width: 768px) {

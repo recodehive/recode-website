@@ -244,6 +244,9 @@
 [data-theme="dark"] .hb-card-footer {
   border-top-color: #2a2b2d;
 }
+[data-theme="dark"] .hb-card-tag{
+  color: #2a2b2d !important;
+}
 
 .hb-card-author-row {
   display: flex;
