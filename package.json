@@ -65,7 +65,7 @@
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^14.3.0",
-    "lucide-react": "^0.503.0",
+    "lucide-react": "^1.61.0",
     "prism-react-renderer": "^2.3.0",
     "qrcode": "^1.5.4",
     "react": "^18.3.1",
