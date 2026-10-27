@@ -1,10 +1,10 @@
 <div align="center">
   <a href="https://www.recodehive.com">
-  <img src="static/icons/Logo-512X512.png" alt="recode hive logo" width="150" />
+  <img src=".github/assets/banner.jpg" alt="recode hive: Learn. Collaborate. Build. Earn. Grow." width="100%" />
   </a>
 </div>
 
-<h1 align="center">recode hive</h1>
+<br>
 
 <div align="center">
 
@@ -26,23 +26,68 @@ recode hive is an open-source project where developers learn by collaborating, g
 
 ---
 
+
 > [!IMPORTANT]
-> Get the recode hive source from [recodehive/recode-website](https://github.com/recodehive/recode-website) or the live site at [recodehive.com](https://www.recodehive.com).<br> 
-> A similar repository name or copied README does not establish that a download is official. <br>
+> Get the recode hive source from [recodehive/recode-website](https://github.com/recodehive/recode-website) or the live site at [recodehive.com](https://www.recodehive.com).<br>
+> A similar repository name or copied README does not establish that a download is official.
 
->  Prerequisites
+> Prerequisites
 
->- [Node.js](https://nodejs.org/) ≥ 18
->- [Docker](https://docs.docker.com/engine/install/) (optional, for containerized development)
->- Docker Compose (optional)
+> [Node.js](https://nodejs.org/) 20.9 – 22 (see `.nvmrc`)<br>
+> [Docker](https://docs.docker.com/engine/install/) (optional, for containerized development)
+> Docker Compose (optional)
 
-### Installation
 
-**Clone the repository:**
+### Contribution Workflow
+
+We welcome contributions from developers of all skill levels! Here's how you can get started:
+
+```mermaid
+flowchart LR
+    Fork[Fork the project]-->branch[Create a New Branch]
+    branch-->Edit[Edit file]
+    Edit-->commit[Commit the changes]
+    commit -->|Finally|creatpr((Create a Pull Request))
+```
+
+### Step-by-Step Guide
+
+**Fork and clone the repository**, then get it running by following [Installation](#installation).
+
+**Create a new branch:**
 
 ```bash
-git clone https://github.com/your-username/recode-website.git
+git checkout -b feature/your-feature-name
+```
+
+**Make your changes** and test thoroughly.
+
+**Commit your changes:**
+
+```bash
+git commit -m "Add: brief description of your changes"
+```
+
+**Push to your fork:**
+
+```bash
+git push origin feature/your-feature-name
+```
+
+**Submit a Pull Request** with a detailed description of your changes
+
+**Fork the repository** on GitHub, then clone your fork:
+
+```bash
+git clone https://github.com/<your-username>/recode-website.git
 cd recode-website
+```
+
+**Set up environment variables** (optional, avoids GitHub API rate limits and enables live data):
+
+```bash
+cp .env.example .env
+# then add your GITHUB_TOKEN and DOCUSAURUS_GIT_TOKEN
 ```
 
 **Using Docker (Recommended):**
@@ -71,6 +116,9 @@ npm run start
 ```
 
 ### Production Build
+
+> [!NOTE]
+> The build first fetches releases, sponsors and community PRs from GitHub, so it needs network access. Set the tokens from `.env` to avoid rate limits.
 
 ```bash
 npm run build
@@ -119,52 +167,6 @@ npm run serve
 
 </details>
 
-## 🤝 Contributing
-
-We welcome contributions from developers of all skill levels! Here's how you can get started:
-
-### Contribution Workflow
-
-```mermaid
-flowchart LR
-    Fork[Fork the project]-->branch[Create a New Branch]
-    branch-->Edit[Edit file]
-    Edit-->commit[Commit the changes]
-    commit -->|Finally|creatpr((Create a Pull Request))
-```
-
-### Step-by-Step Guide
-
-**Fork the repository** on GitHub.
-
-**Clone your fork:**
-
-```bash
-git clone https://github.com/your-username/recode-website.git
-cd recode-website
-```
-
-**Create a new branch:**
-
-```bash
-git checkout -b feature/your-feature-name
-```
-
-**Make your changes** and test thoroughly.
-
-**Commit your changes:**
-
-```bash
-git commit -m "Add: brief description of your changes"
-```
-
-**Push to your fork:**
-
-```bash
-git push origin feature/your-feature-name
-```
-
-**Submit a Pull Request** with a detailed description of your changes
 
 ### Video Tutorial
 
