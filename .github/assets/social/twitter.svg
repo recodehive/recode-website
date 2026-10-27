@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56">
+  <style>
+    .ring { transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-out 0.75s infinite; }
+    .icon { transform-box: fill-box; transform-origin: center; animation: bob 2.4s ease-in-out 0.75s infinite; }
+    @keyframes pulse { 0% { transform: scale(.82); opacity: .55 } 70%,100% { transform: scale(1.25); opacity: 0 } }
+    @keyframes bob { 0%,100% { transform: translateY(0) scale(1) } 50% { transform: translateY(-2.5px) scale(1.07) } }
+  </style>
+  <rect class="ring" x="6" y="6" width="44" height="44" rx="12" fill="#000000"/>
+  <g class="icon">
+    <rect x="6" y="6" width="44" height="44" rx="12" fill="#000000"/>
+    <g transform="translate(16 16) scale(1)"><path fill="#fff" d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></g>
+  </g>
+</svg>

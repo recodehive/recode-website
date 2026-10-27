@@ -14,11 +14,11 @@
 [![Issues Badge](https://img.shields.io/github/issues/recodehive/recode-website)](https://github.com/recodehive/recode-website/issues)
 [![Contributors](https://img.shields.io/github/contributors/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/graphs/contributors)
 ![GitHub commit activity (monthly)](https://img.shields.io/github/commit-activity/m/RecodeHive/recode-website)
-[![License Badge](https://img.shields.io/github/license/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/LICENSE)
+
 
 <h2 align="center">Collaboration 1st , code 2nd.</h2>
 
-**Your all-in-one resource for learning Git, GitHub, and Python through comprehensive tutorials and hands-on projects.**
+recode hive is an open-source project where developers learn by collaborating, get paid for technical writing, and gain access to real-world projects and sponsorship opportunities.
 
 [Website](https://recodehive.com/) • [Documentation](https://recodehive.com/docs) • [Contributing](community/contributing-guidelines.md) • [Discord](https://discord.gg/Yxv9RA3r)
 
@@ -26,15 +26,15 @@
 
 ---
 
-## 📖 About
+> [!IMPORTANT]
+> Get the recode hive source from [recodehive/recode-website](https://github.com/recodehive/recode-website) or the live site at [recodehive.com](https://www.recodehive.com).<br> 
+> A similar repository name or copied README does not establish that a download is official. <br>
 
-recode hive is an open-source educational platform built to help developers master essential technologies through interactive tutorials, practical guides, and community-driven learning. Whether you're a beginner taking your first steps in programming or an advanced developer looking to sharpen your skills, recode hive provides the resources you need.
+>  Prerequisites
 
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) ≥ 18
-- [Docker](https://docs.docker.com/engine/install/) (optional, for containerized development)
-- Docker Compose (optional)
+>- [Node.js](https://nodejs.org/) ≥ 18
+>- [Docker](https://docs.docker.com/engine/install/) (optional, for containerized development)
+>- Docker Compose (optional)
 
 ### Installation
 
@@ -77,73 +77,47 @@ npm run build
 npm run serve
 ```
 
-## 🛠️ Tech Stack
 
-### Core Technologies
+> [!NOTE]
+> Tech Stack
+>- **Framework:** Docusaurus 3 (React + TypeScript)
+>- **Language:** TypeScript (Node.js ≥ 18)
+>- **Styling:** Tailwind CSS 4
+>- **UI Components:** Radix UI, Framer Motion
 
-- **Framework:** Docusaurus 3 (React + TypeScript)
-- **Language:** TypeScript (Node.js ≥ 18)
-- **Styling:** Tailwind CSS 4
-- **UI Components:** Radix UI, Framer Motion
-
-### Developer Tools
-
-- **Linting & Formatting:** ESLint, Prettier
-- **Type Checking:** TypeScript (`tsc`)
+> [!WARNING]
+>- **Linting & Formatting:** ESLint, Prettier
+>- **Type Checking:** TypeScript (`tsc`)
 
 ## 📁 Project Structure
 
-```
-recode-website/
-│
-├── .github/                    # GitHub configuration
-│   ├── ISSUE_TEMPLATE/
-│   ├── workflows/
-│   └── pull_request_template.md
-│
-├── blog/                       # Blog posts
-│   ├── git-coding-agent/
-│   ├── google-backlinks/
-│   └── ...
-│
-├── community/                  # Community documentation
-│   ├── contributing-guidelines.md
-│   ├── index.md
-│   ├── our-documentation.md
-│   └── understand-lint-checks.md
-│
-├── docs/                       # Main documentation
-│   ├── GitHub/
-│   ├── Google-Student-Ambassador/
-│   └── ...
-│
-├── src/                        # Source code
-│   ├── components/             # React components
-│   ├── css/
-│   │   └── custom.css
-│   ├── data/
-│   ├── database/
-│   ├── lib/
-│   ├── pages/
-│   ├── plugins/
-│   ├── services/
-│   ├── style/
-│   │   └── globals.css
-│   ├── theme/
-│   └── utils/
-│
-├── static/                     # Static assets
-│   ├── icons/
-│   ├── img/
-│   ├── .nojekyll
-│   └── *.png
-│
-├── .gitignore
-├── CODE_OF_CONDUCT.md
-├── LICENSE
-├── README.md
-└── ...
-```
+| | Folder | What lives here |
+| :-: | :-- | :-- |
+| ⚙️ | [`.github/`](.github) | Issue & PR templates, workflows, README assets |
+| ✍️ | [`blog/`](blog) | Blog posts |
+| 🤝 | [`community/`](community) | Contributing guidelines and community docs |
+| 📚 | [`docs/`](docs) | Main documentation (GitHub, Google Student Ambassador, …) |
+| 🎓 | [`learn/`](learn) | Learning content |
+| 🔌 | [`plugins/`](plugins) | Custom Docusaurus plugins |
+| 🧰 | [`scripts/`](scripts) | Maintenance and build scripts |
+| 🧩 | [`src/`](src) | Source code: components, pages, theme, styles, utils |
+| 🗄️ | [`supabase/`](supabase) | Supabase configuration |
+| 🖼️ | [`static/`](static) | Static assets: icons, images |
+| 📖 | [`wiki/`](wiki) | Project wiki |
+
+<details>
+<summary><b>🔍 Expand the <code>src/</code> folder</b></summary>
+
+| Folder | Purpose |
+| :-- | :-- |
+| `components/` | React components |
+| `css/`, `styles/` | Global and custom styles |
+| `data/`, `database/` | Static data and database helpers |
+| `pages/` | Site pages |
+| `plugins/`, `theme/` | Docusaurus plugins and theme overrides |
+| `services/`, `lib/`, `utils/` | Services, shared libraries and helpers |
+
+</details>
 
 ## 🤝 Contributing
 
@@ -194,21 +168,27 @@ git push origin feature/your-feature-name
 
 ### Video Tutorial
 
-<div>
-    <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
-      <p>How to Contribute to this Repo | How to Setup - Watch Video</p>
-    </a>
-    <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
-      <img style="max-width:700px;" src="https://cdn.loom.com/sessions/thumbnails/c8d8d5f0c2534a1f86fc510dcef52ee0-30cac2eeec09a266-full-play.gif">
-    </a>
-</div>
+<div align="center">
 
-For detailed guidelines, please refer to our [Contributing Guidelines](community/contributing-guidelines.md).
+> [!TIP]
+> New here? Watch this walkthrough of how to set up the project and make your first contribution.
+
+<a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
+  <img src="https://cdn.loom.com/sessions/thumbnails/c8d8d5f0c2534a1f86fc510dcef52ee0-30cac2eeec09a266-full-play.gif" width="700" alt="How to contribute to recode hive and set up the project: video walkthrough">
+</a>
+
+<br><br>
+
+[![Watch the video](https://img.shields.io/badge/▶_Watch_the_Video-625DF5?style=for-the-badge&logo=loom&logoColor=white)](https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0)
+[![First-time setup](https://img.shields.io/badge/📘_First--time_Setup-2e8555?style=for-the-badge)](https://www.recodehive.com/docs/first-time-setup)
+[![Contributing Guidelines](https://img.shields.io/badge/🤝_Contributing_Guidelines-0A66C2?style=for-the-badge)](community/contributing-guidelines.md)
+
+</div>
 
 ## 📚 Documentation
 
 - [Contributing Guidelines](community/contributing-guidelines.md)
-- [Code of Conduct](CODE_OF_CONDUCT.md)
+- [Code of Conduct](https://www.recodehive.com/code-of-conduct)
 - [Understanding Lint Checks](community/understand-lint-checks.md)
 - [Our Documentation Standards](community/our-documentation.md)
 
@@ -220,8 +200,8 @@ For detailed guidelines, please refer to our [Contributing Guidelines](community
 ![GitHub open issues](https://img.shields.io/github/issues/RecodeHive/recode-website)
 ![GitHub repo size](https://img.shields.io/github/repo-size/RecodeHive/recode-website)
 ![Last commit](https://img.shields.io/github/last-commit/RecodeHive/recode-website)
+[![License Badge](https://img.shields.io/github/license/recodehive/recode-website?color=2b9348)](https://github.com/recodehive/recode-website/LICENSE)
 
-Recent Contributions:
 
 ![Alt](https://repobeats.axiom.co/api/embed/bf32a19d28f753f9ab7a2162495fdc0c6150ee0f.svg "Repobeats analytics image")
 
@@ -244,20 +224,19 @@ We appreciate all contributions to recode hive! Thank you to everyone who has he
 
 <!-- contributors:end -->
 
-## ⚖️ License
-
-This project is licensed under the [MIT License](LICENSE). See the LICENSE file for details.
 
 ## 📬 Stay Connected
 
 Stay up to date with the latest from recode hive:
 
-- **Website:** [recodehive.com](https://recodehive.com/)
-- **Instagram:** [@nomadbrains.dev](https://www.instagram.com/nomadbrains.dev/)
-- **LinkedIn:** [Sanjay K V](https://www.linkedin.com/in/sanjay-k-v/)
-- **Twitter:** [@nomadbrainsdev](https://x.com/nomadbrainsdev)
-- **YouTube:** [@RecodeHive](https://www.youtube.com/@RecodeHive)
-- **Newsletter:** [Subscribe](https://recodehive.substack.com/)
+<p align="center">
+  <a href="https://recodehive.com/"><img src=".github/assets/social/website.svg" width="56" height="56" alt="Website" title="Website"></a>
+  <a href="https://www.instagram.com/nomadbrains.dev/"><img src=".github/assets/social/instagram.svg" width="56" height="56" alt="Instagram" title="Instagram"></a>
+  <a href="https://www.linkedin.com/in/sanjay-k-v/"><img src=".github/assets/social/linkedin.svg" width="56" height="56" alt="LinkedIn" title="LinkedIn"></a>
+  <a href="https://x.com/nomadbrainsdev"><img src=".github/assets/social/twitter.svg" width="56" height="56" alt="Twitter" title="Twitter"></a>
+  <a href="https://www.youtube.com/@RecodeHive"><img src=".github/assets/social/youtube.svg" width="56" height="56" alt="YouTube" title="YouTube"></a>
+  <a href="https://recodehive.substack.com/"><img src=".github/assets/social/newsletter.svg" width="56" height="56" alt="Newsletter" title="Newsletter"></a>
+</p>
 
 ---
 
