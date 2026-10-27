@@ -2,34 +2,36 @@
 title: "GitHub Copilot Coding Agent"
 sidebar_label: GitHub Copilot Coding Agent
 authors: [sanjay-kv, sowmiya-v]
-tags: [GitHub, SEO, Coding agent,Copilot, AI, Automation]
+tags: [github, copilot, coding-agent, ai, automation]
 date: 2025-07-04
 image: /img/blogs/06-github-agent.png
 category: AI TOOLS
 
 description: An overview of the GitHub Copilot Coding Agent, an AI-powered tool that automates software engineering tasks by taking GitHub Issues as input to write code, run tests, and create pull requests.
 draft: false
-# meta:
-#   - name: "robots"
-#     content: "index, follow"
-#   - property: "og:title"
-#     content: "Introduction to the GitHub Copilot Coding Agent"
-#   - property: "og:description"
-#     content: "Learn how the GitHub Copilot Coding Agent works asynchronously within GitHub Actions to improve developer productivity."
-#   - property: "og:type"
-#     content: "article"
-#   - property: "og:url"
-#     content: "/blog/getting-copilot-coding-agent"
-#   - property: "og:image"
-#     content: "/assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
-#   - name: "twitter:card"
-#     content: "summary_large_image"
-#   - name: "twitter:title"
-#     content: "A Comprehensive Guide to Get You Started with MERN Stack"
-#   - name: "twitter:description"
-#     content: "DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI called AI"
-#   - name: "twitter:image"
-#     content: "assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
+canonical_url: https://www.recodehive.com/blog/git-coding-agent
+
+meta:
+  - name: "robots"
+    content: "index, follow"
+  - property: "og:title"
+    content: "GitHub Copilot Coding Agent"
+  - property: "og:description"
+    content: "Learn how the GitHub Copilot Coding Agent works asynchronously within GitHub Actions to write code, run tests, and create pull requests automatically."
+  - property: "og:type"
+    content: "article"
+  - property: "og:url"
+    content: "https://www.recodehive.com/blog/git-coding-agent"
+  - property: "og:image"
+    content: "https://www.recodehive.com/img/blogs/06-github-agent.png"
+  - name: "twitter:card"
+    content: "summary_large_image"
+  - name: "twitter:title"
+    content: "GitHub Copilot Coding Agent"
+  - name: "twitter:description"
+    content: "How the GitHub Copilot Coding Agent works — takes issues, writes code, runs tests, and opens pull requests automatically inside GitHub Actions."
+  - name: "twitter:image"
+    content: "https://www.recodehive.com/img/blogs/06-github-agent.png"
 
 ---
  <!-- truncate -->

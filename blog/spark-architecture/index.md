@@ -2,39 +2,41 @@
 title: "Spark Architecture Explained"
 authors: [Aditya-Singh-Rathore,sanjay-kv]
 sidebar_label: "Spark Architecture Explained"
-tags: [Apache Spark, Spark Architecture, Big Data, Distributed Computing, Data Engineering]
+tags: [apache-spark, spark-architecture, big-data, distributed-computing, data-engineering]
 date: 2025-08-22
 image: /img/blogs/07-spark-blog-banner.png
 category: ARCHITECTURE
 
-description: Apache Spark is a fast, open-source big data framework that leverages in-memory computing for high performance. Its architecture powers scalable distributed processing across clusters, making it essential for analytics and machine learning.
+description: Apache Spark is a fast, open-source big data framework that leverages in-memory computing for high performance. Its architecture powers scalable distributed processing across clusters.
 
 draft: false
-# meta:
-#   - name: "robots"
-#     content: "index, follow"
-#   - property: "og:title"
-#     content: "What is Google DeepMind AI?"
-#   - property: "og:description"
-#     content: "DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI called AI"
-#   - property: "og:type"
-#     content: "article"
-#   - property: "og:url"
-#     content: "/blog/getting-started-with-mern"
-#   - property: "og:image"
-#     content: "/assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
-#   - name: "twitter:card"
-#     content: "summary_large_image"
-#   - name: "twitter:title"
-#     content: "A Comprehensive Guide to Get You Started with MERN Stack"
-#   - name: "twitter:description"
-#     content: "DeepMind is an auxiliary of Google that centers around man-made brainpower. All the more explicitly, it utilizes a part of AI called AI"
-#   - name: "twitter:image"
-#     content: "assets/images/mern-8a27add30515e58f789f89a4c9072818.jpg"
+canonical_url: https://www.recodehive.com/blog/spark-architecture
+
+meta:
+  - name: "robots"
+    content: "index, follow"
+  - property: "og:title"
+    content: "Spark Architecture Explained"
+  - property: "og:description"
+    content: "Apache Spark is a fast, open-source big data framework that leverages in-memory computing. Here's a deep dive into how its distributed architecture actually works."
+  - property: "og:type"
+    content: "article"
+  - property: "og:url"
+    content: "https://www.recodehive.com/blog/spark-architecture"
+  - property: "og:image"
+    content: "https://www.recodehive.com/img/blogs/07-spark-blog-banner.png"
+  - name: "twitter:card"
+    content: "summary_large_image"
+  - name: "twitter:title"
+    content: "Spark Architecture Explained"
+  - name: "twitter:description"
+    content: "Apache Spark's distributed architecture explained — how drivers, executors, RDDs, and DAGs work together at scale."
+  - name: "twitter:image"
+    content: "https://www.recodehive.com/img/blogs/07-spark-blog-banner.png"
 
 ---
  <!-- truncate -->
-# Understanding Apache Spark Architecture: A Deep Dive into Distributed Computing
+# Spark Architecture Explained
 
 Hey there, fellow data enthusiasts! 👋
 

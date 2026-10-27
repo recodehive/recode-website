@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/azure-data-factory-build-first-etl"
   - property: "og:image"
-    content: "/img/blogs/adf-cover_image.png"
+    content: "https://www.recodehive.com/img/blogs/adf-cover_image.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "Azure Data Factory is Microsoft's cloud-native ETL service. Here's how to build your first real pipeline in under 10 minutes."
   - name: "twitter:image"
-    content: "/img/blogs/adf-cover_image.png"
+    content: "https://www.recodehive.com/img/blogs/adf-cover_image.png"
 
 ---
 

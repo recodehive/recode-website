@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/azure-cost-optimization-data-pipelines"
   - property: "og:image"
-    content: "./images/cover.png"
+    content: "https://www.recodehive.com/img/blogs/cost_optimzation_cover.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "Six costly mistakes, one pipeline, 2GB of data, a $4,200 bill. Here's how we fixed all of them."
   - name: "twitter:image"
-    content: "./images/cover.png"
+    content: "https://www.recodehive.com/img/blogs/cost_optimzation_cover.png"
 ---
 
 import Tabs from '@theme/Tabs';

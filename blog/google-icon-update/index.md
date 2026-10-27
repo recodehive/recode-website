@@ -6,6 +6,30 @@ tags: [google-workspace, ui-design, ux]
 date: 2026-05-21
 category: DESIGN
 image: /img/blogs/cover-google-icon.jpg
+canonical_url: https://www.recodehive.com/blog/google-icon-update
+
+meta:
+  - name: "robots"
+    content: "index, follow"
+  - property: "og:title"
+    content: "New Google Workspace Icons (2026): What Changed"
+  - property: "og:description"
+    content: "Google redesigned its Workspace icons in 2026, dropping the four-color rule from 2020. Here's what changed, why now, and whether it fixes five years of icon confusion."
+  - property: "og:type"
+    content: "article"
+  - property: "og:url"
+    content: "https://www.recodehive.com/blog/google-icon-update"
+  - property: "og:image"
+    content: "https://www.recodehive.com/img/blogs/cover-google-icon.jpg"
+  - name: "twitter:card"
+    content: "summary_large_image"
+  - name: "twitter:title"
+    content: "New Google Workspace Icons (2026): What Changed"
+  - name: "twitter:description"
+    content: "Google dropped the four-color Workspace icon rule in 2026. Here's what changed and whether it actually fixes five years of icon confusion."
+  - name: "twitter:image"
+    content: "https://www.recodehive.com/img/blogs/cover-google-icon.jpg"
+
 ---
 
 

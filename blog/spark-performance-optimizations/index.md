@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/pyspark-optimization-techniques"
   - property: "og:image"
-    content: "./images/cover.png"
+    content: "https://www.recodehive.com/img/blogs/pyspark_optimization_cover.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "Six PySpark mistakes that quietly destroy performance — and every fix, explained from scratch."
   - name: "twitter:image"
-    content: "./images/cover.png"
+    content: "https://www.recodehive.com/img/blogs/pyspark_optimization_cover.png"
 ---
 
 import Tabs from '@theme/Tabs';

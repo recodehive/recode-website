@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/how-netflix-handles-2-trillion-events-every-day"
   - property: "og:image"
-    content: "./img/netflix-event-pipeline-cover.png"
+    content: "https://www.recodehive.com/img/blogs/thumbnail.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "Every click, pause, and scroll on Netflix generates an event. Here's the full data pipeline — Keystone, Kafka, Flink — that processes 2 trillion of them every day."
   - name: "twitter:image"
-    content: "./img/netflix-event-pipeline-cover.png"
+    content: "https://www.recodehive.com/img/blogs/thumbnail.png"
 
 ---
 

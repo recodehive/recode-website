@@ -2,39 +2,41 @@
 title: "N8N: The Future of Workflow Automation"
 authors: [Aditya-Singh-Rathore]
 sidebar_label: "N8N AI Workflows Explained"
-tags: [N8N, AI Automation, Workflow Automation, No-Code, Integration, Machine Learning, API Integration]
+tags: [n8n, ai-automation, workflow-automation, no-code, integration, machine-learning, api-integration]
 date: 2025-09-17
 image: /img/blogs/n8n-logo.png
 category: AUTOMATION
 
-description: N8N revolutionizes automation by integrating AI capabilities into visual workflows. Learn how to build intelligent automation pipelines that can process data, make decisions, and interact with multiple services seamlessly.
+description: N8N revolutionizes automation by integrating AI into visual workflows. Learn how to build intelligent automation pipelines that process data, make decisions, and interact with multiple services.
 
 draft: false
-# meta:
-#   - name: "robots"
-#     content: "index, follow"
-#   - property: "og:title"
-#     content: "Building Intelligent Automation: N8N AI Workflows Explained"
-#   - property: "og:description"
-#     content: "N8N revolutionizes automation by integrating AI capabilities into visual workflows. Learn how to build intelligent automation pipelines that can process data, make decisions, and interact with multiple services seamlessly."
-#   - property: "og:type"
-#     content: "article"
-#   - property: "og:url"
-#     content: "/blog/n8n-ai-automation-workflows"
-#   - property: "og:image"
-#     content: "/assets/images/n8n-ai-automation.jpg"
-#   - name: "twitter:card"
-#     content: "summary_large_image"
-#   - name: "twitter:title"
-#     content: "Building Intelligent Automation: N8N AI Workflows Explained"
-#   - name: "twitter:description"
-#     content: "N8N revolutionizes automation by integrating AI capabilities into visual workflows. Learn how to build intelligent automation pipelines that can process data, make decisions, and interact with multiple services seamlessly."
-#   - name: "twitter:image"
-#     content: "assets/images/n8n-ai-automation.jpg"
+canonical_url: https://www.recodehive.com/blog/n8n-workflow-automation
+
+meta:
+  - name: "robots"
+    content: "index, follow"
+  - property: "og:title"
+    content: "N8N: The Future of Workflow Automation"
+  - property: "og:description"
+    content: "N8N integrates AI into visual workflows. Learn how to build intelligent automation pipelines that process data, make decisions, and connect multiple services seamlessly."
+  - property: "og:type"
+    content: "article"
+  - property: "og:url"
+    content: "https://www.recodehive.com/blog/n8n-workflow-automation"
+  - property: "og:image"
+    content: "https://www.recodehive.com/img/blogs/n8n-logo.png"
+  - name: "twitter:card"
+    content: "summary_large_image"
+  - name: "twitter:title"
+    content: "N8N: The Future of Workflow Automation"
+  - name: "twitter:description"
+    content: "How N8N integrates AI into visual workflows — build intelligent automation pipelines that process data and connect services without writing code."
+  - name: "twitter:image"
+    content: "https://www.recodehive.com/img/blogs/n8n-logo.png"
 
 ---
 
-# Building Intelligent Automation: N8N AI Workflows Explained
+# N8N: The Future of Workflow Automation
  <!-- truncate -->
 Hey automation enthusiasts! 🤖
 

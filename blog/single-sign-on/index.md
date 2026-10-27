@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/how-sso-actually-works"
   - property: "og:image"
-    content: "./img/sso_flow.png"
+    content: "https://www.recodehive.com/img/blogs/sso_cover.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,12 +32,12 @@ meta:
   - name: "twitter:description"
     content: "SSO lets you log into dozens of apps with one login. Here's exactly what happens behind the button — explained simply."
   - name: "twitter:image"
-    content: "./img/sso_flow.png"
+    content: "https://www.recodehive.com/img/blogs/sso_cover.png"
  
 ---
 <!-- truncate -->
 
-# How Single Sign On(SSO) Actually Work?
+# How SSO Works — A Case Study
 
 You've done this a hundred times without thinking about it.
 

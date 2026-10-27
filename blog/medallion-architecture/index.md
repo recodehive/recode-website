@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/medallion-architecture"
   - property: "og:image"
-    content: "./img/medallion-architecture-cover.png"
+    content: "https://www.recodehive.com/img/blogs/medallion_architecture.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "Most pipelines fail not because of bad tech but bad organization. Here's how Medallion Architecture fixes that."
   - name: "twitter:image"
-    content: "./img/medallion-architecture-cover.png"
+    content: "https://www.recodehive.com/img/blogs/medallion_architecture.png"
 
 ---
 

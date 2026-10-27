@@ -2,14 +2,38 @@
 title: "GitHub Copilot CLI: Public Preview"
 authors: [sanjay-kv]
 sidebar_label: "GitHub Copilot CLI"
-tags: [GitHub, CLI, tech, updates, Copilot, Coding, Assistant]
+tags: [github, cli, tech-updates, copilot, coding, ai-assistant]
 date: 2025-09-17
 image: /img/blogs/github-cli-agent-cover.png
 category: GITHUB
 
-description: GitHub brings the power of GitHub Copilot coding agent directly to your terminal, with GitHub Copilot CLI, you can work locally and synchronously with an AI agent.
+description: GitHub brings the power of GitHub Copilot coding agent directly to your terminal. With GitHub Copilot CLI, you can work locally and synchronously with an AI agent that understands your code.
 
 draft: false
+canonical_url: https://www.recodehive.com/blog/github-cli-agent
+
+meta:
+  - name: "robots"
+    content: "index, follow"
+  - property: "og:title"
+    content: "GitHub Copilot CLI: Public Preview"
+  - property: "og:description"
+    content: "GitHub Copilot CLI is now in public preview. Work locally with an AI agent that understands your code, repositories, issues, and pull requests — right from your terminal."
+  - property: "og:type"
+    content: "article"
+  - property: "og:url"
+    content: "https://www.recodehive.com/blog/github-cli-agent"
+  - property: "og:image"
+    content: "https://www.recodehive.com/img/blogs/github-cli-agent-cover.png"
+  - name: "twitter:card"
+    content: "summary_large_image"
+  - name: "twitter:title"
+    content: "GitHub Copilot CLI: Public Preview"
+  - name: "twitter:description"
+    content: "GitHub Copilot CLI is in public preview — AI coding agent directly in your terminal, with full GitHub context and MCP server extensibility."
+  - name: "twitter:image"
+    content: "https://www.recodehive.com/img/blogs/github-cli-agent-cover.png"
+
 ---
  <!-- truncate -->
 

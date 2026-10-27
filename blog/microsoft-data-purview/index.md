@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/purview-data-catalog-onboarding"
   - property: "og:image"
-    content: "./images/cover.png"
+    content: "https://www.recodehive.com/img/blogs/purview_cover.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "See how catalog, lineage, glossary, and ownership metadata helped reduce data engineer onboarding from 2 weeks to 3 days."
   - name: "twitter:image"
-    content: "./images/cover.png"
+    content: "https://www.recodehive.com/img/blogs/purview_cover.png"
 ---
 
 import Tabs from '@theme/Tabs';

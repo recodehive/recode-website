@@ -1,7 +1,7 @@
 ---
 title: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Months"
 authors: [Aditya-Singh-Rathore]
-sidebar_label: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Monthss"
+sidebar_label: "Why We Rolled Back Our Kafka Pipeline to Batch After 6 Months"
 tags: [batch-processing, stream-processing, data-engineering, apache-kafka, apache-flink, apache-spark, data-pipeline, real-time, azure, medallion-architecture, data-architecture]
 date: 2026-05-06
 image: /img/blogs/batch-vs-stream-cover.png
@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/hidden-cost-of-streaming-pipelines"
   - property: "og:image"
-    content: "./img/streaming-hidden-cost-cover.png"
+    content: "https://www.recodehive.com/img/blogs/batch-vs-stream-cover.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "Everyone talks about real-time streaming benefits. Nobody talks about what it costs. Here's the honest breakdown."
   - name: "twitter:image"
-    content: "./img/streaming-hidden-cost-cover.png"
+    content: "https://www.recodehive.com/img/blogs/batch-vs-stream-cover.png"
 
 ---
 

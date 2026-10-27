@@ -25,7 +25,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/data-engineers-better-business-analysts-than-mbas"
   - property: "og:image"
-    content: "./img/blogs/ba_de_cover_image.png"
+    content: "https://www.recodehive.com/img/blogs/ba_de_cover_image.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -33,7 +33,7 @@ meta:
   - name: "twitter:description"
     content: "MBAs analyze businesses from the outside. Data engineers operate from inside the data. Here's why that changes everything."
   - name: "twitter:image"
-    content: "./img/blogs/ba_de_cover_image.png"
+    content: "https://www.recodehive.com/img/blogs/ba_de_cover_image.png"
 ---
 
 import Tabs from '@theme/Tabs';

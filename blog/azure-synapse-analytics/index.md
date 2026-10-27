@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/azure-synapse-analytics-when-to-use-it"
   - property: "og:image"
-    content: "./img/azure-synapse-cover.png"
+    content: "https://www.recodehive.com/img/blogs/azure-synapse-cover.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "Synapse is powerful. Fabric is the future. Here's the honest breakdown of when to use each in 2026."
   - name: "twitter:image"
-    content: "./img/azure-synapse-cover.png"
+    content: "https://www.recodehive.com/img/blogs/azure-synapse-cover.png"
 
 ---
 
