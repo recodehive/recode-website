@@ -41,13 +41,6 @@ recode hive is an open-source project where developers learn by collaborating, g
 
 We welcome contributions from developers of all skill levels! Here's how you can get started:
 
-```mermaid
-flowchart LR
-    Fork[Fork the project]-->branch[Create a New Branch]
-    branch-->Edit[Edit file]
-    Edit-->commit[Commit the changes]
-    commit -->|Finally|creatpr((Create a Pull Request))
-```
 
 <div align="center">
 
@@ -57,12 +50,19 @@ flowchart LR
 
 </div>
 
-### Step-by-Step Guide
+```mermaid
+flowchart LR
+    Fork[Fork the project]-->branch[Create a New Branch]
+    branch-->Edit[Edit file]
+    Edit-->commit[Commit the changes]
+    commit -->|Finally|creatpr((Create a Pull Request))
+```
 
-**Fork and clone the repository**, then get it running by following [Installation](https://www.recodehive.com/docs/first-time-setup).
+<br>
 
+> [!NOTE]  Step-by-Step Installation Guide
+>**Fork and clone the repository**, then get it running by following [Installation](https://www.recodehive.com/docs/first-time-setup).
 
-**Fork the repository** on GitHub, then clone your fork:
 
 ```bash
 git clone https://github.com/<your-username>/recode-website.git
@@ -77,8 +77,8 @@ cp .env.example .env
 
 > Then add a [GitHub personal access token](https://github.com/settings/tokens) (classic) as both `GITHUB_TOKEN` and `DOCUSAURUS_GIT_TOKEN`. It avoids GitHub API rate limits and fills the discussions, releases and sponsors pages with live data.
 
-> [!NOTE]
-> The GitHub token is the only value you need for local development, and the site runs without it. Keys for `Leaderboard`, `Algolia search`, `Clerk sign-in`, `EmailJS` and `Supabase` are managed by the maintainers, so those features stay disabled locally unless you create your own, you can request to @sanjay-kv if you need dev key.
+> [!WARNING] How to work with .env file
+> The GitHub token is the only value you need for local development, and the site runs without it. Keys for `Leaderboard`, `Algolia search`, `Clerk sign-in`, `EmailJS` and `Supabase` are managed by the maintainers,  Feel free to create your own GitHub token and put in .env file  or if you working on the above function you can request to @sanjay-kv if you need dev key.
 
 **Run the site locally (Recommended):**
 
@@ -107,6 +107,8 @@ docker run -p 3000:3000 recodehive-app
 
 </details>
 
+<details>
+<summary><b>✅ Checklist before pushing new PR</b></summary>
 **Create a new branch:**
 
 ```bash
@@ -129,9 +131,10 @@ git push origin feature/your-feature-name
 
 **Submit a Pull Request** with a detailed description of your changes
 
-### Production Build
+</details>
 
-> [!NOTE]
+
+> [!TIP] Production Build
 > The build first fetches releases, sponsors and community PRs from GitHub, so it needs network access. Set the tokens from `.env` to avoid rate limits.
 
 ```bash
@@ -140,8 +143,7 @@ npm run serve
 ```
 
 
-> [!NOTE]
-> Tech Stack
+> [!NOTE] Tech Stack
 >- **Framework:** Docusaurus 3 (React + TypeScript)
 >- **Language:** TypeScript (Node.js ≥ 18)
 >- **Styling:** Tailwind CSS 4
@@ -151,7 +153,8 @@ npm run serve
 >- **Linting & Formatting:** ESLint, Prettier
 >- **Type Checking:** TypeScript (`tsc`)
 
-## 📁 Project Structure
+<details>
+<summary><b>📁 Project Structure</b></summary>
 
 | | Folder | What lives here |
 | :-: | :-- | :-- |
@@ -167,6 +170,7 @@ npm run serve
 | 🖼️ | [`static/`](static) | Static assets: icons, images |
 | 📖 | [`wiki/`](wiki) | Project wiki |
 
+</details>
 <details>
 <summary><b>🔍 Expand the <code>src/</code> folder</b></summary>
 
@@ -182,12 +186,9 @@ npm run serve
 </details>
 
 
-### Video Tutorial
-
-<div align="center">
-
-> [!TIP]
+> [!TIP] Video Tutorial
 > New here? Watch this walkthrough of how to set up the project and make your first contribution.
+<div align="center">
 
 <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
   <img src="https://cdn.loom.com/sessions/thumbnails/c8d8d5f0c2534a1f86fc510dcef52ee0-30cac2eeec09a266-full-play.gif" width="700" alt="How to contribute to recode hive and set up the project: video walkthrough">
