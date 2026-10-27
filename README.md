@@ -52,7 +52,53 @@ flowchart LR
 
 ### Step-by-Step Guide
 
-**Fork and clone the repository**, then get it running by following [Installation](#installation).
+**Fork and clone the repository**, then get it running by following [Installation](https://www.recodehive.com/docs/first-time-setup).
+
+
+**Fork the repository** on GitHub, then clone your fork:
+
+```bash
+git clone https://github.com/<your-username>/recode-website.git
+cd recode-website
+```
+
+**Set up environment variables** (optional):
+
+```bash
+cp .env.example .env
+```
+
+Then add a [GitHub personal access token](https://github.com/settings/tokens) (classic) as both `GITHUB_TOKEN` and `DOCUSAURUS_GIT_TOKEN`. It avoids GitHub API rate limits and fills the discussions, releases and sponsors pages with live data.
+
+> [!NOTE]
+> The GitHub token is the only value you need for local development, and the site runs without it. The leaderboard works out of the box. Keys for Algolia search, Clerk sign-in, EmailJS and Supabase are managed by the maintainers, so those features stay disabled locally unless you create your own.
+
+**Run the site locally (Recommended):**
+
+```bash
+npm install
+npm run start
+```
+
+Your application will be available at http://localhost:3000
+
+<details>
+<summary><b>🐳 Prefer Docker? Use this instead</b></summary>
+
+**Docker Compose (with hot-reload):**
+
+```bash
+docker-compose up
+```
+
+**Plain Docker (no hot-reload, rebuild after changes):**
+
+```bash
+docker build -t recodehive-app .
+docker run -p 3000:3000 recodehive-app
+```
+
+</details>
 
 **Create a new branch:**
 
@@ -75,45 +121,6 @@ git push origin feature/your-feature-name
 ```
 
 **Submit a Pull Request** with a detailed description of your changes
-
-**Fork the repository** on GitHub, then clone your fork:
-
-```bash
-git clone https://github.com/<your-username>/recode-website.git
-cd recode-website
-```
-
-**Set up environment variables** (optional, avoids GitHub API rate limits and enables live data):
-
-```bash
-cp .env.example .env
-# then add your GITHUB_TOKEN and DOCUSAURUS_GIT_TOKEN
-```
-
-**Using Docker (Recommended):**
-
-```bash
-# Build the image (first time only)
-docker build -t recodehive-app .
-
-# Run the container
-docker run -p 3000:3000 recodehive-app
-```
-
-**Using Docker Compose (with hot-reload):**
-
-```bash
-docker-compose up
-```
-
-Your application will be available at "http://localhost:3000"
-
-**Traditional Setup:**
-
-```bash
-npm install
-npm run start
-```
 
 ### Production Build
 
