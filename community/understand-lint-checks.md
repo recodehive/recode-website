@@ -10,8 +10,9 @@ sidebar_position: 3
 Welcome to recode hive! Before a maintainer reviews your pull request (PR), a few automated checks make sure the code is clean, consistent and error-free.
 This page explains what those checks are, how to run them on your computer, and what to do when one fails.
 
-> [!TIP]
-> New to this? You don't need to understand every tool. Run the commands in the "Run the checks" section below and fix whatever they report.
+:::tip
+New to this? You don't need to understand every tool. Run the commands in the "Run the checks" section below and fix whatever they report.
+:::
 
 ---
 
@@ -77,8 +78,9 @@ To format only the files you changed (recommended):
 npx prettier --write path/to/your-file.tsx
 ```
 
-> [!WARNING]
-> `npm run format` rewrites **every** matching file in the project. Your PR could then include lots of changes you didn't make, which makes it hard to review. Prefer the single-file command above.
+:::warning
+`npm run format` rewrites **every** matching file in the project. Your PR could then include lots of changes you didn't make, which makes it hard to review. Prefer the single-file command above.
+:::
 
 ---
 
@@ -97,8 +99,9 @@ Then:
 1. Take a **screenshot of your terminal** showing the checks passing.
 2. Attach the screenshot to your pull request description.
 
-> [!NOTE]
-> When you push, GitHub also runs `npm run lint` automatically (the **Lint** workflow). If it fails, open the failed check on your PR, read the error, fix it locally and push again. The PR updates by itself.
+:::note
+When you push, GitHub also runs `npm run lint` automatically (the **Lint** workflow). If it fails, open the failed check on your PR, read the error, fix it locally and push again. The PR updates by itself.
+:::
 
 ---
 

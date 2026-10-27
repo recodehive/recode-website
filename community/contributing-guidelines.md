@@ -8,102 +8,108 @@ sidebar_position: 2
 ## Table of Contents
 
 - [Local Setup Guide](#local-setup-guide)
-- [Environment Setup (for GitHub API access)](#environment-setup-for-github-api-access)
+- [Environment Setup](#environment-setup)
 - [Contributing to recode hive](#contributing-to-recode-hive)
+- [Production Build](#production-build)
+- [Blog banners](#blog-banners)
 - [Formatting](#formatting)
+- [Tech Stack](#tech-stack)
 - [Branding & Naming Conventions](#branding--naming-conventions)
 - [License](#license)
 
 ## Local Setup Guide
 
-### How to set up recode hive:
+:::tip New to GitHub?
+Follow the [First-time setup guide](https://www.recodehive.com/docs/first-time-setup). It walks you through forking, cloning and running the project step by step.
+:::
 
-1. **Clone the repository:**
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) **20.9 – 22** (the repo has an `.nvmrc` file, so `nvm use` picks the right version)
+- [Git](https://git-scm.com/)
+- [Docker](https://docs.docker.com/engine/install/) (optional)
+
+### Fork, clone and run
+
+1. **Fork the repository** on GitHub, then clone your fork:
 
    ```bash
-   git clone https://github.com/your-username/recode-website.git
-   ```
-
-2. **Navigate to the project directory:**
-
-   ```bash
+   git clone https://github.com/<your-username>/recode-website.git
    cd recode-website
    ```
 
-3. **Install dependencies:**
-
-   ```bash
-   npm install
-   ```
-
-4. **Running the Application:**
-
-   Once you have installed the dependencies, you can run the application locally using:
-
-   ```bash
-   npm start
-   ```
-
-   This command will start a development server and open the application in your default web browser.
-
-## Environment Setup (for GitHub API access)
-
-Some parts of the dashboard — such as the Leaderboard — require access to the GitHub API.
-To avoid rate-limit issues, you’ll need to set up a GitHub Personal Access Token (PAT) locally.
-
-1. **Copy the example environment file**
+2. **Set up environment variables** (optional, see [Environment Setup](#environment-setup)):
 
    ```bash
    cp .env.example .env
    ```
 
-   This creates your local `.env` configuration file.
+3. **Install dependencies and run the site locally:**
+
+   ```bash
+   npm install
+   npm run start
+   ```
+
+   Your application will be available at http://localhost:3000
+
+<details>
+<summary><b>🐳 Prefer Docker? Use this instead</b></summary>
+
+**Docker Compose (with hot-reload):**
+
+```bash
+docker-compose up
+```
+
+**Plain Docker (no hot-reload, rebuild after changes):**
+
+```bash
+docker build -t recodehive-app .
+docker run -p 3000:3000 recodehive-app
+```
+
+</details>
+
+## Environment Setup
+
+The site runs without any environment variables. A GitHub token is recommended because it avoids GitHub API rate limits and fills the discussions, releases and sponsors pages with live data.
+
+1. **Copy the example environment file** (skip this if you already did it above):
+
+   ```bash
+   cp .env.example .env
+   ```
 
 2. **Generate a GitHub Personal Access Token**
-   1. Go to [https://github.com/settings/tokens](https://github.com/settings/tokens)
-   2. Click **“Generate new token (classic)”**
-   3. Give it a name (e.g. `recode hive`)
-   4. Select **no special permissions** (the default is fine for public data)
-   5. Copy the generated token
+   1. Go to [https://github.com/settings/tokens](https://github.com/settings/tokens).
+   2. Click **"Generate new token (classic)"**.
+   3. Give it a name (for example `recode hive`).
+   4. Tick the `read:discussion` scope so the discussions page can load. No other permissions are needed for public data.
+   5. Copy the generated token.
 
-3. **Add your token to `.env`**
-
-   Open `.env` and update this line:
+3. **Add your token to `.env`** as both variables:
 
    ```bash
    GITHUB_TOKEN=ghp_your_generated_token_here
+   DOCUSAURUS_GIT_TOKEN=ghp_your_generated_token_here
    ```
 
-4. **Note for Local Development**
-   
-   Most pages work without a GitHub token, including:
-   - 🎖️ GitHub Badges page (`/badges/github-badges/`)
-   - 📚 Documentation and blog posts
-   - 🏪 Merch store (requires Shopify config)
-   
-   The GitHub token is only required for:
-   - 📊 Dashboard leaderboard functionality
-   - 📈 Real-time GitHub statistics
-   
-   If you see GitHub API errors, ensure your `.env` file is properly configured.
+:::note What works without a token?
+Most of the site works without any token, including documentation, blog posts, the badges page and the leaderboard (it uses a hosted backend). The GitHub token only affects live GitHub data such as discussions, releases, sponsors and community PRs.
+
+Keys for Algolia search, Clerk sign-in, EmailJS and Supabase are managed by the maintainers, so those features stay disabled locally unless you create your own. If you need a development key, ask [@sanjay-kv](https://github.com/sanjay-kv).
+:::
+
+If you see GitHub API errors, check that your `.env` file is saved in the project root and restart `npm run start`.
 
 ## Contributing to recode hive
 
-We welcome contributions! Follow these steps to get started.
+We welcome contributions! Once the project is running locally, follow these steps.
 
-1. **Fork the Repository**
-   - Go to the [recode hive repository](https://github.com/recodehive/recode-website) and click **Fork**.
+1. **Add the original repository as upstream**
 
-2. **Clone Your Fork Locally**
-
-   ```bash
-   git clone https://github.com/your-username/recode-website.git
-   cd recode-website
-   ```
-
-3. **Add the Original Repository as Upstream**
-
-   This allows you to fetch changes from the main repository to keep your fork up to date.
+   This lets you fetch changes from the main repository to keep your fork up to date.
 
    ```bash
    git remote add upstream https://github.com/recodehive/recode-website.git
@@ -115,9 +121,9 @@ We welcome contributions! Follow these steps to get started.
    git remote -v
    ```
 
-   You should see both origin (your fork) and upstream (main repository).
+   You should see both `origin` (your fork) and `upstream` (the main repository).
 
-4. **Keep Your Fork Updated**
+2. **Keep your fork updated**
 
    Before starting a new feature or bug fix, update your local main branch:
 
@@ -127,39 +133,51 @@ We welcome contributions! Follow these steps to get started.
    git merge upstream/main
    ```
 
-   This ensures your branch starts from the latest version of the main repository.
-
-5. **Create a New Branch**
-
-   Create a branch for your feature or bug fix:
+3. **Create a new branch**
 
    ```bash
-   git checkout -b feature-name
+   git checkout -b feature/your-feature-name
    ```
 
-6. **Commit Your Changes**
+4. **Make your changes** and test them thoroughly in the running site.
+
+5. **Run the checks** described in [Formatting](#formatting).
+
+6. **Commit your changes**
 
    ```bash
    git add .
-   git commit -m "Brief description of your changes"
+   git commit -m "Add: brief description of your changes"
    ```
 
-7. **Push Your Branch to Your Fork**
+7. **Push your branch to your fork**
 
    ```bash
-   git push origin feature-name
+   git push origin feature/your-feature-name
    ```
 
-8. **Open a Pull Request**
+8. **Open a pull request**
    1. Go to your fork on GitHub.
-
-   2. Click Compare & pull request for your branch.
-
+   2. Click **Compare & pull request** for your branch.
    3. Fill out the PR template with a clear description of your changes.
-
    4. Submit the PR.
 
-   > Tip: If your branch falls behind main, you can fetch and merge updates from upstream again before pushing.
+   :::tip
+   If your branch falls behind main, fetch and merge updates from upstream again before pushing.
+   :::
+
+## Production Build
+
+To check that the whole site builds, as it does when deployed:
+
+```bash
+npm run build
+npm run serve
+```
+
+:::note
+The build first fetches releases, sponsors and community PRs from GitHub, so it needs network access. Set the tokens from `.env` to avoid rate limits.
+:::
 
 ## Blog banners
 
@@ -172,27 +190,46 @@ Every blog post needs a banner so it looks right on the Blogs page.
 
 ## Formatting
 
-To ensure consistent code style and catch errors before committing, please follow these steps:
+To keep code style consistent and catch errors before they reach review, run these checks before you commit:
 
-1. **Automatically fix linting issues where possible**:
+1. **Automatically fix linting issues where possible:**
 
    ```bash
    npm run lint:fix
    ```
 
-2. **Format code according to project conventions**:
+2. **Check types:**
 
    ```bash
-   npm run format
+   npm run typecheck
    ```
 
-3. **Build the project to verify everything compiles correctly**:
+3. **Format the files you changed:**
+
+   ```bash
+   npx prettier --write path/to/your-file.tsx
+   ```
+
+   :::warning
+   `npm run format` rewrites every matching file in the project, which can fill your PR with changes you didn't make. Format only your own files instead.
+   :::
+
+4. **Build the project to verify everything compiles:**
 
    ```bash
    npm run build
    ```
 
-   It’s recommended to run these commands before committing to maintain code quality and consistency.
+New to these checks? Read [Understand Checks before PR](./understand-lint-checks.md) for a beginner-friendly explanation.
+
+## Tech Stack
+
+- **Framework:** Docusaurus 3 (React + TypeScript)
+- **Language:** TypeScript (Node.js 20.9 – 22)
+- **Styling:** Tailwind CSS 4
+- **UI components:** Radix UI, Framer Motion
+- **Linting and formatting:** ESLint, Prettier
+- **Type checking:** TypeScript (`tsc`)
 
 ## Branding & Naming Conventions
 
@@ -203,10 +240,10 @@ To ensure consistent code style and catch errors before committing, please follo
 
 While we use lowercase **`recode hive`** throughout the project for consistency, there are some places where the exact repository name with capitalization must be used:
 
-- Repository-specific badges (e.g., [contrib.rocks](https://contrib.rocks))
+- Repository-specific badges (for example, [shields.io](https://shields.io) badges)
 - GitHub repository URLs in tools or badges
 - Any external services that require exact repo names
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the [MIT License](https://github.com/recodehive/recode-website/blob/main/LICENSE).
