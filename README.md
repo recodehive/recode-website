@@ -49,6 +49,16 @@ flowchart LR
     commit -->|Finally|creatpr((Create a Pull Request))
 ```
 
+<div align="center">
+
+<video src="https://github.com/sanjay-kv/sanjay-kv/raw/main/Assets/Recode%20Hive%20Repository%20%20GitHub.mp4" width="700" controls muted playsinline>
+  Your browser can't play this video. <a href="https://github.com/sanjay-kv/sanjay-kv/blob/main/Assets/Recode%20Hive%20Repository%20%20GitHub.mp4">Download it here</a>.
+</video>
+
+<sub>▶ Start Contributing to Open Source with recode hive (Setup Guide)</sub>
+
+</div>
+
 ### Step-by-Step Guide
 
 **Fork and clone the repository**, then get it running by following [Installation](https://www.recodehive.com/docs/first-time-setup).
