@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/microsoft-fabric-one-platform-one-lake-every-data-workload"
   - property: "og:image"
-    content: "/static/imag/blogs/microsoft-farbic-cover.jpg"
+    content: "https://www.recodehive.com/img/blogs/microsoft-farbic-blog-image.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "Microsoft Fabric unifies data engineering, analytics, and BI into one platform built on OneLake. Here's how the architecture works and why it matters."
   - name: "twitter:image"
-    content: "/assets/images/microsoft-fabric-cover.jpg"
+    content: "https://www.recodehive.com/img/blogs/microsoft-farbic-blog-image.png"
 
 ---
 

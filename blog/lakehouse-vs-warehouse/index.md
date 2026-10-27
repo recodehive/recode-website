@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/lakehouse-vs-data-warehouse"
   - property: "og:image"
-    content: "./img/lake_vs_ware.png"
+    content: "https://www.recodehive.com/img/blogs/datalake_vs_warehouse.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "Lakehouse and Data Warehouse are two of the most debated architectures in modern data engineering. Here is how they differ and when to use each."
   - name: "twitter:image"
-    content: "./img/lake_vs_ware.png"
+    content: "https://www.recodehive.com/img/blogs/datalake_vs_warehouse.png"
 
 ---
 

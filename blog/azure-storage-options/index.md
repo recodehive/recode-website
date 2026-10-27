@@ -24,7 +24,7 @@ meta:
   - property: "og:url"
     content: "https://www.recodehive.com/blog/azure-storage-adls-gen2-complete-guide"
   - property: "og:image"
-    content: "./img/azure-storage-cover.png"
+    content: "https://www.recodehive.com/img/blogs/azure-storage-cover.png"
   - name: "twitter:card"
     content: "summary_large_image"
   - name: "twitter:title"
@@ -32,7 +32,7 @@ meta:
   - name: "twitter:description"
     content: "Azure gives you four storage types. Here's how they all fit together — and why ADLS Gen2 is the one that matters most for data engineering."
   - name: "twitter:image"
-    content: "./img/azure-storage-cover.png"
+    content: "https://www.recodehive.com/img/blogs/azure-storage-cover.png"
 
 ---
 
