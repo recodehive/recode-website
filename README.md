@@ -20,7 +20,7 @@
 
 recode hive is an open-source project where developers learn by collaborating, get paid for technical writing, and gain access to real-world projects and sponsorship opportunities.
 
-[Website](https://recodehive.com/) • [Documentation](https://recodehive.com/docs) • [Contributing](community/contributing-guidelines.md) • [Discord](https://discord.gg/Yxv9RA3r)
+[Website](https://recodehive.com/) • [Documentation](https://www.recodehive.com/docs/first-time-setup) • [Contributing](community/contributing-guidelines.md) • [Substack](https://recodehive.substack.com/)
 
 </div>
 
@@ -31,8 +31,7 @@ recode hive is an open-source project where developers learn by collaborating, g
 > Get the recode hive source from [recodehive/recode-website](https://github.com/recodehive/recode-website) or the live site at [recodehive.com](https://www.recodehive.com).<br>
 > A similar repository name or copied README does not establish that a download is official.
 
-> Prerequisites
-
+> Prerequisites <br>
 > [Node.js](https://nodejs.org/) 20.9 – 22 (see `.nvmrc`)<br>
 > [Docker](https://docs.docker.com/engine/install/) (optional, for containerized development)
 > Docker Compose (optional)
@@ -68,10 +67,10 @@ cd recode-website
 cp .env.example .env
 ```
 
-Then add a [GitHub personal access token](https://github.com/settings/tokens) (classic) as both `GITHUB_TOKEN` and `DOCUSAURUS_GIT_TOKEN`. It avoids GitHub API rate limits and fills the discussions, releases and sponsors pages with live data.
+> Then add a [GitHub personal access token](https://github.com/settings/tokens) (classic) as both `GITHUB_TOKEN` and `DOCUSAURUS_GIT_TOKEN`. It avoids GitHub API rate limits and fills the discussions, releases and sponsors pages with live data.
 
 > [!NOTE]
-> The GitHub token is the only value you need for local development, and the site runs without it. The leaderboard works out of the box. Keys for Algolia search, Clerk sign-in, EmailJS and Supabase are managed by the maintainers, so those features stay disabled locally unless you create your own.
+> The GitHub token is the only value you need for local development, and the site runs without it. Keys for `Leaderboard`, `Algolia search`, `Clerk sign-in`, `EmailJS` and `Supabase` are managed by the maintainers, so those features stay disabled locally unless you create your own, you can request to @sanjay-kv if you need dev key.
 
 **Run the site locally (Recommended):**
 
