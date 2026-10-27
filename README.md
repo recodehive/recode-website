@@ -51,9 +51,7 @@ flowchart LR
 
 <div align="center">
 
-<video src="https://github.com/sanjay-kv/sanjay-kv/raw/main/Assets/Recode%20Hive%20Repository%20%20GitHub.mp4" width="700" controls muted playsinline>
-  Your browser can't play this video. <a href="https://github.com/sanjay-kv/sanjay-kv/blob/main/Assets/Recode%20Hive%20Repository%20%20GitHub.mp4">Download it here</a>.
-</video>
+<video src="https://github.com/user-attachments/assets/a46f33be-e7a0-4013-b4d1-8d70bff1b55a" width="700" controls muted playsinline></video>
 
 <sub>▶ Start Contributing to Open Source with recode hive (Setup Guide)</sub>
 
