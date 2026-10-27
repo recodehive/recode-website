@@ -60,8 +60,9 @@ flowchart LR
 
 <br>
 
-> [!NOTE]  Step-by-Step Installation Guide
->**Fork and clone the repository**, then get it running by following [Installation](https://www.recodehive.com/docs/first-time-setup).
+> [!NOTE]
+> **Step-by-Step Installation Guide**<br>
+> Fork and clone the repository, then get it running by following [Installation](https://www.recodehive.com/docs/first-time-setup).
 
 
 ```bash
@@ -77,7 +78,8 @@ cp .env.example .env
 
 > Then add a [GitHub personal access token](https://github.com/settings/tokens) (classic) as both `GITHUB_TOKEN` and `DOCUSAURUS_GIT_TOKEN`. It avoids GitHub API rate limits and fills the discussions, releases and sponsors pages with live data.
 
-> [!WARNING] How to work with .env file
+> [!WARNING]
+> **How to work with the .env file**<br>
 > The GitHub token is the only value you need for local development, and the site runs without it. Keys for `Leaderboard`, `Algolia search`, `Clerk sign-in`, `EmailJS` and `Supabase` are managed by the maintainers,  Feel free to create your own GitHub token and put in .env file  or if you working on the above function you can request to @sanjay-kv if you need dev key.
 
 **Run the site locally (Recommended):**
@@ -134,7 +136,8 @@ git push origin feature/your-feature-name
 </details>
 
 
-> [!TIP] Production Build
+> [!TIP]
+> **Production Build**<br>
 > The build first fetches releases, sponsors and community PRs from GitHub, so it needs network access. Set the tokens from `.env` to avoid rate limits.
 
 ```bash
@@ -143,15 +146,14 @@ npm run serve
 ```
 
 
-> [!NOTE] Tech Stack
->- **Framework:** Docusaurus 3 (React + TypeScript)
->- **Language:** TypeScript (Node.js ≥ 18)
->- **Styling:** Tailwind CSS 4
->- **UI Components:** Radix UI, Framer Motion
-
-> [!WARNING]
->- **Linting & Formatting:** ESLint, Prettier
->- **Type Checking:** TypeScript (`tsc`)
+> [!NOTE]
+> **Tech Stack**
+> - **Framework:** Docusaurus 3 (React + TypeScript)
+> - **Language:** TypeScript (Node.js 20.9 – 22)
+> - **Styling:** Tailwind CSS 4
+> - **UI Components:** Radix UI, Framer Motion
+> - **Linting & Formatting:** ESLint, Prettier
+> - **Type Checking:** TypeScript (`tsc`)
 
 <details>
 <summary><b>📁 Project Structure</b></summary>
@@ -186,8 +188,10 @@ npm run serve
 </details>
 
 
-> [!TIP] Video Tutorial
+> [!TIP]
+> **Video Tutorial**<br>
 > New here? Watch this walkthrough of how to set up the project and make your first contribution.
+
 <div align="center">
 
 <a href="https://www.loom.com/share/c8d8d5f0c2534a1f86fc510dcef52ee0">
