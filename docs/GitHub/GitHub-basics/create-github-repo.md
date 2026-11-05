@@ -34,7 +34,7 @@ In the previous post, we learned about commit, fork and clone. In this post, we 
 <PrereqCards>
 <Prereq icon="👤" title="A GitHub account">
 
-Set one up in [Setup GitHub Account →](/docs/GitHub/setup-environment/setup-environment)
+Set one up in [Setup GitHub Account →](/docs/GitHub/setup-environment/)
 
 </Prereq>
 <Prereq icon="⚙️" title="Git installed and running">
