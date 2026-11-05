@@ -1,0 +1,565 @@
+/* Only the "Create GitHub Repo (GUI)" page. Every rule starts from .createRepo, the root class the page passes to <SetupLesson>.
+   Colours come from the shared setup lesson variables, so light and dark mode follow the rest of the lessons. */
+
+.createRepo {
+  --amber-bg: #fff7ed;
+  --amber-line: #fed7aa;
+  --amber-text: #9a3412;
+}
+
+:global(html[data-theme='dark']) .createRepo {
+  --amber-bg: rgba(251, 146, 60, 0.1);
+  --amber-line: rgba(251, 146, 60, 0.35);
+  --amber-text: #fdba74;
+}
+
+/* ---------- Header animation ---------- */
+
+.createRepo .art {
+  position: relative;
+  width: 232px;
+  padding-bottom: 16px;
+}
+
+.createRepo .artCard {
+  padding: 11px 13px 6px;
+  border: 1px solid var(--dark-line-2);
+  border-radius: 12px;
+  background: var(--dark);
+  box-shadow: 0 14px 30px -14px rgba(15, 23, 42, 0.5);
+  color: #e6edf3;
+}
+
+.createRepo .artHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+  font-size: 12px;
+}
+
+.createRepo .artHead b {
+  color: #58a6ff;
+}
+
+.createRepo .artPill {
+  padding: 0 8px;
+  border: 1px solid var(--dark-line-2);
+  border-radius: 999px;
+  font-size: 10px;
+  color: #9da7b3;
+}
+
+.createRepo .artRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-top: 1px solid var(--dark-line);
+  font-size: 11px;
+  opacity: 0;
+  transform: translateY(5px);
+}
+
+.createRepo .art.play .artRow {
+  animation: rowIn 0.45s ease forwards;
+  animation-delay: calc(var(--i) * 0.4s);
+}
+
+.createRepo .artDot {
+  width: 9px;
+  height: 11px;
+  flex-shrink: 0;
+  border-radius: 2px;
+  background: #3b4654;
+}
+
+.createRepo .artFile {
+  font-weight: 600;
+}
+
+.createRepo .artMsg {
+  margin-left: auto;
+  font-size: 10px;
+  color: #9da7b3;
+}
+
+.createRepo .artBadge {
+  position: absolute;
+  right: -6px;
+  bottom: 0;
+  padding: 2px 11px;
+  border: 1px solid #86efac;
+  border-radius: 999px;
+  background: #ecfdf3;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #166534;
+  box-shadow: 0 6px 16px -8px rgba(22, 101, 52, 0.5);
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.createRepo .art.play .artBadge {
+  animation: badgeIn 0.4s ease forwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes rowIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes badgeIn {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .createRepo .artRow,
+  .createRepo .artBadge {
+    opacity: 1;
+    transform: none;
+    animation: none !important;
+  }
+}
+
+/* ---------- Flow chips ---------- */
+
+.createRepo .flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.createRepo .chip {
+  padding: 5px 13px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.createRepo .chipDone {
+  border-color: var(--g);
+  background: var(--g);
+  font-weight: 600;
+  color: #fff;
+}
+
+.createRepo .arr {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ---------- Prerequisite cards ---------- */
+
+.createRepo .prereqs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 14px 0 26px;
+}
+
+.createRepo .prereq {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.createRepo .prIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--tint);
+  font-size: 22px;
+}
+
+.createRepo .prTitle {
+  display: block;
+  font-family: var(--head);
+  font-size: 15.5px;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.createRepo .prText p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.createRepo .prText a {
+  font-weight: 500;
+  color: var(--g);
+}
+
+/* ---------- Public or private ---------- */
+
+.createRepo .vis {
+  margin: 18px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--soft);
+}
+
+.createRepo .visTop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.createRepo .visLabel {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.createRepo .visSwitch {
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 10px;
+  background: var(--chip);
+}
+
+.createRepo .visSwitch button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  font: 600 13.5px var(--sans);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.createRepo .visSwitch button.visOn {
+  background: var(--card);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.15);
+  color: var(--text);
+}
+
+.createRepo .visPanel {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--dark);
+  font-size: 15px;
+  line-height: 1.55;
+  color: #e6edf3;
+}
+
+.createRepo .visPanel strong {
+  color: #4ade80;
+}
+
+/* ---------- Tour cards ---------- */
+
+.createRepo .tour {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.createRepo .tourCard {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+.createRepo .tourCard strong {
+  display: block;
+  font-family: var(--head);
+  font-size: 15.5px;
+  color: var(--text);
+}
+
+.createRepo .tourCard p {
+  margin: 3px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.createRepo .tourNum {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 8px;
+  border-radius: 999px;
+  background: var(--red);
+  font-family: var(--mono);
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* ---------- Markdown tabs ---------- */
+
+.createRepo .md {
+  margin: 14px 0 18px;
+}
+
+.createRepo .mdTabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.createRepo .mdTabs button {
+  margin-bottom: -1px;
+  padding: 8px 16px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  font: 600 14px var(--sans);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.createRepo .mdTabs button.mdTabOn {
+  border-bottom-color: var(--g);
+  color: var(--g);
+}
+
+.createRepo .mdCode {
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: var(--dark);
+  color: #e6edf3;
+}
+
+.createRepo .mdBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 7px 14px;
+  border-bottom: 1px solid var(--dark-line);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #c9d1d9;
+}
+
+.createRepo .mdCopy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border: 1px solid var(--dark-line-2);
+  border-radius: 7px;
+  background: transparent;
+  font: 500 12px var(--sans);
+  color: #c9d1d9;
+  cursor: pointer;
+}
+
+.createRepo .mdCopy:hover {
+  background: var(--dark-2);
+}
+
+.createRepo .mdCode pre {
+  margin: 0;
+  padding: 14px;
+  overflow-x: auto;
+  background: transparent;
+  font: 500 14px/1.7 var(--mono);
+  color: #e6edf3;
+}
+
+.createRepo .mdPreview {
+  margin-top: 12px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+}
+
+.createRepo .mdPreview h2,
+.createRepo .mdPreview h3 {
+  margin: 0 0 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--divider);
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--text);
+}
+
+.createRepo .mdPreview h2 {
+  font-size: 1.6rem;
+}
+
+.createRepo .mdPreview h3 {
+  margin-top: 14px;
+  font-size: 1.25rem;
+}
+
+.createRepo .mdPreview p {
+  margin: 0 0 8px;
+}
+
+.createRepo .legend {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.createRepo .legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--soft);
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--body);
+}
+
+.createRepo .legendBadge {
+  flex-shrink: 0;
+  padding: 1px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--dark);
+  font: 600 12.5px var(--mono);
+  color: #4ade80;
+}
+
+/* ---------- Demo repository tag ---------- */
+
+.createRepo .demo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 12px;
+  margin: 12px 0;
+  padding: 9px 14px;
+  border: 1px solid var(--amber-line);
+  border-radius: 10px;
+  background: var(--amber-bg);
+  font-family: var(--mono);
+  font-size: 12.5px;
+  text-decoration: none;
+}
+
+.createRepo .demo span {
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+.createRepo .demo b {
+  color: var(--amber-text);
+}
+
+.createRepo .demo:hover {
+  text-decoration: none;
+  filter: brightness(0.98);
+}
+
+/* ---------- Video card ---------- */
+
+.createRepo .video {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #14532d, #0f3d24);
+  text-align: left;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.createRepo .video:hover {
+  transform: translateY(-2px);
+}
+
+.createRepo .videoPlay {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 52px;
+  height: 38px;
+  border-radius: 10px;
+  background: #ef4444;
+  color: #fff;
+}
+
+.createRepo .videoText strong {
+  display: block;
+  font-family: var(--head);
+  font-size: 16.5px;
+  line-height: 1.3;
+}
+
+.createRepo .videoText small {
+  display: block;
+  font-size: 13px;
+  color: #bbf7d0;
+}
+
+.createRepo .player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #000;
+}
+
+.createRepo .player iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 640px) {
+  .createRepo .prereqs,
+  .createRepo .tour,
+  .createRepo .legend {
+    grid-template-columns: 1fr;
+  }
+
+  .createRepo .art {
+    width: 100%;
+    max-width: 260px;
+  }
+}

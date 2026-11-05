@@ -6,9 +6,25 @@ sidebar_position: 3
 tags: [git, github, version-control, repository]
 description: In this tutorial, you will learn how to clone a GitHub repository to your local machine using Git commands.
 keywords: [git, github, clone repository, git clone, version control, github tutorial, git basics, repository management, git commands]
+hide_title: true
+footer_width: lesson
 ---
 
+import {
+  SetupLesson, LessonHeader, SetupChecklist, StepTimeline, Step, Shot, UpNextCard,
+} from '@site/src/components/setupLesson';
+
+<SetupLesson
+  storageKey="recodehive:how-to-clone-repository:done"
+  steps={["Get the URL","Open the terminal","Run the clone command","Open the project"]}
+  doneMessage={"🎉 All 4 steps done. Nice work!"}
+>
+
+<LessonHeader title={"How To Clone Repository"} platform="💻 Terminal">
+
 In this tutorial we will learn about how to clone a GitHub repository to your local machine.
+
+</LessonHeader>
 
 ## What is Cloning?
 
@@ -21,7 +37,11 @@ Before cloning a repository, make sure you have:
 - A GitHub account (optional, for private repositories)
 - The repository URL you want to clone
 
-## Steps to Clone a Repository
+<SetupChecklist title="Your checklist" />
+
+<StepTimeline>
+
+<Step n={1}>
 
 ### Step 1: Get the Repository URL
 
@@ -33,17 +53,33 @@ Before cloning a repository, make sure you have:
 https://github.com/sanjay-kv/Learn-GitHub.git
 ```
 
-<BrowserWindow url="https://github.com/sanjay-kv/Learn-GitHub" bodyStyle={{padding: 0}}>    
-  [![GitHub](./assets/17-Git-clone.png)](https://github.com/sanjay-kv/Learn-GitHub)
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/Learn-GitHub" bodyStyle={{padding: 0}}>
+
+[![GitHub](./assets/17-Git-clone.png)](https://github.com/sanjay-kv/Learn-GitHub)
+
 </BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={2}>
 
 ### Step 2: Open Command Line/Terminal
 
 Open your command prompt (Windows) or terminal (Mac/Linux) and navigate to the directory where you want to clone the repository.
 
-<BrowserWindow url="https://github.com/sanjay-kv/Learn-GitHub" bodyStyle={{padding: 0}}>    
-  [![GitHub](./assets/18-cmd-git.png)](https://github.com/sanjay-kv/Learn-GitHub)
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/Learn-GitHub" bodyStyle={{padding: 0}}>
+
+[![GitHub](./assets/18-cmd-git.png)](https://github.com/sanjay-kv/Learn-GitHub)
+
 </BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={3}>
 
 ### Step 3: Run the Clone Command
 
@@ -58,9 +94,17 @@ This command will:
 2. Download all files and commit history
 3. Set up the remote connection automatically
 
-<BrowserWindow url="https://github.com/sanjay-kv/Learn-GitHub" bodyStyle={{padding: 0}}>    
-  [![GitHub](./assets/19-clonned-files.png)](https://github.com/sanjay-kv/Learn-GitHub)
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/Learn-GitHub" bodyStyle={{padding: 0}}>
+
+[![GitHub](./assets/19-clonned-files.png)](https://github.com/sanjay-kv/Learn-GitHub)
+
 </BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={4}>
 
 ### Step 4: Navigate to the Cloned Repository
 
@@ -69,6 +113,10 @@ After cloning, navigate into the newly created directory:
 ```bash
 cd Learn-GitHub
 ```
+
+</Step>
+
+</StepTimeline>
 
 ## Cloning Options
 
@@ -106,7 +154,10 @@ git clone -b branch-name https://github.com/sanjay-kv/Learn-GitHub.git
 
 :::
 
-
 ## Conclusion
 
 Cloning a repository is a fundamental Git operation that allows you to work on projects locally. By following these steps, you can easily clone any GitHub repository and start contributing to projects or working on your own code locally.
+
+<UpNextCard />
+
+</SetupLesson>

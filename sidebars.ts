@@ -89,9 +89,6 @@ const sidebars: SidebarsConfig = {
           collapsed: true,
           items: [
             "GitHub/Fun-Profile-Customizations/Why-Customize",
-            "GitHub/Fun-Profile-Customizations/Anurag-Hazra's-GitHub-Readme-Cards",
-            "GitHub/Fun-Profile-Customizations/Trophy-Case-Streaks",
-            "GitHub/Fun-Profile-Customizations/Snake-Contribution-Animation",
           ],
         },
       ],

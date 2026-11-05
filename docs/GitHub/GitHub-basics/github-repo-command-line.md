@@ -3,37 +3,66 @@ id: github-repo-command-line
 title: Create Repo Via Command line 
 sidebar_label: Create Repo Via Command line 
 sidebar_position: 2
-tags: [html, web-development, document-structure,]
-description: In this tutorial, you will learn about the structure of an HTML document and how to create a basic HTML document.
+tags: [git, github, command-line, repository]
+description: In this tutorial, you will learn how to create a GitHub repository and push your first files to it from the command line.
+hide_title: true
+footer_width: lesson
 ---
 
-HTML (Hypertext Markup Language) is the standard markup language for creating web pages. It provides the structure and layout of the content on the web. In this tutorial, you will learn about the syntax and structure of HTML.
+import {
+  SetupLesson, LessonHeader, SetupChecklist, StepTimeline, Step, Shot, UpNextCard,
+} from '@site/src/components/setupLesson';
+
+<SetupLesson
+  storageKey="recodehive:github-repo-command-line:done"
+  steps={["Create the repository","Add and push files"]}
+  doneMessage={"🎉 All 2 steps done. Nice work!"}
+>
+
+<LessonHeader title={"Create Repo Via Command line"} platform="💻 Terminal">
+
+In this tutorial, you will learn how to create a GitHub repository and push your first files to it from the command line.
+
+</LessonHeader>
 
 ## Prerequisites
 
 1. You should have a GitHub account.
 2. You should have a basic understanding of how Git works and ensure Git is installed and running on your operating system.
 
+<SetupChecklist title="Your checklist" />
 
+<StepTimeline>
 
-### How to create Github Repository
+<Step n={1}>
 
-Step 1: Go to GitHub and create a new Repository.
+### Step 1: How to create Github Repository
 
-    <BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/1-GitHub-repo.png)](https://github.com/sanjay-kv)
-    </BrowserWindow>
+**1.** Go to GitHub and create a new Repository.
+
+<Shot>
+<BrowserWindow url="https://github.com" bodyStyle={{padding: 0}}>
+
+[![GitHub](./assets/1-GitHub-repo.png)](https://github.com/sanjay-kv)
+
+</BrowserWindow>
+</Shot>
+
 <br />
 
-Step 2: Specify the name of your project, make it public or private, check the option to include a README file. Then click on Create repository on the button below.
+**2.** Specify the name of your project, make it public or private, check the option to include a README file. Then click on Create repository on the button below.
 
+<Shot>
+<BrowserWindow url="https://github.com/new" bodyStyle={{padding: 0}}>
 
-    <BrowserWindow url="https://github.com/new" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/2-repo-create-github.png)](https://github.com/sanjay-kv)
-    </BrowserWindow>
+[![GitHub](./assets/2-repo-create-github.png)](https://github.com/sanjay-kv)
+
+</BrowserWindow>
+</Shot>
+
 Once the repository is created, you'll see a screen similar to the one below, the explanation for each element is provided below. 
  
-  ```html title="create a new repository on the command line"
+  ```bash title="create a new repository on the command line"
 echo "# demo-repo" >> README.md
 git init
 git add README.md
@@ -42,79 +71,87 @@ git branch -M main
 git remote add origin https://github.com/sanjay-kv/demo-repo.git
 git push -u origin main
     ```
-    <BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/3-command-line-exec.png)](https://github.com/sanjay-kv)
-    </BrowserWindow>
 
-- **`<!DOCTYPE html>`**: Declares the document type and version of HTML.
-- **`<html>`**: Root element that contains all other elements.
-- **`<head>`**: Contains metadata about the document. It includes elements like `<meta>` and `<title>`.
-- **`<meta charset="UTF-8" />`**: Specifies the character encoding of the document.
-- **`<meta name="viewport" content="width=device-width, initial-scale=1.0" />`**: Sets the viewport properties for responsive design.
-- **`<title>`**: Sets the title of the document (displayed in the browser tab).
-- **`<body>`**: Contains the visible content of the document.
-- **`<!-- Your content goes here -->`**: Represents a comment that is not displayed in the browser.
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>
 
+[![GitHub](./assets/3-command-line-exec.png)](https://github.com/sanjay-kv)
 
-### Browser Rendering
+</BrowserWindow>
+</Shot>
 
-    <BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/12-add-file.png)](https://github.com/sanjay-kv)
-    </BrowserWindow>
+</Step>
 
+<Step n={2}>
 
-When the above HTML code is rendered in a browser, it will display the following content:
+### Step 2: Browser Rendering
 
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>
 
-    <BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/13-cmd-git.png)](https://github.com/sanjay-kv)
-    </BrowserWindow>
+[![GitHub](./assets/12-add-file.png)](https://github.com/sanjay-kv)
 
-When the above HTML code is rendered in a browser, it will display the following content:
+</BrowserWindow>
+</Shot>
 
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>
 
-    <BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/14-git-command-add.png)](https://github.com/sanjay-kv)
-    </BrowserWindow>
+[![GitHub](./assets/13-cmd-git.png)](https://github.com/sanjay-kv)
+
+</BrowserWindow>
+</Shot>
+
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>
+
+[![GitHub](./assets/14-git-command-add.png)](https://github.com/sanjay-kv)
+
+</BrowserWindow>
+</Shot>
 
 Now you can see the new file has been added to your local system
 
-When the above HTML code is rendered in a browser, it will display the following content:
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>
 
+[![GitHub](./assets/15-push-changes.png)](https://github.com/sanjay-kv)
 
-    <BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/15-push-changes.png)](https://github.com/sanjay-kv)
-    </BrowserWindow>
+</BrowserWindow>
+</Shot>
 
+**10.** Once the work is done, click save and open cmd or Terminal
 
-When the above HTML code is rendered in a browser, it will display the following content:
-How to push Github Repository?
-Step 10:  Once the work is done, click save and open cmd or Terminal
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>
 
-    <BrowserWindow url="https://github.com/sanjay-kv/demo-repo" bodyStyle={{padding: 0}}>    
-     [![GitHub](./assets/16-remote-repo.png)](https://github.com/sanjay-kv)
-    </BrowserWindow>
+[![GitHub](./assets/16-remote-repo.png)](https://github.com/sanjay-kv)
 
-Step 11: Initially when I was creating the repo I used Git add * to add all files in one go.
+</BrowserWindow>
+</Shot>
+
+**11.** Initially when I was creating the repo I used Git add * to add all files in one go.
 
 If you are committing for the first time, Git may prompt you to enter your GitHub email id and username to proceed. 
 The screenshot below shows an example of the prompt. After entering these details, when you run the git push command, a browser window may open asking you to sign in to GitHub.
 
-  ```html title="create a new repository on the command line"
+  ```bash title="create a new repository on the command line"
 git config --global user.email "Enter your github Email"
 git config --global user.name "Github username"
     ```
 
+</Step>
+
+</StepTimeline>
+
 ### Watch the video Tutorial
-
-
-
 
 <iframe width="880" height="480" src="https://www.youtube.com/embed/DO38CZcw5pg?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63" title="Github create repo using command line" style={{ border: "none" }} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ## Conclusion
 
-In this tutorial, you learned about the syntax and structure of HTML. HTML syntax consists of elements, tags, and attributes that define the structure and content of a web page.
+In this tutorial, you created a repository on GitHub, then used Git on the command line to add a file, commit it and push it to the remote repository.
 
-A HTML document follows a basic structure with elements like `<!DOCTYPE html>`, `<html>`, `<head>`, `<title>`, `<meta>`, and `<body>`.
- Understanding HTML syntax and structure is essential for creating web pages and applications.
+<UpNextCard />
+
+</SetupLesson>
