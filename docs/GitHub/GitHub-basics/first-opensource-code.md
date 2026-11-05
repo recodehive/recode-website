@@ -6,13 +6,25 @@ sidebar_position: 5
 tags: [git, github, open-source, contribution, pull-request, fork]
 description: In this tutorial, you will learn how to make your first open source contribution on GitHub without using the command line. Learn to fork, edit, commit, and create pull requests directly through the GitHub web interface.
 keywords: [git, github, open source, first contribution, pull request, fork repository, github tutorial, web-based editing, opensource contribution, beginner guide, github workflow, contributing to open source]
+hide_title: true
+footer_width: lesson
 ---
 
-# First Open Source Project – Making Your First Contribution
+import {
+  SetupLesson, LessonHeader, SetupChecklist, StepTimeline, Step, Shot, UpNextCard,
+} from '@site/src/components/setupLesson';
 
-## Introduction
+<SetupLesson
+  storageKey="recodehive:first-opensource-code:done"
+  steps={["Find the repository","Fork the repository","Edit on GitHub","Commit changes","Create a pull request","Wait for review"]}
+  doneMessage={"🎉 All 6 steps done. Nice work!"}
+>
+
+<LessonHeader title={"Let's Do First Opensource Project"} platform="🌐 Web">
 
 Welcome to your first open source contribution! In this tutorial, you will learn how to contribute to an open source project directly through GitHub's web interface—no command line required! This is perfect for beginners who want to start contributing to open source projects.
+
+</LessonHeader>
 
 ## What is Open Source?
 
@@ -41,16 +53,26 @@ The typical open source contribution workflow involves:
 
 Let's walk through each step!
 
-## Step 1: Find the Repository
+<SetupChecklist title="Your checklist" />
+
+<StepTimeline>
+
+<Step n={1}>
+
+### Step 1: Find the Repository
 
 Navigate to the practice repository: [https://github.com/sanjay-kv/Open-source-Practice](https://github.com/sanjay-kv/Open-source-Practice)
 
 This is a beginner-friendly repository designed for practicing open source contributions.
 
+<Shot>
 <BrowserWindow url="https://github.com/sanjay-kv/Open-source-Practice" bodyStyle={{padding: 0}}>
-  [![GitHub](./assets/23-opensource.png)](https://github.com/sanjay-kv/Open-source-Practice)
-  <div style={{ textAlign: "center" }}><small>Step 1: Repository Home Page</small></div>
+
+[![GitHub](./assets/23-opensource.png)](https://github.com/sanjay-kv/Open-source-Practice)
+<div style={{ textAlign: "center" }}><small>Step 1: Repository Home Page</small></div>
+
 </BrowserWindow>
+</Shot>
 
 Take a moment to:
 - Read the README file to understand the project
@@ -58,7 +80,11 @@ Take a moment to:
 - Look at existing issues or pull requests
 - Understand what kind of contributions are welcomed
 
-## Step 2: Fork the Repository
+</Step>
+
+<Step n={2}>
+
+### Step 2: Fork the Repository
 
 Forking creates your own copy of the repository where you can make changes without affecting the original project.
 
@@ -66,43 +92,63 @@ Forking creates your own copy of the repository where you can make changes witho
 2. Select your account as the destination
 3. Wait for GitHub to create your fork
 
+<Shot>
 <BrowserWindow url="https://github.com/sanjay-kv/Learn-GitHub/fork" bodyStyle={{padding: 0}}>
-  [![GitHub](./assets/21-final-fork.png)](https://github.com/sanjay-kv/Learn-GitHub/fork)
-  <div style={{ textAlign: "center" }}><small>Step 2: Forking the Repository</small></div>
-</BrowserWindow>
 
-<BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
-  [![GitHub](./assets/24-opensource-fork.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style={{ textAlign: "center" }}><small>Step 3: Fork Button Location</small></div>
+[![GitHub](./assets/21-final-fork.png)](https://github.com/sanjay-kv/Learn-GitHub/fork)
+<div style={{ textAlign: "center" }}><small>Step 2: Forking the Repository</small></div>
+
 </BrowserWindow>
+</Shot>
+
+<Shot>
+<BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
+
+[![GitHub](./assets/24-opensource-fork.png)](https://github.com/sandemouser/Learn-GitHub)
+<div style={{ textAlign: "center" }}><small>Step 3: Fork Button Location</small></div>
+
+</BrowserWindow>
+</Shot>
 
 Once the fork is complete, you'll see:
 - Your username in the repository name
 - A note saying "forked from [original-repo]"
 
+<Shot>
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
-  [![GitHub](./assets/25-opensource-done.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style={{ textAlign: "center" }}><small>Step 4: Fork Complete</small></div>
-</BrowserWindow>
 
-## Step 3: Edit files directly on GitHub
+[![GitHub](./assets/25-opensource-done.png)](https://github.com/sandemouser/Learn-GitHub)
+<div style={{ textAlign: "center" }}><small>Step 4: Fork Complete</small></div>
+
+</BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={3}>
+
+### Step 3: Edit files directly on GitHub
 
 One of the great features of GitHub is the ability to edit files directly in your browser without cloning the repository to your computer.
 
-### Finding the File to Edit
+#### Finding the File to Edit
 
 1. Navigate to the file you want to edit (usually specified in the project's README)
 2. Click on the file name to view it
 3. Click the **pencil icon** (✏️) in the top-right corner to edit
 
-### Making Your Changes
+#### Making Your Changes
 
 For this practice repository, you'll typically add your name to a contributors list:
 
+<Shot>
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
-  [![GitHub](./assets/26-add-name.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style={{ textAlign: "center" }}><small>Step 5: Add Your Name</small></div>
+
+[![GitHub](./assets/26-add-name.png)](https://github.com/sandemouser/Learn-GitHub)
+<div style={{ textAlign: "center" }}><small>Step 5: Add Your Name</small></div>
+
 </BrowserWindow>
+</Shot>
 
 Common first contributions include:
 - Adding your name to a contributors list
@@ -111,10 +157,14 @@ Common first contributions include:
 - Adding a translation
 - Improving README formatting
 
+<Shot>
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
-  [![GitHub](./assets/27-added-git-line.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style={{ textAlign: "center" }}><small>Step 6: Changes Made</small></div>
+
+[![GitHub](./assets/27-added-git-line.png)](https://github.com/sandemouser/Learn-GitHub)
+<div style={{ textAlign: "center" }}><small>Step 6: Changes Made</small></div>
+
 </BrowserWindow>
+</Shot>
 
 :::tip Best Practices for Making Changes
 
@@ -126,11 +176,15 @@ Common first contributions include:
 
 :::
 
-## Step 4: Commit your changes
+</Step>
+
+<Step n={4}>
+
+### Step 4: Commit your changes
 
 After making your edits, you need to commit them. A commit is like saving a snapshot of your changes with a description.
 
-### Writing a good commit message
+#### Writing a good commit message
 
 1. Scroll down to the "Commit changes" section
 2. Write a clear, concise commit message describing what you changed
@@ -138,10 +192,14 @@ After making your edits, you need to commit them. A commit is like saving a snap
 4. Select "Commit directly to the main branch" for simple changes
 5. Click **Commit changes**
 
+<Shot>
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
-  [![GitHub](./assets/28-opensource-commit.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style={{ textAlign: "center" }}><small>Step 7: Commit Changes</small></div>
+
+[![GitHub](./assets/28-opensource-commit.png)](https://github.com/sandemouser/Learn-GitHub)
+<div style={{ textAlign: "center" }}><small>Step 7: Commit Changes</small></div>
+
 </BrowserWindow>
+</Shot>
 
 **Good commit message examples:**
 - ✅ "Add John Doe to contributors list"
@@ -153,16 +211,24 @@ After making your edits, you need to commit them. A commit is like saving a snap
 - ❌ "Changes"
 - ❌ "asdfasdf"
 
+<Shot>
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
-  [![GitHub](./assets/29-git-final-commit.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style={{ textAlign: "center" }}><small>Step 8: Final Commit Review</small></div>
-</BrowserWindow>
 
-## Step 5: Create a Pull Request
+[![GitHub](./assets/29-git-final-commit.png)](https://github.com/sandemouser/Learn-GitHub)
+<div style={{ textAlign: "center" }}><small>Step 8: Final Commit Review</small></div>
+
+</BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={5}>
+
+### Step 5: Create a Pull Request
 
 Now that you've made changes in your fork, it's time to propose those changes to the original repository through a **Pull Request** (PR).
 
-### What is a Pull Request?
+#### What is a Pull Request?
 
 A Pull Request is a way to propose changes to a repository. It allows:
 - Project maintainers to review your changes
@@ -170,7 +236,7 @@ A Pull Request is a way to propose changes to a repository. It allows:
 - Automated tests to run on your code
 - Iterative improvements before merging
 
-### Steps to Create a Pull Request
+#### Steps to Create a Pull Request
 
 1. **Navigate to the original repository** (not your fork)
 2. Click on the **Pull Requests** tab
@@ -186,12 +252,16 @@ A Pull Request is a way to propose changes to a repository. It allows:
 8. Add a descriptive title and detailed description
 9. Click **Create pull request** again to submit
 
+<Shot>
 <BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
-  [![GitHub](./assets/30-opensource-final-check.png)](https://github.com/sandemouser/Learn-GitHub)
-  <div style={{ textAlign: "center" }}><small>Step 9: Create Pull Request</small></div>
-</BrowserWindow>
 
-### Writing a Good Pull Request Description
+[![GitHub](./assets/30-opensource-final-check.png)](https://github.com/sandemouser/Learn-GitHub)
+<div style={{ textAlign: "center" }}><small>Step 9: Create Pull Request</small></div>
+
+</BrowserWindow>
+</Shot>
+
+#### Writing a Good Pull Request Description
 
 Your PR description should include:
 - **What** changes you made
@@ -215,17 +285,17 @@ Added my name to the contributors list as per the contribution guidelines.
 - [x] Read the contribution guidelines
 ```
 
-## Understanding "Compare Across Forks"
+#### Understanding "Compare Across Forks"
 
 The **Compare across forks** feature is crucial for creating pull requests from your fork to the original repository.
 
-### What Does It Do?
+#### What Does It Do?
 
 This feature allows you to compare changes between:
 - Your forked repository (where you made changes)
 - The original repository (where you want to contribute)
 
-### Why Is It Important?
+#### Why Is It Important?
 
 The comparison view shows:
 - **All commits** you've made since forking
@@ -234,7 +304,7 @@ The comparison view shows:
 - **Deletions** highlighted in red
 - **Conflict warnings** if there are any
 
-### How to Use It Effectively
+#### How to Use It Effectively
 
 1. **Select the correct branches:**
    - Base: Original repository's main branch
@@ -250,7 +320,7 @@ The comparison view shows:
    - Update your fork if needed
    - Resolve conflicts before creating PR
 
-### Benefits of Comparing
+#### Benefits of Comparing
 
 - **Prevents mistakes** - Catch unintended changes early
 - **Improves quality** - Review your work before submission
@@ -267,7 +337,11 @@ The comparison view shows:
 
 :::
 
-## Step 6: Wait for Review
+</Step>
+
+<Step n={6}>
+
+### Step 6: Wait for Review
 
 After creating your pull request:
 
@@ -276,6 +350,9 @@ After creating your pull request:
 3. **Make requested changes** - Update your PR based on feedback
 4. **Stay professional** - Be courteous and respectful
 
+</Step>
+
+</StepTimeline>
 
 ## Watch This Video Tutorial
 
@@ -315,3 +392,6 @@ Congratulations! You've learned how to make your first open source contribution 
 - ✅ Compare changes across forks
 - ✅ Create pull requests
 
+<UpNextCard />
+
+</SetupLesson>

@@ -1,18 +1,44 @@
-# Fun GitHub Profile Customizations
+---
+title: "Fun GitHub Profile Customizations"
+hide_title: true
+footer_width: lesson
+---
+
+import {
+  SetupLesson, LessonHeader, SetupChecklist, StepTimeline, Step, Shot, UpNextCard,
+} from '@site/src/components/setupLesson';
+
+<SetupLesson
+  storageKey="recodehive:why-customize:done"
+  steps={["Create your profile repo","Why it pays off"]}
+  doneMessage={"🎉 All 2 steps done. Nice work!"}
+>
+
+<LessonHeader title={"Fun GitHub Profile Customizations"} platform="🌐 Web">
 
 Your GitHub profile Readme is a prime piece of digital real estate. It’s more than just a list of code repositories—it's your developer brand, your digital workshop, and your **first impression** on the global coding community. Customizing it is essential for promoting the dynamic developer culture of Recode Hive and maximizing your personal visibility.
 
----
+</LessonHeader>
 
 ## Why Customize?
 
-### 🛠️ The Essential First Step: Create Your Profile Repository
+<SetupChecklist title="Your checklist" />
+
+<StepTimeline>
+
+<Step n={1}>
+
+### Step 1: 🛠️ The Essential First Step: Create Your Profile Repository
 
 Before you can add any dynamic stats or flair, you must complete the single, most important requirement:
 
 **Requirement:** You must create a **public GitHub repository** named *exactly* the same as your GitHub username (e.g., if your username is `recode`, the repo must be `recode/recode`). When you create this special repository, GitHub will automatically use its `README.md` file as the content for your public profile page.
 
-### Why Personalization Pays Off
+</Step>
+
+<Step n={2}>
+
+### Step 2: Why Personalization Pays Off
 
 Once your profile repo is set up, customization offers tangible benefits that go far beyond aesthetics:
 
@@ -23,3 +49,11 @@ Once your profile repo is set up, customization offers tangible benefits that go
 - 3. **Showcase Your Identity and Skills:** Customization allows you to highlight projects that matter most to you, whether it's a specific Recode Hive project or a new language you're mastering. Your profile becomes a curated **showcase of your specific expertise** and personality.
 
 - 4. **Professional Polish and Detail:** A well-structured, customized profile demonstrates **attention to detail, technical flair, and ownership**. These soft skills are highly valued in any professional development setting.
+
+</Step>
+
+</StepTimeline>
+
+<UpNextCard />
+
+</SetupLesson>

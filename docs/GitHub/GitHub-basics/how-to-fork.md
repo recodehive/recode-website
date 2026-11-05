@@ -6,9 +6,25 @@ sidebar_position: 4
 tags: [git, github, fork, open-source, contribution]
 description: In this tutorial, you will learn how to fork a GitHub repository and create your own copy to work on and contribute back to the original project.
 keywords: [git, github, fork repository, forking, open source, contribution, pull request, github fork, collaboration, repository management]
+hide_title: true
+footer_width: lesson
 ---
 
+import {
+  SetupLesson, LessonHeader, SetupChecklist, StepTimeline, Step, Shot, UpNextCard,
+} from '@site/src/components/setupLesson';
+
+<SetupLesson
+  storageKey="recodehive:how-to-fork:done"
+  steps={["Open the repository","Click Fork","Wait for the fork","Verify your fork"]}
+  doneMessage={"🎉 All 4 steps done. Nice work!"}
+>
+
+<LessonHeader title={"How to Fork a Repository"} platform="🌐 Web">
+
 In this tutorial, you will learn how to fork a GitHub repository and create your own copy of a project that you can freely experiment with and contribute back to.
+
+</LessonHeader>
 
 ## What is Forking?
 
@@ -26,7 +42,11 @@ You should fork a repository when you want to:
 - Experiment with code without affecting the original
 - Create your own version of a project
 
-## Steps to Fork a Repository
+<SetupChecklist title="Your checklist" />
+
+<StepTimeline>
+
+<Step n={1}>
 
 ### Step 1: Navigate to the Repository
 
@@ -38,9 +58,17 @@ Make sure you're logged into your GitHub account.
 https://github.com/sanjay-kv/Learn-GitHub
 ```
 
-<BrowserWindow url="https://github.com/sanjay-kv/Open-source-Practice" bodyStyle={{padding: 0}}>    
-  [![GitHub](./assets/20-git-fork.png)](https://github.com/sanjay-kv/Open-source-Practice)
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/Open-source-Practice" bodyStyle={{padding: 0}}>
+
+[![GitHub](./assets/20-git-fork.png)](https://github.com/sanjay-kv/Open-source-Practice)
+
 </BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={2}>
 
 ### Step 2: Click the Fork Button
 
@@ -48,17 +76,33 @@ In the top-right corner of the repository page, you'll see a "Fork" button. Clic
 
 GitHub will show you a screen asking where you want to fork the repository (usually to your personal account).
 
-<BrowserWindow url="https://github.com/sanjay-kv/Learn-GitHub/fork" bodyStyle={{padding: 0}}>    
-  [![GitHub](./assets/21-final-fork.png)](https://github.com/sanjay-kv/Learn-GitHub/fork)
+<Shot>
+<BrowserWindow url="https://github.com/sanjay-kv/Learn-GitHub/fork" bodyStyle={{padding: 0}}>
+
+[![GitHub](./assets/21-final-fork.png)](https://github.com/sanjay-kv/Learn-GitHub/fork)
+
 </BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={3}>
 
 ### Step 3: Wait for the Fork to Complete
 
 GitHub will create a copy of the repository under your account. This process usually takes a few seconds. Once complete, you'll be redirected to your forked repository.
 
-<BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>    
-  [![GitHub](./assets/22-Forked-Project.png)](https://github.com/sandemouser/Learn-GitHub)
+<Shot>
+<BrowserWindow url="https://github.com/sandemouser/Learn-GitHub" bodyStyle={{padding: 0}}>
+
+[![GitHub](./assets/22-Forked-Project.png)](https://github.com/sandemouser/Learn-GitHub)
+
 </BrowserWindow>
+</Shot>
+
+</Step>
+
+<Step n={4}>
 
 ### Step 4: Verify Your Fork
 
@@ -67,6 +111,9 @@ After forking, you should see:
 - A note indicating "forked from sanjay-kv/Learn-GitHub"
 - All the files and branches from the original repository
 
+</Step>
+
+</StepTimeline>
 
 :::tip Best Practices for Forking and Contributing
 
@@ -92,7 +139,6 @@ Understanding the difference is important:
 | **Connection** | Maintains link to original repo | No direct link to original repo |
 | **Visibility** | Public on your GitHub profile | Only on your computer |
 
-
 ## Deleting a Fork
 
 If you no longer need your fork:
@@ -111,3 +157,6 @@ Deleting a fork is permanent and cannot be undone. Make sure you have backed up 
 
 Forking is a powerful feature that enables collaboration and experimentation in the GitHub ecosystem. By forking repositories, you can contribute to open-source projects, learn from others' code, and create your own versions of existing projects without affecting the original.
 
+<UpNextCard />
+
+</SetupLesson>
