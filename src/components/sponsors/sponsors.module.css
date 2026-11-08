@@ -62,7 +62,7 @@ main.root .h2 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 40
 .hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 32px; align-items: center; padding: 72px 0 80px; }
 .heroText { min-width: 0; }
 main.root .h1 { font-family: "Space Grotesk", "Inter", sans-serif; font-size: 60px; line-height: 1.05; font-weight: 700; letter-spacing: -0.03em; color: var(--text); }
-.gradientText { background: linear-gradient(90deg, #db2777, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+.gradientText { color: #2e8555; }
 .lede { margin: 20px 0 26px; max-width: 520px; font-size: 17.5px; line-height: 1.6; color: var(--text-2); }
 .heroButtons { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .stats { display: flex; max-width: 520px; margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--border); }
