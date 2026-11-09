@@ -149,6 +149,7 @@ export default function ChangelogPage(): JSX.Element {
     <Layout
       title="Changelog"
       description="Stay up-to-date with what's new at recode hive."
+      noIndex
     >
       <div className="changelog__page">
         <div className="changelog__header">
