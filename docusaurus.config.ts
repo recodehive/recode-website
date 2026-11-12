@@ -49,13 +49,6 @@ const config: Config = {
       async: false,
     },
     {
-      src: "https://www.googletagmanager.com/gtag/js?id=G-W02Z2VJYCR",
-      async: true,
-    },
-    {
-      src: "/gtag-init.js",
-    },
-    {
       src: "/pinterest-init.js",
     },
   ],
