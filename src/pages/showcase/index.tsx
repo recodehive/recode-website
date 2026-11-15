@@ -233,3 +233,5 @@ export default function Showcase(): ReactNode {
     </Layout>
   );
 }
+
+export const prepareUserState = (): any => undefined;
