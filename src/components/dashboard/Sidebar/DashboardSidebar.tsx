@@ -2,6 +2,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "@docusaurus/Link";
 import { useLocation } from "@docusaurus/router";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import { SignInButton, useUser, useClerk } from "@clerk/react";
 import {
   LayoutGrid,
@@ -66,20 +67,25 @@ export default function DashboardSidebar({
   activeTab,
   onTabChange,
 }: DashboardSidebarProps): React.JSX.Element {
+  const { siteConfig } = useDocusaurusContext();
+  const hasClerk = Boolean(siteConfig.customFields?.clerkPublishableKey);
+
   let user: ReturnType<typeof useUser>["user"] | undefined;
   let authLoaded = true;
   let signOut: ReturnType<typeof useClerk>["signOut"] | undefined;
   let openUserProfile: ReturnType<typeof useClerk>["openUserProfile"] | undefined;
 
-  try {
-    const auth = useUser();
-    user = auth.user;
-    authLoaded = auth.isLoaded;
-    const clerk = useClerk();
-    signOut = clerk.signOut;
-    openUserProfile = clerk.openUserProfile;
-  } catch {
-    // The dashboard remains usable in local builds without Clerk configuration.
+  if (hasClerk) {
+    try {
+      const auth = useUser();
+      user = auth.user;
+      authLoaded = auth.isLoaded;
+      const clerk = useClerk();
+      signOut = clerk.signOut;
+      openUserProfile = clerk.openUserProfile;
+    } catch {
+      // The dashboard remains usable in local builds without Clerk configuration.
+    }
   }
 
   const [collapsed, setCollapsed] = useState(false);
@@ -195,7 +201,7 @@ export default function DashboardSidebar({
               </div>
             )}
           </>
-        ) : (
+        ) : hasClerk ? (
           <SignInButton mode="modal">
             <button
               type="button"
@@ -207,6 +213,16 @@ export default function DashboardSidebar({
               {!collapsed && <span>Sign in with GitHub</span>}
             </button>
           </SignInButton>
+        ) : (
+          <button
+            type="button"
+            className="dashboard-rail-signin"
+            aria-label="Sign in with GitHub"
+            title={collapsed ? "Sign in with GitHub" : undefined}
+          >
+            <GithubMark />
+            {!collapsed && <span>Sign in with GitHub</span>}
+          </button>
         )}
       </div>
 

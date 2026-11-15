@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { SignInButton } from '@clerk/react';
 import FloatingContributors from '../../FloatingContributors';
 import { useHalloween } from '../../Halloween/useHalloween';
@@ -12,6 +13,8 @@ export const GithubMark = ({ size = 18 }: { size?: number }) => (
 );
 
 export default function SignedOutHero() {
+  const { siteConfig } = useDocusaurusContext();
+  const hasClerk = Boolean(siteConfig.customFields?.clerkPublishableKey);
   const halloween = useHalloween();
   const [showCard, setShowCard] = useState(true);
 
@@ -27,11 +30,17 @@ export default function SignedOutHero() {
           Sign in with GitHub to see your merged PRs, contribution streak and leaderboard rank. Community stats below are public.
         </p>
         <div className={styles.actions}>
-          <SignInButton mode="modal">
+          {hasClerk ? (
+            <SignInButton mode="modal">
+              <button type="button" className={styles.btnPrimary}>
+                <GithubMark /> Sign in with GitHub
+              </button>
+            </SignInButton>
+          ) : (
             <button type="button" className={styles.btnPrimary}>
               <GithubMark /> Sign in with GitHub
             </button>
-          </SignInButton>
+          )}
           <Link className={styles.btnOutline} to="/dashboard#leaderboard">Browse the leaderboard</Link>
         </div>
       </div>
