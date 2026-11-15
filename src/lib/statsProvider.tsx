@@ -4,14 +4,14 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
-import { githubService, type GitHubOrgStats } from "../services/githubService";
+import { githubService } from "../services/githubService";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 // Time filter types
-import { POINTS_BY_LEVEL } from "../components/dashboard/LeaderBoard/pointsConfig";
 
 export type TimeFilter = "week" | "month" | "year" | "all";
 
@@ -108,10 +108,7 @@ interface CommunityStatsProviderProps {
   children: ReactNode;
 }
 
-const GITHUB_ORG = "recodehive";
-const MAX_CONCURRENT_REQUESTS = 15;
 const CACHE_DURATION = 20 * 60 * 1000; // 20 minutes cache
-const MAX_PAGES_PER_REPO = 10;
 
 // Bot/automation accounts to exclude from the leaderboard everywhere —
 // both the stats sidebar and the contributor table must agree on this list,
@@ -130,31 +127,6 @@ export const EXCLUDED_USERS = [
 
 const isExcludedUser = (username: string): boolean =>
   EXCLUDED_USERS.some((u) => u.toLowerCase() === username.toLowerCase());
-
-// Function to calculate points based on PR labels
-const calculatePointsForPR = (labels?: Array<{ name: string }>): number => {
-  if (!labels || labels.length === 0) {
-    return 0; // No points if no labels
-  }
-
-  const labelNames = labels.map((label) => label.name.toLowerCase());
-
-  // Check if PR has the "recode" label
-  if (!labelNames.includes("recode")) {
-    return 0; // No points if "recode" label is missing
-  }
-
-  // Check for level labels and assign points accordingly with new point system
-  const levelPointsMap = POINTS_BY_LEVEL;
-  const matchedLevel = labelNames.find((label) =>
-    levelPointsMap.hasOwnProperty(label),
-  );
-  if (matchedLevel) {
-    return levelPointsMap[matchedLevel];
-  }
-
-  return 0; // No points if no level label
-};
 
 // Time filter utility functions
 const getTimeFilterDate = (filter: TimeFilter): Date | null => {
@@ -251,8 +223,8 @@ export function CommunityStatsProvider({
   // Enhanced state for leaderboard data (stores all contributors with full PR history)
   const [allContributors, setAllContributors] = useState<FullContributor[]>([]);
 
-  // Cache state (stores raw data without filters)
-  const [cache, setCache] = useState<{
+  // Cache ref (stores raw data without filters across fetches without triggering re-render loops)
+  const cacheRef = useRef<{
     data: {
       contributors: FullContributor[];
       rawStats: { totalPRs: number };
@@ -428,19 +400,20 @@ export function CommunityStatsProvider({
     async (signal: AbortSignal) => {
       // Check cache first and load it immediately without showing loading state
       const now = Date.now();
-      const isCacheValid = cache.data && now - cache.timestamp < CACHE_DURATION;
+      const cached = cacheRef.current;
+      const isCacheValid = cached.data && now - cached.timestamp < CACHE_DURATION;
 
-      if (isCacheValid) {
+      if (isCacheValid && cached.data) {
         // Use cached data immediately
-        setAllContributors(cache.data.contributors);
+        setAllContributors(cached.data.contributors);
         setLoading(false);
         return;
       }
 
       // If cache is expired or empty, show cached data anyway but fetch fresh data
       // This provides immediate content while updating in the background
-      if (cache.data) {
-        setAllContributors(cache.data.contributors);
+      if (cached.data) {
+        setAllContributors(cached.data.contributors);
         setLoading(false); // Don't show loading state for background refresh
       } else {
         setLoading(true); // Only show loading on first load
@@ -472,13 +445,13 @@ export function CommunityStatsProvider({
         setAllContributors(contributorsArray);
 
         // Cache the results (raw data without filtering)
-        setCache({
+        cacheRef.current = {
           data: {
             contributors: contributorsArray,
-            rawStats: { totalPRs: statsData.totalContributors },
+            rawStats: { totalPRs: statsData.totalPRs ?? statsData.totalContributors },
           },
           timestamp: now,
-        });
+        };
       } catch (err: any) {
         if (err.name !== "AbortError") {
           console.error("Error fetching stats from backend:", err);
@@ -497,7 +470,7 @@ export function CommunityStatsProvider({
         setLoading(false);
       }
     },
-    [backendApiUrl, cache],
+    [backendApiUrl],
   );
 
   const clearCache = useCallback(() => {
@@ -507,7 +480,7 @@ export function CommunityStatsProvider({
       // ignore
     }
     githubService.clearCache();
-    setCache({ data: null, timestamp: 0 });
+    cacheRef.current = { data: null, timestamp: 0 };
     const abortController = new AbortController();
     fetchAllStats(abortController.signal);
   }, [fetchAllStats]);
