@@ -1,1037 +1,790 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, {
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent,
+  type ReactNode,
+} from "react";
 import Layout from "@theme/Layout";
 import Head from "@docusaurus/Head";
-import { motion } from "framer-motion";
-import "./courses.css";
+import Link from "@docusaurus/Link";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import styles from "./courses.module.css";
 
-// Animation variants for consistent animations
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+const GITHUB_PLAYLIST =
+  "https://www.youtube.com/playlist?list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63";
+const POSTMAN_PLAYLIST_ID = "PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF";
+const POSTMAN_PLAYLIST = `https://www.youtube.com/watch?v=O1ahDsq8DU0&list=${POSTMAN_PLAYLIST_ID}`;
+const REPO_URL = "https://github.com/recodehive/recode-website";
+const FIRST_LESSON = "/docs/GitHub/intro-github";
+
+const PAGE_TITLE = "Free Courses: GitHub and Postman";
+const PAGE_DESCRIPTION =
+  "Two free hands-on courses from recode hive: Git and GitHub with videos and written lessons, and the Postman API certification one task at a time.";
+
+type Lesson = { n: string; title: string; href: string };
+type Module = { title: string; lessons: Lesson[] };
+
+const docs = (path: string) => `/docs/GitHub/${path}`;
+
+const githubModules: Module[] = [
+  {
+    title: "Setup",
+    lessons: [
+      { n: "01", title: "Introduction of GitHub", href: FIRST_LESSON },
+      {
+        n: "02",
+        title: "Setup GitHub Account",
+        href: docs("setup-environment"),
+      },
+      {
+        n: "03",
+        title: "Setup Git on Windows",
+        href: docs("setup-environment/setup-git-on-windows"),
+      },
+      {
+        n: "04",
+        title: "Setup Git on Mac and Linux",
+        href: docs("setup-environment/setup-git-on-mac"),
+      },
+      {
+        n: "05",
+        title: "Git commands",
+        href: docs("setup-environment/git-commands"),
+      },
+    ],
+  },
+  {
+    title: "GitHub basics",
+    lessons: [
+      {
+        n: "06",
+        title: "Create GitHub Repo (GUI)",
+        href: docs("GitHub-basics/create-github-repo"),
+      },
+      {
+        n: "07",
+        title: "Create Repo Via Command line",
+        href: docs("GitHub-basics/github-repo-command-line"),
+      },
+      {
+        n: "08",
+        title: "How to clone repository",
+        href: docs("GitHub-basics/how-to-clone-repository"),
+      },
+      {
+        n: "09",
+        title: "How to Fork a Repository",
+        href: docs("GitHub-basics/how-to-fork"),
+      },
+      {
+        n: "10",
+        title: "First Opensource Project",
+        href: docs("GitHub-basics/first-opensource-code"),
+      },
+    ],
+  },
+  {
+    title: "Maintainer guide",
+    lessons: [
+      {
+        n: "11",
+        title: "Create Labels on GitHub",
+        href: docs("Maintainer-guide/github-labels"),
+      },
+      {
+        n: "12",
+        title: "Create Milestone on GitHub",
+        href: docs("Maintainer-guide/milestone"),
+      },
+      {
+        n: "13",
+        title: "How to Create GitHub Projects",
+        href: docs("Maintainer-guide/github-project"),
+      },
+      {
+        n: "14",
+        title: "How to Enable Discussions",
+        href: docs("Maintainer-guide/enable-dicussion"),
+      },
+    ],
+  },
+  {
+    title: "Profile",
+    lessons: [
+      {
+        n: "15",
+        title: "Why customize your GitHub profile",
+        href: docs("Fun-Profile-Customizations/Why-Customize"),
+      },
+    ],
+  },
+];
+
+const postmanVideo = (id: string) =>
+  `https://www.youtube.com/watch?v=${id}&list=${POSTMAN_PLAYLIST_ID}`;
+
+const postmanModule: Module = {
+  title: "Postman API certification, 9 videos",
+  lessons: [
+    {
+      n: "01",
+      title: "Getting started with Postman API certification",
+      href: POSTMAN_PLAYLIST,
+    },
+    {
+      n: "02",
+      title: "Your first API request",
+      href: postmanVideo("qjbL72odpPE"),
+    },
+    {
+      n: "03",
+      title: "Working with request parameters",
+      href: postmanVideo("GfTTuLN4gpI"),
+    },
+    {
+      n: "04",
+      title: "Sending data with Postman",
+      href: postmanVideo("KasLQclJu6c"),
+    },
+    {
+      n: "05",
+      title: "Variables in Postman",
+      href: postmanVideo("mNS6jG5nRqM"),
+    },
+    {
+      n: "06",
+      title: "Halfway check and bug fix",
+      href: postmanVideo("e99s27I4aXQ"),
+    },
+    { n: "07", title: "PATCH and DELETE", href: postmanVideo("6G4UAtnvnKo") },
+    {
+      n: "08",
+      title: "Final test to complete the certification",
+      href: postmanVideo("_kIw5xA9uis"),
+    },
+    {
+      n: "09",
+      title: "Claim your Postman certification badge",
+      href: postmanVideo("SGTu5Ck01C8"),
+    },
+  ],
 };
 
-const techTags = [
-  "AWS",
-  "Apache Airflow",
-  "Parquet",
-  "Avro",
-  "Microsoft Azure",
-  "Google BigQuery",
-  "CSV",
-  "Databricks",
-  "Azure Data Factory",
-  "Docker",
-  "Kafka",
-  "Google Cloud",
-  "GitHub",
-  "Apache NiFi",
-  "Snowflake",
-  "Looker",
-  "MAGE",
-  "NumPy",
-  "Pandas",
-  "PostgreSQL",
-  "Python",
-  "Apache Spark",
-  "SQL",
-];
-
-const partnerLogos = [
-  "/img/samsung.png",
-  "/img/oracle.png",
-  "/img/segment.png",
-  "/img/monday.png",
-  "/img/protonet.png",
-];
-
-const projects = [
-  "/img/blogs/awesome-project.png",
-  "/img/blogs/machine-learning-project.png",
-  "/img/blogs/Stackoverflow-analysis.png",
-  "/img/blogs/Scrape-ml-project.png",
-  "/img/blogs/opesource-project.png",
-];
-
-const testimonials = [
-  {
-    img: "https://dummyimage.com/80x80/222/fff&text=KP",
-    name: "Kumar Priyanshu",
-    review:
-      "I was thoroughly impressed by his clear, engaging communication and deep understanding of my issue. He listened attentively and offered valuable insights and solutions, leaving me extremely satisfied and confident in the guidance I received.",
-    stars: 5,
-  },
-  {
-    img: "https://dummyimage.com/80x80/333/fff&text=AQ",
-    name: "Ayesha Qureshi",
-    review:
-      "The entire session was incredibly valuable. Sir's detailed explanations of every aspect were exceptionally insightful and deepened my understanding",
-    stars: 5,
-  },
-  {
-    img: "https://dummyimage.com/80x80/444/fff&text=S",
-    name: "Sachin",
-    review:
-      "Sanjay has been a great support in knowing various career paths and upcoming tech. The call was very crisp but valueable at the same time. For sure I am gonna schedule a call probably next month to give him updates. Thanks a ton Sanjay :)",
-    stars: 5,
-  },
-];
-
-const courses = [
-  {
-    number: "01",
-    title: "Python for Data Engineering (Coming Soon)",
-    desc: "Learn to harness the power of Python for transforming and processing data at scale in our hands-on 'Python for Data Engineering' course. Build the skills needed to design robust data pipelines and optimize data workflows effectively.",
-    img: "https://dummyimage.com/300x150/222/fff&text=Python+for+DE",
-  },
-  {
-    number: "02",
-    title: "SQL for Data Engineering (Coming Soon)",
-    desc: "Unlock the potential of data manipulation and management with our 'SQL for Data Engineering' course. Gain proficiency in crafting and optimizing complex queries to build and maintain efficient data pipelines.",
-    img: "https://dummyimage.com/300x150/333/fff&text=SQL+for+DE",
-  },
-  {
-    number: "03",
-    title: "Data Warehouse with Snowflake (Coming Soon)",
-    desc: "Discover the modern approach to data warehousing using Snowflake in our course. Learn to design, implement, and manage a high-performance data warehouse for seamless analytics and insights.",
-    img: "https://dummyimage.com/300x150/444/fff&text=Snowflake",
-  },
-  {
-    number: "04",
-    title: "Spark for Data Engineering (Coming Soon)",
-    desc: "Learn to leverage the power of Apache Spark for efficient and scalable data engineering in our comprehensive course. Master the art of processing and transforming data to build robust pipelines and drive data-centric applications.",
-    img: "https://dummyimage.com/300x150/555/fff&text=Spark+for+DE",
-  },
-  {
-    number: "05",
-    title: "Workflow Orchestration (Coming Soon)",
-    desc: "Explore the world of workflow orchestration with our course covering Airflow, Luigi, Mage, and Prefect. Gain expertise in seamlessly coordinating and automating complex data pipelines for enhanced efficiency and productivity.",
-    img: "https://dummyimage.com/300x150/666/fff&text=Workflow+Orchestration",
-  },
-  {
-    number: "06",
-    title: "Apache Kafka for DE (Coming Soon)",
-    desc: "Dive into the realm of data engineering with Apache Kafka in our course. Learn to build real-time, scalable data pipelines that enable efficient data movement and processing for diverse applications.",
-    img: "https://dummyimage.com/300x150/777/fff&text=Kafka+for+DE",
-  },
-  {
-    number: "07",
-    title: "Cloud Computing AWS, GCP, Azure (Coming Soon)",
-    desc: "Embark on a journey through major cloud platforms with our course on AWS, GCP, and Azure. Acquire the skills to deploy, manage, and optimize cloud-based solutions for diverse business needs.",
-    img: "https://dummyimage.com/300x150/888/fff&text=Cloud+Computing",
-  },
-];
-
-
-const topics = [
-  "ETL",
-  "Data Modelling",
-  "SQL",
-  "Data Pipelines",
-  "Cloud Data Warehousing",
-  "Spark",
-  "Databricks",
-  "DataFrames",
-  "RDDs",
-  "PySpark",
-  "Spark SQL",
-  "MLlib",
-  "Spark Streaming",
-  "Cluster Management",
-  "Fault Tolerance",
-  "Big Data",
-  "Apache Hadoop",
-  "Data Ingestion",
-  "Data Transformation",
-  "Data Analytics",
-  "Schema Design",
-  "Machine Learning",
-  "Snowflake",
-  "Data Lake",
-  "Business Intelligence",
-  "Analytics",
-  "OLAP",
-  "Data Architecture",
-  "Python",
-  "Data Wrangling",
-  "Pandas",
-  "NumPy",
-  "Data Visualisation",
-  "Jupyter Notebooks",
-  "Web Scraping",
-  "APIs",
-  "Data Cleaning",
-  "Data Security",
-  "Scalability",
-  "Stored Procedures",
-  "Triggers",
-  "Views",
-  "Normalization",
-  "Relational Databases",
-  "Data Integrity",
-  "Data Consistency",
-  "Query Performance",
-  "Window Functions",
-  "Transactions",
-  "Indexing",
-  "Batch Processing",
-  "Real-Time Processing",
-  "Data Orchestration",
-  "Workflow Automation",
-  "Data Quality",
-  "Data Lineage",
-  "Metadata Management",
-  "Data Cataloging",
-];
-
-// Modified stats with numerical values for animation
 const stats = [
-  { label: "Youtube", value: 160, suffix: "K+" },
-  { label: "LinkedIn", value: 100, suffix: "K+" },
-  { label: "Twitter", value: 25, suffix: "K+" },
+  { value: "2", label: "free courses" },
+  { value: "42", label: "videos" },
+  { value: "15", label: "written lessons" },
+  { value: "$0", label: "to learn" },
+];
+
+const steps = [
+  {
+    title: "Watch",
+    body: "Each topic has a video on the recode hive YouTube channel.",
+  },
+  {
+    title: "Read",
+    body: "The GitHub lessons are written step by step with screenshots, so you can follow at your own pace.",
+  },
+  {
+    title: "Do",
+    body: "Create a repository, make a commit, send an API request. You learn it by doing it.",
+  },
 ];
 
 const faqs = [
   {
-    q: "Who can enroll in the programs?",
-    a: "Anyone interested in data engineering, from beginners to professionals.",
+    q: "Are the courses really free?",
+    a: "Yes. The videos are on YouTube and the written lessons are on this site. You do not pay for either.",
   },
   {
-    q: "Will I receive a certificate?",
-    a: "Yes, you will receive a certificate upon successful completion of the course.",
+    q: "Do I need experience before I start?",
+    a: "No. The GitHub course starts from what GitHub is. The Postman course starts with your first API request.",
   },
   {
-    q: "Is the course in Hindi or English?",
-    a: "Courses are available in both Hindi and English.",
+    q: "Where should I begin?",
+    a: "Start with GitHub if you have never used Git. Otherwise, start the Postman playlist at video 1.",
   },
   {
-    q: "How can I contact you if I have questions?",
-    a: "You can contact us via the contact form or email provided on the website.",
+    q: "Is there a certificate?",
+    a: "The Postman playlist walks through the certification tasks and ends with claiming the badge. The GitHub course has no exam.",
   },
   {
-    q: "Do I need to learn anything before this course starts?",
-    a: "No prior experience is required. All fundamentals will be covered.",
+    q: "I found a mistake in a lesson. What can I do?",
+    a: "Open an issue or a pull request on the recode hive repo. Fixing lessons is a good first contribution.",
   },
 ];
 
-function CoursesContent() {
-  const [showAllTopics, setShowAllTopics] = useState(false);
-  const [modal, setModal] = useState({ open: false, content: "" });
-  const [openFaq, setOpenFaq] = useState<number | null>(null);
-  const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-  const [animatedStats, setAnimatedStats] = useState({
-    Youtube: 0,
-    LinkedIn: 0,
-    Twitter: 0,
-  });
-  const [isStatsVisible, setIsStatsVisible] = useState(false);
+function isExternal(href: string) {
+  return /^https?:\/\//.test(href);
+}
 
-  const projectCarouselRef = useRef(null);
-  const techTagsRef = useRef(null);
-  const statsRef = useRef(null);
-
-  // Horizontal scrolling for tech tags
-  useEffect(() => {
-    if (techTagsRef.current) {
-      const scrollInterval = setInterval(() => {
-        if (techTagsRef.current) {
-          const currentScroll = techTagsRef.current.scrollLeft;
-          const maxScroll =
-            techTagsRef.current.scrollWidth - techTagsRef.current.clientWidth;
-
-          if (currentScroll >= maxScroll) {
-            techTagsRef.current.scrollLeft = 0;
-          } else {
-            techTagsRef.current.scrollLeft += 1;
-          }
-        }
-      }, 30);
-
-      return () => clearInterval(scrollInterval);
-    }
-  }, []);
-
-  // Set up automatic carousel rotation
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveProjectIndex((prevIndex) =>
-        prevIndex === projects.length - 1 ? 0 : prevIndex + 1,
-      );
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Animate stats counter when visible
-  useEffect(() => {
-    if (!statsRef.current) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !isStatsVisible) {
-          setIsStatsVisible(true);
-
-          // Start animation for each stat
-          stats.forEach((stat) => {
-            const { label, value } = stat;
-            let startValue = 0;
-            const duration = 2000; // 2 seconds
-            const increment = value / (duration / 16); // ~60fps
-
-            const timer = setInterval(() => {
-              startValue += increment;
-
-              if (startValue >= value) {
-                clearInterval(timer);
-                setAnimatedStats((prev) => ({
-                  ...prev,
-                  [label]: value,
-                }));
-              } else {
-                setAnimatedStats((prev) => ({
-                  ...prev,
-                  [label]: Math.floor(startValue),
-                }));
-              }
-            }, 16);
-          });
-        }
-      },
-      { threshold: 0.1 },
-    );
-
-    observer.observe(statsRef.current);
-
-    return () => observer.disconnect();
-  }, [isStatsVisible]);
-
-  const handleCourseClick = (course: any) => {
-    if (course.title.includes("Coming Soon")) {
-      setModal({ open: true, content: "This course is coming soon!" });
-    } else {
-      window.location.href = `/courses/${course.title.toLowerCase().replace(/ /g, "-")}`;
-    }
-  };
-
-  const handleAction = (type: string) => {
-    setModal({
-      open: true,
-      content:
-        type === "enroll"
-          ? "Enrollment flow coming soon!"
-          : "Purchase flow coming soon!",
-    });
-  };
-
-  const scrollProjects = (dir: number) => {
-    const newIndex = activeProjectIndex + dir;
-
-    if (newIndex >= 0 && newIndex < projects.length) {
-      setActiveProjectIndex(newIndex);
-    } else if (newIndex < 0) {
-      // Loop to the end if going backwards from first slide
-      setActiveProjectIndex(projects.length - 1);
-    } else {
-      // Loop to the beginning if going forward from last slide
-      setActiveProjectIndex(0);
-    }
-  };
-
-  const goToProjectSlide = (index: number) => {
-    setActiveProjectIndex(index);
-  };
-
-  const handleInfo = (info: string) => setModal({ open: true, content: info });
-
+function ArrowIcon() {
   return (
-    <Layout
-      title="Courses"
-      description="Explore our available courses and resources."
+    <svg
+      className={styles.arrow}
+      width="16"
+      height="16"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
     >
-      <Head>
-        <meta
-          name="description"
-          content="Landing page for all available courses."
-        />
-        <style>
-          {`
-            /* Hide scrollbar for carousel */
-            .hide-scrollbar::-webkit-scrollbar {
-              display: none;
-            }
-            .hide-scrollbar {
-              -ms-overflow-style: none;
-              scrollbar-width: none;
-            }
-
-            /* Custom animations */
-            @keyframes float {
-              0% { transform: translateY(0px); }
-              50% { transform: translateY(-10px); }
-              100% { transform: translateY(0px); }
-            }
-
-            @keyframes slide {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-100%); }
-            }
-
-            .float-animation {
-              animation: float 3s ease-in-out infinite;
-            }
-
-            .animate-slide {
-              display: inline-block;
-              white-space: nowrap;
-              padding-right: 100%;
-            }
-
-            /* Fade-in animation */
-            @keyframes fadeIn {
-              from { opacity: 0; transform: translateY(20px); }
-              to { opacity: 1; transform: translateY(0); }
-            }
-
-            .animate-fadeIn {
-              animation: fadeIn 0.5s ease-out forwards;
-            }
-
-            /* Scale-in animation */
-            @keyframes scaleIn {
-              from { opacity: 0; transform: scale(0.9); }
-              to { opacity: 1; transform: scale(1); }
-            }
-
-            .animate-scaleIn {
-              animation: scaleIn 0.3s ease-out forwards;
-            }
-
-            /* Slide-in animation */
-            @keyframes slideInUp {
-              from { opacity: 0; transform: translateY(30px); }
-              to { opacity: 1; transform: translateY(0); }
-            }
-
-            .animate-slideInUp {
-              animation: slideInUp 0.5s ease-out forwards;
-            }
-
-            /* Pulse animation */
-            @keyframes pulse {
-              0% { transform: scale(1); }
-              50% { transform: scale(1.05); }
-              100% { transform: scale(1); }
-            }
-
-            .animate-pulse {
-              animation: pulse 2s infinite;
-            }
-          `}
-        </style>
-      </Head>
-      <main className="courses-page min-h-screen transition-all duration-500 " data-theme="">
-        {/* Modal */}
-        {modal.open && (
-          <div className="bg-opacity-60 courses-fade-in fixed inset-0 z-50 flex items-center justify-center bg-black p-4">
-            <div className="courses-modal courses-scale-in relative w-full max-w-md p-6 text-center md:p-8">
-              <button
-                className="courses-icon-button absolute top-3 right-3 text-xl transition-transform hover:scale-110 md:text-2xl"
-                onClick={() => setModal({ open: false, content: "" })}
-              >
-                ×
-              </button>
-              <div className="courses-body pt-4">{modal.content}</div>
-            </div>
-          </div>
-        )}
-
-        {/* Hero Section */}
-        <motion.section
-          className="courses-hero relative overflow-hidden border-b px-4 py-16 text-center transition-all duration-500 md:py-24"
-          initial="hidden"
-          animate="visible"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
-          }}
-        >
-          <div className="courses-container">
-            <motion.h1
-              className="courses-heading-1 courses-text-gradient relative z-10 mb-6 tracking-tight md:mb-8"
-              variants={fadeIn}
-            >
-              Transform Your Career
-              <br className="hidden md:block" />
-              <span className="block md:inline">in Engineering</span>
-            </motion.h1>
-            <div className="flex w-full justify-center">
-              <motion.p
-                className="courses-text-secondary courses-body-large mb-8 max-w-2xl text-center leading-relaxed font-medium md:mb-12"
-                variants={fadeIn}
-              >
-                Master the art of data engineering with industry-leading courses
-                designed for{" "}
-                <span className="courses-text-gradient font-bold">
-                  modern tech careers
-                </span>
-                .
-              </motion.p>
-            </div>
-            <motion.div
-              className="mx-auto mb-12 flex max-w-md flex-col justify-center gap-4 sm:flex-row md:mb-16 md:max-w-none md:gap-6"
-              variants={fadeIn}
-            >
-              <a
-                href="/courses/explore"
-                className="courses-button-primary courses-button-link group courses-backdrop-blur relative overflow-hidden rounded-2xl border border-blue-400/20 px-8 py-3 text-base font-bold shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-blue-500/30 md:px-10 md:py-4 md:text-lg"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Explore Courses
-                  <svg
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1 md:h-5 md:w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </span>
-              </a>
-              <a
-                href="https://www.youtube.com/watch?v=O1ahDsq8DU0&list=PLrLTYhoDFx-k62rLLajSB-jeqKwLkDrkF"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="courses-button-secondary group relative overflow-hidden rounded-2xl px-8 py-3 text-base font-bold shadow-2xl transition-all duration-300 hover:scale-105 md:px-10 md:py-4 md:text-lg"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Postman Certification
-                  <svg
-                    className="h-4 w-4 transition-transform group-hover:translate-x-1 md:h-5 md:w-5"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
-                </span>
-              </a>
-            </motion.div>
-          </div>
-
-          {/* Tech Tags */}
-          <motion.div className="courses-container" variants={fadeIn}>
-            <div
-              ref={techTagsRef}
-              className="courses-hide-scrollbar mb-8 flex gap-2 overflow-x-auto pb-4 whitespace-nowrap"
-              style={{ scrollBehavior: "smooth" }}
-            >
-              <div className="flex gap-2 px-4 md:px-0">
-                {techTags.map((tag, idx) => (
-                  <span key={idx} className="courses-topic-tag flex-shrink-0">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* Partner Logos */}
-            <div className="mt-8">
-              <h3 className="courses-text-secondary courses-body mb-6 text-center font-medium">
-                Students now available at
-              </h3>
-              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
-                {partnerLogos.map((logo, idx) => (
-                  <motion.img
-                    key={idx}
-                    src={logo}
-                    alt="Partner Logo"
-                    className="h-10 w-auto object-contain opacity-70 transition-opacity hover:opacity-100 md:h-12"
-                    whileHover={{ scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  />
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </motion.section>
-
-        {/* Projects Carousel */}
-        <section className="courses-section relative overflow-hidden border-b px-4 py-16 transition-all duration-500 md:py-24">
-          <div className="courses-bg-overlay absolute inset-0" />
-          <div className="courses-container">
-            <motion.h2
-              className="courses-heading-2 courses-gradient-text mb-12 text-center leading-tight tracking-tight md:mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              Explore over 14+ extensive projects
-            </motion.h2>
-            <motion.div
-              className="relative z-10 mx-auto max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="relative">
-                <button
-                  className="courses-nav-button absolute top-1/2 left-2 z-10 -translate-y-1/2 transform shadow-xl transition-all duration-300 hover:scale-110 md:left-0"
-                  onClick={() => scrollProjects(-1)}
-                >
-                  &lt;
-                </button>
-                <div
-                  ref={projectCarouselRef}
-                  className="courses-hide-scrollbar mx-12 overflow-hidden md:mx-16"
-                >
-                  <div
-                    className="flex transition-transform duration-500 ease-in-out"
-                    style={{
-                      transform: `translateX(-${activeProjectIndex * 100}%)`,
-                    }}
-                  >
-                    {projects.map((img, idx) => (
-                      <div
-                        key={idx}
-                        className="flex min-w-full justify-center px-2 md:px-4"
-                        style={{ width: "100%", flexShrink: 0 }}
-                      >
-                        <img
-                          src={img}
-                          alt={`Project ${idx + 1}`}
-                          className="h-auto w-full max-w-xs transform cursor-pointer rounded-xl border-2 border-gray-700/50 shadow-lg transition hover:scale-105 hover:border-blue-500/50 hover:shadow-blue-500/30 md:max-w-sm"
-                          style={{ aspectRatio: "16/10" }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <button
-                  className="courses-nav-button absolute top-1/2 right-2 z-10 -translate-y-1/2 transform shadow-xl transition-all duration-300 hover:scale-110 md:right-0"
-                  onClick={() => scrollProjects(1)}
-                >
-                  &gt;
-                </button>
-              </div>
-              <div className="courses-carousel-indicators mt-6">
-                {projects.map((_, idx) => (
-                  <button
-                    key={idx}
-                    className={`courses-carousel-indicator ${idx === activeProjectIndex ? "active" : ""
-                      }`}
-                    onClick={() => goToProjectSlide(idx)}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Testimonials */}
-        <section className="courses-section relative overflow-hidden border-b px-4 py-16 transition-all duration-500 md:py-24">
-          <div className="courses-bg-overlay absolute inset-0" />
-          <div className="courses-container-wide">
-            <motion.h2
-              className="courses-heading-2 courses-gradient-text mb-12 text-center leading-tight tracking-tight md:mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              Kind Words from Our Students
-            </motion.h2>
-            <div className="courses-grid courses-grid-3 relative z-10">
-              {testimonials.map((t, idx) => (
-                <motion.div
-                  key={idx}
-                  className="courses-card group flex cursor-pointer flex-col items-center text-center"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
-                  onClick={() => handleInfo(t.review)}
-                >
-                  <div className="relative mb-6 h-20 w-20 md:h-24 md:w-24">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-50 blur-lg transition-opacity duration-300 group-hover:opacity-70" />
-                    <img
-                      src={t.img}
-                      alt={t.name}
-                      className="relative z-10 h-full w-full rounded-full border-3 border-blue-400/50 object-cover shadow-lg shadow-blue-500/30 transition-all duration-300 group-hover:border-blue-400"
-                    />
-                  </div>
-                  <h4 className="courses-heading-4 courses-text-gradient mb-4">
-                    {t.name}
-                  </h4>
-                  <div className="mb-4 flex gap-1">
-                    {Array.from({ length: t.stars }).map((_, i) => (
-                      <motion.span
-                        key={i}
-                        className="text-lg text-yellow-400"
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: i * 0.1 }}
-                      >
-                        ★
-                      </motion.span>
-                    ))}
-                  </div>
-                  <p className="courses-body-small courses-text-secondary line-clamp-4 text-center leading-relaxed transition-colors duration-300">
-                    {t.review}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Courses Timeline Section */}
-        <section className="courses-section border-b px-4 py-16 transition-all duration-500 md:py-24">
-          <div className="courses-container-wide">
-            <motion.h2
-              className="courses-heading-2 courses-gradient-text mb-6 text-center leading-tight tracking-tight"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              Courses Available
-            </motion.h2>
-            <motion.h3
-              className="courses-body-large courses-text-secondary mb-12 text-center md:mb-16"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              Courses Covered In the Program
-            </motion.h3>
-            <div className="flex w-full flex-col gap-8 lg:flex-row lg:gap-0">
-              {/* Left column */}
-              <div className="flex flex-1 flex-col gap-6 lg:gap-8">
-                {courses
-                  .filter((_, i) => i % 2 === 0)
-                  .map((course, idx) => (
-                    <motion.div
-                      key={course.number}
-                      className="courses-timeline-card group flex cursor-pointer flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6"
-                      onClick={() => handleCourseClick(course)}
-                      initial={{ opacity: 0, x: -30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    >
-                      <div className="relative h-32 w-full flex-shrink-0 overflow-hidden rounded-lg sm:h-20 sm:w-32 md:h-24 md:w-40">
-                        <img
-                          src={course.img}
-                          alt={course.title}
-                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <h3 className="courses-heading-4 courses-text-gradient mb-2 line-clamp-2 md:mb-3">
-                          {course.title}
-                        </h3>
-                        <p className="courses-body-small courses-text-secondary line-clamp-2 leading-relaxed md:line-clamp-3">
-                          {course.desc}
-                        </p>
-                      </div>
-                      <svg
-                        className="courses-text-muted h-5 w-5 flex-shrink-0 transform transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-400 md:h-6 md:w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </motion.div>
-                  ))}
-              </div>
-              {/* Timeline */}
-              <div className="relative mx-6 hidden flex-col items-center lg:flex xl:mx-8">
-                <div className="absolute top-0 bottom-0 left-1/2 w-1 -translate-x-1/2 bg-gradient-to-b from-purple-500 to-indigo-500"></div>
-                {courses.map((course, idx) => (
-                  <React.Fragment key={course.number}>
-                    <motion.div
-                      className="relative z-10 flex flex-col items-center"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: idx * 0.1 }}
-                    >
-                      <div className="mb-2 flex h-12 w-12 items-center justify-center rounded-full border-4 border-purple-400 bg-gradient-to-br from-purple-600 to-indigo-600 text-lg font-bold text-white shadow-lg shadow-purple-500/50 xl:h-16 xl:w-16 xl:text-2xl">
-                        {course.number}
-                      </div>
-                      {idx !== courses.length - 1 && (
-                        <div className="h-12 w-1 bg-transparent xl:h-16"></div>
-                      )}
-                    </motion.div>
-                  </React.Fragment>
-                ))}
-                <motion.a
-                  href="https://www.youtube.com/watch?v=GrTV59Y84S8&list=PLrLTYhoDFx-kiuFiGQqVpYYZ56pIhUW63"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="courses-button-primary relative z-10 mt-8 transform rounded-2xl px-8 py-3 shadow-2xl transition-all duration-300 hover:scale-110 xl:mt-12 xl:px-10 xl:py-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.8 }}
-                  whileHover={{ y: -5 }}
-                  whileTap={{ y: 0 }}
-                >
-                  Learn now
-                </motion.a>
-              </div>
-              {/* Right column */}
-              <div className="flex flex-1 flex-col gap-6 lg:gap-8">
-                {courses
-                  .filter((_, i) => i % 2 === 1)
-                  .map((course, idx) => (
-                    <motion.div
-                      key={course.number}
-                      className="courses-timeline-card group flex cursor-pointer flex-col items-start gap-4 sm:flex-row sm:items-center sm:gap-6"
-                      onClick={() => handleCourseClick(course)}
-                      initial={{ opacity: 0, x: 30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    >
-                      <div className="order-2 min-w-0 flex-1 sm:order-1">
-                        <h3 className="courses-heading-4 courses-text-gradient mb-2 line-clamp-2 md:mb-3">
-                          {course.title}
-                        </h3>
-                        <p className="courses-body-small courses-text-secondary line-clamp-2 leading-relaxed md:line-clamp-3">
-                          {course.desc}
-                        </p>
-                      </div>
-                      <div className="relative order-1 h-32 w-full flex-shrink-0 overflow-hidden rounded-lg sm:order-2 sm:h-20 sm:w-32 md:h-24 md:w-40">
-                        <img
-                          src={course.img}
-                          alt={course.title}
-                          className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      </div>
-                      <svg
-                        className="courses-text-muted order-3 h-5 w-5 flex-shrink-0 transform transition-all duration-300 group-hover:translate-x-1 group-hover:text-blue-400 md:h-6 md:w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </motion.div>
-                  ))}
-              </div>
-
-              {/* Mobile Enroll Button */}
-              <div className="mt-8 flex justify-center lg:hidden">
-                <motion.button
-                  className="courses-button-primary transform rounded-2xl px-8 py-3 shadow-2xl transition-all duration-300 hover:scale-105"
-                  onClick={() => handleAction("enroll")}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.8 }}
-                  whileHover={{ y: -3 }}
-                  whileTap={{ y: 0 }}
-                >
-                  Enroll now
-                </motion.button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Project Reviews Section */}
-        <section className="courses-stats-section border-b px-4 py-16 transition-all duration-500 md:py-20">
-          <div className="courses-container-wide">
-            <motion.h2
-              className="courses-heading-2 courses-text-primary mb-8 text-center md:mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-            </motion.h2>
-          </div>
-        </section>
-
-        {/* Topics Tag Cloud & Community Stats */}
-        <section className="courses-section border-b px-4 py-16 transition-all duration-500 md:py-20">
-          <div className="courses-container-wide">
-            <motion.h3
-              className="courses-heading-3 courses-text-primary mb-6 text-center md:mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              100+ topics taught...
-            </motion.h3>
-            <motion.div
-              className={`mb-6 flex flex-wrap justify-center gap-2 transition-all duration-500 md:gap-3 ${showAllTopics ? "max-h-none" : "max-h-32 overflow-hidden md:max-h-40"}`}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              {(showAllTopics ? topics : topics.slice(0, 20)).map(
-                (topic, idx) => (
-                  <motion.span
-                    key={idx}
-                    className="courses-topic-tag"
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    {topic}
-                  </motion.span>
-                ),
-              )}
-            </motion.div>
-            <motion.div
-              className="mb-8 flex justify-center md:mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <button
-                className="courses-button-ghost transform rounded-full px-6 py-2 font-semibold transition-all duration-300 hover:scale-105 md:px-8 md:py-3"
-                onClick={() => setShowAllTopics((v) => !v)}
-              >
-                {showAllTopics ? "Show less" : "Show more"}
-              </button>
-            </motion.div>
-          </div>
-
-          {/* Community Stats */}
-          <div
-            ref={statsRef}
-            className="courses-grid courses-grid-3 mt-8 md:mt-12"
-          >
-            {stats.map((stat, idx) => (
-              <motion.div
-                key={idx}
-                className="courses-stat-card group text-center"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="relative z-10">
-                  <div className="courses-text-gradient mb-3 flex items-baseline justify-center text-3xl font-bold md:mb-4 md:text-4xl lg:text-5xl">
-                    <motion.span
-                      className="inline-block"
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      {isStatsVisible ? animatedStats[stat.label] : 0}
-                    </motion.span>
-                    <span className="ml-1 inline-block text-lg md:text-xl lg:text-2xl">
-                      {stat.suffix}
-                    </span>
-                  </div>
-                  <div className="courses-body-large courses-text-secondary mb-4 font-semibold transition-colors duration-300 md:mb-6">
-                    {stat.label}
-                  </div>
-                  <div className="h-2 w-full overflow-hidden rounded-full bg-gradient-to-r from-gray-200 to-gray-300">
-                    <motion.div
-                      className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
-                      initial={{ width: "0%" }}
-                      animate={{ width: isStatsVisible ? "100%" : "0%" }}
-                      transition={{ duration: 1, delay: idx * 0.2 }}
-                    />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* FAQ Section */}
-        <section className="courses-faq-section border-b px-4 py-16 transition-all duration-500 md:py-20">
-          <div className="courses-container">
-            <motion.h2
-              className="courses-heading-2 courses-text-primary mb-8 text-center md:mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              Commonly asked questions
-            </motion.h2>
-            <div className="mx-auto max-w-3xl">
-              {faqs.map((faq, idx) => (
-                <motion.div
-                  key={idx}
-                  className="courses-faq-item mb-4 md:mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                >
-                  <button
-                    className="courses-faq-button courses-body md:courses-body-large flex w-full items-center justify-between px-4 py-4 text-left font-semibold transition-all duration-300 focus:outline-none md:px-6 md:py-6"
-                    onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  >
-                    <span className="pr-4">{faq.q}</span>
-                    <span
-                      className="flex-shrink-0 transform text-xl transition-transform duration-300 md:text-2xl"
-                      style={{
-                        transform:
-                          openFaq === idx ? "rotate(45deg)" : "rotate(0)",
-                      }}
-                    >
-                      +
-                    </span>
-                  </button>
-                  <div
-                    className="overflow-hidden transition-all duration-300"
-                    style={{
-                      maxHeight: openFaq === idx ? "500px" : "0",
-                      opacity: openFaq === idx ? 1 : 0,
-                    }}
-                  >
-                    <div className="courses-faq-answer courses-body px-4 py-4 leading-relaxed md:px-6 md:py-6">
-                      {faq.a}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-      </main>
-    </Layout>
+      <path
+        d="M3 8h10m0 0L9 4m4 4-4 4"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 
-export default function CoursesLanding() {
-  return <CoursesContent />;
+function CheckIcon() {
+  return (
+    <svg
+      className={styles.check}
+      width="18"
+      height="18"
+      viewBox="0 0 18 18"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle cx="9" cy="9" r="9" fill="currentColor" />
+      <path
+        d="m5.2 9.3 2.4 2.4 5.2-5.4"
+        stroke="#fff"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function ButtonLink({
+  href,
+  variant = "primary",
+  arrow,
+  children,
+}: {
+  href: string;
+  variant?: "primary" | "secondary" | "darkPrimary" | "darkSecondary";
+  arrow?: boolean;
+  children: ReactNode;
+}) {
+  const className = `${styles.btn} ${styles[variant]}`;
+  const content = (
+    <>
+      {children}
+      {arrow && <ArrowIcon />}
+    </>
+  );
+  if (isExternal(href)) {
+    return (
+      <a
+        className={className}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {content}
+        <span className={styles.srOnly}> (opens in a new tab)</span>
+      </a>
+    );
+  }
+  return (
+    <Link className={className} to={href}>
+      {content}
+    </Link>
+  );
+}
+
+function Reveal({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [state, setState] = useState<"idle" | "hidden" | "shown">("idle");
+
+  useEffect(() => {
+    const el = ref.current;
+    if (
+      !el ||
+      typeof IntersectionObserver === "undefined" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      el.getBoundingClientRect().top < window.innerHeight
+    ) {
+      return;
+    }
+    setState("hidden");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setState("shown");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.12 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const stateClass =
+    state === "hidden"
+      ? styles.revealHidden
+      : state === "shown"
+        ? styles.revealShown
+        : "";
+  return (
+    <div ref={ref} className={`${stateClass} ${className}`.trim()}>
+      {children}
+    </div>
+  );
+}
+
+function SectionHead({
+  id,
+  eyebrow,
+  title,
+  sub,
+}: {
+  id?: string;
+  eyebrow: string;
+  title: string;
+  sub?: string;
+}) {
+  return (
+    <div className={styles.sectionHead}>
+      <p className={styles.eyebrow}>{eyebrow}</p>
+      <h2 id={id} className={styles.h2}>
+        {title}
+      </h2>
+      {sub && <p className={styles.sectionSub}>{sub}</p>}
+    </div>
+  );
+}
+
+function Hero() {
+  const gitImg = useBaseUrl("/img/courses/git-and-github.jpg");
+  const postmanImg = useBaseUrl("/img/courses/postman-api-certification.jpg");
+  return (
+    <section className={styles.hero} aria-labelledby="courses-hero-title">
+      <div className={styles.heroCopy}>
+        <span className={styles.pill}>100% free · 2 courses</span>
+        <h1 id="courses-hero-title" className={styles.h1}>
+          Learn <span className={styles.accent}>GitHub</span> and{" "}
+          <span className={styles.accent}>Postman</span>. Free.
+        </h1>
+        <p className={styles.lede}>
+          Two hands-on courses from recode hive. Learn Git and open source with
+          videos and written lessons, or work through the Postman API
+          certification one task at a time.
+        </p>
+        <div className={styles.btnRow}>
+          <a className={`${styles.btn} ${styles.primary}`} href="#courses">
+            Pick a course
+            <ArrowIcon />
+          </a>
+          <a className={`${styles.btn} ${styles.secondary}`} href="#syllabus">
+            See the lessons
+          </a>
+        </div>
+      </div>
+      <div className={styles.heroVisual}>
+        <img
+          className={`${styles.heroImg} ${styles.heroImgBack}`}
+          src={gitImg}
+          width={1280}
+          height={720}
+          alt="Git and GitHub course thumbnail: GitHub for complete beginners"
+        />
+        <img
+          className={`${styles.heroImg} ${styles.heroImgFront}`}
+          src={postmanImg}
+          width={1280}
+          height={720}
+          alt="Postman API certification course thumbnail"
+        />
+        <span className={`${styles.floatBadge} ${styles.badgeFree}`}>Free</span>
+        <span className={`${styles.floatBadge} ${styles.badgePostman}`}>
+          9 videos
+        </span>
+        <span className={`${styles.floatBadge} ${styles.badgeGit}`}>
+          33 videos
+        </span>
+      </div>
+    </section>
+  );
+}
+
+function Stats() {
+  return (
+    <ul className={styles.stats} aria-label="Course totals">
+      {stats.map((s) => (
+        <li key={s.label} className={styles.stat}>
+          <span className={styles.statValue}>{s.value}</span>
+          <span className={styles.statLabel}>{s.label}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+type CourseCardProps = {
+  img: string;
+  alt: string;
+  tag: string;
+  title: string;
+  description: string;
+  chips: string[];
+  points: string[];
+  primary: { label: string; href: string };
+  secondary: { label: string; href: string };
+};
+
+function CourseCard(props: CourseCardProps) {
+  const img = useBaseUrl(props.img);
+  return (
+    <article className={styles.card}>
+      <div className={styles.cardMedia}>
+        <img
+          src={img}
+          width={1280}
+          height={720}
+          loading="lazy"
+          alt={props.alt}
+          className={styles.cardImg}
+        />
+        <span className={styles.tag}>{props.tag}</span>
+      </div>
+      <div className={styles.cardBody}>
+        <h3 className={styles.h3}>{props.title}</h3>
+        <p className={styles.cardText}>{props.description}</p>
+        <ul className={styles.chips}>
+          {props.chips.map((c) => (
+            <li key={c} className={styles.chip}>
+              {c}
+            </li>
+          ))}
+        </ul>
+        <ul className={styles.checklist}>
+          {props.points.map((p) => (
+            <li key={p}>
+              <CheckIcon />
+              <span>{p}</span>
+            </li>
+          ))}
+        </ul>
+        <div className={styles.btnRow}>
+          <ButtonLink href={props.primary.href} arrow>
+            {props.primary.label}
+          </ButtonLink>
+          <ButtonLink href={props.secondary.href} variant="secondary">
+            {props.secondary.label}
+          </ButtonLink>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function Courses() {
+  return (
+    <section
+      id="courses"
+      className={styles.section}
+      aria-labelledby="courses-title"
+    >
+      <Reveal>
+        <SectionHead
+          id="courses-title"
+          eyebrow="COURSES"
+          title="Choose where to start"
+          sub="Both courses are free and open to beginners. Pick one, or do them in order."
+        />
+        <div className={styles.cards}>
+          <CourseCard
+            img="/img/courses/git-and-github.jpg"
+            alt="Git and GitHub course thumbnail: GitHub for complete beginners"
+            tag="Beginner"
+            title="Git and GitHub"
+            description="Learn version control and open source from the first commit to your first pull request, with a video playlist and written lessons for every step."
+            chips={["33 videos", "15 written lessons", "Free"]}
+            points={[
+              "Set up Git and a GitHub account on Windows, Mac or Linux",
+              "Create, clone and fork repositories",
+              "Make your first open source contribution",
+              "Customise your profile and learn about GitHub badges",
+            ]}
+            primary={{ label: "Start the lessons", href: FIRST_LESSON }}
+            secondary={{ label: "Watch the playlist", href: GITHUB_PLAYLIST }}
+          />
+          <CourseCard
+            img="/img/courses/postman-api-certification.jpg"
+            alt="Postman API certification course thumbnail"
+            tag="Certification"
+            title="Postman API certification"
+            description="Follow the certification tasks step by step, from your first request to the final test and the badge, with a video for each task."
+            chips={["9 videos", "8 tasks", "Free"]}
+            points={[
+              "Send your first API request",
+              "Use request parameters and variables",
+              "Send data, then PATCH and DELETE",
+              "Finish the final test and claim your badge",
+            ]}
+            primary={{ label: "Start video 1", href: POSTMAN_PLAYLIST }}
+            secondary={{ label: "Watch the playlist", href: POSTMAN_PLAYLIST }}
+          />
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function LessonRow({ lesson }: { lesson: Lesson }) {
+  const external = isExternal(lesson.href);
+  const inner = (
+    <>
+      <span className={styles.lessonNum}>{lesson.n}</span>
+      <span className={styles.lessonTitle}>{lesson.title}</span>
+      <ArrowIcon />
+      {external && <span className={styles.srOnly}> (opens in a new tab)</span>}
+    </>
+  );
+  return (
+    <li>
+      {external ? (
+        <a
+          className={styles.lesson}
+          href={lesson.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {inner}
+        </a>
+      ) : (
+        <Link className={styles.lesson} to={lesson.href}>
+          {inner}
+        </Link>
+      )}
+    </li>
+  );
+}
+
+function ModuleCard({ module, wide }: { module: Module; wide?: boolean }) {
+  return (
+    <section className={`${styles.module} ${wide ? styles.moduleWide : ""}`}>
+      <h3 className={styles.moduleTitle}>{module.title}</h3>
+      <ul className={styles.lessons}>
+        {module.lessons.map((l) => (
+          <LessonRow key={l.n} lesson={l} />
+        ))}
+      </ul>
+    </section>
+  );
+}
+
+const TABS = [
+  { id: "github", label: "Git and GitHub" },
+  { id: "postman", label: "Postman certification" },
+] as const;
+
+function Syllabus() {
+  const [active, setActive] = useState<(typeof TABS)[number]["id"]>("github");
+  const tabRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+
+  const onKeyDown = (e: KeyboardEvent<HTMLButtonElement>) => {
+    const index = TABS.findIndex((t) => t.id === active);
+    let next = -1;
+    if (e.key === "ArrowRight") next = (index + 1) % TABS.length;
+    else if (e.key === "ArrowLeft")
+      next = (index - 1 + TABS.length) % TABS.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = TABS.length - 1;
+    if (next < 0) return;
+    e.preventDefault();
+    setActive(TABS[next].id);
+    tabRefs.current[TABS[next].id]?.focus();
+  };
+
+  return (
+    <section
+      id="syllabus"
+      className={styles.section}
+      aria-labelledby="syllabus-title"
+    >
+      <Reveal>
+        <SectionHead
+          id="syllabus-title"
+          eyebrow="WHAT IS INSIDE"
+          title="Every lesson, in order"
+        />
+        <div
+          className={styles.tabs}
+          role="tablist"
+          aria-label="Choose a course"
+        >
+          {TABS.map((t) => (
+            <button
+              key={t.id}
+              ref={(el) => {
+                tabRefs.current[t.id] = el;
+              }}
+              type="button"
+              role="tab"
+              id={`tab-${t.id}`}
+              aria-selected={active === t.id}
+              aria-controls={`panel-${t.id}`}
+              tabIndex={active === t.id ? 0 : -1}
+              className={`${styles.tab} ${active === t.id ? styles.tabActive : ""}`}
+              onClick={() => setActive(t.id)}
+              onKeyDown={onKeyDown}
+            >
+              {t.label}
+            </button>
+          ))}
+        </div>
+        <div
+          role="tabpanel"
+          id={`panel-${active}`}
+          aria-labelledby={`tab-${active}`}
+          className={styles.modules}
+        >
+          {active === "github" ? (
+            githubModules.map((m) => <ModuleCard key={m.title} module={m} />)
+          ) : (
+            <ModuleCard module={postmanModule} wide />
+          )}
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function HowItWorks() {
+  return (
+    <section className={styles.section} aria-labelledby="how-title">
+      <Reveal>
+        <SectionHead
+          id="how-title"
+          eyebrow="HOW IT WORKS"
+          title="Watch, read, then do"
+        />
+        <ol className={styles.steps}>
+          {steps.map((s, i) => (
+            <li key={s.title} className={styles.step}>
+              <span className={styles.stepNum} aria-hidden="true">
+                {i + 1}
+              </span>
+              <h3 className={styles.stepTitle}>{s.title}</h3>
+              <p className={styles.stepBody}>{s.body}</p>
+            </li>
+          ))}
+        </ol>
+      </Reveal>
+    </section>
+  );
+}
+
+function Faq() {
+  const [open, setOpen] = useState(0);
+  return (
+    <section className={styles.section} aria-labelledby="faq-title">
+      <Reveal>
+        <SectionHead id="faq-title" eyebrow="FAQ" title="Common questions" />
+        <div className={styles.faq}>
+          {faqs.map((f, i) => {
+            const isOpen = open === i;
+            return (
+              <div
+                key={f.q}
+                className={`${styles.faqItem} ${isOpen ? styles.faqOpen : ""}`}
+              >
+                <h3 className={styles.faqHeading}>
+                  <button
+                    type="button"
+                    id={`faq-btn-${i}`}
+                    className={styles.faqButton}
+                    aria-expanded={isOpen}
+                    aria-controls={`faq-panel-${i}`}
+                    onClick={() => setOpen(isOpen ? -1 : i)}
+                  >
+                    <span>{f.q}</span>
+                    <span className={styles.faqIcon} aria-hidden="true">
+                      {isOpen ? "×" : "+"}
+                    </span>
+                  </button>
+                </h3>
+                <div
+                  id={`faq-panel-${i}`}
+                  role="region"
+                  aria-labelledby={`faq-btn-${i}`}
+                  hidden={!isOpen}
+                  className={styles.faqPanel}
+                >
+                  <p>{f.a}</p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+function ClosingCta() {
+  return (
+    <section className={styles.section} aria-labelledby="cta-title">
+      <Reveal>
+        <div className={styles.cta}>
+          <div>
+            <h2 id="cta-title" className={styles.ctaTitle}>
+              Ready to start?
+            </h2>
+            <p className={styles.ctaText}>
+              Open the first GitHub lesson or watch the first Postman video. No
+              sign-up needed on this site.
+            </p>
+          </div>
+          <div className={styles.btnRow}>
+            <ButtonLink href={FIRST_LESSON} variant="darkPrimary" arrow>
+              First GitHub lesson
+            </ButtonLink>
+            <ButtonLink href={REPO_URL} variant="darkSecondary">
+              Star on GitHub
+            </ButtonLink>
+          </div>
+        </div>
+      </Reveal>
+    </section>
+  );
+}
+
+export default function CoursesPage(): ReactNode {
+  return (
+    <Layout title={PAGE_TITLE} description={PAGE_DESCRIPTION}>
+      <Head>
+        <meta property="og:title" content={`${PAGE_TITLE} | recode hive`} />
+        <meta property="og:description" content={PAGE_DESCRIPTION} />
+      </Head>
+      <main className={styles.page}>
+        <div className={styles.container}>
+          <Hero />
+          <Stats />
+          <Courses />
+          <Syllabus />
+          <HowItWorks />
+          <Faq />
+          <ClosingCta />
+        </div>
+      </main>
+    </Layout>
+  );
 }
