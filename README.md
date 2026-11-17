@@ -213,7 +213,7 @@ npm run serve
 - [Understanding Lint Checks](community/understand-lint-checks.md)
 - [Our Documentation Standards](community/our-documentation.md)
 
-## 📊 Project Statistics
+## 📊 Project Health
 
 ![GitHub commit activity (yearly)](https://img.shields.io/github/commit-activity/y/recodehive/recode-website)
 ![GitHub stars](https://img.shields.io/github/stars/RecodeHive/recode-website)
