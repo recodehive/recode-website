@@ -27,7 +27,7 @@ const faqData = [
   {
     question: "How can I contribute as a beginner?",
     answer:
-      "We've designed our community specifically with beginners in mind! Contributing to open-source can seem intimidating, but we provide a supportive environment for learning.<br><br><strong>Beginner-Friendly Steps:</strong><br>1. Start with our GitHub Basics guide<br>2. Join our Discord community for support<br>3. Look for 'good first issue' labels in our repositories<br>4. Follow our <a href='https://github.com/recodehive/recode-website#getting-started' target='_blank' rel='noopener noreferrer' class='text-green-600 hover:text-green-800 underline'>step-by-step contribution guide</a><br><br>🎯 <a href='/docs/GitHub/GitHub-basics/first-opensource-code' class='text-green-600 hover:text-green-800 underline'>Make your first open-source contribution</a>",
+      "We've designed our community specifically with beginners in mind! Contributing to open-source can seem intimidating, but we provide a supportive environment for learning.<br><br><strong>Beginner-Friendly Steps:</strong><br>1. Start with our GitHub Basics guide, Explore learn tab<br>2. Join our Discord community for support<br>3. Look for 'good first issue' labels in our repositories<br>4. Follow our <a href='https://github.com/recodehive/recode-website#getting-started' target='_blank' rel='noopener noreferrer' class='text-green-600 hover:text-green-800 underline'>step-by-step contribution guide</a><br><br>🎯 <a href='/docs/GitHub/GitHub-basics/first-opensource-code' class='text-green-600 hover:text-green-800 underline'>Make your first open-source contribution</a>",
   },
   {
     question:
