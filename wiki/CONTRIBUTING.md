@@ -51,7 +51,7 @@ There are many ways to contribute to recode hive:
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js** ≥ 18 ([Download](https://nodejs.org/))
+- **Node.js** 20.9–22 ([Download](https://nodejs.org/); see the repository's `.nvmrc`)
 - **Git** ([Download](https://git-scm.com/))
 - **Docker** (optional, but recommended) ([Download](https://docs.docker.com/engine/install/))
 - A code editor (we recommend [VS Code](https://code.visualstudio.com/))
