@@ -34,6 +34,10 @@ const https = (v) => {
 /** Whitelists the fields of an owner extras file, so a bad file can never break the build or inject markup. */
 function cleanExtras(raw) {
   if (!raw || typeof raw !== 'object') return null;
+  const profileSlug = typeof raw.profileSlug === 'string' ? raw.profileSlug.trim().toLowerCase() : undefined;
+  if (profileSlug && (!HANDLE_RE.test(profileSlug) || profileSlug === '_')) {
+    throw new Error('profileSlug must be a valid GitHub-style handle');
+  }
   const links = raw.links && typeof raw.links === 'object'
     ? { linkedin: https(raw.links.linkedin), website: https(raw.links.website), x: https(raw.links.x) }
     : undefined;
@@ -79,6 +83,7 @@ function cleanExtras(raw) {
       })).filter((e) => e.by && HANDLE_RE.test(e.by.toLowerCase()) && e.skill && e.text && e.date)
     : undefined;
   const out = {
+    profileSlug,
     headline: str(raw.headline, 140),
     bio: str(raw.bio, 600),
     timezone: str(raw.timezone, 60),
@@ -189,6 +194,7 @@ module.exports = function developerProfilesPlugin(context) {
         const prs = Number(c.prs) || details.length;
         sites.push({
           handle,
+          profileSlug: extras && extras.profileSlug || handle,
           username: c.username,
           avatar: String(c.avatar || `https://github.com/${c.username}.png`),
           rank: i + 1,
@@ -210,15 +216,24 @@ module.exports = function developerProfilesPlugin(context) {
         if (seen.has(handle)) continue;
         seen.add(handle);
         sites.push({
-          handle, username: handle, avatar: `https://github.com/${handle}.png`, rank: 0, points: 0, prs: 0,
+          handle, profileSlug: extras.profileSlug || handle, username: handle, avatar: `https://github.com/${handle}.png`, rank: 0, points: 0, prs: 0,
           recentPrs: [], repos: [], firstPrAt: null, posts: postsByHandle.get(handle) || [], extras, indexable: false, ogImage: ogImageFor(handle, builtAt), builtAt,
         });
+      }
+
+      const routeOwners = new Map();
+      for (const site of sites) {
+        const owner = routeOwners.get(site.profileSlug);
+        if (owner && owner !== site.handle) {
+          throw new Error(`Profile URL /u/${site.profileSlug} is assigned to both @${owner} and @${site.handle}`);
+        }
+        routeOwners.set(site.profileSlug, site.handle);
       }
 
       for (const site of sites) {
         const dataPath = await actions.createData(`profile-${site.handle}.json`, JSON.stringify(site));
         actions.addRoute({
-          path: `/u/${site.handle}`,
+          path: `/u/${site.profileSlug}`,
           component: '@site/src/components/profile/ProfilePage',
           exact: true,
           modules: { site: dataPath },

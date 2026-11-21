@@ -4,6 +4,8 @@ import type { CalendarDay } from './streak';
 
 /** Tier 3: details the owner provides, stored in src/data/profiles/<handle>.json. Every field is optional. */
 export interface ProfileExtras {
+  /** Optional public URL slug, separate from the GitHub handle. */
+  profileSlug?: string;
   headline?: string;
   bio?: string;
   /** IANA zone, for example "Australia/Sydney". Used for the streak and shown on the page. */
@@ -51,6 +53,7 @@ export interface ProfilePost {
 /** Tier 2: from the recodehive leaderboard and blog, baked into each static page at build time. */
 export interface ProfileSite {
   handle: string;
+  profileSlug: string;
   username: string;
   avatar: string;
   rank: number;
