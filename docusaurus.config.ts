@@ -149,7 +149,12 @@ const config: Config = {
     // The blog guide moved from /docs/Getting-Started, so old links keep working
     [
       "@docusaurus/plugin-client-redirects",
-      { redirects: [{ from: "/docs/Getting-Started", to: "/docs/how-to-contribute-to-blogs" }] },
+      {
+        redirects: [
+          { from: "/docs/Getting-Started", to: "/docs/how-to-contribute-to-blogs" },
+          { from: "/u/thanmaya258", to: "/u/thanmaya" },
+        ],
+      },
     ],
     // Free Learn section: one MDX file per lesson, each with its own URL
     [

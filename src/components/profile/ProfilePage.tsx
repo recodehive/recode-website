@@ -50,7 +50,7 @@ function tierVars(b: Badge, i: number): React.CSSProperties {
 
 function blankSite(handle: string): ProfileSite {
   return {
-    handle, username: handle, avatar: `https://github.com/${handle}.png`, rank: 0, points: 0, prs: 0, recentPrs: [], repos: [],
+    handle, profileSlug: handle, username: handle, avatar: `https://github.com/${handle}.png`, rank: 0, points: 0, prs: 0, recentPrs: [], repos: [],
     firstPrAt: null, posts: [], extras: null, indexable: false, ogImage: null, builtAt: new Date().toISOString(),
   };
 }
@@ -107,7 +107,7 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
   const name = user?.name || site.username;
   const bio = extras?.bio || user?.bio || null;
   const tz = extras?.timezone || 'UTC';
-  const profileUrl = `${SITE}/u/${site.handle}`;
+  const profileUrl = `${SITE}/u/${site.profileSlug}`;
   const [tab, setTab] = useState<'earned' | 'all'>('earned');
 
   const stats: BadgeStats = { prs: site.prs, points: site.points, rank: site.rank > 0 ? site.rank : null };
@@ -434,7 +434,7 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
 
             <aside className={styles.side} aria-label="Share and trust">
               {hire && <HireCard firstName={firstName} handle={site.handle} hire={hire} timezone={extras?.timezone} profileUrl={profileUrl} />}
-              <ShareCard handle={site.handle} name={name} title={title} profileUrl={profileUrl} ogImage={site.ogImage} rank={site.rank} />
+              <ShareCard handle={site.profileSlug} name={name} title={title} profileUrl={profileUrl} ogImage={site.ogImage} rank={site.rank} />
 
               <section className={styles.card} aria-labelledby="tr">
                 <h2 id="tr" className={styles.h2}>Why you can trust this page</h2>

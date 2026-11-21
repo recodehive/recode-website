@@ -35,8 +35,9 @@ const filterTags: Record<Exclude<Filter, "All work">, string[]> = {
 };
 
 const talentExamples = [
-  { name: "Aditya Singh Rathore", initials: "AR", role: "Data Engineer at CloudThat", skills: ["Python", "PySpark", "Azure"], image: "https://avatars.githubusercontent.com/u/142787780?v=4", profileUrl: "/blog/authors/Aditya-Singh-Rathore", githubUrl: "https://github.com/Adez017" },
-  { name: "Sanjay K V", initials: "SK", role: "Founder at recode hive", skills: ["Data Engineering", "ML", "Open Source"], image: "https://avatars.githubusercontent.com/u/30715153?v=4", profileUrl: "/blog/authors/sanjay-kv", githubUrl: "https://github.com/sanjay-kv" },
+  { name: "Aditya Singh Rathore", initials: "AR", role: "Data Engineer at CloudThat", skills: ["Python", "PySpark", "Azure"], image: "https://avatars.githubusercontent.com/u/142787780?v=4", profileUrl: "/u/Aditya-Singh-Rathore", githubUrl: "https://github.com/Adez017" },
+  { name: "Sanjay K V", initials: "SK", role: "Founder at recode hive", skills: ["Data Engineering", "ML", "Open Source"], image: "https://avatars.githubusercontent.com/u/30715153?v=4", profileUrl: "/u/sanjay-kv", githubUrl: "https://github.com/sanjay-kv" },
+  { name: "Thanmaya Rishi", initials: "TR", role: "Student developer", skills: ["TypeScript", "React", "JavaScript"], image: "https://avatars.githubusercontent.com/u/267491923?v=4", profileUrl: "/u/thanmaya", githubUrl: "https://github.com/thanmaya258" },
 ];
 
 const faqs = [

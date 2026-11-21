@@ -1,0 +1,40 @@
+{
+  "profileSlug": "thanmaya",
+  "headline": "Student developer · Open-source learner",
+  "bio": "I am learning to code in public and building small tools that solve real problems. I am growing my skills in TypeScript, React, and open-source workflows with the recodehive community.",
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/thanmaya-thattaparambil-rishi-b51a103b6",
+    "website": "https://thanmaya258.github.io/thanmaya-portfolio/"
+  },
+  "featuredWork": [
+    {
+      "title": "Papa's Pomodoro Pal",
+      "role": "Builder",
+      "summary": "A customizable focus timer with work and break intervals, built to make focused work easier.",
+      "tags": ["TypeScript", "React"],
+      "links": [
+        {
+          "label": "Live app",
+          "url": "https://father-focus-timer.lovable.app"
+        },
+        {
+          "label": "Source",
+          "url": "https://github.com/thanmaya258/papa-s-pomodoro-pal"
+        }
+      ]
+    },
+    {
+      "title": "Kitten Cafe Study Time",
+      "role": "Builder",
+      "summary": "A cozy study session tracker designed to make daily homework blocks more engaging.",
+      "tags": ["HTML", "CSS", "JavaScript"],
+      "links": [
+        {
+          "label": "Source",
+          "url": "https://github.com/thanmaya258/kitten-cafe-study-time"
+        }
+      ]
+    }
+  ],
+  "skillsDeclared": ["TypeScript", "React", "HTML", "CSS", "JavaScript", "Git", "GitHub"]
+}
