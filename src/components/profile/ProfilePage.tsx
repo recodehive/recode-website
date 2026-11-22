@@ -34,6 +34,17 @@ function safeHref(url: string | null | undefined): string | null {
   return /^https:\/\//i.test(withScheme) ? withScheme : null;
 }
 
+function credentialIcon(c: { name: string; type: string }): { node: React.ReactNode; tone: 'toneGrey' | 'toneGreen' | 'toneBlue' | 'toneAmber' | 'tonePurple' } {
+  const n = c.name.toLowerCase();
+  if (n.includes('foundations')) return { node: <Github size={22} />, tone: 'toneGrey' };
+  if (n.includes('copilot')) return { node: '\u{1F916}', tone: 'toneGrey' };
+  if (n.includes('campus') || n.includes('expert')) return { node: '\u{1F393}', tone: 'toneGreen' };
+  if (/\bml\b|machine|\bai\b/.test(n)) return { node: '\u{1F9E0}', tone: 'toneBlue' };
+  if (n.includes('msc') || n.includes('master') || n.includes('phd')) return { node: '\u{1F4DC}', tone: 'toneAmber' };
+  if (c.type === 'degree') return { node: '\u{1F4BB}', tone: 'tonePurple' };
+  return { node: c.type === 'program' ? '\u{1F393}' : '\u{1F3C5}', tone: c.type === 'program' ? 'toneGreen' : 'toneGrey' };
+}
+
 function rarityLabel(r: number): string {
   if (r <= 2) return 'COMMON';
   if (r <= 4) return 'UNCOMMON';
@@ -234,6 +245,7 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
                 {bio && <p className={styles.bio}>{bio}</p>}
                 <div className={styles.pills}>
                   {site.rank > 0 && <span className={`${styles.pill} ${styles.pillGreen}`}>{'\u{1F3C6}'} Rank #{site.rank} on the leaderboard</span>}
+                  {extras?.tags?.map((tag) => <span key={tag} className={`${styles.pill} ${styles.pillTag}`}>{tag}</span>)}
                   {streak && streak.current > 0 && <span className={`${styles.pill} ${styles.pillOrange}`}>{'\u{1F525}'} {streak.current}-day GitHub streak</span>}
                 </div>
                 <ul className={styles.meta}>
@@ -293,17 +305,23 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
 
               {extras?.featuredWork && extras.featuredWork.length > 0 && (
                 <section className={styles.card} aria-labelledby="fw">
-                  <h2 id="fw" className={styles.h2}>Featured work</h2>
+                  <div className={styles.cardHead}>
+                    <h2 id="fw" className={`${styles.h2} ${styles.h2Dash}`}>Featured work</h2>
+                    <span className={styles.pinned}>Pinned by {firstName}</span>
+                  </div>
                   <ul className={styles.work}>
                     {extras.featuredWork.map((w) => (
                       <li key={w.title} className={styles.workCard}>
-                        <p className={styles.workRole}>{w.role.toUpperCase()}</p>
-                        <h3>{w.title}</h3>
-                        <p className={styles.workSummary}>{w.summary}</p>
-                        {w.tags.length > 0 && <p className={styles.tags}>{w.tags.map((t) => <span key={t}>{t}</span>)}</p>}
-                        <p className={styles.workLinks}>
-                          {w.links.map((l) => <a key={l.url} href={l.url} target="_blank" rel="noopener nofollow ugc">{l.label} <ArrowUpRight size={12} aria-hidden="true" /></a>)}
-                        </p>
+                        {w.image && <img className={styles.workImg} src={w.image} alt="" loading="lazy" />}
+                        <div className={styles.workBody}>
+                          <p className={styles.workRole}>{w.role.toUpperCase()}</p>
+                          <h3>{w.title}</h3>
+                          <p className={styles.workSummary}>{w.summary}</p>
+                          {w.tags.length > 0 && <p className={styles.tags}>{w.tags.map((t) => <span key={t}>{t}</span>)}</p>}
+                          <p className={styles.workLinks}>
+                            {w.links.map((l) => <a key={l.url} href={l.url} target="_blank" rel="noopener nofollow ugc">{l.label} <ArrowUpRight size={12} aria-hidden="true" /></a>)}
+                          </p>
+                        </div>
                       </li>
                     ))}
                   </ul>
@@ -386,12 +404,19 @@ function Profile({ site, gh, isFallback, isOwner }: { site: ProfileSite; gh: Ret
 
               {extras?.credentials && extras.credentials.length > 0 && (
                 <section className={styles.card} aria-labelledby="cr">
-                  <div className={styles.cardHead}><h2 id="cr" className={styles.h2}>Credentials</h2><span className={styles.mono}>{extras.credentials.length} credentials</span></div>
+                  <div className={styles.cardHead}><h2 id="cr" className={`${styles.h2} ${styles.h2Dash}`}>Credentials</h2><span className={styles.pinned}>{extras.credentials.length} credentials</span></div>
                   <ul className={styles.creds}>
                     {extras.credentials.map((c) => {
                       const href = safeHref(c.url);
-                      const body = <span><strong>{c.name}</strong><small>{c.issuer}</small></span>;
-                      return <li key={c.name}>{href ? <a href={href} target="_blank" rel="noopener nofollow ugc">{body}</a> : body}</li>;
+                      const icon = credentialIcon(c);
+                      const sub = c.type === 'degree' ? c.issuer : `${c.type === 'certification' ? 'Certification' : 'Program'} · ${c.issuer}`;
+                      const body = (
+                        <>
+                          <span className={`${styles.credIcon} ${styles[icon.tone]}`} aria-hidden="true">{icon.node}</span>
+                          <span className={styles.credText}><strong>{c.name}</strong><small>{sub}</small></span>
+                        </>
+                      );
+                      return <li key={c.name}>{href ? <a href={href} target="_blank" rel="noopener nofollow ugc">{body}</a> : <div className={styles.credRow}>{body}</div>}</li>;
                     })}
                   </ul>
                 </section>

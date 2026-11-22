@@ -81,6 +81,7 @@ div.root .name, .root h1.name { margin: 0; font: 700 28px/1.15 "Space Grotesk", 
 .pill { padding: 4px 11px; border-radius: 999px; font-size: 12.5px; font-weight: 600; }
 .pillGreen { background: var(--accent-tint); color: var(--accent); border: 1px solid rgba(46, 133, 85, 0.3); }
 .pillOrange { background: rgba(251, 146, 60, 0.14); color: #c2410c; border: 1px solid rgba(251, 146, 60, 0.35); }
+.pillTag { background: var(--soft); color: var(--text2); border: 1px solid var(--border); }
 :global(html[data-theme='dark']) .pillOrange { color: #fdba74; }
 .meta { list-style: none; margin: 0 0 14px; padding: 14px 0 0; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13.5px; color: var(--text2); }
 .meta li { display: inline-flex; align-items: center; gap: 6px; }
@@ -114,7 +115,14 @@ div.root .name, .root h1.name { margin: 0; font: 700 28px/1.15 "Space Grotesk", 
 
 /* Featured work */
 .work { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-.workCard { padding: 16px; border: 1px solid var(--border); border-radius: 14px; background: var(--soft); }
+.workCard { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 14px; background: var(--card); }
+.workImg { display: block; width: 100%; aspect-ratio: 2.2 / 1; object-fit: cover; }
+.workBody { display: flex; flex: 1; flex-direction: column; padding: 14px 14px 12px; }
+.workBody .workLinks { margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--border); }
+.workBody .tags { margin-bottom: 14px; }
+.h2Dash { display: inline-flex; align-items: center; gap: 10px; }
+.h2Dash::before { content: ""; width: 18px; height: 2px; background: var(--accent); }
+.pinned { font-size: 13px; color: var(--muted); }
 .workRole { margin: 0 0 6px; font: 500 10.5px "JetBrains Mono", monospace; letter-spacing: 0.08em; color: var(--accent); }
 .workCard h3 { margin: 0 0 6px; font: 700 16px "Space Grotesk", sans-serif; color: var(--text); text-align: left; }
 .workSummary { margin: 0 0 10px; font-size: 13.5px; line-height: 1.5; color: var(--text2); }
@@ -172,13 +180,20 @@ div.root .name, .root h1.name { margin: 0; font: 700 28px/1.15 "Space Grotesk", 
 .post small { font: 500 10.5px "JetBrains Mono", monospace; letter-spacing: 0.08em; color: #2563eb; }
 .post strong { font: 700 17px "Space Grotesk", sans-serif; }
 .post em { font-style: normal; font-size: 12.5px; color: var(--muted); }
-.creds { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.creds li { border: 1px solid var(--border); border-radius: 12px; }
-.creds li > span, .creds a { display: flex; flex-direction: column; padding: 12px 14px; color: var(--text); text-decoration: none; }
-.creds a { border-radius: 12px; }
+.creds { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.creds li { border: 1px solid var(--border); border-radius: 14px; }
+.credRow, .creds a { display: flex; align-items: center; gap: 16px; padding: 18px 20px; color: var(--text); text-decoration: none; }
+.creds a { border-radius: 14px; }
 .creds a:hover { background: var(--soft); }
-.creds strong { font-size: 14.5px; }
-.creds small { font-size: 12.5px; color: var(--muted); }
+.credIcon { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 14px; font-size: 24px; line-height: 1; }
+.toneGrey { background: var(--soft); color: var(--text); }
+.toneGreen { background: rgba(34, 197, 94, 0.12); }
+.toneBlue { background: rgba(59, 130, 246, 0.12); }
+.toneAmber { background: rgba(251, 191, 36, 0.25); }
+.tonePurple { background: rgba(124, 58, 237, 0.1); }
+.credText { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.creds strong { font-size: 16px; }
+.creds small { font-size: 14.5px; color: var(--muted); }
 .timeline { list-style: none; margin: 0; padding: 0 0 0 22px; position: relative; display: flex; flex-direction: column; gap: 14px; }
 .timeline::before { content: ""; position: absolute; left: 5px; top: 6px; bottom: 6px; width: 2px; background: var(--border); }
 .timeline li { position: relative; display: flex; flex-direction: column; }
@@ -237,13 +252,20 @@ div.root .name, .root h1.name { margin: 0; font: 700 28px/1.15 "Space Grotesk", 
 }
 
 /* Hire card and message form */
-.hire { border-top: 3px solid var(--accent); }
-.openPill { display: inline-flex; align-items: center; gap: 7px; margin: 0 0 10px; padding: 3px 11px; border-radius: 999px; background: var(--accent-tint); color: var(--accent); font-size: 12.5px; font-weight: 700; }
-.liveDotGreen { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); display: inline-block; }
-.hireRows { list-style: none; margin: 0 0 14px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
-.hireRows li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 10px; font-size: 13.5px; color: var(--text2); }
-.hireRows strong { color: var(--text); display: inline-flex; align-items: center; gap: 4px; }
-.hireButtons { display: flex; flex-wrap: wrap; gap: 8px; }
+.hire { position: relative; overflow: hidden; border-color: rgba(46, 133, 85, 0.3); border-radius: 20px; }
+.hire::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 4px; background: linear-gradient(90deg, #2e8555, #a3e635); }
+.openPill { display: inline-flex; align-items: center; gap: 7px; margin: 0 0 12px; padding: 4px 12px; border-radius: 999px; background: var(--accent-tint); color: var(--accent); font-size: 12.5px; font-weight: 700; }
+.liveDotGreen { width: 7px; height: 7px; border-radius: 50%; background: #22c55e; display: inline-block; }
+.hireIntro { margin: 0 0 14px; padding-bottom: 14px; border-bottom: 1px dashed var(--border); font-size: 14px; line-height: 1.5; color: var(--muted); }
+.hireRows { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.hireRows li { display: flex; align-items: center; gap: 12px; font-size: 14px; line-height: 1.4; color: var(--text2); }
+.hireRows p { margin: 0; min-width: 0; }
+.hireRows strong { color: var(--text); font-weight: 700; }
+.hireIcon { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 8px; background: var(--soft); color: var(--text2); }
+.hireButtons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.hireButtons > * { justify-content: center; height: 44px; }
+.hireButtons > :only-child { grid-column: 1 / -1; }
+.hireWide { grid-column: 1 / -1; height: 46px; box-shadow: 0 6px 16px rgba(46, 133, 85, 0.25); }
 .hireNote { margin: 12px 0 0; font-size: 12.5px; color: var(--muted); text-align: center; }
 .msgBox { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--soft); font-size: 13.5px; color: var(--text2); }
 .msgBox p { margin: 0; }

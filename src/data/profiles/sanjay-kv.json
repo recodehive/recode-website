@@ -1,5 +1,6 @@
 {
   "headline": "Program Analyst · Founder of recode hive · GitHub Campus Expert",
+  "tags": ["Founder", "GitHub Campus Expert"],
   "bio": "Data engineer turned program analyst. I build data pipelines on Azure and Spark, run programs at scale, and maintain recode hive, an open source community that teaches GitHub and data engineering.",
   "timezone": "Australia/Sydney",
   "links": {
@@ -10,6 +11,7 @@
   "featuredWork": [
     {
       "title": "recode hive website",
+      "image": "/img/profiles/sanjay-kv/recode-hive.png",
       "role": "Founder and maintainer",
       "summary": "Open source learning platform with blogs, a contributor leaderboard and achievement badges.",
       "tags": ["Docusaurus", "React", "TypeScript"],
@@ -20,6 +22,7 @@
     },
     {
       "title": "Google AI program at scale",
+      "image": "/img/profiles/sanjay-kv/google-ai.png",
       "role": "Program Analyst · Ping Network MCN",
       "summary": "Scaling a Google AI program across more than 1,500 universities.",
       "tags": ["Program delivery", "Stakeholders"],
@@ -27,6 +30,7 @@
     },
     {
       "title": "Data Scientist Cheatsheet",
+      "image": "/img/profiles/sanjay-kv/cheatsheet.png",
       "role": "Author",
       "summary": "An ebook for aspiring data scientists, published on Gumroad.",
       "tags": ["Data science", "Ebook"],
@@ -57,6 +61,7 @@
   ],
   "hire": {
     "open": true,
+    "summary": "Data engineering background.",
     "roles": ["Business Analyst", "Technical Program Manager"],
     "engagement": ["contract", "full-time"],
     "workRights": "Full Australian working rights, no sponsorship needed"

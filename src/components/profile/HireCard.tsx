@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import { useClerk, useUser } from '@clerk/react';
-import { Calendar, Clock, Download, Mail } from 'lucide-react';
+import { BadgeCheck, Briefcase, Calendar, Clock, Download, FileText, Mail } from 'lucide-react';
 import type { ProfileExtras } from '../../lib/profile/types';
 import styles from './profile.module.css';
 
@@ -139,18 +139,25 @@ function MessageForm({ handle, profileUrl, onDone }: { handle: string; profileUr
 
 export default function HireCard({ firstName, handle, hire, timezone, profileUrl }: { firstName: string; handle: string; hire: NonNullable<ProfileExtras['hire']>; timezone?: string; profileUrl: string }) {
   const [open, setOpen] = useState(false);
+  const roles = hire.roles ?? [];
+  const types = (hire.engagement ?? []).map((e) => (ENGAGEMENT_LABEL[e] ?? e).toLowerCase());
+  const intro = [
+    roles.length ? `${roles.join(' and ')} roles${types.length ? `, ${types.join(' or ')}` : ''}.` : '',
+    hire.summary ?? '',
+  ].filter(Boolean).join(' ');
   return (
     <section id="hire" className={`${styles.card} ${styles.hire}`} aria-labelledby="hire-title">
       <p className={styles.openPill}><span className={styles.liveDotGreen} aria-hidden="true" /> Open to work</p>
       <h2 id="hire-title" className={styles.h2}>Work with {firstName}</h2>
+      {intro && <p className={styles.hireIntro}>{intro}</p>}
       <ul className={styles.hireRows}>
-        {hire.roles && hire.roles.length > 0 && <li><strong>Roles</strong><span>{hire.roles.join(', ')}</span></li>}
-        {hire.engagement && hire.engagement.length > 0 && <li><strong>Type</strong><span>{hire.engagement.map((e) => ENGAGEMENT_LABEL[e] ?? e).join(' or ')}</span></li>}
-        {hire.workRights && <li><strong>Work rights</strong><span>{hire.workRights}</span></li>}
-        {timezone && <li><strong><Clock size={13} aria-hidden="true" /> Time zone</strong><span>{timezone}</span></li>}
+        {roles.length > 0 && <li><span className={styles.hireIcon}><Briefcase size={14} aria-hidden="true" /></span><p><strong>Roles:</strong> {roles.join(', ')}</p></li>}
+        {types.length > 0 && <li><span className={styles.hireIcon}><FileText size={14} aria-hidden="true" /></span><p><strong>Type:</strong> {types.join(' or ').replace(/^./, (c) => c.toUpperCase())}</p></li>}
+        {hire.workRights && <li><span className={styles.hireIcon}><BadgeCheck size={14} aria-hidden="true" /></span><p><strong>Work rights:</strong> {hire.workRights}</p></li>}
+        {timezone && <li><span className={styles.hireIcon}><Clock size={14} aria-hidden="true" /></span><p><strong>Time zone:</strong> {timezone}</p></li>}
       </ul>
       <div className={styles.hireButtons}>
-        {hire.bookingUrl && <a className={styles.btnPrimary} href={hire.bookingUrl} target="_blank" rel="noopener nofollow ugc"><Calendar size={15} aria-hidden="true" /> Book a call</a>}
+        {hire.bookingUrl && <a className={`${styles.btnPrimary} ${styles.hireWide}`} href={hire.bookingUrl} target="_blank" rel="noopener nofollow ugc"><Calendar size={15} aria-hidden="true" /> Book a call</a>}
         <button type="button" className={styles.btnOutline} aria-expanded={open} onClick={() => setOpen((o) => !o)}><Mail size={15} aria-hidden="true" /> Message</button>
         {hire.cvUrl && <a className={styles.btnOutline} href={hire.cvUrl} target="_blank" rel="noopener nofollow ugc"><Download size={15} aria-hidden="true" /> CV</a>}
       </div>

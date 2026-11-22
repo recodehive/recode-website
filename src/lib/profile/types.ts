@@ -7,6 +7,8 @@ export interface ProfileExtras {
   /** Optional public URL slug, separate from the GitHub handle. */
   profileSlug?: string;
   headline?: string;
+  /** Short labels shown as pills, for example "Founder". At most 5. */
+  tags?: string[];
   bio?: string;
   /** IANA zone, for example "Australia/Sydney". Used for the streak and shown on the page. */
   timezone?: string;
@@ -26,6 +28,8 @@ export interface ProfileExtras {
   hire?: {
     open: boolean;
     roles?: string[];
+    /** One extra sentence shown under the title. */
+    summary?: string;
     engagement?: ('contract' | 'full-time' | 'freelance' | 'mentoring')[];
     workRights?: string;
     bookingUrl?: string;
