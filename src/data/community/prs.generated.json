@@ -1,40 +1,40 @@
 {
-  "fetchedAt": "2026-10-24T22:39:09.652Z",
+  "fetchedAt": "2026-11-22T03:32:36.029Z",
   "prs": [
     {
-      "number": 2467,
-      "title": "Redesign Git commands page as an interactive cheatsheet",
-      "url": "https://github.com/recodehive/recode-website/pull/2467",
+      "number": 2537,
+      "title": "fix(profile): compact fixed-size cover banner and fix mobile horizont…",
+      "url": "https://github.com/recodehive/recode-website/pull/2537",
       "author": "sanjay-kv",
-      "mergedAt": "2026-10-24T22:11:06Z"
+      "mergedAt": "2026-11-22T03:14:59Z"
     },
     {
-      "number": 2466,
-      "title": "Redesign Introduction of GitHub as an interactive lesson",
-      "url": "https://github.com/recodehive/recode-website/pull/2466",
+      "number": 2535,
+      "title": "Readme",
+      "url": "https://github.com/recodehive/recode-website/pull/2535",
       "author": "sanjay-kv",
-      "mergedAt": "2026-10-24T14:27:59Z"
+      "mergedAt": "2026-11-21T21:22:41Z"
     },
     {
-      "number": 2464,
-      "title": "added leaderboard doc fix",
-      "url": "https://github.com/recodehive/recode-website/pull/2464",
-      "author": "sanjay-kv",
-      "mergedAt": "2026-10-24T08:53:17Z"
+      "number": 2534,
+      "title": "chore: bump @clerk/react from 6.18.4 to 6.18.8",
+      "url": "https://github.com/recodehive/recode-website/pull/2534",
+      "author": "dependabot[bot]",
+      "mergedAt": "2026-11-21T20:27:28Z"
     },
     {
-      "number": 2463,
-      "title": "nonindexing docs",
-      "url": "https://github.com/recodehive/recode-website/pull/2463",
+      "number": 2533,
+      "title": "Docs: Align Node.js prerequisites",
+      "url": "https://github.com/recodehive/recode-website/pull/2533",
       "author": "sanjay-kv",
-      "mergedAt": "2026-10-24T04:56:31Z"
+      "mergedAt": "2026-11-21T20:19:56Z"
     },
     {
-      "number": 2462,
-      "title": "Match the docs footer width to pages with a 760px content column",
-      "url": "https://github.com/recodehive/recode-website/pull/2462",
+      "number": 2530,
+      "title": "Readme",
+      "url": "https://github.com/recodehive/recode-website/pull/2530",
       "author": "sanjay-kv",
-      "mergedAt": "2026-10-24T00:02:04Z"
+      "mergedAt": "2026-11-17T08:21:16Z"
     }
   ]
 }

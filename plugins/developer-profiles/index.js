@@ -67,6 +67,7 @@ function cleanExtras(raw) {
     ? {
         open: true,
         roles: strList(hireRaw.roles, 6, 60),
+        summary: str(hireRaw.summary, 160),
         engagement: Array.isArray(hireRaw.engagement) ? hireRaw.engagement.filter((e) => ENGAGEMENT.includes(e)) : undefined,
         workRights: str(hireRaw.workRights, 200),
         bookingUrl: https(hireRaw.bookingUrl),
@@ -85,6 +86,7 @@ function cleanExtras(raw) {
   const out = {
     profileSlug,
     headline: str(raw.headline, 140),
+    tags: strList(raw.tags, 5, 30),
     bio: str(raw.bio, 600),
     timezone: str(raw.timezone, 60),
     links,
